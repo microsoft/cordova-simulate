@@ -1,0 +1,52 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Based on Apache Cordova geolocation plugin's Coordinates implementation.
+// See https://github.com/apache/cordova-plugin-geolocation/blob/master/www/Coordinates.js
+
+/**
+ * This class contains position information.
+ * @param {Object} lat
+ * @param {Object} lng
+ * @param {Object} alt
+ * @param {Object} acc
+ * @param {Object} head
+ * @param {Object} vel
+ * @param {Object} altacc
+ * @constructor
+ */
+var Coordinates = function(lat, lng, alt, acc, head, vel, altacc) {
+    /**
+     * The latitude of the position.
+     */
+    this.latitude = lat;
+    /**
+     * The longitude of the position,
+     */
+    this.longitude = lng;
+    /**
+     * The accuracy of the position.
+     */
+    this.accuracy = acc;
+    /**
+     * The altitude of the position.
+     */
+    this.altitude = (alt !== undefined ? alt : null);
+    /**
+     * The direction the device is moving at the position.
+     */
+    this.heading = (head !== undefined ? head : null);
+    /**
+     * The velocity with which the device is moving at the position.
+     */
+    this.speed = (vel !== undefined ? vel : null);
+
+    if (this.speed === 0 || this.speed === null) {
+        this.heading = NaN;
+    }
+
+    /**
+     * The altitude accuracy of the position.
+     */
+    this.altitudeAccuracy = (altacc !== undefined) ? altacc : null;
+};
+
+module.exports = Coordinates;

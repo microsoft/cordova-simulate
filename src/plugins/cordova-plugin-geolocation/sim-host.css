@@ -1,0 +1,102 @@
+/**
+ *****************************************************************
+ *                                                               *
+ *   Copyright (c) Microsoft Corporation. All rights reserved.   *
+ *                                                               *
+ *****************************************************************
+ */
+
+.geo-box {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    background: #e6e6e6;
+    border: 1px solid rgb(211, 211, 211);
+}
+
+.geo-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#geo-map-container {
+    width: 100%;
+    height: 100%;
+}
+
+#geo-map-direction {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 90px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #000;
+    background-color: rgba(180, 180, 180, 0.7);
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    padding: 2px;
+    line-height: 18px;
+    z-index: 800;
+}
+
+#geo-map-arrow {
+    width: 32px;
+    height: 32px;
+    background: url(compass.png);
+    float: left;
+    margin: 5px;
+}
+
+#geo-map-direction-label {
+    margin-left: 35px;
+    z-index: 800;
+}
+
+#geo-map-marker {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    pointer-events: none;
+    z-index: 800;
+    width: 14px;
+    height: 14px;
+    border: white solid 2px;
+    border-radius: 50%;
+    background: #03a9f4;
+    box-shadow: #03a9f4 0 0 15px 3px;
+}
+
+#geo-map-marker:before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 3px;
+    width: 0;
+    height: 0;
+    border-right: 4px solid transparent;
+    border-bottom: 9px solid white;
+    border-left: 4px solid transparent;
+}
+
+#geo-gpxreplaystatus {
+    position: absolute;
+    font-size: 12px;
+    margin: auto;
+    background: white;
+    left: 5px;
+    bottom: 5px;
+    right: 5px;
+    z-index: 1000;
+    padding: 5px;
+    text-align: center;
+    opacity: 0.85;
+}
+
+#geo-gpxreplaystatus:empty {
+    display: none;
+}

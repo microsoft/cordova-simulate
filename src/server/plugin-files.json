@@ -1,0 +1,13 @@
+{
+  "sim-host": {
+    "panels": "sim-host-panels.html",
+    "dialogs": "sim-host-dialogs.html",
+    "js": "sim-host.js",
+    "handlers": "sim-host-handlers.js"
+  },
+  "app-host": {
+    "js": "app-host.js",
+    "handlers": "app-host-handlers.js",
+    "clobbers": "app-host-clobbers.js"
+  }
+}

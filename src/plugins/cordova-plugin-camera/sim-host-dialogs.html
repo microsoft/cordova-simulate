@@ -1,0 +1,11 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved. -->
+
+<cordova-dialog id="camera-choose-image" caption="Camera: Choose Image">
+    <section><img id="camera-dialog-image" style="width:100%; display: none;" src=""></section>
+    <cordova-panel-row>
+        <cordova-button id="camera-dialog-choose-filename">Choose File</cordova-button>
+        <cordova-button id="camera-dialog-use-image" style="display: none;">Use Image</cordova-button>
+        <cordova-button id="camera-dialog-cancel">Cancel</cordova-button>
+    </cordova-panel-row>
+    <cordova-file hidden="true" id="camera-dialog-filename"></cordova-file>
+</cordova-dialog>

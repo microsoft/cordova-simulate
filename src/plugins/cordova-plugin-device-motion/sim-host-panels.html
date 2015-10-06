@@ -1,0 +1,35 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved. -->
+
+<cordova-panel id="device-motion" caption="Accelerometer">
+    <style>
+        #accelerometer-help {
+            font-size: 0.75em;
+            text-align: center;
+        }
+
+        #accelerometer-canvas {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+
+    <cordova-panel-row>
+        <canvas id="accelerometer-canvas" width="200" height="160"></canvas>
+    </cordova-panel-row>
+
+    <cordova-panel-row>
+        <em id="accelerometer-help">Click and drag with the mouse to manipulate the device. <br/> Hold the Shift key to modify 'alpha'</em>
+    </cordova-panel-row>
+
+    <cordova-labeled-value id="accel-x" label="X (m/s&sup2)" value="0"></cordova-labeled-value>
+    <cordova-labeled-value id="accel-y" label="Y (m/s&sup2)" value="0"></cordova-labeled-value>
+    <cordova-labeled-value id="accel-z" label="Z (m/s&sup2)" value="0"></cordova-labeled-value>
+    <cordova-labeled-value id="accel-alpha" label="alpha (deg)" value="0"></cordova-labeled-value>
+    <cordova-labeled-value id="accel-beta" label="beta (deg)" value="0"></cordova-labeled-value>
+    <cordova-labeled-value id="accel-gamma" label="gamma (deg)" value="0"></cordova-labeled-value>
+
+    <cordova-combo id="accel-recorded-data" label="Recorded Data"></cordova-combo>
+    <cordova-panel-row><cordova-button id="accel-play-recorded">Play</cordova-button></cordova-panel-row>
+
+</cordova-panel>
