@@ -3,6 +3,7 @@
 var fs = require('fs'),
     path = require('path'),
     cordovaServe = require('cordova-serve'),
+    pluginMapper  = require('cordova-registry-mapper').oldToNew,
     config = require('./config'),
     dirs = require('./dirs');
 
@@ -76,20 +77,23 @@ function findPluginPath(projectRoot, pluginId, hostType) {
 }
 
 function findPluginSourceFilePath(projectRoot, pluginId, file) {
+    // Look in the plugin itself
     var pluginPath = path.join(projectRoot, 'plugins', pluginId, 'src/simulation');
     var pluginFilePath = path.resolve(pluginPath, file);
+    return fs.existsSync(pluginFilePath) ? pluginPath : findBuiltInPluginSourceFilePath(pluginId, file);
 
+}
+
+function findBuiltInPluginSourceFilePath(pluginId, file) {
+    var pluginPath = path.join(dirs.plugins, pluginId);
+    var pluginFilePath = path.join(pluginPath, file);
     if (fs.existsSync(pluginFilePath)) {
         return pluginPath;
     }
 
-    pluginPath = path.join(dirs.plugins, pluginId);
-    pluginFilePath = path.join(pluginPath, file);
-    if (fs.existsSync(pluginFilePath)) {
-        return pluginPath;
-    }
-
-    return null;
+    // In case plugin id is in old style, try mapping to new style to see if we have support for that.
+    pluginId = pluginMapper[pluginId];
+    return pluginId ? findBuiltInPluginSourceFilePath(pluginId, file) : null;
 }
 
 function getRouter() {
