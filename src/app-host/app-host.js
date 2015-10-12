@@ -85,7 +85,7 @@ function exec(success, fail, service, action, args) {
     } else {
         var execIndex = nextExecCacheIndex++;
         execCache[execIndex] = {index: execIndex, success: success, fail: fail};
-        socket.emit('exec', {index: execIndex, service: service, action: action, args: args});
+        socket.emit('exec', {index: execIndex, service: service, action: action, args: args, hasSuccess: !!success, hasFail: !!fail});
     }
 }
 

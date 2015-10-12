@@ -7,6 +7,12 @@ var dialog = require('dialog');
 module.exports = {
     '*': {
         '*': function (success, fail, service, action, args) {
+            // If there is no success or fail method provided, then there is no point in us trying to handle it, so we
+            // don't.
+            if (!success && !fail) {
+                return;
+            }
+
             // If we have a saved sim for this service.action, use that
             if (handleSavedSim(success, fail, service, action)) {
                 return;
