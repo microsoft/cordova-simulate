@@ -1,5 +1,9 @@
 # taco-simulate-server Release Notes
 
+### 0.1.2 (Oct 13, 2015)
+* Better handled scenarios with no success/fail methods ([0805ad28](https://github.com/Microsoft/taco-simulate-server/commit/0805ad28)).
+* Handle plugins with "old style" id ([5b46fddb](https://github.com/Microsoft/taco-simulate-server/commit/5b46fddb)).
+
 ### 0.1.1 (Oct 8, 2015)
 * Restore missing utils.navHelper() method ([63ef7679](https://github.com/Microsoft/taco-simulate-server/commit/63ef7679)).
 
