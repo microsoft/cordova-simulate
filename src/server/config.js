@@ -33,7 +33,7 @@ Object.defineProperties(module.exports, {
     },
     server: {
         get: function () {
-            return getValue('server');
+            return getValue('server', true);
         },
         set: function (value) {
             setValue('server', value);
@@ -68,8 +68,8 @@ function setValue(prop, value, single) {
     config[prop] = value;
 }
 
-function getValue(prop) {
-    if (!config[prop]) {
+function getValue(prop, optional) {
+    if (!config[prop] && !optional) {
         throw new Error('Cannot get ' + prop + ' as it has not been initialized.');
     }
     return config[prop];

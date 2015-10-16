@@ -37,7 +37,7 @@ module.exports = function (opts, simHostOpts) {
         config.projectRoot = projectRoot;
         config.platformRoot = server.root;
         var urlRoot = 'http://localhost:' + server.port + '/';
-        appUrl = urlRoot +  parseStartPage(projectRoot);
+        appUrl = urlRoot + parseStartPage(projectRoot);
         simHostUrl = urlRoot + 'simulator/index.html';
         log.log('Server started:\n- App running at: ' + appUrl + '\n- Sim host running at: ' + simHostUrl);
         return {appUrl: appUrl, simHostUrl: simHostUrl};
@@ -65,3 +65,10 @@ function parseStartPage(projectRoot) {
 
 module.exports.dirs = require('./server/dirs');
 module.exports.app = server.app;
+module.exports.log = log;
+
+Object.defineProperty(module.exports, 'server', {
+    get: function () {
+        return config.server;
+    }
+});
