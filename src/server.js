@@ -41,6 +41,10 @@ module.exports = function (opts, simHostOpts) {
         simHostUrl = urlRoot + 'simulator/index.html';
         log.log('Server started:\n- App running at: ' + appUrl + '\n- Sim host running at: ' + simHostUrl);
         return {appUrl: appUrl, simHostUrl: simHostUrl};
+    }).catch(function (error) {
+        // Ensure server is closed, then rethrow so it can be handled by downstream consumers.
+        config.server && config.server.close();
+        throw error;
     });
 };
 
