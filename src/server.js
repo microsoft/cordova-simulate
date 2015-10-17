@@ -44,7 +44,11 @@ module.exports = function (opts, simHostOpts) {
     }).catch(function (error) {
         // Ensure server is closed, then rethrow so it can be handled by downstream consumers.
         config.server && config.server.close();
-        throw error;
+        if (error instanceof Error) {
+            throw error;
+        } else {
+            throw new Error(error);
+        }
     });
 };
 
