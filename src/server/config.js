@@ -39,6 +39,14 @@ Object.defineProperties(module.exports, {
             setValue('server', value);
         }
     },
+    telemetry: {
+        get: function () {
+            return getValue('telemetry', true);
+        },
+        set: function (value) {
+            setValue('telemetry', value);
+        }
+    },
     simHostOptions: {
         get: function () {
             return getValue('simHostOptions');

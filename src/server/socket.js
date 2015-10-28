@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var log = require('./log');
+var log = require('./log'),
+    config = require('./config');
 
 var appHost = 'app-host';
 var simHost = 'sim-host';
@@ -33,6 +34,10 @@ function init(server) {
                 emitToHost(simHost, 'plugin-method', data, callback);
             });
 
+            socket.on('telemetry', function (data) {
+                handleTelemetry(data.event, data.props);
+            });
+
             handlePendingEmits(appHost);
         });
 
@@ -58,9 +63,19 @@ function init(server) {
                 emitToHost(appHost, 'plugin-method', data, callback);
             });
 
+            socket.on('telemetry', function (data) {
+                handleTelemetry(data.event, data.props);
+            });
+
             handlePendingEmits(simHost);
         });
     });
+}
+
+function handleTelemetry(event, props) {
+    if (config.telemetry) {
+       config.telemetry.sendTelemetry(event, props);
+    }
 }
 
 function handlePendingEmits(host) {

@@ -78,6 +78,8 @@ function exec(success, fail, service, action, args) {
     // If we have a local handler, call that. Otherwise pass it to the simulation host.
     var handler = pluginHandlers[service] && pluginHandlers[service][action];
     if (handler) {
+       socket.emit('telemetry', {event: 'exec', props: {handled: 'app-host', service: service, action: action}});
+
         // Ensure local handlers are executed asynchronously.
         setTimeout(function () {
             handler(success, fail, service, action, args);

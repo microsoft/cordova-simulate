@@ -23,6 +23,7 @@ module.exports = function (opts, simHostOpts) {
 
     config.platform = platform;
     config.simHostOptions = simHostOpts || {};
+    config.telemetry = opts.telemetry;
 
     simServer.attach(server.app);
 
