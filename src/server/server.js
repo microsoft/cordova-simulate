@@ -22,9 +22,6 @@ Q.onerror = function (error) {
 Q.longStackSupport = true;
 
 function attach(app) {
-    dirs.node_modules.forEach(function (dir) {
-        app.use('/node_modules', cordovaServe.static(dir));
-    });
     app.get('/simulator/', streamSimHostHtml);
     app.get('/simulator/*.html', streamSimHostHtml);
     app.get('/', streamAppHostHtml);

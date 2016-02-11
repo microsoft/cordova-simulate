@@ -24,10 +24,3 @@ Object.defineProperty(module.exports.hostRoot, 'sim-host', {
         return config.simHostOptions.simHostRoot;
     }
 });
-
-Object.defineProperty(module.exports, 'node_modules', {
-    get: function () {
-        // Get dynamically so simHostOptions is initialized
-        return [path.resolve(rootPath, '..', 'node_modules'), config.simHostOptions.node_modules];
-    }
-});
