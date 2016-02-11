@@ -24,7 +24,7 @@ function prepare() {
         try {
             projectRoot = config.projectRoot;
         } catch (error) {
-            projectRoot = process.cwd();
+            return Q.reject(error);
         }
 
         exec('cordova prepare ' + platform, {
