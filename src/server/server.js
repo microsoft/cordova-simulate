@@ -34,6 +34,7 @@ function attach(app) {
     });
     app.use(plugins.getRouter());
     app.use('/simulator', cordovaServe.static(dirs.hostRoot['sim-host']));
+    app.use('/simulator/thirdparty', cordovaServe.static(dirs.thirdParty));
 }
 
 function sendHostJsFile(response, hostType) {
@@ -57,7 +58,7 @@ function streamAppHostHtml(request, response) {
         var filePath = path.join(config.platformRoot, url.parse(request.url).pathname);
         log.log('Injecting app-host into ' + filePath);
         var scriptSources = [
-            'https://cdn.socket.io/socket.io-1.2.0.js',
+            '/simulator/thirdparty/socket.io-1.2.0.js',
             '/simulator/app-host.js'
         ];
         var scriptTags = scriptSources.map(function (scriptSource) {
