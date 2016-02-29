@@ -20,7 +20,16 @@ function prepare() {
 
         lastPlatform = platform;
 
-        exec('cordova prepare ' + platform, function (err, stdout, stderr) {
+        var projectRoot;
+        try {
+            projectRoot = config.projectRoot;
+        } catch (error) {
+            return Q.reject(error);
+        }
+
+        exec('cordova prepare ' + platform, {
+            cwd: projectRoot
+        }, function (err, stdout, stderr) {
             lastPlatform = null;
             preparePromise = null;
             if (err) {
