@@ -130,6 +130,21 @@ function processPluginHtml(html, pluginId) {
     });
 }
 
+function stop() {
+    plugins.clearPlugins();
+    simFiles.clearSimFiles();
+    config.newInstance();
+
+    if (config.server) {
+        config.server.close(function (error) {
+            if (error) {
+                log.log(error);
+            }
+        })
+    }
+}
+
 module.exports = {
-    attach: attach
+    attach: attach,
+    stop: stop
 };

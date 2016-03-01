@@ -15,7 +15,17 @@ pendingEmits[APP_HOST] = [];
 pendingEmits[SIM_HOST] = [];
 pendingEmits[DEBUG_HOST] = [];
 
+function reset() {
+    hostSockets = {};
+    pendingEmits = {};
+    pendingEmits[APP_HOST] = [];
+    pendingEmits[SIM_HOST] = [];
+    pendingEmits[DEBUG_HOST] = [];
+}
+
 function init(server) {
+    reset();
+
     var io = require('socket.io')(server);
 
     io.on('connection', function (socket) {

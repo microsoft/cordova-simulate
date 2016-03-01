@@ -44,3 +44,10 @@ function getValue(prop, optional) {
     }
     return config[prop];
 }
+
+function newInstance() {
+    config = {};
+    simulationFilePath = null;
+}
+
+module.exports.newInstance = newInstance;
