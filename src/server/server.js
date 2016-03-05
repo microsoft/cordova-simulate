@@ -11,6 +11,7 @@ var fs = require('fs'),
     plugins = require('./plugins'),
     prepare = require('./prepare'),
     simFiles = require('./sim-files'),
+    simSocket = require('./socket'),
     log = require('./log');
 
 var pluginSimulationFiles = require('./plugin-files');
@@ -131,17 +132,11 @@ function processPluginHtml(html, pluginId) {
 }
 
 function stop() {
+    simSocket.closeConnections();
+
+    config.newInstance();
     plugins.clearPlugins();
     simFiles.clearSimFiles();
-    config.newInstance();
-
-    if (config.server) {
-        config.server.close(function (error) {
-            if (error) {
-                log.log(error);
-            }
-        })
-    }
 }
 
 module.exports = {
