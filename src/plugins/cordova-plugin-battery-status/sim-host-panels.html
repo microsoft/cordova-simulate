@@ -1,0 +1,19 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved. -->
+
+<cordova-panel id="battery-status" caption="Battery Status">
+    <style>
+        #battery-level-label {
+            margin-right: 5px;
+            margin-left: auto;
+        }
+    </style>
+    <cordova-group>
+        <cordova-panel-row>
+            <cordova-label label="Battery level"></cordova-label>
+            <cordova-label id="battery-level-label" label="100%"></cordova-label>
+            <input id="battery-level" type="range" value="100" min="0" max="100" style="width:130px;">
+        </cordova-panel-row>
+    </cordova-group>
+
+    <cordova-checkbox id="is-plugged" checked>Device plugged</cordova-checkbox>
+</cordova-panel>
