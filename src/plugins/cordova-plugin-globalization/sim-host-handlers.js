@@ -1,49 +1,41 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
+// Based in part on code from Apache Ripple (https://github.com/apache/incubator-ripple)
+
 var moment = require('./moment');
+var accounting = require('./accounting');
 var GlobalizationError = require('./GlobalizationError');
-
-var locales = [
-    'en-US',
-    'en-CA',
-    'fr-FR',
-    'fr-CA',
-    'de-DE',
-    'ru-RU'
-];
-
-module.exports = {
-    Globalization: {
-        'getLocaleName': getLocaleNameHandle,
-        'getPreferredLanguage': getLocaleNameHandle,
-        'isDayLightSavingsTime': isDayLightSavingsTime,
-        'getFirstDayOfWeek': getFirstDayOfWeek,
-        'numberToString': numberToString,
-        'getCurrencyPattern': getCurrencyPattern, // NOT SUPPORTED
-        'dateToString': dateToString,
-        'stringToDate': stringToDate,
-        'getDatePattern': getDatePattern, // HALF SUPPORTED (see Browser Quirks)
-        'getDateNames': getDateNames,
-        'stringToNumber': stringToNumber, // NOT SUPPORTED
-        'getNumberPattern': getNumberPattern // HALF SUPPORTED (see Browser Quirks)
-    }
-};
+var globalizationData = require('./globalization-data');
 
 // HANDLER FUNCTIONS
 
-function numberToString (win, fail) {
+function numberToString (win, fail, args) {
+    var options = args[0].options || { type : 'decimal' },
+        number = args[0].number,
+        value;
+    options.type = options.type || 'decimal';
+
     try {
-        var options = args[0].options || { type : 'decimal' };
-        options.type = options.type || 'decimal';
-
-        options = convertToIntlNumberFormatOptions(options);
-
-        var formatter = new Intl.NumberFormat(getLocaleName(), options);
-        win( { value: formatter.format(args[0].number) });
+        validateNumberOptionType(options.type);
     } catch (e) {
         fail(new GlobalizationError(GlobalizationError.FORMATTING_ERROR,
             e.hasOwnProperty('message')? e.message : e));
+        return;
     }
+
+    switch (options.type) {
+        case 'currency':
+            value = accounting.formatMoney(number);
+            break;
+        case 'percent':
+            value = accounting.formatNumber(Math.round(number * 100)) + '%';
+            break;
+        case 'decimal':
+            value = accounting.formatNumber(number);
+            break;
+    }
+
+    win({ value: value });
 }
 
 function getDateNames (win, fail, args) {
@@ -85,14 +77,15 @@ function getDateNames (win, fail, args) {
 function getDatePattern (win, fail) {
     try {
         var formatter = new Intl.DateTimeFormat(getLocaleName());
-        var timezone = formatter.hasOwnProperty('resolved') ? formatter.resolved.timeZone : '';
+        var hasResolved = formatter.hasOwnProperty('resolved');
+        var timezone =  hasResolved ? formatter.resolved.timeZone : '';
         var dstOffset = dstOffsetAbs(new Date());
 
         win( {
             utc_offset: new Date().getTimezoneOffset() * (-60),
             dst_offset: dstOffset * 60,
             timezone: timezone,
-            pattern: ''
+            pattern: hasResolved ? formatter.resolved.pattern : ''
         });
     } catch (e) {
         fail(new GlobalizationError(GlobalizationError.PATTERN_ERROR,
@@ -101,34 +94,63 @@ function getDatePattern (win, fail) {
 }
 
 function getNumberPattern (win, fail, args) {
+    var options = args[0].options || { type : 'decimal'};
+    options.type = options.type || 'decimal';
+
     try {
-        var options = args[0].options || { type : 'decimal'};
-        options.type = options.type || 'decimal';
-
-        options = convertToIntlNumberFormatOptions(options);
-
-        var formatter = new Intl.NumberFormat(getLocaleName, options);
-
-        if (!formatter.hasOwnProperty('resolved')) { fail('Not supported'); return; }
-        var pattern = formatter.resolved.pattern;
-        win( {
-            pattern: pattern,
-            symbol: '',
-            fraction: 0,
-            rounding: 0,
-            positive: '',
-            negative: '',
-            decimal: '',
-            grouping: ''
-        });
+        validateNumberOptionType(options.type);
     } catch (e) {
         fail(new GlobalizationError(GlobalizationError.PATTERN_ERROR,
             e.hasOwnProperty('message')? e.message : e));
+        return;
     }
+
+    var pattern,
+        settings;
+
+    switch (options.type) {
+        case 'decimal':
+            pattern = globalizationData.numberPatterns.NUMBER;
+            settings = accounting.settings.number;
+            break;
+        case 'currency':
+            settings = accounting.settings.currency;
+            pattern = settings.symbol + globalizationData.numberPatterns.CURRENCY;
+            break;
+        case 'percent':
+            settings = {
+                precision: 0,
+                decimal: accounting.settings.number.decimal,
+                thousand: accounting.settings.number.thousand
+            };
+            pattern = globalizationData.numberPatterns.PERCENTAGE;
+            break;
+    }
+
+    win({
+        pattern: pattern,
+        symbol: '.',
+        fraction: 0,
+        rounding: settings.precision,
+        positive: '',
+        negative: '-',
+        decimal: settings.decimal,
+        grouping: settings.thousand
+    });
 }
 
 function getCurrencyPattern (win, fail, args) {
-    fail('Not supported');
+    var currency = accounting.settings.currency,
+        pattern = currency.symbol + globalizationData.numberPatterns.CURRENCY;
+
+    win({
+        pattern: pattern,
+        code: args[0].currencyCode,
+        fraction: 0,
+        rounding: currency.precision,
+        decimal: accounting.settings.currency.decimal,
+        grouping: accounting.settings.currency.thousand
+    });
 }
 
 function stringToDate (win, fail, args) {
@@ -154,7 +176,14 @@ function stringToDate (win, fail, args) {
 }
 
 function stringToNumber (win, fail, args) {
-    fail('Not supported');
+    try {
+        var numberString = args[0].numberString;
+
+        win({ value: accounting.unformat(numberString) });
+    } catch (e) {
+        fail(new GlobalizationError(GlobalizationError.FORMATTING_ERROR,
+            e.hasOwnProperty('message')? e.message : e));
+    }
 }
 
 function dateToString (win, fail, args) {
@@ -181,25 +210,19 @@ function isDayLightSavingsTime (win, lose) {
 
 function getFirstDayOfWeek (win, lose) {
     var daysOfWeekList = document.querySelector('#day-list');
-    var selectedDay = daysOfTheWeek[daysOfWeekList.selectedIndex];
+    var selectedDay = daysOfWeekList.selectedIndex + 1; // it starts from 1
     win({value: selectedDay});
 }
 
 // HELPER FUNCTIONS
 
-function convertToIntlNumberFormatOptions(options) {
-    switch (options.type) {
-        case 'decimal':
-            return { style: 'decimal' };
-        case 'currency':
-            throw '\'currency\' number type is not supported';
-        case 'percent':
-            return { style: 'percent' };
-        default:
-            throw 'The options.type can be \'decimal\', \'percent\' or \'currency\'';
+function validateNumberOptionType(type) {
+    if (type !== 'decimal' &&
+        type !== 'currency' &&
+        type !== 'percent') {
+        throw 'The options.type can be \'decimal\', \'percent\' or \'currency\'';
     }
 }
-
 
 function getWeekDayNames(locale, options) {
     var result = [];
@@ -278,6 +301,22 @@ function dstOffsetAbs(date) {
 
 function getLocaleName () {
     var localeList = document.querySelector('#locale-list');
-    return locales[localeList.selectedIndex];
+    return globalizationData.locales[localeList.selectedIndex];
 }
 
+module.exports = {
+    Globalization: {
+        'getLocaleName': getLocaleNameHandle,
+        'getPreferredLanguage': getLocaleNameHandle,
+        'isDayLightSavingsTime': isDayLightSavingsTime,
+        'getFirstDayOfWeek': getFirstDayOfWeek,
+        'numberToString': numberToString,
+        'getCurrencyPattern': getCurrencyPattern,
+        'dateToString': dateToString,
+        'stringToDate': stringToDate,
+        'getDatePattern': getDatePattern, // HALF SUPPORTED (see Browser Quirks)
+        'getDateNames': getDateNames,
+        'stringToNumber': stringToNumber,
+        'getNumberPattern': getNumberPattern // HALF SUPPORTED (see Browser Quirks)
+    }
+};

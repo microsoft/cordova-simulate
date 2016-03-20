@@ -1,27 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
- 
+
 // https://github.com/apache/cordova-plugin-globalization/
 
-var languages = [
-    'English',
-    'English (Canadian)',
-    'French',
-    'French (Canadian)',
-    'German',
-    'Русский'
-];
+function initialize() {
+    var globalizationData = require('./globalization-data');
+    var languages = globalizationData.languages;
+    var daysOfTheWeek = globalizationData.daysOfTheWeek;
 
-var daysOfTheWeek = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday'
-];
-
-function initialize () {
     var localeList = document.querySelector('#locale-list');
     var dayList = document.querySelector('#day-list');
 
