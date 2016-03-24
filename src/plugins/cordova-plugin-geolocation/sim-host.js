@@ -132,7 +132,9 @@ module.exports = function(messages) {
                 }
             }
 
-            function updateHeadingValues() {
+            function onHeadingValueUpdated(value) {
+                heading.value = value;
+
                 var headingDeg  = parseFloat(heading.value),
                     headingText = _getTextHeading(parseFloat(heading.value));
 
@@ -143,6 +145,11 @@ module.exports = function(messages) {
                     return prop + ': rotate(' + headingDeg + 'deg);';
                 }).join(' ');
                 mapMarker.setAttribute('style', style);
+            }
+
+            function updateHeadingValues() {
+                // notify globally that heading has changed
+                messages.emit('device-orientation-updated', heading.value, true);
             }
 
             function updateValsFromMap() {
@@ -458,6 +465,10 @@ module.exports = function(messages) {
             speed.value = positionInfo.speed;
 
             initMap();
+
+            messages.on('device-orientation-updated', function (event, value) {
+                onHeadingValueUpdated(value);
+            }, true); // global event
 
             initializeValues();
 

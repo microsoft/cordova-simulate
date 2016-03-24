@@ -18,7 +18,7 @@ function Messages(pluginId, socket) {
     var that = this;
     socket.on('plugin-message', function (data) {
         if (data.pluginId === pluginId) {
-            notify.call(that, data.message, data.data);
+            notify.call(that, that.messages, data.message, data.data);
         }
     });
     socket.on('plugin-method', function (data, callback) {
@@ -33,9 +33,11 @@ function Messages(pluginId, socket) {
     });
 }
 
-function notify(message, data) {
+Messages._globalMessages = {};
+
+function notify(messagesObj, message, data) {
     // Notifies local listeners of a message
-    var handlers = this.messages && this.messages[message];
+    var handlers = messagesObj && messagesObj[message];
     if (handlers) {
         handlers.forEach(function (handler) {
             handler.call(this, message, data);
@@ -74,23 +76,36 @@ Messages.prototype = {
 
     // Emit and handle messages
 
-    emit: function (message, data) {
+    emit: function (message, data, isGlobal) {
         // Pass the message across the socket
-        this.socket.emit('plugin-message', {
+        var eventName,
+            messagesObj;
+
+        if (isGlobal) {
+            eventName = 'global-plugin-message';
+            messagesObj = Messages._globalMessages;
+        } else {
+            eventName = 'plugin-message';
+            messagesObj = this.messages;
+        }
+
+        this.socket.emit(eventName, {
             pluginId: this.pluginId,
             message: message,
             data: data
         });
 
         // Notify any local listeners
-        notify.call(this, message, data);
+        notify.call(this, messagesObj, message, data);
     },
 
-    on: function (message, handler) {
-        if (!this.messages[message]) {
-            this.messages[message] = [handler];
+    on: function (message, handler, isGlobal) {
+        var messagesObj = (!isGlobal) ? this.messages : Messages._globalMessages;
+
+        if (!messagesObj[message]) {
+            messagesObj[message] = [handler];
         } else {
-            this.messages[message].push(handler);
+            messagesObj[message].push(handler);
         }
         return this;
     },
@@ -98,7 +113,11 @@ Messages.prototype = {
     off: function (message, handler) {
         var handlers = this.messages[message];
         if (!handlers) {
-            return this;
+            // try on the global messages handlers
+            handlers = Messages._globalMessages[message];
+            if (!handlers) {
+                return this;
+            }
         }
 
         var pos = handlers.indexOf(handler);
