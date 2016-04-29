@@ -23,7 +23,7 @@ Where opts is an object with the following properties (all optional):
 * **target** - the name of the browser to launch your app in. Can be any of the following: `chrome`, `chromium`, `edge`, `firefox`, `ie`, `opera`, `safari`. Defaults to `chrome`.
 * **port** - the desired port for the server to use. Defaults to `8000`.
 * **dir** - the directory to launch from (where it should look for a Cordova project). Defaults to cwd.
-* **simhost** - the directory containing the UI specific files of the simulation host. Defaults to the bundled simulation host files, found in `src/sim-host`.
+* **simhostroot** - the directory containing the UI specific files of the simulation host. Defaults to the bundled simulation host files, found in `src/sim-host`.
 
 
 # What it does
