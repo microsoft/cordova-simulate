@@ -1,4 +1,4 @@
-# taco-simulate-server Release Notes
+# cordova-simulate Release Notes
 
 ### 0.1.3 (Oct 28, 2015)
 * Adds support for some basic telemetry ([e547555f](https://github.com/Microsoft/taco-simulate-server/commit/e547555f)).

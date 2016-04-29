@@ -14,7 +14,6 @@ function error(error) {
     }
     console.log(chalk.red.bold('SIM ERROR: ' + error));
     config.server && config.server.close();
-    process.exit(1);
 }
 
 module.exports = {

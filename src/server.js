@@ -19,7 +19,6 @@ module.exports = function (opts, simHostOpts) {
     opts = opts || {};
 
     var platform = opts.platform || 'browser';
-    var target = opts.target || 'chrome';
 
     config.platform = platform;
     config.simHostOptions = simHostOpts || {};
