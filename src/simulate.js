@@ -16,7 +16,7 @@ var launchServer = function(opts) {
     opts = opts || {};
     
     var platform = opts.platform || 'browser';
-    var simHostRoot = opts.simhostroot || path.join(__dirname, 'sim-host');
+    var simHostRoot = opts.simhostui || path.join(__dirname, 'sim-host', 'ui');
     var simHostOpts = { simHostRoot: simHostRoot };
     var appUrl, simHostUrl;
 

@@ -3,7 +3,7 @@
 var db             = require('db'),
     Messages       = require('messages'),
     customElements = require('./custom-elements'),
-    socket         = require('./socket'),
+    socket         = require('../protocol/socket'),
     dialog         = require('dialog');
 
 var plugins;
