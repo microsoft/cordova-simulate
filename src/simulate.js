@@ -8,7 +8,8 @@ var Q = require('q'),
     log = require('./server/log'),
     simServer = require('./server/server'),
     simSocket = require('./server/socket'),
-    plugins = require('./server/plugins');
+    plugins = require('./server/plugins'),
+    dirs = require('./server/dirs');
 
 var server = cordovaServe();
 
@@ -16,12 +17,22 @@ var launchServer = function(opts) {
     opts = opts || {};
     
     var platform = opts.platform || 'browser';
-    var simHostRoot = opts.simhostui || path.join(__dirname, 'sim-host', 'ui');
-    var simHostOpts = { simHostRoot: simHostRoot };
-    var appUrl, simHostUrl;
-
+    var appUrl, simHostUrl, simHostOpts;
+    
+    if (opts.simhostui && fs.existsSync(opts.simhostui)) {
+        simHostOpts = { simHostRoot: opts.simhostui };
+    } else {
+        /* use the default simulation UI */
+        simHostOpts = { simHostRoot: path.join(__dirname, 'sim-host', 'ui') };
+    }
+    
+    var middlewarePath = path.join(simHostOpts.simHostRoot, 'server', 'server');
+    if (fs.existsSync(middlewarePath + '.js')) {
+        require(middlewarePath).attach(server.app, dirs);    
+    }
+    
     config.platform = platform;
-    config.simHostOptions = simHostOpts || {};
+    config.simHostOptions = simHostOpts;
     config.telemetry = opts.telemetry;
 
     simServer.attach(server.app);
@@ -105,6 +116,6 @@ module.exports = simulate;
 module.exports.launchBrowser = launchBrowser;
 module.exports.launchServer = launchServer;
 module.exports.closeServer = closeServer;
-module.exports.dirs = require('./server/dirs');
+module.exports.dirs = dirs;
 module.exports.app = server.app;
 module.exports.log = log;
