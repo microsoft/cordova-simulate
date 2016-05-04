@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var chalk = require('chalk'),
-    config = require('./config');
+var chalk = require('chalk');
 
 function log(msg) {
     console.log(chalk.cyan('SIM: ' + msg));
@@ -13,8 +12,6 @@ function error(error) {
         error = error.slice(7);
     }
     console.log(chalk.red.bold('SIM ERROR: ' + error));
-    config.server && config.server.close();
-    process.exit(1);
 }
 
 module.exports = {

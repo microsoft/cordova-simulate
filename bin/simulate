@@ -1,0 +1,51 @@
+#!/usr/bin/env node
+
+// Copyright (c) Microsoft Corporation. All rights reserved.
+
+var simulate = require('../src/simulate.js');
+var log = require('../src/server/log');
+var config = require('../src/server/config');
+
+var args;
+try {    
+    args = processArgs(process.argv);
+    simulate({platform: args.platform, target: args.target}).catch(function (e) {
+        logErrorAndExit(e);
+    });
+} catch (e) {
+    logErrorAndExit(e);
+}
+
+function logErrorAndExit(e) {
+     log.error(e);
+     config.server && config.server.close();
+     process.exit(1);
+}
+
+function processArgs(args) {
+    var platform = null;
+    var target = null;
+
+    args.shift(); // Remove 'node'
+    args.shift(); // Remove 'simulate'
+
+    args.forEach(function (arg) {
+        arg = arg.toLowerCase();
+        if (arg.indexOf('--target=') === 0) {
+            if (target) {
+                throw new Error('Target defined more than once');
+            }
+            target = arg.substring(9);
+        } else {
+            if (platform) {
+                throw new Error('Too many arguments');
+            }
+            platform = arg;
+        }
+    });
+
+    return {
+        platform: platform,
+        target: target
+    };
+}

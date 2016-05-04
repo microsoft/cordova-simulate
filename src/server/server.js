@@ -16,11 +16,6 @@ var fs = require('fs'),
 
 var pluginSimulationFiles = require('./plugin-files');
 
-Q.onerror = function (error) {
-    log.error(error);
-};
-Q.longStackSupport = true;
-
 function attach(app) {
     app.get('/simulator/', streamSimHostHtml);
     app.get('/simulator/*.html', streamSimHostHtml);
