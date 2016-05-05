@@ -1,5 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
+var telemetry = require('telemetry-helper');
+
+var baseProps = {
+    plugin: 'cordova-plugin-device',
+    panel: 'device'
+};
+
 function initialize() {
     var devices = [
         {
@@ -58,8 +65,8 @@ function initialize() {
             'version': '1.6',
             'uuid': '6F196F23-FD0D-4F62-B27B-730147FCC5A3'
         },
-        {'id': 'HPPre3', 'name': 'HP Pre 3', 'model': 'Pre', 'platform': 'WebOS', 'version': '2.x'},
-        {'id': 'HPVeer', 'name': 'HP Veer', 'model': 'Veer', 'platform': 'WebOS', 'version': '2.x'},
+        { 'id': 'HPPre3', 'name': 'HP Pre 3', 'model': 'Pre', 'platform': 'WebOS', 'version': '2.x' },
+        { 'id': 'HPVeer', 'name': 'HP Veer', 'model': 'Veer', 'platform': 'WebOS', 'version': '2.x' },
         {
             'id': 'HVGA',
             'name': 'Generic - HVGA (320x480)',
@@ -156,7 +163,7 @@ function initialize() {
             'version': '2.3.x',
             'uuid': 'F54E13F1-C1B7-4212-BFA8-AB3C9C3F088F'
         },
-        {'id': 'NokiaN8', 'name': 'Nokia N8', 'model': 'N8', 'platform': 'SymbianOS', 'version': '3', 'uuid': '42'},
+        { 'id': 'NokiaN8', 'name': 'Nokia N8', 'model': 'N8', 'platform': 'SymbianOS', 'version': '3', 'uuid': '42' },
         {
             'id': 'NokiaN97',
             'name': 'Nokia N97/5800 (touch)',
@@ -165,8 +172,8 @@ function initialize() {
             'version': 'v5',
             'uuid': '42'
         },
-        {'id': 'PalmPre', 'name': 'Palm Pre', 'model': 'Pre', 'platform': 'WebOS', 'version': '1.x'},
-        {'id': 'PalmPre2', 'name': 'Palm Pre 2', 'model': 'Pre', 'platform': 'WebOS', 'version': '2.x'},
+        { 'id': 'PalmPre', 'name': 'Palm Pre', 'model': 'Pre', 'platform': 'WebOS', 'version': '1.x' },
+        { 'id': 'PalmPre2', 'name': 'Palm Pre 2', 'model': 'Pre', 'platform': 'WebOS', 'version': '2.x' },
         {
             'id': 'Pearl9100',
             'name': 'BlackBerry Pearl 9100',
@@ -239,7 +246,7 @@ function initialize() {
             'version': '7',
             'uuid': '42'
         },
-        {'id': 'Wave', 'name': 'Samsung Wave', 'model': 'Wave', 'platform': 'Bada', 'version': 'n/a'},
+        { 'id': 'Wave', 'name': 'Samsung Wave', 'model': 'Wave', 'platform': 'Bada', 'version': 'n/a' },
         {
             'id': 'WQVGA',
             'name': 'Generic - WQVGA (240x480)',
@@ -298,6 +305,7 @@ function initialize() {
     deviceList.onchange = handleSelectDevice;
     deviceList.value = 'WVGA';
     handleSelectDevice();
+    registerTelemetryEvents();
 }
 
 function handleSelectDevice() {
@@ -307,6 +315,33 @@ function handleSelectDevice() {
     document.getElementById('device-platform').value = option.getAttribute('_platform');
     document.getElementById('device-uuid').value = option.getAttribute('_uuid');
     document.getElementById('device-version').value = option.getAttribute('_version');
+}
+
+function registerTelemetryEvents() {
+    // Register the simple events (onchange -> send the control ID).
+    var basicTelemetryEventControls = [
+        'device-model',
+        'device-platform',
+        'device-uuid',
+        'device-version'
+    ];
+
+    basicTelemetryEventControls.forEach(function (controlId) {
+        registerTelemetryForControl(controlId);
+    });
+
+    // Register the event for the tdevice combo box.
+    var deviceList = document.getElementById('device-list');
+
+    deviceList.onchange = function () {
+        var option = deviceList.options[deviceList.selectedIndex];
+
+        telemetry.sendUITelemetry(Object.assign({}, baseProps, { control: 'device-list', value: option.value }));
+    };
+}
+
+function registerTelemetryForControl(controlId) {
+    document.getElementById(controlId).addEventListener('change', telemetry.sendUITelemetry.bind(this, Object.assign({}, baseProps, { control: controlId })));
 }
 
 module.exports = {

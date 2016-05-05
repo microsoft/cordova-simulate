@@ -1,6 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
 var dialog = require('dialog');
+var telemetry = require('telemetry-helper');
+
+var baseProps = {
+    plugin: 'cordova-plugin-camera',
+    panel: 'camera'
+};
 
 module.exports = function (messages) {
     var filenameInput, dialogFilenameInput, dialogImg;
@@ -34,7 +40,7 @@ module.exports = function (messages) {
         var blob = input.files[0];
         var reader = new FileReader();
         reader.onloadend = function () {
-            callback(reader.error, {data: reader.result, type: blob.type});
+            callback(reader.error, { data: reader.result, type: blob.type });
         };
         reader.readAsArrayBuffer(blob);
     }
@@ -48,6 +54,7 @@ module.exports = function (messages) {
 
             // Setup handlers for choosing an image in the panel
             document.getElementById('camera-choose-filename').addEventListener('click', function () {
+                telemetry.sendUITelemetry(Object.assign({}, baseProps, { control: 'camera-choose-filename' }));
                 filenameInput.input.click();
             });
 
@@ -66,6 +73,19 @@ module.exports = function (messages) {
                 dialogImg.style.display = '';
                 document.getElementById('camera-dialog-use-image').style.display = '';
             });
+
+            var previousSelection = 'camera-prompt';
+            function handleRadioClick(radioName) {
+                if (radioName !== previousSelection) {
+                    previousSelection = radioName;
+                    telemetry.sendUITelemetry(Object.assign({}, baseProps, { control: radioName }));
+                }
+            }
+
+            document.getElementById('camera-host').onclick = handleRadioClick.bind(this, 'camera-host');
+            document.getElementById('camera-prompt').onclick = handleRadioClick.bind(this, 'camera-prompt');
+            document.getElementById('camera-sample').onclick = handleRadioClick.bind(this, 'camera-sample');
+            document.getElementById('camera-file').onclick = handleRadioClick.bind(this, 'camera-file');
         }
     };
 };

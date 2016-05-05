@@ -24,6 +24,8 @@ Where opts is an object with the following properties (all optional):
 * **port** - the desired port for the server to use. Defaults to `8000`.
 * **dir** - the directory to launch from (where it should look for a Cordova project). Defaults to cwd.
 * **simhostui** - the directory containing the UI specific files of the simulation host. Defaults to the bundled simulation host files, found in `src/sim-host/ui`.
+* **livereload** - A boolean. Set to false to disable live reload. Defaults to true.
+* **forceprepare** - A boolean. Set to true to force a `cordova prepare` whenever a file changes during live reload. If this is false, the server attempts to simply copy the changed file to the platform rather than doing a `cordova prepare`. Ignored if live reload is disabled. Defaults to false.
 
 
 # What it does
@@ -36,6 +38,9 @@ Calling `simulate()` will launch your app in the browser, and open a second brow
 * Launches the application in a separate browser window so that it's not launched within an iFrame, to ease up debugging.
 * Allows user to persist the settings for a plug-in response. 
 * Allows plugins to customize their own UI.
+* Reloads the simulated app as the user makes changes to source files.
+> **Note for live reload:**
+Changes to files such as images, stylesheets and other resources are propagated to the running app without a full page reload. Other changes, such as those to scripts and HTML files, trigger a full page reload.
 
 ## Supported plugins
 

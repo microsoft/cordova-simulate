@@ -13,32 +13,17 @@ var lastPlatform;
 function prepare() {
     if (!preparePromise) {
         var d = Q.defer();
+
         preparePromise = d.promise;
+        lastPlatform = config.platform;
 
-        var platform = config.platform;
-        log.log('Preparing platform \'' + platform + '\'.');
-
-        lastPlatform = platform;
-
-        var projectRoot;
-        try {
-            projectRoot = config.projectRoot;
-        } catch (error) {
-            return Q.reject(error);
-        }
-
-        exec('cordova prepare ' + platform, {
-            cwd: projectRoot
-        }, function (err, stdout, stderr) {
+        execCordovaPrepare().finally(function () {
             lastPlatform = null;
             preparePromise = null;
-            if (err) {
-                d.reject(stderr || err);
-            } else {
-                preparedOnce = true;
-                plugins.initPlugins();
-                d.resolve();
-            }
+        }).then(function () {
+            preparedOnce = true;
+            plugins.initPlugins();
+            d.resolve();
         });
     } else {
         if (config.platform !== lastPlatform) {
@@ -56,5 +41,33 @@ function waitOnPrepare() {
     return preparedOnce ? Q.when() : prepare();
 }
 
+function execCordovaPrepare() {
+    var projectRoot;
+    var platform;
+    var deferred = Q.defer();
+
+    try {
+        projectRoot = config.projectRoot;
+        platform = config.platform;
+    } catch (error) {
+        deferred.reject(error);
+    }
+
+    log.log('Preparing platform \'' + platform + '\'.');
+
+    exec('cordova prepare ' + platform, {
+        cwd: projectRoot
+    }, function (err, stdout, stderr) {
+        if (err) {
+            deferred.reject(err || stderr);
+        }
+
+        deferred.resolve();
+    });
+
+    return deferred.promise;
+}
+
 module.exports.prepare = prepare;
 module.exports.waitOnPrepare = waitOnPrepare;
+module.exports.execCordovaPrepare = execCordovaPrepare;

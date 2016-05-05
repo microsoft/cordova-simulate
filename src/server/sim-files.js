@@ -180,6 +180,7 @@ function getBrowserifySearchPaths(hostType) {
         _browserifySearchPaths = {};
         _browserifySearchPaths[appHost] = [dirs.modules['common'], dirs.thirdParty];
         _browserifySearchPaths[simHost] = [dirs.modules[simHost], dirs.modules['common'], dirs.thirdParty];
+        _browserifySearchPaths['telemetry-helper'] = [dirs.modules['common']];
     }
 
     return hostType ? _browserifySearchPaths[hostType] : _browserifySearchPaths;

@@ -3,15 +3,28 @@
 var fs = require('fs'),
     path = require('path'),
     cordovaServe = require('cordova-serve'),
-    pluginMapper  = require('cordova-registry-mapper').oldToNew,
+    pluginMapper = require('cordova-registry-mapper').oldToNew,
     config = require('./config'),
-    dirs = require('./dirs');
+    dirs = require('./dirs'),
+    telemetry = require('./telemetry-helper');
 
 var pluginSimulationFiles = require('./plugin-files');
 
-var plugins = {};
-
+var plugins;
+var pluginsTelemetry;
 var _router;
+
+resetPluginsData();
+
+function resetPluginsData() {
+    plugins = {};
+    pluginsTelemetry = {
+        simulatedBuiltIn: [],
+        simulatedNonBuiltIn: [],
+        notSimulated: []
+    };
+}
+
 function initPlugins() {
     // Always defined plugins
     var pluginList = ['exec', 'events'];
@@ -30,14 +43,25 @@ function initPlugins() {
     }
 
     var projectRoot = config.projectRoot;
-    plugins = {};
+    
+    resetPluginsData();
     pluginList.forEach(function (pluginId) {
         var pluginFilePath = findPluginPath(projectRoot, pluginId);
         if (pluginFilePath) {
             plugins[pluginId] = pluginFilePath;
+
+            if (pluginFilePath.indexOf(dirs.plugins) === 0) {
+                pluginsTelemetry.simulatedBuiltIn.push(pluginId);
+            } else {
+                pluginsTelemetry.simulatedNonBuiltIn.push(pluginId);
+            }
+        } else {
+            pluginsTelemetry.notSimulated.push(pluginId);
         }
     });
 
+    telemetry.sendTelemetry('plugin-list', { simulatedBuiltIn: pluginsTelemetry.simulatedBuiltIn },
+        { simulatedNonBuiltIn: pluginsTelemetry.simulatedNonBuiltIn, notSimulated: pluginsTelemetry.notSimulated });
     addPlatformDefaultHandlers();
     populateRouter();
 }
@@ -104,5 +128,8 @@ function getRouter() {
 module.exports.initPlugins = initPlugins;
 module.exports.getRouter = getRouter;
 module.exports.getPlugins = function () {
-    return plugins
+    return plugins;
+};
+module.exports.getPluginsTelemetry = function () {
+    return pluginsTelemetry;
 };
