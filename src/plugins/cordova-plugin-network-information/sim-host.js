@@ -6,16 +6,20 @@ network.initialize();
 
 function initialize() {
     var connectionTypeList = document.getElementById('connection-list'),
-        type,
-        option;
+        ConnectionTypes = network.ConnectionTypes,
+        key,
+        option,
+        connection;
 
-    for (type in network.ConnectionTypes) {
-        if (network.ConnectionTypes.hasOwnProperty(type)) {
+    for (key in ConnectionTypes) {
+        if (ConnectionTypes.hasOwnProperty(key)) {
+            connection = ConnectionTypes[key];
+
             option = document.createElement('option');
-            option.appendChild(document.createTextNode(type));
-            option.value = type;
+            option.appendChild(document.createTextNode(connection));
+            option.value = connection;
 
-            if (type === network.connectionType) {
+            if (connection === network.connectionType) {
                 option.selected = true;
             }
 

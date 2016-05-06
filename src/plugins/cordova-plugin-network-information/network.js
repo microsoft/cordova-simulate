@@ -6,7 +6,7 @@
 var db = require('db');
 
 var simConstants = {
-    NETWORK_TYPE_KEY: 'network-key'
+    NETWORK_TYPE: 'network-type'
 };
 
 var network = {
@@ -21,14 +21,11 @@ var network = {
         NONE: 'none'
     },
 
-    _defaultConnectionType: this.ConnectionTypes.CELL_4G,
-
     connectionType: null,
-
     successCallback: null,
 
     initialize: function () {
-        this.connectionType = db.retrieve(simConstants.NETWORK_TYPE_KEY) || this._defaultConnectionType;
+        this.connectionType = db.retrieve(simConstants.NETWORK_TYPE) || this.ConnectionTypes.CELL_4G;
     },
 
     /**
@@ -37,15 +34,14 @@ var network = {
     updateNetworkType: function (type) {
         this.connectionType = type;
 
-        db.save(simConstants.NETWORK_TYPE_KEY, this.connectionType);
+        db.save(simConstants.NETWORK_TYPE, this.connectionType);
 
         this.sendUpdate();
     },
 
     sendUpdate: function () {
         if (typeof this.successCallback === 'function') {
-            var value = this.ConnectionTypes[this.connectionType];
-            this.successCallback(value);
+            this.successCallback(this.connectionType);
         }
     }
 };
