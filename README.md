@@ -41,6 +41,7 @@ Calling `simulate()` will launch your app in the browser, and open a second brow
 
 This preview version currently includes built-in support for the following Cordova plugins:
 
+* [cordova-plugin-battery-status](https://github.com/apache/cordova-plugin-battery-status)
 * [cordova-plugin-camera](https://github.com/apache/cordova-plugin-camera)
 * [cordova-plugin-console](https://github.com/apache/cordova-plugin-console)
 * [cordova-plugin-contacts](https://github.com/apache/cordova-plugin-contacts)
@@ -51,6 +52,7 @@ This preview version currently includes built-in support for the following Cordo
 * [cordova-plugin-geolocation](https://github.com/apache/cordova-plugin-geolocation)
 * [cordova-plugin-globalization](https://github.com/apache/cordova-plugin-globalization)
 * [cordova-plugin-media](https://github.com/apache/cordova-plugin-media)
+* [cordova-plugin-network-information](https://github.com/apache/cordova-plugin-network-information)
 * [cordova-plugin-vibration](https://github.com/apache/cordova-plugin-vibration)
 
 ## Adding simulation support to plugins
