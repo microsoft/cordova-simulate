@@ -58,8 +58,20 @@ function initialize() {
             'version': '1.6',
             'uuid': '6F196F23-FD0D-4F62-B27B-730147FCC5A3'
         },
-        {'id': 'HPPre3', 'name': 'HP Pre 3', 'model': 'Pre', 'platform': 'WebOS', 'version': '2.x'},
-        {'id': 'HPVeer', 'name': 'HP Veer', 'model': 'Veer', 'platform': 'WebOS', 'version': '2.x'},
+        {
+            'id': 'HPPre3',
+            'name': 'HP Pre 3',
+            'model': 'Pre',
+            'platform': 'WebOS',
+            'version': '2.x'
+        },
+        {
+            'id': 'HPVeer',
+            'name': 'HP Veer',
+            'model': 'Veer',
+            'platform': 'WebOS',
+            'version': '2.x'
+        },
         {
             'id': 'HVGA',
             'name': 'Generic - HVGA (320x480)',
@@ -156,7 +168,14 @@ function initialize() {
             'version': '2.3.x',
             'uuid': 'F54E13F1-C1B7-4212-BFA8-AB3C9C3F088F'
         },
-        {'id': 'NokiaN8', 'name': 'Nokia N8', 'model': 'N8', 'platform': 'SymbianOS', 'version': '3', 'uuid': '42'},
+        {
+            'id': 'NokiaN8',
+            'name': 'Nokia N8',
+            'model': 'N8',
+            'platform': 'SymbianOS',
+            'version': '3',
+            'uuid': '42'
+        },
         {
             'id': 'NokiaN97',
             'name': 'Nokia N97/5800 (touch)',
@@ -165,8 +184,20 @@ function initialize() {
             'version': 'v5',
             'uuid': '42'
         },
-        {'id': 'PalmPre', 'name': 'Palm Pre', 'model': 'Pre', 'platform': 'WebOS', 'version': '1.x'},
-        {'id': 'PalmPre2', 'name': 'Palm Pre 2', 'model': 'Pre', 'platform': 'WebOS', 'version': '2.x'},
+        {
+            'id': 'PalmPre',
+            'name': 'Palm Pre',
+            'model': 'Pre',
+            'platform': 'WebOS',
+            'version': '1.x'
+        },
+        {
+            'id': 'PalmPre2',
+            'name': 'Palm Pre 2',
+            'model': 'Pre',
+            'platform': 'WebOS',
+            'version': '2.x'
+        },
         {
             'id': 'Pearl9100',
             'name': 'BlackBerry Pearl 9100',
@@ -239,7 +270,13 @@ function initialize() {
             'version': '7',
             'uuid': '42'
         },
-        {'id': 'Wave', 'name': 'Samsung Wave', 'model': 'Wave', 'platform': 'Bada', 'version': 'n/a'},
+        {
+            'id': 'Wave',
+            'name': 'Samsung Wave',
+            'model': 'Wave',
+            'platform': 'Bada',
+            'version': 'n/a'
+        },
         {
             'id': 'WQVGA',
             'name': 'Generic - WQVGA (240x480)',
@@ -307,8 +344,21 @@ function handleSelectDevice() {
     document.getElementById('device-platform').value = option.getAttribute('_platform');
     document.getElementById('device-uuid').value = option.getAttribute('_uuid');
     document.getElementById('device-version').value = option.getAttribute('_version');
+    document.getElementById('is-virtual-device').checked = true; // by default, true for all devices
+    document.getElementById('device-serial').value = '123456789';
 }
 
-module.exports = {
-    initialize: initialize
+module.exports = function (messages) {
+
+    var cordovaVersionLabel = document.getElementById('device-cordova-version');
+
+    messages.call('cordova-version').then(function (version) {
+        cordovaVersionLabel.value = version;
+    }).fail(function () {
+        cordovaVersionLabel.value = 'unknown';
+    });
+
+    return {
+        initialize: initialize
+    };
 };

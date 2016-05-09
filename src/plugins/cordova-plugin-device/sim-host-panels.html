@@ -1,10 +1,17 @@
 <!-- Copyright (c) Microsoft Corporation. All rights reserved. -->
 
 <cordova-panel id="device" caption="Device">
-    <cordova-group><cordova-panel-row><cordova-label label="Predefined Devices"></cordova-label></cordova-panel-row>
-    <cordova-combo id="device-list"></cordova-combo></cordova-group>
+    <cordova-group>
+        <cordova-panel-row>
+            <cordova-label label="Predefined Devices"></cordova-label>
+        </cordova-panel-row>
+        <cordova-combo id="device-list"></cordova-combo>
+    </cordova-group>
+    <cordova-labeled-value id="device-cordova-version" label="Cordova version"></cordova-labeled-value>
     <cordova-text-entry label="Model" id="device-model"></cordova-text-entry>
     <cordova-text-entry label="Platform" id="device-platform"></cordova-text-entry>
     <cordova-text-entry label="UUID" id="device-uuid"></cordova-text-entry>
     <cordova-text-entry label="Version" id="device-version"></cordova-text-entry>
+    <cordova-text-entry label="Serial" id="device-serial"></cordova-text-entry>
+    <cordova-checkbox id="is-virtual-device">Virtual device</cordova-checkbox>
 </cordova-panel>
