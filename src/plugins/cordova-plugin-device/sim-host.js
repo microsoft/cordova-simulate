@@ -8,7 +8,8 @@ function initialize() {
             'model': 'Picasso',
             'platform': 'Android',
             'version': '4.0',
-            'uuid': '500'
+            'uuid': '500',
+            'manufacturer': 'Acer'
         },
         {
             'id': 'Bold9700',
@@ -16,7 +17,8 @@ function initialize() {
             'model': '9700',
             'platform': 'BlackBerry OS',
             'version': '6',
-            'uuid': '42'
+            'uuid': '42',
+            'manufacturer': 'BlackBerry'
         },
         {
             'id': 'Bold9900',
@@ -24,7 +26,8 @@ function initialize() {
             'model': '9900',
             'platform': 'BlackBerry OS',
             'version': '7',
-            'uuid': '42'
+            'uuid': '42',
+            'manufacturer': 'BlackBerry'
         },
         {
             'id': 'Curve9300',
@@ -32,7 +35,8 @@ function initialize() {
             'model': '9300',
             'platform': 'BlackBerry OS',
             'version': '6',
-            'uuid': '42'
+            'uuid': '42',
+            'manufacturer': 'BlackBerry'
         },
         {
             'id': 'Curve9350-9360-9370',
@@ -40,7 +44,8 @@ function initialize() {
             'model': '9350-9360-9370',
             'platform': 'BlackBerry OS',
             'version': '7',
-            'uuid': '42'
+            'uuid': '42',
+            'manufacturer': 'BlackBerry'
         },
         {
             'id': 'FWVGA',
@@ -48,7 +53,8 @@ function initialize() {
             'model': 'Generic',
             'platform': 'Generic',
             'version': 'Generic',
-            'uuid': '42'
+            'uuid': '42',
+            'manufacturer': 'Generic'
         },
         {
             'id': 'G1',
@@ -56,21 +62,24 @@ function initialize() {
             'model': 'G1',
             'platform': 'Android',
             'version': '1.6',
-            'uuid': '6F196F23-FD0D-4F62-B27B-730147FCC5A3'
+            'uuid': '6F196F23-FD0D-4F62-B27B-730147FCC5A3',
+            'manufacturer': 'HTC'
         },
         {
             'id': 'HPPre3',
             'name': 'HP Pre 3',
             'model': 'Pre',
             'platform': 'WebOS',
-            'version': '2.x'
+            'version': '2.x',
+            'manufacturer': 'HP'
         },
         {
             'id': 'HPVeer',
             'name': 'HP Veer',
             'model': 'Veer',
             'platform': 'WebOS',
-            'version': '2.x'
+            'version': '2.x',
+            'manufacturer': 'HP'
         },
         {
             'id': 'HVGA',
@@ -78,7 +87,8 @@ function initialize() {
             'model': 'Generic',
             'platform': 'Generic',
             'version': 'Generic',
-            'uuid': '42'
+            'uuid': '42',
+            'manufacturer': 'Generic'
         },
         {
             'id': 'iPad',
@@ -86,7 +96,8 @@ function initialize() {
             'model': 'iPad',
             'platform': 'iOS',
             'version': '1.6',
-            'uuid': 'e0101010d38bde8e6740011221af335301010333'
+            'uuid': 'e0101010d38bde8e6740011221af335301010333',
+            'manufacturer': 'Apple'
         },
         {
             'id': 'iPad3',
@@ -94,7 +105,8 @@ function initialize() {
             'model': 'iPad3',
             'platform': 'iOS',
             'version': '5',
-            'uuid': 'e0101010d38bde8e6740011221af335301010334'
+            'uuid': 'e0101010d38bde8e6740011221af335301010334',
+            'manufacturer': 'Apple'
         },
         {
             'id': 'iPhone3',
@@ -102,7 +114,8 @@ function initialize() {
             'model': '3G',
             'platform': 'iPhone',
             'version': '3',
-            'uuid': 'e0101010d38bde8e6740011221af335301010333'
+            'uuid': 'e0101010d38bde8e6740011221af335301010333',
+            'manufacturer': 'Apple'
         },
         {
             'id': 'iPhone4',
@@ -110,7 +123,8 @@ function initialize() {
             'model': '4s',
             'platform': 'iOS',
             'version': '5',
-            'uuid': 'e0101010d38bde8e6740011221af335301010333'
+            'uuid': 'e0101010d38bde8e6740011221af335301010333',
+            'manufacturer': 'Apple'
         },
         {
             'id': 'iPhone5',
@@ -118,7 +132,8 @@ function initialize() {
             'model': '5',
             'platform': 'iOS',
             'version': '6',
-            'uuid': 'e0101010d38bde8e6740011221af335301010333'
+            'uuid': 'e0101010d38bde8e6740011221af335301010333',
+            'manufacturer': 'Apple'
         },
         {
             'id': 'Legend',
@@ -126,7 +141,8 @@ function initialize() {
             'model': 'Legend',
             'platform': 'Android',
             'version': '1.6',
-            'uuid': '6F196F23-FD0D-4F62-B27B-730147FCC5A3'
+            'uuid': '6F196F23-FD0D-4F62-B27B-730147FCC5A3',
+            'manufacturer': 'HTC'
         },
         {
             'id': 'Nexus',
@@ -134,7 +150,8 @@ function initialize() {
             'model': 'Nexux One',
             'platform': 'Android',
             'version': '2.x.x',
-            'uuid': '6F196F23-FD0D-4F62-B27B-730147FCC5A3'
+            'uuid': '6F196F23-FD0D-4F62-B27B-730147FCC5A3',
+            'manufacturer': 'HTC'
         },
         {
             'id': 'Nexus4',
@@ -142,7 +159,8 @@ function initialize() {
             'model': 'Nexus 4',
             'platform': 'Android',
             'version': '4.2.x',
-            'uuid': 'DC46B660-EF6F-46D4-AC24-85CFAB0C7694'
+            'uuid': 'DC46B660-EF6F-46D4-AC24-85CFAB0C7694',
+            'manufacturer': 'LG'
         },
         {
             'id': 'Nexus7',
@@ -150,7 +168,8 @@ function initialize() {
             'model': 'Nexus 7 8/16 GB',
             'platform': 'Android',
             'version': '4.x.x',
-            'uuid': '903802EA-1786-4175-B0F1-1FDF87813CAA'
+            'uuid': '903802EA-1786-4175-B0F1-1FDF87813CAA',
+            'manufacturer': 'Asus'
         },
         {
             'id': 'NexusGalaxy',
@@ -158,7 +177,8 @@ function initialize() {
             'model': 'Galaxy Nexus (generic)',
             'platform': 'Android',
             'version': '4.x.x',
-            'uuid': '3D0AD03B-8B46-431A-BEF5-FF01B96BA990'
+            'uuid': '3D0AD03B-8B46-431A-BEF5-FF01B96BA990',
+            'manufacturer': 'Samsung'
         },
         {
             'id': 'NexusS',
@@ -166,7 +186,8 @@ function initialize() {
             'model': 'Nexux S',
             'platform': 'Android',
             'version': '2.3.x',
-            'uuid': 'F54E13F1-C1B7-4212-BFA8-AB3C9C3F088F'
+            'uuid': 'F54E13F1-C1B7-4212-BFA8-AB3C9C3F088F',
+            'manufacturer': 'Samsung'
         },
         {
             'id': 'NokiaN8',
@@ -174,7 +195,8 @@ function initialize() {
             'model': 'N8',
             'platform': 'SymbianOS',
             'version': '3',
-            'uuid': '42'
+            'uuid': '42',
+            'manufacturer': 'Nokia'
         },
         {
             'id': 'NokiaN97',
@@ -182,21 +204,24 @@ function initialize() {
             'model': 'N97',
             'platform': 'S60',
             'version': 'v5',
-            'uuid': '42'
+            'uuid': '42',
+            'manufacturer': 'Nokia'
         },
         {
             'id': 'PalmPre',
             'name': 'Palm Pre',
             'model': 'Pre',
             'platform': 'WebOS',
-            'version': '1.x'
+            'version': '1.x',
+            'manufacturer': 'Palm'
         },
         {
             'id': 'PalmPre2',
             'name': 'Palm Pre 2',
             'model': 'Pre',
             'platform': 'WebOS',
-            'version': '2.x'
+            'version': '2.x',
+            'manufacturer': 'Palm'
         },
         {
             'id': 'Pearl9100',
@@ -204,7 +229,8 @@ function initialize() {
             'model': '9100',
             'platform': 'BlackBerry OS',
             'version': '6',
-            'uuid': '42'
+            'uuid': '42',
+            'manufacturer': 'BlackBerry'
         },
         {
             'id': 'Playbook',
@@ -212,7 +238,8 @@ function initialize() {
             'model': '100669958',
             'platform': 'BlackBerry PlayBook OS',
             'version': 'BlackBerry PlayBook OS',
-            'uuid': '42'
+            'uuid': '42',
+            'manufacturer': 'BlackBerry'
         },
         {
             'id': 'Q10',
@@ -220,7 +247,8 @@ function initialize() {
             'model': 'Q10',
             'platform': 'BlackBerry',
             'version': '10.1',
-            'uuid': '42'
+            'uuid': '42',
+            'manufacturer': 'BlackBerry'
         },
         {
             'id': 'QVGA',
@@ -228,7 +256,8 @@ function initialize() {
             'model': 'Generic',
             'platform': 'Generic',
             'version': 'Generic',
-            'uuid': '42'
+            'uuid': '42',
+            'manufacturer': 'Generic'
         },
         {
             'id': 'Style9670',
@@ -236,7 +265,8 @@ function initialize() {
             'model': '9670',
             'platform': 'BlackBerry OS',
             'version': '6',
-            'uuid': '42'
+            'uuid': '42',
+            'manufacturer': 'BlackBerry'
         },
         {
             'id': 'Tattoo',
@@ -244,7 +274,8 @@ function initialize() {
             'model': 'Tattoo',
             'platform': 'Android',
             'version': '1.6',
-            'uuid': '6F196F23-FD0D-4F62-B27B-730147FCC5A3'
+            'uuid': '6F196F23-FD0D-4F62-B27B-730147FCC5A3',
+            'manufacturer': 'HTC'
         },
         {
             'id': 'Torch9800',
@@ -252,7 +283,8 @@ function initialize() {
             'model': '9800',
             'platform': 'BlackBerry OS',
             'version': '6',
-            'uuid': '42'
+            'uuid': '42',
+            'manufacturer': 'BlackBerry'
         },
         {
             'id': 'Torch9810',
@@ -260,7 +292,8 @@ function initialize() {
             'model': '9810',
             'platform': 'BlackBerry OS',
             'version': '7',
-            'uuid': '42'
+            'uuid': '42',
+            'manufacturer': 'BlackBerry'
         },
         {
             'id': 'Torch9860-9850',
@@ -268,14 +301,16 @@ function initialize() {
             'model': '9860-9850',
             'platform': 'BlackBerry OS',
             'version': '7',
-            'uuid': '42'
+            'uuid': '42',
+            'manufacturer': 'BlackBerry'
         },
         {
             'id': 'Wave',
             'name': 'Samsung Wave',
             'model': 'Wave',
             'platform': 'Bada',
-            'version': 'n/a'
+            'version': 'n/a',
+            'manufacturer': 'Samsung'
         },
         {
             'id': 'WQVGA',
@@ -283,7 +318,8 @@ function initialize() {
             'model': 'Generic',
             'platform': 'Generic',
             'version': 'Generic',
-            'uuid': '42'
+            'uuid': '42',
+            'manufacturer': 'Generic'
         },
         {
             'id': 'WVGA',
@@ -291,7 +327,8 @@ function initialize() {
             'model': 'Generic',
             'platform': 'Generic',
             'version': 'Generic',
-            'uuid': '42'
+            'uuid': '42',
+            'manufacturer': 'Generic'
         },
         {
             'id': 'Z10',
@@ -299,7 +336,8 @@ function initialize() {
             'model': 'Z10',
             'platform': 'BlackBerry',
             'version': '10.0.10',
-            'uuid': '42'
+            'uuid': '42',
+            'manufacturer': 'BlackBerry'
         }
     ];
 
@@ -325,6 +363,7 @@ function initialize() {
         option.appendChild(caption);
 
         option.setAttribute('_model', device.model);
+        option.setAttribute('_manufacturer', device.manufacturer);
         option.setAttribute('_platform', device.platform);
         option.setAttribute('_version', device.version);
         option.setAttribute('_uuid', device.uuid);
@@ -341,6 +380,7 @@ function handleSelectDevice() {
     var deviceList = document.getElementById('device-list');
     var option = deviceList.options[deviceList.selectedIndex];
     document.getElementById('device-model').value = option.getAttribute('_model');
+    document.getElementById('device-manufacturer').value = option.getAttribute('_manufacturer');
     document.getElementById('device-platform').value = option.getAttribute('_platform');
     document.getElementById('device-uuid').value = option.getAttribute('_uuid');
     document.getElementById('device-version').value = option.getAttribute('_version');
