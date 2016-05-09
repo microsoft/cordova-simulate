@@ -190,7 +190,7 @@ Media.prototype.pauseRecord = function () {
 };
 
 /**
- * Pause recording audio file.
+ * Resume recording audio file.
  */
 Media.prototype.resumeRecord = function () {
     Media.onStatus(this.id, Media.MEDIA_ERROR, "Not supported");
