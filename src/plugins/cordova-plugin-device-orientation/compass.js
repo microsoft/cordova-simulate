@@ -37,9 +37,13 @@ var compass = {
 
     /**
      * The exec call to Compass.stopHeading executes this function.
+     * @param {function} success The function used to simulate the native call to CallbackContext.sendPluginResult.
+     * @param {function} error The function used to simulate the native call to CallbackContext.error
      */
-    stopHeading: function () {
-        // TODO implement for iOS
+    stopHeading: function (success, error) {
+        if (typeof success === 'function') {
+            success(compass.getHeadingResult());
+        }
     },
 
     getHeadingResult: function () {

@@ -81,35 +81,35 @@ CompassWidget.Direction = {
  * @return {string} direction It can be one of the following: N, NE, E, SE, S, SW, W or NW.
  */
 CompassWidget.getDirection = function (heading) {
-    if (heading >= 337.5 || (heading >= 0 && heading <= 22.5)) {
+    if (heading > 337.5 || (heading >= 0 && heading <= 22.5)) {
         return CompassWidget.Direction.N;
     }
 
-    if (heading >= 22.5 && heading <= 67.5) {
+    if (heading > 22.5 && heading <= 67.5) {
         return CompassWidget.Direction.NE;
     }
 
-    if (heading >= 67.5 && heading <= 112.5) {
+    if (heading > 67.5 && heading <= 112.5) {
         return CompassWidget.Direction.E;
     }
 
-    if (heading >= 112.5 && heading <= 157.5) {
+    if (heading > 112.5 && heading <= 157.5) {
         return CompassWidget.Direction.SE;
     }
 
-    if (heading >= 157.5 && heading <= 202.5) {
+    if (heading > 157.5 && heading <= 202.5) {
         return CompassWidget.Direction.S;
     }
 
-    if (heading >= 202.5 && heading <= 247.5) {
+    if (heading > 202.5 && heading <= 247.5) {
         return CompassWidget.Direction.SW;
     }
 
-    if (heading >= 247.5 && heading <= 292.5) {
+    if (heading > 247.5 && heading <= 292.5) {
         return CompassWidget.Direction.W;
     }
 
-    if (heading >= 292.5 && heading <= 337.5) {
+    if (heading > 292.5 && heading <= 337.5) {
         return CompassWidget.Direction.NW;
     }
 };

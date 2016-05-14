@@ -32,9 +32,9 @@ Calling `simulate()` will launch your app in the browser, and open a second brow
 
 ## Features
 
-* Allows the user to configure plugin simulation through a UI. 
+* Allows the user to configure plugin simulation through a UI.
 * Launches the application in a separate browser window so that it's not launched within an iFrame, to ease up debugging.
-* Allows user to persist the settings for a plug-in response. 
+* Allows user to persist the settings for a plug-in response.
 * Allows plugins to customize their own UI.
 
 ## Supported plugins
@@ -47,6 +47,7 @@ This preview version currently includes built-in support for the following Cordo
 * [cordova-plugin-contacts](https://github.com/apache/cordova-plugin-contacts)
 * [cordova-plugin-device](https://github.com/apache/cordova-plugin-device)
 * [cordova-plugin-device-motion](https://github.com/apache/cordova-plugin-device-motion)
+* [cordova-plugin-device-orientation](https://github.com/apache/cordova-plugin-device-orientation)
 * [cordova-plugin-dialogs](https://github.com/apache/cordova-plugin-dialogs)
 * [cordova-plugin-file](https://github.com/apache/cordova-plugin-file)
 * [cordova-plugin-geolocation](https://github.com/apache/cordova-plugin-geolocation)
@@ -75,7 +76,7 @@ app-host.js
 app-host-handlers.js
 app-host-clobbers.js
 ```
- 
+
 #### Simulation Host Files
 
 *sim-host-panels.html*
@@ -84,14 +85,14 @@ This defines panels that will appear in the simulation host UI. At the top level
 `cordova-panel` elements. The `cordova-panel` element should have an `id` which is unique to the plugin (so the plugin
 name is one possibility, or the shortened version for common plugins (like just `camera` instead of
 `cordova-plugin-camera`). It should also have a `caption` attribute which defines the caption of the panel.
- 
+
 The contents of the `cordova-panel` element can be regular HTML, or the various custom elements which are supported
 (see the existing plugin files for more details).
- 
+
 This file shouldn't contain any JavaScript (including inline event handlers), nor should it link any JavaScript files.
 Any JavaScript required can be provided in the standard JavaScript files described below, or in additional JavaScript
 files that can be included using `require()`.
- 
+
 *sim-host-dialogs.html*
 
 This defines any dialogs that will be used (dialogs are simple modal popups - such as used for the Camera plugin). At
@@ -100,16 +101,16 @@ attributes (as for `sim-host-panels.html`). The `id` will be used in calls to `d
 `dialog.hideDialog()` (see [cordova-simulate/src/plugins/cordova-plugin-camera/sim-host.js]
 (https://github.com/Microsoft/cordova-simulate/blob/master/src/plugins/cordova-plugin-camera/sim-host.js)
 for example code).
- 
+
 Other rules for this file are the same as for `sim-host-panels.html`.
 
 *sim-host.js*
 
 This file should contain code to initialize your UI. For example - attach event handlers, populate lists etc. It should
 set `module.exports` to one of the following:
- 
+
 1. An object with an `initialize` method, like this:
- 
+
 ``` js
 module.exports = {
     initialize: function () {
@@ -140,7 +141,7 @@ simulation UI.
 *sim-host-handlers.js*
 
 This file defines handlers for plugin `exec` calls. It should return an object in the following form:
- 
+
 ``` js
 {
     service1: {
@@ -161,7 +162,7 @@ This file defines handlers for plugin `exec` calls. It should return an object i
     }
 }
 ```
- 
+
 It can define handlers for any number of service/action combinations. As for `sim-host.js`, it can return the object
 either by;
 
@@ -175,13 +176,13 @@ either by;
 This file is injected into the app itself (as part of a single, combined, `app-host.js` file). Typically, it would
 contain code to respond to messages from `sim-host` code, and as such `module.exports` should be set a function that
 takes a single `messages` parameter. It doesn't need to return anything.
- 
+
 *app-host-handlers.js*
 
 This file is to provide `app-host` side handling of `exec` calls (if an `exec` call is handled on the `app-host` side,
 then it doesn't need to be handled on the `sim-host` side, and in fact any `sim-host` handler will be ignored). The
 format is the same as `sim-host-handlers.js`.
- 
+
 *app-host-clobbers.js*
 
 This file provides support for "clobbering" built in JavaScript objects. It's form is similar to `app-host-handlers.js`,
@@ -194,7 +195,7 @@ does), by returning the following:
     navigator: {
         geolocation: {
             getCurrentPosition: function (successCallback, errorCallback, options) {
-                // Blah blah blah 
+                // Blah blah blah
             },
             watchPosition: function (successCallback, errorCallback, options) {
                 // Blah blah blah

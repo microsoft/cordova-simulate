@@ -10,7 +10,7 @@ module.exports = function (messages) {
                compass.getHeading(success, error, options);
             },
             stopHeading: function (success, error) {
-                compass.stopHeading();
+                compass.stopHeading(success, error);
             }
         }
     };
