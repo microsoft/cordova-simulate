@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
 var fs = require('fs'),
+    http = require('http'),
     path = require('path'),
     replaceStream = require('replacestream'),
     cordovaServe = require('cordova-serve'),
@@ -30,6 +31,7 @@ function attach(app) {
     app.use(plugins.getRouter());
     app.use('/simulator', cordovaServe.static(dirs.hostRoot['sim-host']));
     app.use('/simulator/thirdparty', cordovaServe.static(dirs.thirdParty));
+    app.all('/xhr_proxy', proxyXHR);
 }
 
 function sendHostJsFile(response, hostType) {
@@ -122,6 +124,28 @@ function processPluginHtml(html, pluginId) {
         // Remove comments
         return '';
     });
+}
+
+function proxyXHR(request, response) {
+    var requestURL = url.parse(unescape(request.query.rurl));
+    
+    request.headers.host = requestURL.host;
+    // fixes encoding issue
+    delete request.headers["accept-encoding"];
+
+    var options = {
+        host: requestURL.host,
+        path: requestURL.path,
+        port: requestURL.port,
+        method: request.method,
+        headers: request.headers
+    };
+    
+    var proxyCallback = function(proxyReponse) {
+        proxyReponse.pipe(response);
+    };
+    
+    http.request(options, proxyCallback).end();
 }
 
 module.exports = {

@@ -1,11 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Based in part on code from Apache Ripple, https://github.com/apache/incubator-ripple
 
-var init = function () {
-    console.log("xhr proxy initialized!");
-    augmentXHR();
-};
-
 var isSameOriginRequest = function (url) {
     url = parseUrl(url);
 
@@ -34,7 +29,7 @@ var parseUrl = function (url) {
     };
 };
 
-var augmentXHR = function () {
+var init = function () {
     var _XMLHttpRequest = XMLHttpRequest;
     window.XMLHttpRequest = function () {
         var xhr = new _XMLHttpRequest(),
@@ -42,13 +37,6 @@ var augmentXHR = function () {
                 setRequestHeader: xhr.setRequestHeader,
                 open: xhr.open
             };
-
-        xhr.setRequestHeader = function (header) {
-            // This is done to get around jQuery 1.3.2 setting a header that it shouldn't
-            if (header && header.toUpperCase() !== "X-REQUESTED-WITH") {
-                origMethods.setRequestHeader.apply(xhr, Array.prototype.slice.call(arguments));
-            }
-        };
 
         xhr.open = function (method, url) {
             var sameOrigin = isSameOriginRequest(url);
@@ -58,10 +46,6 @@ var augmentXHR = function () {
             }
 
             origMethods.open.apply(xhr, Array.prototype.slice.call(arguments));
-
-            if (!sameOrigin) {
-                xhr.setRequestHeader("X-Cordova-Simulate-User-Agent", navigator.userAgent);
-            }
         };
 
         return xhr;
