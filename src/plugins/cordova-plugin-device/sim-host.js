@@ -417,7 +417,7 @@ function registerTelemetryEvents() {
         registerTelemetryForControl(controlId);
     });
 
-    // Register the event for the tdevice combo box.
+    // Register the event for the device combo box.
     var deviceList = document.getElementById('device-list');
 
     deviceList.addEventListener('change', function () {
@@ -428,6 +428,13 @@ function registerTelemetryEvents() {
             value: option.value
         }));
     });
+
+    // Register event for the isVirtual device checkbox
+    document.getElementById('is-virtual-device')
+        .addEventListener('click',
+            telemetry.sendUITelemetry.bind(this, Object.assign({}, baseProps, {
+                control: 'is-virtual-device'
+            })));
 }
 
 module.exports = function (messages) {
