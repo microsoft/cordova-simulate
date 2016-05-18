@@ -1,16 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var db             = require('db'),
-    Messages       = require('messages'),
+var db = require('db'),
+    Messages = require('messages'),
     customElements = require('./custom-elements'),
-    socket         = require('../protocol/socket'),
-    dialog         = require('dialog');
+    socket = require('../protocol/socket'),
+    dialog = require('dialog');
 
 var plugins;
 var pluginHandlers = {};
+var serviceToPluginMap = {};
 
 customElements.initialize();
-socket.initialize(pluginHandlers);
+socket.initialize(pluginHandlers, serviceToPluginMap);
 
 window.addEventListener('DOMContentLoaded', function () {
     sizeContent();
@@ -31,7 +32,7 @@ function sizeContent() {
 }
 
 var pluginMessages = {};
-function applyPlugins(plugins, clobberScope) {
+function applyPlugins(plugins, clobberScope, clobberToPluginMap) {
     Object.keys(plugins).forEach(function (pluginId) {
         var plugin = plugins[pluginId];
         if (plugin) {
@@ -41,16 +42,20 @@ function applyPlugins(plugins, clobberScope) {
                 plugins[pluginId] = plugin;
             }
             if (clobberScope) {
-                clobber(plugin, clobberScope);
+                clobber(plugin, clobberScope, clobberToPluginMap, pluginId);
             }
         }
     });
 }
 
-function clobber(clobbers, scope) {
+function clobber(clobbers, scope, clobberToPluginMap, pluginId) {
     Object.keys(clobbers).forEach(function (key) {
+        if (clobberToPluginMap && pluginId) {
+            clobberToPluginMap[key] = pluginId;
+        }
+
         if (clobbers[key] && typeof clobbers[key] === 'object') {
-            scope[key] =  scope[key] || {};
+            scope[key] = scope[key] || {};
             clobber(clobbers[key], scope[key]);
         } else {
             scope[key] = clobbers[key];
@@ -68,7 +73,7 @@ function initializePlugins() {
     };
 
     applyPlugins(plugins);
-    applyPlugins(pluginHandlersDefinitions, pluginHandlers);
+    applyPlugins(pluginHandlersDefinitions, pluginHandlers, serviceToPluginMap);
 
     // Hide and register dialogs
     Array.prototype.forEach.call(document.getElementById('popup-window').children, function (dialogRef) {
@@ -85,11 +90,13 @@ function initializePlugins() {
     });
 
     Object.keys(plugins).forEach(function (pluginId) {
-        try{
+        try {
             plugins[pluginId].initialize && plugins[pluginId].initialize();
         } catch (e) {
             console.error('Error initializing plugin ' + pluginId);
             console.error(e);
         }
     });
+
+    socket.notifyPluginsReady();
 }

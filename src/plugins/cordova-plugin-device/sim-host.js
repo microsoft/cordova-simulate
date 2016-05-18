@@ -1,5 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
+var telemetry = require('telemetry-helper');
+
+var baseProps = {
+    plugin: 'cordova-plugin-device',
+    panel: 'device'
+};
+
 function initialize() {
     var devices = [
         {
@@ -374,6 +381,7 @@ function initialize() {
     deviceList.onchange = handleSelectDevice;
     deviceList.value = 'WVGA';
     handleSelectDevice();
+    registerTelemetryEvents();
 }
 
 function handleSelectDevice() {
@@ -386,6 +394,33 @@ function handleSelectDevice() {
     document.getElementById('device-version').value = option.getAttribute('_version');
     document.getElementById('is-virtual-device').checked = true; // by default, true for all devices
     document.getElementById('device-serial').value = '123456789';
+}
+
+function registerTelemetryEvents() {
+    // Register the simple events (onchange -> send the control ID).
+    var basicTelemetryEventControls = [
+        'device-model',
+        'device-platform',
+        'device-uuid',
+        'device-version'
+    ];
+
+    basicTelemetryEventControls.forEach(function (controlId) {
+        registerTelemetryForControl(controlId);
+    });
+
+    // Register the event for the tdevice combo box.
+    var deviceList = document.getElementById('device-list');
+
+    deviceList.onchange = function () {
+        var option = deviceList.options[deviceList.selectedIndex];
+
+        telemetry.sendUITelemetry(Object.assign({}, baseProps, { control: 'device-list', value: option.value }));
+    };
+}
+
+function registerTelemetryForControl(controlId) {
+    document.getElementById(controlId).addEventListener('change', telemetry.sendUITelemetry.bind(this, Object.assign({}, baseProps, { control: controlId })));
 }
 
 module.exports = function (messages) {

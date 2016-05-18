@@ -14,7 +14,12 @@ function error(error) {
     console.log(chalk.red.bold('SIM ERROR: ' + error));
 }
 
+function warning(msg) {
+    console.log(chalk.yellow.bold('SIM WARNING: ' + msg));
+}
+
 module.exports = {
     log: log,
-    error: error
+    error: error,
+    warning: warning
 };

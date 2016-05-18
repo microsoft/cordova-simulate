@@ -2,50 +2,70 @@
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var simulate = require('../src/simulate.js');
-var log = require('../src/server/log');
 var config = require('../src/server/config');
+var log = require('../src/server/log');
+var minimist = require('minimist');
+var os = require('os');
+var simulate = require('../src/simulate.js');
 
-var args;
-try {    
-    args = processArgs(process.argv);
-    simulate({platform: args.platform, target: args.target}).catch(function (e) {
+try {
+    var args = processArgs();
+    simulate(args).catch(function (e) {
         logErrorAndExit(e);
     });
 } catch (e) {
-    logErrorAndExit(e);
+    logErrorAndExit(e.message || e);
 }
 
 function logErrorAndExit(e) {
-     log.error(e);
-     config.server && config.server.close();
-     process.exit(1);
+    log.error(e);
+    config.server && config.server.close();
+    process.exit(1);
 }
 
-function processArgs(args) {
-    var platform = null;
-    var target = null;
-
-    args.shift(); // Remove 'node'
-    args.shift(); // Remove 'simulate'
-
-    args.forEach(function (arg) {
-        arg = arg.toLowerCase();
-        if (arg.indexOf('--target=') === 0) {
-            if (target) {
-                throw new Error('Target defined more than once');
+function processArgs() {
+    try {
+        function unknownOptHandler(optName) {
+            // Throw error on unknown option. Note for '--port': minimist does not support the 'number' type, so we can't list 'port' as a known option.
+            if (optName.indexOf("-") === 0 && optName !== '--port') {
+                throw new Error(`Unknown option '${optName}'`);
             }
-            target = arg.substring(9);
-        } else {
-            if (platform) {
-                throw new Error('Too many arguments');
-            }
-            platform = arg;
+
+            return true;
         }
-    });
 
-    return {
-        platform: platform,
-        target: target
-    };
+        var parserOptions = {
+            string: ['dir', 'simhostui', 'target'],
+            boolean: ['livereload', 'forceprepare'],
+            default: {
+                dir: null,
+                livereload: true,
+                port: null,
+                simhostui: null,
+                target: null
+            },
+            unknown: unknownOptHandler
+        };
+        var parsed = minimist(process.argv.slice(2), parserOptions);   // Remove 'node' and 'simulate' using Array.prototype.slice()
+
+        if (parsed._.length > 1) {
+            throw new Error('Too many arguments');
+        }
+
+        return {
+            dir: parsed.dir,
+            livereload: parsed.livereload,
+            platform: parsed._.length === 1 ? parsed._[0] : null,
+            port: parsed.port,
+            forceprepare: parsed.forceprepare,
+            simhostui: parsed.simhostui,
+            target: parsed.target
+        };
+    } catch (err) {
+        throw new Error(`Error parsing arguments: ${err.message || err}${os.EOL}${os.EOL}${getUsageString()}`);
+    }
+}
+
+function getUsageString() {
+    return `Usage:${os.EOL}simulate [PLATFORM] [--dir DIR] [--livereload LIVERELOAD] [--port PORT] [--forceprepare] [--simhostui SIM_HOST_UI_MODULE_PATH] [--target TARGET]`;
 }

@@ -7,6 +7,14 @@ var config = {};
 var simulationFilePath;
 
 Object.defineProperties(module.exports, {
+    liveReload: {
+        get: function () {
+            return getValue('liveReload');
+        },
+        set: function (value) {
+            setValue('liveReload', value);
+        }
+    },
     platform: {
         get: function () {
             return getValue('platform');
@@ -15,20 +23,28 @@ Object.defineProperties(module.exports, {
             setValue('platform', value);
         }
     },
-    projectRoot: {
-        get: function () {
-            return getValue('projectRoot');
-        },
-        set: function (value) {
-            setValue('projectRoot', value, true)
-        }
-    },
     platformRoot: {
         get: function () {
             return getValue('platformRoot');
         },
         set: function (value) {
             setValue('platformRoot', value);
+        }
+    },
+    forcePrepare: {
+        get: function () {
+            return getValue('forcePrepare');
+        },
+        set: function (value) {
+            setValue('forcePrepare', value);
+        }
+    },
+    projectRoot: {
+        get: function () {
+            return getValue('projectRoot');
+        },
+        set: function (value) {
+            setValue('projectRoot', value, true)
         }
     },
     server: {
@@ -70,14 +86,14 @@ Object.defineProperties(module.exports, {
 });
 
 function setValue(prop, value, single) {
-    if (single && config[prop]) {
+    if (single && config.hasOwnProperty(prop)) {
         throw new Error('Can\'t reinitialize ' + prop);
     }
     config[prop] = value;
 }
 
 function getValue(prop, optional) {
-    if (!config[prop] && !optional) {
+    if (!config.hasOwnProperty(prop) && !optional) {
         throw new Error('Cannot get ' + prop + ' as it has not been initialized.');
     }
     return config[prop];
