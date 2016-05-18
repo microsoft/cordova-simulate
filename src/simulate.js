@@ -28,7 +28,7 @@ var launchServer = function (opts) {
     config.platform = platform;
     config.simHostOptions = simHostOpts;
     config.telemetry = opts.telemetry;
-    config.liveReload = !!opts.livereload;
+    config.liveReload = opts.hasOwnProperty('livereload') ? !!opts.livereload : true;
     config.forcePrepare = !!opts.forceprepare;
     config.xhrProxy = !!opts.corsproxy;
 
