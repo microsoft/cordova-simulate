@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
 var log = require('./log'),
-    config = require('./config');
+    config = require('./config'),
+    livereload = require('./live-reload/live-reload-server'),
+    telemetry = require('./telemetry-helper');
 
 var appHost = 'app-host';
 var simHost = 'sim-host';
@@ -35,8 +37,19 @@ function init(server) {
             });
 
             socket.on('telemetry', function (data) {
-                handleTelemetry(data.event, data.props);
+                telemetry.handleClientTelemetry(data);
             });
+
+            // Set up live reload if necessary.
+            if (config.liveReload) {
+                log.log('Starting live reload.');
+                livereload.init(socket);
+            }
+
+            // Set up telemetry if necessary.
+            if (config.telemetry) {
+                socket.emit('init-telemetry');
+            }
 
             handlePendingEmits(appHost);
         });
@@ -64,18 +77,17 @@ function init(server) {
             });
 
             socket.on('telemetry', function (data) {
-                handleTelemetry(data.event, data.props);
+                telemetry.handleClientTelemetry(data);
             });
+
+            // Set up telemetry if necessary.
+            if (config.telemetry) {
+                socket.emit('init-telemetry');
+            }
 
             handlePendingEmits(simHost);
         });
     });
-}
-
-function handleTelemetry(event, props) {
-    if (config.telemetry) {
-       config.telemetry.sendTelemetry(event, props);
-    }
 }
 
 function handlePendingEmits(host) {
@@ -93,7 +105,7 @@ function emitToHost(host, msg, data, callback) {
         socket.emit(msg, data, callback);
     } else {
         log.log('Emitting \'' + msg + '\' to ' + host + ' (pending connection)');
-        pendingEmits[host].push({msg: msg, data: data, callback: callback});
+        pendingEmits[host].push({ msg: msg, data: data, callback: callback });
     }
 }
 

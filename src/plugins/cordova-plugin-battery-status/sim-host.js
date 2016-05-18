@@ -1,5 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
+var telemetry = require('telemetry-helper');
+
+var baseProps = {
+    plugin: 'cordova-plugin-battery-status',
+    panel: 'battery-status'
+};
+
 module.exports = function (message) {
     var battery = require('./battery');
 
@@ -7,8 +14,8 @@ module.exports = function (message) {
 
     function initialize() {
         var labelBatteryLevel = document.getElementById('battery-level-label'),
-            levelRange        = document.getElementById('battery-level'),
-            pluggedCheckbox   = document.getElementById('is-plugged');
+            levelRange = document.getElementById('battery-level'),
+            pluggedCheckbox = document.getElementById('is-plugged');
 
         function updateBatteryLevelText(level) {
             labelBatteryLevel.textContent = level + '%';
@@ -32,6 +39,23 @@ module.exports = function (message) {
         pluggedCheckbox.addEventListener('click', function () {
             battery.updatePluggedStatus(this.checked);
         });
+
+        registerTelemetryEvents();
+    }
+
+    function registerTelemetryEvents() {
+        document.getElementById('battery-level').onchange = telemetry.sendUITelemetry.bind(this, Object.assign({}, baseProps, { control: 'battery-level' }));
+
+        // Clicking the checkbox's label fires the click event twice, so keep track of the previous state. Note that we can't use the change event because the component seems to swallow it.
+        var previousPluggedState = true;
+        var pluggedCheckbox = document.getElementById('is-plugged');
+
+        pluggedCheckbox.onclick = function () {
+            if (pluggedCheckbox.checked !== previousPluggedState) {
+                previousPluggedState = pluggedCheckbox.checked;
+                telemetry.sendUITelemetry(Object.assign({}, baseProps, { control: 'is-plugged' }));
+            }
+        };
     }
 
     return {

@@ -2,6 +2,13 @@
 
 // https://github.com/apache/cordova-plugin-globalization/
 
+var telemetry = require('telemetry-helper');
+
+var baseProps = {
+    plugin: 'cordova-plugin-globalization',
+    panel: 'globalization'
+};
+
 function initialize() {
     var globalizationData = require('./globalization-data');
     var languages = globalizationData.languages;
@@ -25,6 +32,19 @@ function initialize() {
         option.appendChild(caption);
         dayList.appendChild(option);
     });
+
+    localeList.onchange = telemetry.sendUITelemetry.bind(this, Object.assign({}, baseProps, { control: 'locale-list' }));
+    dayList.onchange = telemetry.sendUITelemetry.bind(this, Object.assign({}, baseProps, { control: 'day-list' }));
+
+    // Clicking the checkbox's label fires the click event twice, so keep track of the previous state. Note that we can't use the change event because the component seems to swallow it.
+    var previousDaylightState = false;
+    var daylightCheckbox = document.querySelector('#is-daylight-checkbox');
+    daylightCheckbox.onclick = function () {
+        if (daylightCheckbox.checked !== previousDaylightState) {
+            previousDaylightState = daylightCheckbox.checked;
+            telemetry.sendUITelemetry(Object.assign({}, baseProps, { control: 'is-daylight-checkbox' }));
+        }
+    };
 }
 
 module.exports = {

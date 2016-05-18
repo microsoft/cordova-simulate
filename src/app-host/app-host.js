@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
+var livereload = require('./live-reload-client');
 var Messages = require('messages');
+var telemetry = require('telemetry-helper');
 
 var cordova;
 var oldExec;
@@ -8,6 +10,7 @@ var socket = io();
 var nextExecCacheIndex = 0;
 var execCache = {};
 var pluginHandlers = {};
+var serviceToPluginMap = {};
 
 function setCordova(originalCordova) {
     if (cordova) {
@@ -25,8 +28,8 @@ function setCordova(originalCordova) {
     // android platform has its own specific initialization
     // so to emulate it, we need to fake init function
     if (cordova.platformId === 'android') {
-        exec.init = function () { 
-            cordova.require('cordova/channel').onNativeReady.fire(); 
+        exec.init = function () {
+            cordova.require('cordova/channel').onNativeReady.fire();
         };
     }
 
@@ -72,13 +75,21 @@ socket.on('exec-failure', function (data) {
     }
 });
 
+socket.on('start-live-reload', function () {
+    livereload.start(socket);
+});
+
+socket.on('init-telemetry', function (data) {
+    telemetry.init(socket);
+});
+
 socket.emit('register-app-host');
 
 function exec(success, fail, service, action, args) {
     // If we have a local handler, call that. Otherwise pass it to the simulation host.
     var handler = pluginHandlers[service] && pluginHandlers[service][action];
     if (handler) {
-       socket.emit('telemetry', {event: 'exec', props: {handled: 'app-host', service: service, action: action}});
+        telemetry.sendClientTelemetry('exec', { handled: 'app-host', plugin: serviceToPluginMap[service], service: service, action: action });
 
         // Ensure local handlers are executed asynchronously.
         setTimeout(function () {
@@ -86,8 +97,8 @@ function exec(success, fail, service, action, args) {
         }, 0);
     } else {
         var execIndex = nextExecCacheIndex++;
-        execCache[execIndex] = {index: execIndex, success: success, fail: fail};
-        socket.emit('exec', {index: execIndex, service: service, action: action, args: args, hasSuccess: !!success, hasFail: !!fail});
+        execCache[execIndex] = { index: execIndex, success: success, fail: fail };
+        socket.emit('exec', { index: execIndex, service: service, action: action, args: args, hasSuccess: !!success, hasFail: !!fail });
     }
 }
 
@@ -97,10 +108,14 @@ Object.defineProperty(window, 'cordova', {
     get: getCordova
 });
 
-function clobber(clobbers, scope) {
+function clobber(clobbers, scope, clobberToPluginMap, pluginId) {
     Object.keys(clobbers).forEach(function (key) {
+        if (clobberToPluginMap && pluginId) {
+            clobberToPluginMap[key] = pluginId;
+        }
+
         if (clobbers[key] && typeof clobbers[key] === 'object') {
-            scope[key] =  scope[key] || {};
+            scope[key] = scope[key] || {};
             clobber(clobbers[key], scope[key]);
         } else {
             scope[key] = clobbers[key];
@@ -123,10 +138,10 @@ var pluginClobberDefinitions = {
 
 var pluginMessages = {};
 applyPlugins(plugins);
-applyPlugins(pluginHandlersDefinitions, pluginHandlers);
+applyPlugins(pluginHandlersDefinitions, pluginHandlers, serviceToPluginMap);
 applyPlugins(pluginClobberDefinitions, window);
 
-function applyPlugins(plugins, clobberScope) {
+function applyPlugins(plugins, clobberScope, clobberToPluginMap) {
     Object.keys(plugins).forEach(function (pluginId) {
         var plugin = plugins[pluginId];
         if (plugin) {
@@ -136,7 +151,7 @@ function applyPlugins(plugins, clobberScope) {
                 plugins[pluginId] = plugin;
             }
             if (clobberScope) {
-                clobber(plugin, clobberScope);
+                clobber(plugin, clobberScope, clobberToPluginMap, pluginId);
             }
         }
     });
