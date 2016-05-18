@@ -35,6 +35,7 @@ var launchServer = function (opts) {
     config.telemetry = opts.telemetry;
     config.liveReload = !!opts.livereload;
     config.forcePrepare = !!opts.forceprepare;
+    config.xhrProxy = !!opts.xhrproxy;
 
     simServer.attach(server.app);
 

@@ -3,6 +3,7 @@
 var livereload = require('./live-reload-client');
 var Messages = require('messages');
 var telemetry = require('telemetry-helper');
+var xhrProxy = require('./xhr-proxy');
 
 var cordova;
 var oldExec;
@@ -81,6 +82,10 @@ socket.on('start-live-reload', function () {
 
 socket.on('init-telemetry', function (data) {
     telemetry.init(socket);
+});
+
+socket.on('init-xhr-proxy', function (data) {
+    xhrProxy.init(); 
 });
 
 socket.emit('register-app-host');
