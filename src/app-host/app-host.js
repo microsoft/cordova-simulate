@@ -83,6 +83,10 @@ socket.on('init-telemetry', function (data) {
     telemetry.init(socket);
 });
 
+socket.on('init-xhr-proxy', function (data) {
+    require('xhr-proxy').init(); 
+});
+
 socket.emit('register-app-host');
 
 function exec(success, fail, service, action, args) {

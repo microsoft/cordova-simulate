@@ -82,6 +82,14 @@ Object.defineProperties(module.exports, {
             }
             return simulationFilePath;
         }
+    },
+    xhrProxy: {
+        get: function() {
+            return getValue('xhrProxy', true);
+        },
+        set: function(value) {
+            setValue('xhrProxy', value);
+        }
     }
 });
 

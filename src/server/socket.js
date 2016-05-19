@@ -50,6 +50,11 @@ function init(server) {
             if (config.telemetry) {
                 socket.emit('init-telemetry');
             }
+            
+            // Set up xhr proxy
+            if (config.xhrProxy) {
+                socket.emit('init-xhr-proxy');
+            }
 
             handlePendingEmits(appHost);
         });

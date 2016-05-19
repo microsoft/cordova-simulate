@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
 var fs = require('fs'),
+    http = require('http'),
     path = require('path'),
     replaceStream = require('replacestream'),
     cordovaServe = require('cordova-serve'),
@@ -30,6 +31,7 @@ function attach(app) {
     app.use(plugins.getRouter());
     app.use('/simulator', cordovaServe.static(dirs.hostRoot['sim-host']));
     app.use('/simulator/thirdparty', cordovaServe.static(dirs.thirdParty));
+    
 }
 
 function sendHostJsFile(response, hostType) {
