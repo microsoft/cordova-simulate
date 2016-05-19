@@ -5,7 +5,6 @@ var Messages = require('messages');
 var telemetry = require('telemetry-helper');
 
 var cordova;
-var oldExec;
 var socket = io();
 var nextExecCacheIndex = 0;
 var execCache = {};
@@ -13,33 +12,82 @@ var pluginHandlers = {};
 var serviceToPluginMap = {};
 
 function setCordova(originalCordova) {
+    var channel;
+
     if (cordova) {
         return;
     }
 
     cordova = originalCordova;
 
-    oldExec = cordova.require('cordova/exec');
     cordova.define.remove('cordova/exec');
     cordova.define('cordova/exec', function (require, exports, module) {
         module.exports = exec;
     });
 
-    // android platform has its own specific initialization
-    // so to emulate it, we need to fake init function
-    if (cordova.platformId === 'android') {
-        exec.init = function () {
-            cordova.require('cordova/channel').onNativeReady.fire();
-        };
-    }
+    channel = cordova.require('cordova/channel');
 
-    // windows phone platform fires 'deviceready' event from native component
-    // so to emulate it we fire it in the bootstrap function (similar to ios)
-    if (cordova.platformId === 'windowsphone') {
-        cordova.require('cordova/platform').bootstrap = function () {
-            cordova.require('cordova/channel').onNativeReady.fire();
-        };
-    }
+    // define our own channel to delay the initialization until sim-host tells
+    // us everything's ready (fired in 'start' event handler).
+    channel.createSticky('onCordovaSimulateReady');
+    channel.waitForInitialization('onCordovaSimulateReady');
+
+    socket.once('init', function () {
+        // sim-host is ready, register exec handlers, fire onNativeReady and send
+        // the list of plugins
+        socket.on('exec-success', function (data) {
+            console.log('exec-success:');
+            console.log(data);
+            var execCacheInfo = execCache[data.index];
+            if (execCacheInfo.success) {
+                execCacheInfo.success(data.result);
+            }
+        });
+
+        socket.on('exec-failure', function (data) {
+            console.log('exec-failure:');
+            console.log(data);
+            var execCacheInfo = execCache[data.index];
+            if (execCacheInfo.fail) {
+                execCacheInfo.fail(data.error);
+            }
+        });
+
+        socket.on('start-live-reload', function () {
+            livereload.start(socket);
+        });
+
+        socket.on('init-telemetry', function (data) {
+            telemetry.init(socket);
+        });
+
+        socket.on('init-xhr-proxy', function (data) {
+            require('xhr-proxy').init(); 
+        });
+
+        socket.on('init-touch-events', function (data) {
+            require('./touch-events').init();
+        });
+
+        channel.onNativeReady.fire();
+        if (cordova.platformId !== 'browser') {
+            channel.onPluginsReady.subscribe(function () {
+                var pluginList = cordova.require('cordova/plugin_list').metadata;
+                socket.emit('app-plugin-list', pluginList);
+            });
+        } else {
+            socket.emit('app-plugin-list', {});
+        }
+    });
+
+    socket.once('start', function () {
+        // all set, fire onCordovaSimulate ready (which up to this point was
+        // delaying onDeviceReady).
+        channel.onCordovaSimulateReady.fire();
+    });
+
+    // register app-host
+    socket.emit('register-app-host');
 
     // default Windows bootstrap function tries to load WinJS which is not
     // available and not required in simulation mode so we override bootstrap
@@ -48,7 +96,6 @@ function setCordova(originalCordova) {
             cordova.require('cordova/modulemapper')
                 .clobbers('cordova/exec/proxy', 'cordova.commandProxy');
 
-            cordova.require('cordova/channel').onNativeReady.fire();
         };
     }
 }
@@ -56,42 +103,6 @@ function setCordova(originalCordova) {
 function getCordova() {
     return cordova;
 }
-
-socket.on('exec-success', function (data) {
-    console.log('exec-success:');
-    console.log(data);
-    var execCacheInfo = execCache[data.index];
-    if (execCacheInfo.success) {
-        execCacheInfo.success(data.result);
-    }
-});
-
-socket.on('exec-failure', function (data) {
-    console.log('exec-failure:');
-    console.log(data);
-    var execCacheInfo = execCache[data.index];
-    if (execCacheInfo.fail) {
-        execCacheInfo.fail(data.error);
-    }
-});
-
-socket.on('start-live-reload', function () {
-    livereload.start(socket);
-});
-
-socket.on('init-telemetry', function (data) {
-    telemetry.init(socket);
-});
-
-socket.on('init-xhr-proxy', function (data) {
-    require('xhr-proxy').init();
-});
-
-socket.on('init-touch-events', function (data) {
-    require('./touch-events').init();
-});
-
-socket.emit('register-app-host');
 
 function exec(success, fail, service, action, args) {
     // If we have a local handler, call that. Otherwise pass it to the simulation host.
@@ -110,7 +121,11 @@ function exec(success, fail, service, action, args) {
     }
 }
 
-// Setup for cordova.exec patching
+// have this stub function always, some platforms require it
+exec.init = function () {
+};
+
+// Setup for cordova patching
 Object.defineProperty(window, 'cordova', {
     set: setCordova,
     get: getCordova
