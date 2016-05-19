@@ -18,6 +18,7 @@ module.exports = function (messages) {
         db = require('db'),
         event = require('event'),
         utils = require('utils'),
+        navUtils = utils.navHelper(),
         _gpsMapZoomLevel;
 
     geo.initialize(messages);
@@ -53,39 +54,6 @@ module.exports = function (messages) {
         _gpsMapZoomLevel = Math.max(Math.min(value, constants.GEO.MAP_ZOOM_MAX), constants.GEO.MAP_ZOOM_MIN);
         document.getElementById(constants.GEO.MAP_ZOOM_LEVEL_CONTAINER).innerHTML = _gpsMapZoomLevel;
         db.save(constants.GEO.MAP_ZOOM_KEY, _gpsMapZoomLevel);
-    }
-
-    function _getTextHeading(heading) {
-        if (heading >= 337.5 || (heading >= 0 && heading <= 22.5)) {
-            return 'N';
-        }
-
-        if (heading >= 22.5 && heading <= 67.5) {
-            return 'NE';
-        }
-
-        if (heading >= 67.5 && heading <= 112.5) {
-            return 'E';
-        }
-        if (heading >= 112.5 && heading <= 157.5) {
-            return 'SE';
-        }
-
-        if (heading >= 157.5 && heading <= 202.5) {
-            return 'S';
-        }
-
-        if (heading >= 202.5 && heading <= 247.5) {
-            return 'SW';
-        }
-
-        if (heading >= 247.5 && heading <= 292.5) {
-            return 'W';
-        }
-
-        if (heading >= 292.5 && heading <= 337.5) {
-            return 'NW';
-        }
     }
 
     function mapEventTelemetryHandler() {
@@ -137,7 +105,7 @@ module.exports = function (messages) {
             var option = rateList.options[rateList.selectedIndex];
 
             telemetry.sendUITelemetry(Object.assign({}, baseProps, { control: 'geo-gpx-go', value: option.value }));
-        }
+        };
 
         // Register the event for zooming with the mouse wheel on the map.
         document.getElementById('geo-map-container').onwheel = mapEventTelemetryHandler;
@@ -203,9 +171,11 @@ module.exports = function (messages) {
                 }
             }
 
-            function updateHeadingValues() {
-                var headingDeg = parseFloat(heading.value),
-                    headingText = _getTextHeading(parseFloat(heading.value));
+            function onHeadingValueUpdated(value) {
+                heading.value = value;
+
+                var headingDeg  = parseFloat(heading.value),
+                    headingText = navUtils.getDirection(headingDeg);
 
                 headingLabel.textContent = headingText;
                 headingMapLabel.innerHTML = headingText + '</br>' + headingDeg + '&deg;';
@@ -214,6 +184,11 @@ module.exports = function (messages) {
                     return prop + ': rotate(' + headingDeg + 'deg);';
                 }).join(' ');
                 mapMarker.setAttribute('style', style);
+            }
+
+            function updateHeadingValues() {
+                // notify globally that heading has changed
+                messages.emit('device-orientation-updated', heading.value, true);
             }
 
             function updateValsFromMap() {
@@ -289,7 +264,6 @@ module.exports = function (messages) {
 
             function loadGpxFile(filename) {
                 var reader = new FileReader(),
-                    _xml,
                     t,
                     att,
                     lastAtt,
@@ -303,12 +277,11 @@ module.exports = function (messages) {
                     _useLastTimestamp,
                     _heading = 0,
                     _speed = 0,
-                    _dist = 0,
-                    navUtils = new utils.navHelper();
+                    _dist = 0;
 
                 reader.onload = function (e) {
                     function parseXml(xml) {
-                        return new DOMParser().parseFromString(xml, "text/xml");
+                        return new DOMParser().parseFromString(xml, 'text/xml');
                     }
 
                     t = parseXml(e.target.result).querySelectorAll('trkpt');
@@ -533,6 +506,10 @@ module.exports = function (messages) {
 
             initMap();
 
+            messages.on('device-orientation-updated', function (event, value) {
+                onHeadingValueUpdated(value);
+            }, true); // global event
+
             initializeValues();
 
             messages.on(positionUpdatedMessage, function () {
@@ -540,20 +517,6 @@ module.exports = function (messages) {
             });
 
             updateGeo();
-
-            function triggerPositionUpdatedMessage() {
-                messages.emit(positionUpdatedMessage, {
-                    latitude: latitude.value,
-                    longitude: longitude.value,
-                    altitude: altitude.value,
-                    accuracy: accuracy.value,
-                    altitudeAccuracy: altitudeAccuracy.value,
-                    heading: heading ? heading.value : 0, // HACK: see techdebt http://www.pivotaltracker.com/story/show/5478847
-                    speed: speed ? speed.value : 0, // HACK: see techdebt http://www.pivotaltracker.com/story/show/5478847
-
-                    timeStamp: new Date()
-                });
-            }
 
             registerTelemetryEvents();
         }

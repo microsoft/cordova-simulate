@@ -1,0 +1,40 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved. -->
+
+<cordova-panel id="device-orientation" caption="Compass">
+    <style>
+        #device-orientation #compass-widget {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #device-orientation [data-compass-heading="text"] {
+            margin-right: 5px;
+            margin-left: auto;
+        }
+
+        #device-orientation .compass-help-info {
+            font-size: 0.75em;
+            text-align: center;
+            padding: 1.5em 0;
+        }
+    </style>
+    <cordova-group>
+        <cordova-panel-row>
+            <div id="compass-widget"></div>
+        </cordova-panel-row>
+
+        <cordova-panel-row class="compass-help-info">
+            <em>Click and drag with the mouse to manipulate the device compass.</em>
+        </cordova-panel-row>
+    </cordova-group>
+
+    <cordova-group>
+        <cordova-panel-row>
+            <label for="compass-heading-value">Heading (deg)</label>
+            <label data-compass-heading="text">N</label>
+            <input type="number" id="compass-heading-value" class="cordova-state-default" min="0" max="359.99">
+        </cordova-panel-row>
+    </cordova-group>
+</cordova-panel>
