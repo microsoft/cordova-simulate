@@ -50,10 +50,15 @@ function init(server) {
             if (config.telemetry) {
                 socket.emit('init-telemetry');
             }
-            
+
             // Set up xhr proxy
             if (config.xhrProxy) {
                 socket.emit('init-xhr-proxy');
+            }
+
+            // setup touch events support
+            if (config.touchEvents) {
+                socket.emit('init-touch-events');
             }
 
             handlePendingEmits(appHost);

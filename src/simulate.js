@@ -30,14 +30,15 @@ var launchServer = function (opts) {
     config.telemetry = opts.telemetry;
     config.liveReload = opts.hasOwnProperty('livereload') ? !!opts.livereload : true;
     config.forcePrepare = !!opts.forceprepare;
-    config.xhrProxy = !!opts.corsproxy;
+    config.xhrProxy = opts.hasOwnProperty('corsproxy') ? !!opts.corsproxy : true;
+    config.touchEvents = opts.hasOwnProperty('touchevents') ? !!opts.touchevents : true;
 
     /* attach simulation host middleware */
     var middlewarePath = path.join(simHostOpts.simHostRoot, 'server', 'server');
     if (fs.existsSync(middlewarePath + '.js')) {
         require(middlewarePath).attach(server.app, dirs);
     }
-    
+
     /* attach CORS proxy middleware */
     if (!!opts.corsproxy) {
         require('./server/xhr-proxy').attach(server.app);

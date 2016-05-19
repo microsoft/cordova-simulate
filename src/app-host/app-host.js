@@ -84,7 +84,11 @@ socket.on('init-telemetry', function (data) {
 });
 
 socket.on('init-xhr-proxy', function (data) {
-    require('xhr-proxy').init(); 
+    require('xhr-proxy').init();
+});
+
+socket.on('init-touch-events', function (data) {
+    require('./touch-events').init();
 });
 
 socket.emit('register-app-host');

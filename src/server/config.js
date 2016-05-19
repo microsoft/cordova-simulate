@@ -6,71 +6,30 @@ var fs = require('fs'),
 var config = {};
 var simulationFilePath;
 
+// module properties
+[
+    'liveReload',
+    'platform',
+    'platformRoot',
+    'forcePrepare',
+    'projectRoot',
+    'server',
+    'telemetry',
+    'simHostOptions',
+    'xhrProxy',
+    'touchEvents'
+].forEach(function (prop) {
+    Object.defineProperty(module.exports, prop, {
+        get: function () {
+            return getValue(prop);
+        },
+        set: function (value) {
+            setValue(prop, value);
+        }
+    });
+});
+
 Object.defineProperties(module.exports, {
-    liveReload: {
-        get: function () {
-            return getValue('liveReload');
-        },
-        set: function (value) {
-            setValue('liveReload', value);
-        }
-    },
-    platform: {
-        get: function () {
-            return getValue('platform');
-        },
-        set: function (value) {
-            setValue('platform', value);
-        }
-    },
-    platformRoot: {
-        get: function () {
-            return getValue('platformRoot');
-        },
-        set: function (value) {
-            setValue('platformRoot', value);
-        }
-    },
-    forcePrepare: {
-        get: function () {
-            return getValue('forcePrepare');
-        },
-        set: function (value) {
-            setValue('forcePrepare', value);
-        }
-    },
-    projectRoot: {
-        get: function () {
-            return getValue('projectRoot');
-        },
-        set: function (value) {
-            setValue('projectRoot', value, true)
-        }
-    },
-    server: {
-        get: function () {
-            return getValue('server', true);
-        },
-        set: function (value) {
-            setValue('server', value);
-        }
-    },
-    telemetry: {
-        get: function () {
-            return getValue('telemetry', true);
-        },
-        set: function (value) {
-            setValue('telemetry', value);
-        }
-    },
-    simHostOptions: {
-        get: function () {
-            return getValue('simHostOptions');
-        },
-        set: function (value) {
-            setValue('simHostOptions', value);
-        }
-    },
     simulationFilePath: {
         get: function () {
             if (!simulationFilePath) {
@@ -81,14 +40,6 @@ Object.defineProperties(module.exports, {
                 }
             }
             return simulationFilePath;
-        }
-    },
-    xhrProxy: {
-        get: function() {
-            return getValue('xhrProxy', true);
-        },
-        set: function(value) {
-            setValue('xhrProxy', value);
         }
     }
 });
