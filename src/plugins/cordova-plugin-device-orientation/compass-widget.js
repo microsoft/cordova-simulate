@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
+var navigationUtils = require('utils').navHelper();
+
 /**
  * @param {object=} options
  * @constructor
@@ -52,7 +54,7 @@ function CompassWidget(options) {
 
     this._heading = {
         value: 0,
-        direction: CompassWidget.getDirection(this.value)
+        direction: navigationUtils.getDirection(this.value)
     };
 
     if (typeof options.headingUpdatedCallback === 'function') {
@@ -62,56 +64,6 @@ function CompassWidget(options) {
 
 CompassWidget.Defaults = {
     DIAMETER: 160
-};
-
-CompassWidget.Direction = {
-    N: 'N',
-    NE: 'NE',
-    E: 'E',
-    SE: 'SE',
-    S: 'S',
-    SW: 'SW',
-    W: 'W',
-    NW: 'NW'
-};
-
-/**
- * Get the direction according to the heading value.
- * @param {number} heading A number from 0 to 359.99.
- * @return {string} direction It can be one of the following: N, NE, E, SE, S, SW, W or NW.
- */
-CompassWidget.getDirection = function (heading) {
-    if (heading > 337.5 || (heading >= 0 && heading <= 22.5)) {
-        return CompassWidget.Direction.N;
-    }
-
-    if (heading > 22.5 && heading <= 67.5) {
-        return CompassWidget.Direction.NE;
-    }
-
-    if (heading > 67.5 && heading <= 112.5) {
-        return CompassWidget.Direction.E;
-    }
-
-    if (heading > 112.5 && heading <= 157.5) {
-        return CompassWidget.Direction.SE;
-    }
-
-    if (heading > 157.5 && heading <= 202.5) {
-        return CompassWidget.Direction.S;
-    }
-
-    if (heading > 202.5 && heading <= 247.5) {
-        return CompassWidget.Direction.SW;
-    }
-
-    if (heading > 247.5 && heading <= 292.5) {
-        return CompassWidget.Direction.W;
-    }
-
-    if (heading > 292.5 && heading <= 337.5) {
-        return CompassWidget.Direction.NW;
-    }
 };
 
 CompassWidget.prototype.initialize = function (headingValue) {
@@ -170,7 +122,7 @@ CompassWidget.prototype.setHeading = function (value) {
     }
 
     this._heading.value = value;
-    this._heading.direction = CompassWidget.getDirection(value);
+    this._heading.direction = navigationUtils.getDirection(value);
 
     var rotationAngle = (value !== 0) ? 360 - value : value;
     this._updateRotation(rotationAngle);
@@ -227,10 +179,10 @@ CompassWidget.prototype._drawCompass = function () {
     // directions
     this._context.fillStyle = '#000000';
     this._context.font = '14px Arial';
-    this._context.fillText(CompassWidget.Direction.N, this._center.x - 5, this._compassBorderSize - 3);
-    this._context.fillText(CompassWidget.Direction.E, this._center.x + this._diameter / 2 - this._compassBorderSize + 3, this._center.y);
-    this._context.fillText(CompassWidget.Direction.S, this._center.x - 5, this._center.y + this._diameter / 2 - 3);
-    this._context.fillText(CompassWidget.Direction.W, this._center.x - this._diameter / 2 + 1, this._center.y);
+    this._context.fillText(navigationUtils.Directions.N, this._center.x - 5, this._compassBorderSize - 3);
+    this._context.fillText(navigationUtils.Directions.E, this._center.x + this._diameter / 2 - this._compassBorderSize + 3, this._center.y);
+    this._context.fillText(navigationUtils.Directions.S, this._center.x - 5, this._center.y + this._diameter / 2 - 3);
+    this._context.fillText(navigationUtils.Directions.W, this._center.x - this._diameter / 2 + 1, this._center.y);
 };
 
 /**

@@ -46,8 +46,7 @@ self = module.exports = {
     forEach: function (obj, action, scope) {
         if (obj instanceof Array) {
             return obj.forEach(action, scope);
-        }
-        else {
+        } else {
             self.map(obj, action, scope);
         }
     },
@@ -66,14 +65,12 @@ self = module.exports = {
 
         if (obj instanceof Array) {
             return obj.map(func, scope);
-        }
-        else if (obj instanceof NamedNodeMap) {
+        } else if (obj instanceof NamedNodeMap) {
             for (i = 0; i < obj.length; i++) {
                 returnVal = func.apply(scope, [obj[i], i]);
                 result.push(returnVal);
             }
-        }
-        else {
+        } else {
             for (i in obj) {
                 if (obj.hasOwnProperty(i)) {
                     returnVal = func.apply(scope, [obj[i], i]);
@@ -87,7 +84,6 @@ self = module.exports = {
 
     bindAutoSaveEvent: function (selector, saveCallback) {
         var oldSetTimeoutId;
-
         var node = document.querySelector(selector);
 
         if (!node) {
@@ -146,6 +142,55 @@ self = module.exports = {
 
     navHelper: function () {
         return {
+            Directions: {
+                N: 'N',
+                NE: 'NE',
+                E: 'E',
+                SE: 'SE',
+                S: 'S',
+                SW: 'SW',
+                W: 'W',
+                NW: 'NW'
+            },
+
+            /**
+             * Get the direction according to the heading value.
+             * @param {number} heading A number from 0 to 359.99.
+             * @return {string} direction It can be one of the following: N, NE, E, SE, S, SW, W or NW.
+             */
+            getDirection: function (heading) {
+                if (heading > 337.5 || (heading >= 0 && heading <= 22.5)) {
+                    return this.Directions.N;
+                }
+
+                if (heading > 22.5 && heading <= 67.5) {
+                    return this.Directions.NE;
+                }
+
+                if (heading > 67.5 && heading <= 112.5) {
+                    return this.Directions.E;
+                }
+
+                if (heading > 112.5 && heading <= 157.5) {
+                    return this.Directions.SE;
+                }
+
+                if (heading > 157.5 && heading <= 202.5) {
+                    return this.Directions.S;
+                }
+
+                if (heading > 202.5 && heading <= 247.5) {
+                    return this.Directions.SW;
+                }
+
+                if (heading > 247.5 && heading <= 292.5) {
+                    return this.Directions.W;
+                }
+
+                // heading > 292.5 && heading <= 337.5
+                return this.Directions.NW;
+            },
+
             getHeading: function (lat1, lon1, lat2, lon2) {
                 var dLon  = this.rad(lon2 - lon1),
                     llat1 = this.rad(lat1),
@@ -203,11 +248,11 @@ self = module.exports = {
 };
 
 function createUUIDPart(length) {
-    var uuidpart = "";
+    var uuidpart = '';
     for (var i = 0; i < length; i++) {
         var uuidchar = parseInt((Math.random() * 256), 10).toString(16);
         if (uuidchar.length == 1) {
-            uuidchar = "0" + uuidchar;
+            uuidchar = '0' + uuidchar;
         }
         uuidpart += uuidchar;
     }
