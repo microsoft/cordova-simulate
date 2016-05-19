@@ -45,11 +45,16 @@ function CompassWidget(options) {
     this._onDraggingCallback = this._onDragging.bind(this);
     this._onDragEndCallback = this._onDragEnd.bind(this);
     this._onHeadingUpdatedCallback = null;
+    this._sendUITelemetry = null;
 
     this._canvasElement.addEventListener('mousedown', this._onDragStartCallback);
 
     this._canvasElement.addEventListener('click', function (event) {
         this._updateHeadingToPosition(event.clientX, event.clientY);
+
+        if (this._sendUITelemetry) {
+            this._sendUITelemetry('compass-widget');
+        }
     }.bind(this));
 
     this._heading = {
@@ -59,6 +64,10 @@ function CompassWidget(options) {
 
     if (typeof options.headingUpdatedCallback === 'function') {
         this._onHeadingUpdatedCallback = options.headingUpdatedCallback;
+    }
+
+    if (typeof options.sendUITelemetry === 'function') {
+        this._sendUITelemetry = options.sendUITelemetry;
     }
 }
 

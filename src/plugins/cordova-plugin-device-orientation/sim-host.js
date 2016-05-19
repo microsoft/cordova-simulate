@@ -2,8 +2,20 @@
 
 module.exports = function (messages) {
 
-    var CompassWidget = require('./compass-widget'),
+    var telemetry = require('telemetry-helper'),
+        CompassWidget = require('./compass-widget'),
         compass = require('./compass');
+
+    var baseProps = {
+        plugin: 'cordova-plugin-device-orientation',
+        panel: 'device-orientation'
+    };
+
+    function sendUITelemetry(control) {
+        telemetry.sendUITelemetry(Object.assign({}, baseProps, {
+            control: control
+        }));
+    }
 
     compass.initialize();
 
@@ -15,12 +27,15 @@ module.exports = function (messages) {
             container: document.getElementById('compass-widget'),
             headingUpdatedCallback: function (heading) {
                 messages.emit('device-orientation-updated', heading.value, true);
-            }
+            },
+            sendUITelemetry: sendUITelemetry
         });
         compassWidget.initialize(compass.heading);
 
         inputHeading.addEventListener('input', function () {
             compassWidget.updateHeading(this.value);
+
+            sendUITelemetry('compass-heading-value');
         });
 
         messages.on('device-orientation-updated', function (event, value) {
