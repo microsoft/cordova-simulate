@@ -25,17 +25,23 @@ var launchServer = function (opts) {
         simHostOpts = { simHostRoot: path.join(__dirname, 'sim-host', 'ui') };
     }
 
-    var middlewarePath = path.join(simHostOpts.simHostRoot, 'server', 'server');
-    if (fs.existsSync(middlewarePath + '.js')) {
-        require(middlewarePath).attach(server.app, dirs);
-    }
-
     config.platform = platform;
     config.simHostOptions = simHostOpts;
     config.telemetry = opts.telemetry;
     config.liveReload = !!opts.livereload;
     config.forcePrepare = !!opts.forceprepare;
-    config.xhrProxy = !!opts.xhrproxy;
+    config.xhrProxy = !!opts.corsproxy;
+
+    /* attach simulation host middleware */
+    var middlewarePath = path.join(simHostOpts.simHostRoot, 'server', 'server');
+    if (fs.existsSync(middlewarePath + '.js')) {
+        require(middlewarePath).attach(server.app, dirs);
+    }
+    
+    /* attach CORS proxy middleware */
+    if (!!opts.corsproxy) {
+        require('./server/xhr-proxy').attach(server.app);
+    }
 
     simServer.attach(server.app);
 

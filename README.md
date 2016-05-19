@@ -26,7 +26,7 @@ Where opts is an object with the following properties (all optional):
 * **simhostui** - the directory containing the UI specific files of the simulation host. Defaults to the bundled simulation host files, found in `src/sim-host/ui`.
 * **livereload** - A boolean. Set to false to disable live reload. Defaults to true.
 * **forceprepare** - A boolean. Set to true to force a `cordova prepare` whenever a file changes during live reload. If this is false, the server attempts to simply copy the changed file to the platform rather than doing a `cordova prepare`. Ignored if live reload is disabled. Defaults to false.
-* **xhrproxy** - Boolean indicating if a XHR should go through the server proxy. Defaults to true.
+* **corsproxy** - Boolean indicating if XMLHttpRequest is proxied through the simulate server. This is useful for working around CORS issues at development time. Defaults to true.
 
 
 # What it does

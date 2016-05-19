@@ -36,14 +36,14 @@ function processArgs() {
 
         var parserOptions = {
             string: ['dir', 'simhostui', 'target'],
-            boolean: ['livereload', 'forceprepare', 'xhrproxy'],
+            boolean: ['livereload', 'forceprepare', 'corsproxy'],
             default: {
                 dir: null,
                 livereload: true,
                 port: null,
                 simhostui: null,
                 target: null,
-                xhrproxy: true
+                corsproxy: true
             },
             unknown: unknownOptHandler
         };
@@ -61,7 +61,7 @@ function processArgs() {
             forceprepare: parsed.forceprepare,
             simhostui: parsed.simhostui,
             target: parsed.target,
-            xhrproxy: parsed.xhrproxy
+            corsproxy: parsed.corsproxy
         };
     } catch (err) {
         throw new Error(`Error parsing arguments: ${err.message || err}${os.EOL}${os.EOL}${getUsageString()}`);
