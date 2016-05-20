@@ -25,7 +25,8 @@ pendingEmits[DEBUG_HOST] = [];
 var whenAppHostConnected = q.defer(),
     whenSimHostReady     = q.defer();
 
-function setupAppHostHandlers(socket) {
+function setupAppHostHandlers() {
+    var socket = hostSockets[APP_HOST];
     log.log('Setup handlers for APP_HOST');
 
     socket.on('exec', function (data) {
@@ -73,6 +74,17 @@ function handleSimHostRegistration(socket) {
     emitToHost(SIM_HOST, 'init');
 }
 
+function onAppHostConnected() {
+    var socket = hostSockets.APP_HOST;
+    socket.once('app-plugin-list', handleAppPluginList);
+
+    emitToHost(APP_HOST, 'init');
+}
+
+function onSimHostReady() {
+    setupAppHostHandlers();
+}
+
 function handleSimHostReady() {
     // resolving this promise will result in app-host handlers setupp
     whenSimHostReady.resolve();
@@ -80,12 +92,7 @@ function handleSimHostReady() {
     setupSimHostHandlers();
 
     whenAppHostConnected.promise
-        .then(function () {
-            var socket = hostSockets.APP_HOST;
-            socket.once('app-plugin-list', handleAppPluginList);
-
-            emitToHost(APP_HOST, 'init');
-        });
+        .then(onAppHostConnected);
 }
 
 function handleAppPluginList(data) {
@@ -145,9 +152,7 @@ function init(server) {
             log.log('APP_HOST connected to the server');
             hostSockets[APP_HOST] = socket;
             whenSimHostReady.promise
-                .then(function () {
-                    setupAppHostHandlers(socket);
-                });
+                .then(onSimHostReady);
             whenAppHostConnected.resolve();
         });
 
@@ -173,6 +178,32 @@ function init(server) {
 
             handlePendingEmits(DEBUG_HOST);
         });
+
+        socket.on('disconnect', function () {
+            var type;
+            Object.keys(hostSockets).forEach(function (t) {
+                if (hostSockets[t] === socket) {
+                    type = t;
+                }
+            });
+            hostSockets[type] = undefined;
+            log.log(type + ' disconnected to the server');
+            switch (type) {
+                case APP_HOST:
+                    whenAppHostConnected = q.defer();
+                    whenAppHostConnected.promise.then(onAppHostConnected);
+                    break;
+                case SIM_HOST:
+                    whenSimHostReady = q.defer();
+                    whenSimHostReady.promise.then(onSimHostReady);
+                    break;
+                default:
+                    throw new Error('Got a disconnect from an unknown socket');
+                    break;
+            }
+
+        });
+
     });
 }
 

@@ -63,6 +63,9 @@ module.exports.initialize = function (pluginHandlers, serviceToPluginMap) {
             telemetry.sendClientTelemetry('exec', telemetryProps);
 
         });
+    });
+
+    socket.on('init', function () {
         socket.emit('ready');
     });
 };
