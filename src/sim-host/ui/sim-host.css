@@ -5,7 +5,7 @@ body {
     padding: 0 !important;
     border: 0 !important;
     font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
-    background: rgb(238, 238, 238);
+    background: transparent;
     user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -20,7 +20,7 @@ html {
 h1 {
     font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
     font-size: 16pt;
-    font-weight: bold;
+    font-weight: bold;    
 }
 
 a {
@@ -49,26 +49,31 @@ cordova-panel, cordova-dialog {
     display: block;
 }
 
-body /deep/ .cordova-panel-inner {
-    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
-    background: #fff;
-    border-radius: 3px;
+body /deep/ .cordova-panel-inner {    
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(55,55,55, 0.5);
+    background: rgba(255,255,255,0.95);
+    border-radius: 0px;
     overflow: hidden;
 }
 
 body /deep/ .cordova-header {
     padding: 5px 9px;
     position: relative;
-    background-color: #03a9f4;
-    color: #fff;
-    font-size: 16px;
-    height: 24px;
-    line-height: 24px;
+    background-color: black;
+    opacity: 0.5; 
+    color: rgb(204,204,204);
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 body /deep/ .cordova-widget {
     font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 /* 12px margin around top level items in the content a panel */
@@ -78,7 +83,8 @@ body /deep/ .cordova-content > ::content > * {
 }
 
 .cordova-main {
-    margin-left: 10px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 5px;
     column-width: 330px;
     -moz-column-width: 330px;
@@ -89,8 +95,8 @@ body /deep/ .cordova-content > ::content > * {
 }
 
 body /deep/ label, body /deep/ p, body /deep/ .p {
-    color: #3c8b9e;
-    font-size: 14px;
+    color: rgb(108, 108, 108);
+    font-size: 13px;
 }
 
 body /deep/ .cordova-value {
@@ -288,18 +294,19 @@ body /deep/ .cordova-content {
 
 .feedbackFooter {
     background: rgba(255, 255, 255, 0.85);
-    height: 30px;
+    height: 20px;
     position: fixed;
     bottom: 0;
-    width: 100%;
-    box-shadow: 0 -1px 1px 1px rgba(0, 0, 0, 0.2);
+    right: 0;
+    width: 95px;
+    /*box-shadow: 0 -1px 1px 1px rgba(0, 0, 0, 0.2);*/
     z-index: 1000;
 }
 
 .feedbackLink {
     position: absolute;
-    top: 5px;
-    right: 10px;
+    top: 3px;
+    right: 5px;
 }
 
 .cordova-main {
