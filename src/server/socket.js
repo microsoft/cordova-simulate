@@ -5,13 +5,15 @@ var log = require('./log'),
     livereload = require('./live-reload/live-reload-server'),
     telemetry = require('./telemetry-helper');
 
-var appHost = 'app-host';
-var simHost = 'sim-host';
+var APP_HOST = 'app-host';
+var SIM_HOST = 'sim-host';
+var DEBUG_HOST = 'debug-host';
 
 var hostSockets = {};
 var pendingEmits = {};
-pendingEmits[appHost] = [];
-pendingEmits[simHost] = [];
+pendingEmits[APP_HOST] = [];
+pendingEmits[SIM_HOST] = [];
+pendingEmits[DEBUG_HOST] = [];
 
 function init(server) {
     var io = require('socket.io')(server);
@@ -22,22 +24,26 @@ function init(server) {
 
             // It only makes sense to have one app host per server. If more than one tries to connect, always take the
             // most recent.
-            hostSockets[appHost] = socket;
+            hostSockets[APP_HOST] = socket;
 
             socket.on('exec', function (data) {
-                emitToHost(simHost, 'exec', data);
+                emitToHost(SIM_HOST, 'exec', data);
             });
 
             socket.on('plugin-message', function (data) {
-                emitToHost(simHost, 'plugin-message', data);
+                emitToHost(SIM_HOST, 'plugin-message', data);
             });
 
             socket.on('plugin-method', function (data, callback) {
-                emitToHost(simHost, 'plugin-method', data, callback);
+                emitToHost(SIM_HOST, 'plugin-method', data, callback);
             });
 
             socket.on('telemetry', function (data) {
                 telemetry.handleClientTelemetry(data);
+            });
+
+            socket.on('debug-message', function (data) {
+                emitToHost(DEBUG_HOST, data.message, data.data);
             });
 
             // Set up live reload if necessary.
@@ -61,7 +67,7 @@ function init(server) {
                 socket.emit('init-touch-events');
             }
 
-            handlePendingEmits(appHost);
+            handlePendingEmits(APP_HOST);
         });
 
         socket.on('register-simulation-host', function () {
@@ -69,25 +75,29 @@ function init(server) {
 
             // It only makes sense to have one simulation host per server. If more than one tries to connect, always
             // take the most recent.
-            hostSockets[simHost] = socket;
+            hostSockets[SIM_HOST] = socket;
 
             socket.on('exec-success', function (data) {
-                emitToHost(appHost, 'exec-success', data);
+                emitToHost(APP_HOST, 'exec-success', data);
             });
             socket.on('exec-failure', function (data) {
-                emitToHost(appHost, 'exec-failure', data);
+                emitToHost(APP_HOST, 'exec-failure', data);
             });
 
             socket.on('plugin-message', function (data) {
-                emitToHost(appHost, 'plugin-message', data);
+                emitToHost(APP_HOST, 'plugin-message', data);
             });
 
             socket.on('plugin-method', function (data, callback) {
-                emitToHost(appHost, 'plugin-method', data, callback);
+                emitToHost(APP_HOST, 'plugin-method', data, callback);
             });
 
             socket.on('telemetry', function (data) {
                 telemetry.handleClientTelemetry(data);
+            });
+
+            socket.on('debug-message', function (data) {
+                emitToHost(DEBUG_HOST, data.message, data.data);
             });
 
             // Set up telemetry if necessary.
@@ -95,7 +105,24 @@ function init(server) {
                 socket.emit('init-telemetry');
             }
 
-            handlePendingEmits(simHost);
+            handlePendingEmits(SIM_HOST);
+        });
+
+        socket.on('register-debug-host', function (data) {
+            log.log('Debug-host registered with server.');
+
+            // It only makes sense to have one debug host per server. If more than one tries to connect, always take
+            // the most recent.
+            hostSockets[DEBUG_HOST] = socket;
+
+            if (data && data.handlers) {
+                socket.on('end', function () {
+                    config.debugHostHandlers = null;
+                });
+                config.debugHostHandlers = data.handlers
+            }
+
+            handlePendingEmits(DEBUG_HOST);
         });
     });
 }
@@ -121,7 +148,7 @@ function emitToHost(host, msg, data, callback) {
 
 function invalidateSimHost() {
     // Simulation host is being refreshed, so we'll wait on a new connection.
-    hostSockets[simHost] = null;
+    hostSockets[SIM_HOST] = null;
 }
 
 module.exports.init = init;

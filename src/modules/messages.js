@@ -75,7 +75,6 @@ Messages.prototype = {
     },
 
     // Emit and handle messages
-
     emit: function (message, data, isGlobal) {
         // Pass the message across the socket
         var eventName,
@@ -97,6 +96,15 @@ Messages.prototype = {
 
         // Notify any local listeners
         notify.call(this, messagesObj, message, data);
+    },
+    
+    // Emit messages destined to external debug-hosts
+    emitDebug: function(message, data) {
+        this.socket.emit('debug-message', {
+            pluginId: this.pluginId,
+            message: message,
+            data: data
+        });
     },
 
     on: function (message, handler, isGlobal) {

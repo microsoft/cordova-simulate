@@ -9,5 +9,8 @@
     "js": "app-host.js",
     "handlers": "app-host-handlers.js",
     "clobbers": "app-host-clobbers.js"
+  },
+  "debug-host": {
+    "debug-host": "debug-host.json"
   }
 }

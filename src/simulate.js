@@ -59,7 +59,7 @@ var launchServer = function (opts) {
         appUrl = urlRoot + parseStartPage(projectRoot);
         simHostUrl = urlRoot + 'simulator/index.html';
         log.log('Server started:\n- App running at: ' + appUrl + '\n- Sim host running at: ' + simHostUrl);
-        return { appUrl: appUrl, simHostUrl: simHostUrl };
+        return { urlRoot: urlRoot, appUrl: appUrl, simHostUrl: simHostUrl };
     });
 };
 

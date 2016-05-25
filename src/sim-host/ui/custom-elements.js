@@ -167,6 +167,11 @@ function initialize() {
             get: function () {
                 return this.shadowRoot.querySelector('input').value;
             }
+        },
+        disabled: {
+            set: function (value) {
+                setValueSafely(this.shadowRoot.querySelector('input'), 'disabled', value);
+            }
         }
     }, function () {
         this.shadowRoot.querySelector('label').textContent = this.getAttribute('label');
