@@ -57,7 +57,7 @@ function waitOnAppHostJs() {
 var appHostJsPromise;
 function createAppHostJsFile() {
     appHostJsPromise = appHostJsPromise || prepare.waitOnPrepare().then(function () {
-            return createHostJsFile(appHost, ['js', 'handlers', 'clobbers'])
+            return createHostJsFile(appHost, ['js', 'handlers', 'clobbers']);
         }).then(function (pluginList) {
             appHostJsPromise = null;
             return pluginList;

@@ -9,7 +9,7 @@ module.exports.attach = function (app) {
 
         request.headers.host = requestURL.host;
         // fixes encoding issue
-        delete request.headers["accept-encoding"];
+        delete request.headers['accept-encoding'];
 
         var options = {
             host: requestURL.host,
