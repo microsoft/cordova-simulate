@@ -56,11 +56,13 @@ function _simulateTouchEvent(type, mouseevent) {
     eventData.changedTouches.item = itemFn;
     eventData.targetTouches.item = itemFn;
 
-    var simulatedEvent = _createTouchEvent(type, true, true, eventData);
+    var listenerName = 'on' + type,
+        simulatedEvent = _createTouchEvent(type, true, true, eventData);
+
     mouseevent.target.dispatchEvent(simulatedEvent);
 
-    if (typeof mouseevent.target['on' + type] === 'function') {
-        mouseevent.target['on' + type].apply(mouseevent.target, [simulatedEvent]);
+    if (typeof mouseevent.target[listenerName] === 'function') {
+        mouseevent.target[listenerName].apply(mouseevent.target, [simulatedEvent]);
     }
 }
 

@@ -8,23 +8,23 @@ var simulationFilePath;
 
 // module properties
 [
-    'liveReload',
-    'platform',
-    'platformRoot',
-    'forcePrepare',
-    'projectRoot',
-    'server',
-    'telemetry',
-    'simHostOptions',
-    'xhrProxy',
-    'touchEvents'
+    { name: 'liveReload'},
+    { name: 'platform' },
+    { name: 'platformRoot' },
+    { name: 'forcePrepare' },
+    { name: 'projectRoot', single: true },
+    { name: 'server', optional: true },
+    { name: 'telemetry', optional: true },
+    { name: 'xhrProxy', optional: true },
+    { name: 'simHostOptions' },
+    { name: 'touchEvents', optional: true }
 ].forEach(function (prop) {
-    Object.defineProperty(module.exports, prop, {
+    Object.defineProperty(module.exports, prop.name, {
         get: function () {
-            return getValue(prop);
+            return getValue(prop.name, prop.optional);
         },
         set: function (value) {
-            setValue(prop, value);
+            setValue(prop.name, value, prop.single);
         }
     });
 });
