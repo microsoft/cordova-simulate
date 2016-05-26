@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var Q = require('q'),
-    fs = require('fs'),
+var fs = require('fs'),
     cordovaServe = require('cordova-serve'),
     path = require('path'),
     config = require('./server/config'),

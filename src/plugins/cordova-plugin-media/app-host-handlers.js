@@ -183,6 +183,20 @@ Media.prototype.stopRecord = function () {
 };
 
 /**
+ * Pause recording audio file.
+ */
+Media.prototype.pauseRecord = function () {
+    Media.onStatus(this.id, Media.MEDIA_ERROR, "Not supported");
+};
+
+/**
+ * Resume recording audio file.
+ */
+Media.prototype.resumeRecord = function () {
+    Media.onStatus(this.id, Media.MEDIA_ERROR, "Not supported");
+};
+
+/**
  * Release the resources.
  */
 Media.prototype.release = function () {
@@ -205,7 +219,11 @@ Media.prototype.setVolume = function (volume) {
  * Sets playback rate.
  */
 Media.prototype.setRate = function () {
-    throw new Error('Not implemented');
+    Media.onStatus(this.id, Media.MEDIA_ERROR, "Not supported");
+};
+
+Media.prototype.getCurrentAmplitude = function () {
+    Media.onStatus(this.id, Media.MEDIA_ERROR, "Not supported");
 };
 
 /**
@@ -256,7 +274,7 @@ module.exports = function (messages) {
     return {
         'Media': {
             // Despite we fully override Media object on client side
-            // there is still one exec call below which is invoked during 
+            // there is still one exec call below which is invoked during
             // platform proxy initialization on android and windowsphone
             'messageChannel': emptyHandler
         }

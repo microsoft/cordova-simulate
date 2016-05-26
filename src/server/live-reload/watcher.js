@@ -4,7 +4,6 @@ var config = require('../config');
 var fs = require('fs');
 var log = require('../log');
 var path = require('path');
-var Q = require('q');
 
 var EVENT_IGNORE_DURATION = 150;
 var WWW_ROOT = 'www';
@@ -36,7 +35,7 @@ Watcher.prototype.stopWatching = function () {
         this.mergesWatcher.close();
         this.mergesWatcher = null;
     }
-}
+};
 
 function handleWwwWatcherEvent(event, fileRelativePath) {
     handleWatcherEvent.bind(this)(WWW_ROOT, fileRelativePath);

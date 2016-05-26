@@ -1,6 +1,4 @@
 var config = require('./config');
-var dirs = require('./dirs');
-var fs = require('fs');
 var plugins = require('./plugins');
 
 function handleClientTelemetry(telemetryData) {
@@ -14,7 +12,7 @@ function handleClientTelemetry(telemetryData) {
         props = {};
         Object.keys(telemetryData.props).forEach(function (key) {
             if (key === 'handled') {
-                props[key] = telemetryData.props[key]
+                props[key] = telemetryData.props[key];
             } else {
                 piiProps[key] = telemetryData.props[key];
             }
@@ -33,4 +31,4 @@ function sendTelemetry(event, props, piiProps) {
 module.exports = {
     handleClientTelemetry: handleClientTelemetry,
     sendTelemetry: sendTelemetry
-}
+};

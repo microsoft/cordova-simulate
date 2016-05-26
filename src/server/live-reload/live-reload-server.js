@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
 var config = require('../config');
-var fs = require('fs');
 var ncp = require('ncp');
 var path = require('path');
 var prepare = require('../prepare');
@@ -13,7 +12,7 @@ var liveReloadEvents = {
     CAN_REFRESH: 'lr-can-refresh',
     REFRESH_FILE: 'lr-refresh-file',
     FULL_RELOAD: 'lr-full-reload'
-}
+};
 
 var socket;
 var watcher;
@@ -104,4 +103,4 @@ module.exports.stop = function () {
     if (watcher) {
         watcher.stopWatching();
     }
-}
+};
