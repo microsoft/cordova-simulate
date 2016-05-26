@@ -7,7 +7,7 @@ var utils = require('utils'),
 
 function _on(eventType, listener, scope, once) {
     if (!eventType) {
-        throw "eventType must be truthy";
+        throw 'eventType must be truthy';
     }
     _listeners[eventType] = _listeners[eventType] || [];
     _listeners[eventType].push({

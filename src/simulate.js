@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var Q = require('q'),
-    fs = require('fs'),
+var fs = require('fs'),
     cordovaServe = require('cordova-serve'),
     path = require('path'),
     config = require('./server/config'),
@@ -37,7 +36,7 @@ var launchServer = function (opts) {
     if (fs.existsSync(middlewarePath + '.js')) {
         require(middlewarePath).attach(server.app, dirs);
     }
-    
+
     /* attach CORS proxy middleware */
     if (!!opts.corsproxy) {
         require('./server/xhr-proxy').attach(server.app);

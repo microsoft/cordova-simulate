@@ -15,7 +15,7 @@ var isSameOriginRequest = function (url) {
 };
 
 var parseUrl = function (url) {
-    var a = document.createElement("a");
+    var a = document.createElement('a');
 
     a.href = url;
 
@@ -42,7 +42,7 @@ var init = function () {
             var sameOrigin = isSameOriginRequest(url);
 
             if (!sameOrigin) {
-                url = "/xhr_proxy?rurl=" + escape(url);
+                url = '/xhr_proxy?rurl=' + escape(url);
             }
 
             origMethods.open.apply(xhr, Array.prototype.slice.call(arguments));
@@ -54,4 +54,4 @@ var init = function () {
 
 module.exports = {
     init: init
-}
+};

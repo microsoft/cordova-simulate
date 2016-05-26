@@ -44,7 +44,7 @@ Object.defineProperties(module.exports, {
             return getValue('projectRoot');
         },
         set: function (value) {
-            setValue('projectRoot', value, true)
+            setValue('projectRoot', value, true);
         }
     },
     server: {

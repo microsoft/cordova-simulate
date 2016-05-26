@@ -7,7 +7,7 @@ var liveReloadEvents = {
     CAN_REFRESH: 'lr-can-refresh',
     REFRESH_FILE: 'lr-refresh-file',
     FULL_RELOAD: 'lr-full-reload'
-}
+};
 
 var URL_ATTRIB_NAME = 'url';
 var HREF_ATTRIB_NAME = 'href';
@@ -19,7 +19,6 @@ var referenceAttributes = [
 ];
 
 module.exports.start = function (sock) {
-    var head = document.getElementsByTagName('head')[0];
     var serverUrl = window.location.protocol + '//' + window.location.host;
     var localUrlPrefixes = [
         serverUrl,
@@ -28,7 +27,6 @@ module.exports.start = function (sock) {
         ''
     ];
     var pendingFilesToRefresh = {};
-    var stylesheets;
     var socket = sock;
 
     /**
@@ -80,7 +78,7 @@ module.exports.start = function (sock) {
     }
 
     /**
-     * Finds all the DOM elements that have a reference attribute ("url", "href" or "src") pointing to the given relative path. Excludes <script> tags. 
+     * Finds all the DOM elements that have a reference attribute ("url", "href" or "src") pointing to the given relative path. Excludes <script> tags.
      *
      * @param {String} fileRelativePath The URL of the file to check, relative to the webRoot.
      * @returns {{ domNode: Element, referenceAttribute: string }[]} An array of "resources" referencing the given file.
