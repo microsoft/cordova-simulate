@@ -70,6 +70,7 @@ function setCordova(originalCordova) {
         });
 
         channel.onNativeReady.fire();
+
         if (cordova.platformId !== 'browser') {
             channel.onPluginsReady.subscribe(function () {
                 var pluginList = cordova.require('cordova/plugin_list').metadata;
@@ -78,6 +79,13 @@ function setCordova(originalCordova) {
         } else {
             socket.emit('app-plugin-list', {});
         }
+
+        applyPlugins(plugins);
+        applyPlugins(pluginHandlersDefinitions, pluginHandlers, serviceToPluginMap);
+        applyPlugins(pluginClobberDefinitions, window);
+
+        channel.onNativeReady.fire();
+
     });
 
     socket.once('start', function () {
@@ -160,9 +168,6 @@ var pluginClobberDefinitions = {
 };
 
 var pluginMessages = {};
-applyPlugins(plugins);
-applyPlugins(pluginHandlersDefinitions, pluginHandlers, serviceToPluginMap);
-applyPlugins(pluginClobberDefinitions, window);
 
 function applyPlugins(plugins, clobberScope, clobberToPluginMap) {
     Object.keys(plugins).forEach(function (pluginId) {
