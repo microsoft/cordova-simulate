@@ -39,7 +39,7 @@ var launchServer = function (opts) {
     }
 
     /* attach CORS proxy middleware */
-    if (!!opts.corsproxy) {
+    if (config.xhrProxy) {
         require('./server/xhr-proxy').attach(server.app);
     }
 
