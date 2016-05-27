@@ -29,7 +29,8 @@ var launchServer = function (opts) {
     config.telemetry = opts.telemetry;
     config.liveReload = opts.hasOwnProperty('livereload') ? !!opts.livereload : true;
     config.forcePrepare = !!opts.forceprepare;
-    config.xhrProxy = !!opts.corsproxy;
+    config.xhrProxy = opts.hasOwnProperty('corsproxy') ? !!opts.corsproxy : true;
+    config.touchEvents = opts.hasOwnProperty('touchevents') ? !!opts.touchevents : true;
 
     /* attach simulation host middleware */
     var middlewarePath = path.join(simHostOpts.simHostRoot, 'server', 'server');

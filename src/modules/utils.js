@@ -101,6 +101,14 @@ self = module.exports = {
         });
     },
 
+    mixin: function (mixin, to) {
+        for (var prop in mixin) {
+            if (Object.hasOwnProperty.call(mixin, prop)) {
+                to[prop] = mixin[prop];
+            }
+        }
+    },
+
     copy: function (obj) {
         var i,
             newObj = Array.isArray(obj) ? [] : {};
@@ -258,4 +266,3 @@ function createUUIDPart(length) {
     }
     return uuidpart;
 }
-

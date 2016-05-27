@@ -27,6 +27,7 @@ Where opts is an object with the following properties (all optional):
 * **livereload** - A boolean. Set to false to disable live reload. Defaults to true.
 * **forceprepare** - A boolean. Set to true to force a `cordova prepare` whenever a file changes during live reload. If this is false, the server attempts to simply copy the changed file to the platform rather than doing a `cordova prepare`. Ignored if live reload is disabled. Defaults to false.
 * **corsproxy** - Boolean indicating if XMLHttpRequest is proxied through the simulate server. This is useful for working around CORS issues at development time. Defaults to true.
+* **touchevents** - A boolean. Set to false to disable the simulaton of touch events in App-Host. Defaults to true.
 
 
 # What it does
