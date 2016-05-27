@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var savedSims = require('./saved-sims');
 var dialog = require('dialog');
+var savedSims = require('./saved-sims');
+var telemetry = require('telemetry-helper');
 
 // Handle any calls not handled by anything else...
 module.exports = {
@@ -24,7 +25,7 @@ module.exports = {
                     // Display of the dialog was delayed for some reason. Check if in the meantime we have a saved value
                     // for this call.
                     return !handleSavedSim(success, fail, service, action);
-                } else  if (msg === 'showing') {
+                } else if (msg === 'showing') {
                     // Prepare the dialog for showing
                     var successButton = document.getElementById('exec-success');
                     var failureButton = document.getElementById('exec-failure');
@@ -45,6 +46,7 @@ module.exports = {
 
                     function exec(func, isSuccess) {
                         var result = resultField.value;
+                        var shouldPersist = document.getElementById('exec-persist').checked;
 
                         try {
                             result = result && JSON.parse(result);
@@ -56,10 +58,13 @@ module.exports = {
 
                         dialog.hideDialog('exec-dialog');
 
-                        if (document.getElementById('exec-persist').checked) {
-                            savedSims.addSim({service: service, action: action, args: args, value: result, success: isSuccess});
+                        if (shouldPersist) {
+                            savedSims.addSim({ service: service, action: action, args: args, value: result, success: isSuccess });
                         }
 
+                        var hasValue = typeof result !== 'undefined' && result !== '';
+
+                        sendExecUnhandledTelemetry(service, action, false, isSuccess, hasValue, shouldPersist);
                         func.apply(null, result ? [result] : []);
                     }
 
@@ -78,7 +83,11 @@ module.exports = {
 function handleSavedSim(success, fail, service, action) {
     var savedSim = savedSims.findSavedSim(service, action);
     if (savedSim) {
-        if (savedSim.success) {
+        var isSuccess = !!savedSim.success;
+        var hasValue = typeof savedSim.value !== 'undefined' && savedSim.value !== '';
+        sendExecUnhandledTelemetry(service, action, true, isSuccess, hasValue);
+
+        if (isSuccess) {
             success(savedSim.value);
         } else {
             fail(savedSim.value);
@@ -86,4 +95,30 @@ function handleSavedSim(success, fail, service, action) {
         return true;
     }
     return false;
+}
+
+/**
+ * Sends an 'exec-unhandled' telemetry event to the server.
+ * 
+ * @param {string} service The name of the plugin's service.
+ * @param {string} action The name of the plugin's action.
+ * @param {boolean} hasPersisted Whether or not the exec call already had a persiste result (no dialog popup was shown to the user).
+ * @param {boolean} isSuccess Whether or not the result is a success (as in, the plugin action's success callback was used).
+ * @param {boolean} hasResult Whether or not the result contains a value (as opposed to being empty / the default JSON object {}).
+ * @param {boolean=} saveResult Whether the user chose to persist the result. This is ignored if hasPersisted is true, because in that case the user wasn't presented the dialog popup.
+ */
+function sendExecUnhandledTelemetry(service, action, hasPersisted, isSuccess, hasResult, saveResult) {
+    var props = {
+        'service': service,
+        'action': action,
+        'has-persisted-result': hasPersisted,
+        'is-success': isSuccess,
+        'has-result-value': hasResult
+    };
+
+    if (!hasPersisted) {
+        props['save-result'] = !!saveResult;
+    }
+
+    telemetry.sendClientTelemetry('exec-unhandled', props);
 }

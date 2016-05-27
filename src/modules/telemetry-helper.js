@@ -1,23 +1,63 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
 var clientSocket;
+var serviceToPluginMap;
+var pendingTelemetryEvents = [];
 
 function init(socket) {
     clientSocket = socket;
+    trySendPendingEvents();
 }
 
-function sendClientTelemetry(event, props, piiProps) {
+function registerPluginServices(pluginServices) {
+    serviceToPluginMap = pluginServices;
+    trySendPendingEvents();
+}
+
+function trySendPendingEvents() {
     if (!clientSocket) {
         return;
     }
 
-    var telemetryData = {
+    var unsent = [];
+
+    pendingTelemetryEvents.forEach(function (eventData) {
+        if (mustMapServiceToPlugin(eventData) && !serviceToPluginMap) {
+            unsent.push(eventData);
+        } else {
+            sendClientTelemetry(eventData);
+        }
+    });
+    
+    pendingTelemetryEvents = unsent;
+}
+
+function mustMapServiceToPlugin(eventData) {
+    return !!eventData.props.service && !eventData.plugin;
+}
+
+function sendClientTelemetry(event, props, piiProps) {
+    var eventData = {
         event: event,
         props: props,
         piiProps: piiProps
     };
 
-    clientSocket.emit('telemetry', telemetryData);
+    if (!clientSocket) {
+        pendingTelemetryEvents.push(eventData);
+        return;
+    }
+
+    if (mustMapServiceToPlugin(eventData)) {
+        if (!serviceToPluginMap) {
+            pendingTelemetryEvents.push(eventData);
+            return;
+        }
+
+        eventData.props.plugin = serviceToPluginMap[eventData.props.service] || '_unknown';
+    }
+
+    clientSocket.emit('telemetry', eventData);
 }
 
 function sendUITelemetry(uiControlData) {
@@ -25,5 +65,6 @@ function sendUITelemetry(uiControlData) {
 }
 
 module.exports.init = init;
+module.exports.registerPluginServices = registerPluginServices;
 module.exports.sendClientTelemetry = sendClientTelemetry;
 module.exports.sendUITelemetry = sendUITelemetry;

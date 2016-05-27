@@ -10,7 +10,6 @@ var socket = io();
 var nextExecCacheIndex = 0;
 var execCache = {};
 var pluginHandlers = {};
-var serviceToPluginMap = {};
 
 function setCordova(originalCordova) {
     if (cordova) {
@@ -97,7 +96,7 @@ function exec(success, fail, service, action, args) {
     // If we have a local handler, call that. Otherwise pass it to the simulation host.
     var handler = pluginHandlers[service] && pluginHandlers[service][action];
     if (handler) {
-        telemetry.sendClientTelemetry('exec', { handled: 'app-host', plugin: serviceToPluginMap[service], service: service, action: action });
+        telemetry.sendClientTelemetry('exec', { handled: 'app-host', service: service, action: action });
 
         // Ensure local handlers are executed asynchronously.
         setTimeout(function () {
@@ -145,9 +144,11 @@ var pluginClobberDefinitions = {
 };
 
 var pluginMessages = {};
+var serviceToPluginMap = {};
 applyPlugins(plugins);
 applyPlugins(pluginHandlersDefinitions, pluginHandlers, serviceToPluginMap);
 applyPlugins(pluginClobberDefinitions, window);
+telemetry.registerPluginServices(serviceToPluginMap);
 
 function applyPlugins(plugins, clobberScope, clobberToPluginMap) {
     Object.keys(plugins).forEach(function (pluginId) {
