@@ -11,8 +11,56 @@ var execCache = {};
 var pluginHandlers = {};
 var serviceToPluginMap = {};
 
+function clobber(clobbers, scope, clobberToPluginMap, pluginId) {
+    Object.keys(clobbers).forEach(function (key) {
+        if (clobberToPluginMap && pluginId) {
+            clobberToPluginMap[key] = pluginId;
+        }
+
+        if (clobbers[key] && typeof clobbers[key] === 'object') {
+            scope[key] = scope[key] || {};
+            clobber(clobbers[key], scope[key]);
+        } else {
+            scope[key] = clobbers[key];
+        }
+    });
+}
+
+// Details of each plugin that has app-host code is injected when this file is served.
+var plugins = {
+    /** PLUGINS **/
+};
+
+var pluginHandlersDefinitions = {
+    /** PLUGIN-HANDLERS **/
+};
+
+var pluginClobberDefinitions = {
+    /** PLUGIN-CLOBBERS **/
+};
+
+var pluginMessages = {};
+
+function applyPlugins(plugins, clobberScope, clobberToPluginMap) {
+    Object.keys(plugins).forEach(function (pluginId) {
+        var plugin = plugins[pluginId];
+        if (plugin) {
+            if (typeof plugin === 'function') {
+                pluginMessages[pluginId] = pluginMessages[pluginId] || new Messages(pluginId, socket);
+                plugin = plugin(pluginMessages[pluginId], exec);
+                plugins[pluginId] = plugin;
+            }
+            if (clobberScope) {
+                clobber(plugin, clobberScope, clobberToPluginMap, pluginId);
+            }
+        }
+    });
+}
+
 function setCordova(originalCordova) {
-    var channel;
+    var channel,
+        platform,
+        platformBoostrap;
 
     if (cordova) {
         return;
@@ -25,6 +73,21 @@ function setCordova(originalCordova) {
         module.exports = exec;
     });
 
+    platform = cordova.require('cordova/platform');
+    platformBootstrap = platform.bootstrap;
+    platform.bootstrap = function () {
+    };
+
+    // default Windows bootstrap function tries to load WinJS which is not
+    // available and not required in simulation mode so we override bootstrap
+    if (cordova.platformId === 'windows') {
+        platformBootstrap = function () {
+            cordova.require('cordova/modulemapper')
+                .clobbers('cordova/exec/proxy', 'cordova.commandProxy');
+
+        };
+    }
+
     channel = cordova.require('cordova/channel');
 
     // define our own channel to delay the initialization until sim-host tells
@@ -32,6 +95,7 @@ function setCordova(originalCordova) {
     channel.createSticky('onCordovaSimulateReady');
     channel.waitForInitialization('onCordovaSimulateReady');
 
+    // firing of onNativeReady is delayed until SIM_HOST tells us it's ready
     socket.once('init', function () {
         // sim-host is ready, register exec handlers, fire onNativeReady and send
         // the list of plugins
@@ -84,7 +148,20 @@ function setCordova(originalCordova) {
         applyPlugins(pluginHandlersDefinitions, pluginHandlers, serviceToPluginMap);
         applyPlugins(pluginClobberDefinitions, window);
 
-        channel.onNativeReady.fire();
+        switch (cordova.platformId) {
+            case 'ios':
+            case 'browser':
+            case 'blackberry10':
+            case 'firefoxos':
+            case 'ubuntu':
+            case 'webos':
+            case 'windows':
+                platformBootstrap();
+                break;
+            default:
+                channel.onNativeReady.fire();
+                break;
+        }
 
     });
 
@@ -97,15 +174,6 @@ function setCordova(originalCordova) {
     // register app-host
     socket.emit('register-app-host');
 
-    // default Windows bootstrap function tries to load WinJS which is not
-    // available and not required in simulation mode so we override bootstrap
-    if (cordova.platformId === 'windows') {
-        cordova.require('cordova/platform').bootstrap = function () {
-            cordova.require('cordova/modulemapper')
-                .clobbers('cordova/exec/proxy', 'cordova.commandProxy');
-
-        };
-    }
 }
 
 function getCordova() {
@@ -139,48 +207,3 @@ Object.defineProperty(window, 'cordova', {
     get: getCordova
 });
 
-function clobber(clobbers, scope, clobberToPluginMap, pluginId) {
-    Object.keys(clobbers).forEach(function (key) {
-        if (clobberToPluginMap && pluginId) {
-            clobberToPluginMap[key] = pluginId;
-        }
-
-        if (clobbers[key] && typeof clobbers[key] === 'object') {
-            scope[key] = scope[key] || {};
-            clobber(clobbers[key], scope[key]);
-        } else {
-            scope[key] = clobbers[key];
-        }
-    });
-}
-
-// Details of each plugin that has app-host code is injected when this file is served.
-var plugins = {
-    /** PLUGINS **/
-};
-
-var pluginHandlersDefinitions = {
-    /** PLUGIN-HANDLERS **/
-};
-
-var pluginClobberDefinitions = {
-    /** PLUGIN-CLOBBERS **/
-};
-
-var pluginMessages = {};
-
-function applyPlugins(plugins, clobberScope, clobberToPluginMap) {
-    Object.keys(plugins).forEach(function (pluginId) {
-        var plugin = plugins[pluginId];
-        if (plugin) {
-            if (typeof plugin === 'function') {
-                pluginMessages[pluginId] = pluginMessages[pluginId] || new Messages(pluginId, socket);
-                plugin = plugin(pluginMessages[pluginId], exec);
-                plugins[pluginId] = plugin;
-            }
-            if (clobberScope) {
-                clobber(plugin, clobberScope, clobberToPluginMap, pluginId);
-            }
-        }
-    });
-}
