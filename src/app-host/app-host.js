@@ -148,16 +148,20 @@ function setCordova(originalCordova) {
         applyPlugins(pluginHandlersDefinitions, pluginHandlers, serviceToPluginMap);
         applyPlugins(pluginClobberDefinitions, window);
 
+        platformBootstrap();
+
         switch (cordova.platformId) {
+            // these platform fire onNativeReady in their bootstrap
             case 'ios':
             case 'browser':
             case 'blackberry10':
             case 'firefoxos':
             case 'ubuntu':
             case 'webos':
-            case 'windows':
-                platformBootstrap();
                 break;
+            // windows has an overriden bootstrap which does not fire
+            // onNativeReady
+            case 'windows':
             default:
                 channel.onNativeReady.fire();
                 break;
