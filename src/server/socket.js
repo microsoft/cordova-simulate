@@ -106,11 +106,12 @@ function handleSimHostReady() {
 }
 
 function handleAppPluginList(data) {
-    var socket = hostSockets.SIM_HOST;
+    whenSimHostReady.promise.then(function () {
+        var socket = hostSockets.SIM_HOST;
+        socket.once('start', handleStart);
 
-    socket.once('start', handleStart);
-
-    emitToHost(SIM_HOST, 'app-plugin-list', data);
+        emitToHost(SIM_HOST, 'app-plugin-list', data);
+    });
 }
 
 function handleStart() {
