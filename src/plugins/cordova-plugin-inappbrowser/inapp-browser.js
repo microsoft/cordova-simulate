@@ -148,13 +148,12 @@ IframeBrowser.prototype.hide = function () {
 
 IframeBrowser.prototype.injectScriptCode = function (callback, args) {
     if (this._container && this._frame) {
-        var code = args[0],
+        var code = args[0].replace(/\r?\n|\r/g, ''),
             hasCallback = args[1];
 
         try {
-            var result = this._frame.contentWindow.eval(code);
+            var result = this._injectCode(code);
             if (hasCallback) {
-                result = result || [];
                 callback(result);
             }
         } catch (error) {
@@ -180,11 +179,55 @@ IframeBrowser.prototype.injectScriptFile = function (callback, args) {
 };
 
 IframeBrowser.prototype.injectStyleCode = function (callback, args) {
-    // TODO
+    if (this._container && this._frame) {
+        var css = args[0].replace(/\r?\n|\r/g, ''),
+            hasCallback = args[1];
+
+        var code = '(function () {' +
+            'var head = document.getElementsByTagName("head")[0];' +
+            'var style = document.createElement("style");' +
+            'style.type = "text/css";' +
+            'if (style.styleSheet) {' +
+            'style.styleSheet.cssText = "' + css + '";' +
+            '} else {' +
+            'style.appendChild(document.createTextNode("' + css + '"));}' +
+            'head.appendChild(style);' +
+            '}());';
+
+        try {
+            var result = this._injectCode(code);
+            if (hasCallback) {
+                callback(result);
+            }
+        } catch (error) {
+            console.error('Error occured while trying to inject style', error);
+        }
+    }
 };
 
 IframeBrowser.prototype.injectStyleFile = function (callback, args) {
-    // TODO
+    if (this._container && this._frame) {
+        var file = args[0],
+            hasCallback = args[1];
+
+        var code = '(function () {' +
+            'var head = document.getElementsByTagName("head")[0];' +
+            'var link = document.createElement("link");' +
+            'link.type = "text/css";' +
+            'link.rel = "stylesheet";' +
+            'link.href = "' + file + '";' +
+            'head.appendChild(link);' +
+            '}());';
+
+        try {
+            var result = this._injectCode(code);
+            if (hasCallback) {
+                callback(result);
+            }
+        } catch (error) {
+            console.error('Error occured while trying to inject a style file', error);
+        }
+    }
 };
 
 /**
@@ -214,7 +257,7 @@ IframeBrowser.prototype._createFrame = function () {
 
             this._container.appendChild(this._createNavigationBar());
         } else {
-             style.height = '100%';
+            style.height = '100%';
         }
 
         this._container.appendChild(this._frame);
@@ -224,7 +267,7 @@ IframeBrowser.prototype._createFrame = function () {
         this._frame.addEventListener('pageshow', this._success.bind(this, InAppBrowser.Events.LOAD_START));
         this._frame.addEventListener('load', this._success.bind(this, InAppBrowser.Events.LOAD_STOP));
         this._frame.addEventListener('error', this._success.bind(this, InAppBrowser.Events.LOAD_ERROR));
-        this._frame.addEventListener('abort', this._success.bind(this, InAppBrowser.Events.LOAD_ERROR ));
+        this._frame.addEventListener('abort', this._success.bind(this, InAppBrowser.Events.LOAD_ERROR));
     }
 };
 
@@ -256,5 +299,44 @@ IframeBrowser.prototype._createNavigationBar = function () {
     return navigationDiv;
 };
 
-module.exports.IframeBrowser = IframeBrowser;
-module.exports.SystemBrowser = SystemBrowser;
+/**
+ * @private
+ */
+IframeBrowser.prototype._injectCode = function (code) {
+    var result = this._frame.contentWindow.eval(code);
+
+    return result || [];
+};
+
+/**
+ * Create an instance of InAppBrowser based on the target type. When the type is '_system',
+ * an instance of the system browser is created, when the type is '_blank', an instance of
+ * a browser based on iframe is created. For any other target type, including '_self',
+ * the current window will navigate to the given URL.
+ * @param {function} success
+ * @param {function} fail
+ * @param {Array} args
+ * @return {object}
+ */
+function create(success, fail, args) {
+    // args[0]: url, args[1]: target, args[2]: options
+    var Constructor;
+
+    switch (args[1]) {
+        case '_system':
+            // open in a new browser tab
+            Constructor = SystemBrowser;
+            break;
+        case '_blank':
+            Constructor = IframeBrowser;
+            break;
+        default:
+            // "_self" and any other option, use the same tab
+            window.location = args[0];
+            return;
+    }
+
+    return new Constructor(args[0], args[2], success, fail);
+}
+
+module.exports.create = create;
