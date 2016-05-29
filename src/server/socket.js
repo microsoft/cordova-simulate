@@ -8,7 +8,7 @@ var log = require('./log'),
     config = require('./config'),
     livereload = require('./live-reload/live-reload-server'),
     telemetry = require('./telemetry-helper'),
-    q = require('q');
+    Q = require('q');
 
 // make variable match the literal
 var APP_HOST = 'APP_HOST',
@@ -22,16 +22,16 @@ pendingEmits[APP_HOST] = [];
 pendingEmits[SIM_HOST] = [];
 pendingEmits[DEBUG_HOST] = [];
 
-var whenAppHostConnected = q.defer(),
-    whenSimHostReady     = q.defer();
+var whenAppHostConnected = Q.defer(),
+    whenSimHostReady     = Q.defer();
 
 function resetAppHostState() {
-    whenAppHostConnected = q.defer();
+    whenAppHostConnected = Q.defer();
     whenAppHostConnected.promise.then(onAppHostConnected);
 }
 
 function resetSimHostState() {
-    whenSimHostReady = q.defer();
+    whenSimHostReady = Q.defer();
     whenSimHostReady.promise.then(onSimHostReady);
 }
 
