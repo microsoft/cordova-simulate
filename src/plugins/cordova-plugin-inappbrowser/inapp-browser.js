@@ -1,5 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
+// Events taken from cordova-plugin-inappbrowser implementation, and iframe approach
+// based from https://github.com/apache/cordova-plugin-inappbrowser/blob/master/src/browser/InAppBrowserProxy.js
+
 /**
  * @param {string} url
  * @param {Array} options
@@ -38,8 +41,17 @@ InAppBrowser.Events = {
     EXIT: 'exit'
 };
 
+/**
+ * JavaScript implementation of the Native call to show. The simulator browser should be
+ * displayed.
+ * Subclasses must implement this.
+ */
 InAppBrowser.prototype.show = function () {};
 
+/**
+ * Hide the simulator browser.
+ * Subclasses must implement this.
+ */
 InAppBrowser.prototype.close = function () {};
 
 InAppBrowser.prototype.injectScriptCode = function (callback, args) {
@@ -59,6 +71,7 @@ InAppBrowser.prototype.injectStyleFile = function (callback, args) {
 };
 
 /**
+ * Execute the success callback specified at the native "open" call.
  * @param {string} eventName
  * @private
  */
@@ -69,6 +82,8 @@ InAppBrowser.prototype._success = function (eventName) {
 };
 
 /**
+ * Implementation of the System browser simulation. This uses a new browser window
+ * as the system browser.
  * @param {string} url
  * @param {Array} options
  * @param {function} success
@@ -106,6 +121,8 @@ SystemBrowser.prototype.close = function () {
 };
 
 /**
+ * Implementation of the WebView type of InAppBrowser plugin. This creates an iframe
+ * that simulates the embedded WebView.
  * @param {string} url
  * @param {Array} options
  * @param {function} success
@@ -115,6 +132,8 @@ SystemBrowser.prototype.close = function () {
 function IframeBrowser(url, options, success, fail) {
     this._container = null;
     this._frame = null;
+    this._resizeCallback = this._resizeContainer.bind(this);
+    this._isVisible = false;
 
     InAppBrowser.call(this, url, options, success, fail);
 }
@@ -124,10 +143,16 @@ IframeBrowser.prototype.constructor = IframeBrowser;
 IframeBrowser.prototype.parentClass = InAppBrowser.prototype;
 
 IframeBrowser.prototype.show = function () {
-    this._createFrame();
+    if (!this._container) {
+        this._createFrame();
+    }
+
+    this._isVisible = true;
 
     this._frame.src = this._url;
     this._container.style.display = 'block';
+
+    this._resizeContainer();
 };
 
 IframeBrowser.prototype.close = function () {
@@ -135,14 +160,18 @@ IframeBrowser.prototype.close = function () {
         this._container.parentNode.removeChild(this._container);
         this._container = null;
         this._frame = null;
+        this._isVisible = false;
 
         this._success(InAppBrowser.Events.EXIT);
+
+        window.removeEventListener('resize', this._resizeCallback);
     }
 };
 
 IframeBrowser.prototype.hide = function () {
-    if (this._container) {
+    if (this._container && this._isVisible) {
         this._container.style.display = 'none';
+        this._isVisible = false;
     }
 };
 
@@ -234,78 +263,98 @@ IframeBrowser.prototype.injectStyleFile = function (callback, args) {
  * @private
  */
 IframeBrowser.prototype._createFrame = function () {
-    if (!this._container) {
-        this._container = document.createElement('div');
-        this._frame = document.createElement('iframe');
+    this._container = document.createElement('div');
+    this._frame = document.createElement('iframe');
 
-        // container style
-        var style = this._container.style;
-        style.position = 'absolute';
-        style.border = '0';
-        style.backgroundColor = '#ffffff';
-        style.width = '100%';
+    // container style
+    var style = this._container.style;
+    style.position = 'absolute';
+    style.border = '0';
+    style.backgroundColor = '#ffffff';
+    style.zIndex = '10000';
+    style.width = document.body.clientWidth + 'px';
+    style.height = document.body.clientHeight + 'px';
+
+    // iframe style
+    style = this._frame.style;
+    style.border = '0';
+    style.width = '100%';
+
+    if (!this._options.location || this._options.location === 'yes') {
+        style.height = 'calc(100% - 35px)';
+
+        this._container.appendChild(this._createNavigationBar());
+    } else {
         style.height = '100%';
-        style.zIndex = '10000';
-
-        // iframe style
-        style = this._frame.style;
-        style.border = '0';
-        style.width = '100%';
-
-        if (!this._options.location || this._options.location === 'yes') {
-            style.height = 'calc(100% - 35px)';
-
-            this._container.appendChild(this._createNavigationBar());
-        } else {
-            style.height = '100%';
-        }
-
-        this._container.appendChild(this._frame);
-
-        document.body.appendChild(this._container);
-
-        this._frame.addEventListener('pageshow', this._success.bind(this, InAppBrowser.Events.LOAD_START));
-        this._frame.addEventListener('load', this._success.bind(this, InAppBrowser.Events.LOAD_STOP));
-        this._frame.addEventListener('error', this._success.bind(this, InAppBrowser.Events.LOAD_ERROR));
-        this._frame.addEventListener('abort', this._success.bind(this, InAppBrowser.Events.LOAD_ERROR));
     }
+
+    this._container.appendChild(this._frame);
+
+    document.body.appendChild(this._container);
+
+    this._frame.addEventListener('pageshow', this._success.bind(this, InAppBrowser.Events.LOAD_START));
+    this._frame.addEventListener('load', this._success.bind(this, InAppBrowser.Events.LOAD_STOP));
+    this._frame.addEventListener('error', this._success.bind(this, InAppBrowser.Events.LOAD_ERROR));
+    this._frame.addEventListener('abort', this._success.bind(this, InAppBrowser.Events.LOAD_ERROR));
+
+    window.addEventListener('resize', this._resizeCallback);
 };
 
 /**
+ * Creates a fake browser's navigation bar, that only contains a button to remove the iframe.
  * @private
  */
 IframeBrowser.prototype._createNavigationBar = function () {
     var navigationDiv = document.createElement('div'),
-        wrapper = document.createElement('div'),
-        closeButton = document.createElement('button');
+        closeSpan = document.createElement('span');
 
     navigationDiv.style.height = '30px';
     navigationDiv.style.padding = '2px';
     navigationDiv.style.backgroundColor = '#404040';
 
-    closeButton.innerHTML = '✖';
-    closeButton.style.width = '30px';
-    closeButton.style.height = '25px';
+    closeSpan.innerHTML = '✖';
+    closeSpan.style.width = '30px';
+    closeSpan.style.height = '25px';
+    closeSpan.style.color = '#ffffff';
+    closeSpan.style.fontSize = '22px';
+    closeSpan.style.marginLeft = '5px';
+    closeSpan.style.cursor = 'pointer';
 
-    closeButton.addEventListener('click', function (e) {
+    closeSpan.addEventListener('click', function (e) {
         setTimeout(function () {
             this.close();
         }.bind(this), 0);
     }.bind(this));
 
-    wrapper.appendChild(closeButton);
-    navigationDiv.appendChild(wrapper);
+    navigationDiv.appendChild(closeSpan);
 
     return navigationDiv;
 };
 
 /**
+ * Resize the main container with the document.body size, only when it is visible.
+ * @private
+ */
+IframeBrowser.prototype._resizeContainer = function () {
+    if (this._container && this._isVisible) {
+        var body = document.body;
+
+        this._container.style.width = body.clientWidth + 'px';
+        this._container.style.height = body.clientHeight + 'px';
+    }
+};
+
+/**
+ * Execute the given code in the iframe context whenever it's possible. This may
+ * throw an error when the URL loaded in the iframe is not in the same domain than
+ * the application.
+ * @throws It throws an error when the eval call from the iframe fails.
  * @private
  */
 IframeBrowser.prototype._injectCode = function (code) {
     var result = this._frame.contentWindow.eval(code);
 
-    return result || [];
+    return result ? [result] : [];
 };
 
 /**
@@ -323,17 +372,17 @@ function create(success, fail, args) {
     var Constructor;
 
     switch (args[1]) {
-        case '_system':
-            // open in a new browser tab
-            Constructor = SystemBrowser;
-            break;
-        case '_blank':
-            Constructor = IframeBrowser;
-            break;
-        default:
-            // "_self" and any other option, use the same tab
-            window.location = args[0];
-            return;
+    case '_system':
+        // open in a new browser tab
+        Constructor = SystemBrowser;
+        break;
+    case '_blank':
+        Constructor = IframeBrowser;
+        break;
+    default:
+        // "_self" and any other option, use the same tab
+        window.location = args[0];
+        return;
     }
 
     return new Constructor(args[0], args[2], success, fail);
