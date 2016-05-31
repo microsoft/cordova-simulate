@@ -135,8 +135,9 @@ function stop() {
     simSocket.closeConnections();
 
     config.newInstance();
-    plugins.clearPlugins();
-    simFiles.clearSimFiles();
+    plugins.clear();
+    simFiles.clear();
+    prepare.clear();
 }
 
 module.exports = {

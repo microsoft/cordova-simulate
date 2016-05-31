@@ -16,7 +16,7 @@ var lastPlatform;
 
 /**
  * Prepares the project and initializes the simulation plugin list.
- * 
+ *
  * @param {Object=} currentState (Optional) The current state of the project for caching purposes.
  */
 function prepare() {
@@ -199,3 +199,6 @@ function getMtimeForFiles(dir) {
 module.exports.prepare = prepare;
 module.exports.execCordovaPrepare = execCordovaPrepare;
 module.exports.updateTimeStampForFile = updateTimeStampForFile;
+module.exports.clear = function () {
+    // TODO previousPrepareStates preparedOnce = false;
+};

@@ -14,8 +14,6 @@ var plugins;
 var pluginsTelemetry;
 var _router;
 
-resetPluginsData();
-
 function resetPluginsData() {
     plugins = {};
     pluginsTelemetry = {
@@ -223,13 +221,13 @@ function getRouter() {
     return _router;
 }
 
-function clearPlugins() {
+function clear() {
     resetPluginsData();
     _router = null;
 }
 
 module.exports.initPlugins = initPlugins;
-module.exports.clearPlugins = clearPlugins;
+module.exports.clear = clear;
 module.exports.getRouter = getRouter;
 module.exports.getPlugins = function () {
     return plugins;
