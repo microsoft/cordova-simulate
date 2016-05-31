@@ -101,7 +101,7 @@ function exec(success, fail, service, action, args) {
 
         // Ensure local handlers are executed asynchronously.
         setTimeout(function () {
-            handler(success, fail, service, action, args);
+            handler(success, fail, args);
         }, 0);
     } else {
         var execIndex = nextExecCacheIndex++;
