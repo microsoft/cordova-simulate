@@ -182,7 +182,7 @@ function init(server) {
         });
 
         socket.on('register-debug-host', function (data) {
-            log.log('DEBU_HOST registered with server.');
+            log.log('DEBUG_HOST registered with server.');
 
             // It only makes sense to have one debug host per server. If more than one tries to connect, always take
             // the most recent.
@@ -241,6 +241,16 @@ function emitToHost(host, msg, data, callback) {
     } else {
         log.log('Emitting \'' + msg + '\' to ' + host + ' (pending connection)');
         pendingEmits[host].push({ msg: msg, data: data, callback: callback });
+    }
+}
+
+function subscribeToHost(host, msg, handler, once) {
+    var socket = hostSockets[host],
+        handler = once ? 'once' : 'on';
+    if (socket) {
+        socket[handler](msg, handler);
+    } else {
+        log.log('Subscribing to a disconnected ' + host + ' wanting \'' + msg + '\'');
     }
 }
 
