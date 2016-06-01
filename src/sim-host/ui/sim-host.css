@@ -261,6 +261,7 @@ body /deep/ .cordova-collapse-icon {
     margin-top: 1px;
     margin-bottom: auto;
     right: 6px;
+    bottom: 4px;
     margin-left: auto;
 }
 
@@ -281,6 +282,7 @@ body /deep/ .cordova-close-icon {
     margin-top: 1px;
     margin-bottom: auto;
     right: 6px;
+    bottom: 4px;
     margin-left: auto;
 }
 

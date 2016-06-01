@@ -14,40 +14,14 @@ function initialize() {
             // with elements in the shadow DOM.
 
             var collapsed = e.target.classList.contains('cordova-collapsed');
-
             if (collapsed) {
                 e.target.classList.remove('cordova-collapsed');
-
-                // Trick to get the current computed height (won't animate) - note that we want to get this dynamically
-                // now rather than storing it before we collapse, since things could happen while we're collapsed that
-                // change our height.
                 content.style.display = '';
                 content.style.height = '';
-                var computedHeight = window.getComputedStyle(content).height;
-                content.style.height = '0';
-
-                // Animate to computed height after a timeout
-                window.setTimeout(function () {
-                    content.style.height = computedHeight;
-                }, 0);
             } else {
                 e.target.classList.add('cordova-collapsed');
-
-                // Force height to a value that can be animated, then set to 0 after a timeout. We store the height in
-                // max-height to use when we're animating back to full height.
-                content.style.height = window.getComputedStyle(content).height;
-                window.setTimeout(function () {
-                    content.style.height = '0';
-                }, 0);
-            }
-        });
-
-        content.addEventListener('transitionend', function (e) {
-            // After we've transitioned back to full size, reset height to empty to allow dynamic height changes.
-            if (parseInt(e.target.style.height) === 0) {
-                e.target.style.display = 'none';
-            } else {
-                e.target.style.height = '';
+                content.style.display = 'none';
+                content.style.height = '0';
             }
         });
     });
