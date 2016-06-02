@@ -116,7 +116,7 @@ function init(server) {
             hostSockets[DEBUG_HOST] = socket;
 
             if (data && data.handlers) {
-                socket.on('end', function () {
+                socket.on('disconnect', function () {
                     config.debugHostHandlers = null;
                 });
                 config.debugHostHandlers = data.handlers
