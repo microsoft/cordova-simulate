@@ -3,12 +3,6 @@
 
 var url = require('url');
 
-var liveReloadEvents = {
-    CAN_REFRESH: 'lr-can-refresh',
-    REFRESH_FILE: 'lr-refresh-file',
-    FULL_RELOAD: 'lr-full-reload'
-};
-
 var URL_ATTRIB_NAME = 'url';
 var HREF_ATTRIB_NAME = 'href';
 var SRC_ATTRIB_NAME = 'src';
@@ -26,18 +20,11 @@ module.exports.start = function (sock) {
         '/',
         ''
     ];
-    var pendingFilesToRefresh = {};
     var socket = sock;
 
     /**
-     * Reload the page. Currently, only does a naive window.location.reload().
-     */
-    function reloadPage() {
-        window.location.reload(true);
-    }
-
-    /**
-     * Returns the name of the reference attribute (either "url", "href" or "src") that is defined for the given node. If the node defines more than one, returns the first encountered, in that order.
+     * Returns the name of the reference attribute (either "url", "href" or "src") that is defined for the given node.
+     * If the node defines more than one, returns the first encountered, in that order.
      *
      * @param {Element} domNode The DOM node to check.
      * @returns {String} "url", "href" or "src", or null if none of these attributes is defined.
@@ -78,13 +65,15 @@ module.exports.start = function (sock) {
     }
 
     /**
-     * Finds all the DOM elements that have a reference attribute ("url", "href" or "src") pointing to the given relative path. Excludes <script> tags.
+     * Finds all the DOM elements that have a reference attribute ("url", "href" or "src") pointing to the given
+     * relative path. Excludes <script> tags.
      *
      * @param {String} fileRelativePath The URL of the file to check, relative to the webRoot.
      * @returns {{ domNode: Element, referenceAttribute: string }[]} An array of "resources" referencing the given file.
      */
     function findDomNodesForFilePath(fileRelativePath) {
-        // To use querySelectorAll to query elements based on their attributes, the selector's syntax is: '[attrib1], [attrib2], ...'.
+        // To use querySelectorAll to query elements based on their attributes, the selector's syntax is:
+        // '[attrib1], [attrib2], ...'.
         var selectorString = `[${referenceAttributes.join('], [')}]`;
         var rawNodes = document.querySelectorAll(selectorString);
         var filteredNodes = [];
@@ -118,20 +107,21 @@ module.exports.start = function (sock) {
     }
 
     /**
-     * Determines whether a file can be refreshed without a full page reload, and notifies the server. If the file can be refreshed, stores the relevant info in the list of pending files to refresh.
+     * Determines whether the changes form the specified file can be applied to the app without a full page reload.
+     * Then, based on that, either updates the reference attribute of the appropriate node, or does a full page
+     * reload. 
      *
-     * @param {String} fileRelativePath The URL of the file to be refreshed, relative to the webRoot.
+     * @param {String} fileRelativePath The URL of the file that changed, relative to the webRoot.
      */
-    function prepareRefresh(fileRelativePath) {
+    function onFileChanged(fileRelativePath) {
         var associatedNodes = findDomNodesForFilePath(fileRelativePath);
         var canRefresh = false;
 
         if (associatedNodes.length) {
-            pendingFilesToRefresh[fileRelativePath] = associatedNodes;
-            canRefresh = true;
+            refreshFile(fileRelativePath, associatedNodes);
+        } else {
+            reloadPage();
         }
-
-        socket.emit(liveReloadEvents.CAN_REFRESH, { fileRelativePath: fileRelativePath, canRefresh: canRefresh });
     }
 
     /**
@@ -139,16 +129,8 @@ module.exports.start = function (sock) {
      *
      * @param {String} fileRelativePath The URL of the file to be refreshed, relative to the webRoot.
      */
-    function refreshFile(fileRelativePath) {
-        var nodesToRefresh = pendingFilesToRefresh[fileRelativePath];
-        var mustFindNodesAgain = !nodesToRefresh || !nodesToRefresh.length || nodesToRefresh.find(function (resource) {
-            return !resource.domNode || !resource.referenceAttribute || !resource.domNode.getAttribute(resource.referenceAttribute);
-        });
-
-        if (mustFindNodesAgain) {
-            // For some reason, the info we previously stored about the file's associated nodes is no longer valid, so find the relevant nodes again.
-            nodesToRefresh = findDomNodesForFilePath(fileRelativePath);
-        }
+    function refreshFile(fileRelativePath, nodesToRefresh) {
+        nodesToRefresh = nodesToRefresh || findDomNodesForFilePath(fileRelativePath);
 
         if (!nodesToRefresh) {
             // The modified file doesn't appear to be referenced in the DOM anymore. Do a full reload.
@@ -166,18 +148,16 @@ module.exports.start = function (sock) {
             delete parsedUrl.search;
             nodeInfo.domNode.setAttribute(nodeInfo.referenceAttribute, url.format(parsedUrl));
         });
-
-        // Now that we've updated the necessary nodes, remove the file from the pending refreshes.
-        delete pendingFilesToRefresh[fileRelativePath];
     }
 
-    socket.on(liveReloadEvents.CAN_REFRESH, function (data) {
-        prepareRefresh(data.fileRelativePath);
-    });
-    socket.on(liveReloadEvents.REFRESH_FILE, function (data) {
-        refreshFile(data.fileRelativePath);
-    });
-    socket.on(liveReloadEvents.FULL_RELOAD, function () {
-        reloadPage();
+    /**
+     * Reload the page. Currently, only does a naive window.location.reload().
+     */
+    function reloadPage() {
+        window.location.reload(true);
+    }
+
+    socket.on('lr-file-changed', function (data) {
+        onFileChanged(data.fileRelativePath);
     });
 };

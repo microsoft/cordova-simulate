@@ -25,7 +25,7 @@ Where opts is an object with the following properties (all optional):
 * **dir** - the directory to launch from (where it should look for a Cordova project). Defaults to cwd.
 * **simhostui** - the directory containing the UI specific files of the simulation host. Defaults to the bundled simulation host files, found in `src/sim-host/ui`.
 * **livereload** - A boolean. Set to false to disable live reload. Defaults to true.
-* **forceprepare** - A boolean. Set to true to force a `cordova prepare` whenever a file changes during live reload. If this is false, the server attempts to simply copy the changed file to the platform rather than doing a `cordova prepare`. Ignored if live reload is disabled. Defaults to false.
+* **forceprepare** - A boolean. Set to true to force a `cordova prepare` whenever a file changes during live reload. If this is false, the server will simply copy the changed file to the platform rather than doing a `cordova prepare`. Ignored if live reload is disabled. Defaults to false.
 * **corsproxy** - Boolean indicating if XMLHttpRequest is proxied through the simulate server. This is useful for working around CORS issues at development time. Defaults to true.
 * **touchevents** - A boolean. Set to false to disable the simulaton of touch events in App-Host. Defaults to true.
 * **simulationpath** - the directory where temporary simulation files are hosted. Defaults to `projectRoot/simulate`.

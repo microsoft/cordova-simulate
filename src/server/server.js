@@ -81,7 +81,7 @@ function streamAppHostHtml(request, response) {
 function streamSimHostHtml(request, response) {
     // If we haven't ever prepared, do so before we try to generate sim-host, so we know our list of plugins is up-to-date.
     // Then create sim-host.js (if it is out-of-date) so it is ready when it is requested.
-    prepare.waitOnPrepare().then(function () {
+    prepare.prepare().then(function () {
         return simFiles.createSimHostJsFile();
     }).then(function () {
         // Inject references to simulation HTML files
