@@ -51,6 +51,11 @@ Media.MEDIA_PAUSED = 3;
 Media.MEDIA_STOPPED = 4;
 Media.MEDIA_MSG = ['None', 'Starting', 'Running', 'Paused', 'Stopped'];
 
+// "static" function to return existing objs.
+Media.get = function(id) {
+    return mediaObjects[id];
+};
+
 /**
  * Start or resume playing audio file.
  */
