@@ -133,8 +133,6 @@ function setCordova(originalCordova) {
             require('./touch-events').init();
         });
 
-        channel.onNativeReady.fire();
-
         if (cordova.platformId !== 'browser') {
             channel.onPluginsReady.subscribe(function () {
                 var pluginList = cordova.require('cordova/plugin_list').metadata;
