@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
 /*
- * This module implements communication protocol as described
+ * This module implements the server part of the communication protocol as
+ * described at
+ *      https://github.com/Microsoft/cordova-simulate/wiki/The-cordova-simulate-bootstrap-protocol
+ * with a limitation that only single app-host is supported per server (and
+ * sim-host).
  */
 
 var log = require('./log'),
@@ -22,6 +26,11 @@ pendingEmits[APP_HOST] = [];
 pendingEmits[SIM_HOST] = [];
 pendingEmits[DEBUG_HOST] = [];
 
+/* Deferred are used to delay the actions until an event happens.
+ * Two major events are kept track of:
+ *      - When app-host connects (sends initial message)
+ *      - When sim-host notifies it's ready to serve an app-host.
+ */
 var whenAppHostConnected = Q.defer(),
     whenSimHostReady     = Q.defer();
 
@@ -36,22 +45,21 @@ function resetSimHostState() {
 }
 
 function setupAppHostHandlers() {
-    var socket = hostSockets[APP_HOST];
     log.log('Setup handlers for APP_HOST');
 
-    socket.on('exec', function (data) {
-        emitToHost(SIM_HOST, 'exec', data);
+    subscribeTo(APP_HOST, 'exec', function (data) {
+        emitTo(SIM_HOST, 'exec', data);
     });
 
-    socket.on('plugin-message', function (data) {
-        emitToHost(SIM_HOST, 'plugin-message', data);
+    subscribeTo(APP_HOST, 'plugin-message', function (data) {
+        emitTo(SIM_HOST, 'plugin-message', data);
     });
 
-    socket.on('plugin-method', function (data, callback) {
-        emitToHost(SIM_HOST, 'plugin-method', data, callback);
+    subscribeTo(APP_HOST, 'plugin-method', function (data, callback) {
+        emitTo(SIM_HOST, 'plugin-method', data, callback);
     });
 
-    socket.on('telemetry', function (data) {
+    subscribeTo(APP_HOST, 'telemetry', function (data) {
         telemetry.handleClientTelemetry(data);
     });
 
@@ -63,32 +71,30 @@ function setupAppHostHandlers() {
 
     // Set up telemetry if necessary.
     if (config.telemetry) {
-        socket.emit('init-telemetry');
+        emitTo(APP_HOST, 'init-telemetry');
     }
     
     // Set up xhr proxy
     if (config.xhrProxy) {
-        socket.emit('init-xhr-proxy');
+        emitTo(APP_HOST, 'init-xhr-proxy');
     }
 
     // setup touch events support
     if (config.touchEvents) {
-        socket.emit('init-touch-events');
+        emitTo(APP_HOST, 'init-touch-events');
     }
 
     handlePendingEmits(APP_HOST);
 }
 
 function handleSimHostRegistration(socket) {
-    socket.once('ready', handleSimHostReady);
-    emitToHost(SIM_HOST, 'init');
+    subscribeTo(SIM_HOST, 'ready', handleSimHostReady, true);
+    emitTo(SIM_HOST, 'init');
 }
 
 function onAppHostConnected() {
-    var socket = hostSockets.APP_HOST;
-    socket.once('app-plugin-list', handleAppPluginList);
-
-    emitToHost(APP_HOST, 'init');
+    subscribeTo(APP_HOST, 'app-plugin-list', handleAppPluginList, true);
+    emitTo(APP_HOST, 'init');
 }
 
 function onSimHostReady() {
@@ -96,7 +102,7 @@ function onSimHostReady() {
 }
 
 function handleSimHostReady() {
-    // resolving this promise will result in app-host handlers setupp
+    // Resolve the deferred
     whenSimHostReady.resolve();
 
     setupSimHostHandlers();
@@ -107,15 +113,13 @@ function handleSimHostReady() {
 
 function handleAppPluginList(data) {
     whenSimHostReady.promise.then(function () {
-        var socket = hostSockets.SIM_HOST;
-        socket.once('start', handleStart);
-
-        emitToHost(SIM_HOST, 'app-plugin-list', data);
+        subscribeTo(SIM_HOST, 'start', handleStart, true);
+        emitTo(SIM_HOST, 'app-plugin-list', data);
     });
 }
 
 function handleStart() {
-    emitToHost(APP_HOST, 'start');
+    emitTo(APP_HOST, 'start');
 }
 
 function setupSimHostHandlers() {
@@ -124,22 +128,22 @@ function setupSimHostHandlers() {
     var socket = hostSockets.SIM_HOST;
 
     socket.on('exec-success', function (data) {
-        emitToHost(APP_HOST, 'exec-success', data);
+        emitTo(APP_HOST, 'exec-success', data);
     });
     socket.on('exec-failure', function (data) {
-        emitToHost(APP_HOST, 'exec-failure', data);
+        emitTo(APP_HOST, 'exec-failure', data);
     });
 
     socket.on('plugin-message', function (data) {
-        emitToHost(APP_HOST, 'plugin-message', data);
+        emitTo(APP_HOST, 'plugin-message', data);
     });
 
     socket.on('plugin-method', function (data, callback) {
-        emitToHost(APP_HOST, 'plugin-method', data, callback);
+        emitTo(APP_HOST, 'plugin-method', data, callback);
     });
 
     socket.on('debug-message', function (data) {
-        emitToHost(DEBUG_HOST, data.message, data.data);
+        emitTo(DEBUG_HOST, data.message, data.data);
     });
 
     socket.on('telemetry', function (data) {
@@ -228,12 +232,12 @@ function init(server) {
 function handlePendingEmits(host) {
     log.log('Handling pending emits for ' + host);
     pendingEmits[host].forEach(function (pendingEmit) {
-        emitToHost(host, pendingEmit.msg, pendingEmit.data, pendingEmit.callback);
+        emitTo(host, pendingEmit.msg, pendingEmit.data, pendingEmit.callback);
     });
     pendingEmits[host] = [];
 }
 
-function emitToHost(host, msg, data, callback) {
+function emitTo(host, msg, data, callback) {
     var socket = hostSockets[host];
     if (socket) {
         log.log('Emitting \'' + msg + '\' to ' + host);
@@ -244,22 +248,19 @@ function emitToHost(host, msg, data, callback) {
     }
 }
 
-function subscribeToHost(host, msg, handler, once) {
+function subscribeTo(host, msg, handler, once) {
     var socket = hostSockets[host],
-        handler = once ? 'once' : 'on';
+        method = once ? 'once' : 'on';
     if (socket) {
-        socket[handler](msg, handler);
+        socket[method](msg, handler);
     } else {
         log.log('Subscribing to a disconnected ' + host + ' wanting \'' + msg + '\'');
     }
 }
 
-
-function invalidateSimHost() {
-    // Simulation host is being refreshed, so we'll wait on a new connection.
-    hostSockets[SIM_HOST] = undefined;
+function reloadSimHost() {
+    emitTo(SIM_HOST, 'refresh');
 }
 
-module.exports.init = init;
-module.exports.emitToHost = emitToHost;
-module.exports.invalidateSimHost = invalidateSimHost;
+module.exports.init          = init;
+module.exports.reloadSimHost = reloadSimHost;
