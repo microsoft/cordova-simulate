@@ -41,6 +41,8 @@ InAppBrowser.Events = {
     EXIT: 'exit'
 };
 
+InAppBrowser.prototype.getCurrentUrl = function () {};
+
 /**
  * JavaScript implementation of the Native call to show. The simulator browser should be
  * displayed.
@@ -77,7 +79,8 @@ InAppBrowser.prototype.injectStyleFile = function (callback, args) {
  */
 InAppBrowser.prototype._success = function (eventName) {
     this._callbacks.success({
-        type: eventName
+        type: eventName,
+        url: this.getCurrentUrl()
     });
 };
 
@@ -99,6 +102,10 @@ function SystemBrowser(url, options, success, fail) {
 SystemBrowser.prototype = Object.create(InAppBrowser.prototype);
 SystemBrowser.prototype.constructor = SystemBrowser;
 SystemBrowser.prototype.parentClass = InAppBrowser.prototype;
+
+SystemBrowser.prototype.getCurrentUrl = function () {
+    return (this._window ? this._window.location.href : '');
+};
 
 SystemBrowser.prototype.show = function () {
     if (!this._window) {
@@ -142,6 +149,10 @@ IframeBrowser.prototype = Object.create(InAppBrowser.prototype);
 IframeBrowser.prototype.constructor = IframeBrowser;
 IframeBrowser.prototype.parentClass = InAppBrowser.prototype;
 
+IframeBrowser.prototype.getCurrentUrl = function () {
+    return (this._iframe ? this._iframe.src : '');
+};
+
 IframeBrowser.prototype.show = function () {
     if (!this._container) {
         this._createFrame();
@@ -153,16 +164,19 @@ IframeBrowser.prototype.show = function () {
     this._container.style.display = 'block';
 
     this._resizeContainer();
+
+    this._success(InAppBrowser.Events.LOAD_START);
 };
 
 IframeBrowser.prototype.close = function () {
     if (this._container) {
         this._container.parentNode.removeChild(this._container);
         this._container = null;
-        this._iframe = null;
         this._isVisible = false;
 
         this._success(InAppBrowser.Events.EXIT);
+
+        this._iframe = null;
 
         window.removeEventListener('resize', this._resizeCallback);
     }
