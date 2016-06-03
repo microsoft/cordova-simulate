@@ -60,7 +60,7 @@ function applyPlugins(plugins, clobberScope, clobberToPluginMap) {
 function setCordova(originalCordova) {
     var channel,
         platform,
-        platformBoostrap;
+        platformBootstrap;
 
     if (cordova) {
         return;
@@ -100,19 +100,15 @@ function setCordova(originalCordova) {
         // sim-host is ready, register exec handlers, fire onNativeReady and send
         // the list of plugins
         socket.on('exec-success', function (data) {
-            console.log('exec-success:');
-            console.log(data);
             var execCacheInfo = execCache[data.index];
-            if (execCacheInfo.success) {
+            if (execCacheInfo && typeof execCacheInfo.success === 'function') {
                 execCacheInfo.success(data.result);
             }
         });
 
         socket.on('exec-failure', function (data) {
-            console.log('exec-failure:');
-            console.log(data);
             var execCacheInfo = execCache[data.index];
-            if (execCacheInfo.fail) {
+            if (execCacheInfo && typeof execCacheInfo.fail === 'function') {
                 execCacheInfo.fail(data.error);
             }
         });
@@ -160,6 +156,7 @@ function setCordova(originalCordova) {
             // windows has an overriden bootstrap which does not fire
             // onNativeReady
             case 'windows':
+            /* falls through */
             default:
                 channel.onNativeReady.fire();
                 break;

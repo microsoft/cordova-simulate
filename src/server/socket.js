@@ -127,34 +127,33 @@ function handleStart() {
 function setupSimHostHandlers() {
     log.log('Setup handlers for SIM_HOST');
 
-    var socket = hostSockets.SIM_HOST;
-
-    socket.on('exec-success', function (data) {
+    subscribeTo(SIM_HOST, 'exec-success', function (data) {
         emitTo(APP_HOST, 'exec-success', data);
     });
-    socket.on('exec-failure', function (data) {
+
+    subscribeTo(SIM_HOST, 'exec-failure', function (data) {
         emitTo(APP_HOST, 'exec-failure', data);
     });
 
-    socket.on('plugin-message', function (data) {
+    subscribeTo(SIM_HOST, 'plugin-message', function (data) {
         emitTo(APP_HOST, 'plugin-message', data);
     });
 
-    socket.on('plugin-method', function (data, callback) {
+    subscribeTo(SIM_HOST, 'plugin-method', function (data, callback) {
         emitTo(APP_HOST, 'plugin-method', data, callback);
     });
 
-    socket.on('debug-message', function (data) {
+    subscribeTo(SIM_HOST, 'debug-message', function (data) {
         emitTo(DEBUG_HOST, data.message, data.data);
     });
 
-    socket.on('telemetry', function (data) {
+    subscribeTo(SIM_HOST, 'telemetry', function (data) {
         telemetry.handleClientTelemetry(data);
     });
 
     // Set up telemetry if necessary.
     if (config.telemetry) {
-        socket.emit('init-telemetry');
+        emitTo(SIM_HOST, 'init-telemetry');
     }
 
     handlePendingEmits(SIM_HOST);
