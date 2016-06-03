@@ -31,6 +31,7 @@ module.exports = function () {
             },
             'close': function () {
                 execute('close');
+                instance = null;
             },
             'injectScriptCode': function (success, fail, args) {
                 execute('injectScriptCode', success, args);

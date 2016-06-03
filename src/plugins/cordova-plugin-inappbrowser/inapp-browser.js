@@ -131,7 +131,7 @@ SystemBrowser.prototype.close = function () {
  */
 function IframeBrowser(url, options, success, fail) {
     this._container = null;
-    this._frame = null;
+    this._iframe = null;
     this._resizeCallback = this._resizeContainer.bind(this);
     this._isVisible = false;
 
@@ -149,7 +149,7 @@ IframeBrowser.prototype.show = function () {
 
     this._isVisible = true;
 
-    this._frame.src = this._url;
+    this._iframe.src = this._url;
     this._container.style.display = 'block';
 
     this._resizeContainer();
@@ -159,7 +159,7 @@ IframeBrowser.prototype.close = function () {
     if (this._container) {
         this._container.parentNode.removeChild(this._container);
         this._container = null;
-        this._frame = null;
+        this._iframe = null;
         this._isVisible = false;
 
         this._success(InAppBrowser.Events.EXIT);
@@ -176,7 +176,7 @@ IframeBrowser.prototype.hide = function () {
 };
 
 IframeBrowser.prototype.injectScriptCode = function (callback, args) {
-    if (this._container && this._frame) {
+    if (this._container && this._iframe) {
         var code = args[0].replace(/\r?\n|\r/g, ''),
             hasCallback = args[1];
 
@@ -208,7 +208,7 @@ IframeBrowser.prototype.injectScriptFile = function (callback, args) {
 };
 
 IframeBrowser.prototype.injectStyleCode = function (callback, args) {
-    if (this._container && this._frame) {
+    if (this._container && this._iframe) {
         var css = args[0].replace(/\r?\n|\r/g, ''),
             hasCallback = args[1];
 
@@ -235,7 +235,7 @@ IframeBrowser.prototype.injectStyleCode = function (callback, args) {
 };
 
 IframeBrowser.prototype.injectStyleFile = function (callback, args) {
-    if (this._container && this._frame) {
+    if (this._container && this._iframe) {
         var file = args[0],
             hasCallback = args[1];
 
@@ -264,7 +264,7 @@ IframeBrowser.prototype.injectStyleFile = function (callback, args) {
  */
 IframeBrowser.prototype._createFrame = function () {
     this._container = document.createElement('div');
-    this._frame = document.createElement('iframe');
+    this._iframe = document.createElement('iframe');
 
     // container style
     var style = this._container.style;
@@ -276,7 +276,7 @@ IframeBrowser.prototype._createFrame = function () {
     style.height = document.body.clientHeight + 'px';
 
     // iframe style
-    style = this._frame.style;
+    style = this._iframe.style;
     style.border = '0';
     style.width = '100%';
 
@@ -288,14 +288,14 @@ IframeBrowser.prototype._createFrame = function () {
         style.height = '100%';
     }
 
-    this._container.appendChild(this._frame);
+    this._container.appendChild(this._iframe);
 
     document.body.appendChild(this._container);
 
-    this._frame.addEventListener('pageshow', this._success.bind(this, InAppBrowser.Events.LOAD_START));
-    this._frame.addEventListener('load', this._success.bind(this, InAppBrowser.Events.LOAD_STOP));
-    this._frame.addEventListener('error', this._success.bind(this, InAppBrowser.Events.LOAD_ERROR));
-    this._frame.addEventListener('abort', this._success.bind(this, InAppBrowser.Events.LOAD_ERROR));
+    this._iframe.addEventListener('pageshow', this._success.bind(this, InAppBrowser.Events.LOAD_START));
+    this._iframe.addEventListener('load', this._success.bind(this, InAppBrowser.Events.LOAD_STOP));
+    this._iframe.addEventListener('error', this._success.bind(this, InAppBrowser.Events.LOAD_ERROR));
+    this._iframe.addEventListener('abort', this._success.bind(this, InAppBrowser.Events.LOAD_ERROR));
 
     window.addEventListener('resize', this._resizeCallback);
 };
@@ -352,7 +352,7 @@ IframeBrowser.prototype._resizeContainer = function () {
  * @private
  */
 IframeBrowser.prototype._injectCode = function (code) {
-    var result = this._frame.contentWindow.eval(code);
+    var result = this._iframe.contentWindow.eval(code);
 
     return result ? [result] : [];
 };
@@ -376,13 +376,13 @@ function create(success, fail, args) {
         // open in a new browser tab
         Constructor = SystemBrowser;
         break;
-    case '_blank':
-        Constructor = IframeBrowser;
-        break;
-    default:
-        // "_self" and any other option, use the same tab
+    case '_self':
+        // use the current window
         window.location = args[0];
         return;
+    default:
+        // "_blank" and any other option, use the iframe browser
+        Constructor = IframeBrowser;
     }
 
     return new Constructor(args[0], args[2], success, fail);
