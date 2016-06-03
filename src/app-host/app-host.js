@@ -171,7 +171,7 @@ function setCordova(originalCordova) {
         // an init after start means reload. it is only sent if sim-host was
         // reloaded
         socket.once('init', function () {
-            window.location.reload();
+            window.location.reload(true);
         });
     });
 
