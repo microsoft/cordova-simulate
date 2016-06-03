@@ -93,8 +93,10 @@ function handleSimHostRegistration(socket) {
 }
 
 function onAppHostConnected() {
-    subscribeTo(APP_HOST, 'app-plugin-list', handleAppPluginList, true);
-    emitTo(APP_HOST, 'init');
+    whenSimHostReady.promise.then(function () {
+        subscribeTo(APP_HOST, 'app-plugin-list', handleAppPluginList, true);
+        emitTo(APP_HOST, 'init');
+    });
 }
 
 function onSimHostReady() {
