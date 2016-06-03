@@ -171,6 +171,11 @@ function setCordova(originalCordova) {
         // all set, fire onCordovaSimulate ready (which up to this point was
         // delaying onDeviceReady).
         channel.onCordovaSimulateReady.fire();
+        // an init after start means reload. it is only sent if sim-host was
+        // reloaded
+        socket.once('init', function () {
+            window.location.reload();
+        });
     });
 
     // register app-host
