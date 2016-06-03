@@ -1,8 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var fs = require('fs'),
-    path = require('path');
-
 var config = {};
 
 // module properties

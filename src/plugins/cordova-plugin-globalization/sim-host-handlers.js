@@ -246,7 +246,6 @@ function convertToMomentLocalizedFormat(options) {
                 default:
                     throw selectorError;
             }
-            break;
         case 'medium':
             switch(options.selector) {
                 case 'date and time': return 'LLL';
@@ -256,7 +255,6 @@ function convertToMomentLocalizedFormat(options) {
                 default:
                     throw selectorError;
             }
-            break;
         case 'long':
             switch(options.selector) {
                 case 'date and time': return 'llll';
@@ -266,7 +264,6 @@ function convertToMomentLocalizedFormat(options) {
                 default:
                     throw selectorError;
             }
-            break;
         case 'full':
             switch(options.selector) {
                 case 'date and time': return 'LLLL';
@@ -275,7 +272,6 @@ function convertToMomentLocalizedFormat(options) {
                 default:
                     throw selectorError;
             }
-            break;
         default:
             throw formatLengthError;
     }

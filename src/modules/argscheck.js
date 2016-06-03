@@ -44,10 +44,6 @@ function checkArgs(spec, functionName, args, opt_callee) {
     if (errMsg) {
         errMsg += ', but got ' + typeName + '.';
         errMsg = 'Wrong type for parameter "' + extractParamName(opt_callee || args.callee, i) + '" of ' + functionName + ': ' + errMsg;
-        // Don't log when running unit tests.
-        if (typeof jasmine == 'undefined') {
-            console.error(errMsg);
-        }
         throw TypeError(errMsg);
     }
 }
