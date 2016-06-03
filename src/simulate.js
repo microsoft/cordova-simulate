@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
-
+/*eslint-env node */
 var fs = require('fs'),
     cordovaServe = require('cordova-serve'),
     path = require('path'),
