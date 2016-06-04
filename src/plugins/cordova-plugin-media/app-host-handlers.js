@@ -33,7 +33,7 @@ var Media = function (src, successCallback, errorCallback, statusCallback) {
 
     mediaObjects[this.id] = this;
 
-    this._updateState(Media.MEDIA_STATE);
+    this._updateState(Media.MEDIA_STARTING);
     this._preparePlayer();
 };
 
@@ -169,8 +169,12 @@ Media.prototype.resumeRecord = function () {
  */
 Media.prototype.release = function () {
     try {
-        this.stop();
-        this.node = null;
+        if (this._isReady()) {
+            this.node.pause();
+            this.node = null;
+
+            this._updateState(Media.MEDIA_STOPPED);
+        }
     } catch (err) {
         this._notifyError(window.MediaError.MEDIA_ERR_ABORTED);
     }
@@ -203,9 +207,11 @@ Media.prototype.getCurrentAmplitude = function () {
  * @private
  */
 Media.prototype._updateState = function (state) {
-    this._state = state;
+    if (this._state !== state) {
+        this._state = state;
 
-    Media.onStatus(this.id, Media.MEDIA_STATE, this._state);
+        Media.onStatus(this.id, Media.MEDIA_STATE, this._state);
+    }
 };
 
 /**
