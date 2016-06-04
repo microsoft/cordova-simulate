@@ -7,6 +7,32 @@ var utils = require('utils'),
 
 var mediaObjects = {};
 
+function TaskQueue() {
+    this._callbacksQueue = [];
+    this._isCallbackInProgress = false;
+}
+
+TaskQueue.prototype.push = function (fn) {
+    this._callbacksQueue.push(fn);
+    this._executeNext();
+};
+
+TaskQueue.prototype._executeNext = function () {
+    if (this._callbacksQueue.length > 0 && !this._isCallbackInProgress) {
+        this._isCallbackInProgress = true;
+
+        var originalFn = this._callbacksQueue.shift();
+        var callback = function () {
+            originalFn();
+
+            this._isCallbackInProgress = false;
+            this._executeNext();
+        }.bind(this);
+
+        callback();
+    }
+};
+
 /**
  * This class provides access to the device media, interfaces to both sound and video
  *
@@ -30,6 +56,8 @@ var Media = function (src, successCallback, errorCallback, statusCallback) {
     this._duration = -1;
     this._position = -1;
     this._state = null;
+    this._isReleased = true;
+    this._callbacksQueue = new TaskQueue();
 
     mediaObjects[this.id] = this;
 
@@ -66,9 +94,35 @@ Media.prototype.play = function () {
 };
 
 /**
+ * Pause playing audio file.
+ */
+Media.prototype.pause = function () {
+    if (this._isReleased) {
+        // it has been released, do nothing
+        return;
+    }
+
+    if (this._isReady() && this._state === Media.MEDIA_RUNNING) {
+        try {
+            this.node.pause();
+            this._updateState(Media.MEDIA_PAUSED);
+        } catch (err) {
+            this._notifyError(window.MediaError.MEDIA_ERR_ABORTED);
+        }
+    } else {
+        this._notifyError(window.MediaError.MEDIA_ERR_NONE_ACTIVE);
+    }
+};
+
+/**
  * Stop playing audio file.
  */
 Media.prototype.stop = function () {
+    if (this._isReleased) {
+        // it has been released, do nothing
+        return;
+    }
+
     if (this._isReady() && (this._state === Media.MEDIA_RUNNING || this._state === Media.MEDIA_PAUSED)) {
         try {
             this.node.pause();
@@ -86,25 +140,13 @@ Media.prototype.stop = function () {
  * Seek or jump to a new time in the track..
  */
 Media.prototype.seekTo = function (milliseconds) {
+    if (this._isReleased) {
+        return;
+    }
+
     if (this._isReady()) {
         try {
             this.node.currentTime = milliseconds / 1000;
-        } catch (err) {
-            this._notifyError(window.MediaError.MEDIA_ERR_ABORTED);
-        }
-    } else {
-        this._notifyError(window.MediaError.MEDIA_ERR_NONE_ACTIVE);
-    }
-};
-
-/**
- * Pause playing audio file.
- */
-Media.prototype.pause = function () {
-    if (this._isReady() && this._state === Media.MEDIA_RUNNING) {
-        try {
-            this.node.pause();
-            this._updateState(Media.MEDIA_PAUSED);
         } catch (err) {
             this._notifyError(window.MediaError.MEDIA_ERR_ABORTED);
         }
@@ -127,13 +169,14 @@ Media.prototype.getDuration = function () {
  * Get position of audio.
  */
 Media.prototype.getCurrentPosition = function (success, fail) {
-    if (this._isReady()) {
-        var p = this.node.currentTime;
-        Media.onStatus(this.id, Media.MEDIA_POSITION, p);
-        success(p);
-    } else {
-        fail({ code: window.MediaError.MEDIA_ERR_NONE_ACTIVE});
+    var position = -1;
+
+    if (!this._isReleased) {
+        position = this.node.currentTime;
     }
+
+    this._notifyStatus(Media.MEDIA_POSITION, position);
+    success(position);
 };
 
 /**
@@ -172,6 +215,7 @@ Media.prototype.release = function () {
         if (this._isReady()) {
             this.node.pause();
             this.node = null;
+            this._isReleased = true;
 
             this._updateState(Media.MEDIA_STOPPED);
         }
@@ -184,10 +228,8 @@ Media.prototype.release = function () {
  * Adjust the volume.
  */
 Media.prototype.setVolume = function (volume) {
-    if (this._isReady()) {
+    if (!this._isReleased) {
         this.node.volume = volume;
-    } else {
-         this._notifyError(window.MediaError.MEDIA_ERR_NONE_ACTIVE);
     }
 };
 
@@ -210,7 +252,7 @@ Media.prototype._updateState = function (state) {
     if (this._state !== state) {
         this._state = state;
 
-        Media.onStatus(this.id, Media.MEDIA_STATE, this._state);
+        this._notifyStatus(Media.MEDIA_STATE, this._state);
     }
 };
 
@@ -228,11 +270,15 @@ Media.prototype._notifyError = function (code, message) {
         mediaError.message = message;
     }
 
-    Media.onStatus(this.id, Media.MEDIA_ERROR, mediaError);
+    this._notifyStatus(Media.MEDIA_ERROR, mediaError);
+};
+
+Media.prototype._notifyStatus = function (type, value) {
+    this._callbacksQueue.push(Media.onStatus.bind(this, this.id, type, value));
 };
 
 /**
- * Check if the media is ready: the Audio instance is available.
+ * Check if the media player is ready: the Audio instance is available.
  * @return {boolean}
  */
 Media.prototype._isReady = function () {
@@ -245,10 +291,11 @@ Media.prototype._isReady = function () {
  * @private
  */
 Media.prototype._preparePlayer = function () {
-    if (!this._isReady()) {
+    if (this._isReleased) {
         // if Media was released, then node will be null and we need to create it again
         try {
             this.node = this._createAudioNode();
+            this._isReleased = false;
         } catch (err) {
             this._state = Media.MEDIA_NONE;
             this._notifyError(window.MediaError.MEDIA_ERR_ABORTED);
@@ -261,7 +308,7 @@ Media.prototype._preparePlayer = function () {
 };
 
 /**
- * Creates new Audio node and with necessary event listeners attached.
+ * Creates a new player with necessary event listeners attached.
  * @return {Audio}
  * @trows
  * @private
@@ -273,7 +320,8 @@ Media.prototype._createAudioNode = function () {
     node.onended = this._updateState.bind(this, Media.MEDIA_STOPPED);
 
     node.ondurationchange = function (e) {
-        Media.onStatus(this.id, Media.MEDIA_DURATION, e.target.duration || -1);
+        var duration = e.target.duration || -1;
+        this._notifyStatus(Media.MEDIA_DURATION, duration);
     }.bind(this);
 
     node.onerror = function (e) {
