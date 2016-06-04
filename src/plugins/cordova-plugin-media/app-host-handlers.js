@@ -87,7 +87,10 @@ module.exports = function (messages) {
                 }
             },
             'setRate': function (success, fail, args) {
-                // TODO check ios impl
+                var player = Player.getById(args[0]);
+                if (player) {
+                    player.setRate(args[1]);
+                }
             },
             'getCurrentAmplitudeAudio': function (success, fail, args) {
                 var player = Player.getById(args[0]),

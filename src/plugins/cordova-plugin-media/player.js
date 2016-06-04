@@ -5,35 +5,6 @@
 var _players = {};
 
 /**
- * @constructor
- */
-function TaskQueue() {
-    this._callbacksQueue = [];
-    this._isCallbackInProgress = false;
-}
-
-TaskQueue.prototype.push = function (fn) {
-    this._callbacksQueue.push(fn);
-    this._executeNext();
-};
-
-TaskQueue.prototype._executeNext = function () {
-    if (this._callbacksQueue.length > 0 && !this._isCallbackInProgress) {
-        this._isCallbackInProgress = true;
-
-        var originalFn = this._callbacksQueue.shift();
-        var callback = function () {
-            originalFn();
-
-            this._isCallbackInProgress = false;
-            this._executeNext();
-        }.bind(this);
-
-        callback();
-    }
-};
-
-/**
  * @param {string} id
  * @constructor
  */
@@ -42,7 +13,6 @@ function Player(id, src) {
     this.src = src;
     this._node = null;
     this._state = null; // refence to a Media.State
-    this._callbacksQueue = new TaskQueue();
 
     this._updateState(Media.MEDIA_STARTING);
     this._prepare();
@@ -197,8 +167,7 @@ Player.prototype._notifyError = function (code, message) {
 
 Player.prototype._notifyStatus = function (type, value) {
     if (window.Media.onStatus) {
-        this._callbacksQueue.push(window.Media.onStatus.bind(null, this.id, type, value));
-        //window.Media.onStatus(this.id, type, value);
+        window.Media.onStatus(this.id, type, value);
     }
 };
 
