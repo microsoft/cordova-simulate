@@ -3,6 +3,8 @@
 // Events taken from cordova-plugin-inappbrowser implementation, and iframe approach
 // based from https://github.com/apache/cordova-plugin-inappbrowser/blob/master/src/browser/InAppBrowserProxy.js
 
+var _defaultInAppBrowserType = 'iframe';
+
 /**
  * @param {string} url
  * @param {Array} options
@@ -395,11 +397,21 @@ function create(success, fail, args) {
         window.location = args[0];
         return;
     default:
-        // "_blank" and any other option, use the iframe browser
-        Constructor = IframeBrowser;
+        if (_defaultInAppBrowserType === 'iframe') {
+            // "_blank" and any other option, use the iframe browser
+            Constructor = IframeBrowser;
+        } else {
+            // new browser window
+            Constructor = SystemBrowser;
+        }
     }
 
     return new Constructor(args[0], args[2], success, fail);
 }
 
+function setDefaultInAppBrowser(value) {
+    _defaultInAppBrowserType = value;
+}
+
 module.exports.create = create;
+module.exports.setDefaultInAppBrowser = setDefaultInAppBrowser;
