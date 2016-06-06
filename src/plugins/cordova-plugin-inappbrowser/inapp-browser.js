@@ -285,11 +285,13 @@ IframeBrowser.prototype._createFrame = function () {
     // container style
     var style = this._container.style;
     style.position = 'absolute';
+    style.top = style.left = '0';
     style.border = '0';
     style.backgroundColor = '#ffffff';
     style.zIndex = '10000';
     style.width = document.body.clientWidth + 'px';
     style.height = document.body.clientHeight + 'px';
+    style.minHeight = style.minWidth = '100%';
 
     // iframe style
     style = this._iframe.style;
