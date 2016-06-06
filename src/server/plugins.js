@@ -30,7 +30,7 @@ function initPlugins() {
 
     // Find the default plugins
     var projectRoot = config.projectRoot;
-    var defaultPlugins = ['exec', 'events'];
+    var defaultPlugins = ['cordova-plugin-geolocation', 'exec', 'events'];
     var simulatedDefaultPlugins = {};
 
     defaultPlugins.forEach(function (pluginId) {
@@ -46,8 +46,11 @@ function initPlugins() {
     var projectPluginsRoot = path.resolve(config.platformRoot, 'plugins');
     var rawProjectPluginList = getDirectoriesInPath(projectPluginsRoot);
 
-    if (rawProjectPluginList.indexOf('cordova-plugin-geolocation') < 0) {
-        rawProjectPluginList.unshift('cordova-plugin-geolocation');
+    /* if the geolocation plugin is already added to the project,
+       we need to remove it since it is in the list of default plugins as well and will appear twice otherwise */
+    var geolocationIndex = rawProjectPluginList.indexOf('cordova-plugin-geolocation');
+    if (geolocationIndex >= 0) {
+        rawProjectPluginList.splice(geolocationIndex, 1);
     }
 
     var simulatedProjectPlugins = {};
