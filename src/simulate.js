@@ -54,6 +54,7 @@ var launchServer = function (opts) {
         config.server = server.server;
         var projectRoot = server.projectRoot;
         config.projectRoot = projectRoot;
+        configureSimulationDirectory(config.projectRoot, opts);
         config.platformRoot = server.root;
         var urlRoot = 'http://localhost:' + server.port + '/';
         appUrl = urlRoot + parseStartPage(projectRoot);
@@ -108,6 +109,40 @@ var parseStartPage = function (projectRoot) {
     }
 
     return 'index.html'; // default uri
+};
+
+/**
+ *  Helper function to check if a file or directory exists
+ */
+var existsSync = function (filename) {
+    try {
+        /* fs.existsSync is deprecated
+           fs.statSync throws if the path does not exists */
+        fs.statSync(filename);
+        return true;
+    } catch (error) {
+        return false;
+    }
+};
+
+/**
+ *  Helper function to create a directory recursively
+ */
+var makeDirectoryRecursiveSync = function (dirPath) {
+    var parentPath = path.dirname(dirPath);
+    if (!existsSync(parentPath)) {
+        makeDirectoryRecursiveSync(parentPath);
+    }
+
+    fs.mkdirSync(dirPath);
+};
+
+var configureSimulationDirectory = function (projectRoot, opts) {    
+    config.simulationFilePath = opts.simulationpath ? opts.simulationpath : path.join(config.projectRoot, 'simulation');
+
+    if (!fs.existsSync(config.simulationFilePath)) {
+        makeDirectoryRecursiveSync(config.simulationFilePath);
+    }
 };
 
 module.exports = simulate;

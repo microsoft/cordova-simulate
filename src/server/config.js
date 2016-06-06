@@ -16,6 +16,7 @@ var simulationFilePath;
     { name: 'projectRoot', single: true },
     { name: 'server', optional: true },
     { name: 'simHostOptions' },
+    { name: 'simulationFilePath' },
     { name: 'telemetry', optional: true },
     { name: 'touchEvents', optional: true },
     { name: 'xhrProxy', optional: true }
@@ -28,21 +29,6 @@ var simulationFilePath;
             setValue(prop.name, value, prop.single);
         }
     });
-});
-
-Object.defineProperties(module.exports, {
-    simulationFilePath: {
-        get: function () {
-            if (!simulationFilePath) {
-                var projectRoot = getValue('projectRoot');
-                simulationFilePath = path.join(projectRoot, 'simulation');
-                if (!fs.existsSync(simulationFilePath)) {
-                    fs.mkdirSync(simulationFilePath);
-                }
-            }
-            return simulationFilePath;
-        }
-    }
 });
 
 function setValue(prop, value, single) {
