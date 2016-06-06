@@ -130,7 +130,7 @@ var existsSync = function (filename) {
  */
 var makeDirectoryRecursiveSync = function (dirPath) {
     var parentPath = path.dirname(dirPath);
-    if (!existsSync(parentPath)) {
+    if (!existsSync(parentPath) && (parentPath !== dirPath)) {
         makeDirectoryRecursiveSync(parentPath);
     }
 
