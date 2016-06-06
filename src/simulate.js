@@ -138,7 +138,8 @@ var makeDirectoryRecursiveSync = function (dirPath) {
 };
 
 var configureSimulationDirectory = function (projectRoot, opts) {    
-    config.simulationFilePath = opts.simulationpath ? opts.simulationpath : path.join(config.projectRoot, 'simulation');
+    var simPath = opts.simulationpath ? opts.simulationpath : path.join(config.projectRoot, 'simulation');
+    config.simulationFilePath = path.resolve(simPath);
 
     if (!fs.existsSync(config.simulationFilePath)) {
         makeDirectoryRecursiveSync(config.simulationFilePath);
