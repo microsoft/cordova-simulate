@@ -62,9 +62,7 @@ module.exports = {
                             savedSims.addSim({ service: service, action: action, args: args, value: result, success: isSuccess });
                         }
 
-                        var hasValue = typeof result !== 'undefined' && result !== '';
-
-                        sendExecUnhandledTelemetry(service, action, false, isSuccess, hasValue, shouldPersist);
+                        sendExecUnhandledTelemetry(service, action, false, isSuccess, resultHasValue(result), shouldPersist);
                         func.apply(null, result ? [result] : []);
                     }
 
@@ -84,8 +82,7 @@ function handleSavedSim(success, fail, service, action) {
     var savedSim = savedSims.findSavedSim(service, action);
     if (savedSim) {
         var isSuccess = !!savedSim.success;
-        var hasValue = typeof savedSim.value !== 'undefined' && savedSim.value !== '';
-        sendExecUnhandledTelemetry(service, action, true, isSuccess, hasValue);
+        sendExecUnhandledTelemetry(service, action, true, isSuccess, resultHasValue(savedSim.value));
 
         if (isSuccess) {
             success(savedSim.value);
@@ -121,4 +118,14 @@ function sendExecUnhandledTelemetry(service, action, hasPersisted, isSuccess, ha
     }
 
     telemetry.sendClientTelemetry('exec-unhandled', props);
+}
+
+/**
+ * Determines whether the user typed something in the unhandled exec popup.
+ * 
+ * @param {any} result The content of the text entry.
+ * @returns {boolean} Whether the user entered a value.
+ */
+function resultHasValue(result) {
+    return typeof result !== 'undefined' && result !== '';
 }
