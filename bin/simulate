@@ -27,8 +27,8 @@ function processArgs() {
     try {
         function unknownOptHandler(optName) {
             // Throw error on unknown option. Note for '--port': minimist does not support the 'number' type, so we can't list 'port' as a known option.
-            if (optName.indexOf("-") === 0 && optName !== '--port') {
-                throw new Error(`Unknown option '${optName}'`);
+            if (optName.indexOf('-') === 0 && optName !== '--port') {
+                throw new Error('Unknown option \'' + optName + '\'');
             }
 
             return true;
@@ -66,10 +66,23 @@ function processArgs() {
             simulationpath: parsed.simulationpath
         };
     } catch (err) {
-        throw new Error(`Error parsing arguments: ${err.message || err}${os.EOL}${os.EOL}${getUsageString()}`);
+        throw new Error('Error parsing arguments: ' + (err.message || err) + os.EOL + os.EOL + getUsageString());
     }
 }
 
 function getUsageString() {
-    return `Usage:${os.EOL}simulate [PLATFORM] [--dir DIR] [--livereload LIVERELOAD] [--port PORT] [--forceprepare] [--simhostui SIM_HOST_UI_MODULE_PATH] [--target TARGET]`;
+    var message = 'Usage:' + os.EOL + 'simulate';
+    var options = [
+        '[PLATFORM]',
+        '[--corsproxy (CORS_PROXY)]',
+        '[--dir DIR]',
+        '[--livereload (LIVERELOAD)]',
+        '[--port PORT]',
+        '[--forceprepare (FORCE_PREPARE)]',
+        '[--simhostui SIM_HOST_UI_MODULE_PATH]',
+        '[--simulationpath SIMULATION_PATH]',
+        '[--target TARGET]',
+    ];
+
+    return message + options.join(' ') + os.EOL;
 }

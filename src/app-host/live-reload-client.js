@@ -74,7 +74,7 @@ module.exports.start = function (sock) {
     function findDomNodesForFilePath(fileRelativePath) {
         // To use querySelectorAll to query elements based on their attributes, the selector's syntax is:
         // '[attrib1], [attrib2], ...'.
-        var selectorString = `[${referenceAttributes.join('], [')}]`;
+        var selectorString = '[' + referenceAttributes.join('], [') + ']';
         var rawNodes = document.querySelectorAll(selectorString);
         var filteredNodes = [];
 
