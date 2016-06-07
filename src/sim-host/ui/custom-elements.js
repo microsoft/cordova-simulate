@@ -50,7 +50,6 @@ function initialize() {
 
     registerCustomElement('cordova-item', function () {
         this.classList.add('cordova-group');
-        var item = this;
         this.addEventListener('click', function (e) {
             if (e.target === this) {
                 // If the click target is our self, the only thing that could have been clicked is the delete icon.
@@ -120,7 +119,7 @@ function initialize() {
     });
 
     registerCustomElement('cordova-label', {
-        textContent: {
+        value: {
             set: function (value) {
                 setValueSafely(this.shadowRoot.querySelector('label'), 'textContent', value);
             },
