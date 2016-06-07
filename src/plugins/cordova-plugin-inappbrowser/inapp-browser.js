@@ -3,6 +3,8 @@
 // Events taken from cordova-plugin-inappbrowser implementation, and iframe approach
 // based from https://github.com/apache/cordova-plugin-inappbrowser/blob/master/src/browser/InAppBrowserProxy.js
 
+var utils = require('utils');
+
 var _defaultInAppBrowserType = 'iframe';
 
 /**
@@ -13,7 +15,7 @@ var _defaultInAppBrowserType = 'iframe';
  * @constructor
  */
 function InAppBrowser(url, options, success, fail) {
-    this._url = url;
+    this._url = this._prepareUrl(url);
     this._options = {};
     this._callbacks = {
         success: success,
@@ -41,6 +43,19 @@ InAppBrowser.Events = {
     LOAD_STOP: 'loadstop',
     LOAD_ERROR: 'loaderror',
     EXIT: 'exit'
+};
+
+InAppBrowser.prototype._prepareUrl = function (url) {
+    var queryParameter = 'cdvsim-enabled=false',
+        updatedUrl = url;
+
+    if (utils.isSameOriginRequest(url)) {
+        url = utils.parseUrl(url);
+        updatedUrl += (url.search.length > 0) ? '&' : '?';
+        updatedUrl += queryParameter;
+    }
+
+    return updatedUrl;
 };
 
 InAppBrowser.prototype.getCurrentUrl = function () {};
