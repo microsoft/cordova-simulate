@@ -252,6 +252,34 @@ self = module.exports = {
 
     typeName: function (val) {
         return Object.prototype.toString.call(val).slice(8, -1);
+    },
+
+    parseUrl: function (url) {
+        var a = document.createElement('a');
+
+        a.href = url;
+
+        return {
+            href: a.href,
+            host: a.host,
+            origin: a.origin,
+            port: a.port,
+            protocol: a.protocol,
+            search: a.search
+        };
+    },
+
+    isSameOriginRequest: function (url) {
+        url = this.parseUrl(url);
+
+        if (url.port !== location.port) {
+            return false;
+        }
+
+        var sameOrigin = url.href.match(location.origin.replace(/www\./, '')) ||
+            !url.href.match(/^https?:\/\/|^file:\/\//);
+
+        return !!sameOrigin;
     }
 };
 

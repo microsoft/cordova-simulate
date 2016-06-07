@@ -1,33 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Based in part on code from Apache Ripple, https://github.com/apache/incubator-ripple
 
-var isSameOriginRequest = function (url) {
-    url = parseUrl(url);
-
-    if (url.port !== location.port) {
-        return false;
-    }
-
-    var sameOrigin = url.href.match(location.origin.replace(/www\./, '')) ||
-        !url.href.match(/^https?:\/\/|^file:\/\//);
-
-    return !!sameOrigin;
-};
-
-var parseUrl = function (url) {
-    var a = document.createElement('a');
-
-    a.href = url;
-
-    return {
-        href: a.href,
-        host: a.host,
-        origin: a.origin,
-        port: a.port,
-        protocol: a.protocol,
-        search: a.search
-    };
-};
+var utils = require('utils');
 
 var init = function () {
     var _XMLHttpRequest = XMLHttpRequest;
@@ -39,7 +13,7 @@ var init = function () {
             };
 
         xhr.open = function (method, url) {
-            var sameOrigin = isSameOriginRequest(url);
+            var sameOrigin = utils.isSameOriginRequest(url);
 
             if (!sameOrigin) {
                 url = '/xhr_proxy?rurl=' + escape(url);

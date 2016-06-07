@@ -60,6 +60,7 @@ This preview version currently includes built-in support for the following Cordo
 * [cordova-plugin-file](https://github.com/apache/cordova-plugin-file)
 * [cordova-plugin-geolocation](https://github.com/apache/cordova-plugin-geolocation)
 * [cordova-plugin-globalization](https://github.com/apache/cordova-plugin-globalization)
+* [cordova-plugin-inappbrowser](https://github.com/apache/cordova-plugin-inappbrowser)
 * [cordova-plugin-media](https://github.com/apache/cordova-plugin-media)
 * [cordova-plugin-network-information](https://github.com/apache/cordova-plugin-network-information)
 * [cordova-plugin-vibration](https://github.com/apache/cordova-plugin-vibration)

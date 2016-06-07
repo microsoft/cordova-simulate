@@ -41,8 +41,15 @@ function sendHostJsFile(response, hostType) {
 }
 
 function streamAppHostHtml(request, response) {
-    // Always prepare before serving up app HTML file, so app is up-to-date, then create the app-host.js (if it is
-    // out-of-date) so it is ready when it is requested.
+    var filePath = path.join(config.platformRoot, url.parse(request.url).pathname);
+
+    if (request.query && request.query['cdvsim-enabled'] === 'false') {
+        response.sendFile(filePath);
+        return;
+    }
+
+    // Always prepare before serving up app HTML file, so app is up-to-date,
+    // then create the app-host.js (if it is out-of-date) so it is ready when it is requested.
     prepare.prepare().then(function () {
         return simFiles.createAppHostJsFile();
     }).then(function (pluginList) {
@@ -50,7 +57,6 @@ function streamAppHostHtml(request, response) {
         simFiles.validateSimHostPlugins(pluginList);
 
         // Inject plugin simulation app-host <script> references into *.html
-        var filePath = path.join(config.platformRoot, url.parse(request.url).pathname);
         log.log('Injecting app-host into ' + filePath);
         var scriptSources = [
             '/simulator/thirdparty/socket.io-1.2.0.js',
