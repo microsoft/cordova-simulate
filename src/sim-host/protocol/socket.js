@@ -2,16 +2,38 @@
 
 var telemetry = require('telemetry-helper');
 
+var registerOnInitialize = false;
 var socket;
+var serviceToPluginMap;
 
-module.exports.initialize = function (pluginHandlers, serviceToPluginMap) {
-    socket = io();
-    module.exports.socket = socket;
-    module.exports.notifyPluginsReady = function () {
-        telemetry.registerPluginServices(serviceToPluginMap);
-        socket.emit('register-simulation-host');
+function getSuccess(index) {
+    return function (result) {
+        console.log('Success callback for index: ' + index + '; result: ' + result);
+        var data = { index: index, result: result };
+        socket.emit('exec-success', data);
+    };
+}
+
+function getFailure(index) {
+    return function (error) {
+        console.log('Failure callback for index: ' + index + '; error: ' + error);
+        var data = { index: index, error: error };
+        socket.emit('exec-failure', data);
+    };
+}
+
+function registerSimHost() {
+    socket.emit('register-simulation-host');
+}
+
+Object.defineProperty(module.exports, 'socket', {
+    get: function () {
+        return socket; // Will be undefined if called before initialize().
     }
-
+});
+module.exports.initialize = function (pluginHandlers, services) {
+    serviceToPluginMap = services;
+    socket = io();
     socket.on('init-telemetry', function (data) {
         telemetry.init(socket);
     });
@@ -56,20 +78,17 @@ module.exports.initialize = function (pluginHandlers, serviceToPluginMap) {
     socket.on('refresh', function () {
         document.location.reload(true);
     });
+
+    if (registerOnInitialize) {
+        registerSimHost();
+    }
 };
+module.exports.notifyPluginsReady = function () {
+    telemetry.registerPluginServices(serviceToPluginMap);
 
-function getSuccess(index) {
-    return function (result) {
-        console.log('Success callback for index: ' + index + '; result: ' + result);
-        var data = { index: index, result: result };
-        socket.emit('exec-success', data);
-    };
-}
-
-function getFailure(index) {
-    return function (error) {
-        console.log('Failure callback for index: ' + index + '; error: ' + error);
-        var data = { index: index, error: error };
-        socket.emit('exec-failure', data);
-    };
+    if (socket) {
+        registerSimHost();
+    } else {
+        registerOnInitialize = true;
+    }
 }
