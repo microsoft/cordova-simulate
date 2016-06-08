@@ -1,6 +1,6 @@
 {
   "name": "cordova-simulate",
-  "version": "0.2.0-dev",
+  "version": "0.2.0",
   "description": "Simulates your Cordova application in the browser.",
   "main": "src/simulate.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/microsoft/cordova-simulate"
+    "url": "https://github.com/Microsoft/cordova-simulate"
   },
   "keywords": [
     "cordova",
@@ -21,9 +21,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/microsoft/cordova-simulate/issues"
+    "url": "https://github.com/Microsoft/cordova-simulate/issues"
   },
-  "homepage": "https://github.com/microsoft/cordova-simulate",
+  "homepage": "https://github.com/Microsoft/cordova-simulate",
   "engines": {
     "node": ">= 0.12.0",
     "npm": ">= 2.5.1"
