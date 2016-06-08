@@ -14,8 +14,6 @@ var plugins;
 var pluginsTelemetry;
 var _router;
 
-resetPluginsData();
-
 function resetPluginsData() {
     plugins = {};
     pluginsTelemetry = {
@@ -149,7 +147,6 @@ function findPluginSourceFilePath(projectRoot, pluginId, file) {
     var pluginPath = path.join(projectRoot, 'plugins', pluginId, 'src/simulation');
     var pluginFilePath = path.resolve(pluginPath, file);
     return fs.existsSync(pluginFilePath) ? pluginPath : findBuiltInPluginSourceFilePath(pluginId, file);
-
 }
 
 function findBuiltInPluginSourceFilePath(pluginId, file) {
@@ -224,7 +221,13 @@ function getRouter() {
     return _router;
 }
 
+function reset() {
+    resetPluginsData();
+    _router = null;
+}
+
 module.exports.initPlugins = initPlugins;
+module.exports.reset = reset;
 module.exports.getRouter = getRouter;
 module.exports.getPlugins = function () {
     return plugins;

@@ -9,10 +9,13 @@ var fs = require('fs'),
     simSocket = require('./server/socket'),
     dirs = require('./server/dirs');
 
-var server = cordovaServe();
+var server,
+    connections;
 
 var launchServer = function (opts) {
     opts = opts || {};
+
+    server = cordovaServe();
 
     var platform = opts.platform || 'browser';
     var appUrl, simHostUrl, simHostOpts;
@@ -50,6 +53,8 @@ var launchServer = function (opts) {
         root: opts.dir,
         noServerInfo: true
     }).then(function () {
+        trackServerConnections();
+
         simSocket.init(server.server);
         config.server = server.server;
         var projectRoot = server.projectRoot;
@@ -65,8 +70,32 @@ var launchServer = function (opts) {
 };
 
 var closeServer = function () {
-    return server.server && server.server.close();
+    server.server && server.server.close();
+
+    for (var id in connections) {
+        var socket = connections[id];
+        socket && socket.destroy();
+    }
 };
+
+var stopSimulate = function () {
+    closeServer();
+    simServer.stop();
+    server = null;
+};
+
+function trackServerConnections() {
+    var nextId = 0;
+    connections = {};
+    server.server.on('connection', function (socket) {
+        var id = nextId++;
+        connections[id] = socket;
+
+        socket.on('close', function () {
+            delete connections[id];
+        });
+    });
+}
 
 var launchBrowser = function (target, url) {
     return cordovaServe.launchBrowser({ target: target, url: url });
@@ -137,7 +166,7 @@ var makeDirectoryRecursiveSync = function (dirPath) {
     fs.mkdirSync(dirPath);
 };
 
-var configureSimulationDirectory = function (projectRoot, opts) {    
+var configureSimulationDirectory = function (projectRoot, opts) {
     var simPath = opts.simulationpath || path.join(config.projectRoot, 'simulation');
     config.simulationFilePath = path.resolve(simPath);
 
@@ -150,6 +179,12 @@ module.exports = simulate;
 module.exports.launchBrowser = launchBrowser;
 module.exports.launchServer = launchServer;
 module.exports.closeServer = closeServer;
+module.exports.stopSimulate = stopSimulate;
 module.exports.dirs = dirs;
-module.exports.app = server.app;
 module.exports.log = log;
+
+Object.defineProperty(module.exports, 'app', {
+    get: function () {
+        return (server) ? server.app : null;
+    }
+});

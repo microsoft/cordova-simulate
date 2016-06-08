@@ -11,6 +11,7 @@ var fs = require('fs'),
     plugins = require('./plugins'),
     prepare = require('./prepare'),
     simFiles = require('./sim-files'),
+    simSocket = require('./socket'),
     log = require('./log');
 
 var pluginSimulationFiles = require('./plugin-files');
@@ -130,6 +131,16 @@ function processPluginHtml(html, pluginId) {
     });
 }
 
+function stop() {
+    simSocket.closeConnections();
+
+    config.newInstance();
+    plugins.reset();
+    simFiles.reset();
+    prepare.reset();
+}
+
 module.exports = {
-    attach: attach
+    attach: attach,
+    stop: stop
 };

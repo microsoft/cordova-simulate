@@ -9,14 +9,25 @@ var APP_HOST = 'app-host';
 var SIM_HOST = 'sim-host';
 var DEBUG_HOST = 'debug-host';
 
+var io;
 var hostSockets = {};
 var pendingEmits = {};
 pendingEmits[APP_HOST] = [];
 pendingEmits[SIM_HOST] = [];
 pendingEmits[DEBUG_HOST] = [];
 
+function reset() {
+    hostSockets = {};
+    pendingEmits = {};
+    pendingEmits[APP_HOST] = [];
+    pendingEmits[SIM_HOST] = [];
+    pendingEmits[DEBUG_HOST] = [];
+}
+
 function init(server) {
-    var io = require('socket.io')(server);
+    reset();
+
+    io = require('socket.io')(server);
 
     io.on('connection', function (socket) {
         socket.on('register-app-host', function () {
@@ -152,6 +163,27 @@ function invalidateSimHost() {
     hostSockets[SIM_HOST] = null;
 }
 
+function closeConnections() {
+  var hostType,
+      socket;
+  for (hostType in hostSockets) {
+    if (hostSockets.hasOwnProperty(hostType)) {
+      socket = hostSockets[hostType];
+      if (socket) {
+        socket.disconnect(true);
+      }
+    }
+  }
+
+  if (io) {
+    io.close();
+    io = null;
+  }
+
+  reset();
+}
+
 module.exports.init = init;
 module.exports.emitToHost = emitToHost;
 module.exports.invalidateSimHost = invalidateSimHost;
+module.exports.closeConnections = closeConnections;
