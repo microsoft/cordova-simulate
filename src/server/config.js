@@ -13,7 +13,7 @@ var simulationFilePath;
     { name: 'liveReload' },
     { name: 'platform' },
     { name: 'platformRoot' },
-    { name: 'projectRoot', single: true },
+    { name: 'projectRoot' },
     { name: 'server', optional: true },
     { name: 'simHostOptions' },
     { name: 'simulationFilePath' },
