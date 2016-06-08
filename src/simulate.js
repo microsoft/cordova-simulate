@@ -68,6 +68,10 @@ var closeServer = function () {
     return server.server && server.server.close();
 };
 
+var stopSimulate = function () {
+    return simServer.stop();
+};
+
 var launchBrowser = function (target, url) {
     return cordovaServe.launchBrowser({ target: target, url: url });
 };
@@ -150,6 +154,7 @@ module.exports = simulate;
 module.exports.launchBrowser = launchBrowser;
 module.exports.launchServer = launchServer;
 module.exports.closeServer = closeServer;
+module.exports.stopSimulate = stopSimulate;
 module.exports.dirs = dirs;
 module.exports.app = server.app;
 module.exports.log = log;
