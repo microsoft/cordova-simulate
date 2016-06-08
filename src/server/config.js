@@ -4,7 +4,6 @@ var fs = require('fs'),
     path = require('path');
 
 var config = {};
-var simulationFilePath;
 
 // module properties
 [
@@ -47,7 +46,6 @@ function getValue(prop, optional) {
 
 function newInstance() {
     config = {};
-    simulationFilePath = null;
 }
 
 module.exports.newInstance = newInstance;

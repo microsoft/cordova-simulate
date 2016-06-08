@@ -200,5 +200,7 @@ module.exports.prepare = prepare;
 module.exports.execCordovaPrepare = execCordovaPrepare;
 module.exports.updateTimeStampForFile = updateTimeStampForFile;
 module.exports.clear = function () {
-    // TODO previousPrepareStates preparedOnce = false;
+    previousPrepareStates = {};
+    preparePromise = null;
+    lastPlatform = null;
 };
