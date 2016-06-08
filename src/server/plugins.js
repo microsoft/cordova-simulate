@@ -165,7 +165,7 @@ function shouldUsePluginWithDebugHost(pluginPath, pluginAddedToProject) {
     pluginAddedToProject = !!pluginAddedToProject;
 
     // Check whether the plugin defines some debug-host requirements.
-    var debugHostFilePath = path.join(pluginPath, pluginSimulationFiles['debug-host']['debug-host'])
+    var debugHostFilePath = path.join(pluginPath, pluginSimulationFiles['debug-host']['debug-host']);
 
     if (!fs.existsSync(debugHostFilePath)) {
         // Plugin doesn't have any requirements for debug-host. Always use the plugin if it was added to the project.

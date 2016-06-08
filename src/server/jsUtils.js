@@ -2,17 +2,17 @@
  * Returns true if the specified objects are considered similar. Here, similarity is defined as having the same keys,
  * mapping to equal values (for value properties) or similar values (for arrays or nested objects). Does not correctly
  * support functions or nested arrays ([1,[2,3]]) - result will be invalid in these scenarios. Offers no protection
- * against circular objects. By default, order of object properties and array values is not important. 
- * 
+ * against circular objects. By default, order of object properties and array values is not important.
+ *
  * @param {any} o1 The first object.
  * @param {any} o2 The second object.
  * @param {boolean=} compareOrder Whether order in object keys and array values should be considered.
- * 
+ *
  * @returns {boolean} Whether the objects are similar.
  */
 function compareObjects(o1, o2, compareOrder) {
     // If either are undefined, return false - don't consider undefined to equal undefined.
-    if (typeof o1 === 'undefined' || typeof o1 === 'undefined') {
+    if (typeof o1 === 'undefined' || typeof o2 === 'undefined') {
         return false;
     }
 
@@ -34,7 +34,7 @@ function compareObjects(o1, o2, compareOrder) {
         var keys2 = Object.keys(o2);
 
         return compareArrays(keys1, keys2, compareOrder) &&
-            keys1.every((key) => {
+            keys1.every(function (key) {
                 return compareObjects(o1[key], o2[key]);
             });
     }
@@ -47,11 +47,11 @@ function compareObjects(o1, o2, compareOrder) {
  * Returns true if the specified arrays are considered similar. Here, similarity is defined as having the same values.
  * Does not correctly support functions or nested arrays ([1,[2,3]]) - result will be invalid in these scenarios. By
  * default, order of values is not important ([1,2,3] and [3,2,1] are considered similar).
- * 
+ *
  * @param {any[]} a1 The first array.
  * @param {any[]} a2 The second array.
  * @param {boolean=} compareOrder Whether order of values should be considered.
- * 
+ *
  * @returns {boolean} Whether the arrays are similar.
  */
 function compareArrays(a1, a2, compareOrder) {
@@ -70,7 +70,7 @@ function compareArrays(a1, a2, compareOrder) {
     }
 
     if (compareOrder) {
-        return a1.every((v, i) => {
+        return a1.every(function (v, i) {
             return v === a2[i];
         });
     }
@@ -78,7 +78,7 @@ function compareArrays(a1, a2, compareOrder) {
     var itemCounts = {};
     var isSimilar = true;
 
-    a1.forEach((value) => {
+    a1.forEach(function (value) {
         if (!itemCounts[value]) {
             itemCounts[value] = 0;
         }
@@ -86,8 +86,8 @@ function compareArrays(a1, a2, compareOrder) {
         ++itemCounts[value];
     });
 
-    // Using Array.prototype.find() to break early if needed.
-    a2.find((value) => {
+    // Using Array.prototype.some() to break early if needed.
+    a2.some(function (value) {
         if (!itemCounts[value]) {
             // If this value does not exist or its count is at 0, then a2 has an item that a1 doesn't have.
             isSimilar = false;

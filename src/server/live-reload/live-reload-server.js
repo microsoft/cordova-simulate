@@ -21,17 +21,21 @@ function onFileChanged(fileRelativePath, parentDir) {
     if (config.forcePrepare) {
         // Sometimes, especially on Windows, prepare will fail because the modified file is locked for a short duration
         // after modification, so we try to prepare twice.
-        propagateChangePromise = retryAsync(prepare.prepare, 2).then(() => false);
+        propagateChangePromise = retryAsync(prepare.prepare, 2).then(function () {
+            return false;
+        });
     } else {
         var sourceAbsolutePath = path.join(config.projectRoot, parentDir, fileRelativePath);
         var destAbsolutePath = path.join(config.platformRoot, fileRelativePath);
 
-        propagateChangePromise = copyFile(sourceAbsolutePath, destAbsolutePath).then(() => true);
+        propagateChangePromise = copyFile(sourceAbsolutePath, destAbsolutePath).then(function () {
+            return true;
+        });
     }
 
     // Notify app-host. The delay is needed as a workaround on Windows, because shortly after copying the file, it is
     // typically locked by the Firewall and can't be correctly sent by the server.
-    propagateChangePromise.delay(125).then((shouldUpdateModifTime) => {
+    propagateChangePromise.delay(125).then(function (shouldUpdateModifTime) {
         var props = { fileType: path.extname(fileRelativePath) };
 
         if (shouldUpdateModifTime) {

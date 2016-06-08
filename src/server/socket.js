@@ -131,7 +131,7 @@ function init(server) {
                     log.log('Debug-host disconnected.');
                     config.debugHostHandlers = null;
                 });
-                config.debugHostHandlers = data.handlers
+                config.debugHostHandlers = data.handlers;
             }
 
             handlePendingEmits(DEBUG_HOST);

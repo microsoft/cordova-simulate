@@ -27,22 +27,24 @@ function prepare() {
         preparePromise = d.promise;
         lastPlatform = config.platform;
 
-        getProjectState().then((currentState) => {
+        getProjectState().then(function (currentState) {
             currentProjectState = currentState;
 
             if (shouldPrepare(currentProjectState)) {
-                return execCordovaPrepare().then(() => true);
+                return execCordovaPrepare().then(function () {
+                    return true;
+                });
             }
 
             return Q(false);
-        }).then((didPrepare) => {
+        }).then(function (didPrepare) {
             if (didPrepare || shouldInitPlugins(currentProjectState)) {
                 saveProjectState(currentProjectState);
                 plugins.initPlugins();
             }
 
             d.resolve();
-        }).finally(() => {
+        }).finally(function () {
             lastPlatform = null;
             preparePromise = null;
         }).done();
@@ -126,11 +128,11 @@ function getProjectState() {
     var currentPlatform = config.platform;
     var newState = {};
 
-    return Q().then(() => {
+    return Q().then(function () {
         // Get the list of plugins for the current platform.
         var pluginsJsonPath = path.join(config.projectRoot, 'plugins', currentPlatform + '.json');
         return Q.nfcall(fs.readFile, pluginsJsonPath);
-    }).then((fileContent) => {
+    }).then(function (fileContent) {
         var installedPlugins = {};
 
         try {
@@ -142,13 +144,13 @@ function getProjectState() {
         }
 
         newState.pluginList = installedPlugins;
-    }).then(() => {
+    }).then(function () {
         // Get the modification times for project files.
         var wwwRoot = path.join(config.projectRoot, 'www');
         var mergesRoot = path.join(config.projectRoot, 'merges', config.platform);
 
         return Q.all([getMtimeForFiles(wwwRoot), getMtimeForFiles(mergesRoot)]);
-    }).spread((wwwFiles, mergesFiles) => {
+    }).spread(function (wwwFiles, mergesFiles) {
         var files = {};
 
         files.www = wwwFiles || {};
@@ -179,19 +181,19 @@ function updateTimeStampForFile(fileRelativePath, parentDir) {
 function getMtimeForFiles(dir) {
     var files = {};
 
-    Q.nfcall(glob, '**/*', { cwd: dir }).then((rawFiles) => {
+    Q.nfcall(glob, '**/*', { cwd: dir }).then(function (rawFiles) {
         var filePromises = [];
 
-        rawFiles.forEach((file) => {
+        rawFiles.forEach(function (file) {
             file = path.join(dir, file);
 
-            filePromises.push(Q.nfcall(fs.stat, file).then((stats) => {
+            filePromises.push(Q.nfcall(fs.stat, file).then(function (stats) {
                 files[file] = new Date(stats.mtime).getTime();
             }));
         });
 
         return Q.all(filePromises);
-    }).then(() => {
+    }).then(function () {
         return files;
     });
 }
