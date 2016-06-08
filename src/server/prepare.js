@@ -199,7 +199,7 @@ function getMtimeForFiles(dir) {
 module.exports.prepare = prepare;
 module.exports.execCordovaPrepare = execCordovaPrepare;
 module.exports.updateTimeStampForFile = updateTimeStampForFile;
-module.exports.clear = function () {
+module.exports.reset = function () {
     previousPrepareStates = {};
     preparePromise = null;
     lastPlatform = null;

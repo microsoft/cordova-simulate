@@ -234,7 +234,7 @@ function getHostJsFile(hostType) {
     return hostJsFiles[hostType];
 }
 
-function clear() {
+function reset() {
     hostJsFiles = {};
     builtOnce = {};
 }
@@ -243,4 +243,4 @@ module.exports.createSimHostJsFile = createSimHostJsFile;
 module.exports.createAppHostJsFile = createAppHostJsFile;
 module.exports.validateSimHostPlugins = validateSimHostPlugins;
 module.exports.getHostJsFile = getHostJsFile;
-module.exports.clear = clear;
+module.exports.reset = reset;

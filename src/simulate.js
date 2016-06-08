@@ -9,10 +9,12 @@ var fs = require('fs'),
     simSocket = require('./server/socket'),
     dirs = require('./server/dirs');
 
-var server = cordovaServe();
+var server;
 
 var launchServer = function (opts) {
     opts = opts || {};
+
+    server = cordovaServe();
 
     var platform = opts.platform || 'browser';
     var appUrl, simHostUrl, simHostOpts;
@@ -69,7 +71,8 @@ var closeServer = function () {
 };
 
 var stopSimulate = function () {
-    return simServer.stop();
+    simServer.stop();
+    server = null;
 };
 
 var launchBrowser = function (target, url) {
@@ -141,7 +144,7 @@ var makeDirectoryRecursiveSync = function (dirPath) {
     fs.mkdirSync(dirPath);
 };
 
-var configureSimulationDirectory = function (projectRoot, opts) {    
+var configureSimulationDirectory = function (projectRoot, opts) {
     var simPath = opts.simulationpath || path.join(config.projectRoot, 'simulation');
     config.simulationFilePath = path.resolve(simPath);
 
@@ -156,5 +159,10 @@ module.exports.launchServer = launchServer;
 module.exports.closeServer = closeServer;
 module.exports.stopSimulate = stopSimulate;
 module.exports.dirs = dirs;
-module.exports.app = server.app;
 module.exports.log = log;
+
+Object.defineProperty(module.exports, 'app', {
+    get: function () {
+        return (server) ? server.app : null;
+    }
+});

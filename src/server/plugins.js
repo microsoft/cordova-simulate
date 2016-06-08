@@ -221,13 +221,13 @@ function getRouter() {
     return _router;
 }
 
-function clear() {
+function reset() {
     resetPluginsData();
     _router = null;
 }
 
 module.exports.initPlugins = initPlugins;
-module.exports.clear = clear;
+module.exports.reset = reset;
 module.exports.getRouter = getRouter;
 module.exports.getPlugins = function () {
     return plugins;
