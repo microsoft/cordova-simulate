@@ -9,7 +9,8 @@ var fs = require('fs'),
     simSocket = require('./server/socket'),
     dirs = require('./server/dirs');
 
-var server;
+var server,
+    connections;
 
 var launchServer = function (opts) {
     opts = opts || {};
@@ -52,6 +53,8 @@ var launchServer = function (opts) {
         root: opts.dir,
         noServerInfo: true
     }).then(function () {
+        trackServerConnections();
+
         simSocket.init(server.server);
         config.server = server.server;
         var projectRoot = server.projectRoot;
@@ -67,13 +70,32 @@ var launchServer = function (opts) {
 };
 
 var closeServer = function () {
-    return server.server && server.server.close();
+    server.server && server.server.close();
+
+    for (var id in connections) {
+        var socket = connections[id];
+        socket && socket.destroy();
+    }
 };
 
 var stopSimulate = function () {
+    closeServer();
     simServer.stop();
     server = null;
 };
+
+function trackServerConnections() {
+    var nextId = 0;
+    connections = {};
+    server.server.on('connection', function (socket) {
+        var id = nextId++;
+        connections[id] = socket;
+
+        socket.on('close', function () {
+            delete connections[id];
+        });
+    });
+}
 
 var launchBrowser = function (target, url) {
     return cordovaServe.launchBrowser({ target: target, url: url });
