@@ -131,7 +131,7 @@ function init(server) {
                     log.log('Debug-host disconnected.');
                     config.debugHostHandlers = null;
                 });
-                config.debugHostHandlers = data.handlers
+                config.debugHostHandlers = data.handlers;
             }
 
             handlePendingEmits(DEBUG_HOST);
@@ -164,23 +164,19 @@ function invalidateSimHost() {
 }
 
 function closeConnections() {
-  var hostType,
-      socket;
-  for (hostType in hostSockets) {
-    if (hostSockets.hasOwnProperty(hostType)) {
-      socket = hostSockets[hostType];
-      if (socket) {
-        socket.disconnect(true);
-      }
+    Object.keys(hostSockets).forEach(function (hostType) {
+        var socket = hostSockets[hostType];
+        if (socket) {
+            socket.disconnect(true);
+        }
+    });
+
+    if (io) {
+        io.close();
+        io = null;
     }
-  }
 
-  if (io) {
-    io.close();
-    io = null;
-  }
-
-  reset();
+    reset();
 }
 
 module.exports.init = init;

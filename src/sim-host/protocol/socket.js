@@ -83,6 +83,7 @@ module.exports.initialize = function (pluginHandlers, services) {
         registerSimHost();
     }
 };
+
 module.exports.notifyPluginsReady = function () {
     telemetry.registerPluginServices(serviceToPluginMap);
 
@@ -91,4 +92,4 @@ module.exports.notifyPluginsReady = function () {
     } else {
         registerOnInitialize = true;
     }
-}
+};

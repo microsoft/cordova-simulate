@@ -53,15 +53,9 @@ module.exports.start = function (sock) {
      * @returns {boolean} Whether the URL points to the modified file from the server.
      */
     function urlMatchesPath(url, fileRelativePath) {
-        var isMatch = false;
-
-        localUrlPrefixes.find(function (prefix) {
-            isMatch = prefix + fileRelativePath === url;
-
-            return isMatch;
+        return localUrlPrefixes.some(function (prefix) {
+            return (prefix + fileRelativePath) === url;
         });
-
-        return isMatch;
     }
 
     /**
@@ -109,13 +103,12 @@ module.exports.start = function (sock) {
     /**
      * Determines whether the changes form the specified file can be applied to the app without a full page reload.
      * Then, based on that, either updates the reference attribute of the appropriate node, or does a full page
-     * reload. 
+     * reload.
      *
      * @param {String} fileRelativePath The URL of the file that changed, relative to the webRoot.
      */
     function onFileChanged(fileRelativePath) {
         var associatedNodes = findDomNodesForFilePath(fileRelativePath);
-        var canRefresh = false;
 
         if (associatedNodes.length) {
             refreshFile(fileRelativePath, associatedNodes);
