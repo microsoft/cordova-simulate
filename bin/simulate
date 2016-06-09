@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+/*eslint-env node */
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
 var config = require('../src/server/config');
@@ -23,17 +24,17 @@ function logErrorAndExit(e) {
     process.exit(1);
 }
 
+function unknownOptHandler(optName) {
+    // Throw error on unknown option. Note for '--port': minimist does not support the 'number' type, so we can't list 'port' as a known option.
+    if (optName.indexOf('-') === 0 && optName !== '--port') {
+        throw new Error('Unknown option \'' + optName + '\'');
+    }
+
+    return true;
+}
+
 function processArgs() {
     try {
-        function unknownOptHandler(optName) {
-            // Throw error on unknown option. Note for '--port': minimist does not support the 'number' type, so we can't list 'port' as a known option.
-            if (optName.indexOf('-') === 0 && optName !== '--port') {
-                throw new Error('Unknown option \'' + optName + '\'');
-            }
-
-            return true;
-        }
-
         var parserOptions = {
             string: ['dir', 'simhostui', 'target', 'simulationpath'],
             boolean: ['livereload', 'forceprepare', 'corsproxy'],
@@ -81,7 +82,7 @@ function getUsageString() {
         '[--forceprepare (FORCE_PREPARE)]',
         '[--simhostui SIM_HOST_UI_MODULE_PATH]',
         '[--simulationpath SIMULATION_PATH]',
-        '[--target TARGET]',
+        '[--target TARGET]'
     ];
 
     return message + options.join(' ') + os.EOL;

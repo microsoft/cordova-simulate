@@ -3,7 +3,7 @@ var gulp        = require('gulp'),
     jsonlint    = require('gulp-jsonlint');
 
 gulp.task('eslint', function () {
-    return gulp.src('src/**/*.js')
+    return gulp.src([ 'gulpfile.js', 'bin/simulate', 'src/**/*.js' ])
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
