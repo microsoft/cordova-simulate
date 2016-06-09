@@ -1,8 +1,11 @@
 # cordova-simulate Release Notes
 
 ### 0.2.0 (June 9, 2016)
-* Support for additional core plugins
+* Support for additional core plugins: cordova-plugin-battery-status, cordova-plugin-network-information, cordova-plugin-device-orientation, cordova-plugin-inappbrowser
 * Live reload
+* Touch events
+* CORS proxy
+* Device screen resizing
 * Multiple bug fixes and improvements
 
 ### 0.1.3 (Oct 28, 2015)
