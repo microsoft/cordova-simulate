@@ -1,5 +1,10 @@
 # cordova-simulate Release Notes
 
+### 0.2.0 (June 9, 2016)
+* Support for additional core plugins
+* Live reload
+* Multiple bug fixes and improvements
+
 ### 0.1.3 (Oct 28, 2015)
 * Adds support for some basic telemetry ([e547555f](https://github.com/Microsoft/taco-simulate-server/commit/e547555f)).
 * Ensure server is closed if an error occurs ([ffe2b134](https://github.com/Microsoft/taco-simulate-server/commit/ffe2b134)).
