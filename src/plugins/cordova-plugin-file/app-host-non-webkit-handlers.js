@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
+/*global Uint8Array: false */
+
 if (!window.indexedDB) {
     throw new Error('indexedDB not supported');
 }
