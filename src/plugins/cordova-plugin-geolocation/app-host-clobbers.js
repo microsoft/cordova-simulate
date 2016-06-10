@@ -186,6 +186,10 @@ module.exports = function (messages, exec) {
                 timers[id].timer = false;
                 exec(null, null, 'Geolocation', 'clearWatch', [id]);
             }
+        },
+
+        getPermission: function (success, fail, args) {
+            success();
         }
     };
 

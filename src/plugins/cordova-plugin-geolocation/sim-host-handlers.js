@@ -47,6 +47,9 @@ module.exports = function (messages) {
                 if (success && typeof (success) === 'function') {
                     success();
                 }
+            },
+            getPermission: function (success, fail, args) {
+                success();
             }
         }
     };
