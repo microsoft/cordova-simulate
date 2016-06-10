@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Based in part on code from Apache Ripple (https://github.com/apache/incubator-ripple)
 
+/*global OpenLayers: false */
 var telemetry = require('telemetry-helper');
 
 var baseProps = {

@@ -2,6 +2,7 @@
 
 // https://github.com/apache/cordova-plugin-device-motion/
 
+/*global ThreeDee: false, Draw: false */
 require('./3d');
 require('./draw');
 var telemetry = require('telemetry-helper');

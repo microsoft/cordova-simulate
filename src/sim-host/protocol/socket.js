@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
+/*global io: false */
+
 var telemetry = require('telemetry-helper');
 
 var registerOnInitialize = false;
@@ -34,7 +36,7 @@ Object.defineProperty(module.exports, 'socket', {
 module.exports.initialize = function (pluginHandlers, services) {
     serviceToPluginMap = services;
     socket = io();
-    socket.on('init-telemetry', function (data) {
+    socket.on('init-telemetry', function () {
         telemetry.init(socket);
     });
     socket.on('exec', function (data) {

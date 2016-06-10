@@ -3,6 +3,8 @@
 // Events taken from cordova-plugin-inappbrowser implementation, and iframe approach
 // based from https://github.com/apache/cordova-plugin-inappbrowser/blob/master/src/browser/InAppBrowserProxy.js
 
+/*global cordova: false */
+
 var utils = require('utils');
 
 var _defaultInAppBrowserType = 'iframe';

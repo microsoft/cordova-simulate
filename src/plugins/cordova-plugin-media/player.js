@@ -2,6 +2,8 @@
 
 // https://github.com/apache/cordova-plugin-media/
 
+/*global Media: false */
+
 var _players = {};
 
 /**

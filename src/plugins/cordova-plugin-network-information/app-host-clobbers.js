@@ -9,6 +9,9 @@ module.exports = {
                         return {
                             getNetworkConnectivityLevel: function () {
                                 // defined in platforms/windows/app-host-clobbers.js
+                                // FIXME: see issue #56. lint suppression should
+                                // be removed when it's fixed.
+                                // eslint-disable-next-line no-undef
                                 return Windows.Networking.Connectivity.NetworkConnectivityLevel.internetAccess;
                             },
                             networkAdapter: {

@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
-
+/* global io:false */
 var livereload = require('./live-reload-client');
 var Messages = require('messages');
 var telemetry = require('telemetry-helper');
 
 var cordova;
-var oldExec;
 var socket = io();
 var nextExecCacheIndex = 0;
 var execCache = {};
@@ -18,7 +17,6 @@ function setCordova(originalCordova) {
 
     cordova = originalCordova;
 
-    oldExec = cordova.require('cordova/exec');
     cordova.define.remove('cordova/exec');
     cordova.define('cordova/exec', function (require, exports, module) {
         module.exports = exec;
@@ -57,8 +55,6 @@ function getCordova() {
 }
 
 socket.on('exec-success', function (data) {
-    console.log('exec-success:');
-    console.log(data);
     var execCacheInfo = execCache[data.index];
     if (execCacheInfo.success) {
         execCacheInfo.success(data.result);
@@ -66,8 +62,6 @@ socket.on('exec-success', function (data) {
 });
 
 socket.on('exec-failure', function (data) {
-    console.log('exec-failure:');
-    console.log(data);
     var execCacheInfo = execCache[data.index];
     if (execCacheInfo.fail) {
         execCacheInfo.fail(data.error);
@@ -78,15 +72,15 @@ socket.on('start-live-reload', function () {
     livereload.start(socket);
 });
 
-socket.on('init-telemetry', function (data) {
+socket.on('init-telemetry', function () {
     telemetry.init(socket);
 });
 
-socket.on('init-xhr-proxy', function (data) {
+socket.on('init-xhr-proxy', function () {
     require('xhr-proxy').init();
 });
 
-socket.on('init-touch-events', function (data) {
+socket.on('init-touch-events', function () {
     require('./touch-events').init();
 });
 
