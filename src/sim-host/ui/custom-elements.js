@@ -152,6 +152,45 @@ function initialize() {
         this.classList.add('cordova-group');
     }, 'input');
 
+    registerCustomElement('cordova-number-entry', {
+        value: {
+            set: function (value) {
+                setValueSafely(this.shadowRoot.querySelector('input'), 'value', value);
+            },
+
+            get: function () {
+                return this.shadowRoot.querySelector('input').value;
+            }
+        },
+        disabled: {
+            set: function (value) {
+                setValueSafely(this.shadowRoot.querySelector('input'), 'disabled', value);
+            }
+        }
+    }, function () {
+        this.shadowRoot.querySelector('label').textContent = this.getAttribute('label');
+        this.classList.add('cordova-panel-row');
+        this.classList.add('cordova-group');
+
+        var input = this.shadowRoot.querySelector('input');
+
+        var maxValue = this.getAttribute('max'),
+            minValue = this.getAttribute('min'),
+            step = this.getAttribute('step');
+
+        if (maxValue !== null) {
+            input.setAttribute('max', maxValue);
+        }
+
+        if (minValue !== null) {
+            input.setAttribute('min', minValue);
+        }
+
+        if (step !== null) {
+            input.setAttribute('step', step);
+        }
+    }, 'input');
+
     registerCustomElement('cordova-labeled-value', {
         label: {
             set: function (value) {
