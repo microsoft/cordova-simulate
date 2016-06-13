@@ -3,29 +3,36 @@
 var fs = require('fs'),
     path = require('path'),
     cordovaServe = require('cordova-serve'),
-    dirs = require('../dirs');
+    Q = require('q'),
+    dirs = require('./dirs'),
+    pluginUtil = require('./utils/plugins'),
+    prepareUtil = require('./utils/prepare'),
+    utils = require('./utils/jsUtils');
 
-var pluginUtil = require('./plugin'),
-    utils = require('../jsUtils');
-
-// TODO config = require('./config'),
 // TODO telemetry = require('./telemetry-helper');
 
 /**
  * @constructor
  */
-function Project(simulator, projectRoot, platform, platformRoot, debugHostHandlers) {
+function Project(simulator, platform, debugHostHandlers) {
     this._simulator = simulator;
 
-    this.projectRoot = projectRoot;
     this.platform = platform;
-    this.platformRoot = platformRoot;
     this.debugHostHandlers = debugHostHandlers;
     this.simulationFilePath = null;
+    // set after the simulation has started
+    this.projectRoot = null;
+    this.platformRoot = null;
 
+    // plugins data
     this.plugins = null;
     this.pluginsTelemetry = null;
     this._router = null;
+
+    // prepare state
+    this._previousPrepareStates = {};
+    this._preparePromise = null;
+    this._lastPlatform = null;
 }
 
 Project.DEFAULT_PLUGINS = [
@@ -41,10 +48,6 @@ Project.prototype.configureSimulationDirectory = function (simulationPath) {
     if (!fs.existsSync(this.simulationFilePath)) {
         utils.makeDirectoryRecursiveSync(this.simulationFilePath);
     }
-};
-
-Project.prototype.prepare = function () {
-    // TODO
 };
 
 Project.prototype.initPlugins = function () {
@@ -143,17 +146,54 @@ Project.prototype.getPluginsTelemetry = function () {
     return this.pluginsTelemetry;
 };
 
-// private API
+/**
+ * Prepares the project and initializes the simulation plugin list.
+ *
+ * @param {Object=} currentState (Optional) The current state of the project for caching purposes.
+ */
+Project.prototype.prepare = function() {
+    if (!this._preparePromise) {
+        var d = Q.defer();
+        var currentProjectState;
 
-Project.prototype._resetPluginsData = function () {
-    this.plugins = {};
-    this.pluginsTelemetry = {
-        simulatedBuiltIn: [],
-        simulatedNonBuiltIn: [],
-        notSimulated: []
-    };
+        this._preparePromise = d.promise;
+        this._lastPlatform = this.platform;
+
+        this._getProjectState().then(function (currentState) {
+            currentProjectState = currentState || this._getProjectState();
+            var previousState = this._previousPrepareStates[this.platform];
+
+            if (prepareUtil.shouldPrepare(currentProjectState, previousState)) {
+                return prepareUtil.execCordovaPrepare().then(function () {
+                    return true;
+                });
+            }
+
+            return Q(false);
+        }.bind(this)).then(function (didPrepare) {
+            var previousState = this._previousPrepareStates[this.platform];
+
+            if (didPrepare || pluginUtil.shouldInitPlugins(currentProjectState, previousState)) {
+                this._previousPrepareStates[this.platform] = currentProjectState || this._getProjectState();
+                this.initPlugins();
+            }
+
+            d.resolve();
+        }.bind(this)).finally(function () {
+            this._lastPlatform = null;
+            this._preparePromise = null;
+        }.bind(this)).done();
+    } else if (this.platform !== this._lastPlatform) {
+        // Sanity check to verify we never queue prepares for different platforms
+        throw new Error('Unexpected request to prepare \'' + this.platform + '\' while prepare of \'' + this._lastPlatform + '\' still pending.');
+    }
+
+    return this._preparePromise;
 };
 
+/**
+ * @private
+ */
 Project.prototype._populateRouter = function () {
     var router = this.getRouter();
     router.stack = [];
@@ -176,10 +216,82 @@ Project.prototype._addPlatformDefaultHandlers = function () {
     }
 };
 
-// TODO might not be needed
+Project.prototype.updateTimeStampForFile = function (fileRelativePath, parentDir) {
+    var previousState = this._previousPrepareStates[this.platform];
+    // get the file absolute path
+    var filePath = path.join(this.projectRoot, parentDir, fileRelativePath);
+
+    if (previousState && previousState.files && previousState.files[parentDir] &&
+        previousState.files[parentDir][filePath]) {
+
+        previousState.files[parentDir][filePath] = new Date(fs.statSync(filePath).mtime).getTime();
+    }
+};
+
+/**
+ * @private
+ * @return {Promise}
+ */
+Project.prototype._getProjectState = function() {
+    var platform = this.platform;
+    var projectRoot = this.projectRoot;
+    var newState = {};
+
+    return Q().then(function () {
+        // Get the list of plugins for the current platform.
+        var pluginsJsonPath = path.join(projectRoot, 'plugins', platform + '.json');
+        return Q.nfcall(fs.readFile, pluginsJsonPath);
+    }).then(function (fileContent) {
+        var installedPlugins = {};
+
+        try {
+            installedPlugins = Object.keys(JSON.parse(fileContent.toString())['installed_plugins'] || {});
+        } catch (err) {
+            // For some reason, it was not possible to determine which plugins are installed for the current platform, so
+            // use a dummy value to indicate a "bad state".
+            installedPlugins = ['__unknown__'];
+        }
+
+        newState.pluginList = installedPlugins;
+    }).then(function () {
+        // Get the modification times for project files.
+        var wwwRoot = path.join(projectRoot, 'www');
+        var mergesRoot = path.join(projectRoot, 'merges', platform);
+
+        return Q.all([utils.getMtimeForFiles(wwwRoot), utils.getMtimeForFiles(mergesRoot)]);
+    }).spread(function (wwwFiles, mergesFiles) {
+        var files = {};
+
+        files.www = wwwFiles || {};
+        files.merges = mergesFiles || {};
+        newState.files = files;
+
+        // Get information about current debug-host handlers.
+        newState.debugHostHandlers = this.debugHostHandlers || [];
+
+        // Return the new state.
+        return newState;
+    }.bind(this));
+};
+
+/**
+ * @private
+ */
+Project.prototype._resetPluginsData = function () {
+    this.plugins = {};
+    this.pluginsTelemetry = {
+        simulatedBuiltIn: [],
+        simulatedNonBuiltIn: [],
+        notSimulated: []
+    };
+};
+
+/**
+ * @private
+ */
 Project.prototype._reset = function () {
     this._resetPluginsData();
     this._router = null;
 };
 
-module.exports.Project = Project;
+module.exports = Project;

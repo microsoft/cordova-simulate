@@ -1,5 +1,7 @@
 var fs = require('fs'),
-    path = require('path');
+    path = require('path'),
+    Q = require('q'),
+    glob = require('glob');
 
 /**
  * Returns true if the specified objects are considered similar. Here, similarity is defined as having the same keys,
@@ -144,8 +146,29 @@ function makeDirectoryRecursiveSync (dirPath) {
     fs.mkdirSync(dirPath);
 }
 
+function getMtimeForFiles(dir) {
+    var files = {};
+
+    Q.nfcall(glob, '**/*', { cwd: dir }).then(function (rawFiles) {
+        var filePromises = [];
+
+        rawFiles.forEach(function (file) {
+            file = path.join(dir, file);
+
+            filePromises.push(Q.nfcall(fs.stat, file).then(function (stats) {
+                files[file] = new Date(stats.mtime).getTime();
+            }));
+        });
+
+        return Q.all(filePromises);
+    }).then(function () {
+        return files;
+    });
+}
+
 module.exports.compareObjects = compareObjects;
 module.exports.compareArrays = compareArrays;
 module.exports.existsSync = existsSync;
 module.exports.getDirectoriesInPath = getDirectoriesInPath;
 module.exports.makeDirectoryRecursiveSync = makeDirectoryRecursiveSync;
+module.exports.getMtimeForFiles = getMtimeForFiles;

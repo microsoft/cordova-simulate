@@ -4,7 +4,8 @@ var path = require('path'),
     fs = require('fs'),
     pluginMapper = require('cordova-registry-mapper').oldToNew;
 
-var pluginSimulationFiles = require('../plugin-files');
+var pluginSimulationFiles = require('../plugin-files'),
+    jsUtils = require('./jsUtils');
 
 function findPluginPath(projectRoot, pluginId, hostType) {
     if (!hostType) {
@@ -79,7 +80,26 @@ function shouldUsePluginWithDebugHost(pluginPath, pluginAddedToProject, debugHos
     return pluginAddedToProject || !!debugHostOptions.alwaysActivateIfDebugHost;
 }
 
+function shouldInitPlugins(currentState, previousState) {
+    // We should init plugins if we don't have any info on a previous prepare for the current platform, or if there is
+    // a difference in the list of installed plugins or debug-host handlers.
+    var currentPlatform = config.platform;
+
+    if (!previousState) {
+        return true;
+    }
+
+    // Use JSON stringification to compare states. This works because a state is an object that only contains
+    // serializable values, and because the glob module, which is used to read directories recursively, is
+    // deterministic in the order of the files it returns.
+    var pluginsAreTheSame = jsUtils.compareObjects(currentState.pluginList, previousState.pluginList);
+    var debugHandlersAreTheSame = jsUtils.compareObjects(currentState.debugHostHandlers, previousState.debugHostHandlers);
+
+    return !pluginsAreTheSame || !debugHandlersAreTheSame;
+}
+
 module.exports.findPluginPath = findPluginPath;
 module.exports.findPluginSourceFilePath = findPluginSourceFilePath;
 module.exports.findBuiltInPluginSourceFilePath = findBuiltInPluginSourceFilePath;
 module.exports.shouldUsePluginWithDebugHost = shouldUsePluginWithDebugHost;
+module.exports.shouldInitPlugins = shouldInitPlugins;

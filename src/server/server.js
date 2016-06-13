@@ -6,43 +6,122 @@ var fs = require('fs'),
     cordovaServe = require('cordova-serve'),
     send = require('send'),
     url = require('url'),
-    config = require('./config'),
     dirs = require('./dirs'),
-    plugins = require('./plugins'),
-    prepare = require('./prepare'),
-    simFiles = require('./sim-files'),
-    simSocket = require('./socket'),
-    log = require('./log');
+    log = require('./utils/log'),
+    SimulationFiles = require('./sim-files'),
+    SocketServer = require('./socket');
 
 var pluginSimulationFiles = require('./plugin-files');
 
-function attach(app) {
+/**
+ * @constructor
+ */
+function SimulationServer(simulator) {
+    this._simulator = simulator;
+    this._server = cordovaServe();
+    this._simulationFiles = new SimulationFiles(simulator);
+    this._simSocket = new SocketServer(simulator);
+}
+
+Object.defineProperties(SimulationServer.prototype, {
+    server: {
+        get: function () {
+            return this._server;
+        }
+    },
+    simSocket: {
+        get: function () {
+            return this._simSocket;
+        }
+    }
+});
+
+SimulationServer.prototype.start = function (platform, config, opts) {
+    /* attach simulation host middleware */
+    var middlewarePath = path.join(config.simHostOptions.simHostRoot, 'server', 'server');
+    if (fs.existsSync(middlewarePath + '.js')) {
+        require(middlewarePath).attach(this._server.app, dirs);
+    }
+
+    /* attach CORS proxy middleware */
+    if (config.xhrProxy) {
+        require('./xhr-proxy').attach(this._server.app);
+    }
+
+    this._prepareRoutes();
+
+    return this._server.servePlatform(platform, {
+        port: opts.port,
+        root: opts.dir,
+        noServerInfo: true
+    }).then(function () {
+        this._trackServerConnections();
+        this._simSocket.init(this._server.server);
+
+        var projectRoot = this._server.projectRoot,
+            urlRoot = 'http://localhost:' + this._server.port + '/',
+            appUrl = urlRoot + parseStartPage(projectRoot),
+            simHostUrl = urlRoot + 'simulator/index.html';
+
+        log.log('Server started:\n- App running at: ' + appUrl + '\n- Sim host running at: ' + simHostUrl);
+
+        return {
+            urlRoot: urlRoot,
+            appUrl: appUrl,
+            simHostUrl: simHostUrl
+        };
+    }.bind(this));
+};
+
+/**
+ * @private
+ */
+SimulationServer.prototype._prepareRoutes = function () {
+    var app = this._server.app;
+
+    var streamSimHostHtml = this._streamSimHostHtml.bind(this),
+        streamAppHostHtml = this._streamAppHostHtml.bind(this);
+
     app.get('/simulator/', streamSimHostHtml);
     app.get('/simulator/*.html', streamSimHostHtml);
     app.get('/', streamAppHostHtml);
     app.get('/*.html', streamAppHostHtml);
     app.get('/simulator/app-host.js', function (request, response) {
-        sendHostJsFile(response, 'app-host');
-    });
+        this.sendHostJsFile(response, 'app-host');
+    }.bind(this));
     app.get('/simulator/sim-host.js', function (request, response) {
-        sendHostJsFile(response, 'sim-host');
-    });
-    app.use(plugins.getRouter());
-    app.use('/simulator', cordovaServe.static(dirs.hostRoot['sim-host']));
+        this.sendHostJsFile(response, 'sim-host');
+    }.bind(this));
+    app.use(this._simulator.project.getRouter());
+    app.use('/simulator', cordovaServe.static(this._simulator.hostRoot['sim-host']));
     app.use('/simulator/thirdparty', cordovaServe.static(dirs.thirdParty));
+};
 
-}
+SimulationServer.prototype.stop = function () {
+    this._simSocket.closeConnections();
+    this._server.server && this._server.server.close();
 
-function sendHostJsFile(response, hostType) {
-    var hostJsFile = simFiles.getHostJsFile(hostType);
+    for (var id in this._connections) {
+        var socket = this._connections[id];
+        socket && socket.destroy();
+    }
+};
+
+/**
+ * @param {object} response
+ * @param {string} hostType
+ */
+SimulationServer.prototype.sendHostJsFile = function (response, hostType) {
+    var hostJsFile = this._simulationFiles.getHostJsFile(hostType);
     if (!hostJsFile) {
         throw new Error('Path to ' + hostType + '.js has not been set.');
     }
     response.sendFile(hostJsFile);
-}
+};
 
-function streamAppHostHtml(request, response) {
-    var filePath = path.join(config.platformRoot, url.parse(request.url).pathname);
+SimulationServer.prototype._streamAppHostHtml = function (request, response) {
+    var project = this._simulator._project;
+    var filePath = path.join(project.platformRoot, url.parse(request.url).pathname);
 
     if (request.query && request.query['cdvsim-enabled'] === 'false') {
         response.sendFile(filePath);
@@ -51,7 +130,9 @@ function streamAppHostHtml(request, response) {
 
     // Always prepare before serving up app HTML file, so app is up-to-date,
     // then create the app-host.js (if it is out-of-date) so it is ready when it is requested.
-    prepare.prepare().then(function () {
+    var simFiles = this._simulationFiles;
+
+    project.prepare().then(function () {
         return simFiles.createAppHostJsFile();
     }).then(function (pluginList) {
         // Sim host will need to be refreshed if the plugin list has changed.
@@ -77,21 +158,23 @@ function streamAppHostHtml(request, response) {
             }
         }).pipe(response);
     }).done();
-}
+};
 
-function streamSimHostHtml(request, response) {
+SimulationServer.prototype._streamSimHostHtml = function (request, response) {
     // If we haven't ever prepared, do so before we try to generate sim-host, so we know our list of plugins is up-to-date.
     // Then create sim-host.js (if it is out-of-date) so it is ready when it is requested.
-    prepare.prepare().then(function () {
-        return simFiles.createSimHostJsFile();
-    }).then(function () {
+    var project = this._simulator.project;
+
+    project.prepare().then(function () {
+        return this._simulationFiles.createSimHostJsFile();
+    }.bind(this)).then(function () {
         // Inject references to simulation HTML files
         var panelsHtmlBasename = pluginSimulationFiles['sim-host']['panels'];
         var dialogsHtmlBasename = pluginSimulationFiles['sim-host']['dialogs'];
         var panelsHtml = [];
         var dialogsHtml = [];
 
-        var pluginList = plugins.getPlugins();
+        var pluginList = project.getPlugins();
 
         Object.keys(pluginList).forEach(function (pluginId) {
             var pluginPath = pluginList[pluginId];
@@ -109,15 +192,51 @@ function streamSimHostHtml(request, response) {
         });
 
         // Note that this relies on a custom version of send that supports a 'transform' option.
-        send(request, path.join(dirs.hostRoot['sim-host'], 'sim-host.html'), {
+        send(request, path.join(this._simulator.hostRoot['sim-host'], 'sim-host.html'), {
             transform: function (stream) {
                 return stream
                     .pipe(replaceStream('<!-- PANELS -->', panelsHtml.join('\n')))
                     .pipe(replaceStream('<!-- DIALOGS -->', dialogsHtml.join('\n')));
             }
         }).pipe(response);
-    }).done();
-}
+    }.bind(this)).done();
+};
+
+/**
+ * @private
+ */
+SimulationServer.prototype._trackServerConnections = function () {
+    var nextId = 0;
+    this._connections = {};
+
+    this._server.server.on('connection', function (socket) {
+        var id = nextId++;
+        this._connections[id] = socket;
+
+        socket.on('close', function () {
+            delete this._connections[id];
+        }.bind(this));
+    }.bind(this));
+};
+
+// TODO
+var parseStartPage = function (projectRoot) {
+    // Start Page is defined as <content src="some_uri" /> in config.xml
+    var configFile = path.join(projectRoot, 'config.xml');
+    if (!fs.existsSync(configFile)) {
+        throw new Error('Cannot find project config file: ' + configFile);
+    }
+
+    var startPageRegexp = /<content\s+src\s*=\s*"(.+)"\s*\/>/ig,
+        configFileContent = fs.readFileSync(configFile);
+
+    var match = startPageRegexp.exec(configFileContent);
+    if (match) {
+        return match[1];
+    }
+
+    return 'index.html'; // default uri
+};
 
 function processPluginHtml(html, pluginId) {
     return [/<script[^>]*src\s*=\s*"([^"]*)"[^>]*>/g, /<link[^>]*href\s*=\s*"([^"]*)"[^>]*>/g].reduce(function (result, regex) {
@@ -131,16 +250,4 @@ function processPluginHtml(html, pluginId) {
     });
 }
 
-function stop() {
-    simSocket.closeConnections();
-
-    config.newInstance();
-    plugins.reset();
-    simFiles.reset();
-    prepare.reset();
-}
-
-module.exports = {
-    attach: attach,
-    stop: stop
-};
+module.exports = SimulationServer;
