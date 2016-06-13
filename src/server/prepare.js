@@ -44,10 +44,12 @@ function prepare() {
             }
 
             d.resolve();
+        }).catch(function (err) {
+            d.reject(err);
         }).finally(function () {
             lastPlatform = null;
             preparePromise = null;
-        }).done();
+        });
     } else {
         if (config.platform !== lastPlatform) {
             // Sanity check to verify we never queue prepares for different platforms

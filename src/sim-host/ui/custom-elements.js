@@ -253,6 +253,9 @@ function initialize() {
         value: {
             get: function () {
                 return this.shadowRoot.querySelector('select').value;
+            },
+            set: function (value) {
+                setValueSafely(this.shadowRoot.querySelector('select'), 'value', value);
             }
         },
         appendChild: {

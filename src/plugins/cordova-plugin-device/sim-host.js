@@ -378,15 +378,32 @@ function initialize() {
         deviceList.appendChild(option);
     });
 
-    deviceList.addEventListener('change', handleSelectDevice);
-    deviceList.value = 'WVGA';
-    handleSelectDevice();
+    var defaultDeviceId = 'WVGA';
+
+    deviceList.addEventListener('change', handleSelectDevice.bind(null, null));
+    deviceList.value = defaultDeviceId;
+    handleSelectDevice(defaultDeviceId);
     registerTelemetryEvents();
 }
 
-function handleSelectDevice() {
+function handleSelectDevice(deviceIdOverride) {
     var deviceList = document.getElementById('device-list');
-    var option = deviceList.options[deviceList.selectedIndex];
+    var option;
+
+    if (deviceIdOverride) {
+        // If we have a device ID override, we can't rely on deviceList.selectedIndex, because the shadow DOM sets that
+        // value asynchronously. Manually look for the device ID in the deviceList.options instead.
+        for (var i = 0; i < deviceList.options.length; ++i) {
+            option = deviceList.options[i];
+
+            if (option.value === deviceIdOverride) {
+                break;
+            }
+        }
+    } else {
+        option = deviceList.options[deviceList.selectedIndex];
+    }
+
     document.getElementById('device-model').value = option.getAttribute('_model');
     document.getElementById('device-manufacturer').value = option.getAttribute('_manufacturer');
     document.getElementById('device-platform').value = option.getAttribute('_platform');

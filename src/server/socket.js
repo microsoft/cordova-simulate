@@ -41,7 +41,7 @@ function reset() {
  *      - When sim-host notifies it's ready to serve an app-host.
  */
 var whenAppHostConnected = Q.defer(),
-    whenSimHostReady     = Q.defer();
+    whenSimHostReady = Q.defer();
 
 function resetAppHostState() {
     whenAppHostConnected = Q.defer();
@@ -82,7 +82,7 @@ function setupAppHostHandlers() {
 
         emitTo(APP_HOST, 'init-telemetry');
     }
-    
+
     // Set up xhr proxy
     if (config.xhrProxy) {
         emitTo(APP_HOST, 'init-xhr-proxy');
@@ -153,10 +153,6 @@ function setupSimHostHandlers() {
         emitTo(APP_HOST, 'plugin-method', data, callback);
     });
 
-    subscribeTo(SIM_HOST, 'debug-message', function (data) {
-        emitTo(DEBUG_HOST, data.message, data.data);
-    });
-
     // Set up telemetry if necessary.
     if (config.telemetry) {
         subscribeTo(SIM_HOST, 'telemetry', function (data) {
@@ -171,12 +167,18 @@ function setupSimHostHandlers() {
 }
 
 function init(server) {
-
     reset();
 
     io = require('socket.io')(server);
 
     io.on('connection', function (socket) {
+        // Debug messages can be sent to the external debug-host before the app and the simulator are fully ready (for
+        // example, during a plugin initialization). For that reason, the debug-message handler should be subscribed to
+        // immediately, regardless of which socket type has just connected.
+        socket.on('debug-message', function (data) {
+            emitTo(DEBUG_HOST, data.message, data.data);
+        });
+
         socket.on('register-app-host', function () {
             log.log('APP_HOST connected to the server');
             if (hostSockets[APP_HOST]) {
@@ -237,9 +239,7 @@ function init(server) {
                     config.debugHostHandlers = null;
                     break;
             }
-
         });
-
     });
 }
 
@@ -292,6 +292,6 @@ function closeConnections() {
     reset();
 }
 
-module.exports.init             = init;
-module.exports.reloadSimHost    = reloadSimHost;
+module.exports.init = init;
+module.exports.reloadSimHost = reloadSimHost;
 module.exports.closeConnections = closeConnections;
