@@ -56,7 +56,7 @@ SimulationServer.prototype.start = function (platform, config, opts) {
         noServerInfo: true
     }).then(function () {
         this._trackServerConnections();
-        this._simSocket.init(this._server.server);
+        this._simSocket.init(this._server.server, this._simulator._config);
 
         var projectRoot = this._server.projectRoot,
             urlRoot = 'http://localhost:' + this._server.port + '/',

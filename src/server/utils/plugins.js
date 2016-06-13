@@ -5,7 +5,8 @@ var path = require('path'),
     pluginMapper = require('cordova-registry-mapper').oldToNew;
 
 var pluginSimulationFiles = require('../plugin-files'),
-    jsUtils = require('./jsUtils');
+    jsUtils = require('./jsUtils'),
+    dirs = require('../dirs');
 
 function findPluginPath(projectRoot, pluginId, hostType) {
     if (!hostType) {
@@ -26,8 +27,8 @@ function findPluginSourceFilePath(projectRoot, pluginId, file) {
     return fs.existsSync(pluginFilePath) ? pluginPath : findBuiltInPluginSourceFilePath(pluginId, file);
 }
 
-// TODO pluginsDir --> dirs.plugins
-function findBuiltInPluginSourceFilePath(pluginsDir, pluginId, file) {
+function findBuiltInPluginSourceFilePath(pluginId, file) {
+    var pluginsDir = dirs.plugins;
     var pluginPath = path.join(pluginsDir, pluginId);
     var pluginFilePath = path.join(pluginPath, file);
     if (fs.existsSync(pluginFilePath)) {
@@ -80,11 +81,9 @@ function shouldUsePluginWithDebugHost(pluginPath, pluginAddedToProject, debugHos
     return pluginAddedToProject || !!debugHostOptions.alwaysActivateIfDebugHost;
 }
 
-function shouldInitPlugins(currentState, previousState) {
+function shouldInitPlugins(currentState, previousState, platform) {
     // We should init plugins if we don't have any info on a previous prepare for the current platform, or if there is
     // a difference in the list of installed plugins or debug-host handlers.
-    var currentPlatform = config.platform;
-
     if (!previousState) {
         return true;
     }

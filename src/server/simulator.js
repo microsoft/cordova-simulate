@@ -15,8 +15,8 @@ function Simulator(opts) {
 
     // TODO keep opts for port and dir
 
-    this._project = new Project(this); // TODO pass projectRoot, etc etc etc
-    this._server = new SimulationServer(this, this._config.platform);
+    this._project = new Project(this, this._config.platform);
+    this._server = new SimulationServer(this);
     this._state = Simulator.State.IDLE;
     this._urlRoot = null;
     this._appUrl = null;
@@ -78,8 +78,10 @@ Simulator.prototype._parseOptions = function (opts) {
         simHostOpts = { simHostRoot: opts.simhostui };
     } else {
         /* use the default simulation UI */
-        simHostOpts = { simHostRoot: path.join(__dirname, 'sim-host', 'ui') };
+        simHostOpts = { simHostRoot: path.join(__dirname, '..', 'sim-host', 'ui') };
     }
+
+    console.log(simHostOpts);
 
     config.platform = opts.platform || 'browser';
     config.simHostOptions = simHostOpts;

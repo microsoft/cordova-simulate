@@ -91,7 +91,7 @@ SocketServer.prototype.init = function (server, config) {
 
             // It only makes sense to have one simulation host per server. If more than one tries to connect, always
             // take the most recent.
-            this.that.hostSockets[SIM_HOST] = socket;
+            this.hostSockets[SIM_HOST] = socket;
 
             socket.on('exec-success', function (data) {
                 that.emitToHost(APP_HOST, 'exec-success', data);

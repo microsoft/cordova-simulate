@@ -117,10 +117,11 @@ Project.prototype.initPlugins = function () {
 
     // Register the plugins. The default plugins are first, then the debug-host plugins (to have the correct order in
     // sim-host).
+    var that = this;
     function registerPlugins(pluginDictionary) {
         Object.keys(pluginDictionary).forEach(function (pluginId) {
-            this.plugins[pluginId] = pluginDictionary[pluginId];
-        }.bind(this));
+            that.plugins[pluginId] = pluginDictionary[pluginId];
+        });
     }
 
     registerPlugins(simulatedDefaultPlugins);
@@ -164,7 +165,7 @@ Project.prototype.prepare = function() {
             var previousState = this._previousPrepareStates[this.platform];
 
             if (prepareUtil.shouldPrepare(currentProjectState, previousState)) {
-                return prepareUtil.execCordovaPrepare().then(function () {
+                return prepareUtil.execCordovaPrepare(this.projectRoot, this._lastPlatform).then(function () {
                     return true;
                 });
             }
@@ -173,7 +174,7 @@ Project.prototype.prepare = function() {
         }.bind(this)).then(function (didPrepare) {
             var previousState = this._previousPrepareStates[this.platform];
 
-            if (didPrepare || pluginUtil.shouldInitPlugins(currentProjectState, previousState)) {
+            if (didPrepare || pluginUtil.shouldInitPlugins(currentProjectState, previousState, this.platform)) {
                 this._previousPrepareStates[this.platform] = currentProjectState || this._getProjectState();
                 this.initPlugins();
             }
