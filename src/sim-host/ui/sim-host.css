@@ -292,25 +292,6 @@ body /deep/ .cordova-content {
     transition: height 0.2s;
 }
 
-/* Styles to enable feedback link in a footer panel */
-
-.feedbackFooter {
-    background: rgba(255, 255, 255, 0.85);
-    height: 20px;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    width: 95px;
-    /*box-shadow: 0 -1px 1px 1px rgba(0, 0, 0, 0.2);*/
-    z-index: 1000;
-}
-
-.feedbackLink {
-    position: absolute;
-    top: 3px;
-    right: 5px;
-}
-
 .cordova-main {
     padding-bottom: 40px;
 }

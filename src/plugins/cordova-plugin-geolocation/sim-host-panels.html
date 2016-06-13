@@ -31,18 +31,13 @@
     <cordova-checkbox id="geo-timeout">Simulate GPS Timeout</cordova-checkbox>
 
     <cordova-panel-row>
-        <cordova-label label="Navigation Simulator"></cordova-label>
-        <a href="https://github.com/TimBarham/cordova-simulate/blob/master/docs/gpx.md" target="_blank">How do I create a GPX file?</a>
+        <cordova-label label="Navigation Simulator"></cordova-label>        
     </cordova-panel-row>
-
-    <cordova-panel-row>
-        <cordova-button id="geo-gpxfile-button" style="width:100%">Choose File</cordova-button>
-        <cordova-file hidden="true" id="geo-gpxfile"></cordova-file>
-    </cordova-panel-row>
-
-    <cordova-panel-row>
-        <!-- Empty section to force other section to the right of the row -->
-        <section></section>
+    <cordova-panel-row>        
+        <section>
+            <cordova-button id="geo-gpxfile-button" style="width:100%">Choose File</cordova-button>
+            <cordova-file hidden="true" id="geo-gpxfile"></cordova-file>
+        </section>
         <section>
             <cordova-button id="geo-gpx-go" style="min-width:0;">Go</cordova-button>
             <cordova-combo id="geo-gpxmultiplier-select" style="width:auto;min-width:0;display:inline;">
