@@ -293,6 +293,10 @@ body /deep/ .cordova-content {
     transition: height 0.2s;
 }
 
+body /deep/ .cordova-hidden {
+    display: none;
+}
+
 .cordova-main {
     padding-bottom: 40px;
 }
