@@ -155,7 +155,8 @@ body /deep/ select {
 }
 
 body /deep/ select,
-body /deep/ input[type^=text], input[type^=number] {
+body /deep/ input[type^=text],
+body /deep/ input[type^=number], input[type^=number] {
     padding: 5px;
 }
 

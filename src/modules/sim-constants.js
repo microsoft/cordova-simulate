@@ -86,7 +86,7 @@ module.exports = {
             'GPXMULTIPLIER': 'geo-gpxmultiplier-select',
             'GPXREPLAYSTATUS': 'geo-gpxreplaystatus'
         },
-        'MAP_ZOOM_MAX': 21,
+        'MAP_ZOOM_MAX': 18,
         'MAP_ZOOM_MIN': 0,
         'MAP_ZOOM_LEVEL_CONTAINER': 'geo-map-zoomlevel-value',
         'MAP_ZOOM_KEY': 'geo-map-zoom-key',
