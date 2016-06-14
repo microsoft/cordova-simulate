@@ -3,11 +3,14 @@
 var Q = require('q'),
     fs = require('fs'),
     path = require('path'),
+    log = require('./utils/log'),
     dirs = require('./dirs'),
+    Configuration = require('./config'),
     Project = require('./project'),
     SimulationServer = require('./server');
 
 /**
+ * @param {object} opts Configuration for the current simulation.
  * @constructor
  */
 function Simulator(opts) {
@@ -66,13 +69,17 @@ Simulator.State = {
 };
 
 /**
+ * Parse the options provided and create the configuration instance for the current
+ * simulation.
+ * @param {object} opts Configuration provided for the simulator.
+ * @return {Configuration} A configuration instance.
  * @private
  */
 Simulator.prototype._parseOptions = function (opts) {
     opts = opts || {};
 
     var simHostOpts,
-        config = {};
+        config = new Configuration();
 
     if (opts.simhostui && fs.existsSync(opts.simhostui)) {
         simHostOpts = { simHostRoot: opts.simhostui };
@@ -80,8 +87,6 @@ Simulator.prototype._parseOptions = function (opts) {
         /* use the default simulation UI */
         simHostOpts = { simHostRoot: path.join(__dirname, '..', 'sim-host', 'ui') };
     }
-
-    console.log(simHostOpts);
 
     config.platform = opts.platform || 'browser';
     config.simHostOptions = simHostOpts;
@@ -94,14 +99,29 @@ Simulator.prototype._parseOptions = function (opts) {
     return config;
 };
 
+/**
+ * Check if the simulation is any active state.
+ * @return {boolean} True if it is active, otherwise false.
+ */
 Simulator.prototype.isActive = function () {
     return this._state !== Simulator.State.IDLE;
 };
 
+/**
+ * Check if the simulation is not active.
+ * @return {boolean} True if it is not active, otherwise false.
+ */
 Simulator.prototype.isIdle = function () {
     return this._state === Simulator.State.IDLE;
 };
 
+/**
+ * Start the simulation for the current project with the provided information at the
+ * time of creating the instance.
+ * @param {object} opts Optional configuration, such as port number, dir and simulation path.
+ * @return {Promise} A promise that is fullfilled when the simulation starts and the server
+ * is ready listeninig for new connections. If something fails, it is rejected.
+ */
 Simulator.prototype.startSimulation = function (opts) {
     if (this.isActive()) {
         return Q.reject('Simulation is active');
@@ -125,10 +145,16 @@ Simulator.prototype.startSimulation = function (opts) {
             this._state = Simulator.State.RUNNING;
         }.bind(this))
         .fail(function (error) {
-            // TODO
+            log.warning('Error starting the simulation');
+            log.error(error);
         }.bind(this));
 };
 
+/**
+ * Stops the current simulation if any.
+ * @return {Promise} A promise that is fullfilled when the simulation stops and the server
+ * release the current connections. If something fails, it is rejected.
+ */
 Simulator.prototype.stopSimulation = function () {
     if (!this.isActive()) {
         return Q.reject('Simulation is not active');
@@ -140,9 +166,6 @@ Simulator.prototype.stopSimulation = function () {
         .then(function () {
             this._state = Simulator.State.IDLE;
         }.bind(this))
-        .fail(function () {
-            // TODO
-        }.bind(this));
 };
 
 module.exports = Simulator;

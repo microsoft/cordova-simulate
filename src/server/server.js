@@ -6,6 +6,7 @@ var fs = require('fs'),
     cordovaServe = require('cordova-serve'),
     send = require('send'),
     url = require('url'),
+    Q = require('q'),
     dirs = require('./dirs'),
     log = require('./utils/log'),
     SimulationFiles = require('./sim-files'),
@@ -14,6 +15,10 @@ var fs = require('fs'),
 var pluginSimulationFiles = require('./plugin-files');
 
 /**
+ * The simulation server that encapsulates the HTTP server instance and
+ * Web Socket server. It enables to start and stop the server to listening
+ * for new connections.
+ * @param {object} simulator
  * @constructor
  */
 function SimulationServer(simulator) {
@@ -74,6 +79,31 @@ SimulationServer.prototype.start = function (platform, config, opts) {
 };
 
 /**
+ * Stop the simulation server by closing the server and destroy active connections.
+ * @return {Promise} A promise that is resolved once the server has been closed.
+ */
+SimulationServer.prototype.stop = function () {
+    var deferred = Q.defer(),
+        promise = deferred.promise;
+
+    this._simSocket.closeConnections();
+
+    this._server.server.close(function () {
+        deferred.resolve();
+    });
+
+    for (var id in this._connections) {
+        var socket = this._connections[id];
+        socket && socket.destroy();
+    }
+
+    this._connections = {};
+
+    return promise;
+};
+
+/**
+ * Define the routes for the current express app to the simulation files.
  * @private
  */
 SimulationServer.prototype._prepareRoutes = function () {
@@ -87,31 +117,22 @@ SimulationServer.prototype._prepareRoutes = function () {
     app.get('/', streamAppHostHtml);
     app.get('/*.html', streamAppHostHtml);
     app.get('/simulator/app-host.js', function (request, response) {
-        this.sendHostJsFile(response, 'app-host');
+        this._sendHostJsFile(response, 'app-host');
     }.bind(this));
     app.get('/simulator/sim-host.js', function (request, response) {
-        this.sendHostJsFile(response, 'sim-host');
+        this._sendHostJsFile(response, 'sim-host');
     }.bind(this));
     app.use(this._simulator.project.getRouter());
     app.use('/simulator', cordovaServe.static(this._simulator.hostRoot['sim-host']));
     app.use('/simulator/thirdparty', cordovaServe.static(dirs.thirdParty));
 };
 
-SimulationServer.prototype.stop = function () {
-    this._simSocket.closeConnections();
-    this._server.server && this._server.server.close();
-
-    for (var id in this._connections) {
-        var socket = this._connections[id];
-        socket && socket.destroy();
-    }
-};
-
 /**
  * @param {object} response
  * @param {string} hostType
+ * @private
  */
-SimulationServer.prototype.sendHostJsFile = function (response, hostType) {
+SimulationServer.prototype._sendHostJsFile = function (response, hostType) {
     var hostJsFile = this._simulationFiles.getHostJsFile(hostType);
     if (!hostJsFile) {
         throw new Error('Path to ' + hostType + '.js has not been set.');
@@ -119,6 +140,11 @@ SimulationServer.prototype.sendHostJsFile = function (response, hostType) {
     response.sendFile(hostJsFile);
 };
 
+/**
+ * @param {object} request
+ * @param {object} response
+ * @private
+ */
 SimulationServer.prototype._streamAppHostHtml = function (request, response) {
     var project = this._simulator._project;
     var filePath = path.join(project.platformRoot, url.parse(request.url).pathname);
@@ -160,6 +186,11 @@ SimulationServer.prototype._streamAppHostHtml = function (request, response) {
     }).done();
 };
 
+/**
+ * @param {object} request
+ * @param {object} response
+ * @private
+ */
 SimulationServer.prototype._streamSimHostHtml = function (request, response) {
     // If we haven't ever prepared, do so before we try to generate sim-host, so we know our list of plugins is up-to-date.
     // Then create sim-host.js (if it is out-of-date) so it is ready when it is requested.
@@ -203,6 +234,11 @@ SimulationServer.prototype._streamSimHostHtml = function (request, response) {
 };
 
 /**
+ * Keep track of the clients connected to the server. When a new client is connected,
+ * assign an ID and listen for the close event, to remove it from the tracked active
+ * connections.
+ * The connections are tracked in order to force to close the active ones, when the
+ * server is closed.
  * @private
  */
 SimulationServer.prototype._trackServerConnections = function () {
@@ -219,7 +255,6 @@ SimulationServer.prototype._trackServerConnections = function () {
     }.bind(this));
 };
 
-// TODO
 var parseStartPage = function (projectRoot) {
     // Start Page is defined as <content src="some_uri" /> in config.xml
     var configFile = path.join(projectRoot, 'config.xml');
@@ -239,7 +274,12 @@ var parseStartPage = function (projectRoot) {
 };
 
 function processPluginHtml(html, pluginId) {
-    return [/<script[^>]*src\s*=\s*"([^"]*)"[^>]*>/g, /<link[^>]*href\s*=\s*"([^"]*)"[^>]*>/g].reduce(function (result, regex) {
+    var tags = [
+        /<script[^>]*src\s*=\s*"([^"]*)"[^>]*>/g,
+        /<link[^>]*href\s*=\s*"([^"]*)"[^>]*>/g
+    ];
+
+    return tags.reduce(function (result, regex) {
         // Ensures plugin path is prefixed to source of any script and link tags
         return result.replace(regex, function (match, p1) {
             return match.replace(p1, 'plugin/' + pluginId + '/' + p1.trim());

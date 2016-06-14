@@ -2,9 +2,8 @@
 
 var path = require('path'),
     fs = require('fs'),
-    pluginMapper = require('cordova-registry-mapper').oldToNew;
-
-var pluginSimulationFiles = require('../plugin-files'),
+    pluginMapper = require('cordova-registry-mapper').oldToNew,
+    pluginSimulationFiles = require('../plugin-files'),
     jsUtils = require('./jsUtils'),
     dirs = require('../dirs');
 

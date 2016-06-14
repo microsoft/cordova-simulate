@@ -230,8 +230,8 @@ Project.prototype.updateTimeStampForFile = function (fileRelativePath, parentDir
 };
 
 /**
- * @private
  * @return {Promise}
+ * @private
  */
 Project.prototype._getProjectState = function() {
     var platform = this.platform;
@@ -285,14 +285,6 @@ Project.prototype._resetPluginsData = function () {
         simulatedNonBuiltIn: [],
         notSimulated: []
     };
-};
-
-/**
- * @private
- */
-Project.prototype._reset = function () {
-    this._resetPluginsData();
-    this._router = null;
 };
 
 module.exports = Project;

@@ -21,16 +21,7 @@ function SocketServer(simulator) {
     this.pendingEmits[DEBUG_HOST] = [];
 }
 
-SocketServer.prototype.reset = function () {
-    this.hostSockets = {};
-    this.pendingEmits = {};
-    this.pendingEmits[APP_HOST] = [];
-    this.pendingEmits[SIM_HOST] = [];
-    this.pendingEmits[DEBUG_HOST] = [];
-};
-
 SocketServer.prototype.init = function (server, config) {
-    // this.reset();
     var that = this;
     this.io = require('socket.io')(server);
 
@@ -190,7 +181,11 @@ SocketServer.prototype.closeConnections = function () {
         this.io = null;
     }
 
-    // reset();
+    this.hostSockets = {};
+    this.pendingEmits = {};
+    this.pendingEmits[APP_HOST] = [];
+    this.pendingEmits[SIM_HOST] = [];
+    this.pendingEmits[DEBUG_HOST] = [];
 };
 
 module.exports = SocketServer;

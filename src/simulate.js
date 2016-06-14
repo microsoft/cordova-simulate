@@ -29,7 +29,7 @@ var simulate = function (opts) {
 };
 
 module.exports = simulate;
+module.exports.Simulator = Simulator;
 module.exports.launchBrowser = launchBrowser;
 module.exports.dirs = require('./server/dirs');
 module.exports.log = require('./server/utils/log');
-module.exports.Simulator = Simulator;

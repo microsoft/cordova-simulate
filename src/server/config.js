@@ -1,51 +1,49 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var fs = require('fs'),
-    path = require('path');
+/**
+ * @constructor
+ */
+function Configuration() {
+    this._config = {};
+}
 
-var config = {};
-
-// module properties
 [
     { name: 'debugHostHandlers', optional: true },
     { name: 'forcePrepare' },
     { name: 'liveReload' },
     { name: 'platform' },
-    { name: 'platformRoot' },
-    { name: 'projectRoot', single: true },
-    { name: 'server', optional: true },
+    // NOTE: platformRoot and projectRoot belongs to the Project instance
+    // { name: 'platformRoot' },
+    // { name: 'projectRoot', single: true },
+    // { name: 'server', optional: true },
     { name: 'simHostOptions' },
     { name: 'simulationFilePath' },
     { name: 'telemetry', optional: true },
     { name: 'touchEvents', optional: true },
     { name: 'xhrProxy', optional: true }
 ].forEach(function (prop) {
-    Object.defineProperty(module.exports, prop.name, {
+    Object.defineProperty(Configuration.prototype, prop.name, {
         get: function () {
-            return getValue(prop.name, prop.optional);
+            return getValue(this, prop.name, prop.optional);
         },
         set: function (value) {
-            setValue(prop.name, value, prop.single);
+            setValue(this, prop.name, value, prop.single);
         }
     });
 });
 
-function setValue(prop, value, single) {
-    if (single && config.hasOwnProperty(prop)) {
+function setValue(instance, prop, value, single) {
+    if (single && instance._config.hasOwnProperty(prop)) {
         throw new Error('Can\'t reinitialize ' + prop);
     }
-    config[prop] = value;
+    instance._config[prop] = value;
 }
 
-function getValue(prop, optional) {
-    if (!config.hasOwnProperty(prop) && !optional) {
+function getValue(instance, prop, optional) {
+    if (!instance._config.hasOwnProperty(prop) && !optional) {
         throw new Error('Cannot get ' + prop + ' as it has not been initialized.');
     }
-    return config[prop];
+    return instance._config[prop];
 }
 
-function newInstance() {
-    config = {};
-}
-
-module.exports.newInstance = newInstance;
+module.exports = Configuration;

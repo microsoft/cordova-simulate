@@ -7,14 +7,13 @@ var browserify = require('browserify'),
     through = require('through2'),
     dirs = require('./dirs'),
     jsUtils = require('./utils/jsUtils'),
-    log = require('./utils/log');
+    log = require('./utils/log'),
+    pluginSimulationFiles = require('./plugin-files');
 
-var pluginSimulationFiles = require('./plugin-files');
-
-var _browserifySearchPaths = null;
-var _commonModules = null;
-var simHost = 'sim-host';
-var appHost = 'app-host';
+var _browserifySearchPaths = null,
+    _commonModules = null,
+    simHost = 'sim-host',
+    appHost = 'app-host';
 
 /**
  * @constructor
@@ -22,8 +21,8 @@ var appHost = 'app-host';
 function SimulationFiles(simulator, simServer) {
     this._simulator = simulator;
     this._simServer = simServer;
-    this.hostJsFiles = {};
-    this.builtOnce = {};
+    this._hostJsFiles = {};
+    this._builtOnce = {};
     this._appHostJsPromise = null;
 }
 
@@ -62,13 +61,16 @@ SimulationFiles.prototype.createAppHostJsFile = function () {
     return this._appHostJsPromise;
 };
 
+/**
+ * @param {Array} pluginList
+ */
 SimulationFiles.prototype.validateSimHostPlugins = function (pluginList) {
     // App-host has been refreshed. If plugins have changed, notify sim-host that is should also refresh (but only bother
     // doing this if we have ever created sim-host).
     var project = this._simulator.project;
     var simulationFilePath = project.simulationFilePath;
 
-    if (this.builtOnce[simHost] && !validatePlugins(simHost, pluginList, simulationFilePath)) {
+    if (this._builtOnce[simHost] && !validatePlugins(simHost, pluginList, simulationFilePath)) {
         var simSocket = this._simServer.simSocket;
         simSocket.emitToHost(simHost, 'refresh');
         simSocket.invalidateSimHost();
@@ -80,19 +82,19 @@ SimulationFiles.prototype.validateSimHostPlugins = function (pluginList) {
  * @return {string}
  */
 SimulationFiles.prototype.getHostJsFile = function (hostType) {
-    if (!this.hostJsFiles[hostType]) {
+    if (!this._hostJsFiles[hostType]) {
         var project = this._simulator.project;
 
-        this.hostJsFiles[hostType] = path.join(project.simulationFilePath, hostType + '.js');
+        this._hostJsFiles[hostType] = path.join(project.simulationFilePath, hostType + '.js');
     }
-    return this.hostJsFiles[hostType];
+    return this._hostJsFiles[hostType];
 };
 
 /**
  * @privte
  */
 SimulationFiles.prototype._waitOnAppHostJs = function () {
-    if (this.builtOnce[appHost]) {
+    if (this._builtOnce[appHost]) {
         var project = this._simulator.project;
         // If we've ever built app-host, just use what we have (on a refresh of sim-host, we don't want to rebuild app-host).
         return Q.when(loadJsonFile(path.join(project.simulationFilePath, 'app-host.json')).plugins);
@@ -122,7 +124,7 @@ SimulationFiles.prototype._createHostJsFile = function (hostType, scriptTypes, p
     // to force a refresh.
     if (fs.existsSync(outputFile) && validatePlugins(hostType, pluginList, simulationFilePath)) {
         log.log('Creating ' + hostType + '.js: Existing file found and is up-to-date.');
-        this.builtOnce[hostType] = true;
+        this._builtOnce[hostType] = true;
         return Q.when(pluginList);
     }
 
@@ -184,7 +186,7 @@ SimulationFiles.prototype._createHostJsFile = function (hostType, scriptTypes, p
     var d = Q.defer();
 
     outputFileStream.on('finish', function () {
-        this.builtOnce[hostType] = true;
+        this._builtOnce[hostType] = true;
         fs.writeFileSync(jsonFile, JSON.stringify({ plugins: pluginList, files: fileInfo }));
         d.resolve(pluginList);
     }.bind(this));
@@ -200,15 +202,6 @@ SimulationFiles.prototype._createHostJsFile = function (hostType, scriptTypes, p
     bundle.pipe(outputFileStream);
 
     return d.promise;
-};
-
-/**
- * @private
- */
-SimulationFiles.prototype._reset = function () {
-    this.hostJsFiles = {};
-    this.builtOnce = {};
-    this._appHostJsPromise = null;
 };
 
 function validatePlugins(hostType, pluginList, simulationFilePath) {
