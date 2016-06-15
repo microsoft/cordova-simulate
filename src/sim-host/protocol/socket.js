@@ -2,8 +2,9 @@
 
 /*global io: false */
 
-var telemetry = require('telemetry-helper'),
-    simStatus = require('sim-status');
+var Q = require('q'),
+    simStatus = require('sim-status'),
+    telemetry = require('telemetry-helper');
 
 var registerOnInitialize = false;
 var socket;
@@ -36,6 +37,8 @@ Object.defineProperty(module.exports, 'socket', {
 });
 
 module.exports.initialize = function (pluginHandlers, services) {
+    var deferred = Q.defer();
+
     serviceToPluginMap = services;
     socket = io();
 
@@ -45,6 +48,18 @@ module.exports.initialize = function (pluginHandlers, services) {
 
     socket.on('refresh', function () {
         document.location.reload(true);
+    });
+
+    socket.on('connect', function () {
+        deferred.resolve();
+    });
+
+    socket.on('connect_error', function (err) {
+        deferred.reject(err);
+    });
+
+    socket.on('connect_timeout', function (err) {
+        deferred.reject(err);
     });
 
     socket.on('app-plugin-list', function () {
@@ -102,6 +117,8 @@ module.exports.initialize = function (pluginHandlers, services) {
     if (registerOnInitialize) {
         registerSimHost();
     }
+
+    return deferred.promise;
 };
 
 module.exports.notifyPluginsReady = function () {
