@@ -58,6 +58,11 @@ Object.defineProperties(Simulator.prototype, {
         get: function () {
             return this._project;
         }
+    },
+    'config': {
+        get: function () {
+            return this._config;
+        }
     }
 });
 

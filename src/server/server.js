@@ -61,7 +61,7 @@ SimulationServer.prototype.start = function (platform, config, opts) {
         noServerInfo: true
     }).then(function () {
         this._trackServerConnections();
-        this._simSocket.init(this._server.server, this._simulator._config);
+        this._simSocket.init(this._server.server);
 
         var projectRoot = this._server.projectRoot,
             urlRoot = 'http://localhost:' + this._server.port + '/',
@@ -86,8 +86,6 @@ SimulationServer.prototype.stop = function () {
     var deferred = Q.defer(),
         promise = deferred.promise;
 
-    this._simSocket.closeConnections();
-
     this._server.server.close(function () {
         deferred.resolve();
     });
@@ -96,6 +94,8 @@ SimulationServer.prototype.stop = function () {
         var socket = this._connections[id];
         socket && socket.destroy();
     }
+
+    this._simSocket.closeConnections();
 
     this._connections = {};
 

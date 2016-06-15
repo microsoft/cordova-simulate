@@ -1,27 +1,37 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var config = require('../config');
-var fs = require('fs');
-var log = require('../log');
-var path = require('path');
+var fs = require('fs'),
+    path = require('path'),
+    log = require('../utils/log');
 
 var EVENT_IGNORE_DURATION = 150;
 var WWW_ROOT = 'www';
 var MERGES_ROOT = 'merges';
 var UNKNOWN_FILE_ID = '__sim-unknown__';
 
-function Watcher(fileChangedCb) {
+/**
+ * @param {string} projectRoot
+ * @param {string} platform
+ * @param {Function} fileChangedCb
+ * @constructor
+ */
+function Watcher(projectRoot, platform, fileChangedCb) {
+    this.projectRoot = projectRoot;
+    this.platform = platform;
     this.fileChangedCallback = fileChangedCb;
     this.ignoreEvents = {};
-    this.mergesOverridePath = path.join(config.projectRoot, MERGES_ROOT, config.platform);
+    this.mergesOverridePath = path.join(this.projectRoot, MERGES_ROOT, this.platform);
     this.mergesOverrideExists = fs.existsSync(this.mergesOverridePath);
 }
 
 Watcher.prototype.startWatching = function () {
-    this.wwwWatcher = fs.watch(path.join(config.projectRoot, WWW_ROOT), { recursive: true }, handleWwwWatcherEvent.bind(this));
+    var watchPath = path.join(this.projectRoot, WWW_ROOT);
+    this.wwwWatcher = fs.watch(watchPath, { recursive: true }, handleWwwWatcherEvent.bind(this));
 
     if (this.mergesOverrideExists) {
-        this.mergesWatcher = fs.watch(path.join(config.projectRoot, MERGES_ROOT, config.platform), { recursive: true }, handleMergesWatcherEvent.bind(this));
+        watchPath = path.join(this.projectRoot, MERGES_ROOT, this.platform);
+
+        this.mergesWatcher = fs.watch(watchPath, { recursive: true }, handleMergesWatcherEvent.bind(this));
     }
 };
 
@@ -67,7 +77,7 @@ function handleWatcherEvent(root, fileRelativePath) {
 
     // Make sure the event is for a file, not a directory
     var isWww = root === WWW_ROOT;
-    var srcPathPrefix = isWww ? path.join(config.projectRoot, WWW_ROOT) : this.mergesOverridePath;
+    var srcPathPrefix = isWww ? path.join(this.projectRoot, WWW_ROOT) : this.mergesOverridePath;
     var filePathFromProjectRoot = path.join(srcPathPrefix, fileRelativePath);
 
     if (fs.statSync(filePathFromProjectRoot).isDirectory()) {
