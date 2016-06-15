@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var log = require('./utils/log');
-var LiveReload = require('./live-reload/live-reload-server');
-    // TODO telemetry = require('./telemetry-helper');
+var log = require('./utils/log'),
+    LiveReload = require('./live-reload/live-reload-server');
 
 var APP_HOST = 'app-host';
 var SIM_HOST = 'sim-host';
@@ -20,13 +19,16 @@ function SocketServer(simulator) {
     this._pendingEmits[SIM_HOST] = [];
     this._pendingEmits[DEBUG_HOST] = [];
 
-    var config = this._simulator.config;
+    var config = this._simulator.config,
+        project = this._simulator.project,
+        telemetry = this._simulator.telemetry;
 
-    this._liveReload = new LiveReload(this._simulator.project, config.forcePrepare);
+    this._liveReload = new LiveReload(project, telemetry, config.forcePrepare);
 }
 
 SocketServer.prototype.init = function (server) {
     var that = this,
+        telemetry = this._simulator.telemetry,
         config = this._simulator.config;
 
     this._io = require('socket.io')(server);
@@ -52,7 +54,7 @@ SocketServer.prototype.init = function (server) {
             });
 
             socket.on('telemetry', function (data) {
-                // TODO telemetry.handleClientTelemetry(data);
+                telemetry.handleClientTelemetry(data);
             });
 
             socket.on('debug-message', function (data) {
@@ -106,7 +108,7 @@ SocketServer.prototype.init = function (server) {
             });
 
             socket.on('telemetry', function (data) {
-                // TODO telemetry.handleClientTelemetry(data);
+                telemetry.handleClientTelemetry(data);
             });
 
             socket.on('debug-message', function (data) {

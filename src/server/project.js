@@ -9,14 +9,11 @@ var fs = require('fs'),
     prepareUtil = require('./utils/prepare'),
     utils = require('./utils/jsUtils');
 
-// TODO telemetry = require('./telemetry-helper');
-
 /**
  * @constructor
  */
 function Project(simulator, platform, debugHostHandlers) {
     this._simulator = simulator;
-
     this.platform = platform;
     this.debugHostHandlers = debugHostHandlers;
     this.simulationFilePath = null;
@@ -61,7 +58,7 @@ Project.prototype.initPlugins = function () {
 
         if (pluginPath) {
             simulatedDefaultPlugins[pluginId] = pluginPath;
-            // TODO pluginsTelemetry.simulatedBuiltIn.push(pluginId);
+            this.pluginsTelemetry.simulatedBuiltIn.push(pluginId);
         }
     }.bind(this));
 
@@ -85,12 +82,12 @@ Project.prototype.initPlugins = function () {
             simulatedProjectPlugins[pluginId] = pluginFilePath;
 
             if (pluginFilePath.indexOf(dirs.plugins) === 0) {
-                // TODO pluginsTelemetry.simulatedBuiltIn.push(pluginId);
+                this.pluginsTelemetry.simulatedBuiltIn.push(pluginId);
             } else {
-                // TODO pluginsTelemetry.simulatedNonBuiltIn.push(pluginId);
+                this.pluginsTelemetry.simulatedNonBuiltIn.push(pluginId);
             }
         } else {
-            // TODO pluginsTelemetry.notSimulated.push(pluginId);
+            this.pluginsTelemetry.notSimulated.push(pluginId);
         }
     }.bind(this));
 
@@ -110,7 +107,7 @@ Project.prototype.initPlugins = function () {
 
             if (pluginPath && pluginUtil.shouldUsePluginWithDebugHost(pluginPath, null, this.debugHostHandlers)) {
                 simulatedDebugHostPlugins[pluginId] = pluginPath;
-                // TODO pluginsTelemetry.simulatedBuiltIn.push(pluginId);
+                this.pluginsTelemetry.simulatedBuiltIn.push(pluginId);
             }
         }.bind(this));
     }
@@ -128,8 +125,12 @@ Project.prototype.initPlugins = function () {
     registerPlugins(simulatedDebugHostPlugins);
     registerPlugins(simulatedProjectPlugins);
 
-    // TODO telemetry.sendTelemetry('plugin-list', { simulatedBuiltIn: pluginsTelemetry.simulatedBuiltIn },
-    //    { simulatedNonBuiltIn: pluginsTelemetry.simulatedNonBuiltIn, notSimulated: pluginsTelemetry.notSimulated });
+    this._simulator.telemetry.sendTelemetry( 'plugin-list', {
+        simulatedBuiltIn: this.pluginsTelemetry.simulatedBuiltIn
+    }, {
+        simulatedNonBuiltIn: this.pluginsTelemetry.simulatedNonBuiltIn,
+        notSimulated: this.pluginsTelemetry.notSimulated
+    });
     this._addPlatformDefaultHandlers();
     this._populateRouter();
 };

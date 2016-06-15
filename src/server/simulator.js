@@ -7,7 +7,8 @@ var Q = require('q'),
     dirs = require('./dirs'),
     Configuration = require('./config'),
     Project = require('./project'),
-    SimulationServer = require('./server');
+    SimulationServer = require('./server'),
+    Telemetry = require('./telemetry');
 
 /**
  * @param {object} opts Configuration for the current simulation.
@@ -15,11 +16,9 @@ var Q = require('q'),
  */
 function Simulator(opts) {
     this._config = this._parseOptions(opts);
-
-    // TODO keep opts for port and dir
-
     this._project = new Project(this, this._config.platform);
     this._server = new SimulationServer(this);
+    this._telemetry = new Telemetry(this, this._config.telemetry);
     this._state = Simulator.State.IDLE;
     this._urlRoot = null;
     this._appUrl = null;
@@ -62,6 +61,11 @@ Object.defineProperties(Simulator.prototype, {
     'config': {
         get: function () {
             return this._config;
+        }
+    },
+    'telemetry': {
+        get: function () {
+            return this._telemetry;
         }
     }
 });

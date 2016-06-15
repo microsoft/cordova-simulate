@@ -3,14 +3,14 @@
 var ncp = require('ncp');
 var path = require('path');
 var Q = require('q');
-// TODO var telemetry = require('../telemetry-helper');
 var Watcher = require('./watcher').Watcher;
 
 /**
  * @constructor
  */
-function LiveReload(project, forcePrepare) {
+function LiveReload(project, telemetry, forcePrepare) {
     this._project = project;
+    this._telemetry = telemetry;
     this._forcePrepare = forcePrepare;
     this._watcher = null;
     this._socket = null;
@@ -68,7 +68,7 @@ LiveReload.prototype._onFileChanged = function (fileRelativePath, parentDir) {
         }
 
         this._socket.emit('lr-file-changed', { fileRelativePath: fileRelativePath });
-        // TODO telemetry.sendTelemetry('live-reload', props);
+        this._telemetry.sendTelemetry('live-reload', props);
     }.bind(this)).done();
 };
 
