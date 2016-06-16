@@ -1,16 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
 var browserify = require('browserify'),
-    fs = require('fs'),
-    path = require('path'),
-    Q = require('q'),
-    through = require('through2'),
     config = require('./config'),
     dirs = require('./dirs'),
+    fs = require('fs'),
+    jsUtils = require('./jsUtils'),
     log = require('./log'),
+    path = require('path'),
     plugins = require('./plugins'),
     prepare = require('./prepare'),
-    simSocket = require('./socket');
+    Q = require('q'),
+    simSocket = require('./socket'),
+    through = require('through2');
 
 var pluginSimulationFiles = require('./plugin-files');
 
@@ -55,12 +56,12 @@ function waitOnAppHostJs() {
 
 var appHostJsPromise;
 function createAppHostJsFile() {
-    appHostJsPromise = appHostJsPromise || prepare.waitOnPrepare().then(function () {
-            return createHostJsFile(appHost, ['js', 'handlers', 'clobbers']);
-        }).then(function (pluginList) {
-            appHostJsPromise = null;
-            return pluginList;
-        });
+    appHostJsPromise = appHostJsPromise || prepare.prepare().then(function () {
+        return createHostJsFile(appHost, ['js', 'handlers', 'clobbers']);
+    }).then(function (pluginList) {
+        appHostJsPromise = null;
+        return pluginList;
+    });
 
     return appHostJsPromise;
 }
@@ -72,7 +73,7 @@ function validatePlugins(hostType, pluginList) {
     }
 
     var cache = loadJsonFile(jsonFile);
-    if (!compareObjects(cache.plugins, pluginList)) {
+    if (!jsUtils.compareObjects(cache.plugins, pluginList)) {
         return false;
     }
 
@@ -102,7 +103,7 @@ function createHostJsFile(hostType, scriptTypes, pluginList) {
 
     var scriptDefs = createScriptDefs(hostType, scriptTypes);
 
-    var b = browserify({paths: getBrowserifySearchPaths(hostType), debug: true});
+    var b = browserify({ paths: getBrowserifySearchPaths(hostType), debug: true });
     b.transform(function (file) {
         if (file === filePath) {
             var data = '';
@@ -128,7 +129,7 @@ function createHostJsFile(hostType, scriptTypes, pluginList) {
 
     // Include common modules
     getCommonModules(hostType).forEach(function (module) {
-        b.require(module.file, {expose: module.name});
+        b.require(module.file, { expose: module.name });
     });
 
     var pluginTemplate = '\'%PLUGINID%\': require(\'%EXPOSEID%\')';
@@ -141,7 +142,7 @@ function createHostJsFile(hostType, scriptTypes, pluginList) {
                 scriptDef.code.push(pluginTemplate
                     .replace(/%PLUGINID%/g, pluginId)
                     .replace(/%EXPOSEID%/g, exposeId));
-                b.require(pluginScriptFile, {expose: exposeId});
+                b.require(pluginScriptFile, { expose: exposeId });
             }
         });
     });
@@ -156,7 +157,7 @@ function createHostJsFile(hostType, scriptTypes, pluginList) {
 
     outputFileStream.on('finish', function () {
         builtOnce[hostType] = true;
-        fs.writeFileSync(jsonFile, JSON.stringify({plugins: pluginList, files: fileInfo}));
+        fs.writeFileSync(jsonFile, JSON.stringify({ plugins: pluginList, files: fileInfo }));
         d.resolve(pluginList);
     });
     outputFileStream.on('error', function (error) {
@@ -215,41 +216,14 @@ function getCommonModules(hostType) {
                 if (fs.existsSync(searchPath)) {
                     fs.readdirSync(searchPath).forEach(function (file) {
                         if (path.extname(file) === '.js') {
-                            _commonModules[hostType].push({name: path.basename(file, '.js'), file: path.join(searchPath, file)});
+                            _commonModules[hostType].push({ name: path.basename(file, '.js'), file: path.join(searchPath, file) });
                         }
                     });
                 }
             });
         });
     }
-    return hostType? _commonModules[hostType] : _commonModules;
-}
-
-function compareObjects(o1, o2) {
-    // If either are undefined, return false - don't consider undefined to equal undefined.
-    if (typeof o1 === 'undefined' || typeof o1 === 'undefined') {
-        return false;
-    }
-
-    if (Array.isArray(o1)) {
-        if (!Array.isArray(o2)) {
-            return false;
-        }
-        // Simple array comparison - expects same order and only scalar values
-        return o1.length === o2.length && o1.every(function (v, i) {
-                return v === o2[i];
-            });
-    }
-
-    var keys1 = Object.keys(o1);
-    var keys2 = Object.keys(o2);
-
-    return compareObjects(keys1, keys2) &&
-        compareObjects(keys1.map(function (key) {
-            return o1[key];
-        }), keys2.map(function (key) {
-            return o2[key];
-        }));
+    return hostType ? _commonModules[hostType] : _commonModules;
 }
 
 function getHostJsFile(hostType) {
@@ -259,7 +233,13 @@ function getHostJsFile(hostType) {
     return hostJsFiles[hostType];
 }
 
+function reset() {
+    hostJsFiles = {};
+    builtOnce = {};
+}
+
 module.exports.createSimHostJsFile = createSimHostJsFile;
 module.exports.createAppHostJsFile = createAppHostJsFile;
 module.exports.validateSimHostPlugins = validateSimHostPlugins;
 module.exports.getHostJsFile = getHostJsFile;
+module.exports.reset = reset;

@@ -429,12 +429,17 @@ function registerTelemetryEvents() {
         }));
     });
 
-    // Register event for the isVirtual device checkbox
-    document.getElementById('is-virtual-device')
-        .addEventListener('click',
-            telemetry.sendUITelemetry.bind(this, Object.assign({}, baseProps, {
-                control: 'is-virtual-device'
-            })));
+    // Register event for the isVirtual device checkbox. Clicking the checkbox's label fires the click event twice, so
+    // keep track of the previous state. Note that we can't use the change event because the component seems to
+    // swallow it.
+    var previousVirtualState = true;
+    var virtualDeviceCheckbox = document.getElementById('is-virtual-device');
+    virtualDeviceCheckbox.addEventListener('click', function () {
+        if (virtualDeviceCheckbox.checked !== previousVirtualState) {
+            previousVirtualState = virtualDeviceCheckbox.checked;
+            telemetry.sendUITelemetry(Object.assign({}, baseProps, { control: 'is-virtual-device' }));
+        }
+    });
 }
 
 module.exports = function (messages) {

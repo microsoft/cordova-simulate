@@ -68,9 +68,9 @@ function handleWatcherEvent(root, fileRelativePath) {
     // Make sure the event is for a file, not a directory
     var isWww = root === WWW_ROOT;
     var srcPathPrefix = isWww ? path.join(config.projectRoot, WWW_ROOT) : this.mergesOverridePath;
-    var fileAbsolutePath = path.join(srcPathPrefix, fileRelativePath);
+    var filePathFromProjectRoot = path.join(srcPathPrefix, fileRelativePath);
 
-    if (fs.statSync(fileAbsolutePath).isDirectory()) {
+    if (fs.statSync(filePathFromProjectRoot).isDirectory()) {
         return;
     }
 
@@ -81,7 +81,7 @@ function handleWatcherEvent(root, fileRelativePath) {
 
     // Invoke the file changed callback.
     if (this.fileChangedCallback && typeof this.fileChangedCallback === 'function') {
-        this.fileChangedCallback(fileRelativePath, fileAbsolutePath);
+        this.fileChangedCallback(fileRelativePath, root);
     }
 }
 

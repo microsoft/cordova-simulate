@@ -81,7 +81,7 @@ momentjs.com
 accounting.js v0.4.2
 Copyright 2014 Open Exchange Rates, MIT license
 http://openexchangerates.github.io/accounting.js
-(see src/plugins/cordova-plugin-globalization/moment.js)
+(see src/plugins/cordova-plugin-globalization/accounting.js)
 
 -- jQuery JavaScript Library --------------------------------------------------
 

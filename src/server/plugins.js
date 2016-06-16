@@ -14,8 +14,6 @@ var plugins;
 var pluginsTelemetry;
 var _router;
 
-resetPluginsData();
-
 function resetPluginsData() {
     plugins = {};
     pluginsTelemetry = {
@@ -30,7 +28,7 @@ function initPlugins() {
 
     // Find the default plugins
     var projectRoot = config.projectRoot;
-    var defaultPlugins = ['exec', 'events'];
+    var defaultPlugins = ['cordova-plugin-geolocation', 'exec', 'events'];
     var simulatedDefaultPlugins = {};
 
     defaultPlugins.forEach(function (pluginId) {
@@ -46,8 +44,11 @@ function initPlugins() {
     var projectPluginsRoot = path.resolve(config.platformRoot, 'plugins');
     var rawProjectPluginList = getDirectoriesInPath(projectPluginsRoot);
 
-    if (rawProjectPluginList.indexOf('cordova-plugin-geolocation') < 0) {
-        rawProjectPluginList.unshift('cordova-plugin-geolocation');
+    /* if the geolocation plugin is already added to the project,
+       we need to remove it since it is in the list of default plugins as well and will appear twice otherwise */
+    var geolocationIndex = rawProjectPluginList.indexOf('cordova-plugin-geolocation');
+    if (geolocationIndex >= 0) {
+        rawProjectPluginList.splice(geolocationIndex, 1);
     }
 
     var simulatedProjectPlugins = {};
@@ -146,7 +147,6 @@ function findPluginSourceFilePath(projectRoot, pluginId, file) {
     var pluginPath = path.join(projectRoot, 'plugins', pluginId, 'src/simulation');
     var pluginFilePath = path.resolve(pluginPath, file);
     return fs.existsSync(pluginFilePath) ? pluginPath : findBuiltInPluginSourceFilePath(pluginId, file);
-
 }
 
 function findBuiltInPluginSourceFilePath(pluginId, file) {
@@ -165,7 +165,7 @@ function shouldUsePluginWithDebugHost(pluginPath, pluginAddedToProject) {
     pluginAddedToProject = !!pluginAddedToProject;
 
     // Check whether the plugin defines some debug-host requirements.
-    var debugHostFilePath = path.join(pluginPath, pluginSimulationFiles['debug-host']['debug-host'])
+    var debugHostFilePath = path.join(pluginPath, pluginSimulationFiles['debug-host']['debug-host']);
 
     if (!fs.existsSync(debugHostFilePath)) {
         // Plugin doesn't have any requirements for debug-host. Always use the plugin if it was added to the project.
@@ -221,7 +221,13 @@ function getRouter() {
     return _router;
 }
 
+function reset() {
+    resetPluginsData();
+    _router = null;
+}
+
 module.exports.initPlugins = initPlugins;
+module.exports.reset = reset;
 module.exports.getRouter = getRouter;
 module.exports.getPlugins = function () {
     return plugins;

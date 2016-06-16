@@ -32,7 +32,7 @@ module.exports = function (messages) {
         });
         compassWidget.initialize(compass.heading);
 
-        inputHeading.addEventListener('input', function () {
+        inputHeading.addEventListener('change', function () {
             compassWidget.updateHeading(this.value);
 
             sendUITelemetry('compass-heading-value');

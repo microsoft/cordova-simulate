@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
-
+/* global io:false */
 var livereload = require('./live-reload-client');
 var Messages = require('messages');
 var telemetry = require('telemetry-helper');
@@ -7,7 +7,22 @@ var telemetry = require('telemetry-helper');
 var cordova;
 var socket = io();
 var nextExecCacheIndex = 0;
+
+// Details of each plugin that has app-host code is injected when this file is served.
+var plugins = {
+    /** PLUGINS **/
+};
+
+var pluginHandlersDefinitions = {
+    /** PLUGIN-HANDLERS **/
+};
+
+var pluginClobberDefinitions = {
+    /** PLUGIN-CLOBBERS **/
+};
+
 var execCache = {};
+var pluginMessages = {};
 var pluginHandlers = {};
 var serviceToPluginMap = {};
 
@@ -25,21 +40,6 @@ function clobber(clobbers, scope, clobberToPluginMap, pluginId) {
         }
     });
 }
-
-// Details of each plugin that has app-host code is injected when this file is served.
-var plugins = {
-    /** PLUGINS **/
-};
-
-var pluginHandlersDefinitions = {
-    /** PLUGIN-HANDLERS **/
-};
-
-var pluginClobberDefinitions = {
-    /** PLUGIN-CLOBBERS **/
-};
-
-var pluginMessages = {};
 
 function applyPlugins(plugins, clobberScope, clobberToPluginMap) {
     Object.keys(plugins).forEach(function (pluginId) {
@@ -117,15 +117,15 @@ function setCordova(originalCordova) {
             livereload.start(socket);
         });
 
-        socket.on('init-telemetry', function (data) {
+        socket.on('init-telemetry', function () {
             telemetry.init(socket);
         });
 
-        socket.on('init-xhr-proxy', function (data) {
+        socket.on('init-xhr-proxy', function () {
             require('xhr-proxy').init(); 
         });
 
-        socket.on('init-touch-events', function (data) {
+        socket.on('init-touch-events', function () {
             require('./touch-events').init();
         });
 
@@ -141,6 +141,8 @@ function setCordova(originalCordova) {
         applyPlugins(plugins);
         applyPlugins(pluginHandlersDefinitions, pluginHandlers, serviceToPluginMap);
         applyPlugins(pluginClobberDefinitions, window);
+
+        telemetry.registerPluginServices(serviceToPluginMap);
 
         platformBootstrap();
 
@@ -177,7 +179,6 @@ function setCordova(originalCordova) {
 
     // register app-host
     socket.emit('register-app-host');
-
 }
 
 function getCordova() {
@@ -188,11 +189,11 @@ function exec(success, fail, service, action, args) {
     // If we have a local handler, call that. Otherwise pass it to the simulation host.
     var handler = pluginHandlers[service] && pluginHandlers[service][action];
     if (handler) {
-        telemetry.sendClientTelemetry('exec', { handled: 'app-host', plugin: serviceToPluginMap[service], service: service, action: action });
+        telemetry.sendClientTelemetry('exec', { handled: 'app-host', service: service, action: action });
 
         // Ensure local handlers are executed asynchronously.
         setTimeout(function () {
-            handler(success, fail, service, action, args);
+            handler(success, fail, args);
         }, 0);
     } else {
         var execIndex = nextExecCacheIndex++;

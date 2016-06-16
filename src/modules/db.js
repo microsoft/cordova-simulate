@@ -138,7 +138,7 @@ self = {
         event.trigger('StorageUpdatedEvent');
     },
 
-    initialize: function (previous, baton) {
+    initialize: function () {
         var d = Q.defer();
 
         if (!window.openDatabase) {

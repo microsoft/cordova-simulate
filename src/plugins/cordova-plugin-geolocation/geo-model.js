@@ -72,7 +72,7 @@ var self = {
         }));
 
         if (!messages) {
-            throw "geo-model has not been initialized";
+            throw 'geo-model has not been initialized';
         }
 
         messages.emit('position-info-updated', _positionInfo);

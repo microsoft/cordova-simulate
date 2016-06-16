@@ -15,7 +15,7 @@ module.exports = function (messages) {
 
     return {
         'Console': {
-            'logLevel': logLevelHandler,
+            'logLevel': logLevelHandler
         }
     };
 };

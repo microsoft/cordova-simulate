@@ -10,7 +10,7 @@ var baseProps = {
 module.exports = function (messages) {
     function initialize() {
         var eventList = document.getElementById('event-list');
-        var events = ['deviceready', 'backbutton', 'menubutton', 'pause', 'resume', 'searchbutton', 'online', 'offline'];
+        var events = ['backbutton', 'menubutton', 'pause', 'resume', 'searchbutton', 'online', 'offline'];
         events.forEach(function (event) {
             var option = document.createElement('option');
             option.value = event;

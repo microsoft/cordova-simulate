@@ -14,40 +14,14 @@ function initialize() {
             // with elements in the shadow DOM.
 
             var collapsed = e.target.classList.contains('cordova-collapsed');
-
             if (collapsed) {
                 e.target.classList.remove('cordova-collapsed');
-
-                // Trick to get the current computed height (won't animate) - note that we want to get this dynamically
-                // now rather than storing it before we collapse, since things could happen while we're collapsed that
-                // change our height.
                 content.style.display = '';
                 content.style.height = '';
-                var computedHeight = window.getComputedStyle(content).height;
-                content.style.height = '0';
-
-                // Animate to computed height after a timeout
-                window.setTimeout(function () {
-                    content.style.height = computedHeight;
-                }, 0);
             } else {
                 e.target.classList.add('cordova-collapsed');
-
-                // Force height to a value that can be animated, then set to 0 after a timeout. We store the height in
-                // max-height to use when we're animating back to full height.
-                content.style.height = window.getComputedStyle(content).height;
-                window.setTimeout(function () {
-                    content.style.height = '0';
-                }, 0);
-            }
-        });
-
-        content.addEventListener('transitionend', function (e) {
-            // After we've transitioned back to full size, reset height to empty to allow dynamic height changes.
-            if (parseInt(e.target.style.height) === 0) {
-                e.target.style.display = 'none';
-            } else {
-                e.target.style.height = '';
+                content.style.display = 'none';
+                content.style.height = '0';
             }
         });
     });
@@ -76,7 +50,6 @@ function initialize() {
 
     registerCustomElement('cordova-item', function () {
         this.classList.add('cordova-group');
-        var item = this;
         this.addEventListener('click', function (e) {
             if (e.target === this) {
                 // If the click target is our self, the only thing that could have been clicked is the delete icon.
@@ -146,7 +119,7 @@ function initialize() {
     });
 
     registerCustomElement('cordova-label', {
-        textContent: {
+        value: {
             set: function (value) {
                 setValueSafely(this.shadowRoot.querySelector('label'), 'textContent', value);
             },
@@ -177,6 +150,45 @@ function initialize() {
         this.shadowRoot.querySelector('label').textContent = this.getAttribute('label');
         this.classList.add('cordova-panel-row');
         this.classList.add('cordova-group');
+    }, 'input');
+
+    registerCustomElement('cordova-number-entry', {
+        value: {
+            set: function (value) {
+                setValueSafely(this.shadowRoot.querySelector('input'), 'value', value);
+            },
+
+            get: function () {
+                return this.shadowRoot.querySelector('input').value;
+            }
+        },
+        disabled: {
+            set: function (value) {
+                setValueSafely(this.shadowRoot.querySelector('input'), 'disabled', value);
+            }
+        }
+    }, function () {
+        this.shadowRoot.querySelector('label').textContent = this.getAttribute('label');
+        this.classList.add('cordova-panel-row');
+        this.classList.add('cordova-group');
+
+        var input = this.shadowRoot.querySelector('input');
+
+        var maxValue = this.getAttribute('max'),
+            minValue = this.getAttribute('min'),
+            step = this.getAttribute('step');
+
+        if (maxValue !== null) {
+            input.setAttribute('max', maxValue);
+        }
+
+        if (minValue !== null) {
+            input.setAttribute('min', minValue);
+        }
+
+        if (step !== null) {
+            input.setAttribute('step', step);
+        }
     }, 'input');
 
     registerCustomElement('cordova-labeled-value', {

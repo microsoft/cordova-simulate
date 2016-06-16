@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Based in part on code from Apache Ripple (https://github.com/apache/incubator-ripple)
 
+/*global OpenLayers: false */
 var telemetry = require('telemetry-helper');
 
 var baseProps = {
@@ -177,7 +178,7 @@ module.exports = function (messages) {
                 var headingDeg  = parseFloat(heading.value),
                     headingText = navUtils.getDirection(headingDeg);
 
-                headingLabel.textContent = headingText;
+                headingLabel.value = headingText;
                 headingMapLabel.innerHTML = headingText + '</br>' + headingDeg + '&deg;';
 
                 var style = ['-webkit-transform', '-ms-transform', '-moz-transform', '-o-transform', 'transform'].map(function (prop) {
@@ -209,7 +210,7 @@ module.exports = function (messages) {
                 accuracy.value = positionInfo.accuracy;
                 altitudeAccuracy.value = positionInfo.altitudeAccuracy;
 
-                delay.value = document.getElementById(GEO_OPTIONS.DELAY_LABEL).textContent = geo.delay || 0;
+                delay.value = document.getElementById(GEO_OPTIONS.DELAY_LABEL).value = geo.delay || 0;
                 if (geo.timeout) {
                     timeout.checked = true;
                 }
@@ -456,12 +457,12 @@ module.exports = function (messages) {
 
             document.querySelector('#' + GEO_OPTIONS.DELAY).addEventListener('change', function () {
                 updateGeo();
-                delayLabel.textContent = delay.value;
+                delayLabel.value = delay.value;
             });
 
             document.querySelector('#' + GEO_OPTIONS.DELAY).addEventListener('input', function () {
                 updateGeo();
-                delayLabel.textContent = delay.value;
+                delayLabel.value = delay.value;
             });
 
             document.querySelector('#' + GEO_OPTIONS.TIMEOUT).addEventListener('click', function () {

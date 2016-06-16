@@ -19,12 +19,21 @@ var APP_HOST = 'APP_HOST',
     SIM_HOST = 'SIM_HOST',
     DEBUG_HOST = 'DEBUG_HOST';
 
+var io;
 var hostSockets = {};
 
 var pendingEmits = {};
 pendingEmits[APP_HOST] = [];
 pendingEmits[SIM_HOST] = [];
 pendingEmits[DEBUG_HOST] = [];
+
+function reset() {
+    hostSockets = {};
+    pendingEmits = {};
+    pendingEmits[APP_HOST] = [];
+    pendingEmits[SIM_HOST] = [];
+    pendingEmits[DEBUG_HOST] = [];
+}
 
 /* Deferred are used to delay the actions until an event happens.
  * Two major events are kept track of:
@@ -66,7 +75,7 @@ function setupAppHostHandlers() {
     // Set up live reload if necessary.
     if (config.liveReload) {
         log.log('Starting live reload.');
-        livereload.init(socket);
+        livereload.init(hostSockets[APP_HOST]);
     }
 
     // Set up telemetry if necessary.
@@ -87,7 +96,7 @@ function setupAppHostHandlers() {
     handlePendingEmits(APP_HOST);
 }
 
-function handleSimHostRegistration(socket) {
+function handleSimHostRegistration() {
     subscribeTo(SIM_HOST, 'ready', handleSimHostReady, true);
     emitTo(SIM_HOST, 'init');
 }
@@ -161,7 +170,10 @@ function setupSimHostHandlers() {
 }
 
 function init(server) {
-    var io = require('socket.io')(server);
+
+    reset();
+
+    io = require('socket.io')(server);
 
     io.on('connection', function (socket) {
         socket.on('register-app-host', function () {
@@ -194,7 +206,8 @@ function init(server) {
             hostSockets[DEBUG_HOST] = socket;
 
             if (data && data.handlers) {
-                socket.on('end', function () {
+                socket.on('disconnect', function () {
+                    log.log('Debug-host disconnected.');
                     config.debugHostHandlers = null;
                 });
                 config.debugHostHandlers = data.handlers;
@@ -263,5 +276,22 @@ function reloadSimHost() {
     emitTo(SIM_HOST, 'refresh');
 }
 
-module.exports.init          = init;
-module.exports.reloadSimHost = reloadSimHost;
+function closeConnections() {
+    Object.keys(hostSockets).forEach(function (hostType) {
+        var socket = hostSockets[hostType];
+        if (socket) {
+            socket.disconnect(true);
+        }
+    });
+
+    if (io) {
+        io.close();
+        io = null;
+    }
+
+    reset();
+}
+
+module.exports.init             = init;
+module.exports.reloadSimHost    = reloadSimHost;
+module.exports.closeConnections = closeConnections;

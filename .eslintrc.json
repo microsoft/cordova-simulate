@@ -1,0 +1,11 @@
+{
+    "extends": "eslint:recommended",
+    "env": {
+        "browser": true,
+        "commonjs": true
+    },
+    "rules": {
+        "quotes": [ 2, "single", { "avoidEscape": false, "allowTemplateLiterals": true } ],
+        "no-console": [ 0 ]
+    }
+}

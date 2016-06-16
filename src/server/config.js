@@ -1,10 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var fs = require('fs'),
-    path = require('path');
-
 var config = {};
-var simulationFilePath;
 
 // module properties
 [
@@ -16,6 +12,7 @@ var simulationFilePath;
     { name: 'projectRoot', single: true },
     { name: 'server', optional: true },
     { name: 'simHostOptions' },
+    { name: 'simulationFilePath' },
     { name: 'telemetry', optional: true },
     { name: 'touchEvents', optional: true },
     { name: 'xhrProxy', optional: true }
@@ -28,21 +25,6 @@ var simulationFilePath;
             setValue(prop.name, value, prop.single);
         }
     });
-});
-
-Object.defineProperties(module.exports, {
-    simulationFilePath: {
-        get: function () {
-            if (!simulationFilePath) {
-                var projectRoot = getValue('projectRoot');
-                simulationFilePath = path.join(projectRoot, 'simulation');
-                if (!fs.existsSync(simulationFilePath)) {
-                    fs.mkdirSync(simulationFilePath);
-                }
-            }
-            return simulationFilePath;
-        }
-    }
 });
 
 function setValue(prop, value, single) {
@@ -58,3 +40,9 @@ function getValue(prop, optional) {
     }
     return config[prop];
 }
+
+function newInstance() {
+    config = {};
+}
+
+module.exports.newInstance = newInstance;

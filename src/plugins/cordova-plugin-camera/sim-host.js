@@ -12,9 +12,10 @@ module.exports = function (messages) {
     var filenameInput, dialogFilenameInput, dialogImg;
 
     messages.register('takePicture', function (args, callback) {
-        if (document.getElementById('camera-host').checked) {
+        /*if (document.getElementById('camera-host').checked) {
             window.alert('Not supported');
-        } else if (document.getElementById('camera-prompt').checked) {
+        } else*/
+        if (document.getElementById('camera-prompt').checked) {
             dialog.showDialog('camera-choose-image', function (msg) {
                 if (msg === 'showing') {
                     // Not we use .onclick etc here rather than addEventListener() to ensure we replace any existing
@@ -29,9 +30,11 @@ module.exports = function (messages) {
                     };
                 }
             });
-        } else if (document.getElementById('camera-sample').checked) {
+        }
+        /*else if (document.getElementById('camera-sample').checked) {
             window.alert('Not supported');
-        } else if (document.getElementById('camera-file').checked) {
+        }*/
+        else if (document.getElementById('camera-file').checked) {
             createArrayBuffer(filenameInput, callback);
         }
     });
@@ -82,9 +85,9 @@ module.exports = function (messages) {
                 }
             }
 
-            document.getElementById('camera-host').onclick = handleRadioClick.bind(this, 'camera-host');
+            //document.getElementById('camera-host').onclick = handleRadioClick.bind(this, 'camera-host');
             document.getElementById('camera-prompt').onclick = handleRadioClick.bind(this, 'camera-prompt');
-            document.getElementById('camera-sample').onclick = handleRadioClick.bind(this, 'camera-sample');
+            //document.getElementById('camera-sample').onclick = handleRadioClick.bind(this, 'camera-sample');
             document.getElementById('camera-file').onclick = handleRadioClick.bind(this, 'camera-file');
         }
     };

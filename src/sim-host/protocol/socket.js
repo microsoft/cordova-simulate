@@ -1,41 +1,70 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
+/*global io: false */
+
 var telemetry = require('telemetry-helper');
 
+var registerOnInitialize = false;
 var socket;
+var serviceToPluginMap;
 
-module.exports.initialize = function (pluginHandlers, serviceToPluginMap) {
-    socket = io();
-    module.exports.socket = socket;
+    function getSuccess(index) {
+        return function (result) {
+            console.log('Success callback for index: ' + index + '; result: ' + result);
+            var data = { index: index, result: result };
+            socket.emit('exec-success', data);
+        };
+    }
 
-    socket.on('init-telemetry', function (data) {
-        telemetry.init(socket);
+    function getFailure(index) {
+        return function (error) {
+            console.log('Failure callback for index: ' + index + '; error: ' + error);
+            var data = { index: index, error: error };
+            socket.emit('exec-failure', data);
+        };
+    }
+
+    function registerSimHost() {
+        socket.emit('register-simulation-host');
+    }
+
+    Object.defineProperty(module.exports, 'socket', {
+        get: function () {
+            return socket; // Will be undefined if called before initialize().
+        }
     });
 
-    socket.on('refresh', function () {
-        document.location.reload(true);
-    });
+    module.exports.initialize = function (pluginHandlers, services) {
+        serviceToPluginMap = services;
+        socket = io();
 
-    socket.on('app-plugin-list', function (data) {
-        // TODO: process the list of plugins
-        socket.emit('start');
-    });
+        socket.on('init-telemetry', function () {
+            telemetry.init(socket);
+        });
 
-    socket.once('init', function () {
-        socket.on('exec', function (data) {
-            var index;
+        socket.on('refresh', function () {
+            document.location.reload(true);
+        });
 
-            if (!data) {
-                throw 'Exec called on simulation host without exec info';
-            }
+        socket.on('app-plugin-list', function () {
+            // TODO: process the list of plugins
+            socket.emit('start');
+        });
 
-            index = data.index;
-            if (typeof index !== 'number') {
-                throw 'Exec called on simulation host without an index specified';
-            }
+        socket.once('init', function () {
+            socket.on('exec', function (data) {
+                var index;
 
+                if (!data) {
+                    throw 'Exec called on simulation host without exec info';
+                }
 
-            var success = data.hasSuccess ? getSuccess(index) : null;
+                index = data.index;
+                if (typeof index !== 'number') {
+                    throw 'Exec called on simulation host without an index specified';
+                }
+
+                var success = data.hasSuccess ? getSuccess(index) : null;
             var failure = data.hasFail ? getFailure(index) : null;
             var service = data.service;
             if (!service) {
@@ -50,42 +79,35 @@ module.exports.initialize = function (pluginHandlers, serviceToPluginMap) {
             console.log('Exec ' + service + '.' + action + ' (index: ' + index + ')');
 
             var handler = pluginHandlers[service] && pluginHandlers[service][action];
-            var telemetryProps = { plugin: serviceToPluginMap && serviceToPluginMap[service], service: service, action: action };
+            var telemetryProps = { service: service, action: action };
             if (!handler) {
-                socket.emit('telemetry', {event: 'exec', props: {handled: 'none', service: service, action: action}});
+                telemetryProps.handled = 'none';
                 handler = pluginHandlers['*']['*'];
                 handler(success, failure, service, action, data.args);
             } else {
-                socket.emit('telemetry', {event: 'exec', props: {handled: 'sim-host', service: service, action: action}});
+                telemetryProps.handled = 'sim-host';
                 handler(success, failure, data.args);
             }
 
             telemetry.sendClientTelemetry('exec', telemetryProps);
-
         });
     });
 
     socket.on('init', function () {
         socket.emit('ready');
     });
+
+    if (registerOnInitialize) {
+        registerSimHost();
+    }
 };
 
 module.exports.notifyPluginsReady = function () {
-    socket.emit('register-simulation-host');
+    telemetry.registerPluginServices(serviceToPluginMap);
+
+    if (socket) {
+        registerSimHost();
+    } else {
+        registerOnInitialize = true;
+    }
 };
-
-function getSuccess(index) {
-    return function (result) {
-        console.log('Success callback for index: ' + index + '; result: ' + result);
-        var data = { index: index, result: result };
-        socket.emit('exec-success', data);
-    };
-}
-
-function getFailure(index) {
-    return function (error) {
-        console.log('Failure callback for index: ' + index + '; error: ' + error);
-        var data = { index: index, error: error };
-        socket.emit('exec-failure', data);
-    };
-}

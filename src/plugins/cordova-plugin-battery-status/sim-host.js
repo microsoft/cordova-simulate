@@ -18,7 +18,7 @@ module.exports = function (message) {
             pluggedCheckbox = document.getElementById('is-plugged');
 
         function updateBatteryLevelText(level) {
-            labelBatteryLevel.textContent = level + '%';
+            labelBatteryLevel.value = level + '%';
         }
 
         // Initialize the UI with the values of isPlugged and battery level.
