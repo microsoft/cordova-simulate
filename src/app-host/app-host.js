@@ -57,7 +57,12 @@ function applyPlugins(plugins, clobberScope, clobberToPluginMap) {
     });
 }
 
-function setCordova(originalCordova) {
+/*
+ * This function is used as setter for window.cordova property. Besides setting
+ * the global property, it overrides some cordova definitions and sets up the
+ * communication protocol with the server and the sim-host.
+ */
+function setCordovaAndInitialize(originalCordova) {
     var channel,
         platform,
         platformBootstrap;
@@ -159,7 +164,9 @@ function setCordova(originalCordova) {
             // windows has an overriden bootstrap which does not fire
             // onNativeReady
             case 'windows':
+            // android specified here just to be explicit about it
             /* falls through */
+            case 'android':
             default:
                 channel.onNativeReady.fire();
                 break;
@@ -209,7 +216,7 @@ exec.init = function () {
 
 // Setup for cordova patching
 Object.defineProperty(window, 'cordova', {
-    set: setCordova,
+    set: setCordovaAndInitialize,
     get: getCordova
 });
 

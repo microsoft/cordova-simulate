@@ -68,10 +68,6 @@ function setupAppHostHandlers() {
         emitTo(SIM_HOST, 'plugin-method', data, callback);
     });
 
-    subscribeTo(APP_HOST, 'telemetry', function (data) {
-        telemetry.handleClientTelemetry(data);
-    });
-
     // Set up live reload if necessary.
     if (config.liveReload) {
         log.log('Starting live reload.');
@@ -80,6 +76,10 @@ function setupAppHostHandlers() {
 
     // Set up telemetry if necessary.
     if (config.telemetry) {
+        subscribeTo(APP_HOST, 'telemetry', function (data) {
+            telemetry.handleClientTelemetry(data);
+        });
+
         emitTo(APP_HOST, 'init-telemetry');
     }
     
@@ -98,6 +98,7 @@ function setupAppHostHandlers() {
 
 function handleSimHostRegistration() {
     subscribeTo(SIM_HOST, 'ready', handleSimHostReady, true);
+
     emitTo(SIM_HOST, 'init');
 }
 
@@ -156,12 +157,12 @@ function setupSimHostHandlers() {
         emitTo(DEBUG_HOST, data.message, data.data);
     });
 
-    subscribeTo(SIM_HOST, 'telemetry', function (data) {
-        telemetry.handleClientTelemetry(data);
-    });
-
     // Set up telemetry if necessary.
     if (config.telemetry) {
+        subscribeTo(SIM_HOST, 'telemetry', function (data) {
+            telemetry.handleClientTelemetry(data);
+        });
+
         emitTo(SIM_HOST, 'init-telemetry');
     }
 
@@ -206,10 +207,6 @@ function init(server) {
             hostSockets[DEBUG_HOST] = socket;
 
             if (data && data.handlers) {
-                socket.on('disconnect', function () {
-                    log.log('Debug-host disconnected.');
-                    config.debugHostHandlers = null;
-                });
                 config.debugHostHandlers = data.handlers;
             }
 
@@ -228,13 +225,16 @@ function init(server) {
                 return;
             }
             hostSockets[type] = undefined;
-            log.log(type + ' disconnected to the server');
+            log.log(type + ' disconnected from the server');
             switch (type) {
                 case APP_HOST:
                     resetAppHostState();
                     break;
                 case SIM_HOST:
                     resetSimHostState();
+                    break;
+                case DEBUG_HOST:
+                    config.debugHostHandlers = null;
                     break;
             }
 
