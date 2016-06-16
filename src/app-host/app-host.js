@@ -95,6 +95,23 @@ function setCordova(originalCordova) {
     channel.createSticky('onCordovaSimulateReady');
     channel.waitForInitialization('onCordovaSimulateReady');
 
+    socket.on('start-live-reload', function () {
+        livereload.start(socket);
+    });
+
+    socket.on('init-telemetry', function () {
+        telemetry.init(socket);
+    });
+
+    socket.on('init-xhr-proxy', function () {
+        require('xhr-proxy').init(); 
+    });
+
+    socket.on('init-touch-events', function () {
+        require('./touch-events').init();
+    });
+
+
     // firing of onNativeReady is delayed until SIM_HOST tells us it's ready
     socket.once('init', function () {
         // sim-host is ready, register exec handlers, fire onNativeReady and send
@@ -111,22 +128,6 @@ function setCordova(originalCordova) {
             if (execCacheInfo && typeof execCacheInfo.fail === 'function') {
                 execCacheInfo.fail(data.error);
             }
-        });
-
-        socket.on('start-live-reload', function () {
-            livereload.start(socket);
-        });
-
-        socket.on('init-telemetry', function () {
-            telemetry.init(socket);
-        });
-
-        socket.on('init-xhr-proxy', function () {
-            require('xhr-proxy').init(); 
-        });
-
-        socket.on('init-touch-events', function () {
-            require('./touch-events').init();
         });
 
         if (cordova.platformId !== 'browser') {
