@@ -229,6 +229,11 @@ function initialize() {
             get: function () {
                 return this.shadowRoot.querySelector('input').files;
             }
+        },
+        accept: {
+            set: function (value) {
+                setValueSafely(this.shadowRoot.querySelector('input'), 'accept', value);
+            }
         }
     }, 'input');
 
