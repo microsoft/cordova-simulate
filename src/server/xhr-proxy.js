@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
 var http = require('http'),
+    https = require('https'),
     url = require('url');
 
 module.exports.attach = function (app) {
@@ -22,7 +23,11 @@ module.exports.attach = function (app) {
         var proxyCallback = function (proxyReponse) {
             proxyReponse.pipe(response);
         };
-
-        http.request(options, proxyCallback).end();
+        
+        if (requestURL.protocol === "https:") {
+            https.request(options, proxyCallback).end();
+        } else {
+            http.request(options, proxyCallback).end();
+        }
     });
 };
