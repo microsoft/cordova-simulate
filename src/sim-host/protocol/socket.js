@@ -2,7 +2,8 @@
 
 /*global io: false */
 
-var telemetry = require('telemetry-helper');
+var telemetry = require('telemetry-helper'),
+    simStatus = require('sim-status');
 
 var registerOnInitialize = false;
 var socket;
@@ -49,6 +50,7 @@ module.exports.initialize = function (pluginHandlers, services) {
     socket.on('app-plugin-list', function () {
         // TODO: process the list of plugins (issue #87)
         socket.emit('start');
+        simStatus._fireAppHostReady();
     });
 
     socket.once('init', function () {
