@@ -40,8 +40,7 @@ function validateSimHostPlugins(pluginList) {
     // App-host has been refreshed. If plugins have changed, notify sim-host that is should also refresh (but only bother
     // doing this if we have ever created sim-host).
     if (builtOnce[simHost] && !validatePlugins(simHost, pluginList)) {
-        simSocket.emitToHost(simHost, 'refresh');
-        simSocket.invalidateSimHost();
+        simSocket.reloadSimHost();
     }
 }
 
