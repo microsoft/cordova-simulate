@@ -22,7 +22,7 @@ module.exports = function (messages) {
                     // handler with one that uses the appropriate value of 'callback' from the current closure.
                     document.getElementById('camera-dialog-use-image').onclick = function () {
                         dialog.hideDialog('camera-choose-image');
-                        createArrayBuffer(dialogFilenameInput, callback);
+                        getPicture(dialogFilenameInput, callback, args);
                     };
                     document.getElementById('camera-dialog-cancel').onclick = function () {
                         dialog.hideDialog('camera-choose-image');
@@ -35,9 +35,18 @@ module.exports = function (messages) {
             window.alert('Not supported');
         }*/
         else if (document.getElementById('camera-file').checked) {
-            createArrayBuffer(filenameInput, callback);
+            getPicture(filenameInput, callback, args);
         }
     });
+
+    function getPicture(input, callback, args) {
+        if (args && args[1] === 0) {
+            /* Destination type is DATA_URL */
+            createDataUrl(input, callback);
+        } else {
+            createArrayBuffer(input, callback);
+        }
+    }
 
     function createArrayBuffer(input, callback) {
         var blob = input.files[0];
@@ -45,7 +54,20 @@ module.exports = function (messages) {
         reader.onloadend = function () {
             callback(reader.error, { data: reader.result, type: blob.type });
         };
-        reader.readAsArrayBuffer(blob);
+        reader.readAsArrayBuffer(blob);        
+    }
+
+    function createDataUrl(input, callback) {
+        var blob = input.files[0];
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            var imageData = reader.result;
+            if (imageData) {
+                imageData = imageData.substr(imageData.indexOf(',') + 1);
+            }            
+            callback(reader.error, imageData);
+        };        
+        reader.readAsDataURL(blob);
     }
 
     return {
