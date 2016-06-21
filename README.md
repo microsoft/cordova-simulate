@@ -238,3 +238,6 @@ Note that:
 * A method call is always sent from `app-host` to `sim-host` or vice versa (that is, a call from `app-host` can only be
   handled by a method registered on `sim-host`, and vice versa).
 * Emitted messages, on the other hand, are sent both "locally" and across to the "other side".
+
+# Code of conduct
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
