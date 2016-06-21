@@ -24,7 +24,7 @@ module.exports.attach = function (app) {
             proxyReponse.pipe(response);
         };
         
-        if (requestURL.protocol === "https:") {
+        if (requestURL.protocol === 'https:') {
             https.request(options, proxyCallback).end();
         } else {
             http.request(options, proxyCallback).end();
