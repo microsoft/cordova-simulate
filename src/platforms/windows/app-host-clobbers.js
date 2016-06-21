@@ -81,7 +81,6 @@ module.exports = {
             StorageFile: {
                 getFileFromPathAsync: function () { }
             }
-
         },
         Media: {
             Capture: {
