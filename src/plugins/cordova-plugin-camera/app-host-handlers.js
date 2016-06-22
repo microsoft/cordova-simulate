@@ -5,9 +5,14 @@ module.exports = function (messages) {
         Camera: {
             takePicture: function (success, fail, args) {
                 messages.call('takePicture', args).then(function (result) {
-                    // 'result' should be {data: <ArrayBuffer>, type: <mimeType>}, from which we'll create a blob
-                    var blob = new Blob([result.data], {type: result.type});
-                    success(URL.createObjectURL(blob));
+                    if (args && args[1] === 0) {
+                        /* Destination type is DATA_URL */
+                        success(result);
+                    } else {
+                        // 'result' should be {data: <ArrayBuffer>, type: <mimeType>}, from which we'll create a blob
+                        var blob = new Blob([result.data], { type: result.type });
+                        success(URL.createObjectURL(blob));
+                    }
                 }, function (error) {
                     fail(error);
                 });
