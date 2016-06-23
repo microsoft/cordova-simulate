@@ -86,16 +86,14 @@ module.exports = function (messages) {
         body.css({position: 'fixed'});
 
         for (x = 1; x <= times; x++) {
-            body.animate({ left: -10 }, 5,
-                function () { checkForVibration(deferred, body);
-            })
-            .animate({ left: 0 }, 1)
-            .animate({ left: 10 }, 5)
-            .animate({ left: 0 }, 1)
-            .animate({ top: -10 }, 5)
-            .animate({ top: 0 }, 1)
-            .animate({ top: 10 }, 5)
-            .animate({ top: 0 }, 1);
+            body.animate({ left: -10 }, 5, function () { checkForVibration(deferred, body); })
+                .animate({ left: 0 }, 1)
+                .animate({ left: 10 }, 5)
+                .animate({ left: 0 }, 1)
+                .animate({ top: -10 }, 5)
+                .animate({ top: 0 }, 1)
+                .animate({ top: 10 }, 5)
+                .animate({ top: 0 }, 1);
 
             // stop vibrating in the end of vibration time if there is no more vibrations
             if (x >= times) {

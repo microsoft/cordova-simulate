@@ -98,11 +98,11 @@ document.addEventListener('deviceready', function () {
                     } else {
                         var realBlob = new Blob([blob]);
                         originalWrite.apply(this, [realBlob]);
-                   }
+                    }
                 };
 
                 fileEntry.remove(function(){ entryFunctionsCreated = true; }, function(){ /* empty callback */ });
-          });
+            });
         });
     }
 

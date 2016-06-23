@@ -7,7 +7,7 @@ module.exports = function (messages) {
     return {
         Compass: {
             getHeading: function (success, error, options) {
-               compass.getHeading(success, error, options);
+                compass.getHeading(success, error, options);
             },
             stopHeading: function (success, error) {
                 compass.stopHeading(success, error);

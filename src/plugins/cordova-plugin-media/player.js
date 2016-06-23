@@ -188,7 +188,7 @@ Player.prototype._isReady = function () {
  * @trows
  * @private
  */
- Player.prototype._createAudioNode = function () {
+Player.prototype._createAudioNode = function () {
     var node = new Audio();
     node.onloadstart = this._updateState.bind(this, Media.MEDIA_STARTING);
     node.onplaying = this._updateState.bind(this, Media.MEDIA_RUNNING);
