@@ -69,6 +69,7 @@ body /deep/ .cordova-header {
     line-height: 20px;
     text-transform: uppercase;
     font-weight: bold;
+    cursor: pointer;
 }
 
 body /deep/ .cordova-widget {
@@ -269,10 +270,6 @@ body /deep/ .cordova-collapse-icon {
 
 body /deep/ .cordova-collapse-icon.cordova-collapsed {
     background: url('expand.png') no-repeat 50% 50%;
-}
-
-body /deep/ .cordova-collapse-icon:hover, body /deep/ .cordova-close-icon:hover {
-    background-color: rgba(255, 255, 255, 0.25);
 }
 
 body /deep/ .cordova-close-icon {
