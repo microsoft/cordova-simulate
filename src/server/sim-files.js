@@ -72,8 +72,7 @@ SimulationFiles.prototype.validateSimHostPlugins = function (pluginList) {
 
     if (this._builtOnce[simHost] && !validatePlugins(simHost, pluginList, simulationFilePath)) {
         var simSocket = this._simServer.simSocket;
-        simSocket.emitToHost(simHost, 'refresh');
-        simSocket.invalidateSimHost();
+        simSocket.reloadSimHost();
     }
 };
 

@@ -80,7 +80,7 @@ function shouldUsePluginWithDebugHost(pluginPath, pluginAddedToProject, debugHos
     return pluginAddedToProject || !!debugHostOptions.alwaysActivateIfDebugHost;
 }
 
-function shouldInitPlugins(currentState, previousState, platform) {
+function shouldInitPlugins(currentState, previousState) {
     // We should init plugins if we don't have any info on a previous prepare for the current platform, or if there is
     // a difference in the list of installed plugins or debug-host handlers.
     if (!previousState) {

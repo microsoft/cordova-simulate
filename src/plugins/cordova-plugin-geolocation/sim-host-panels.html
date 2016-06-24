@@ -12,52 +12,6 @@
             margin-left: auto;
         }
     </style>
-    <cordova-text-entry label="Latitude" id="geo-latitude"></cordova-text-entry>
-    <cordova-text-entry label="Longitude" id="geo-longitude"></cordova-text-entry>
-    <cordova-text-entry label="Altitude" id="geo-altitude"></cordova-text-entry>
-    <cordova-text-entry label="Accuracy" id="geo-accuracy"></cordova-text-entry>
-    <cordova-text-entry label="Altitude accuracy" id="geo-altitude-accuracy"></cordova-text-entry>
-    <cordova-panel-row>
-        <cordova-label label="Heading"></cordova-label>
-        <cordova-label label="N" id="geo-heading-label"></cordova-label>
-        <input id="geo-heading" type="range" value="0" min="0" max="359.5" step="0.5" style="width:112px;">
-    </cordova-panel-row>
-    <cordova-text-entry label="Speed" id="geo-speed"></cordova-text-entry>
-    <cordova-panel-row>
-        <cordova-label label="GPS Delay (seconds)"></cordova-label>
-        <cordova-label label="0" id="geo-delay-label"></cordova-label>
-        <input id="geo-delay" type="range" value="0" min="0" max="30" style="width:112px;">
-    </cordova-panel-row>
-    <cordova-checkbox id="geo-timeout">Simulate GPS Timeout</cordova-checkbox>
-
-    <cordova-panel-row>
-        <cordova-label label="Navigation Simulator"></cordova-label>
-        <a href="https://github.com/TimBarham/cordova-simulate/blob/master/docs/gpx.md" target="_blank">How do I create a GPX file?</a>
-    </cordova-panel-row>
-
-    <cordova-panel-row>
-        <cordova-button id="geo-gpxfile-button" style="width:100%">Choose File</cordova-button>
-        <cordova-file hidden="true" id="geo-gpxfile"></cordova-file>
-    </cordova-panel-row>
-
-    <cordova-panel-row>
-        <!-- Empty section to force other section to the right of the row -->
-        <section></section>
-        <section>
-            <cordova-button id="geo-gpx-go" style="min-width:0;">Go</cordova-button>
-            <cordova-combo id="geo-gpxmultiplier-select" style="width:auto;min-width:0;display:inline;">
-                <option value="1">1x</option>
-                <option value="2">2x</option>
-                <option value="4">4x</option>
-                <option value="8">8x</option>
-                <option value="16">16x</option>
-                <option value="32">32x</option>
-                <option value="64">64x</option>
-                <option value="128">128x</option>
-            </cordova-combo>
-        </section>
-    </cordova-panel-row>
-
     <!-- Note that this needs to be a cordova-group not a cordova-panel-row as the flex box arranging of the latter
      screws up sizing of the map box in Firefox -->
     <cordova-group>
@@ -81,6 +35,47 @@
         <section class="geo-map-zoomlevel">
             Zoom Level:&nbsp;
             <span id="geo-map-zoomlevel-value"></span>
+        </section>
+    </cordova-panel-row>
+
+    <cordova-number-entry label="Latitude" id="geo-latitude"></cordova-number-entry>
+    <cordova-number-entry label="Longitude" id="geo-longitude"></cordova-number-entry>
+    <cordova-number-entry label="Altitude" id="geo-altitude"></cordova-number-entry>
+    <cordova-number-entry label="Accuracy" id="geo-accuracy"></cordova-number-entry>
+    <cordova-number-entry label="Altitude accuracy" id="geo-altitude-accuracy"></cordova-number-entry>
+    <cordova-panel-row>
+        <cordova-label label="Heading"></cordova-label>
+        <cordova-label label="N" id="geo-heading-label"></cordova-label>
+        <input id="geo-heading" type="range" value="0" min="0" max="359.5" step="0.5" style="width:112px;">
+    </cordova-panel-row>
+    <cordova-number-entry label="Speed" id="geo-speed"></cordova-number-entry>
+    <cordova-panel-row>
+        <cordova-label label="GPS Delay (seconds)"></cordova-label>
+        <cordova-label label="0" id="geo-delay-label"></cordova-label>
+        <input id="geo-delay" type="range" value="0" min="0" max="30" style="width:112px;">
+    </cordova-panel-row>
+    <cordova-checkbox id="geo-timeout">Simulate GPS Timeout</cordova-checkbox>
+
+    <cordova-panel-row>
+        <cordova-label label="Navigation Simulator"></cordova-label>        
+    </cordova-panel-row>
+    <cordova-panel-row>        
+        <section>
+            <cordova-button id="geo-gpxfile-button" style="width:100%">Choose File</cordova-button>
+            <cordova-file hidden="true" id="geo-gpxfile"></cordova-file>
+        </section>
+        <section>
+            <cordova-button id="geo-gpx-go" style="min-width:0;">Go</cordova-button>
+            <cordova-combo id="geo-gpxmultiplier-select" style="width:auto;min-width:0;display:inline;">
+                <option value="1">1x</option>
+                <option value="2">2x</option>
+                <option value="4">4x</option>
+                <option value="8">8x</option>
+                <option value="16">16x</option>
+                <option value="32">32x</option>
+                <option value="64">64x</option>
+                <option value="128">128x</option>
+            </cordova-combo>
         </section>
     </cordova-panel-row>
 </cordova-panel>

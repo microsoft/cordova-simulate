@@ -35,7 +35,7 @@ function Simulator(opts) {
             return simHostOptions.simHostRoot;
         }
     });
-};
+}
 
 Object.defineProperties(Simulator.prototype, {
     'urlRoot': {

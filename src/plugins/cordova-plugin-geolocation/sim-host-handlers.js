@@ -12,7 +12,7 @@ module.exports = function (messages) {
         window.setTimeout(function () {
             if (geo.timeout) {
                 if (fail) {
-                    fail(new PositionError(PositionError.TIMEOUT, "Position retrieval timed out."));
+                    fail(new PositionError(PositionError.TIMEOUT, 'Position retrieval timed out.'));
                 }
             } else {
                 win(geo.getPositionInfo())
@@ -47,6 +47,9 @@ module.exports = function (messages) {
                 if (success && typeof (success) === 'function') {
                     success();
                 }
+            },
+            getPermission: function (success, fail, args) {
+                success();
             }
         }
     };

@@ -54,7 +54,7 @@ module.exports.start = function (sock) {
      */
     function urlMatchesPath(url, fileRelativePath) {
         return localUrlPrefixes.some(function (prefix) {
-            return (prefix + fileRelativePath === url);
+            return (prefix + fileRelativePath) === url;
         });
     }
 
@@ -109,7 +109,6 @@ module.exports.start = function (sock) {
      */
     function onFileChanged(fileRelativePath) {
         var associatedNodes = findDomNodesForFilePath(fileRelativePath);
-        var canRefresh = false;
 
         if (associatedNodes.length) {
             refreshFile(fileRelativePath, associatedNodes);

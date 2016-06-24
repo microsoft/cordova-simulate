@@ -41,7 +41,7 @@ module.exports = function (messages) {
             alert: alert,
             confirm: confirm,
             prompt: prompt,
-            beep: beep,
+            beep: beep
         }
     };
 };

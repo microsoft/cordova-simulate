@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
+/*eslint-env node */
+
 var Simulator = require('./server/simulator');
 
 var launchBrowser = function (target, url) {

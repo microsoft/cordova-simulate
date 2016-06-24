@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Based in part on code from Apache Ripple (https://github.com/apache/incubator-ripple)
 
+/*global OpenLayers: false */
 var telemetry = require('telemetry-helper');
 
 var baseProps = {
@@ -473,6 +474,7 @@ module.exports = function (messages) {
             gpxFileButton.addEventListener('click', function () {
                 gpxFileLoader.input.click();
             });
+            gpxFileLoader.accept = '.gpx,.GPX';
             gpxFileLoader.addEventListener('change', function () {
                 // It is possible to have no file selected and still get a change event.
                 // You do this by selecting something, then selecting nothing.

@@ -42,7 +42,7 @@ function createTimeout(errorCallback, timeout) {
         t = null;
         errorCallback({
             code: PositionError.TIMEOUT,
-            message: "Position retrieval timed out."
+            message: 'Position retrieval timed out.'
         });
     }, timeout);
     return t;
@@ -106,7 +106,7 @@ module.exports = function (messages, exec) {
             } else if (options.timeout === 0) {
                 fail({
                     code: PositionError.TIMEOUT,
-                    message: "timeout value in PositionOptions set to 0 and no cached Position object available, or cached Position object's age exceeds provided PositionOptions' maximumAge parameter."
+                    message: 'timeout value in PositionOptions set to 0 and no cached Position object available, or cached Position object\'s age exceeds provided PositionOptions.maximumAge parameter.'
                 });
                 // Otherwise we have to call into native to retrieve a position.
             } else {
@@ -121,7 +121,7 @@ module.exports = function (messages, exec) {
                     // always truthy before we call into native
                     timeoutTimer.timer = true;
                 }
-                exec(win, fail, "Geolocation", "getLocation", [options.enableHighAccuracy, options.maximumAge]);
+                exec(win, fail, 'Geolocation', 'getLocation', [options.enableHighAccuracy, options.maximumAge]);
             }
             return timeoutTimer;
         },
@@ -171,7 +171,7 @@ module.exports = function (messages, exec) {
                 successCallback(pos);
             };
 
-            exec(win, fail, "Geolocation", "addWatch", [id, options.enableHighAccuracy]);
+            exec(win, fail, 'Geolocation', 'addWatch', [id, options.enableHighAccuracy]);
 
             return id;
         },
@@ -184,8 +184,12 @@ module.exports = function (messages, exec) {
             if (id && timers[id] !== undefined) {
                 clearTimeout(timers[id].timer);
                 timers[id].timer = false;
-                exec(null, null, "Geolocation", "clearWatch", [id]);
+                exec(null, null, 'Geolocation', 'clearWatch', [id]);
             }
+        },
+
+        getPermission: function (success, fail, args) {
+            success();
         }
     };
 
