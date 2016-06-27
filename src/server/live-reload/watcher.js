@@ -29,9 +29,7 @@ Watcher.prototype.startWatching = function () {
     this.wwwWatcher = fs.watch(watchPath, { recursive: true }, handleWwwWatcherEvent.bind(this));
 
     if (this.mergesOverrideExists) {
-        watchPath = path.join(this.projectRoot, MERGES_ROOT, this.platform);
-
-        this.mergesWatcher = fs.watch(watchPath, { recursive: true }, handleMergesWatcherEvent.bind(this));
+        this.mergesWatcher = fs.watch(this.mergesOverridePath, { recursive: true }, handleMergesWatcherEvent.bind(this));
     }
 };
 

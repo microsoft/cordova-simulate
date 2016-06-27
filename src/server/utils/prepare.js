@@ -2,8 +2,7 @@
 
 var exec = require('child_process').exec,
     Q = require('q'),
-    log = require('./log'),
-    jsUtils = require('./jsUtils');
+    log = require('./log');
 
 /**
  * @param {string} projectRoot
@@ -28,23 +27,4 @@ function execCordovaPrepare(projectRoot, platform) {
     return deferred.promise;
 }
 
-/**
- * @param {object} currentState
- * @param {object} previousState
- * @return {boolean}
- */
-function shouldPrepare(currentState, previousState) {
-    // We should prepare if we don't have any info on a previous prepare for the current platform, or if there is a
-    // difference in the list of installed plugins, the merges files or the www files.
-    if (!previousState) {
-        return true;
-    }
-
-    var pluginsAreTheSame = jsUtils.compareObjects(currentState.pluginList, previousState.pluginList);
-    var filesAreTheSame = jsUtils.compareObjects(currentState.files, previousState.files);
-
-    return !pluginsAreTheSame || !filesAreTheSame;
-}
-
 module.exports.execCordovaPrepare = execCordovaPrepare;
-module.exports.shouldPrepare = shouldPrepare;

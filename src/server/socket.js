@@ -44,6 +44,109 @@ function SocketServer(simulator) {
     this._liveReload = new LiveReload(project, telemetry, config.forcePrepare);
 }
 
+SocketServer.prototype.init = function (server) {
+    var that = this,
+        config = this._simulator.config;
+
+    this._io = require('socket.io')(server);
+
+    this._io.on('connection', function (socket) {
+        socket.on('register-app-host', function () {
+            log.log('APP_HOST connected to the server');
+            if (that._hostSockets[APP_HOST]) {
+                log.log('Overriding previously connected APP_HOST');
+                that._resetAppHostState();
+            }
+            that._hostSockets[APP_HOST] = socket;
+            that._whenSimHostReady.promise
+                .then(that._onSimHostReady.bind(that));
+            that._whenAppHostConnected.resolve();
+        });
+
+        socket.on('register-simulation-host', function () {
+            log.log('SIM_HOST connected to the server');
+            if (that._hostSockets[SIM_HOST]) {
+                log.log('Overriding previously connected SIM_HOST');
+                that._resetSimHostState();
+            }
+            that._hostSockets[SIM_HOST] = socket;
+            that._handleSimHostRegistration(socket);
+        });
+
+        socket.on('register-debug-host', function (data) {
+            log.log('DEBUG_HOST registered with server.');
+
+            // It only makes sense to have one debug host per server. If more than one tries to connect, always take
+            // the most recent.
+            that._hostSockets[DEBUG_HOST] = socket;
+
+            if (data && data.handlers) {
+                config.debugHostHandlers = data.handlers;
+            }
+
+            that._handlePendingEmits(DEBUG_HOST);
+        });
+
+        socket.on('disconnect', function () {
+            var type;
+            Object.keys(that._hostSockets).forEach(function (t) {
+                if (that._hostSockets[t] === socket) {
+                    type = t;
+                }
+            });
+            if (!type) {
+                log.log('Disconnect for an inactive socket');
+                return;
+            }
+            that._hostSockets[type] = undefined;
+            log.log(type + ' disconnected from the server');
+            switch (type) {
+                case APP_HOST:
+                    that._resetAppHostState();
+                    break;
+                case SIM_HOST:
+                    that._resetSimHostState();
+                    break;
+                case DEBUG_HOST:
+                    config.debugHostHandlers = null;
+                    break;
+            }
+
+        });
+
+    });
+};
+
+SocketServer.prototype.reloadSimHost = function () {
+    this._emitTo(SIM_HOST, 'refresh');
+};
+
+SocketServer.prototype.closeConnections = function () {
+    // stop watching file changes
+    if (this._simulator.config.liveReload) {
+        this._liveReload.stop();
+    }
+
+    Object.keys(this._hostSockets).forEach(function (hostType) {
+        var socket = this._hostSockets[hostType];
+        if (socket) {
+            socket.disconnect(true);
+        }
+    }.bind(this));
+
+    if (this._io) {
+        // not need to close the server, since it is closed
+        // by the SimulationServer instance
+        this._io = null;
+    }
+
+    this._hostSockets = {};
+    this._pendingEmits = {};
+    this._pendingEmits[APP_HOST] = [];
+    this._pendingEmits[SIM_HOST] = [];
+    this._pendingEmits[DEBUG_HOST] = [];
+};
+
 SocketServer.prototype._resetAppHostState = function () {
     this._whenAppHostConnected = Q.defer();
     this._whenAppHostConnected.promise.then(this._onAppHostConnected.bind(this));
@@ -173,79 +276,6 @@ SocketServer.prototype._setupSimHostHandlers = function () {
 
 };
 
-SocketServer.prototype.init = function (server) {
-    var that = this,
-        config = this._simulator.config;
-
-    this._io = require('socket.io')(server);
-
-    this._io.on('connection', function (socket) {
-        socket.on('register-app-host', function () {
-            log.log('APP_HOST connected to the server');
-            if (that._hostSockets[APP_HOST]) {
-                log.log('Overriding previously connected APP_HOST');
-                that._resetAppHostState();
-            }
-            that._hostSockets[APP_HOST] = socket;
-            that._whenSimHostReady.promise
-                .then(that._onSimHostReady.bind(that));
-            that._whenAppHostConnected.resolve();
-        });
-
-        socket.on('register-simulation-host', function () {
-            log.log('SIM_HOST connected to the server');
-            if (that._hostSockets[SIM_HOST]) {
-                log.log('Overriding previously connected SIM_HOST');
-                that._resetSimHostState();
-            }
-            that._hostSockets[SIM_HOST] = socket;
-            that._handleSimHostRegistration(socket);
-        });
-
-        socket.on('register-debug-host', function (data) {
-            log.log('DEBUG_HOST registered with server.');
-
-            // It only makes sense to have one debug host per server. If more than one tries to connect, always take
-            // the most recent.
-            that._hostSockets[DEBUG_HOST] = socket;
-
-            if (data && data.handlers) {
-                config.debugHostHandlers = data.handlers;
-            }
-
-            that._handlePendingEmits(DEBUG_HOST);
-        });
-
-        socket.on('disconnect', function () {
-            var type;
-            Object.keys(that._hostSockets).forEach(function (t) {
-                if (that._hostSockets[t] === socket) {
-                    type = t;
-                }
-            });
-            if (!type) {
-                log.log('Disconnect for an inactive socket');
-                return;
-            }
-            that._hostSockets[type] = undefined;
-            log.log(type + ' disconnected from the server');
-            switch (type) {
-                case APP_HOST:
-                    that._resetAppHostState();
-                    break;
-                case SIM_HOST:
-                    that._resetSimHostState();
-                    break;
-                case DEBUG_HOST:
-                    config.debugHostHandlers = null;
-                    break;
-            }
-
-        });
-
-    });
-};
-
 /**
  * @private
  */
@@ -282,36 +312,6 @@ SocketServer.prototype._subscribeTo = function (host, msg, handler, once) {
     } else {
         log.log('Subscribing to a disconnected ' + host + ' wanting \'' + msg + '\'');
     }
-};
-
-SocketServer.prototype.reloadSimHost = function () {
-    this._emitTo(SIM_HOST, 'refresh');
-};
-
-SocketServer.prototype.closeConnections = function () {
-    // stop watching file changes
-    if (this._simulator.config.liveReload) {
-        this._liveReload.stop();
-    }
-
-    Object.keys(this._hostSockets).forEach(function (hostType) {
-        var socket = this._hostSockets[hostType];
-        if (socket) {
-            socket.disconnect(true);
-        }
-    }.bind(this));
-
-    if (this._io) {
-        // not need to close the server, since it is closed
-        // by the SimulationServer instance
-        this._io = null;
-    }
-
-    this._hostSockets = {};
-    this._pendingEmits = {};
-    this._pendingEmits[APP_HOST] = [];
-    this._pendingEmits[SIM_HOST] = [];
-    this._pendingEmits[DEBUG_HOST] = [];
 };
 
 module.exports = SocketServer;

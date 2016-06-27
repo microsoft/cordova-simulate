@@ -12,10 +12,9 @@ var fs = require('fs'),
 /**
  * @constructor
  */
-function Project(simulator, platform, debugHostHandlers) {
+function Project(simulator, platform) {
     this._simulator = simulator;
     this.platform = platform;
-    this.debugHostHandlers = debugHostHandlers;
     this.simulationFilePath = null;
     // set after the simulation has started
     this.projectRoot = null;
@@ -52,6 +51,7 @@ Project.prototype.initPlugins = function () {
 
     // Find the default plugins
     var simulatedDefaultPlugins = {};
+    var debugHostHandlers = this._simulator.config.debugHostHandlers;
 
     Project.DEFAULT_PLUGINS.forEach(function (pluginId) {
         var pluginPath = pluginUtil.findPluginPath(this.projectRoot, pluginId);
@@ -78,7 +78,7 @@ Project.prototype.initPlugins = function () {
     rawProjectPluginList.forEach(function (pluginId) {
         var pluginFilePath = pluginUtil.findPluginPath(this.projectRoot, pluginId);
 
-        if (pluginFilePath && pluginUtil.shouldUsePluginWithDebugHost(pluginFilePath, true, this.debugHostHandlers)) {
+        if (pluginFilePath && pluginUtil.shouldUsePluginWithDebugHost(pluginFilePath, true, debugHostHandlers)) {
             simulatedProjectPlugins[pluginId] = pluginFilePath;
 
             if (pluginFilePath.indexOf(dirs.plugins) === 0) {
@@ -95,7 +95,7 @@ Project.prototype.initPlugins = function () {
     // debug-host, even if they weren't added to the project).
     var simulatedDebugHostPlugins = {};
 
-    if (this.debugHostHandlers) {
+    if (debugHostHandlers) {
         var rawBuiltInPluginList = utils.getDirectoriesInPath(dirs.plugins);
 
         rawBuiltInPluginList.forEach(function (pluginId) {
@@ -105,7 +105,7 @@ Project.prototype.initPlugins = function () {
 
             var pluginPath = path.join(dirs.plugins, pluginId);
 
-            if (pluginPath && pluginUtil.shouldUsePluginWithDebugHost(pluginPath, null, this.debugHostHandlers)) {
+            if (pluginPath && pluginUtil.shouldUsePluginWithDebugHost(pluginPath, null, debugHostHandlers)) {
                 simulatedDebugHostPlugins[pluginId] = pluginPath;
                 this.pluginsTelemetry.simulatedBuiltIn.push(pluginId);
             }
@@ -162,10 +162,9 @@ Project.prototype.prepare = function() {
         this._lastPlatform = this.platform;
 
         this._getProjectState().then(function (currentState) {
-            currentProjectState = currentState || this._getProjectState();
-            var previousState = this._previousPrepareStates[this.platform];
+            currentProjectState = currentState;
 
-            if (prepareUtil.shouldPrepare(currentProjectState, previousState)) {
+            if (this._shouldPrepare(currentProjectState)) {
                 return prepareUtil.execCordovaPrepare(this.projectRoot, this._lastPlatform).then(function () {
                     return true;
                 });
@@ -173,10 +172,8 @@ Project.prototype.prepare = function() {
 
             return Q(false);
         }.bind(this)).then(function (didPrepare) {
-            var previousState = this._previousPrepareStates[this.platform];
-
-            if (didPrepare || pluginUtil.shouldInitPlugins(currentProjectState, previousState, this.platform)) {
-                this._previousPrepareStates[this.platform] = currentProjectState || this._getProjectState();
+            if (didPrepare || this._shouldInitPlugins(currentProjectState)) {
+                this._previousPrepareStates[this.platform] = currentProjectState;
                 this.initPlugins();
             }
 
@@ -191,6 +188,45 @@ Project.prototype.prepare = function() {
     }
 
     return this._preparePromise;
+};
+
+/**
+ * @param {object} currentState
+ * @return {boolean}
+ */
+Project.prototype._shouldPrepare = function(currentState) {
+    var previousState = this._previousPrepareStates[this.platform];
+    // We should prepare if we don't have any info on a previous prepare for the current platform, or if there is a
+    // difference in the list of installed plugins, the merges files or the www files.
+    if (!previousState) {
+        return true;
+    }
+
+    var pluginsAreTheSame = utils.compareObjects(currentState.pluginList, previousState.pluginList);
+    var filesAreTheSame = utils.compareObjects(currentState.files, previousState.files);
+
+    return !pluginsAreTheSame || !filesAreTheSame;
+};
+
+/**
+ * @param {object} currentState
+ * @return {boolean}
+ */
+Project.prototype._shouldInitPlugins = function(currentState) {
+    var previousState = this._previousPrepareStates[this.platform];
+    // We should init plugins if we don't have any info on a previous prepare for the current platform, or if there is
+    // a difference in the list of installed plugins or debug-host handlers.
+    if (!previousState) {
+        return true;
+    }
+
+    // Use JSON stringification to compare states. This works because a state is an object that only contains
+    // serializable values, and because the glob module, which is used to read directories recursively, is
+    // deterministic in the order of the files it returns.
+    var pluginsAreTheSame = utils.compareObjects(currentState.pluginList, previousState.pluginList);
+    var debugHandlersAreTheSame = utils.compareObjects(currentState.debugHostHandlers, previousState.debugHostHandlers);
+
+    return !pluginsAreTheSame || !debugHandlersAreTheSame;
 };
 
 /**
@@ -269,7 +305,7 @@ Project.prototype._getProjectState = function() {
         newState.files = files;
 
         // Get information about current debug-host handlers.
-        newState.debugHostHandlers = this.debugHostHandlers || [];
+        newState.debugHostHandlers = this._simulator.config.debugHostHandlers || [];
 
         // Return the new state.
         return newState;
