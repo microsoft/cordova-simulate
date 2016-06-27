@@ -10,9 +10,8 @@ var fs = require('fs'),
     dirs = require('./dirs'),
     log = require('./utils/log'),
     SimulationFiles = require('./sim-files'),
-    SocketServer = require('./socket');
-
-var pluginSimulationFiles = require('./plugin-files');
+    SocketServer = require('./socket'),
+    pluginSimulationFiles = require('./plugin-files');
 
 /**
  * The simulation server that encapsulates the HTTP server instance and
@@ -24,7 +23,7 @@ var pluginSimulationFiles = require('./plugin-files');
 function SimulationServer(simulator) {
     this._simulator = simulator;
     this._server = cordovaServe();
-    this._simulationFiles = new SimulationFiles(simulator);
+    this._simulationFiles = new SimulationFiles(this._simulator.hostRoot);
     this._simSocket = new SocketServer(simulator);
 }
 
@@ -133,10 +132,13 @@ SimulationServer.prototype._prepareRoutes = function () {
  * @private
  */
 SimulationServer.prototype._sendHostJsFile = function (response, hostType) {
-    var hostJsFile = this._simulationFiles.getHostJsFile(hostType);
+    var project = this._simulator.project,
+        hostJsFile = this._simulationFiles.getHostJsFile(hostType, project.simulationFilePath);
+
     if (!hostJsFile) {
         throw new Error('Path to ' + hostType + '.js has not been set.');
     }
+
     response.sendFile(hostJsFile);
 };
 
@@ -159,10 +161,12 @@ SimulationServer.prototype._streamAppHostHtml = function (request, response) {
     var simFiles = this._simulationFiles;
 
     project.prepare().then(function () {
-        return simFiles.createAppHostJsFile();
+        return simFiles.createAppHostJsFile(project);
     }).then(function (pluginList) {
         // Sim host will need to be refreshed if the plugin list has changed.
-        simFiles.validateSimHostPlugins(pluginList);
+        if (simFiles.pluginsChanged(pluginList, project.simulationFilePath)) {
+            this._simSocket.reloadSimHost();
+        }
 
         // Inject plugin simulation app-host <script> references into *.html
         log.log('Injecting app-host into ' + filePath);
@@ -197,7 +201,7 @@ SimulationServer.prototype._streamSimHostHtml = function (request, response) {
     var project = this._simulator.project;
 
     project.prepare().then(function () {
-        return this._simulationFiles.createSimHostJsFile();
+        return this._simulationFiles.createSimHostJsFile(project);
     }.bind(this)).then(function () {
         // Inject references to simulation HTML files
         var panelsHtmlBasename = pluginSimulationFiles['sim-host']['panels'];

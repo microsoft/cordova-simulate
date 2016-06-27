@@ -16,13 +16,8 @@ var Q = require('q'),
  */
 function Simulator(opts) {
     this._config = this._parseOptions(opts);
-    this._project = new Project(this, this._config.platform);
-    this._server = new SimulationServer(this);
-    this._telemetry = new Telemetry(this, this._config.telemetry);
-    this._state = Simulator.State.IDLE;
-    this._urlRoot = null;
-    this._appUrl = null;
-    this._simHostUrl = null;
+
+    var platform = opts.platform || 'browser';
 
     this.hostRoot = {
         'app-host':  path.join(dirs.root, 'app-host')
@@ -35,6 +30,14 @@ function Simulator(opts) {
             return simHostOptions.simHostRoot;
         }
     });
+
+    this._project = new Project(this, platform);
+    this._server = new SimulationServer(this);
+    this._telemetry = new Telemetry(this, this._config.telemetry);
+    this._state = Simulator.State.IDLE;
+    this._urlRoot = null;
+    this._appUrl = null;
+    this._simHostUrl = null;
 }
 
 Object.defineProperties(Simulator.prototype, {
@@ -97,7 +100,6 @@ Simulator.prototype._parseOptions = function (opts) {
         simHostOpts = { simHostRoot: path.join(__dirname, '..', 'sim-host', 'ui') };
     }
 
-    config.platform = opts.platform || 'browser';
     config.simHostOptions = simHostOpts;
     config.telemetry = opts.telemetry;
     config.liveReload = opts.hasOwnProperty('livereload') ? !!opts.livereload : true;
@@ -138,7 +140,7 @@ Simulator.prototype.startSimulation = function (opts) {
 
     this._state = Simulator.State.STARTING;
 
-    return this._server.start(this._config.platform, this._config, opts)
+    return this._server.start(this._project.platform, this._config, opts)
         .then(function (urls) {
             // configure project
             var server = this._server.server;
@@ -174,7 +176,7 @@ Simulator.prototype.stopSimulation = function () {
     return this._server.stop()
         .then(function () {
             this._state = Simulator.State.IDLE;
-        }.bind(this))
+        }.bind(this));
 };
 
 module.exports = Simulator;

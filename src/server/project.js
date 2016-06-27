@@ -14,11 +14,11 @@ var fs = require('fs'),
  */
 function Project(simulator, platform) {
     this._simulator = simulator;
-    this.platform = platform;
-    this.simulationFilePath = null;
+    this._platform = platform;
     // set after the simulation has started
-    this.projectRoot = null;
-    this.platformRoot = null;
+    this._simulationFilePath = null;
+    this._projectRoot = null;
+    this._platformRoot = null;
 
     // plugins data
     this.plugins = null;
@@ -31,6 +31,38 @@ function Project(simulator, platform) {
     this._lastPlatform = null;
 }
 
+Object.defineProperties(Project.prototype, {
+    'projectRoot': {
+        set: function (projectRoot) {
+            if (this._projectRoot) {
+                throw new Error('Can\'t reinitialize "projectRoot"');
+            }
+            this._projectRoot = projectRoot;
+        },
+        get: function () {
+            return this._projectRoot;
+        }
+    },
+    'platformRoot': {
+        set: function (platformRoot) {
+            this._platformRoot = platformRoot;
+        },
+        get: function () {
+            return this._platformRoot;
+        }
+    },
+    'platform': {
+        get: function () {
+            return this._platform;
+        }
+    },
+    'simulationFilePath': {
+        get: function () {
+            return this._simulationFilePath;
+        }
+    }
+});
+
 Project.DEFAULT_PLUGINS = [
     'cordova-plugin-geolocation',
     'exec',
@@ -39,10 +71,10 @@ Project.DEFAULT_PLUGINS = [
 
 Project.prototype.configureSimulationDirectory = function (simulationPath) {
     var simPath = simulationPath || path.join(this.projectRoot, 'simulation');
-    this.simulationFilePath = path.resolve(simPath);
+    this._simulationFilePath = path.resolve(simPath);
 
-    if (!fs.existsSync(this.simulationFilePath)) {
-        utils.makeDirectoryRecursiveSync(this.simulationFilePath);
+    if (!fs.existsSync(this._simulationFilePath)) {
+        utils.makeDirectoryRecursiveSync(this._simulationFilePath);
     }
 };
 

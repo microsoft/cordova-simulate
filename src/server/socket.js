@@ -273,7 +273,6 @@ SocketServer.prototype._setupSimHostHandlers = function () {
     }
 
     this._handlePendingEmits(SIM_HOST);
-
 };
 
 /**

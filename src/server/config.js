@@ -11,13 +11,7 @@ function Configuration() {
     { name: 'debugHostHandlers', optional: true },
     { name: 'forcePrepare' },
     { name: 'liveReload' },
-    { name: 'platform' },
-    // NOTE: platformRoot and projectRoot belongs to the Project instance
-    // { name: 'platformRoot' },
-    // { name: 'projectRoot', single: true },
-    // { name: 'server', optional: true },
     { name: 'simHostOptions' },
-    { name: 'simulationFilePath' },
     { name: 'telemetry', optional: true },
     { name: 'touchEvents', optional: true },
     { name: 'xhrProxy', optional: true }
