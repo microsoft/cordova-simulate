@@ -16,6 +16,10 @@ var Q = require('q'),
  */
 function Simulator(opts) {
     this._config = this._parseOptions(opts);
+    this._state = Simulator.State.IDLE;
+    this._urlRoot = null;
+    this._appUrl = null;
+    this._simHostUrl = null;
 
     var platform = opts.platform || 'browser';
 
@@ -31,13 +35,9 @@ function Simulator(opts) {
         }
     });
 
+    this._telemetry = new Telemetry(this, this._config.telemetry);
     this._project = new Project(this, platform);
     this._server = new SimulationServer(this);
-    this._telemetry = new Telemetry(this, this._config.telemetry);
-    this._state = Simulator.State.IDLE;
-    this._urlRoot = null;
-    this._appUrl = null;
-    this._simHostUrl = null;
 }
 
 Object.defineProperties(Simulator.prototype, {

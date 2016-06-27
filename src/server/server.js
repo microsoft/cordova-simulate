@@ -148,7 +148,7 @@ SimulationServer.prototype._sendHostJsFile = function (response, hostType) {
  * @private
  */
 SimulationServer.prototype._streamAppHostHtml = function (request, response) {
-    var project = this._simulator._project;
+    var project = this._simulator.project;
     var filePath = path.join(project.platformRoot, url.parse(request.url).pathname);
 
     if (request.query && request.query['cdvsim-enabled'] === 'false') {

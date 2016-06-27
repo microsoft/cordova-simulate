@@ -18,7 +18,8 @@ function LiveReload(project, telemetry, forcePrepare) {
 
 LiveReload.prototype.start = function (socket) {
     if (!this._watcher) {
-        this._watcher = new Watcher(this._project.projectRoot, this._project.platform, this._onFileChanged.bind(this));
+        this._watcher = new Watcher(this._project.projectRoot, this._project.platform);
+        this._watcher.on('file-changed', this._onFileChanged.bind(this));
         this._watcher.startWatching();
     }
 

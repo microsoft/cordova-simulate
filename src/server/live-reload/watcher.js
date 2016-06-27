@@ -2,6 +2,8 @@
 
 var fs = require('fs'),
     path = require('path'),
+    util = require('util'),
+    EventEmitter = require('events').EventEmitter,
     log = require('../utils/log');
 
 var EVENT_IGNORE_DURATION = 150;
@@ -12,17 +14,17 @@ var UNKNOWN_FILE_ID = '__sim-unknown__';
 /**
  * @param {string} projectRoot
  * @param {string} platform
- * @param {Function} fileChangedCb
  * @constructor
  */
-function Watcher(projectRoot, platform, fileChangedCb) {
+function Watcher(projectRoot, platform) {
     this.projectRoot = projectRoot;
     this.platform = platform;
-    this.fileChangedCallback = fileChangedCb;
     this.ignoreEvents = {};
     this.mergesOverridePath = path.join(this.projectRoot, MERGES_ROOT, this.platform);
     this.mergesOverrideExists = fs.existsSync(this.mergesOverridePath);
 }
+
+util.inherits(Watcher, EventEmitter);
 
 Watcher.prototype.startWatching = function () {
     var watchPath = path.join(this.projectRoot, WWW_ROOT);
@@ -87,10 +89,7 @@ function handleWatcherEvent(root, fileRelativePath) {
         return;
     }
 
-    // Invoke the file changed callback.
-    if (this.fileChangedCallback && typeof this.fileChangedCallback === 'function') {
-        this.fileChangedCallback(fileRelativePath, root);
-    }
+    this.emit('file-changed', fileRelativePath, root);
 }
 
 function fileHasMergesOverride(fileRelativePath) {
