@@ -51,6 +51,13 @@ SocketServer.prototype.init = function (server) {
     this._io = require('socket.io')(server);
 
     this._io.on('connection', function (socket) {
+        // Debug messages can be sent to the external debug-host before the app and the simulator are fully ready (for
+        // example, during a plugin initialization). For that reason, the debug-message handler should be subscribed to
+        // immediately, regardless of which socket type has just connected.
+        socket.on('debug-message', function (data) {
+            that._emitTo(DEBUG_HOST, data.message, data.data);
+        });
+
         socket.on('register-app-host', function () {
             log.log('APP_HOST connected to the server');
             if (that._hostSockets[APP_HOST]) {
@@ -111,9 +118,7 @@ SocketServer.prototype.init = function (server) {
                     config.debugHostHandlers = null;
                     break;
             }
-
         });
-
     });
 };
 
@@ -257,10 +262,6 @@ SocketServer.prototype._setupSimHostHandlers = function () {
 
     this._subscribeTo(SIM_HOST, 'plugin-method', function (data, callback) {
         this._emitTo(APP_HOST, 'plugin-method', data, callback);
-    }.bind(this));
-
-    this._subscribeTo(SIM_HOST, 'debug-message', function (data) {
-        this._emitTo(DEBUG_HOST, data.message, data.data);
     }.bind(this));
 
     // Set up telemetry if necessary.

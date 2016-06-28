@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
+var db = require('db');
 var telemetry = require('telemetry-helper');
 
 var baseProps = {
     plugin: 'viewport',
     panel: 'viewport'
 };
-var devices = [
+var DEVICES = [
     { 'id': 'AcerA500', 'name': 'Acer A500', 'width': 800, 'height': 1280 },
     { 'id': 'Bold9700', 'name': 'BlackBerry Bold 9700', 'width': 480, 'height': 360 },
     { 'id': 'Bold9900', 'name': 'BlackBerry Bold 9900', 'width': 640, 'height': 480 },
@@ -46,6 +47,20 @@ var devices = [
     { 'id': 'WVGA', 'name': 'Generic - WVGA (480x800)', 'width': 480, 'height': 800 },
     { 'id': 'Z10', 'name': 'BlackBerry Z10', 'width': 768, 'height': 1280 }
 ];
+var CONSTANTS = {
+    dbKey: {
+        viewportMode: 'VIEWPORT_MODE_KEY',
+        selectedDevice: 'VIEWPORT_SELECTED_DEVICE_KEY',
+        width: 'VIEWPORT_CUSTOM_WIDTH_KEY',
+        height: 'VIEWPORT_CUSTOM_HEIGHT_KEY'
+    },
+    id: {
+        desktop: 'viewport-desktop',
+        device: 'viewport-device',
+        custom: 'viewport-custom'
+    }
+}
+
 var previousViewportSelection;
 
 module.exports = function (messages) {
@@ -53,7 +68,7 @@ module.exports = function (messages) {
         // Populate predefined device list
         var deviceList = document.getElementById('viewport-device-list');
 
-        devices.forEach(function (device) {
+        DEVICES.forEach(function (device) {
             var option = document.createElement('option');
             option.value = device.id;
 
@@ -66,13 +81,10 @@ module.exports = function (messages) {
             deviceList.appendChild(option);
         });
 
-        // Handle radio button change        
-        document.getElementById('viewport-desktop').onclick = handleRadioClick.bind(null, 'viewport-desktop');
-        document.getElementById('viewport-device').onclick = handleRadioClick.bind(null, 'viewport-device');
-        document.getElementById('viewport-custom').onclick = handleRadioClick.bind(null, 'viewport-custom');
-
-        // Handle device list selection change
-        deviceList.addEventListener('change', handleSelectDevice);
+        // Handle radio button change
+        document.getElementById(CONSTANTS.id.desktop).onclick = handleRadioClick.bind(null, CONSTANTS.id.desktop);
+        document.getElementById(CONSTANTS.id.device).onclick = handleRadioClick.bind(null, CONSTANTS.id.device);
+        document.getElementById(CONSTANTS.id.custom).onclick = handleRadioClick.bind(null, CONSTANTS.id.custom);
 
         // Handle custom dimensions change
         var customWidthTextEntry = document.getElementById('viewport-custom-width');
@@ -81,11 +93,41 @@ module.exports = function (messages) {
         customWidthTextEntry.addEventListener('change', handleChangeCustomDimension.bind(null, 'width'));
         customHeightTextEntry.addEventListener('change', handleChangeCustomDimension.bind(null, 'height'));
 
-        // Set default values
-        previousViewportSelection = 'viewport-desktop';
-        deviceList.value = 'WQVGA';
-        customWidthTextEntry.value = 480;
-        customHeightTextEntry.value = 800;
+        // Set initial values
+        var customDimensions = {
+            width: db.retrieve(CONSTANTS.dbKey.width) || 480,
+            height: db.retrieve(CONSTANTS.dbKey.height) || 800
+        };
+        var selectedDevice = db.retrieve(CONSTANTS.dbKey.selectedDevice) || 'WQVGA';
+
+        previousViewportSelection = db.retrieve(CONSTANTS.dbKey.viewportMode) || CONSTANTS.id.desktop;
+        document.getElementById(previousViewportSelection).checked = true;
+        deviceList.value = selectedDevice;
+        customWidthTextEntry.value = customDimensions.width;
+        customHeightTextEntry.value = customDimensions.height;
+
+        if (previousViewportSelection === CONSTANTS.id.device) {
+            // Even though we have just set deviceList.value, the shadow DOM actually sets that value asynchronously,
+            // so we can't rely on deviceList.options[deviceList.selectedIndex] to retrieve the device dimensions.
+            // Manually look for the device ID in our list of devices instead.
+            for (var i = 0; i < DEVICES.length; ++i) {
+                var device = DEVICES[i];
+
+                if (device.id === selectedDevice) {
+                    notifyResize({
+                        width: device.width,
+                        height: device.height
+                    });
+
+                    break;
+                }
+            }
+        } else if (previousViewportSelection === CONSTANTS.id.custom) {
+            notifyResize(customDimensions);
+        }
+
+        // Handle device list selection change
+        deviceList.addEventListener('change', handleSelectDevice.bind(null, false));
 
         // Register telemetry
         registerTelemetryEvents();
@@ -95,15 +137,16 @@ module.exports = function (messages) {
         if (radioName !== previousViewportSelection) {
             previousViewportSelection = radioName;
             telemetry.sendUITelemetry(Object.assign({}, baseProps, { control: radioName }));
+            db.save(CONSTANTS.dbKey.viewportMode, radioName);
 
             switch (radioName) {
-                case 'viewport-desktop':
+                case CONSTANTS.id.desktop:
                     messages.emitDebug('reset-viewport');
                     break;
-                case 'viewport-device':
-                    handleSelectDevice();
+                case CONSTANTS.id.device:
+                    handleSelectDevice(true);
                     break;
-                case 'viewport-custom':
+                case CONSTANTS.id.custom:
                     notifyResize({
                         width: document.getElementById('viewport-custom-width').value,
                         height: document.getElementById('viewport-custom-height').value
@@ -112,18 +155,22 @@ module.exports = function (messages) {
         }
     }
 
-    function handleSelectDevice() {
-        if (!document.getElementById('viewport-device').checked) {
-            return;
-        }
-
+    function handleSelectDevice(forceUpdateViewport) {
         var deviceList = document.getElementById('viewport-device-list');
         var option = deviceList.options[deviceList.selectedIndex];
 
-        notifyResize({
-            width: option.getAttribute('_width'),
-            height: option.getAttribute('_height')
-        });
+        // Do not save the device value if this is a forced update - a forced update means we are applying the current
+        // selected device, not changing the selected device itself.
+        if (!forceUpdateViewport) {
+            db.save(CONSTANTS.dbKey.selectedDevice, option.value);
+        }
+
+        if (forceUpdateViewport || document.getElementById(CONSTANTS.id.device).checked) {
+            notifyResize({
+                width: option.getAttribute('_width'),
+                height: option.getAttribute('_height')
+            });
+        }
     }
 
     function handleChangeCustomDimension(dimensionName, e) {
@@ -134,8 +181,10 @@ module.exports = function (messages) {
             return;
         }
 
+        db.save(CONSTANTS.dbKey[dimensionName], newValue);
+
         // Resize the viewport if custom dimensions are selected
-        if (document.getElementById('viewport-custom').checked) {
+        if (document.getElementById(CONSTANTS.id.custom).checked) {
             var dimensions = {};
 
             dimensions[dimensionName] = newValue;

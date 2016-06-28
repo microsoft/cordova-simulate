@@ -9,17 +9,19 @@ function initialize() {
 
         this.shadowRoot.querySelector('.cordova-header span').textContent = this.getAttribute('caption');
 
-        this.shadowRoot.querySelector('.cordova-collapse-icon').addEventListener('click', function (e) {
+        var collapseIcon = this.shadowRoot.querySelector('.cordova-collapse-icon');
+
+        this.shadowRoot.querySelector('.cordova-header').addEventListener('click', function () {
             // Animate showing and hiding the panel. Note that we can't use jQuery for this, because it doesn't work
             // with elements in the shadow DOM.
 
-            var collapsed = e.target.classList.contains('cordova-collapsed');
+            var collapsed = collapseIcon.classList.contains('cordova-collapsed');
             if (collapsed) {
-                e.target.classList.remove('cordova-collapsed');
+                collapseIcon.classList.remove('cordova-collapsed');
                 content.style.display = '';
                 content.style.height = '';
             } else {
-                e.target.classList.add('cordova-collapsed');
+                collapseIcon.classList.add('cordova-collapsed');
                 content.style.display = 'none';
                 content.style.height = '0';
             }
@@ -251,6 +253,9 @@ function initialize() {
         value: {
             get: function () {
                 return this.shadowRoot.querySelector('select').value;
+            },
+            set: function (value) {
+                setValueSafely(this.shadowRoot.querySelector('select'), 'value', value);
             }
         },
         appendChild: {

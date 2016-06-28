@@ -195,10 +195,12 @@ Project.prototype.prepare = function() {
             }
 
             d.resolve();
-        }.bind(this)).finally(function () {
+        }.bind(this)).catch(function (err) {
+            d.reject(err);
+        }).finally(function () {
             this._lastPlatform = null;
             this._preparePromise = null;
-        }.bind(this)).done();
+        }.bind(this));
     } else if (this.platform !== this._lastPlatform) {
         // Sanity check to verify we never queue prepares for different platforms
         throw new Error('Unexpected request to prepare \'' + this.platform + '\' while prepare of \'' + this._lastPlatform + '\' still pending.');
