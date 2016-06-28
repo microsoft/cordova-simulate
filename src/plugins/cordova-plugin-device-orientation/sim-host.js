@@ -47,6 +47,12 @@ module.exports = function (messages) {
             sendUITelemetry('compass-heading-value');
         });
 
+        inputHeading.addEventListener('input', function () {
+            if (this.value < compass.Limits.MIN || this.value >= compass.Limits.MAX) {
+                this.value = compass.heading;
+            }
+        });
+
         messages.on('device-orientation-updated', function (event, value) {
             compassWidget.setHeading(value);
             updateHeadingValue();

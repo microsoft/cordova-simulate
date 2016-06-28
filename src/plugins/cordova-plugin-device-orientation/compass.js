@@ -7,6 +7,12 @@ var constants = {
 };
 
 var compass = {
+
+    Limits: {
+        MIN: 0,
+        MAX: 360
+    },
+
     heading: null,
 
     initialize: function () {
