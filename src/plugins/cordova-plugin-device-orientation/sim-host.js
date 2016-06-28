@@ -30,7 +30,16 @@ module.exports = function (messages) {
             },
             sendUITelemetry: sendUITelemetry
         });
+
+        var updateHeadingValue = function () {
+            var heading = compassWidget.heading();
+            compass.updateHeading(heading.value);
+            inputHeading.value = heading.value;
+            headingText.textContent = heading.direction;
+        };
+
         compassWidget.initialize(compass.heading);
+        updateHeadingValue();
 
         inputHeading.addEventListener('change', function () {
             compassWidget.updateHeading(this.value);
@@ -40,11 +49,7 @@ module.exports = function (messages) {
 
         messages.on('device-orientation-updated', function (event, value) {
             compassWidget.setHeading(value);
-
-            var heading = compassWidget.heading();
-            compass.updateHeading(heading.value);
-            inputHeading.value = heading.value;
-            headingText.textContent = heading.direction;
+            updateHeadingValue();
         }, true); // global event
     }
 
