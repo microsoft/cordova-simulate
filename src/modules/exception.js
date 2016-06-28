@@ -57,18 +57,18 @@ module.exports = {
 
     raise: function raise(exceptionType, message, customExceptionObject) {
         var obj = customExceptionObject || {
-                type: '',
-                message: '',
+            type: '',
+            message: '',
 
-                toString: function () {
-                    var result = this.name + ': \'' + this.message + '\'';
+            toString: function () {
+                var result = this.name + ': \'' + this.message + '\'';
 
-                    if (this.stack) {
-                        result += '\n' + this.stack;
-                    }
-                    return result;
+                if (this.stack) {
+                    result += '\n' + this.stack;
                 }
-            };
+                return result;
+            }
+        };
 
         message = message || '';
 

@@ -76,7 +76,7 @@ module.exports = function (messages) {
         var contacts = db.retrieveObject(dbContactsObjectName) || [];
 
         var queryResult = contacts.filter(function(contact) {
-             return isContactMatchesFilter(contact, options, fields);
+            return isContactMatchesFilter(contact, options, fields);
         });
 
         if (!options.multiple && queryResult.length > 1) {
@@ -171,13 +171,13 @@ module.exports = function (messages) {
     }
 
     function generateGuid() {
-      function s4() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-          .toString(16)
-          .substring(1);
-      }
-      return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-        s4() + '-' + s4() + s4() + s4();
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                .toString(16)
+                .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+            s4() + '-' + s4() + s4() + s4();
     }
 
     return {
