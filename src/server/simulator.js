@@ -5,6 +5,7 @@ var Q = require('q'),
     path = require('path'),
     log = require('./utils/log'),
     dirs = require('./dirs'),
+    utils = require('./utils/jsUtils'),
     Configuration = require('./config'),
     Project = require('./project'),
     SimulationServer = require('./server'),
@@ -17,11 +18,7 @@ var Q = require('q'),
 function Simulator(opts) {
     this._config = this._parseOptions(opts);
     this._state = Simulator.State.IDLE;
-    this._urlRoot = null;
-    this._appUrl = null;
-    this._simHostUrl = null;
-
-    var platform = opts.platform || 'browser';
+    this._urls = null;
 
     this.hostRoot = {
         'app-host':  path.join(dirs.root, 'app-host')
@@ -35,25 +32,17 @@ function Simulator(opts) {
         }
     });
 
+    var platform = opts.platform || 'browser';
+
     this._telemetry = new Telemetry(this, this._config.telemetry);
     this._project = new Project(this, platform);
     this._server = new SimulationServer(this);
 }
 
 Object.defineProperties(Simulator.prototype, {
-    'urlRoot': {
+    'urls': {
         get: function () {
-            return this._urlRoot;
-        }
-    },
-    'appUrl': {
-        get: function () {
-            return this._appUrl;
-        }
-    },
-    'simHostUrl': {
-        get: function () {
-            return this._simHostUrl;
+            return this._urls;
         }
     },
     'project': {
@@ -126,6 +115,18 @@ Simulator.prototype.isIdle = function () {
     return this._state === Simulator.State.IDLE;
 };
 
+Simulator.prototype.urlRoot = function () {
+    return this._urls ? this._urls.urlRoot : null;
+};
+
+Simulator.prototype.appUrl = function () {
+    return this._urls ? this._urls.appUrl : null;
+};
+
+Simulator.prototype.simHostUrl = function () {
+    return this._urls ? this._urls.simHostUrl : null;
+};
+
 /**
  * Start the simulation for the current project with the provided information at the
  * time of creating the instance.
@@ -142,16 +143,20 @@ Simulator.prototype.startSimulation = function (opts) {
 
     return this._server.start(this._project.platform, this._config, opts)
         .then(function (urls) {
+            this._urls = urls;
+
             // configure project
             var server = this._server.server;
             this._project.projectRoot = server.projectRoot;
             this._project.platformRoot = server.root;
-            this._project.configureSimulationDirectory(opts.simulationpath);
 
-            // urls
-            this._urlRoot = urls.urlRoot;
-            this._appUrl = urls.appUrl;
-            this._simHostUrl = urls.simHostUrl;
+            // configure simulation file path
+            var simPath = opts.simulationpath || path.join(this._project.projectRoot, 'simulation');
+            this._config.simulationFilePath = path.resolve(simPath);
+
+            if (!fs.existsSync(this._config.simulationFilePath)) {
+                utils.makeDirectoryRecursiveSync(this._config.simulationFilePath);
+            }
 
             this._state = Simulator.State.RUNNING;
         }.bind(this))

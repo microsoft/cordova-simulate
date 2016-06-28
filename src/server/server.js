@@ -132,8 +132,8 @@ SimulationServer.prototype._prepareRoutes = function () {
  * @private
  */
 SimulationServer.prototype._sendHostJsFile = function (response, hostType) {
-    var project = this._simulator.project,
-        hostJsFile = this._simulationFiles.getHostJsFile(hostType, project.simulationFilePath);
+    var config = this._simulator.config,
+        hostJsFile = this._simulationFiles.getHostJsFile(hostType, config.simulationFilePath);
 
     if (!hostJsFile) {
         throw new Error('Path to ' + hostType + '.js has not been set.');
@@ -149,6 +149,7 @@ SimulationServer.prototype._sendHostJsFile = function (response, hostType) {
  */
 SimulationServer.prototype._streamAppHostHtml = function (request, response) {
     var project = this._simulator.project;
+    var config = this._simulator.config;
     var filePath = path.join(project.platformRoot, url.parse(request.url).pathname);
 
     if (request.query && request.query['cdvsim-enabled'] === 'false') {
@@ -161,10 +162,10 @@ SimulationServer.prototype._streamAppHostHtml = function (request, response) {
     var simFiles = this._simulationFiles;
 
     project.prepare().then(function () {
-        return simFiles.createAppHostJsFile(project);
+        return simFiles.createAppHostJsFile(project, config.simulationFilePath);
     }).then(function (pluginList) {
         // Sim host will need to be refreshed if the plugin list has changed.
-        if (simFiles.pluginsChanged(pluginList, project.simulationFilePath)) {
+        if (simFiles.pluginsChanged(pluginList, config.simulationFilePath)) {
             this._simSocket.reloadSimHost();
         }
 
@@ -201,7 +202,9 @@ SimulationServer.prototype._streamSimHostHtml = function (request, response) {
     var project = this._simulator.project;
 
     project.prepare().then(function () {
-        return this._simulationFiles.createSimHostJsFile(project);
+        var simulationFilePath = this._simulator.config.simulationFilePath;
+
+        return this._simulationFiles.createSimHostJsFile(project, simulationFilePath);
     }.bind(this)).then(function () {
         // Inject references to simulation HTML files
         var panelsHtmlBasename = pluginSimulationFiles['sim-host']['panels'];

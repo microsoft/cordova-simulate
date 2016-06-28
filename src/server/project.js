@@ -16,7 +16,6 @@ function Project(simulator, platform) {
     this._simulator = simulator;
     this._platform = platform;
     // set after the simulation has started
-    this._simulationFilePath = null;
     this._projectRoot = null;
     this._platformRoot = null;
 
@@ -55,11 +54,6 @@ Object.defineProperties(Project.prototype, {
         get: function () {
             return this._platform;
         }
-    },
-    'simulationFilePath': {
-        get: function () {
-            return this._simulationFilePath;
-        }
     }
 });
 
@@ -68,15 +62,6 @@ Project.DEFAULT_PLUGINS = [
     'exec',
     'events'
 ];
-
-Project.prototype.configureSimulationDirectory = function (simulationPath) {
-    var simPath = simulationPath || path.join(this.projectRoot, 'simulation');
-    this._simulationFilePath = path.resolve(simPath);
-
-    if (!fs.existsSync(this._simulationFilePath)) {
-        utils.makeDirectoryRecursiveSync(this._simulationFilePath);
-    }
-};
 
 Project.prototype.initPlugins = function () {
     this._resetPluginsData();
