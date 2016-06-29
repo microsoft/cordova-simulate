@@ -1,5 +1,9 @@
 # cordova-simulate Release Notes
 
+### 0.2.1 (June 30, 2016)
+* Bootstrap protocol enhancements
+* Multiple bug fixes and improvements
+
 ### 0.2.0 (June 9, 2016)
 * Support for additional core plugins: cordova-plugin-battery-status, cordova-plugin-network-information, cordova-plugin-device-orientation, cordova-plugin-inappbrowser
 * Live reload
