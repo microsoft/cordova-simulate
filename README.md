@@ -1,3 +1,5 @@
+# Cordova-Simulate [![Build Status](https://travis-ci.org/Microsoft/cordova-simulate.svg?branch=master)](https://travis-ci.org/Microsoft/cordova-simulate)
+
 Simulates your Apache Cordova application in the browser.
 
 # Installation
