@@ -449,25 +449,24 @@ module.exports = function (messages) {
                 _updateGpsMapZoom(true);
             });
 
-            utils.bindAutoSaveEvent('#' + GEO_OPTIONS.LATITUDE, updateGeo);
-            utils.bindAutoSaveEvent('#' + GEO_OPTIONS.LONGITUDE, updateGeo);
-            utils.bindAutoSaveEvent('#' + GEO_OPTIONS.ALTITUDE, updateGeo);
-            utils.bindAutoSaveEvent('#' + GEO_OPTIONS.ACCURACY, updateGeo);
-            utils.bindAutoSaveEvent('#' + GEO_OPTIONS.ALTITUDE_ACCURACY, updateGeo);
+            latitude.addEventListener('change', updateGeo);
+            longitude.addEventListener('change', updateGeo);
+            altitude.addEventListener('change', updateGeo);
+            accuracy.addEventListener('change', updateGeo);
+            altitudeAccuracy.addEventListener('change', updateGeo);
+            speed.addEventListener('change', updateGeo);
 
-            document.querySelector('#' + GEO_OPTIONS.DELAY).addEventListener('change', function () {
+            delay.addEventListener('change', function () {
                 updateGeo();
                 delayLabel.value = delay.value;
             });
 
-            document.querySelector('#' + GEO_OPTIONS.DELAY).addEventListener('input', function () {
+            delay.addEventListener('input', function () {
                 updateGeo();
                 delayLabel.value = delay.value;
             });
 
-            document.querySelector('#' + GEO_OPTIONS.TIMEOUT).addEventListener('click', function () {
-                updateGeo();
-            });
+            timeout.addEventListener('click', updateGeo);
 
             var gpxFileLoader = document.querySelector('#' + GEO_OPTIONS.GPXFILE);
             var gpxFileButton = document.querySelector('#geo-gpxfile-button');
@@ -488,21 +487,20 @@ module.exports = function (messages) {
                 }
             });
 
-            document.querySelector('#' + GEO_OPTIONS.GPXGO).addEventListener('click', function () {
+            gpxGo.addEventListener('click', function () {
                 replayGpxTrack();
             });
 
-            document.querySelector('#' + GEO_OPTIONS.HEADING).addEventListener('change', function () {
+            heading.addEventListener('change', function () {
                 updateGeo();
                 updateHeadingValues();
             });
 
-            document.querySelector('#' + GEO_OPTIONS.HEADING).addEventListener('input', function () {
+            heading.addEventListener('input', function () {
                 updateGeo();
                 updateHeadingValues();
             });
 
-            utils.bindAutoSaveEvent('#' + GEO_OPTIONS.SPEED, updateGeo);
             heading.value = positionInfo.heading;
             speed.value = positionInfo.speed;
 
