@@ -10,7 +10,7 @@
 
 var Q = require('q'),
     log = require('./utils/log'),
-    LiveReload = require('./live-reload/live-reload-server');
+    LiveReload = require('./live-reload/live-reload');
 
 // make variable match the literal
 var APP_HOST = 'APP_HOST',
