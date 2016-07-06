@@ -24,20 +24,31 @@ function SimulationServer(simulator, project, hostRoot) {
     this._simulator = simulator;
     this._project = project;
     this._hostRoot = hostRoot;
-    this._server = cordovaServe();
+    this._cordovaServer = cordovaServe();
     this._simulationFiles = new SimulationFiles(hostRoot);
     this._simSocket = new SocketServer(simulator, project);
+    this._urls = null;
 }
 
 Object.defineProperties(SimulationServer.prototype, {
+    cordovaServer: {
+        get: function () {
+            return this._cordovaServer;
+        }
+    },
     server: {
         get: function () {
-            return this._server;
+            return this._cordovaServer ? this._cordovaServer.server : null;
         }
     },
     simSocket: {
         get: function () {
             return this._simSocket;
+        }
+    },
+    urls: {
+        get: function () {
+            return this._urls;
         }
     }
 });
@@ -46,35 +57,40 @@ SimulationServer.prototype.start = function (platform, config, opts) {
     /* attach simulation host middleware */
     var middlewarePath = path.join(config.simHostOptions.simHostRoot, 'server', 'server');
     if (fs.existsSync(middlewarePath + '.js')) {
-        require(middlewarePath).attach(this._server.app, dirs);
+        require(middlewarePath).attach(this._cordovaServer.app, dirs);
     }
 
     /* attach CORS proxy middleware */
     if (config.xhrProxy) {
-        require('./xhr-proxy').attach(this._server.app);
+        require('./xhr-proxy').attach(this._cordovaServer.app);
     }
 
     this._prepareRoutes();
 
-    return this._server.servePlatform(platform, {
+    return this._cordovaServer.servePlatform(platform, {
         port: opts.port,
         root: opts.dir,
         noServerInfo: true
     }).then(function () {
         this._trackServerConnections();
-        this._simSocket.init(this._server.server);
+        this._simSocket.init(this._cordovaServer.server);
 
-        var projectRoot = this._server.projectRoot,
-            urlRoot = 'http://localhost:' + this._server.port + '/',
-            appUrl = urlRoot + parseStartPage(projectRoot),
-            simHostUrl = urlRoot + 'simulator/index.html';
+        // setup simulation URLs
+        var projectRoot = this._cordovaServer.projectRoot,
+            urlRoot = 'http://localhost:' + this._cordovaServer.port + '/';
 
-        log.log('Server started:\n- App running at: ' + appUrl + '\n- Sim host running at: ' + simHostUrl);
+        this._urls = {
+            root: urlRoot,
+            app: urlRoot + parseStartPage(projectRoot),
+            simHost: urlRoot + 'simulator/index.html'
+        };
+
+        log.log('Server started:\n- App running at: ' + this._urls.app + '\n- Sim host running at: ' + this._urls.simHost);
 
         return {
-            urlRoot: urlRoot,
-            appUrl: appUrl,
-            simHostUrl: simHostUrl
+            urls: this._urls,
+            projectRoot: projectRoot,
+            root: this._cordovaServer.root
         };
     }.bind(this));
 };
@@ -87,7 +103,7 @@ SimulationServer.prototype.stop = function () {
     var deferred = Q.defer(),
         promise = deferred.promise;
 
-    this._server.server.close(function () {
+    this._cordovaServer.server.close(function () {
         deferred.resolve();
     });
 
@@ -108,7 +124,7 @@ SimulationServer.prototype.stop = function () {
  * @private
  */
 SimulationServer.prototype._prepareRoutes = function () {
-    var app = this._server.app;
+    var app = this._cordovaServer.app;
 
     var streamSimHostHtml = this._streamSimHostHtml.bind(this),
         streamAppHostHtml = this._streamAppHostHtml.bind(this);
@@ -253,7 +269,7 @@ SimulationServer.prototype._trackServerConnections = function () {
     var nextId = 0;
     this._connections = {};
 
-    this._server.server.on('connection', function (socket) {
+    this._cordovaServer.server.on('connection', function (socket) {
         var id = nextId++;
         this._connections[id] = socket;
 

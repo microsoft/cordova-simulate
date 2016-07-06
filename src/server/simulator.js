@@ -18,7 +18,6 @@ var Q = require('q'),
 function Simulator(opts) {
     this._config = this._parseOptions(opts);
     this._state = Simulator.State.IDLE;
-    this._urls = null;
 
     this.hostRoot = {
         'app-host':  path.join(dirs.root, 'app-host')
@@ -48,11 +47,6 @@ function Simulator(opts) {
 }
 
 Object.defineProperties(Simulator.prototype, {
-    'urls': {
-        get: function () {
-            return this._urls;
-        }
-    },
     'project': {
         get: function () {
             return this._project;
@@ -118,16 +112,31 @@ Simulator.prototype.isIdle = function () {
     return this._state === Simulator.State.IDLE;
 };
 
+/**
+ * @return {string|null}
+ */
 Simulator.prototype.urlRoot = function () {
-    return this._urls ? this._urls.urlRoot : null;
+    var urls = this._server.urls;
+
+    return urls ? urls.root : null;
 };
 
+/**
+ * @return {string|null}
+ */
 Simulator.prototype.appUrl = function () {
-    return this._urls ? this._urls.appUrl : null;
+    var urls = this._server.urls;
+
+    return urls ? urls.app : null;
 };
 
+/**
+ * @return {string|null}
+ */
 Simulator.prototype.simHostUrl = function () {
-    return this._urls ? this._urls.simHostUrl : null;
+    var urls = this._server.urls;
+
+    return urls ? urls.simHost : null;
 };
 
 /**
@@ -145,13 +154,10 @@ Simulator.prototype.startSimulation = function (opts) {
     this._state = Simulator.State.STARTING;
 
     return this._server.start(this._project.platform, this._config, opts)
-        .then(function (urls) {
-            this._urls = urls;
-
+        .then(function (data) {
             // configure project
-            var server = this._server.server;
-            this._project.projectRoot = server.projectRoot;
-            this._project.platformRoot = server.root;
+            this._project.projectRoot = data.projectRoot;
+            this._project.platformRoot = data.root;
 
             // configure simulation file path
             var simPath = opts.simulationpath || path.join(this._project.projectRoot, 'simulation'),
