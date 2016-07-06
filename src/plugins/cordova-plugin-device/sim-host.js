@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var telemetry = require('telemetry-helper');
+var telemetry = require('telemetry-helper'),
+    simStatus = require('sim-status');
 
 var baseProps = {
     plugin: 'cordova-plugin-device',
@@ -463,10 +464,14 @@ module.exports = function (messages) {
 
     var cordovaVersionLabel = document.getElementById('device-cordova-version');
 
-    messages.call('cordova-version').then(function (version) {
-        cordovaVersionLabel.value = version;
-    }).fail(function () {
-        cordovaVersionLabel.value = 'unknown';
+    cordovaVersionLabel.value = 'Querying...';
+
+    simStatus.whenAppHostReady(function () {
+        messages.call('cordova-version').then(function (version) {
+            cordovaVersionLabel.value = version;
+        }).fail(function () {
+            cordovaVersionLabel.value = 'unknown';
+        });
     });
 
     return {

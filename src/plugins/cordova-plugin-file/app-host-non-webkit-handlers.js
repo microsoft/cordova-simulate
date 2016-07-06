@@ -321,8 +321,8 @@ function setMetadata(successCallback, errorCallback, module, event, args) {
     var metadataObject = args[1];
 
     getFile(function (fileEntry) {
-          fileEntry.file_.lastModifiedDate = metadataObject.modificationTime;
-          indexedDB.put(fileEntry, fileEntry.file_.storagePath, successCallback, errorCallback);
+        fileEntry.file_.lastModifiedDate = metadataObject.modificationTime;
+        indexedDB.put(fileEntry, fileEntry.file_.storagePath, successCallback, errorCallback);
     }, errorCallback, [fullPath, null]);
 }
 
@@ -429,7 +429,7 @@ function remove(successCallback, errorCallback, args) {
         indexedDB['delete'](fullPath, function() {
             successCallback && successCallback();
         }, function() {
-                errorCallback && errorCallback();
+            errorCallback && errorCallback();
         }, isDirectory);
     }
 

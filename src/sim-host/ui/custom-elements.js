@@ -2,28 +2,39 @@
 
 var dialog = require('dialog');
 
-function initialize() {
-    registerCustomElement('cordova-panel', function () {
+function initialize(changePanelVisibilityCallback) {
+    registerCustomElement('cordova-panel', {
+        cordovaCollapsed: {
+            set: function (value) {
+                var icon = this.shadowRoot.querySelector('.cordova-collapse-icon');
+                var content = this.shadowRoot.querySelector('.cordova-content');
+                var isCurrentlyCollapsed = icon.classList.contains('cordova-collapsed');
+
+                if (value && !isCurrentlyCollapsed) {
+                    collapsePanel(icon, content);
+                } else if (!value && isCurrentlyCollapsed) {
+                    expandPanel(icon, content);
+                }
+            }
+        }
+    }, function () {
         var panel = this;
         var content = panel.shadowRoot.querySelector('.cordova-content');
-
-        this.shadowRoot.querySelector('.cordova-header span').textContent = this.getAttribute('caption');
-
+        var panelId = this.getAttribute('id');
         var collapseIcon = this.shadowRoot.querySelector('.cordova-collapse-icon');
 
+        this.shadowRoot.querySelector('.cordova-header span').textContent = this.getAttribute('caption');
         this.shadowRoot.querySelector('.cordova-header').addEventListener('click', function () {
-            // Animate showing and hiding the panel. Note that we can't use jQuery for this, because it doesn't work
-            // with elements in the shadow DOM.
-
             var collapsed = collapseIcon.classList.contains('cordova-collapsed');
+
             if (collapsed) {
-                collapseIcon.classList.remove('cordova-collapsed');
-                content.style.display = '';
-                content.style.height = '';
+                expandPanel(collapseIcon, content);
             } else {
-                collapseIcon.classList.add('cordova-collapsed');
-                content.style.display = 'none';
-                content.style.height = '0';
+                collapsePanel(collapseIcon, content);
+            }
+
+            if (changePanelVisibilityCallback && typeof changePanelVisibilityCallback === 'function') {
+                changePanelVisibilityCallback(panelId, !collapsed);
             }
         });
     });
@@ -55,14 +66,13 @@ function initialize() {
         this.addEventListener('click', function (e) {
             if (e.target === this) {
                 // If the click target is our self, the only thing that could have been clicked is the delete icon.
-
                 var list = this.parentNode;
 
                 // If we're within a list, calculate index in the list
                 var childIndex = list && list.tagName === 'CORDOVA-ITEM-LIST' ? Array.prototype.indexOf.call(list.children, this) : -1;
 
                 // Raise an event on ourselves
-                var itemRemovedEvent = new CustomEvent('itemremoved', {detail: {itemIndex: childIndex}, bubbles: true});
+                var itemRemovedEvent = new CustomEvent('itemremoved', { detail: { itemIndex: childIndex }, bubbles: true });
                 this.dispatchEvent(itemRemovedEvent);
 
                 list.removeChild(this);
@@ -199,7 +209,7 @@ function initialize() {
                 setValueSafely(this.shadowRoot.querySelector('label'), 'textContent', value);
             },
 
-            get: function() {
+            get: function () {
                 return this.shadowRoot.querySelector('label').textContent;
             }
         },
@@ -208,7 +218,7 @@ function initialize() {
                 setValueSafely(this.shadowRoot.querySelector('span'), 'textContent', value);
             },
 
-            get: function() {
+            get: function () {
                 return this.shadowRoot.querySelector('span').textContent;
             }
         }
@@ -376,6 +386,18 @@ function registerCustomElement(name) {
     });
 }
 
+function collapsePanel(iconElem, content) {
+    iconElem.classList.add('cordova-collapsed');
+    content.style.display = 'none';
+    content.style.height = '0';
+}
+
+function expandPanel(iconElem, content) {
+    iconElem.classList.remove('cordova-collapsed');
+    content.style.display = '';
+    content.style.height = '';
+}
+
 function findParent(element, tag) {
     if (!Array.isArray(tag)) {
         tag = [tag];
@@ -402,7 +424,7 @@ module.exports = {
 };
 
 if (!Array.prototype.find) {
-    Array.prototype.find = function(predicate) {
+    Array.prototype.find = function (predicate) {
         if (this == null) {
             throw new TypeError('Array.prototype.find called on null or undefined');
         }

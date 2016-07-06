@@ -8,7 +8,7 @@
 module.exports = {
     WinJS: {
         Application: {
-            addEventListener: function () { }
+            addEventListener: function () {}
         },
         Utilities: {
             // While simulating Windows platform, we don't currently provide
@@ -69,17 +69,17 @@ module.exports = {
                 }
             },
             CreationCollisionOption: {
-                generateUniqueName: function () { }
+                generateUniqueName: function () {}
             },
             FileIO: {},
             Pickers: {
                 PickerLocationId: {}
             },
             StorageFolder: {
-                getFolderFromPathAsync: function () { }
+                getFolderFromPathAsync: function () {}
             },
             StorageFile: {
-                getFileFromPathAsync: function () { }
+                getFileFromPathAsync: function () {}
             }
         },
         Media: {
@@ -99,6 +99,17 @@ module.exports = {
             }
         },
         UI: {
+            Notifications: {
+                ToastNotificationManager: {
+                    createToastNotifier: function () {
+                        return {
+                            getScheduledToastNotifications: function () {
+                                return {};
+                            }
+                        };
+                    }
+                }
+            },
             WebUI: {
                 WebUIApplication: {}
             }

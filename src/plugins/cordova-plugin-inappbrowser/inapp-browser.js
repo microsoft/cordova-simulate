@@ -407,22 +407,22 @@ function create(success, fail, args) {
     var Constructor;
 
     switch (args[1]) {
-    case '_system':
-        // open in a new browser tab
-        Constructor = SystemBrowser;
-        break;
-    case '_self':
-        // use the current window
-        window.location = args[0];
-        return;
-    default:
-        if (_defaultInAppBrowserType === 'iframe') {
-            // "_blank" and any other option, use the iframe browser
-            Constructor = IframeBrowser;
-        } else {
-            // new browser window
+        case '_system':
+            // open in a new browser tab
             Constructor = SystemBrowser;
-        }
+            break;
+        case '_self':
+            // use the current window
+            window.location = args[0];
+            return;
+        default:
+            if (_defaultInAppBrowserType === 'iframe') {
+                // "_blank" and any other option, use the iframe browser
+                Constructor = IframeBrowser;
+            } else {
+                // new browser window
+                Constructor = SystemBrowser;
+            }
     }
 
     return new Constructor(args[0], args[2], success, fail);

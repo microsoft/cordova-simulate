@@ -1,28 +1,61 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var db = require('db'),
+var customElements = require('./custom-elements'),
+    db = require('db'),
+    dialog = require('dialog'),
     Messages = require('messages'),
-    customElements = require('./custom-elements'),
-    socket = require('../protocol/socket'),
-    dialog = require('dialog');
+    Q = require('q'),
+    socket = require('../protocol/socket');
+
+var COLLAPSED_PANELS_KEY = 'collapsed-panels';
 
 var plugins;
 var pluginHandlers = {};
 var serviceToPluginMap = {};
+var initSocketPromise = socket.initialize(pluginHandlers, serviceToPluginMap);
 
-customElements.initialize();
-socket.initialize(pluginHandlers, serviceToPluginMap);
+customElements.initialize(changePanelVisibilityCallback);
 
 window.addEventListener('DOMContentLoaded', function () {
     sizeContent();
+    Q.all([db.initialize(), initSocketPromise]).then(function () {
+        initializePlugins();
 
-    // Initialize standard modules, then plugins
-    db.initialize().then(initializePlugins);
+        // Some panels, like geolocation, need to be fully initialized before they can be hidden, otherwise they will
+        // stop working. For that reason, we restore the initial collapse state to the panels only after plugin
+        // initialization.
+        getCollapsedPanels().forEach(function (panelId) {
+            document.getElementById(panelId).cordovaCollapsed = true;
+        });
+    }).done();
 });
 
 window.addEventListener('resize', function () {
     sizeContent();
 });
+
+function changePanelVisibilityCallback(id, isNowCollapsed) {
+    var collapsedPanels = getCollapsedPanels();
+    var index = collapsedPanels.indexOf(id);
+
+    if (isNowCollapsed && index === -1) {
+        collapsedPanels.push(id);
+    } else if (!isNowCollapsed && index > -1) {
+        collapsedPanels.splice(index, 1);
+    }
+
+    db.saveObject(COLLAPSED_PANELS_KEY, collapsedPanels);
+}
+
+function getCollapsedPanels() {
+    var collapsedPanels = db.retrieveObject(COLLAPSED_PANELS_KEY);
+
+    if (!Array.isArray(collapsedPanels)) {
+        collapsedPanels = [];
+    }
+
+    return collapsedPanels;
+}
 
 function sizeContent() {
     // Size the content area to keep column widths fixed
