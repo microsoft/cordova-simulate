@@ -16,18 +16,21 @@ var Q = require('q'),
  * @constructor
  */
 function Simulator(opts) {
-    this._config = this._parseOptions(opts);
+    opts = opts || {};
+
+    this._config = parseOptions(opts);
+    this._opts = { port: opts.port, dir: opts.dir };
     this._state = Simulator.State.IDLE;
 
     this.hostRoot = {
         'app-host':  path.join(dirs.root, 'app-host')
     };
 
-    var simHostOptions = this._config.simHostOptions;
+    var that = this;
     Object.defineProperty(this.hostRoot, 'sim-host', {
         get: function () {
             // Get dynamically so simHostOptions is initialized
-            return simHostOptions.simHostRoot;
+            return that._config.simHostOptions.simHostRoot;
         }
     });
 
@@ -64,36 +67,6 @@ Simulator.State = {
     STARTING: 'STARTING',
     RUNNING: 'RUNNING',
     STOPPING: 'STOPPING'
-};
-
-/**
- * Parse the options provided and create the configuration instance for the current
- * simulation.
- * @param {object} opts Configuration provided for the simulator.
- * @return {Configuration} A configuration instance.
- * @private
- */
-Simulator.prototype._parseOptions = function (opts) {
-    opts = opts || {};
-
-    var simHostOpts,
-        config = new Configuration();
-
-    if (opts.simhostui && fs.existsSync(opts.simhostui)) {
-        simHostOpts = { simHostRoot: opts.simhostui };
-    } else {
-        /* use the default simulation UI */
-        simHostOpts = { simHostRoot: path.join(__dirname, '..', 'sim-host', 'ui') };
-    }
-
-    config.simHostOptions = simHostOpts;
-    config.telemetry = opts.telemetry;
-    config.liveReload = opts.hasOwnProperty('livereload') ? !!opts.livereload : true;
-    config.forcePrepare = !!opts.forceprepare;
-    config.xhrProxy = opts.hasOwnProperty('corsproxy') ? !!opts.corsproxy : true;
-    config.touchEvents = opts.hasOwnProperty('touchevents') ? !!opts.touchevents : true;
-
-    return config;
 };
 
 /**
@@ -146,21 +119,21 @@ Simulator.prototype.simHostUrl = function () {
  * @return {Promise} A promise that is fullfilled when the simulation starts and the server
  * is ready listeninig for new connections. If something fails, it is rejected.
  */
-Simulator.prototype.startSimulation = function (opts) {
+Simulator.prototype.startSimulation = function () {
     if (this.isActive()) {
         return Q.reject('Simulation is active');
     }
 
     this._state = Simulator.State.STARTING;
 
-    return this._server.start(this._project.platform, this._config, opts)
+    return this._server.start(this._project.platform, this._opts)
         .then(function (data) {
             // configure project
             this._project.projectRoot = data.projectRoot;
             this._project.platformRoot = data.root;
 
             // configure simulation file path
-            var simPath = opts.simulationpath || path.join(this._project.projectRoot, 'simulation'),
+            var simPath = this._config.simulationFilePath || path.join(this._project.projectRoot, 'simulation'),
                 simulationFilePath = path.resolve(simPath);
 
             this._config.simulationFilePath = simulationFilePath;
@@ -196,5 +169,36 @@ Simulator.prototype.stopSimulation = function () {
             this._state = Simulator.State.IDLE;
         }.bind(this));
 };
+
+/**
+ * Parse the options provided and create the configuration instance for the current
+ * simulation.
+ * @param {object} opts Configuration provided for the simulator.
+ * @return {Configuration} A configuration instance.
+ * @private
+ */
+function parseOptions(opts) {
+    opts = opts || {};
+
+    var simHostOpts,
+        config = new Configuration();
+
+    if (opts.simhostui && fs.existsSync(opts.simhostui)) {
+        simHostOpts = { simHostRoot: opts.simhostui };
+    } else {
+        /* use the default simulation UI */
+        simHostOpts = { simHostRoot: path.join(__dirname, '..', 'sim-host', 'ui') };
+    }
+
+    config.simHostOptions = simHostOpts;
+    config.simulationFilePath = opts.simulationpath;
+    config.telemetry = opts.telemetry;
+    config.liveReload = opts.hasOwnProperty('livereload') ? !!opts.livereload : true;
+    config.forcePrepare = !!opts.forceprepare;
+    config.xhrProxy = opts.hasOwnProperty('corsproxy') ? !!opts.corsproxy : true;
+    config.touchEvents = opts.hasOwnProperty('touchevents') ? !!opts.touchevents : true;
+
+    return config;
+}
 
 module.exports = Simulator;

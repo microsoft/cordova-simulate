@@ -12,7 +12,7 @@ var simulate = function (opts) {
     var target = opts.target || 'chrome';
     var simulator = new Simulator(opts);
 
-    return simulator.startSimulation(opts)
+    return simulator.startSimulation()
         .then(function () {
             return launchBrowser(target, simulator.appUrl());
         }).then(function () {

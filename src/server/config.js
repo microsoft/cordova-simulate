@@ -12,6 +12,7 @@ function Configuration() {
     { name: 'forcePrepare' },
     { name: 'liveReload' },
     { name: 'simHostOptions' },
+    { name: 'simulationFilePath' },
     { name: 'telemetry', optional: true },
     { name: 'touchEvents', optional: true },
     { name: 'xhrProxy', optional: true }

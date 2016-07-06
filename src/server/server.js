@@ -53,7 +53,9 @@ Object.defineProperties(SimulationServer.prototype, {
     }
 });
 
-SimulationServer.prototype.start = function (platform, config, opts) {
+SimulationServer.prototype.start = function (platform, opts) {
+    var config = this._simulator.config;
+
     /* attach simulation host middleware */
     var middlewarePath = path.join(config.simHostOptions.simHostRoot, 'server', 'server');
     if (fs.existsSync(middlewarePath + '.js')) {
