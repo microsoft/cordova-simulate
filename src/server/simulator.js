@@ -34,9 +34,17 @@ function Simulator(opts) {
 
     var platform = opts.platform || 'browser';
 
-    this._telemetry = new Telemetry(this, this._config.telemetry);
-    this._project = new Project(this, platform);
-    this._server = new SimulationServer(this);
+    var telemetry = new Telemetry(this, this._config.telemetry);
+
+    // create an intermediate object that expose only the
+    // required public API for the simulation objects
+    var simulatorProxy = {
+        config: this.config,
+        telemetry: telemetry
+    };
+
+    this._project = new Project(simulatorProxy, platform);
+    this._server = new SimulationServer(simulatorProxy, this._project, this.hostRoot);
 }
 
 Object.defineProperties(Simulator.prototype, {
@@ -53,11 +61,6 @@ Object.defineProperties(Simulator.prototype, {
     'config': {
         get: function () {
             return this._config;
-        }
-    },
-    'telemetry': {
-        get: function () {
-            return this._telemetry;
         }
     }
 });
@@ -151,11 +154,13 @@ Simulator.prototype.startSimulation = function (opts) {
             this._project.platformRoot = server.root;
 
             // configure simulation file path
-            var simPath = opts.simulationpath || path.join(this._project.projectRoot, 'simulation');
-            this._config.simulationFilePath = path.resolve(simPath);
+            var simPath = opts.simulationpath || path.join(this._project.projectRoot, 'simulation'),
+                simulationFilePath = path.resolve(simPath);
 
-            if (!fs.existsSync(this._config.simulationFilePath)) {
-                utils.makeDirectoryRecursiveSync(this._config.simulationFilePath);
+            this._config.simulationFilePath = simulationFilePath;
+
+            if (!fs.existsSync(simulationFilePath)) {
+                utils.makeDirectoryRecursiveSync(simulationFilePath);
             }
 
             this._state = Simulator.State.RUNNING;
@@ -163,6 +168,8 @@ Simulator.prototype.startSimulation = function (opts) {
         .fail(function (error) {
             log.warning('Error starting the simulation');
             log.error(error);
+
+            this._state = Simulator.State.IDLE;
         }.bind(this));
 };
 

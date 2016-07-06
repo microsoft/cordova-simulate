@@ -142,7 +142,7 @@ Project.prototype.initPlugins = function () {
     registerPlugins(simulatedDebugHostPlugins);
     registerPlugins(simulatedProjectPlugins);
 
-    this._simulator.telemetry.sendTelemetry( 'plugin-list', {
+    this._simulator.telemetry.sendTelemetry('plugin-list', {
         simulatedBuiltIn: this.pluginsTelemetry.simulatedBuiltIn
     }, {
         simulatedNonBuiltIn: this.pluginsTelemetry.simulatedNonBuiltIn,
@@ -161,8 +161,10 @@ Project.prototype.getRouter = function () {
     return this._router;
 };
 
-Project.prototype.getPluginsTelemetry = function () {
-    return this.pluginsTelemetry;
+Project.prototype.hasBuiltInPluginTelemetry = function (plugin) {
+    var builtIn = this.pluginsTelemetry.simulatedBuiltIn;
+
+    return (builtIn.indexOf(plugin) !== -1);
 };
 
 /**

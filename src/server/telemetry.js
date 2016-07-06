@@ -74,10 +74,9 @@ Telemetry.prototype.sendTelemetry = function (event, props, piiProps) {
  * @return {boolean}
  */
 Telemetry.prototype._shouldAnonymizeEvent = function (event, props) {
-    var project = this._simulator.project,
-        pluginsTelemetry = project.getPluginsTelemetry();
+    var project = this._simulator.project;
 
-    return PLUGIN_EVENTS_TO_ANONYMIZE.indexOf(event) > -1 && pluginsTelemetry.simulatedBuiltIn.indexOf(props.plugin) === -1;
+    return PLUGIN_EVENTS_TO_ANONYMIZE.indexOf(event) > -1 && !project.hasBuiltInPluginTelemetry(props.plugin);
 };
 
 module.exports = Telemetry;

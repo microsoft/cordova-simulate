@@ -35,13 +35,15 @@ LiveReload.prototype.stop = function () {
 };
 
 /**
+ * File change callback. Propagate the change to the served platform folder, either via "cordova prepare",
+ * or by copying the file directly.
+ * @param {string} fileRelativePath
+ * @param {string} parentDir
  * @private
  */
 LiveReload.prototype._onFileChanged = function (fileRelativePath, parentDir) {
     fileRelativePath = fileRelativePath.replace(/\\/g, '/');
 
-    // Propagate the change to the served platform folder (either via "cordova prepare", or by copying the file
-    // directly).
     var propagateChangePromise;
 
     if (this._forcePrepare) {

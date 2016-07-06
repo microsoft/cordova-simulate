@@ -20,7 +20,7 @@ var APP_HOST = 'APP_HOST',
 /**
  * @constructor
  */
-function SocketServer(simulator) {
+function SocketServer(simulator, project) {
     this._simulator = simulator;
     this._io;
     this._hostSockets = {};
@@ -38,7 +38,6 @@ function SocketServer(simulator) {
     this._whenSimHostReady     = Q.defer();
 
     var config = this._simulator.config,
-        project = this._simulator.project,
         telemetry = this._simulator.telemetry;
 
     this._liveReload = new LiveReload(project, telemetry, config.forcePrepare);

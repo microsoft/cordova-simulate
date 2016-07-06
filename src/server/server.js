@@ -20,11 +20,13 @@ var fs = require('fs'),
  * @param {object} simulator
  * @constructor
  */
-function SimulationServer(simulator) {
+function SimulationServer(simulator, project, hostRoot) {
     this._simulator = simulator;
+    this._project = project;
+    this._hostRoot = hostRoot;
     this._server = cordovaServe();
-    this._simulationFiles = new SimulationFiles(this._simulator.hostRoot);
-    this._simSocket = new SocketServer(simulator);
+    this._simulationFiles = new SimulationFiles(hostRoot);
+    this._simSocket = new SocketServer(simulator, project);
 }
 
 Object.defineProperties(SimulationServer.prototype, {
@@ -121,8 +123,8 @@ SimulationServer.prototype._prepareRoutes = function () {
     app.get('/simulator/sim-host.js', function (request, response) {
         this._sendHostJsFile(response, 'sim-host');
     }.bind(this));
-    app.use(this._simulator.project.getRouter());
-    app.use('/simulator', cordovaServe.static(this._simulator.hostRoot['sim-host']));
+    app.use(this._project.getRouter());
+    app.use('/simulator', cordovaServe.static(this._hostRoot['sim-host']));
     app.use('/simulator/thirdparty', cordovaServe.static(dirs.thirdParty));
 };
 
@@ -148,9 +150,8 @@ SimulationServer.prototype._sendHostJsFile = function (response, hostType) {
  * @private
  */
 SimulationServer.prototype._streamAppHostHtml = function (request, response) {
-    var project = this._simulator.project;
     var config = this._simulator.config;
-    var filePath = path.join(project.platformRoot, url.parse(request.url).pathname);
+    var filePath = path.join(this._project.platformRoot, url.parse(request.url).pathname);
 
     if (request.query && request.query['cdvsim-enabled'] === 'false') {
         response.sendFile(filePath);
@@ -161,9 +162,9 @@ SimulationServer.prototype._streamAppHostHtml = function (request, response) {
     // then create the app-host.js (if it is out-of-date) so it is ready when it is requested.
     var simFiles = this._simulationFiles;
 
-    project.prepare().then(function () {
-        return simFiles.createAppHostJsFile(project, config.simulationFilePath);
-    }).then(function (pluginList) {
+    this._project.prepare().then(function () {
+        return simFiles.createAppHostJsFile(this._project, config.simulationFilePath);
+    }.bind(this)).then(function (pluginList) {
         // Sim host will need to be refreshed if the plugin list has changed.
         if (simFiles.pluginsChanged(pluginList, config.simulationFilePath)) {
             this._simSocket.reloadSimHost();
@@ -199,7 +200,7 @@ SimulationServer.prototype._streamAppHostHtml = function (request, response) {
 SimulationServer.prototype._streamSimHostHtml = function (request, response) {
     // If we haven't ever prepared, do so before we try to generate sim-host, so we know our list of plugins is up-to-date.
     // Then create sim-host.js (if it is out-of-date) so it is ready when it is requested.
-    var project = this._simulator.project;
+    var project = this._project;
 
     project.prepare().then(function () {
         var simulationFilePath = this._simulator.config.simulationFilePath;
@@ -230,7 +231,7 @@ SimulationServer.prototype._streamSimHostHtml = function (request, response) {
         });
 
         // Note that this relies on a custom version of send that supports a 'transform' option.
-        send(request, path.join(this._simulator.hostRoot['sim-host'], 'sim-host.html'), {
+        send(request, path.join(this._hostRoot['sim-host'], 'sim-host.html'), {
             transform: function (stream) {
                 return stream
                     .pipe(replaceStream('<!-- PANELS -->', panelsHtml.join('\n')))
