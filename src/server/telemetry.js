@@ -15,14 +15,22 @@ var PLUGIN_PROPS_TO_ANONYMIZE = [
  * @param {object=} opts
  * @constructor
  */
-function Telemetry(simulator, opts) {
-    this._simulator = simulator;
+function Telemetry(opts) {
+    this._project = null;
     this._sendTelemetry = null;
+}
+
+/**
+ * @param {object} project
+ * @param {object} opts
+ */
+Telemetry.prototype.initialize = function (project, opts) {
+    this._project = project;
 
     if (opts && typeof opts.sendTelemetry === 'function') {
         this._sendTelemetry = opts.sendTelemetry;
     }
-}
+};
 
 /**
  * Handles telemetry sent by clients. Anonymizes properties if necessary, and sends the event
@@ -74,9 +82,7 @@ Telemetry.prototype.sendTelemetry = function (event, props, piiProps) {
  * @return {boolean}
  */
 Telemetry.prototype._shouldAnonymizeEvent = function (event, props) {
-    var project = this._simulator.project;
-
-    return PLUGIN_EVENTS_TO_ANONYMIZE.indexOf(event) > -1 && !project.hasBuiltInPluginTelemetry(props.plugin);
+    return PLUGIN_EVENTS_TO_ANONYMIZE.indexOf(event) > -1 && !this._project.hasBuiltInPluginTelemetry(props.plugin);
 };
 
 module.exports = Telemetry;

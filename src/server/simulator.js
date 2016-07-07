@@ -36,17 +36,19 @@ function Simulator(opts) {
 
     var platform = opts.platform || 'browser';
 
-    var telemetry = new Telemetry(this, this._config.telemetry);
+    this._telemetry = new Telemetry();
 
     // create an intermediate object that expose only the
     // required public API for the simulation objects
     var simulatorProxy = {
         config: this.config,
-        telemetry: telemetry
+        telemetry: this.telemetry
     };
 
     this._project = new Project(simulatorProxy, platform);
     this._server = new SimulationServer(simulatorProxy, this._project, this.hostRoot);
+
+    this._telemetry.initialize(this._project, this._config.telemetry);
 }
 
 Object.defineProperties(Simulator.prototype, {
@@ -58,6 +60,11 @@ Object.defineProperties(Simulator.prototype, {
     'config': {
         get: function () {
             return this._config;
+        }
+    },
+    'telemetry': {
+        get: function () {
+            return this._telemetry;
         }
     }
 });
