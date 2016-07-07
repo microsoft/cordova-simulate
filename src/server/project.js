@@ -33,7 +33,7 @@ function Project(simulator, platform) {
 Object.defineProperties(Project.prototype, {
     'projectRoot': {
         set: function (projectRoot) {
-            if (this._projectRoot) {
+            if (this._projectRoot && this._projectRoot !== projectRoot) {
                 throw new Error('Can\'t reinitialize "projectRoot"');
             }
             this._projectRoot = projectRoot;
@@ -172,7 +172,7 @@ Project.prototype.hasBuiltInPluginTelemetry = function (plugin) {
  *
  * @param {Object=} currentState (Optional) The current state of the project for caching purposes.
  */
-Project.prototype.prepare = function() {
+Project.prototype.prepare = function () {
     if (!this._preparePromise) {
         var d = Q.defer();
         var currentProjectState;
@@ -211,11 +211,17 @@ Project.prototype.prepare = function() {
     return this._preparePromise;
 };
 
+Project.prototype.reset = function () {
+    this._resetPluginsData();
+    this._router = null;
+    this._previousPrepareStates = {};
+};
+
 /**
  * @param {object} currentState
  * @return {boolean}
  */
-Project.prototype._shouldPrepare = function(currentState) {
+Project.prototype._shouldPrepare = function (currentState) {
     var previousState = this._previousPrepareStates[this.platform];
     // We should prepare if we don't have any info on a previous prepare for the current platform, or if there is a
     // difference in the list of installed plugins, the merges files or the www files.

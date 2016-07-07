@@ -149,6 +149,8 @@ SocketServer.prototype.closeConnections = function () {
     this._pendingEmits[APP_HOST] = [];
     this._pendingEmits[SIM_HOST] = [];
     this._pendingEmits[DEBUG_HOST] = [];
+    this._whenAppHostConnected = Q.defer();
+    this._whenSimHostReady = Q.defer();
 };
 
 SocketServer.prototype._resetAppHostState = function () {

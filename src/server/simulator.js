@@ -166,6 +166,7 @@ Simulator.prototype.stopSimulation = function () {
 
     return this._server.stop()
         .then(function () {
+            this._project.reset();
             this._state = Simulator.State.IDLE;
         }.bind(this));
 };

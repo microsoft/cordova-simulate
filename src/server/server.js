@@ -24,9 +24,9 @@ function SimulationServer(simulator, project, hostRoot) {
     this._simulator = simulator;
     this._project = project;
     this._hostRoot = hostRoot;
-    this._cordovaServer = cordovaServe();
     this._simulationFiles = new SimulationFiles(hostRoot);
     this._simSocket = new SocketServer(simulator, project);
+    this._cordovaServer = null;
     this._urls = null;
 }
 
@@ -55,6 +55,8 @@ Object.defineProperties(SimulationServer.prototype, {
 
 SimulationServer.prototype.start = function (platform, opts) {
     var config = this._simulator.config;
+
+    this._cordovaServer = cordovaServe();
 
     /* attach simulation host middleware */
     var middlewarePath = path.join(config.simHostOptions.simHostRoot, 'server', 'server');
@@ -102,6 +104,10 @@ SimulationServer.prototype.start = function (platform, opts) {
  * @return {Promise} A promise that is resolved once the server has been closed.
  */
 SimulationServer.prototype.stop = function () {
+    if (!this._cordovaServer) {
+        return Q.resolve();
+    }
+
     var deferred = Q.defer(),
         promise = deferred.promise;
 
