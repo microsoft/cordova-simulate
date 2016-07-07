@@ -17,15 +17,17 @@ var fs = require('fs'),
  * The simulation server that encapsulates the HTTP server instance and
  * Web Socket server. It enables to start and stop the server to listening
  * for new connections.
- * @param {object} simulator
+ * @param {object} simulatorProxy
+ * @param {object} project
+ * @param {object} hostRoot
  * @constructor
  */
-function SimulationServer(simulator, project, hostRoot) {
-    this._simulator = simulator;
+function SimulationServer(simulatorProxy, project, hostRoot) {
+    this._simulatorProxy = simulatorProxy;
     this._project = project;
     this._hostRoot = hostRoot;
     this._simulationFiles = new SimulationFiles(hostRoot);
-    this._simSocket = new SocketServer(simulator, project);
+    this._simSocket = new SocketServer(simulatorProxy, project);
     this._cordovaServer = null;
     this._urls = null;
 }
@@ -54,7 +56,7 @@ Object.defineProperties(SimulationServer.prototype, {
 });
 
 SimulationServer.prototype.start = function (platform, opts) {
-    var config = this._simulator.config;
+    var config = this._simulatorProxy.config;
 
     this._cordovaServer = cordovaServe();
 
@@ -158,7 +160,7 @@ SimulationServer.prototype._prepareRoutes = function () {
  * @private
  */
 SimulationServer.prototype._sendHostJsFile = function (response, hostType) {
-    var config = this._simulator.config,
+    var config = this._simulatorProxy.config,
         hostJsFile = this._simulationFiles.getHostJsFile(hostType, config.simulationFilePath);
 
     if (!hostJsFile) {
@@ -174,7 +176,7 @@ SimulationServer.prototype._sendHostJsFile = function (response, hostType) {
  * @private
  */
 SimulationServer.prototype._streamAppHostHtml = function (request, response) {
-    var config = this._simulator.config;
+    var config = this._simulatorProxy.config;
     var filePath = path.join(this._project.platformRoot, url.parse(request.url).pathname);
 
     if (request.query && request.query['cdvsim-enabled'] === 'false') {
@@ -227,7 +229,7 @@ SimulationServer.prototype._streamSimHostHtml = function (request, response) {
     var project = this._project;
 
     project.prepare().then(function () {
-        var simulationFilePath = this._simulator.config.simulationFilePath;
+        var simulationFilePath = this._simulatorProxy.config.simulationFilePath;
 
         return this._simulationFiles.createSimHostJsFile(project, simulationFilePath);
     }.bind(this)).then(function () {

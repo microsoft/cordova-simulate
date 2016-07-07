@@ -10,10 +10,12 @@ var fs = require('fs'),
     utils = require('./utils/jsUtils');
 
 /**
+ * @param {object} simulatorProxy
+ * @param {string} platform
  * @constructor
  */
-function Project(simulator, platform) {
-    this._simulator = simulator;
+function Project(simulatorProxy, platform) {
+    this._simulatorProxy = simulatorProxy;
     this._platform = platform;
     // set after the simulation has started
     this._projectRoot = null;
@@ -68,7 +70,7 @@ Project.prototype.initPlugins = function () {
 
     // Find the default plugins
     var simulatedDefaultPlugins = {};
-    var debugHostHandlers = this._simulator.config.debugHostHandlers;
+    var debugHostHandlers = this._simulatorProxy.config.debugHostHandlers;
 
     Project.DEFAULT_PLUGINS.forEach(function (pluginId) {
         var pluginPath = pluginUtil.findPluginPath(this.projectRoot, pluginId);
@@ -142,7 +144,7 @@ Project.prototype.initPlugins = function () {
     registerPlugins(simulatedDebugHostPlugins);
     registerPlugins(simulatedProjectPlugins);
 
-    this._simulator.telemetry.sendTelemetry('plugin-list', {
+    this._simulatorProxy.telemetry.sendTelemetry('plugin-list', {
         simulatedBuiltIn: this.pluginsTelemetry.simulatedBuiltIn
     }, {
         simulatedNonBuiltIn: this.pluginsTelemetry.simulatedNonBuiltIn,
@@ -332,7 +334,7 @@ Project.prototype._getProjectState = function() {
         newState.files = files;
 
         // Get information about current debug-host handlers.
-        newState.debugHostHandlers = this._simulator.config.debugHostHandlers || [];
+        newState.debugHostHandlers = this._simulatorProxy.config.debugHostHandlers || [];
 
         // Return the new state.
         return newState;

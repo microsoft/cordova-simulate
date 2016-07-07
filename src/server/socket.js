@@ -18,10 +18,12 @@ var APP_HOST = 'APP_HOST',
     DEBUG_HOST = 'DEBUG_HOST';
 
 /**
+ * @param {object} simulatorProxy
+ * @param {object} project
  * @constructor
  */
-function SocketServer(simulator, project) {
-    this._simulator = simulator;
+function SocketServer(simulatorProxy, project) {
+    this._simulatorProxy = simulatorProxy;
     this._io;
     this._hostSockets = {};
     this._pendingEmits = {};
@@ -37,15 +39,15 @@ function SocketServer(simulator, project) {
     this._whenAppHostConnected = Q.defer();
     this._whenSimHostReady     = Q.defer();
 
-    var config = this._simulator.config,
-        telemetry = this._simulator.telemetry;
+    var config = this._simulatorProxy.config,
+        telemetry = this._simulatorProxy.telemetry;
 
     this._liveReload = new LiveReload(project, telemetry, config.forcePrepare);
 }
 
 SocketServer.prototype.init = function (server) {
     var that = this,
-        config = this._simulator.config;
+        config = this._simulatorProxy.config;
 
     this._io = require('socket.io')(server);
 
@@ -127,7 +129,7 @@ SocketServer.prototype.reloadSimHost = function () {
 
 SocketServer.prototype.closeConnections = function () {
     // stop watching file changes
-    if (this._simulator.config.liveReload) {
+    if (this._simulatorProxy.config.liveReload) {
         this._liveReload.stop();
     }
 
@@ -166,7 +168,7 @@ SocketServer.prototype._resetSimHostState = function () {
 SocketServer.prototype._setupAppHostHandlers = function () {
     log.log('Setup handlers for APP_HOST');
 
-    var config = this._simulator.config;
+    var config = this._simulatorProxy.config;
 
     this._subscribeTo(APP_HOST, 'exec', function (data) {
         this._emitTo(SIM_HOST, 'exec', data);
@@ -189,7 +191,7 @@ SocketServer.prototype._setupAppHostHandlers = function () {
     // Set up telemetry if necessary.
     if (config.telemetry) {
         this._subscribeTo(APP_HOST, 'telemetry', function (data) {
-            this._simulator.telemetry.handleClientTelemetry(data);
+            this._simulatorProxy.telemetry.handleClientTelemetry(data);
         }.bind(this));
 
         this._emitTo(APP_HOST, 'init-telemetry');
@@ -266,9 +268,9 @@ SocketServer.prototype._setupSimHostHandlers = function () {
     }.bind(this));
 
     // Set up telemetry if necessary.
-    if (this._simulator.config.telemetry) {
+    if (this._simulatorProxy.config.telemetry) {
         this._subscribeTo(SIM_HOST, 'telemetry', function (data) {
-            this._simulator.telemetry.handleClientTelemetry(data);
+            this._simulatorProxy.telemetry.handleClientTelemetry(data);
         }.bind(this));
 
         this._emitTo(SIM_HOST, 'init-telemetry');
