@@ -12,10 +12,9 @@ var PLUGIN_PROPS_TO_ANONYMIZE = [
 ];
 
 /**
- * @param {object=} opts
  * @constructor
  */
-function Telemetry(opts) {
+function Telemetry() {
     this._project = null;
     this._sendTelemetry = null;
 }
