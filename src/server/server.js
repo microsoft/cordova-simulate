@@ -106,16 +106,23 @@ SimulationServer.prototype.start = function (platform, opts) {
  * @return {Promise} A promise that is resolved once the server has been closed.
  */
 SimulationServer.prototype.stop = function () {
-    if (!this._cordovaServer) {
+    if (!this._isServerReady()) {
         return Q.resolve();
     }
 
     var deferred = Q.defer(),
         promise = deferred.promise;
 
-    this._cordovaServer.server.close(function () {
+    try {
+        this._cordovaServer.server.close(function () {
+            deferred.resolve();
+        });
+    } catch (error) {
+        // calling server.close when the server was already closed
+        // throws an exception, so let's handle it, resolve the
+        // promise and continue cleaning up the state
         deferred.resolve();
-    });
+    }
 
     for (var id in this._connections) {
         var socket = this._connections[id];
@@ -287,6 +294,17 @@ SimulationServer.prototype._trackServerConnections = function () {
             delete this._connections[id];
         }.bind(this));
     }.bind(this));
+};
+
+/**
+ * Check if the HTTP server instance is available.
+ * @return {boolean}
+ * @private
+ */
+SimulationServer.prototype._isServerReady = function () {
+    // Cordova-serve assign the new HTTP Server instance after the call
+    // to servePlatform.
+    return !!this.server;
 };
 
 var parseStartPage = function (projectRoot) {

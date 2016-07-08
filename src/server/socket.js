@@ -140,12 +140,9 @@ SocketServer.prototype.closeConnections = function () {
         }
     }.bind(this));
 
-    if (this._io) {
-        // not need to close the server, since it is closed
-        // by the SimulationServer instance
-        this._io = null;
-    }
-
+    // not need to close the server, since it is closed
+    // by the SimulationServer instance
+    this._io = null;
     this._hostSockets = {};
     this._pendingEmits = {};
     this._pendingEmits[APP_HOST] = [];

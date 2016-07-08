@@ -77,6 +77,14 @@ Simulator.State = {
 };
 
 /**
+ * Check if the simulation is not active.
+ * @return {boolean} True if it is not active, otherwise false.
+ */
+Simulator.prototype.isIdle = function () {
+    return this._state === Simulator.State.IDLE;
+};
+
+/**
  * Check if the simulation is any active state.
  * @return {boolean} True if it is active, otherwise false.
  */
@@ -85,11 +93,11 @@ Simulator.prototype.isActive = function () {
 };
 
 /**
- * Check if the simulation is not active.
- * @return {boolean} True if it is not active, otherwise false.
+ * Check if the simulation has successfully started and is running.
+ * @return {boolean} True if it is running, otherwise false.
  */
-Simulator.prototype.isIdle = function () {
-    return this._state === Simulator.State.IDLE;
+Simulator.prototype.isRunning = function () {
+    return this._state === Simulator.State.RUNNING;
 };
 
 /**
@@ -165,8 +173,8 @@ Simulator.prototype.startSimulation = function () {
  * release the current connections. If something fails, it is rejected.
  */
 Simulator.prototype.stopSimulation = function () {
-    if (!this.isActive()) {
-        return Q.reject('Simulation is not active');
+    if (!this.isRunning()) {
+        return Q.reject('Simulation is not running');
     }
 
     this._state = Simulator.State.STOPPING;
