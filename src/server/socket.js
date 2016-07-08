@@ -1,13 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-/*
- * This module implements the server part of the communication protocol as
- * described at
- *      https://github.com/Microsoft/cordova-simulate/wiki/The-cordova-simulate-bootstrap-protocol
- * with a limitation that only single app-host is supported per server (and
- * sim-host).
- */
-
 var Q = require('q'),
     log = require('./utils/log'),
     LiveReload = require('./live-reload/live-reload');
@@ -18,6 +10,11 @@ var APP_HOST = 'APP_HOST',
     DEBUG_HOST = 'DEBUG_HOST';
 
 /**
+ * It creates a Web Socket server to enable RPC communication between simulation hosts
+ * running in different process. This object implements the server part of the communication
+ * protocol as described at
+    https://github.com/Microsoft/cordova-simulate/wiki/The-cordova-simulate-bootstrap-protocol
+ * with a limitation that only single app-host is supported per server (and sim-host).
  * @param {object} simulatorProxy
  * @param {object} project
  * @constructor

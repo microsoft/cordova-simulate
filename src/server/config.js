@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
 /**
+ * The Configuration model manages the configuration properties for the simulation.
+ * These properties are mapped with the options provided for the simulation, and
+ * are cross to any other instance involved in the simulation.
  * @constructor
  */
 function Configuration() {

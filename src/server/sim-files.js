@@ -16,6 +16,10 @@ var _browserifySearchPaths = null,
     appHost = 'app-host';
 
 /**
+ * SimulationFiles handle the creation of sim-host and app-host files required
+ * for the simulation. As part of this process, it prepares the browserify context
+ * and dependencies, and generates te simulation files for the current project state.
+ * @param {object} hostRoot
  * @constructor
  */
 function SimulationFiles(hostRoot) {

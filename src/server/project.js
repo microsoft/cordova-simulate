@@ -10,6 +10,8 @@ var fs = require('fs'),
     utils = require('./utils/jsUtils');
 
 /**
+ * The Project model encapsulates the information and state about the project under
+ * simulation. It handles the project's plugins and cordova prepare operation.
  * @param {object} simulatorProxy
  * @param {string} platform
  * @constructor

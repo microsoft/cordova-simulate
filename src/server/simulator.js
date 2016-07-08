@@ -12,6 +12,9 @@ var Q = require('q'),
     Telemetry = require('./telemetry');
 
 /**
+ * The Simulator model handles the information and state of the simulation. It coordinates
+ * all the entities in the simulation in order to start and stop a simulation, as well as
+ * getting information of the current state.
  * @param {object} opts Configuration for the current simulation.
  * @constructor
  */
