@@ -98,11 +98,11 @@ function compareArrays(a1, a2, compareOrder) {
         if (!itemCounts[value]) {
             // If this value does not exist or its count is at 0, then a2 has an item that a1 doesn't have.
             isSimilar = false;
-            return true;    // Return true to break early.
+            return true; // Return true to break early.
         }
 
         --itemCounts[value];
-        return false;   // Return false to keep looking.
+        return false; // Return false to keep looking.
     });
 
     return isSimilar;
@@ -111,7 +111,7 @@ function compareArrays(a1, a2, compareOrder) {
 /**
  *  Helper function to check if a file or directory exists
  */
-function existsSync (filename) {
+function existsSync(filename) {
     try {
         /* fs.existsSync is deprecated
            fs.statSync throws if the path does not exists */
@@ -139,7 +139,7 @@ function getDirectoriesInPath(dirPath) {
 /**
  *  Helper function to create a directory recursively
  */
-function makeDirectoryRecursiveSync (dirPath) {
+function makeDirectoryRecursiveSync(dirPath) {
     var parentPath = path.dirname(dirPath);
     if (!existsSync(parentPath) && (parentPath !== dirPath)) {
         makeDirectoryRecursiveSync(parentPath);
@@ -151,21 +151,24 @@ function makeDirectoryRecursiveSync (dirPath) {
 function getMtimeForFiles(dir) {
     var files = {};
 
-    Q.nfcall(glob, '**/*', { cwd: dir }).then(function (rawFiles) {
-        var filePromises = [];
+    return Q.nfcall(glob, '**/*', { cwd: dir })
+        .then(function (rawFiles) {
+            var filePromises = [];
 
-        rawFiles.forEach(function (file) {
-            file = path.join(dir, file);
+            rawFiles.forEach(function (file) {
+                file = path.join(dir, file);
 
-            filePromises.push(Q.nfcall(fs.stat, file).then(function (stats) {
-                files[file] = new Date(stats.mtime).getTime();
-            }));
+                filePromises.push(Q.nfcall(fs.stat, file)
+                    .then(function (stats) {
+                        files[file] = new Date(stats.mtime).getTime();
+                    }));
+            });
+
+            return Q.all(filePromises);
+        })
+        .then(function () {
+            return files;
         });
-
-        return Q.all(filePromises);
-    }).then(function () {
-        return files;
-    });
 }
 
 module.exports.compareObjects = compareObjects;

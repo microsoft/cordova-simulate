@@ -15,11 +15,14 @@ var simulate = function (opts) {
     return simulator.startSimulation()
         .then(function () {
             return launchBrowser(target, simulator.appUrl());
-        }).then(function () {
+        })
+        .then(function () {
             return launchBrowser(target, simulator.simHostUrl());
-        }).then(function () {
+        })
+        .then(function () {
             return simulator;
-        }).catch(function (error) {
+        })
+        .catch(function (error) {
             // Ensure server is closed, then rethrow so it can be handled by downstream consumers.
             simulator.stopSimulation();
             if (error instanceof Error) {

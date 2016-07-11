@@ -43,15 +43,16 @@ function loadJsonFile(file) {
  * @return {Promise}
  */
 SimulationFiles.prototype.createSimHostJsFile = function (project, simulationFilePath) {
-    return this._waitOnAppHostJs(project, simulationFilePath).then(function (appHostPlugins) {
-        try {
-            appHostPlugins = appHostPlugins || project.getPlugins();
+    return this._waitOnAppHostJs(project, simulationFilePath)
+        .then(function (appHostPlugins) {
+            try {
+                appHostPlugins = appHostPlugins || project.getPlugins();
 
-            return this._createHostJsFile(simulationFilePath, simHost, ['js', 'handlers'], appHostPlugins);
-        } catch (e) {
-            console.log('ERROR CREATING SIM-HOST.JS:\n' + e.stack);
-        }
-    }.bind(this));
+                return this._createHostJsFile(simulationFilePath, simHost, ['js', 'handlers'], appHostPlugins);
+            } catch (e) {
+                console.log('ERROR CREATING SIM-HOST.JS:\n' + e.stack);
+            }
+        }.bind(this));
 };
 
 /**
@@ -60,14 +61,16 @@ SimulationFiles.prototype.createSimHostJsFile = function (project, simulationFil
  * @return {Promise}
  */
 SimulationFiles.prototype.createAppHostJsFile = function (project, simulationFilePath) {
-    this._appHostJsPromise = this._appHostJsPromise || project.prepare().then(function () {
-        var plugins = project.getPlugins();
+    this._appHostJsPromise = this._appHostJsPromise || project.prepare()
+        .then(function () {
+            var plugins = project.getPlugins();
 
-        return this._createHostJsFile(simulationFilePath, appHost, ['js', 'handlers', 'clobbers'], plugins);
-    }.bind(this)).then(function (pluginList) {
-        this._appHostJsPromise = null;
-        return pluginList;
-    }.bind(this));
+            return this._createHostJsFile(simulationFilePath, appHost, ['js', 'handlers', 'clobbers'], plugins);
+        }.bind(this))
+        .then(function (pluginList) {
+            this._appHostJsPromise = null;
+            return pluginList;
+        }.bind(this));
 
     return this._appHostJsPromise;
 };

@@ -73,32 +73,35 @@ SimulationServer.prototype.start = function (platform, opts) {
 
     this._prepareRoutes();
 
-    return this._cordovaServer.servePlatform(platform, {
+    var serverOpts = {
         port: opts.port,
         root: opts.dir,
         noServerInfo: true
-    }).then(function () {
-        this._trackServerConnections();
-        this._simSocket.init(this._cordovaServer.server);
+    };
 
-        // setup simulation URLs
-        var projectRoot = this._cordovaServer.projectRoot,
-            urlRoot = 'http://localhost:' + this._cordovaServer.port + '/';
+    return this._cordovaServer.servePlatform(platform, serverOpts)
+        .then(function () {
+            this._trackServerConnections();
+            this._simSocket.init(this._cordovaServer.server);
 
-        this._urls = {
-            root: urlRoot,
-            app: urlRoot + parseStartPage(projectRoot),
-            simHost: urlRoot + 'simulator/index.html'
-        };
+            // setup simulation URLs
+            var projectRoot = this._cordovaServer.projectRoot,
+                urlRoot = 'http://localhost:' + this._cordovaServer.port + '/';
 
-        log.log('Server started:\n- App running at: ' + this._urls.app + '\n- Sim host running at: ' + this._urls.simHost);
+            this._urls = {
+                root: urlRoot,
+                app: urlRoot + parseStartPage(projectRoot),
+                simHost: urlRoot + 'simulator/index.html'
+            };
 
-        return {
-            urls: this._urls,
-            projectRoot: projectRoot,
-            root: this._cordovaServer.root
-        };
-    }.bind(this));
+            log.log('Server started:\n- App running at: ' + this._urls.app + '\n- Sim host running at: ' + this._urls.simHost);
+
+            return {
+                urls: this._urls,
+                projectRoot: projectRoot,
+                root: this._cordovaServer.root
+            };
+        }.bind(this));
 };
 
 /**
@@ -195,34 +198,37 @@ SimulationServer.prototype._streamAppHostHtml = function (request, response) {
     // then create the app-host.js (if it is out-of-date) so it is ready when it is requested.
     var simFiles = this._simulationFiles;
 
-    this._project.prepare().then(function () {
-        return simFiles.createAppHostJsFile(this._project, config.simulationFilePath);
-    }.bind(this)).then(function (pluginList) {
-        // Sim host will need to be refreshed if the plugin list has changed.
-        if (simFiles.pluginsChanged(pluginList, config.simulationFilePath)) {
-            this._simSocket.reloadSimHost();
-        }
-
-        // Inject plugin simulation app-host <script> references into *.html
-        log.log('Injecting app-host into ' + filePath);
-        var scriptSources = [
-            '/simulator/thirdparty/socket.io-1.2.0.js',
-            '/simulator/app-host.js'
-        ];
-        var scriptTags = scriptSources.map(function (scriptSource) {
-            return '<script src="' + scriptSource + '"></script>';
-        }).join('');
-
-        // Note we replace "default-src 'self'" with "default-src 'self' ws:" (in Content Security Policy) so that
-        // websocket connections are allowed (this relies on a custom version of send that supports a 'transform' option).
-        send(request, filePath, {
-            transform: function (stream) {
-                return stream
-                    .pipe(replaceStream(/<\s*head\s*>/, '<head>' + scriptTags))
-                    .pipe(replaceStream('default-src \'self\'', 'default-src \'self\' ws: blob:'));
+    this._project.prepare()
+        .then(function () {
+            return simFiles.createAppHostJsFile(this._project, config.simulationFilePath);
+        }.bind(this))
+        .then(function (pluginList) {
+            // Sim host will need to be refreshed if the plugin list has changed.
+            if (simFiles.pluginsChanged(pluginList, config.simulationFilePath)) {
+                this._simSocket.reloadSimHost();
             }
-        }).pipe(response);
-    }).done();
+
+            // Inject plugin simulation app-host <script> references into *.html
+            log.log('Injecting app-host into ' + filePath);
+            var scriptSources = [
+                '/simulator/thirdparty/socket.io-1.2.0.js',
+                '/simulator/app-host.js'
+            ];
+            var scriptTags = scriptSources.map(function (scriptSource) {
+                return '<script src="' + scriptSource + '"></script>';
+            }).join('');
+
+            // Note we replace "default-src 'self'" with "default-src 'self' ws:" (in Content Security Policy) so that
+            // websocket connections are allowed (this relies on a custom version of send that supports a 'transform' option).
+            send(request, filePath, {
+                transform: function (stream) {
+                    return stream
+                        .pipe(replaceStream(/<\s*head\s*>/, '<head>' + scriptTags))
+                        .pipe(replaceStream('default-src \'self\'', 'default-src \'self\' ws: blob:'));
+                }
+            }).pipe(response);
+        })
+        .done();
 };
 
 /**
@@ -235,43 +241,46 @@ SimulationServer.prototype._streamSimHostHtml = function (request, response) {
     // Then create sim-host.js (if it is out-of-date) so it is ready when it is requested.
     var project = this._project;
 
-    project.prepare().then(function () {
-        var simulationFilePath = this._simulatorProxy.config.simulationFilePath;
+    project.prepare()
+        .then(function () {
+            var simulationFilePath = this._simulatorProxy.config.simulationFilePath;
 
-        return this._simulationFiles.createSimHostJsFile(project, simulationFilePath);
-    }.bind(this)).then(function () {
-        // Inject references to simulation HTML files
-        var panelsHtmlBasename = pluginSimulationFiles['sim-host']['panels'];
-        var dialogsHtmlBasename = pluginSimulationFiles['sim-host']['dialogs'];
-        var panelsHtml = [];
-        var dialogsHtml = [];
+            return this._simulationFiles.createSimHostJsFile(project, simulationFilePath);
+        }.bind(this))
+        .then(function () {
+            // Inject references to simulation HTML files
+            var panelsHtmlBasename = pluginSimulationFiles['sim-host']['panels'];
+            var dialogsHtmlBasename = pluginSimulationFiles['sim-host']['dialogs'];
+            var panelsHtml = [];
+            var dialogsHtml = [];
 
-        var pluginList = project.getPlugins();
+            var pluginList = project.getPlugins();
 
-        Object.keys(pluginList).forEach(function (pluginId) {
-            var pluginPath = pluginList[pluginId];
-            if (pluginPath) {
-                var panelsHtmlFile = path.join(pluginPath, panelsHtmlBasename);
-                if (fs.existsSync(panelsHtmlFile)) {
-                    panelsHtml.push(processPluginHtml(fs.readFileSync(panelsHtmlFile, 'utf8'), pluginId));
+            Object.keys(pluginList).forEach(function (pluginId) {
+                var pluginPath = pluginList[pluginId];
+                if (pluginPath) {
+                    var panelsHtmlFile = path.join(pluginPath, panelsHtmlBasename);
+                    if (fs.existsSync(panelsHtmlFile)) {
+                        panelsHtml.push(processPluginHtml(fs.readFileSync(panelsHtmlFile, 'utf8'), pluginId));
+                    }
+
+                    var dialogsHtmlFile = path.join(pluginPath, dialogsHtmlBasename);
+                    if (fs.existsSync(dialogsHtmlFile)) {
+                        dialogsHtml.push(processPluginHtml(fs.readFileSync(dialogsHtmlFile, 'utf8'), pluginId));
+                    }
                 }
+            });
 
-                var dialogsHtmlFile = path.join(pluginPath, dialogsHtmlBasename);
-                if (fs.existsSync(dialogsHtmlFile)) {
-                    dialogsHtml.push(processPluginHtml(fs.readFileSync(dialogsHtmlFile, 'utf8'), pluginId));
+            // Note that this relies on a custom version of send that supports a 'transform' option.
+            send(request, path.join(this._hostRoot['sim-host'], 'sim-host.html'), {
+                transform: function (stream) {
+                    return stream
+                        .pipe(replaceStream('<!-- PANELS -->', panelsHtml.join('\n')))
+                        .pipe(replaceStream('<!-- DIALOGS -->', dialogsHtml.join('\n')));
                 }
-            }
-        });
-
-        // Note that this relies on a custom version of send that supports a 'transform' option.
-        send(request, path.join(this._hostRoot['sim-host'], 'sim-host.html'), {
-            transform: function (stream) {
-                return stream
-                    .pipe(replaceStream('<!-- PANELS -->', panelsHtml.join('\n')))
-                    .pipe(replaceStream('<!-- DIALOGS -->', dialogsHtml.join('\n')));
-            }
-        }).pipe(response);
-    }.bind(this)).done();
+            }).pipe(response);
+        }.bind(this))
+        .done();
 };
 
 /**

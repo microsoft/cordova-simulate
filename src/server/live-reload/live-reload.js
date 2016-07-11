@@ -49,30 +49,34 @@ LiveReload.prototype._onFileChanged = function (fileRelativePath, parentDir) {
     if (this._forcePrepare) {
         // Sometimes, especially on Windows, prepare will fail because the modified file is locked for a short duration
         // after modification, so we try to prepare twice.
-        propagateChangePromise = retryAsync(this._project.prepare.bind(this._project), 2).then(function () {
-            return false;
-        });
+        propagateChangePromise = retryAsync(this._project.prepare.bind(this._project), 2)
+            .then(function () {
+                return false;
+            });
     } else {
         var sourceAbsolutePath = path.join(this._project.projectRoot, parentDir, fileRelativePath);
         var destAbsolutePath = path.join(this._project.platformRoot, fileRelativePath);
 
-        propagateChangePromise = copyFile(sourceAbsolutePath, destAbsolutePath).then(function () {
-            return true;
-        });
+        propagateChangePromise = copyFile(sourceAbsolutePath, destAbsolutePath)
+            .then(function () {
+                return true;
+            });
     }
 
     // Notify app-host. The delay is needed as a workaround on Windows, because shortly after copying the file, it is
     // typically locked by the Firewall and can't be correctly sent by the server.
-    propagateChangePromise.delay(125).then(function (shouldUpdateModifTime) {
-        var props = { fileType: path.extname(fileRelativePath) };
+    propagateChangePromise.delay(125)
+        .then(function (shouldUpdateModifTime) {
+            var props = { fileType: path.extname(fileRelativePath) };
 
-        if (shouldUpdateModifTime) {
-            this._project.updateTimeStampForFile(fileRelativePath, parentDir);
-        }
+            if (shouldUpdateModifTime) {
+                this._project.updateTimeStampForFile(fileRelativePath, parentDir);
+            }
 
-        this._socket.emit('lr-file-changed', { fileRelativePath: fileRelativePath });
-        this._telemetry.sendTelemetry('live-reload', props);
-    }.bind(this)).done();
+            this._socket.emit('lr-file-changed', { fileRelativePath: fileRelativePath });
+            this._telemetry.sendTelemetry('live-reload', props);
+        }.bind(this))
+        .done();
 };
 
 function copyFile(src, dest) {
@@ -85,9 +89,10 @@ function retryAsync(promiseFunc, maxTries, delay, iteration) {
 
     return promiseFunc().catch(function (err) {
         if (iteration < maxTries) {
-            return Q.delay(delay).then(function () {
-                return retryAsync(promiseFunc, maxTries, delay, iteration + 1);
-            });
+            return Q.delay(delay)
+                .then(function () {
+                    return retryAsync(promiseFunc, maxTries, delay, iteration + 1);
+                });
         }
 
         return Q.reject(err);

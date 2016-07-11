@@ -6,9 +6,10 @@
  * are cross to any other instance involved in the simulation.
  * @constructor
  */
-function Configuration() {
-    this._config = {};
-}
+function Configuration() {}
+
+Configuration.prototype = Object.create(null);
+Configuration.prototype.constructor = Configuration;
 
 [
     { name: 'debugHostHandlers', optional: true },
@@ -22,26 +23,28 @@ function Configuration() {
 ].forEach(function (prop) {
     Object.defineProperty(Configuration.prototype, prop.name, {
         get: function () {
-            return getValue(this, prop.name, prop.optional);
+            return getValue.apply(this, [prop.name, prop.optional]);
         },
         set: function (value) {
-            setValue(this, prop.name, value, prop.single);
+            setValue.apply(this, [prop.name, value, prop.single]);
         }
     });
 });
 
-function setValue(instance, prop, value, single) {
-    if (single && instance._config.hasOwnProperty(prop)) {
+function setValue(prop, value, single) {
+    var internalProp = '_' + prop;
+    if (single && Object.prototype.hasOwnProperty.call(this, internalProp)) {
         throw new Error('Can\'t reinitialize ' + prop);
     }
-    instance._config[prop] = value;
+    this[internalProp] = value;
 }
 
-function getValue(instance, prop, optional) {
-    if (!instance._config.hasOwnProperty(prop) && !optional) {
+function getValue(prop, optional) {
+    var internalProp = '_' + prop;
+    if (!Object.prototype.hasOwnProperty.call(this, internalProp) && !optional) {
         throw new Error('Cannot get ' + prop + ' as it has not been initialized.');
     }
-    return instance._config[prop];
+    return this[internalProp];
 }
 
 module.exports = Configuration;

@@ -184,29 +184,34 @@ Project.prototype.prepare = function () {
         this._preparePromise = d.promise;
         this._lastPlatform = this.platform;
 
-        this._getProjectState().then(function (currentState) {
-            currentProjectState = currentState;
+        this._getProjectState()
+            .then(function (currentState) {
+                currentProjectState = currentState;
 
-            if (this._shouldPrepare(currentProjectState)) {
-                return prepareUtil.execCordovaPrepare(this.projectRoot, this._lastPlatform).then(function () {
-                    return true;
-                });
-            }
+                if (this._shouldPrepare(currentProjectState)) {
+                    return prepareUtil.execCordovaPrepare(this.projectRoot, this._lastPlatform)
+                        .then(function () {
+                            return true;
+                        });
+                }
 
-            return Q(false);
-        }.bind(this)).then(function (didPrepare) {
-            if (didPrepare || this._shouldInitPlugins(currentProjectState)) {
-                this._previousPrepareStates[this.platform] = currentProjectState;
-                this.initPlugins();
-            }
+                return Q(false);
+            }.bind(this))
+            .then(function (didPrepare) {
+                if (didPrepare || this._shouldInitPlugins(currentProjectState)) {
+                    this._previousPrepareStates[this.platform] = currentProjectState;
+                    this.initPlugins();
+                }
 
-            d.resolve();
-        }.bind(this)).catch(function (err) {
-            d.reject(err);
-        }).finally(function () {
-            this._lastPlatform = null;
-            this._preparePromise = null;
-        }.bind(this));
+                d.resolve();
+            }.bind(this))
+            .catch(function (err) {
+                d.reject(err);
+            })
+            .finally(function () {
+                this._lastPlatform = null;
+                this._preparePromise = null;
+            }.bind(this));
     } else if (this.platform !== this._lastPlatform) {
         // Sanity check to verify we never queue prepares for different platforms
         throw new Error('Unexpected request to prepare \'' + this.platform + '\' while prepare of \'' + this._lastPlatform + '\' still pending.');
@@ -306,41 +311,45 @@ Project.prototype._getProjectState = function() {
     var projectRoot = this.projectRoot;
     var newState = {};
 
-    return Q().then(function () {
-        // Get the list of plugins for the current platform.
-        var pluginsJsonPath = path.join(projectRoot, 'plugins', platform + '.json');
-        return Q.nfcall(fs.readFile, pluginsJsonPath);
-    }).then(function (fileContent) {
-        var installedPlugins = {};
+    return Q()
+        .then(function () {
+            // Get the list of plugins for the current platform.
+            var pluginsJsonPath = path.join(projectRoot, 'plugins', platform + '.json');
+            return Q.nfcall(fs.readFile, pluginsJsonPath);
+        })
+        .then(function (fileContent) {
+            var installedPlugins = {};
 
-        try {
-            installedPlugins = Object.keys(JSON.parse(fileContent.toString())['installed_plugins'] || {});
-        } catch (err) {
-            // For some reason, it was not possible to determine which plugins are installed for the current platform, so
-            // use a dummy value to indicate a "bad state".
-            installedPlugins = ['__unknown__'];
-        }
+            try {
+                installedPlugins = Object.keys(JSON.parse(fileContent.toString())['installed_plugins'] || {});
+            } catch (err) {
+                // For some reason, it was not possible to determine which plugins are installed for the current platform, so
+                // use a dummy value to indicate a "bad state".
+                installedPlugins = ['__unknown__'];
+            }
 
-        newState.pluginList = installedPlugins;
-    }).then(function () {
-        // Get the modification times for project files.
-        var wwwRoot = path.join(projectRoot, 'www');
-        var mergesRoot = path.join(projectRoot, 'merges', platform);
+            newState.pluginList = installedPlugins;
+        })
+        .then(function () {
+            // Get the modification times for project files.
+            var wwwRoot = path.join(projectRoot, 'www');
+            var mergesRoot = path.join(projectRoot, 'merges', platform);
 
-        return Q.all([utils.getMtimeForFiles(wwwRoot), utils.getMtimeForFiles(mergesRoot)]);
-    }).spread(function (wwwFiles, mergesFiles) {
-        var files = {};
+            return Q.all([utils.getMtimeForFiles(wwwRoot), utils.getMtimeForFiles(mergesRoot)]);
+        })
+        .spread(function (wwwFiles, mergesFiles) {
+            var files = {};
 
-        files.www = wwwFiles || {};
-        files.merges = mergesFiles || {};
-        newState.files = files;
+            files.www = wwwFiles || {};
+            files.merges = mergesFiles || {};
+            newState.files = files;
 
-        // Get information about current debug-host handlers.
-        newState.debugHostHandlers = this._simulatorProxy.config.debugHostHandlers || [];
+            // Get information about current debug-host handlers.
+            newState.debugHostHandlers = this._simulatorProxy.config.debugHostHandlers || [];
 
-        // Return the new state.
-        return newState;
-    }.bind(this));
+            // Return the new state.
+            return newState;
+        }.bind(this));
 };
 
 /**

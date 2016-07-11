@@ -151,12 +151,14 @@ SocketServer.prototype.closeConnections = function () {
 
 SocketServer.prototype._resetAppHostState = function () {
     this._whenAppHostConnected = Q.defer();
-    this._whenAppHostConnected.promise.then(this._onAppHostConnected.bind(this));
+    this._whenAppHostConnected.promise
+        .then(this._onAppHostConnected.bind(this));
 };
 
 SocketServer.prototype._resetSimHostState = function () {
     this._whenSimHostReady = Q.defer();
-    this._whenSimHostReady.promise.then(this._onSimHostReady.bind(this));
+    this._whenSimHostReady.promise
+        .then(this._onSimHostReady.bind(this));
 };
 
 SocketServer.prototype._setupAppHostHandlers = function () {
@@ -211,10 +213,11 @@ SocketServer.prototype._handleSimHostRegistration = function () {
 };
 
 SocketServer.prototype._onAppHostConnected = function () {
-    this._whenSimHostReady.promise.then(function () {
-        this._subscribeTo(APP_HOST, 'app-plugin-list', this._handleAppPluginList.bind(this), true);
-        this._emitTo(APP_HOST, 'init');
-    }.bind(this));
+    this._whenSimHostReady.promise
+        .then(function () {
+            this._subscribeTo(APP_HOST, 'app-plugin-list', this._handleAppPluginList.bind(this), true);
+            this._emitTo(APP_HOST, 'init');
+        }.bind(this));
 };
 
 SocketServer.prototype._onSimHostReady = function () {
@@ -232,10 +235,11 @@ SocketServer.prototype._handleSimHostReady = function () {
 };
 
 SocketServer.prototype._handleAppPluginList = function (data) {
-    this._whenSimHostReady.promise.then(function () {
-        this._subscribeTo(SIM_HOST, 'start', this._handleStart.bind(this), true);
-        this._emitTo(SIM_HOST, 'app-plugin-list', data);
-    }.bind(this));
+    this._whenSimHostReady.promise
+        .then(function () {
+            this._subscribeTo(SIM_HOST, 'start', this._handleStart.bind(this), true);
+            this._emitTo(SIM_HOST, 'app-plugin-list', data);
+        }.bind(this));
 };
 
 SocketServer.prototype._handleStart = function () {
