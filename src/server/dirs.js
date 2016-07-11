@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var path = require('path'),
-    config = require('./config');
+var path = require('path');
 
 var rootPath = path.resolve(__dirname, '..');
 
@@ -14,13 +13,3 @@ module.exports.modules = {
     'common': path.join(rootPath, 'modules'),
     'sim-host': path.join(rootPath, 'modules', 'sim-host')
 };
-
-module.exports.hostRoot = {
-    'app-host':  path.join(rootPath, 'app-host')
-};
-Object.defineProperty(module.exports.hostRoot, 'sim-host', {
-    get: function () {
-        // Get dynamically so simHostOptions is initialized
-        return config.simHostOptions.simHostRoot;
-    }
-});
