@@ -167,6 +167,7 @@ function initialize(changePanelVisibilityCallback) {
     registerCustomElement('cordova-number-entry', {
         value: {
             set: function (value) {
+                this._internalValue = value;
                 setValueSafely(this.shadowRoot.querySelector('input'), 'value', value);
             },
 
@@ -201,6 +202,20 @@ function initialize(changePanelVisibilityCallback) {
         if (step !== null) {
             input.setAttribute('step', step);
         }
+
+        // verify and force the input value to be a valid number
+        input.addEventListener('input', function (event) {
+            var value = event.target.value;
+
+            if (value.match(/-?(\d+|\d+\.\d+|\.\d+)([eE][-+]?\d+)?/)) {
+                this._internalValue = value;
+            } else {
+                // the new value is not a number, set the value to the
+                // latest number value
+                input.value = this._internalValue;
+                return false;
+            }
+        }.bind(this));
     }, 'input');
 
     registerCustomElement('cordova-labeled-value', {

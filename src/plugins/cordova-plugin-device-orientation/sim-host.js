@@ -48,7 +48,8 @@ module.exports = function (messages) {
         });
 
         inputHeading.addEventListener('input', function () {
-            if (this.value < compass.Limits.MIN || this.value >= compass.Limits.MAX) {
+            if (!this.value.match(/-?(\d+|\d+\.\d+|\.\d+)([eE][-+]?\d+)?/) ||
+                (this.value < compass.Limits.MIN || this.value >= compass.Limits.MAX)) {
                 this.value = compass.heading;
             }
         });
