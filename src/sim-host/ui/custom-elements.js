@@ -168,7 +168,12 @@ function initialize(changePanelVisibilityCallback) {
     registerCustomElement('cordova-number-entry', {
         value: {
             set: function (value) {
-                this._internalValue = value;
+                if (utils.isNumber(value)) {
+                    this._internalValue = value;
+                } else {
+                    value = this._internalValue;
+                }
+
                 setValueSafely(this.shadowRoot.querySelector('input'), 'value', value);
             },
 
@@ -185,24 +190,29 @@ function initialize(changePanelVisibilityCallback) {
         this.shadowRoot.querySelector('label').textContent = this.getAttribute('label');
         this.classList.add('cordova-panel-row');
         this.classList.add('cordova-group');
+        this._internalValue = 0;
 
         var input = this.shadowRoot.querySelector('input');
 
         var maxValue = this.getAttribute('max'),
             minValue = this.getAttribute('min'),
+            value = this.getAttribute('value'),
             step = this.getAttribute('step');
 
-        if (maxValue !== null) {
-            input.setAttribute('max', maxValue);
+        // initialize _internalValue with one of the availale values,
+        // otherwise it remains 0
+        if (value !== null && utils.isNumber(value)) {
+            this._internalValue = value;
+        } else if (minValue !== null && utils.isNumber(minValue)) {
+            this._internalValue = minValue;
+        } else if (maxValue !== null && utils.isNumber(maxValue) && this._internalValue > parseFloat(maxValue)) {
+            this._internalValue =  maxValue;
         }
 
-        if (minValue !== null) {
-            input.setAttribute('min', minValue);
-        }
-
-        if (step !== null) {
-            input.setAttribute('step', step);
-        }
+        if (maxValue !== null) input.setAttribute('max', maxValue);
+        if (minValue !== null) input.setAttribute('min', minValue);
+        if (step !== null) input.setAttribute('step', step);
+        if (value !== null) input.setAttribute('value', value);
 
         // verify and force the input value to be a valid number
         input.addEventListener('input', function (event) {

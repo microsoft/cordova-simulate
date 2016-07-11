@@ -283,6 +283,10 @@ self = module.exports = {
     },
 
     isNumber: function (value) {
+        if (typeof value === 'number') {
+            return true;
+        }
+
         return !!value.match(/-?(\d+|\d+\.\d+|\.\d+)([eE][-+]?\d+)?/);
     }
 };
