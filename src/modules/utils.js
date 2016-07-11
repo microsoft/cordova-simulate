@@ -280,6 +280,10 @@ self = module.exports = {
             !url.href.match(/^https?:\/\/|^file:\/\//);
 
         return !!sameOrigin;
+    },
+
+    isNumber: function (value) {
+        return !!value.match(/-?(\d+|\d+\.\d+|\.\d+)([eE][-+]?\d+)?/);
     }
 };
 

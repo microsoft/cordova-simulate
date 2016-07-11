@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var dialog = require('dialog');
+var dialog = require('dialog'),
+    utils = require('utils');
 
 function initialize(changePanelVisibilityCallback) {
     registerCustomElement('cordova-panel', {
@@ -207,7 +208,7 @@ function initialize(changePanelVisibilityCallback) {
         input.addEventListener('input', function (event) {
             var value = event.target.value;
 
-            if (value.match(/-?(\d+|\d+\.\d+|\.\d+)([eE][-+]?\d+)?/)) {
+            if (utils.isNumber(value)) {
                 this._internalValue = value;
             } else {
                 // the new value is not a number, set the value to the
