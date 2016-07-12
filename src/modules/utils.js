@@ -283,11 +283,9 @@ self = module.exports = {
     },
 
     isNumber: function (value) {
-        if (typeof value === 'number') {
-            return true;
-        }
+        var type = typeof value;
 
-        return !!value.match(/-?(\d+|\d+\.\d+|\.\d+)([eE][-+]?\d+)?/);
+        return (type === 'number' || type === 'string') && !isNaN(value - parseFloat(value));
     }
 };
 
