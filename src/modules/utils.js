@@ -280,6 +280,12 @@ self = module.exports = {
             !url.href.match(/^https?:\/\/|^file:\/\//);
 
         return !!sameOrigin;
+    },
+
+    isNumber: function (value) {
+        var type = typeof value;
+
+        return (type === 'number' || type === 'string') && !isNaN(value - parseFloat(value));
     }
 };
 

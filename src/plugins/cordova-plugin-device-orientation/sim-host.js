@@ -2,7 +2,8 @@
 
 module.exports = function (messages) {
 
-    var telemetry = require('telemetry-helper'),
+    var utils = require('utils'),
+        telemetry = require('telemetry-helper'),
         CompassWidget = require('./compass-widget'),
         compass = require('./compass');
 
@@ -48,7 +49,7 @@ module.exports = function (messages) {
         });
 
         inputHeading.addEventListener('input', function () {
-            if (this.value < compass.Limits.MIN || this.value >= compass.Limits.MAX) {
+            if (!utils.isNumber(this.value) || (this.value < compass.Limits.MIN || this.value >= compass.Limits.MAX)) {
                 this.value = compass.heading;
             }
         });
