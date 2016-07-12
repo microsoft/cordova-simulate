@@ -227,7 +227,7 @@ SimulationServer.prototype._streamAppHostHtml = function (request, response) {
                         .pipe(replaceStream('default-src \'self\'', 'default-src \'self\' ws: blob:'));
                 }
             }).pipe(response);
-        })
+        }.bind(this))
         .done();
 };
 
