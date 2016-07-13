@@ -13,7 +13,7 @@ module.exports.attach = function (app) {
         delete request.headers['accept-encoding'];
 
         var options = {
-            host: requestURL.host,
+            hostname: requestURL.hostname,
             path: requestURL.path,
             port: requestURL.port,
             method: request.method,
