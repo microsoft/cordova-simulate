@@ -1,14 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var deviceMotion = require('cordova-plugin-device-motion');
+var deviceMotionModel = require('./device-motion-model');
+
 var accelerometerHandle = null;
+
+function getCurrentAcceleration () {
+    return {
+        x: deviceMotionModel.x,
+        y: deviceMotionModel.y,
+        z: deviceMotionModel.z,
+        timestamp: (new Date()).getTime()
+    };
+}
 
 module.exports = {
     'Accelerometer': {
         start: function (win, lose) {
             accelerometerHandle = setInterval(function() {
                 win(getCurrentAcceleration());
-            }, deviceMotion.ACCELEROMETER_REPORT_INTERVAL);
+            }, deviceMotionModel.ACCELEROMETER_REPORT_INTERVAL);
         },
         stop: function (win, lose) {
             if (accelerometerHandle === null) {
@@ -23,12 +33,3 @@ module.exports = {
         }
     }
 };
-
-function getCurrentAcceleration () {
-    return {
-        x: parseFloat(deviceMotion.x),
-        y: parseFloat(deviceMotion.y),
-        z: parseFloat(deviceMotion.z),
-        timestamp: (new Date()).getTime()
-    };
-}

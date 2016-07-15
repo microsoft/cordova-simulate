@@ -3,9 +3,11 @@
 // https://github.com/apache/cordova-plugin-device-motion/
 
 /*global ThreeDee: false, Draw: false */
+
 require('./3d');
 require('./draw');
-var telemetry = require('telemetry-helper');
+var telemetry = require('telemetry-helper'),
+    deviceMotionModel = require('./device-motion-model');
 
 var baseProps = {
     plugin: 'cordova-plugin-device-motion',
@@ -78,11 +80,7 @@ var _mouseDown,
         '30,60,-10, -30,60,-10,     -30,60,10,      80,50,50,-1,0;' +
         '30,60,-10, -30,60,10,      30,60,10,       80,50,50,-1,0';
 
-
-// report interval in milliseconds
-var ACCELEROMETER_REPORT_INTERVAL = 50;
-
-var gConstant = 9.81;
+var G_CONSTANT = 9.81;
 
 var recordedGestures = [
     {
@@ -98,6 +96,12 @@ function initialize() {
     alpha = document.getElementById('accel-alpha');
     beta = document.getElementById('accel-beta');
     gamma = document.getElementById('accel-gamma');
+
+    deviceMotionModel.addAxisChangeCallback(function (axis) {
+        if (axis.hasOwnProperty('x')) axisX.value = axis.x;
+        if (axis.hasOwnProperty('y')) axisY.value = axis.y;
+        if (axis.hasOwnProperty('z')) axisZ.value = axis.z;
+    });
 
     createCanvas();
 
@@ -118,15 +122,11 @@ function initialize() {
 }
 
 function setToDefaultPosition() {
-    var accel = { x: 0, y: 0, z: -1, alpha: 0, beta: 0, gamma: 0 };
+    var accel = { x: 0, y: 0, z: -1 };
 
-    axisX.value = (accel.x * gConstant).toFixed(2);
-    axisY.value = (accel.y * gConstant).toFixed(2);
-    axisZ.value = (accel.z * gConstant).toFixed(2);
-
-    _alpha = accel.alpha;
-    _beta = accel.beta;
-    _gamma = accel.gamma;
+    _alpha = 0;
+    _beta = 0;
+    _gamma = 0;
     _deltaAlpha = 360;
 
     _oldX = 0;
@@ -138,14 +138,20 @@ function setToDefaultPosition() {
         z: accel.z
     };
 
+    deviceMotionModel.updateAxis({
+        x: (accel.x * G_CONSTANT).toFixed(2),
+        y: (accel.y * G_CONSTANT).toFixed(2),
+        z: (accel.z * G_CONSTANT).toFixed(2)
+    });
+
     updateCanvas(0, 0);
 }
 
 function shake() {
     var id,
         count = 1,
-        stopCount = 2500 / ACCELEROMETER_REPORT_INTERVAL,
-        oldX = axisX.value;
+        stopCount = 2500 / deviceMotionModel.ACCELEROMETER_REPORT_INTERVAL,
+        oldX = deviceMotionModel.x;
 
     id = setInterval(function () {
         var freq = 1,
@@ -154,32 +160,22 @@ function shake() {
 
         if (count > stopCount) {
             updateCanvasCenter(defaultXAxis, defaultYAxis);
-            axisX.value = oldX;
+            deviceMotionModel.updateAxis({
+                x: oldX
+            });
             clearInterval(id);
             return;
         }
 
-        axisX.value = (value * gConstant).toFixed(2);
+        deviceMotionModel.updateAxis({
+            x: (value * G_CONSTANT).toFixed(2)
+        });
         // shake effect
         var center = Math.random() * 10 + (defaultXAxis - 5);
         updateCanvasCenter(center, defaultYAxis);
         count++;
-    }, ACCELEROMETER_REPORT_INTERVAL);
+    }, deviceMotionModel.ACCELEROMETER_REPORT_INTERVAL);
 }
-
-module.exports = {
-    initialize: initialize,
-    ACCELEROMETER_REPORT_INTERVAL: ACCELEROMETER_REPORT_INTERVAL,
-    get x() {
-        return parseFloat(axisX.value);
-    },
-    get y() {
-        return parseFloat(axisY.value);
-    },
-    get z() {
-        return parseFloat(axisZ.value);
-    }
-};
 
 function updateCanvasCenter(xAxis, yAxis) {
     ThreeDee.setCenter(xAxis, yAxis);
@@ -239,12 +235,14 @@ function createCanvas() {
                 cosY = Math.cos((_beta) * (Math.PI / 180));
                 sinY = Math.sin((_beta) * (Math.PI / 180));
 
-                axisX.value = (cosY * sinX * gConstant).toFixed(2);
-                axisY.value = (-sinY * gConstant).toFixed(2);
-                axisZ.value = (-cosY * cosX * gConstant).toFixed(2);
+                deviceMotionModel.updateAxis({
+                    x: (cosY * sinX * G_CONSTANT).toFixed(2),
+                    y: (-sinY * G_CONSTANT).toFixed(2),
+                    z: (-cosY * cosX * G_CONSTANT).toFixed(2)
+                });
+
                 beta.value = _beta;
                 gamma.value = _gamma;
-
 
             } else {
                 _deltaAlpha = (_deltaAlpha - (_oldAlphaX - e.offsetX) * 2.5) % 360;
@@ -300,3 +298,7 @@ function createCanvas() {
 
     return node;
 }
+
+module.exports = {
+    initialize: initialize
+};
