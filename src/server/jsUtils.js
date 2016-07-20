@@ -1,3 +1,9 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+
+var Q = require('q');
+
+var DEFAULT_ASYNC_RETRY_ATTEMPTS = 2;
+
 /**
  * Returns true if the specified objects are considered similar. Here, similarity is defined as having the same keys,
  * mapping to equal values (for value properties) or similar values (for arrays or nested objects). Does not correctly
@@ -101,5 +107,30 @@ function compareArrays(a1, a2, compareOrder) {
     return isSimilar;
 }
 
+/**
+ * Calls a function that returns a promise, then retries a certain number a times, after a timeout, if an error occurs.
+ * @param {function} promiseFunc - The function to call.
+ * @param {number} [maxTries=2] - The maximum number of tries before accepting failure. Defaults to 2.
+ * @param {number} [delay=100] - The delay between retries in ms. Default to 100.
+ * @returns {Promise}
+ */
+function retryAsync(promiseFunc, maxTries, delay, iteration) {
+    maxTries = maxTries || DEFAULT_ASYNC_RETRY_ATTEMPTS;
+    delay = delay || 100;
+    iteration = iteration || 1;
+
+    return promiseFunc().catch(function (err) {
+        if (iteration < maxTries) {
+            return Q.delay(delay)
+                .then(function () {
+                    return retryAsync(promiseFunc, maxTries, delay, iteration + 1);
+                });
+        }
+
+        return Q.reject(err);
+    });
+}
+
 module.exports.compareObjects = compareObjects;
 module.exports.compareArrays = compareArrays;
+module.exports.retryAsync = retryAsync;

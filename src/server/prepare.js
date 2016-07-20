@@ -61,6 +61,10 @@ function prepare() {
 }
 
 function execCordovaPrepare() {
+    return jsUtils.retryAsync(execCordovaPrepareImpl);
+}
+
+function execCordovaPrepareImpl() {
     var projectRoot;
     var platform;
     var deferred = Q.defer();
@@ -76,12 +80,12 @@ function execCordovaPrepare() {
 
     exec('cordova prepare ' + platform, {
         cwd: projectRoot
-    }, function (err, stdout, stderr) {
+    }, function (err) {
         if (err) {
-            deferred.reject(err || stderr);
+            deferred.reject(err);
+        } else {
+            deferred.resolve();
         }
-
-        deferred.resolve();
     });
 
     return deferred.promise;

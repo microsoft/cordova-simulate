@@ -21,7 +21,7 @@ function onFileChanged(fileRelativePath, parentDir) {
     if (config.forcePrepare) {
         // Sometimes, especially on Windows, prepare will fail because the modified file is locked for a short duration
         // after modification, so we try to prepare twice.
-        propagateChangePromise = retryAsync(prepare.prepare, 2).then(function () {
+        propagateChangePromise = prepare.prepare().then(function () {
             return false;
         });
     } else {
@@ -49,21 +49,6 @@ function onFileChanged(fileRelativePath, parentDir) {
 
 function copyFile(src, dest) {
     return Q.nfcall(ncp, src, dest);
-}
-
-function retryAsync(promiseFunc, maxTries, delay, iteration) {
-    delay = delay || 100;
-    iteration = iteration || 1;
-
-    return promiseFunc().catch(function (err) {
-        if (iteration < maxTries) {
-            return Q.delay(delay).then(function () {
-                return retryAsync(promiseFunc, maxTries, delay, iteration + 1);
-            });
-        }
-
-        return Q.reject(err);
-    });
 }
 
 module.exports.init = function (sock) {
