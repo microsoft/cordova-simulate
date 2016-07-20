@@ -9,12 +9,13 @@ var baseProps = {
 };
 
 module.exports = function (messages) {
-    var filenameInput, dialogFilenameInput, dialogImg;
+    var filenameInput,
+        dialogFilenameInput,
+        dialogImg,
+        dialogSelectedFile,
+        preSelectedFile;
 
     messages.register('takePicture', function (args, callback) {
-        /*if (document.getElementById('camera-host').checked) {
-            window.alert('Not supported');
-        } else*/
         if (document.getElementById('camera-prompt').checked) {
             dialog.showDialog('camera-choose-image', function (msg) {
                 if (msg === 'showing') {
@@ -22,7 +23,11 @@ module.exports = function (messages) {
                     // handler with one that uses the appropriate value of 'callback' from the current closure.
                     document.getElementById('camera-dialog-use-image').onclick = function () {
                         dialog.hideDialog('camera-choose-image');
-                        getPicture(dialogFilenameInput, callback, args);
+                        if (dialogSelectedFile) {
+                            getPicture(dialogSelectedFile, callback, args);
+                        } else {
+                            callback(null, null);
+                        }
                     };
                     document.getElementById('camera-dialog-cancel').onclick = function () {
                         dialog.hideDialog('camera-choose-image');
@@ -30,43 +35,37 @@ module.exports = function (messages) {
                     };
                 }
             });
-        }
-        /*else if (document.getElementById('camera-sample').checked) {
-            window.alert('Not supported');
-        }*/
-        else if (document.getElementById('camera-file').checked) {
-            getPicture(filenameInput, callback, args);
+        } else if (document.getElementById('camera-file').checked) {
+            getPicture(preSelectedFile, callback, args);
         }
     });
 
-    function getPicture(input, callback, args) {
+    function getPicture(file, callback, args) {
         if (args && args[1] === 0) {
             /* Destination type is DATA_URL */
-            createDataUrl(input, callback);
+            createDataUrl(file, callback);
         } else {
-            createArrayBuffer(input, callback);
+            createArrayBuffer(file, callback);
         }
     }
 
-    function createArrayBuffer(input, callback) {
-        var blob = input.files[0];
+    function createArrayBuffer(blob, callback) {
         var reader = new FileReader();
         reader.onloadend = function () {
             callback(reader.error, { data: reader.result, type: blob.type });
         };
-        reader.readAsArrayBuffer(blob);        
+        reader.readAsArrayBuffer(blob);
     }
 
-    function createDataUrl(input, callback) {
-        var blob = input.files[0];
+    function createDataUrl(blob, callback) {
         var reader = new FileReader();
         reader.onloadend = function () {
             var imageData = reader.result;
             if (imageData) {
                 imageData = imageData.substr(imageData.indexOf(',') + 1);
-            }            
+            }
             callback(reader.error, imageData);
-        };        
+        };
         reader.readAsDataURL(blob);
     }
 
@@ -85,8 +84,11 @@ module.exports = function (messages) {
             });
 
             filenameInput.addEventListener('change', function () {
-                panelImg.src = URL.createObjectURL(filenameInput.files[0]);
-                panelImg.style.display = '';
+                if (filenameInput.files[0]) {
+                    preSelectedFile = filenameInput.files[0];
+                    panelImg.src = URL.createObjectURL(preSelectedFile);
+                    panelImg.style.display = '';
+                }
             });
 
             // Setup handlers for choosing an image in the dialog
@@ -96,9 +98,13 @@ module.exports = function (messages) {
             });
 
             dialogFilenameInput.addEventListener('change', function () {
-                dialogImg.src = URL.createObjectURL(dialogFilenameInput.files[0]);
-                dialogImg.style.display = '';
-                document.getElementById('camera-dialog-use-image').style.display = '';
+                if (dialogFilenameInput.files[0]) {
+                    dialogSelectedFile = dialogFilenameInput.files[0];
+
+                    dialogImg.src = URL.createObjectURL(dialogSelectedFile);
+                    dialogImg.style.display = '';
+                    document.getElementById('camera-dialog-use-image').style.display = '';
+                }
             });
 
             var previousSelection = 'camera-prompt';
@@ -109,9 +115,7 @@ module.exports = function (messages) {
                 }
             }
 
-            //document.getElementById('camera-host').onclick = handleRadioClick.bind(this, 'camera-host');
             document.getElementById('camera-prompt').onclick = handleRadioClick.bind(this, 'camera-prompt');
-            //document.getElementById('camera-sample').onclick = handleRadioClick.bind(this, 'camera-sample');
             document.getElementById('camera-file').onclick = handleRadioClick.bind(this, 'camera-file');
         }
     };
