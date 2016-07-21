@@ -1,6 +1,6 @@
 {
   "name": "cordova-simulate",
-  "version": "0.2.2",
+  "version": "0.2.3-dev",
   "description": "Simulates your Cordova application in the browser.",
   "main": "src/simulate.js",
   "scripts": {
