@@ -38,7 +38,7 @@
     "ncp": "^2.0.0",
     "q": "^1.4.1",
     "replacestream": "^4.0.0",
-    "send": "timbarham/send#transform",
+    "send-transform": "^0.13.0",
     "socket.io": "^1.3.7",
     "through2": "^2.0.0"
   },
