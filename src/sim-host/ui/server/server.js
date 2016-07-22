@@ -2,7 +2,7 @@
 
 var path = require('path'),
     replaceStream = require('replacestream'),
-    send = require('send');
+    send = require('send-transform');
 
 module.exports.attach = function (app, dirs) {
     app.get('/simulator/sim-host.css', function (request, response, next) {
