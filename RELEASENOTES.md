@@ -1,10 +1,14 @@
 # cordova-simulate Release Notes
 
+### 0.2.3 (July 24, 2016)
+* Use npm package for `send-transform` rather than github branch ([be26606e](https://github.com/Microsoft/cordova-simulate/commit/be26606e)).
+* Position sim-host UI to the left rather than sort of centered ([5f082644](https://github.com/Microsoft/cordova-simulate/commit/5f082644)).
+
 ### 0.2.2 (July 21, 2016)
-* Fix [#103](https://github.com/Microsoft/cordova-simulate/issues/103) Geolocation: Changing long / lat values using arrows does not update the map ([ce4b7649](https://github.com/Microsoft/cordova-simulate/commit/ce4b7649aae7f01bddad2021936e610493c01576))
-* Fix XHR proxy with non-standard ports ([9fd2ff36](https://github.com/Microsoft/cordova-simulate/commit/9fd2ff3696538918a220b1883306831e2afda5bf))
-* Validate input number to be always a number ([4ea94f6a](https://github.com/Microsoft/cordova-simulate/commit/4ea94f6aab2b04787f3ec896f2fbd13a5e3a3666))
-* Retry Cordova prepare if it fails the first time ([5456e44a](https://github.com/Microsoft/cordova-simulate/commit/5456e44ae4c34aaca76e3923825f3253b1f39106))
+* Fix [#103](https://github.com/Microsoft/cordova-simulate/issues/103) Geolocation: Changing long / lat values using arrows does not update the map ([ce4b7649](https://github.com/Microsoft/cordova-simulate/commit/ce4b7649))
+* Fix XHR proxy with non-standard ports ([9fd2ff36](https://github.com/Microsoft/cordova-simulate/commit/9fd2ff36))
+* Validate input number to be always a number ([4ea94f6a](https://github.com/Microsoft/cordova-simulate/commit/4ea94f6a))
+* Retry Cordova prepare if it fails the first time ([5456e44a](https://github.com/Microsoft/cordova-simulate/commit/5456e44a))
 
 ### 0.2.1 (June 30, 2016)
 * Bootstrap protocol enhancements
