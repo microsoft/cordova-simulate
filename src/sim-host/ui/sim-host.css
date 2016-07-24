@@ -84,9 +84,7 @@ body /deep/ .cordova-content > ::content > * {
 }
 
 .cordova-main {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5px;
+    margin: 5px 0 0 5px;
     column-width: 330px;
     -moz-column-width: 330px;
     -webkit-column-width: 330px;
