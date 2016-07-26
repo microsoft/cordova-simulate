@@ -211,7 +211,7 @@ SimulationServer.prototype._streamAppHostHtml = function (request, response) {
             // Inject plugin simulation app-host <script> references into *.html
             log.log('Injecting app-host into ' + filePath);
             var scriptSources = [
-                '/simulator/thirdparty/socket.io-1.2.0.js',
+                '/simulator/thirdparty/socket.io.js',
                 '/simulator/app-host.js'
             ];
             var scriptTags = scriptSources.map(function (scriptSource) {
