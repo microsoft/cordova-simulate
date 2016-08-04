@@ -24,6 +24,9 @@ var init = function () {
 
         return xhr;
     };
+
+    // Ensure that we retain all static properties, such as DONE
+    window.XMLHttpRequest.__proto__ = _XMLHttpRequest;
 };
 
 module.exports = {
