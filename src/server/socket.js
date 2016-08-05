@@ -309,6 +309,7 @@ SocketServer.prototype._subscribeTo = function (host, msg, handler, once) {
     var socket = this._hostSockets[host],
         method = once ? 'once' : 'on';
     if (socket) {
+        socket.removeListener(msg, handler);
         socket[method](msg, handler);
     } else {
         log.log('Subscribing to a disconnected ' + host + ' wanting \'' + msg + '\'');
