@@ -24,10 +24,17 @@ module.exports.attach = function (app) {
             proxyReponse.pipe(response);
         };
         
+        var proxyRequest;
+
         if (requestURL.protocol === 'https:') {
-            https.request(options, proxyCallback).end();
+            proxyRequest = https.request(options, proxyCallback);
         } else {
-            http.request(options, proxyCallback).end();
+            proxyRequest = http.request(options, proxyCallback);
         }
+
+        proxyRequest.on('error', function (err) {
+            response.status(502).send(err.toString()).end();
+        });
+        proxyRequest.end();
     });
 };
