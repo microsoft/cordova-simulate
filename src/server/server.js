@@ -223,7 +223,7 @@ SimulationServer.prototype._streamAppHostHtml = function (request, response) {
             send(request, filePath, {
                 transform: function (stream) {
                     return stream
-                        .pipe(replaceStream(/<\s*head\s*>/, '<head>' + scriptTags))
+                        .pipe(replaceStream(/(<\s*head.*>)/, '$1' + scriptTags))
                         .pipe(replaceStream('default-src \'self\'', 'default-src \'self\' ws: blob:'));
                 }
             }).pipe(response);
