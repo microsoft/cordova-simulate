@@ -4,6 +4,7 @@ var fs = require('fs'),
     path = require('path'),
     replaceStream = require('replacestream'),
     cordovaServe = require('cordova-serve'),
+    cspParse = require('csp-parse'),
     send = require('send-transform'),
     url = require('url'),
     Q = require('q'),
@@ -218,13 +219,35 @@ SimulationServer.prototype._streamAppHostHtml = function (request, response) {
                 return '<script src="' + scriptSource + '"></script>';
             }).join('');
 
-            // Note we replace "default-src 'self'" with "default-src 'self' ws:" (in Content Security Policy) so that
-            // websocket connections are allowed (this relies on a custom version of send that supports a 'transform' option).
+            // Note we add "connect-src 'self' ws:" and "img-src 'blob:' (in Content Security Policy) so that
+            // websocket connections are allowed and the camera plugin works (this relies on a custom version
+            // of send that supports a 'transform' option).
+            var metaTagRegex = /<meta[^>]*>/;
+            var cspRegex = /http-equiv\s*=\s*(['"])Content-Security-Policy\1/;
+            var cspContent = /(content\s*=\s*")([^"]*)"/
             send(request, filePath, {
                 transform: function (stream) {
                     return stream
                         .pipe(replaceStream(/(<\s*head[^>]*>)/, '$1' + scriptTags))
-                        .pipe(replaceStream('default-src \'self\'', 'default-src \'self\' ws: blob:'));
+                        .pipe(replaceStream(metaTagRegex, function (metaTag) {
+                            if (!cspRegex.test(metaTag)) {
+                                // Not a CSP tag; return unchanged
+                                return metaTag;
+                            }
+                            return metaTag.replace(cspContent, function (match, preamble, csp) {
+                                var policy = new cspParse(csp);
+                                var defaultCsp = policy.get('default-src');
+                                if (!policy.get('connect-src')) {
+                                    policy.add('connect-src', defaultCsp);
+                                }
+                                policy.add('connect-src', "'self' ws:");
+                                if (!policy.get('img-src')) {
+                                    policy.add('img-src', defaultCsp);
+                                }
+                                policy.add('img-src', 'blob:');
+                                return preamble + policy.toString() + '"';
+                            });
+                        }));
                 }
             }).pipe(response);
         }.bind(this))
