@@ -247,7 +247,7 @@ SimulationServer.prototype._streamAppHostHtml = function (request, response) {
                                 policy.add('img-src', 'blob:');
                                 return preamble + policy.toString() + '"';
                             });
-                        }));
+                        }, {maxMatchLen: 1024}));
                 }
             }).pipe(response);
         }.bind(this))
