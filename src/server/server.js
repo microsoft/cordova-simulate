@@ -240,7 +240,7 @@ SimulationServer.prototype._streamAppHostHtml = function (request, response) {
                                 if (!policy.get('connect-src')) {
                                     policy.add('connect-src', defaultCsp);
                                 }
-                                policy.add('connect-src', "'self' ws:");
+                                policy.add('connect-src', '\'self\' ws:');
                                 if (!policy.get('img-src')) {
                                     policy.add('img-src', defaultCsp);
                                 }
