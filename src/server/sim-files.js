@@ -139,7 +139,12 @@ SimulationFiles.prototype._createHostJsFile = function (simulationFilePath, host
 
     var scriptDefs = createScriptDefs(hostType, scriptTypes);
 
-    var b = browserify({ paths: getBrowserifySearchPaths(hostType), debug: true });
+    var b = browserify({
+        paths: getBrowserifySearchPaths(hostType),
+        debug: true,
+        externalRequireName: '_cordovaSimulateRequire'
+    });
+
     b.transform(function (file) {
         if (file === filePath) {
             var data = '';
