@@ -222,7 +222,7 @@ SimulationServer.prototype._streamAppHostHtml = function (request, response) {
             // Note we add "connect-src 'self' ws:" and "img-src 'blob:' (in Content Security Policy) so that
             // websocket connections are allowed and the camera plugin works (this relies on a custom version
             // of send that supports a 'transform' option).
-            var metaTagRegex = /<meta[^>]*>/;
+            var metaTagRegex = /<\s*meta[^>]*>/;
             var cspRegex = /http-equiv\s*=\s*(['"])Content-Security-Policy\1/;
             var cspContent = /(content\s*=\s*")([^"]*)"/
             send(request, filePath, {
