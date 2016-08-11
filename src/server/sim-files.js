@@ -142,7 +142,8 @@ SimulationFiles.prototype._createHostJsFile = function (simulationFilePath, host
     var b = browserify({
         paths: getBrowserifySearchPaths(hostType),
         debug: true,
-        externalRequireName: '_cordovaSimulateRequire'
+        exports: false, // needed to prevent browserify to override hasExports option by set it to true
+        hasExports: false
     });
 
     b.transform(function (file) {
