@@ -139,7 +139,13 @@ SimulationFiles.prototype._createHostJsFile = function (simulationFilePath, host
 
     var scriptDefs = createScriptDefs(hostType, scriptTypes);
 
-    var b = browserify({ paths: getBrowserifySearchPaths(hostType), debug: true });
+    var b = browserify({
+        paths: getBrowserifySearchPaths(hostType),
+        debug: true,
+        exports: false, // needed to prevent browserify to override hasExports option by set it to true
+        hasExports: false
+    });
+
     b.transform(function (file) {
         if (file === filePath) {
             var data = '';
