@@ -61,11 +61,20 @@ Object.defineProperties(Project.prototype, {
     }
 });
 
+/**
+ * @const
+ */
 Project.DEFAULT_PLUGINS = [
     'cordova-plugin-geolocation',
     'exec',
     'events'
 ];
+
+/**
+ * @const
+ * @private
+ */
+Project._PLUGINS_LIST_BAD_STATE = ['__unknown__'];
 
 Project.prototype.initPlugins = function () {
     this._resetPluginsData();
@@ -317,6 +326,11 @@ Project.prototype._getProjectState = function() {
             var pluginsJsonPath = path.join(projectRoot, 'plugins', platform + '.json');
             return Q.nfcall(fs.readFile, pluginsJsonPath);
         })
+        .fail(function () {
+            // an error ocurred trying to read the file for the current platform,
+            // set the pluginsList to indicate a "bad state".
+            newState.pluginList = Project._PLUGINS_LIST_BAD_STATE;
+        })
         .then(function (fileContent) {
             var installedPlugins = {};
 
@@ -325,7 +339,7 @@ Project.prototype._getProjectState = function() {
             } catch (err) {
                 // For some reason, it was not possible to determine which plugins are installed for the current platform, so
                 // use a dummy value to indicate a "bad state".
-                installedPlugins = ['__unknown__'];
+                installedPlugins = Project._PLUGINS_LIST_BAD_STATE;
             }
 
             newState.pluginList = installedPlugins;

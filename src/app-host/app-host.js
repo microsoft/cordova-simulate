@@ -109,7 +109,7 @@ function setCordovaAndInitialize(originalCordova) {
     });
 
     socket.on('init-xhr-proxy', function () {
-        require('xhr-proxy').init(); 
+        require('xhr-proxy').init();
     });
 
     socket.on('init-touch-events', function () {
@@ -137,7 +137,14 @@ function setCordovaAndInitialize(originalCordova) {
 
         if (cordova.platformId !== 'browser') {
             channel.onPluginsReady.subscribe(function () {
-                var pluginList = cordova.require('cordova/plugin_list').metadata;
+                var pluginList;
+                try {
+                    pluginList = cordova.require('cordova/plugin_list').metadata;
+                } catch (ex) {
+                    // when the app doesn't contain any plugin, the module "cordova/plugin_list"
+                    // is not loaded and cordova.require throws an exception
+                    pluginList = {};
+                }
                 socket.emit('app-plugin-list', pluginList);
             });
         } else {
