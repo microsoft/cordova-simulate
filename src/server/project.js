@@ -61,6 +61,9 @@ Object.defineProperties(Project.prototype, {
     }
 });
 
+/**
+ * @const
+ */
 Project.DEFAULT_PLUGINS = [
     'cordova-plugin-geolocation',
     'exec',
@@ -317,8 +320,13 @@ Project.prototype._getProjectState = function() {
             var pluginsJsonPath = path.join(projectRoot, 'plugins', platform + '.json');
             return Q.nfcall(fs.readFile, pluginsJsonPath);
         })
+        .fail(function () {
+            // an error ocurred trying to read the file for the current platform,
+            // return an empty json file content
+            return '{}';
+        })
         .then(function (fileContent) {
-            var installedPlugins = {};
+            var installedPlugins;
 
             try {
                 installedPlugins = Object.keys(JSON.parse(fileContent.toString())['installed_plugins'] || {});
