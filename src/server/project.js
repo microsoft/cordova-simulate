@@ -70,12 +70,6 @@ Project.DEFAULT_PLUGINS = [
     'events'
 ];
 
-/**
- * @const
- * @private
- */
-Project._PLUGINS_LIST_BAD_STATE = ['__unknown__'];
-
 Project.prototype.initPlugins = function () {
     this._resetPluginsData();
 
@@ -328,18 +322,18 @@ Project.prototype._getProjectState = function() {
         })
         .fail(function () {
             // an error ocurred trying to read the file for the current platform,
-            // set the pluginsList to indicate a "bad state".
-            newState.pluginList = Project._PLUGINS_LIST_BAD_STATE;
+            // return an empty json file content
+            return '{}';
         })
         .then(function (fileContent) {
-            var installedPlugins = {};
+            var installedPlugins;
 
             try {
                 installedPlugins = Object.keys(JSON.parse(fileContent.toString())['installed_plugins'] || {});
             } catch (err) {
                 // For some reason, it was not possible to determine which plugins are installed for the current platform, so
                 // use a dummy value to indicate a "bad state".
-                installedPlugins = Project._PLUGINS_LIST_BAD_STATE;
+                installedPlugins = ['__unknown__'];
             }
 
             newState.pluginList = installedPlugins;
