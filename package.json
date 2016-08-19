@@ -33,6 +33,7 @@
     "chalk": "^1.1.1",
     "cordova-registry-mapper": "^1.1.12",
     "cordova-serve": "^1.0.0",
+    "csp-parse": "^0.0.2",
     "glob": "^7.0.5",
     "minimist": "^1.2.0",
     "ncp": "^2.0.0",
