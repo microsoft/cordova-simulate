@@ -15,6 +15,13 @@ var fs = require('fs'),
     pluginSimulationFiles = require('./plugin-files');
 
 /**
+ * Maximum length of <meta> tag we search for when modifying CSP properties
+ * Needed for when a tag crosses multiple chunk boundaries.
+ * @const
+ */
+var MAX_CSP_TAG_LENGTH = 1024;
+
+/**
  * The simulation server that encapsulates the HTTP server instance and
  * Web Socket server. It enables to start and stop the server to listening
  * for new connections.
@@ -225,7 +232,6 @@ SimulationServer.prototype._streamAppHostHtml = function (request, response) {
             var metaTagRegex = /<\s*meta[^>]*>/g;
             var cspRegex = /http-equiv\s*=\s*(['"])Content-Security-Policy\1/;
             var cspContent = /(content\s*=\s*")([^"]*)"/;
-            var maxCspTagLength = 1024;
             send(request, filePath, {
                 transform: function (stream) {
                     return stream
@@ -248,7 +254,7 @@ SimulationServer.prototype._streamAppHostHtml = function (request, response) {
                                 policy.add('img-src', 'blob:');
                                 return preamble + policy.toString() + '"';
                             });
-                        }, {maxMatchLen: maxCspTagLength}));
+                        }, {maxMatchLen: MAX_CSP_TAG_LENGTH}));
                 }
             }).pipe(response);
         }.bind(this))
