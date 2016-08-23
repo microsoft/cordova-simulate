@@ -30,6 +30,7 @@ module.exports = function (message) {
         // attach event listeners
         levelRange.addEventListener('change', function () {
             battery.updateBatteryLevel(this.value);
+            updateBatteryLevelText(this.value);
         });
 
         levelRange.addEventListener('input', function () {
