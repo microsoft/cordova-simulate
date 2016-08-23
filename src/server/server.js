@@ -69,9 +69,11 @@ SimulationServer.prototype.start = function (platform, opts) {
     this._cordovaServer = cordovaServe();
 
     /* attach simulation host middleware */
-    var middlewarePath = path.join(config.simHostOptions.simHostRoot, 'server', 'server');
-    if (fs.existsSync(middlewarePath + '.js')) {
-        require(middlewarePath).attach(this._cordovaServer.app, dirs);
+    var middlewarePath = path.join(config.simHostOptions.simHostRoot, 'server', 'server.js');
+    if (fs.existsSync(middlewarePath)) {
+        var simDirs = Object.create(dirs);
+        simDirs.hostRoot = this._hostRoot;
+        require(middlewarePath).attach(this._cordovaServer.app, simDirs);
     }
 
     /* attach CORS proxy middleware */
