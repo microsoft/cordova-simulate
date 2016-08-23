@@ -33,7 +33,6 @@ a {
 
 cordova-panel {
     width: 320px;
-    padding: 5px 0;
 }
 
 cordova-dialog {
@@ -292,14 +291,10 @@ body /deep/ .cordova-hidden {
     display: none;
 }
 
-.cordova-main {
-    padding-bottom: 40px;
-}
-
 /* Hacks to work around multi-column bug in Chrome 48+. The following section
    is removed for other browsers when the file is served */
 
-/* BEGIN CHROME ONLY */
+/* BEGIN CHROME */
 body /deep/ .cordova-panel-inner {
     overflow: visible;
     padding-bottom: 1px;
@@ -308,4 +303,22 @@ body /deep/ .cordova-panel-inner {
 body /deep/ .cordova-content {
     overflow: visible;
 }
-/* END CHROME ONLY */
+
+cordova-panel {
+    padding: 5px 0;
+}
+
+.cordova-main {
+    padding-left: 5px;
+}
+/* END CHROME */
+
+/* BEGIN !CHROME */
+body .cordova-panel-inner {
+    margin-bottom: 10px;
+}
+
+.cordova-main {
+    padding: 5px;
+}
+/* END !CHROME */
