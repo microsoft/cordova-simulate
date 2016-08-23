@@ -3,6 +3,9 @@
   "version": "0.3.0-dev",
   "description": "Simulates your Cordova application in the browser.",
   "main": "src/simulate.js",
+  "bin": {
+    "simulate": "./bin/simulate"
+  },
   "scripts": {
     "prepublish": "in-install || npm shrinkwrap",
     "postpublish": "rimraf npm-shrinkwrap.json"
