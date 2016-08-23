@@ -11,6 +11,18 @@ npm install -g cordova-simulate
 
 # Usage
 
+## CLI
+From the command line anywhere within a Cordova project, enter the following:
+
+```
+simulate [<platform>] [--target=<browser>]
+```
+
+Where:
+
+* **platform** is any Cordova platform that has been added to your project. Defaults to `browser`.
+* **browser** is the name of the browser to launch your app in. Can be any of the following: `chrome`, `chromium`, `edge`, `firefox`, `ie`, `opera`, `safari`. Defaults to `chrome`.
+
 ## API
 Use `require('cordova-simulate')` to launch a simulation via the API:
 
