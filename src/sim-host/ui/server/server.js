@@ -4,7 +4,7 @@ var path = require('path'),
     replaceStream = require('replacestream'),
     send = require('send-transform');
 
-module.exports.attach = function (app, dirs) {
+module.exports.attach = function (app, dirs, hostRoot) {
     app.get('/simulator/sim-host.css', function (request, response, next) {
         var userAgent = request.headers['user-agent'];
         if (userAgent.indexOf('Chrome') > -1 && userAgent.indexOf('Edge/') === -1) {
@@ -12,7 +12,7 @@ module.exports.attach = function (app, dirs) {
         } else {
             // If target browser isn't Chrome (user agent contains 'Chrome', but isn't 'Edge'), remove shadow dom stuff from
             // the CSS file. Also remove any sections marked as Chrome specific.
-            send(request, path.resolve(dirs.hostRoot['sim-host'], 'sim-host.css'), {
+            send(request, path.resolve(hostRoot['sim-host'], 'sim-host.css'), {
                 transform: function (stream) {
                     return stream
                         .pipe(replaceStream('> ::content >', '>'))
