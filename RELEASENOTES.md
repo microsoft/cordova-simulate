@@ -1,5 +1,30 @@
 # cordova-simulate Release Notes
 
+### 0.3.0 (Aug 24, 2016)
+* Fix [#117](https://github.com/Microsoft/cordova-simulate/issues/117): cordova-number-entry fields indicate valid values are invalid ([#140](https://github.com/Microsoft/cordova-simulate/pull/140))
+* Fix battery status label in IE ([#138](https://github.com/Microsoft/cordova-simulate/pull/138))
+* Improve column rendering in IE ([c019b9a1](https://github.com/Microsoft/cordova-simulate/commit/c019b9a1))
+* Fix [#136](https://github.com/Microsoft/cordova-simulate/issues/136): Styling broken in IE ([#137](https://github.com/Microsoft/cordova-simulate/pull/137))
+* Ensure IE compatibility mode is off ([2c20e648](https://github.com/Microsoft/cordova-simulate/commit/2c20e648))
+* Restore CLI support ([#134](https://github.com/Microsoft/cordova-simulate/pull/134))
+* Fix [#130](https://github.com/Microsoft/cordova-simulate/issues/130): Specifying a `connect-src` in the CSP breaks debugging ([#131](https://github.com/Microsoft/cordova-simulate/pull/131))
+* Support simulation when there's no plugins added to the project ([#133](https://github.com/Microsoft/cordova-simulate/pull/133))
+* Adjust browserify settings to not create global `require` ([#132](https://github.com/Microsoft/cordova-simulate/pull/132))
+* Fix [#128](https://github.com/Microsoft/cordova-simulate/issues/128): App is not simulated when `<head>` contains any `data-*` attribute ([#129](https://github.com/Microsoft/cordova-simulate/pull/129))
+* Fix race condition subscribing to socket events ([#127](https://github.com/Microsoft/cordova-simulate/pull/127))
+* Fix [#114](https://github.com/Microsoft/cordova-simulate/issues/114): Camera: file picker doesn't validate that the result is a valid content ([#116](https://github.com/Microsoft/cordova-simulate/pull/116))
+* Server module object-oriented redesign (API break change) ([#84](https://github.com/Microsoft/cordova-simulate/pull/84))
+
+### 0.2.3 (July 24, 2016)
+* Use npm package for `send-transform` rather than github branch ([be26606e](https://github.com/Microsoft/cordova-simulate/commit/be26606e)).
+* Position sim-host UI to the left rather than sort of centered ([5f082644](https://github.com/Microsoft/cordova-simulate/commit/5f082644)).
+
+### 0.2.2 (July 21, 2016)
+* Fix [#103](https://github.com/Microsoft/cordova-simulate/issues/103) Geolocation: Changing long / lat values using arrows does not update the map ([ce4b7649](https://github.com/Microsoft/cordova-simulate/commit/ce4b7649))
+* Fix XHR proxy with non-standard ports ([9fd2ff36](https://github.com/Microsoft/cordova-simulate/commit/9fd2ff36))
+* Validate input number to be always a number ([4ea94f6a](https://github.com/Microsoft/cordova-simulate/commit/4ea94f6a))
+* Retry Cordova prepare if it fails the first time ([5456e44a](https://github.com/Microsoft/cordova-simulate/commit/5456e44a))
+
 ### 0.2.1 (June 30, 2016)
 * Bootstrap protocol enhancements
 * Multiple bug fixes and improvements
