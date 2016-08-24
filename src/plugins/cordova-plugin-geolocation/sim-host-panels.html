@@ -40,13 +40,13 @@
 
     <cordova-number-entry label="Latitude" id="geo-latitude" step="any"></cordova-number-entry>
     <cordova-number-entry label="Longitude" id="geo-longitude" step="any"></cordova-number-entry>
-    <cordova-number-entry label="Altitude (m)" id="geo-altitude" min="0" step="any"></cordova-number-entry>
+    <cordova-number-entry label="Altitude (m)" id="geo-altitude" step="any"></cordova-number-entry>
     <cordova-number-entry label="Accuracy (m)" id="geo-accuracy" min="0" step="any"></cordova-number-entry>
     <cordova-number-entry label="Altitude accuracy (m)" id="geo-altitude-accuracy" min="0" step="any"></cordova-number-entry>
     <cordova-panel-row>
         <cordova-label label="Heading"></cordova-label>
         <cordova-label label="N" id="geo-heading-label"></cordova-label>
-        <input id="geo-heading" type="range" value="0" min="0" max="359.5" step="0.5" style="width:112px;">
+        <input id="geo-heading" type="range" value="0" min="0" max="359.99" step="any" style="width:112px;">
     </cordova-panel-row>
     <cordova-number-entry label="Speed (m/s)" id="geo-speed" min="0" step="any"></cordova-number-entry>
     <cordova-panel-row>
