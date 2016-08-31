@@ -208,6 +208,7 @@ function parseOptions(opts) {
         /* use the default simulation UI */
         simHostOpts = { simHostRoot: path.join(__dirname, '..', 'sim-host', 'ui') };
     }
+    simHostOpts.title = opts.simhosttitle || 'Plugin Simulation';
 
     config.simHostOptions = simHostOpts;
     config.simulationFilePath = opts.simulationpath;

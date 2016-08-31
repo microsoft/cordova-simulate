@@ -302,9 +302,11 @@ SimulationServer.prototype._streamSimHostHtml = function (request, response) {
             });
 
             // Note that this relies on a custom version of send that supports a 'transform' option.
+            var that = this;
             send(request, path.join(this._hostRoot['sim-host'], 'sim-host.html'), {
                 transform: function (stream) {
                     return stream
+                        .pipe(replaceStream('<!-- TITLE -->', that._simulatorProxy.config.simHostOptions.title))
                         .pipe(replaceStream('<!-- PANELS -->', panelsHtml.join('\n')))
                         .pipe(replaceStream('<!-- DIALOGS -->', dialogsHtml.join('\n')));
                 }
