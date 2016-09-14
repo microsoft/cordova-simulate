@@ -7,7 +7,8 @@ var fs = require('fs'),
     dirs = require('./dirs'),
     pluginUtil = require('./utils/plugins'),
     prepareUtil = require('./utils/prepare'),
-    utils = require('./utils/jsUtils');
+    utils = require('./utils/jsUtils'),
+    log = require('./utils/log');
 
 /**
  * The Project model encapsulates the information and state about the project under
@@ -192,8 +193,19 @@ Project.prototype.prepare = function () {
                 currentProjectState = currentState;
 
                 if (this._shouldPrepare(currentProjectState)) {
-                    return prepareUtil.execCordovaPrepare(this.projectRoot, this._lastPlatform)
-                        .then(function () {
+                    var platform = this._lastPlatform;
+                    return prepareUtil.execCordovaPrepare(this.projectRoot, platform)
+                        .catch(function (err) {
+                            err = err.message || err.toString();
+                            var pos = err.toLowerCase().indexOf('error: ');
+                            if (pos > -1) {
+                                err = err.slice(pos + 7);
+                            }
+                            err = err.split('\n')[0];
+                            log.warning('Preparing platform \'' + platform + '\' failed: ' + err);
+                        }).then(function () {
+                            // Note that we return true even if we caught an error (in case the error
+                            // was in a hook, for example, and the prepare actually succeeded).
                             return true;
                         });
                 }
