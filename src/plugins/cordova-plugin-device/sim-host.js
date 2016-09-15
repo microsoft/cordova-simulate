@@ -1,353 +1,97 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
 var telemetry = require('telemetry-helper'),
-    simStatus = require('sim-status');
+    simStatus = require('sim-status'),
+    deviceModel = require('./device-model');
 
 var baseProps = {
     plugin: 'cordova-plugin-device',
     panel: 'device'
 };
 
-function initialize() {
-    var devices = [
-        {
-            'id': 'AcerA500',
-            'name': 'Acer A500',
-            'model': 'Picasso',
-            'platform': 'Android',
-            'version': '4.0',
-            'uuid': '500',
-            'manufacturer': 'Acer'
-        },
-        {
-            'id': 'Bold9700',
-            'name': 'BlackBerry Bold 9700',
-            'model': '9700',
-            'platform': 'BlackBerry OS',
-            'version': '6',
-            'uuid': '42',
-            'manufacturer': 'BlackBerry'
-        },
-        {
-            'id': 'Bold9900',
-            'name': 'BlackBerry Bold 9900',
-            'model': '9900',
-            'platform': 'BlackBerry OS',
-            'version': '7',
-            'uuid': '42',
-            'manufacturer': 'BlackBerry'
-        },
-        {
-            'id': 'Curve9300',
-            'name': 'BlackBerry Curve 9300',
-            'model': '9300',
-            'platform': 'BlackBerry OS',
-            'version': '6',
-            'uuid': '42',
-            'manufacturer': 'BlackBerry'
-        },
-        {
-            'id': 'Curve9350-9360-9370',
-            'name': 'BlackBerry Curve 9350/9360/9370',
-            'model': '9350-9360-9370',
-            'platform': 'BlackBerry OS',
-            'version': '7',
-            'uuid': '42',
-            'manufacturer': 'BlackBerry'
-        },
-        {
-            'id': 'FWVGA',
-            'name': 'Generic - FWVGA (480x854)',
-            'model': 'Generic',
-            'platform': 'Generic',
-            'version': 'Generic',
-            'uuid': '42',
-            'manufacturer': 'Generic'
-        },
-        {
-            'id': 'G1',
-            'name': 'HTC G1',
-            'model': 'G1',
-            'platform': 'Android',
-            'version': '1.6',
-            'uuid': '6F196F23-FD0D-4F62-B27B-730147FCC5A3',
-            'manufacturer': 'HTC'
-        },
-        {
-            'id': 'HPPre3',
-            'name': 'HP Pre 3',
-            'model': 'Pre',
-            'platform': 'WebOS',
-            'version': '2.x',
-            'manufacturer': 'HP'
-        },
-        {
-            'id': 'HPVeer',
-            'name': 'HP Veer',
-            'model': 'Veer',
-            'platform': 'WebOS',
-            'version': '2.x',
-            'manufacturer': 'HP'
-        },
-        {
-            'id': 'HVGA',
-            'name': 'Generic - HVGA (320x480)',
-            'model': 'Generic',
-            'platform': 'Generic',
-            'version': 'Generic',
-            'uuid': '42',
-            'manufacturer': 'Generic'
-        },
-        {
-            'id': 'iPad',
-            'name': 'iPad',
-            'model': 'iPad',
-            'platform': 'iOS',
-            'version': '1.6',
-            'uuid': 'e0101010d38bde8e6740011221af335301010333',
-            'manufacturer': 'Apple'
-        },
-        {
-            'id': 'iPad3',
-            'name': 'iPad 3',
-            'model': 'iPad3',
-            'platform': 'iOS',
-            'version': '5',
-            'uuid': 'e0101010d38bde8e6740011221af335301010334',
-            'manufacturer': 'Apple'
-        },
-        {
-            'id': 'iPhone3',
-            'name': 'iPhone 3G/3Gs',
-            'model': '3G',
-            'platform': 'iPhone',
-            'version': '3',
-            'uuid': 'e0101010d38bde8e6740011221af335301010333',
-            'manufacturer': 'Apple'
-        },
-        {
-            'id': 'iPhone4',
-            'name': 'iPhone 4/4s',
-            'model': '4s',
-            'platform': 'iOS',
-            'version': '5',
-            'uuid': 'e0101010d38bde8e6740011221af335301010333',
-            'manufacturer': 'Apple'
-        },
-        {
-            'id': 'iPhone5',
-            'name': 'iPhone 5',
-            'model': '5',
-            'platform': 'iOS',
-            'version': '6',
-            'uuid': 'e0101010d38bde8e6740011221af335301010333',
-            'manufacturer': 'Apple'
-        },
-        {
-            'id': 'Legend',
-            'name': 'HTC Legend',
-            'model': 'Legend',
-            'platform': 'Android',
-            'version': '1.6',
-            'uuid': '6F196F23-FD0D-4F62-B27B-730147FCC5A3',
-            'manufacturer': 'HTC'
-        },
-        {
-            'id': 'Nexus',
-            'name': 'Nexus One',
-            'model': 'Nexux One',
-            'platform': 'Android',
-            'version': '2.x.x',
-            'uuid': '6F196F23-FD0D-4F62-B27B-730147FCC5A3',
-            'manufacturer': 'HTC'
-        },
-        {
-            'id': 'Nexus4',
-            'name': 'Nexus 4',
-            'model': 'Nexus 4',
-            'platform': 'Android',
-            'version': '4.2.x',
-            'uuid': 'DC46B660-EF6F-46D4-AC24-85CFAB0C7694',
-            'manufacturer': 'LG'
-        },
-        {
-            'id': 'Nexus7',
-            'name': 'Nexus 7 (Tablet)',
-            'model': 'Nexus 7 8/16 GB',
-            'platform': 'Android',
-            'version': '4.x.x',
-            'uuid': '903802EA-1786-4175-B0F1-1FDF87813CAA',
-            'manufacturer': 'Asus'
-        },
-        {
-            'id': 'NexusGalaxy',
-            'name': 'Nexus (Galaxy)',
-            'model': 'Galaxy Nexus (generic)',
-            'platform': 'Android',
-            'version': '4.x.x',
-            'uuid': '3D0AD03B-8B46-431A-BEF5-FF01B96BA990',
-            'manufacturer': 'Samsung'
-        },
-        {
-            'id': 'NexusS',
-            'name': 'Nexus S',
-            'model': 'Nexux S',
-            'platform': 'Android',
-            'version': '2.3.x',
-            'uuid': 'F54E13F1-C1B7-4212-BFA8-AB3C9C3F088F',
-            'manufacturer': 'Samsung'
-        },
-        {
-            'id': 'NokiaN8',
-            'name': 'Nokia N8',
-            'model': 'N8',
-            'platform': 'SymbianOS',
-            'version': '3',
-            'uuid': '42',
-            'manufacturer': 'Nokia'
-        },
-        {
-            'id': 'NokiaN97',
-            'name': 'Nokia N97/5800 (touch)',
-            'model': 'N97',
-            'platform': 'S60',
-            'version': 'v5',
-            'uuid': '42',
-            'manufacturer': 'Nokia'
-        },
-        {
-            'id': 'PalmPre',
-            'name': 'Palm Pre',
-            'model': 'Pre',
-            'platform': 'WebOS',
-            'version': '1.x',
-            'manufacturer': 'Palm'
-        },
-        {
-            'id': 'PalmPre2',
-            'name': 'Palm Pre 2',
-            'model': 'Pre',
-            'platform': 'WebOS',
-            'version': '2.x',
-            'manufacturer': 'Palm'
-        },
-        {
-            'id': 'Pearl9100',
-            'name': 'BlackBerry Pearl 9100',
-            'model': '9100',
-            'platform': 'BlackBerry OS',
-            'version': '6',
-            'uuid': '42',
-            'manufacturer': 'BlackBerry'
-        },
-        {
-            'id': 'Playbook',
-            'name': 'BlackBerry Playbook',
-            'model': '100669958',
-            'platform': 'BlackBerry PlayBook OS',
-            'version': 'BlackBerry PlayBook OS',
-            'uuid': '42',
-            'manufacturer': 'BlackBerry'
-        },
-        {
-            'id': 'Q10',
-            'name': 'BlackBerry Q10',
-            'model': 'Q10',
-            'platform': 'BlackBerry',
-            'version': '10.1',
-            'uuid': '42',
-            'manufacturer': 'BlackBerry'
-        },
-        {
-            'id': 'QVGA',
-            'name': 'Generic - QVGA (240X320)',
-            'model': 'Generic',
-            'platform': 'Generic',
-            'version': 'Generic',
-            'uuid': '42',
-            'manufacturer': 'Generic'
-        },
-        {
-            'id': 'Style9670',
-            'name': 'BlackBerry Style 9670',
-            'model': '9670',
-            'platform': 'BlackBerry OS',
-            'version': '6',
-            'uuid': '42',
-            'manufacturer': 'BlackBerry'
-        },
-        {
-            'id': 'Tattoo',
-            'name': 'HTC Tattoo',
-            'model': 'Tattoo',
-            'platform': 'Android',
-            'version': '1.6',
-            'uuid': '6F196F23-FD0D-4F62-B27B-730147FCC5A3',
-            'manufacturer': 'HTC'
-        },
-        {
-            'id': 'Torch9800',
-            'name': 'BlackBerry Torch 9800',
-            'model': '9800',
-            'platform': 'BlackBerry OS',
-            'version': '6',
-            'uuid': '42',
-            'manufacturer': 'BlackBerry'
-        },
-        {
-            'id': 'Torch9810',
-            'name': 'BlackBerry Torch 9810',
-            'model': '9810',
-            'platform': 'BlackBerry OS',
-            'version': '7',
-            'uuid': '42',
-            'manufacturer': 'BlackBerry'
-        },
-        {
-            'id': 'Torch9860-9850',
-            'name': 'BlackBerry Torch 9860/9850',
-            'model': '9860-9850',
-            'platform': 'BlackBerry OS',
-            'version': '7',
-            'uuid': '42',
-            'manufacturer': 'BlackBerry'
-        },
-        {
-            'id': 'Wave',
-            'name': 'Samsung Wave',
-            'model': 'Wave',
-            'platform': 'Bada',
-            'version': 'n/a',
-            'manufacturer': 'Samsung'
-        },
-        {
-            'id': 'WQVGA',
-            'name': 'Generic - WQVGA (240x480)',
-            'model': 'Generic',
-            'platform': 'Generic',
-            'version': 'Generic',
-            'uuid': '42',
-            'manufacturer': 'Generic'
-        },
-        {
-            'id': 'WVGA',
-            'name': 'Generic - WVGA (480x800)',
-            'model': 'Generic',
-            'platform': 'Generic',
-            'version': 'Generic',
-            'uuid': '42',
-            'manufacturer': 'Generic'
-        },
-        {
-            'id': 'Z10',
-            'name': 'BlackBerry Z10',
-            'model': 'Z10',
-            'platform': 'BlackBerry',
-            'version': '10.0.10',
-            'uuid': '42',
-            'manufacturer': 'BlackBerry'
-        }
-    ];
+function initialize(deviceInfo, messages) {
+    deviceModel.init(deviceInfo, baseProps);
+
+    var device = deviceModel.currentDevice;
+
+    document.getElementById('device-platform').value = deviceModel.displayedPlatform;
+
+    var deviceList = document.getElementById('device-list');
+    getSortedDevices().forEach(function (device) {
+        var option = document.createElement('option');
+        option.value = device.id;
+
+        var caption = document.createTextNode(device.name);
+        option.appendChild(caption);
+        deviceList.appendChild(option);
+    });
+    deviceList.addEventListener('change', selectedDeviceChanged);
+    deviceList.value = device.id;
+
+    var osVersions = deviceModel.osVersions;
+    var osVersionList = document.getElementById('device-os-version');
+    if (osVersions) {
+        osVersions.forEach(function (version) {
+            var option = document.createElement('option');
+            option.value = version;
+
+            var caption = document.createTextNode(version);
+            option.appendChild(caption);
+            osVersionList.appendChild(option);
+        });
+        osVersionList.style.display = '';
+        osVersionList.addEventListener('change', osVersionChanged);
+    } else {
+        osVersionList.style.display = 'none';
+    }
+
+    updateDevice();
+    registerTelemetryEvents();
+
+    function selectedDeviceChanged() {
+        var deviceId = this.value;
+        deviceModel.selectDevice(deviceId);
+        updateDevice();
+        messages.refreshAppHost(deviceModel.currentDevice);
+    }
+
+    function osVersionChanged(e) {
+        deviceModel.currentDevice['os-version'] = this.value;
+        var device = deviceModel.currentDevice;
+        document.getElementById('device-os-version').value = device['os-version'];
+        messages.refreshAppHost(device);
+    }
+
+    function updateDevice() {
+        var device = deviceModel.currentDevice;
+        var viewportWidth = device.viewport.width;
+        var viewportHeight = device.viewport.height;
+
+        document.getElementById('device-os-version').value = device['os-version'];
+        document.getElementById('device-model').value = device.model;
+        document.getElementById('device-manufacturer').value = device.manufacturer;
+        document.getElementById('device-uuid').value = device.uuid;
+        document.getElementById('device-version').value = deviceModel.currentDeviceVersion;
+        document.getElementById('is-virtual-device').checked = deviceModel.isVirtual;
+        document.getElementById('device-serial').value = device.serial;
+        document.getElementById('device-resolution').value = device.resolution.width + ' x ' + device.resolution.height;
+        document.getElementById('device-viewport-size').value = viewportWidth + ' x ' + viewportHeight;
+        document.getElementById('device-pixel-ratio').value = device['pixel-ratio'];
+
+        notifyResize(messages, {
+            width: viewportWidth,
+            height: viewportHeight,
+            pixelRatio: device['pixel-ratio']
+        });
+    }
+}
+
+function getSortedDevices() {
+    // Created a sorted array of devices
+    var devicesById = deviceModel.devicesById;
+    var devices = Object.getOwnPropertyNames(devicesById).map(function (deviceId) {
+        return devicesById[deviceId];
+    });
 
     devices.sort(function (left, right) {
         left = left.name.toUpperCase();
@@ -361,107 +105,49 @@ function initialize() {
         return 0;
     });
 
-    var deviceList = document.getElementById('device-list');
-
-    devices.forEach(function (device) {
-        var option = document.createElement('option');
-        option.value = device.id;
-
-        var caption = document.createTextNode(device.name);
-        option.appendChild(caption);
-
-        option.setAttribute('_model', device.model);
-        option.setAttribute('_manufacturer', device.manufacturer);
-        option.setAttribute('_platform', device.platform);
-        option.setAttribute('_version', device.version);
-        option.setAttribute('_uuid', device.uuid);
-
-        deviceList.appendChild(option);
-    });
-
-    var defaultDeviceId = 'WVGA';
-
-    deviceList.addEventListener('change', handleSelectDevice.bind(null, null));
-    deviceList.value = defaultDeviceId;
-    handleSelectDevice(defaultDeviceId);
-    registerTelemetryEvents();
+    return devices;
 }
 
-function handleSelectDevice(deviceIdOverride) {
-    var deviceList = document.getElementById('device-list');
-    var option;
+function notifyResize(messages, dimensions) {
+    var width = parseInt(dimensions.width);
+    var height = parseInt(dimensions.height);
+    var pixelRatio = parseFloat(dimensions.pixelRatio);
 
-    if (deviceIdOverride) {
-        // If we have a device ID override, we can't rely on deviceList.selectedIndex, because the shadow DOM sets that
-        // value asynchronously. Manually look for the device ID in the deviceList.options instead.
-        for (var i = 0; i < deviceList.options.length; ++i) {
-            option = deviceList.options[i];
-
-            if (option.value === deviceIdOverride) {
-                break;
-            }
-        }
-    } else {
-        option = deviceList.options[deviceList.selectedIndex];
+    if (isNaN(width) || isNaN(height)) {
+        return;
     }
 
-    document.getElementById('device-model').value = option.getAttribute('_model');
-    document.getElementById('device-manufacturer').value = option.getAttribute('_manufacturer');
-    document.getElementById('device-platform').value = option.getAttribute('_platform');
-    document.getElementById('device-uuid').value = option.getAttribute('_uuid');
-    document.getElementById('device-version').value = option.getAttribute('_version');
-    document.getElementById('is-virtual-device').checked = true; // by default, true for all devices
-    document.getElementById('device-serial').value = '123456789';
-}
-
-function registerTelemetryForControl(controlId) {
-    document.getElementById(controlId).addEventListener('change', telemetry.sendUITelemetry.bind(this, Object.assign({}, baseProps, {
-        control: controlId
-    })));
+    messages.emitDebug('resize-viewport', {
+        width: width,
+        height: height,
+        pixelRatio: pixelRatio
+    });
 }
 
 function registerTelemetryEvents() {
-    // Register the simple events (onchange -> send the control ID).
-    var basicTelemetryEventControls = [
-        'device-model',
-        'device-manufacturer',
-        'device-platform',
-        'device-uuid',
-        'device-version',
-        'device-serial'
-    ];
-
-    basicTelemetryEventControls.forEach(function (controlId) {
-        registerTelemetryForControl(controlId);
-    });
-
-    // Register the event for the device combo box.
     var deviceList = document.getElementById('device-list');
-
     deviceList.addEventListener('change', function () {
-        var option = deviceList.options[deviceList.selectedIndex];
-
         telemetry.sendUITelemetry(Object.assign({}, baseProps, {
             control: 'device-list',
-            value: option.value
+            value: deviceList.value
         }));
     });
 
-    // Register event for the isVirtual device checkbox. Clicking the checkbox's label fires the click event twice, so
-    // keep track of the previous state. Note that we can't use the change event because the component seems to
-    // swallow it.
-    var previousVirtualState = true;
+    var osVersionList = document.getElementById('device-os-version');
+    osVersionList.addEventListener('change', function () {
+        telemetry.sendUITelemetry(Object.assign({}, baseProps, {
+            control: 'device-os-version',
+            value: deviceList.value
+        }));
+    });
+
     var virtualDeviceCheckbox = document.getElementById('is-virtual-device');
     virtualDeviceCheckbox.addEventListener('click', function () {
-        if (virtualDeviceCheckbox.checked !== previousVirtualState) {
-            previousVirtualState = virtualDeviceCheckbox.checked;
-            telemetry.sendUITelemetry(Object.assign({}, baseProps, { control: 'is-virtual-device' }));
-        }
+        deviceModel.isVirtual = virtualDeviceCheckbox.checked;
     });
 }
 
 module.exports = function (messages) {
-
     var cordovaVersionLabel = document.getElementById('device-cordova-version');
 
     cordovaVersionLabel.value = 'Querying...';
@@ -475,6 +161,8 @@ module.exports = function (messages) {
     });
 
     return {
-        initialize: initialize
+        initialize: function (deviceInfo) {
+            initialize(deviceInfo, messages);
+        }
     };
 };

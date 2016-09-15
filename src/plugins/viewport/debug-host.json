@@ -1,7 +1,0 @@
-{
-    "alwaysActivateIfDebugHost": true,
-    "messages": [
-        "reset-viewport",
-        "resize-viewport"
-    ]
-}

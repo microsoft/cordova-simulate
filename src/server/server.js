@@ -162,10 +162,10 @@ SimulationServer.prototype._prepareRoutes = function () {
     app.get('/', streamAppHostHtml);
     app.get('/*.html', streamAppHostHtml);
     app.get('/simulator/app-host.js', function (request, response) {
-        this._sendHostJsFile(response, 'app-host');
+        this._sendHostJsFile(request, response, 'app-host');
     }.bind(this));
     app.get('/simulator/sim-host.js', function (request, response) {
-        this._sendHostJsFile(response, 'sim-host');
+        this._sendHostJsFile(request, response, 'sim-host');
     }.bind(this));
     app.use(this._project.getRouter());
     app.use('/simulator', cordovaServe.static(this._hostRoot['sim-host']));
@@ -173,11 +173,12 @@ SimulationServer.prototype._prepareRoutes = function () {
 };
 
 /**
- * @param {object} response
+ * @param {Request} request
+ * @param {Stream} response
  * @param {string} hostType
  * @private
  */
-SimulationServer.prototype._sendHostJsFile = function (response, hostType) {
+SimulationServer.prototype._sendHostJsFile = function (request, response, hostType) {
     var config = this._simulatorProxy.config,
         hostJsFile = this._simulationFiles.getHostJsFile(hostType, config.simulationFilePath);
 
@@ -185,7 +186,17 @@ SimulationServer.prototype._sendHostJsFile = function (response, hostType) {
         throw new Error('Path to ' + hostType + '.js has not been set.');
     }
 
-    response.sendFile(hostJsFile);
+    if (hostType === 'app-host') {
+        // Provide current user agent
+        send(request, hostJsFile, {
+            transform: function (stream) {
+                return stream
+                    .pipe(replaceStream('/** USER-AGENT **/', config.deviceInfo.userAgent))
+            }
+        }).pipe(response);
+    } else {
+        response.sendFile(hostJsFile);
+    }
 };
 
 /**

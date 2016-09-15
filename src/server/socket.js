@@ -209,7 +209,7 @@ SocketServer.prototype._setupAppHostHandlers = function () {
 SocketServer.prototype._handleSimHostRegistration = function () {
     this._subscribeTo(SIM_HOST, 'ready', this._handleSimHostReady.bind(this), true);
 
-    this._emitTo(SIM_HOST, 'init');
+    this._emitTo(SIM_HOST, 'init', this._simulatorProxy.config.deviceInfo);
 };
 
 SocketServer.prototype._onAppHostConnected = function () {
@@ -263,6 +263,11 @@ SocketServer.prototype._setupSimHostHandlers = function () {
 
     this._subscribeTo(SIM_HOST, 'plugin-method', function (data, callback) {
         this._emitTo(APP_HOST, 'plugin-method', data, callback);
+    }.bind(this));
+
+    this._subscribeTo(SIM_HOST, 'refresh-app-host', function (device) {
+        this._simulatorProxy.updateDevice(device);
+        this._emitTo(APP_HOST, 'refresh');
     }.bind(this));
 
     // Set up telemetry if necessary.

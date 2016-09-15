@@ -1,0 +1,30 @@
+{
+  "android": {
+    "4.0.4": "Mozilla/5.0 (Linux; Android 4.0.4; <user-agent-name> Build/IMM76B) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.133 Mobile Safari/535.19",
+    "4.2.2": "Mozilla/5.0 (Linux; Android 4.2.2; <user-agent-name> Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.308 Mobile Safari/535.19",
+    "4.4.2": "Mozilla/5.0 (Linux; Android 4.4.2; <user-agent-name> Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.141 Mobile Safari/537.36",
+    "5.0": "Mozilla/5.0 (Linux; Android 5.0; <user-agent-name> Build/LRX21T; wv) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.133 Mobile Safari/537.36",
+    "5.1": "Mozilla/5.0 (Linux; Android 5.1; <user-agent-name> Build/LMY47D; wv) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.94 Mobile Safari/537.36",
+    "6.0": "Mozilla/5.0 (Linux; Android 6.0; <user-agent-name> Build/MRA58N; wv) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.76 Mobile Safari/537.36",
+    "7.0": "Mozilla/5.0 (Linux; Android 7.0; <user-agent-name> Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.98 Mobile Safari/537.36"
+  },
+  "ios": {
+    "4": "Mozilla/5.0 (<device-type>; CPU <os-name> 4_0 like Mac OS X) AppleWebKit/532.9 (KHTML, like Gecko) Mobile/8A293",
+    "5": "Mozilla/5.0 (<device-type>; CPU <os-name> 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Mobile/9A334",
+    "6": "Mozilla/5.0 (<device-type>; CPU <os-name> 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10A405",
+    "7": "Mozilla/5.0 (<device-type>; CPU <os-name> 7_0 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Mobile/11A465",
+    "8": "Mozilla/5.0 (<device-type>; CPU <os-name> 8_0 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12A365",
+    "9": "Mozilla/5.0 (<device-type>; CPU <os-name> 9_0 like Mac OS X) AppleWebKit/601.1.39 (KHTML, like Gecko) Mobile/13A4305g",
+    "10": "Mozilla/5.0 (<device-type>; CPU <os-name> 10_0 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Mobile/14A5346a"
+  },
+  "windows": {
+    "8.1": {
+      "phone": "Mozilla/5.0 (Mobile; Windows Phone 8.1; Android 4.0; ARM; Trident/7.0; Touch; MSAppHost/2.0; rv:11.0; IEMobile/11.0; <manufacturer>; <device-name>) like iPhone OS 7_0_3 Mac OS X AppleWebKit/537 (KHTML, like Gecko) Mobile Safari/537",
+      "desktop": "Mozilla/5.0 (Windows NT 6.3; Trident/7.0; Touch; MSAppHost/2.0; rv:11.0) like Gecko"
+    },
+    "10": {
+      "phone": "Mozilla/5.0 (Windows Phone 10.0; Android 4.2.1; MSAppHost/3.0; <manufacturer>; <device-name>) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Mobile Safari/537.36 Edge/13.10586",
+      "desktop": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; MSAppHost/3.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586"
+    }
+  }
+}
