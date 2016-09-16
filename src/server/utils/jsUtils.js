@@ -197,6 +197,15 @@ function retryAsync(promiseFunc, maxTries, delay, iteration) {
     });
 }
 
+function stripErrorColon(err) {
+    err = err.message || err.toString();
+    var pos = err.toLowerCase().indexOf('error: ');
+    if (pos > -1) {
+        err = err.slice(pos + 7);
+    }
+    return err.split('\n')[0];
+}
+
 module.exports.compareObjects = compareObjects;
 module.exports.compareArrays = compareArrays;
 module.exports.existsSync = existsSync;
@@ -204,3 +213,4 @@ module.exports.getDirectoriesInPath = getDirectoriesInPath;
 module.exports.makeDirectoryRecursiveSync = makeDirectoryRecursiveSync;
 module.exports.getMtimeForFiles = getMtimeForFiles;
 module.exports.retryAsync = retryAsync;
+module.exports.stripErrorColon = stripErrorColon;
