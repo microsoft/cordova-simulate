@@ -4,6 +4,8 @@ var ncp = require('ncp');
 var path = require('path');
 var Q = require('q');
 var Watcher = require('./watcher').Watcher;
+var log = require('../utils/log');
+var utils = require('../utils/jsUtils');
 
 /**
  * @constructor
@@ -76,6 +78,10 @@ LiveReload.prototype._onFileChanged = function (fileRelativePath, parentDir) {
             this._socket.emit('lr-file-changed', { fileRelativePath: fileRelativePath });
             this._telemetry.sendTelemetry('live-reload', props);
         }.bind(this))
+        .catch(function (err) {
+            // Fail gracefully if live reload fails for some reason
+            log.warning('Error in live reload processing changed file: ' + utils.stripErrorColon(err));
+        })
         .done();
 };
 

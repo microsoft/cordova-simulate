@@ -196,13 +196,7 @@ Project.prototype.prepare = function () {
                     var platform = this._lastPlatform;
                     return prepareUtil.execCordovaPrepare(this.projectRoot, platform)
                         .catch(function (err) {
-                            err = err.message || err.toString();
-                            var pos = err.toLowerCase().indexOf('error: ');
-                            if (pos > -1) {
-                                err = err.slice(pos + 7);
-                            }
-                            err = err.split('\n')[0];
-                            log.warning('Preparing platform \'' + platform + '\' failed: ' + err);
+                            log.warning('Preparing platform \'' + platform + '\' failed: ' + utils.stripErrorColon(err));
                         }).then(function () {
                             // Note that we return true even if we caught an error (in case the error
                             // was in a hook, for example, and the prepare actually succeeded).
