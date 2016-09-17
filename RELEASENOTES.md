@@ -1,5 +1,11 @@
 # cordova-simulate Release Notes
 
+### 0.3.1 (Sep 17, 2016)
+* Fix [#152](https://github.com/Microsoft/cordova-simulate/issues/152): Published package fails when run on command line (windows newline)
+* Fix live-reload when launching from VS ([#151](https://github.com/Microsoft/cordova-simulate/pull/151))
+* If prepare fails, display a warning and continue ([#149](https://github.com/Microsoft/cordova-simulate/pull/149))
+* Adds ability to customize sim-host window title ([#147](https://github.com/Microsoft/cordova-simulate/pull/147))
+
 ### 0.3.0 (Aug 24, 2016)
 * Fix [#117](https://github.com/Microsoft/cordova-simulate/issues/117): cordova-number-entry fields indicate valid values are invalid ([#140](https://github.com/Microsoft/cordova-simulate/pull/140))
 * Fix battery status label in IE ([#138](https://github.com/Microsoft/cordova-simulate/pull/138))
