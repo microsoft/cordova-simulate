@@ -150,6 +150,43 @@ function makeDirectoryRecursiveSync(dirPath) {
     fs.mkdirSync(dirPath);
 }
 
+function getAppDataPath() {
+    var appDataPath;
+
+    switch (process.platform) {
+        case 'win32':
+        case 'win64':
+            appDataPath = process.env.APPDATA;
+            break;
+
+        case 'darwin':
+            appDataPath = process.env.HOMEPATH;
+            appDataPath = appDataPath && path.join(appDataPath, 'Library', 'Application Support');
+            break;
+
+        case 'linux':
+            appDataPath = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
+            appDataPath = appDataPath && path.join(appDataPath, '.config');
+            break;
+    }
+
+    if (!appDataPath) {
+        return '.';
+    }
+
+    // Ensure base path exists
+    if (!existsSync(appDataPath)) {
+        fs.mkdirSync(appDataPath);
+    }
+
+    appDataPath = path.join(appDataPath, 'cordova-simulate');
+    if (!existsSync(appDataPath)) {
+        fs.mkdirSync(appDataPath);
+    }
+
+    return appDataPath;
+}
+
 function getMtimeForFiles(dir) {
     var files = {};
 
@@ -211,6 +248,7 @@ module.exports.compareArrays = compareArrays;
 module.exports.existsSync = existsSync;
 module.exports.getDirectoriesInPath = getDirectoriesInPath;
 module.exports.makeDirectoryRecursiveSync = makeDirectoryRecursiveSync;
+module.exports.getAppDataPath = getAppDataPath;
 module.exports.getMtimeForFiles = getMtimeForFiles;
 module.exports.retryAsync = retryAsync;
 module.exports.stripErrorColon = stripErrorColon;

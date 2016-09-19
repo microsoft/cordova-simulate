@@ -6,7 +6,6 @@ var Q = require('q'),
     simStatus = require('sim-status'),
     telemetry = require('telemetry-helper');
 
-var registerOnInitialize = false;
 var socket;
 var serviceToPluginMap;
 
@@ -51,7 +50,7 @@ module.exports.initialize = function (pluginHandlers, services) {
     });
 
     socket.on('connect', function () {
-        deferred.resolve();
+        registerSimHost();
     });
 
     socket.on('connect_error', function (err) {
@@ -68,7 +67,9 @@ module.exports.initialize = function (pluginHandlers, services) {
         simStatus._fireAppHostReady();
     });
 
-    socket.once('init', function () {
+    socket.once('init', function (device) {
+        deferred.resolve(device);
+
         socket.on('exec', function (data) {
             var index;
 
@@ -114,19 +115,9 @@ module.exports.initialize = function (pluginHandlers, services) {
         socket.emit('ready');
     });
 
-    if (registerOnInitialize) {
-        registerSimHost();
-    }
-
     return deferred.promise;
 };
 
 module.exports.notifyPluginsReady = function () {
     telemetry.registerPluginServices(serviceToPluginMap);
-
-    if (socket) {
-        registerSimHost();
-    } else {
-        registerOnInitialize = true;
-    }
 };

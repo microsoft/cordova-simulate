@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
+require('polyfills');
+
 var customElements = require('./custom-elements'),
     db = require('db'),
     dialog = require('dialog'),
@@ -18,14 +20,17 @@ customElements.initialize(changePanelVisibilityCallback);
 
 window.addEventListener('DOMContentLoaded', function () {
     sizeContent();
-    Q.all([db.initialize(), initSocketPromise]).then(function () {
-        initializePlugins();
+    Q.all([db.initialize(), initSocketPromise]).then(function (result) {
+        initializePlugins(result[1]);
 
         // Some panels, like geolocation, need to be fully initialized before they can be hidden, otherwise they will
         // stop working. For that reason, we restore the initial collapse state to the panels only after plugin
         // initialization.
         getCollapsedPanels().forEach(function (panelId) {
-            document.getElementById(panelId).cordovaCollapsed = true;
+            var panel = document.getElementById(panelId);
+            if (panel) {
+                panel.cordovaCollapsed = true;
+            }
         });
     }).done();
 });
@@ -96,7 +101,7 @@ function clobber(clobbers, scope, clobberToPluginMap, pluginId) {
     });
 }
 
-function initializePlugins() {
+function initializePlugins(device) {
     plugins = {
         /** PLUGINS **/
     };
@@ -124,7 +129,7 @@ function initializePlugins() {
 
     Object.keys(plugins).forEach(function (pluginId) {
         try {
-            plugins[pluginId].initialize && plugins[pluginId].initialize();
+            plugins[pluginId] && plugins[pluginId].initialize && plugins[pluginId].initialize(device);
         } catch (e) {
             console.error('Error initializing plugin ' + pluginId);
             console.error(e);

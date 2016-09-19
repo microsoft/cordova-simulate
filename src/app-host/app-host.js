@@ -116,6 +116,9 @@ function setCordovaAndInitialize(originalCordova) {
         require('./touch-events').init();
     });
 
+    socket.on('refresh', function () {
+        document.location.reload(true);
+    });
 
     // firing of onNativeReady is delayed until SIM_HOST tells us it's ready
     socket.once('init', function () {
@@ -168,7 +171,7 @@ function setCordovaAndInitialize(originalCordova) {
             case 'ubuntu':
             case 'webos':
                 break;
-            // windows has an overriden bootstrap which does not fire
+            // windows has an overridden bootstrap which does not fire
             // onNativeReady
             case 'windows':
             // android specified here just to be explicit about it
@@ -227,3 +230,11 @@ Object.defineProperty(window, 'cordova', {
     get: getCordova
 });
 
+var originalUserAgent = window.navigator.userAgent;
+Object.defineProperty(window.navigator, 'userAgent', {
+    get: function () {
+        // The user agent is inserted here by the server when this file is served up.
+        var userAgent = '/** USER-AGENT **/';
+        return userAgent || originalUserAgent;
+    }
+});

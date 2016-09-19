@@ -27,7 +27,7 @@ function Messages(pluginId, socket) {
             if (handler) {
                 var args = data.args;
                 args.push(callback);
-                handler.apply(this, data.args);
+                handler.apply(this, args);
             }
         }
     });
@@ -105,6 +105,10 @@ Messages.prototype = {
             message: message,
             data: data
         });
+    },
+
+    refreshAppHost: function (device) {
+        this.socket.emit('refresh-app-host', device);
     },
 
     on: function (message, handler, isGlobal) {

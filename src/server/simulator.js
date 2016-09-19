@@ -9,7 +9,10 @@ var Q = require('q'),
     Configuration = require('./config'),
     Project = require('./project'),
     SimulationServer = require('./server'),
-    Telemetry = require('./telemetry');
+    Telemetry = require('./telemetry'),
+    device = require('./device');
+
+require('../modules/polyfills');
 
 /**
  * The Simulator model handles the information and state of the simulation. It coordinates
@@ -37,18 +40,17 @@ function Simulator(opts) {
         }
     });
 
-    var platform = opts.platform || 'browser';
-
     this._telemetry = new Telemetry();
 
     // create an intermediate object that expose only the
     // required public API for the simulation objects
     var simulatorProxy = {
         config: this.config,
-        telemetry: this.telemetry
+        telemetry: this.telemetry,
+        updateDevice: this.updateDevice
     };
 
-    this._project = new Project(simulatorProxy, platform);
+    this._project = new Project(simulatorProxy, opts.platform);
     this._server = new SimulationServer(simulatorProxy, this._project, this.hostRoot);
 
     this._telemetry.initialize(this._project, this._config.telemetry);
@@ -134,8 +136,8 @@ Simulator.prototype.simHostUrl = function () {
  * Start the simulation for the current project with the provided information at the
  * time of creating the instance.
  * @param {object} opts Optional configuration, such as port number, dir and simulation path.
- * @return {Promise} A promise that is fullfilled when the simulation starts and the server
- * is ready listeninig for new connections. If something fails, it is rejected.
+ * @return {Promise} A promise that is fulfilled when the simulation starts and the server
+ * is ready listening for new connections. If something fails, it is rejected.
  */
 Simulator.prototype.startSimulation = function () {
     if (this.isActive()) {
@@ -172,7 +174,7 @@ Simulator.prototype.startSimulation = function () {
 
 /**
  * Stops the current simulation if any.
- * @return {Promise} A promise that is fullfilled when the simulation stops and the server
+ * @return {Promise} A promise that is fulfilled when the simulation stops and the server
  * release the current connections. If something fails, it is rejected.
  */
 Simulator.prototype.stopSimulation = function () {
@@ -187,6 +189,14 @@ Simulator.prototype.stopSimulation = function () {
             this._project.reset();
             this._state = Simulator.State.IDLE;
         }.bind(this));
+};
+
+/**
+ * Specify a new device to be used next time the app is restarted (affects user agent).
+ * @param newDevice
+ */
+Simulator.prototype.updateDevice = function (newDevice) {
+    this.config.deviceInfo = device.updateDeviceInfo(newDevice);
 };
 
 /**
@@ -217,6 +227,9 @@ function parseOptions(opts) {
     config.forcePrepare = !!opts.forceprepare;
     config.xhrProxy = opts.hasOwnProperty('corsproxy') ? !!opts.corsproxy : true;
     config.touchEvents = opts.hasOwnProperty('touchevents') ? !!opts.touchevents : true;
+
+    config.deviceInfo = device.getDeviceInfo(opts.platform, opts.device);
+    opts.platform = config.deviceInfo.platform;
 
     return config;
 }

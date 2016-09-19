@@ -68,7 +68,8 @@ Object.defineProperties(Project.prototype, {
 Project.DEFAULT_PLUGINS = [
     'cordova-plugin-geolocation',
     'exec',
-    'events'
+    'events',
+    'cordova-plugin-device'
 ];
 
 Project.prototype.initPlugins = function () {

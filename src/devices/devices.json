@@ -1,0 +1,460 @@
+{
+  "android": [
+    {
+      "id": "Nexus4",
+      "name": "Nexus 4",
+      "model": "Mako",
+      "device-version-template": "<os-version>",
+      "default-os-version": "4.2.2",
+      "uuid": "6b356755575fce31",
+      "manufacturer": "LG",
+      "resolution": {
+        "width": 768,
+        "height": 1280
+      },
+      "viewport": {
+        "width": 384,
+        "height": 640
+      },
+      "pixel-ratio": 2
+    },
+    {
+      "id": "Nexus6",
+      "name": "Nexus 6",
+      "model": "Shamu",
+      "device-version-template": "<os-version>",
+      "default-os-version": "5.0",
+      "uuid": "6b356755575fce31",
+      "manufacturer": "Motorola",
+      "resolution": {
+        "width": 1440,
+        "height": 2560
+      },
+      "viewport": {
+        "width": 412,
+        "height": 732
+      },
+      "pixel-ratio": 3.5,
+      "default": true
+    },
+    {
+      "id": "Nexus7",
+      "name": "Nexus 7",
+      "model": "Grouper",
+      "device-version-template": "<os-version>",
+      "default-os-version": "4.2.2",
+      "uuid": "6b356755575fce31",
+      "manufacturer": "Asus",
+      "resolution": {
+        "width": 800,
+        "height": 1280
+      },
+      "viewport": {
+        "width": 604,
+        "height": 966
+      },
+      "pixel-ratio": 1.325
+    },
+    {
+      "id": "Nexus10",
+      "name": "Nexus 10",
+      "model": "Manta",
+      "device-version-template": "<os-version>",
+      "default-os-version": "4.2.2",
+      "uuid": "6b356755575fce31",
+      "manufacturer": "Samsung",
+      "resolution": {
+        "width": 1600,
+        "height": 2560
+      },
+      "viewport": {
+        "width": 800,
+        "height": 1280
+      },
+      "pixel-ratio": 2
+    },
+    {
+      "id": "OptimusL70",
+      "name": "LG Optimus L70",
+      "model": "W5",
+      "device-version-template": "<os-version>",
+      "default-os-version": "4.4.2",
+      "uuid": "6b356755575fce31",
+      "manufacturer": "LG",
+      "resolution": {
+        "width": 480,
+        "height": 800
+      },
+      "viewport": {
+        "width": 384,
+        "height": 640
+      },
+      "pixel-ratio": 1.25,
+      "user-agent-name": "LGMS323"
+    },
+    {
+      "id": "G5",
+      "name": "LG G5",
+      "model": "H850",
+      "device-version-template": "<os-version>",
+      "default-os-version": "6.0",
+      "uuid": "6b356755575fce31",
+      "manufacturer": "LG",
+      "resolution": {
+        "width": 1440,
+        "height": 2560
+      },
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "pixel-ratio": 4,
+      "user-agent-name": "LG-H850"
+    },
+    {
+      "id": "GalaxyNote7",
+      "name": "Galaxy Note 7",
+      "model": "Grace",
+      "device-version-template": "<os-version>",
+      "default-os-version": "6.0",
+      "uuid": "6b356755575fce31",
+      "manufacturer": "Samsung",
+      "resolution": {
+        "width": 1440,
+        "height": 2560
+      },
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "pixel-ratio": 4,
+      "user-agent-name": "SM-N930A"
+    },
+    {
+      "id": "GalaxyS5",
+      "name": "Galaxy S5",
+      "model": "klte",
+      "device-version-template": "<os-version>",
+      "default-os-version": "4.4.2",
+      "uuid": "6b356755575fce31",
+      "manufacturer": "Samsung",
+      "resolution": {
+        "width": 1080,
+        "height": 1920
+      },
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "pixel-ratio": 3,
+      "user-agent-name": "SM-G900A"
+    }
+  ],
+  "ios": [
+    {
+      "id": "iPhone4",
+      "name": "iPhone 4",
+      "model": "iPhone3,1",
+      "device-version-template": "<os-version>",
+      "default-os-version": "4",
+      "uuid": "99165CCD-0F74-4881-A271-47D1E176071A",
+      "manufacturer": "Apple",
+      "resolution": {
+        "width": 640,
+        "height": 960
+      },
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "pixel-ratio": 2
+    },
+    {
+      "id": "iPhone5",
+      "name": "iPhone 5",
+      "model": "iPhone5,1",
+      "device-version-template": "<os-version>",
+      "default-os-version": "6",
+      "uuid": "99165CCD-0F74-4881-A271-47D1E176071A",
+      "manufacturer": "Apple",
+      "resolution": {
+        "width": 640,
+        "height": 1136
+      },
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pixel-ratio": 2
+    },
+    {
+      "id": "iPhone6",
+      "name": "iPhone 6",
+      "model": "iPhone7,2",
+      "device-version-template": "<os-version>",
+      "default-os-version": "8",
+      "uuid": "99165CCD-0F74-4881-A271-47D1E176071A",
+      "manufacturer": "Apple",
+      "resolution": {
+        "width": 750,
+        "height": 1334
+      },
+      "viewport": {
+        "width": 375,
+        "height": 667
+      },
+      "pixel-ratio": 2,
+      "default": true
+    },
+    {
+      "id": "iPhone6Plus",
+      "name": "iPhone 6 Plus",
+      "model": "iPhone7,1",
+      "device-version-template": "<os-version>",
+      "default-os-version": "8",
+      "uuid": "99165CCD-0F74-4881-A271-47D1E176071A",
+      "manufacturer": "Apple",
+      "resolution": {
+        "width": 1242,
+        "height": 2208
+      },
+      "viewport": {
+        "width": 414,
+        "height": 736
+      },
+      "pixel-ratio": 3
+    },
+    {
+      "id": "iPad",
+      "name": "iPad",
+      "model": "iPad5,3",
+      "device-version-template": "<os-version>",
+      "default-os-version": "8",
+      "uuid": "99165CCD-0F74-4881-A271-47D1E176071A",
+      "manufacturer": "Apple",
+      "resolution": {
+        "width": 1536,
+        "height": 2048
+      },
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "pixel-ratio": 2
+    },
+    {
+      "id": "iPadPro",
+      "name": "iPad Pro",
+      "model": "iPad6,7",
+      "device-version-template": "<os-version>",
+      "default-os-version": "9",
+      "uuid": "99165CCD-0F74-4881-A271-47D1E176071A",
+      "manufacturer": "Apple",
+      "resolution": {
+        "width": 2048,
+        "height": 2732
+      },
+      "viewport": {
+        "width": 1024,
+        "height": 1366
+      },
+      "pixel-ratio": 2
+    }
+  ],
+  "windows": [
+    {
+      "id": "Lumia930",
+      "name": "Lumia 930",
+      "model": "Nokia Lumia 930",
+      "device-version-template": "<map-os-version>",
+      "default-os-version": "8.1",
+      "uuid": "7c7c1abe-3253-49bd-baf3-7d4605b603f5",
+      "manufacturer": "NOKIA",
+      "resolution": {
+        "width": 1080,
+        "height": 1920
+      },
+      "viewport": {
+        "width": 412,
+        "height": 732
+      },
+      "pixel-ratio": 2.6
+    },
+    {
+      "id": "Lumia950",
+      "name": "Lumia 950",
+      "model": "Microsoft Lumia 950",
+      "device-version-template": "<map-os-version>",
+      "default-os-version": "10",
+      "uuid": "7c7c1abe-3253-49bd-baf3-7d4605b603f5",
+      "manufacturer": "Microsoft",
+      "resolution": {
+        "width": 1440,
+        "height": 2560
+      },
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "pixel-ratio": 4,
+      "default": true
+    },
+    {
+      "id": "SurfacePro",
+      "name": "Surface Pro",
+      "model": "Microsoft Surface Pro",
+      "device-version-template": "<map-os-version>",
+      "default-os-version": "10",
+      "uuid": "7c7c1abe-3253-49bd-baf3-7d4605b603f5",
+      "manufacturer": "Microsoft",
+      "resolution": {
+        "width": 1920,
+        "height": 1080
+      },
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "pixel-ratio": 1,
+      "desktop-user-agent": true
+    }
+  ],
+  "generic": [
+    {
+      "id": "Generic320x480",
+      "name": "Generic (320x480)",
+      "model": "Generic",
+      "device-version-template": "Generic",
+      "uuid": "3321ebb4-d409-4621-962d-c2fd5f490fee",
+      "manufacturer": "Generic",
+      "resolution": {
+        "width": 640,
+        "height": 960
+      },
+      "viewport": {
+        "width": 320,
+        "height": 480
+      },
+      "pixel-ratio": 2
+    },
+    {
+      "id": "Generic320x568",
+      "name": "Generic (320x568)",
+      "model": "Generic",
+      "device-version-template": "Generic",
+      "uuid": "3321ebb4-d409-4621-962d-c2fd5f490fee",
+      "manufacturer": "Generic",
+      "resolution": {
+        "width": 640,
+        "height": 1136
+      },
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "pixel-ratio": 2
+    },
+    {
+      "id": "Generic360x640",
+      "name": "Generic (360x640)",
+      "model": "Generic",
+      "device-version-template": "Generic",
+      "uuid": "3321ebb4-d409-4621-962d-c2fd5f490fee",
+      "manufacturer": "Generic",
+      "resolution": {
+        "width": 1440,
+        "height": 2560
+      },
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "pixel-ratio": 4
+    },
+    {
+      "id": "Generic384x640",
+      "name": "Generic (384x640)",
+      "model": "Generic",
+      "device-version-template": "Generic",
+      "uuid": "3321ebb4-d409-4621-962d-c2fd5f490fee",
+      "manufacturer": "Generic",
+      "resolution": {
+        "width": 768,
+        "height": 1280
+      },
+      "viewport": {
+        "width": 384,
+        "height": 640
+      },
+      "pixel-ratio": 2
+    },
+    {
+      "id": "Generic412x732",
+      "name": "Generic (412x732)",
+      "model": "Generic",
+      "device-version-template": "Generic",
+      "uuid": "3321ebb4-d409-4621-962d-c2fd5f490fee",
+      "manufacturer": "Generic",
+      "resolution": {
+        "width": 1440,
+        "height": 2560
+      },
+      "viewport": {
+        "width": 412,
+        "height": 732
+      },
+      "pixel-ratio": 3.5
+    },
+    {
+      "id": "Generic768x1024",
+      "name": "Generic Tablet (768x1024)",
+      "model": "Generic",
+      "device-version-template": "Generic",
+      "uuid": "3321ebb4-d409-4621-962d-c2fd5f490fee",
+      "manufacturer": "Generic",
+      "resolution": {
+        "width": 1536,
+        "height": 2048
+      },
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "pixel-ratio": 2
+    },
+    {
+      "id": "Generic800x1280",
+      "name": "Generic Tablet (800x1280)",
+      "model": "Generic",
+      "device-version-template": "Generic",
+      "uuid": "3321ebb4-d409-4621-962d-c2fd5f490fee",
+      "manufacturer": "Generic",
+      "resolution": {
+        "width": 1600,
+        "height": 2560
+      },
+      "viewport": {
+        "width": 800,
+        "height": 1280
+      },
+      "pixel-ratio": 2
+    },
+    {
+      "id": "Generic1920x1080",
+      "name": "Generic Desktop (1920x1080)",
+      "model": "Generic",
+      "device-version-template": "Generic",
+      "uuid": "3321ebb4-d409-4621-962d-c2fd5f490fee",
+      "manufacturer": "Generic",
+      "resolution": {
+        "width": 1920,
+        "height": 1080
+      },
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "pixel-ratio": 1
+    }
+  ]
+}

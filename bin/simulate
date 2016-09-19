@@ -15,7 +15,7 @@ try {
         logErrorAndExit(e);
     });
 } catch (e) {
-    logErrorAndExit(e.message || e);
+    logErrorAndExit(e);
 }
 
 function logErrorAndExit(e) {
@@ -35,7 +35,7 @@ function unknownOptHandler(optName) {
 function processArgs() {
     try {
         var parserOptions = {
-            string: ['dir', 'simhostui', 'target', 'simulationpath'],
+            string: ['dir', 'simhostui', 'target', 'simulationpath', 'device'],
             boolean: ['livereload', 'forceprepare', 'corsproxy'],
             default: {
                 dir: null,
@@ -44,7 +44,8 @@ function processArgs() {
                 simhostui: null,
                 target: null,
                 corsproxy: true,
-                simulationpath: null
+                simulationpath: null,
+                device: null
             },
             unknown: unknownOptHandler
         };
@@ -63,7 +64,8 @@ function processArgs() {
             simhostui: parsed.simhostui,
             target: parsed.target,
             corsproxy: parsed.corsproxy,
-            simulationpath: parsed.simulationpath
+            simulationpath: parsed.simulationpath,
+            device: parsed.device
         };
     } catch (err) {
         throw new Error('Error parsing arguments: ' + (err.message || err) + os.EOL + os.EOL + getUsageString());
@@ -74,6 +76,7 @@ function getUsageString() {
     var message = 'Usage:' + os.EOL + 'simulate';
     var options = [
         '[PLATFORM]',
+        '[--device DEVICE_ID]',
         '[--corsproxy (CORS_PROXY)]',
         '[--dir DIR]',
         '[--livereload (LIVERELOAD)]',
