@@ -228,6 +228,8 @@ function parseOptions(opts) {
     config.xhrProxy = opts.hasOwnProperty('corsproxy') ? !!opts.corsproxy : true;
     config.touchEvents = opts.hasOwnProperty('touchevents') ? !!opts.touchevents : true;
 
+    config.lang = opts.lang;
+
     config.deviceInfo = device.getDeviceInfo(opts.platform, opts.device);
     opts.platform = config.deviceInfo.platform;
 

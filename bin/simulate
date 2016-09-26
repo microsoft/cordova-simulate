@@ -35,7 +35,7 @@ function unknownOptHandler(optName) {
 function processArgs() {
     try {
         var parserOptions = {
-            string: ['dir', 'simhostui', 'target', 'simulationpath', 'device'],
+            string: ['dir', 'simhostui', 'target', 'simulationpath', 'device', 'lang'],
             boolean: ['livereload', 'forceprepare', 'corsproxy'],
             default: {
                 dir: null,
@@ -45,7 +45,8 @@ function processArgs() {
                 target: null,
                 corsproxy: true,
                 simulationpath: null,
-                device: null
+                device: null,
+                lang: null
             },
             unknown: unknownOptHandler
         };
@@ -65,7 +66,8 @@ function processArgs() {
             target: parsed.target,
             corsproxy: parsed.corsproxy,
             simulationpath: parsed.simulationpath,
-            device: parsed.device
+            device: parsed.device,
+            lang: parsed.lang
         };
     } catch (err) {
         throw new Error('Error parsing arguments: ' + (err.message || err) + os.EOL + os.EOL + getUsageString());
@@ -84,7 +86,8 @@ function getUsageString() {
         '[--forceprepare (FORCE_PREPARE)]',
         '[--simhostui SIM_HOST_UI_MODULE_PATH]',
         '[--simulationpath SIMULATION_PATH]',
-        '[--target TARGET]'
+        '[--target TARGET]',
+        '[--lang LANG]'
     ];
 
     return message + options.join(' ') + os.EOL;

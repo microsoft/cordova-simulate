@@ -12,7 +12,8 @@ var fs = require('fs'),
     log = require('./utils/log'),
     SimulationFiles = require('./sim-files'),
     SocketServer = require('./socket'),
-    pluginSimulationFiles = require('./plugin-files');
+    pluginSimulationFiles = require('./plugin-files'),
+    utils = require('./utils/jsUtils');
 
 /**
  * Maximum length of <meta> tag we search for when modifying CSP properties
@@ -281,10 +282,11 @@ SimulationServer.prototype._streamSimHostHtml = function (request, response) {
     // If we haven't ever prepared, do so before we try to generate sim-host, so we know our list of plugins is up-to-date.
     // Then create sim-host.js (if it is out-of-date) so it is ready when it is requested.
     var project = this._project;
+    var config = this._simulatorProxy.config;
 
     project.prepare()
         .then(function () {
-            var simulationFilePath = this._simulatorProxy.config.simulationFilePath;
+            var simulationFilePath = config.simulationFilePath;
 
             return this._simulationFiles.createSimHostJsFile(project, simulationFilePath);
         }.bind(this))
@@ -300,14 +302,16 @@ SimulationServer.prototype._streamSimHostHtml = function (request, response) {
             Object.keys(pluginList).forEach(function (pluginId) {
                 var pluginPath = pluginList[pluginId];
                 if (pluginPath) {
+                    var lang = config.lang;
+
                     var panelsHtmlFile = path.join(pluginPath, panelsHtmlBasename);
                     if (fs.existsSync(panelsHtmlFile)) {
-                        panelsHtml.push(processPluginHtml(fs.readFileSync(panelsHtmlFile, 'utf8'), pluginId));
+                        panelsHtml.push(processPluginHtml(panelsHtmlFile, pluginId, lang));
                     }
 
                     var dialogsHtmlFile = path.join(pluginPath, dialogsHtmlBasename);
                     if (fs.existsSync(dialogsHtmlFile)) {
-                        dialogsHtml.push(processPluginHtml(fs.readFileSync(dialogsHtmlFile, 'utf8'), pluginId));
+                        dialogsHtml.push(processPluginHtml(dialogsHtmlFile, pluginId, lang));
                     }
                 }
             });
@@ -377,7 +381,13 @@ var parseStartPage = function (projectRoot) {
     return 'index.html'; // default uri
 };
 
-function processPluginHtml(html, pluginId) {
+function processPluginHtml(htmlFile, pluginId, lang) {
+    var html = fs.readFileSync(htmlFile, 'utf8');
+
+    if (lang) {
+        html = localizeHtmlFile(htmlFile, html, lang);
+    }
+
     var tags = [
         /<script[^>]*src\s*=\s*"([^"]*)"[^>]*>/g,
         /<link[^>]*href\s*=\s*"([^"]*)"[^>]*>/g
@@ -392,6 +402,61 @@ function processPluginHtml(html, pluginId) {
         // Remove comments
         return '';
     });
+}
+
+function localizeHtmlFile(htmlFile, html, lang) {
+    // Replace localized strings
+    var targetJsonFile = getI18nJsonFile(htmlFile, lang);
+    if (utils.existsSync(targetJsonFile)) {
+        var locItems;
+        try {
+            locItems = require(targetJsonFile);
+        } catch (e) {
+            // Don't care if it fails
+            return;
+        }
+
+        locItems.forEach(function (locItem) {
+            html = replaceLocalizationItem(html, locItem);
+        });
+    }
+    return html;
+}
+
+function replaceLocalizationItem(html, locItem) {
+    // To try and be as targeted as possible, we replace attribute by looking for 'attribute="value"', and
+    // regular text by looking for '>text<'. If we don't find it that way, we revert to a simpler approach.
+
+    var attribute = locItem.attribute;
+    var source, target;
+    if (attribute) {
+        source = attribute + '="' + locItem.source + '"';
+        target = attribute + '="' + locItem.target + '"';
+    } else {
+        source = '>' + locItem.source + '<';
+        target = '>' + locItem.target + '<';
+    }
+    var newHtml = html.replace(source, target);
+    if (newHtml !== html) {
+        return newHtml;
+    }
+
+    // If didn't find it, try something simpler
+    if (attribute) {
+        source = '"' + locItem.source + '"';
+        target = '"' + locItem.target + '"';
+    } else {
+        source = locItem.source;
+        target = locItem.target;
+    }
+    return html.replace(source, target);
+}
+
+function getI18nJsonFile(htmlFile, lang) {
+    var targetJsonFile = htmlFile.split(path.sep);
+    var pos = targetJsonFile.indexOf('src');
+    targetJsonFile.splice(pos + 1, 0, 'i18n', lang);
+    return targetJsonFile.join(path.sep) + '.i18n.json';
 }
 
 module.exports = SimulationServer;
