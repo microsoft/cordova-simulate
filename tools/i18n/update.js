@@ -25,23 +25,26 @@ var langs = ['zh-CHS', 'zh-CHT', 'cs', 'de', 'es', 'fr', 'it', 'ja', 'ko', 'pl',
 var htmlRootPath = path.resolve(__dirname, '../../src');
 var htmlFiles = files.findFiles(path.join(htmlRootPath, 'plugins'), 'html');
 
-// Reads and 'xlf' files under this directory
+// Reads any 'xlf' files under this directory
 var xliffRootPath = path.resolve(__dirname, 'xliff');
 var xliffFiles = files.findFiles(xliffRootPath, 'xlf');
 
 var xliffs = {};
 xliffFiles.forEach(function (xliffFile) {
-    var xlfJson = xliffConv.parseXliffFile(xliffFile);
-    // Delete xliffFile if original HTML file no longer exists
-    if (htmlFiles.indexOf(path.resolve(htmlRootPath, xlfJson.original)) === -1) {
-        files.removeFileAndDirectoryIfEmpty(xliffFile);
-    } else {
-        xliffs[xlfJson.lang] = xliffs[xlfJson.lang] || {};
-        xliffs[xlfJson.lang][xlfJson.original] = xlfJson;
-    }
+    var xlfJsons = xliffConv.parseXliffFile(xliffFile);
+    xlfJsons.forEach(function (xlfJson) {
+        // Delete xliffFile if original HTML file no longer exists
+        if (htmlFiles.indexOf(path.resolve(htmlRootPath, xlfJson.original)) === -1) {
+            files.removeFileAndDirectoryIfEmpty(xliffFile);
+        } else {
+            xliffs[xlfJson.lang] = xliffs[xlfJson.lang] || {};
+            xliffs[xlfJson.lang][xlfJson.original] = xlfJson;
+        }
+    });
 });
 
-htmlFiles.forEach(function (htmlFile) {
+var langXliffs = {};
+Promise.all(htmlFiles.map(function (htmlFile) {
     if (path.basename(htmlFile) === 'sim-host.html') {
         return;
     }
@@ -73,21 +76,30 @@ htmlFiles.forEach(function (htmlFile) {
         return previous;
     }, {});
 
-    updateLanguageXlfJson(sourceHtmlRelativePath, strings).then(function (result) {
-        result.forEach(function (xlfJson) {
-            // Generate XLIFF file
-            var xlfFile = path.resolve(__dirname, 'xliff', xlfJson.lang, sourceHtmlRelativePath) + '.xlf';
-            var xliffDoc = xliffConv.parseJson(xlfJson);
-            files.writeFileSync(xlfFile, pd.xml(new XMLSerializer().serializeToString(xliffDoc)));
+    return updateLanguageXlfJson(sourceHtmlRelativePath, strings)
+        .then(function (result) {
+            result.forEach(function (xlfJson) {
+                // Add to the list of xlfJsons for this lang (so we can later build a single xlf file per lang)
+                var lang = xlfJson.lang;
+                langXliffs[lang] = langXliffs[lang] || [];
+                langXliffs[lang].push(xlfJson);
 
-            // Generate translated HTML file
-            var htmlFile = path.resolve(__dirname, '../../src/i18n', xlfJson.lang, sourceHtmlRelativePath);
-            applyTranslationsToDocument(xlfJson, stringsById);
-            files.writeFileSync(htmlFile, parse5.serialize(fragment, {treeAdapter: htmlparser2TreeAdapter}));
+                // Generate translated HTML file
+                var htmlFile = path.resolve(__dirname, '../../src/i18n', lang, sourceHtmlRelativePath);
+                applyTranslationsToDocument(xlfJson, stringsById);
+                files.writeFileSync(htmlFile, parse5.serialize(fragment, {treeAdapter: htmlparser2TreeAdapter}));
+            });
+            console.log('HTML files updated for ' + chalk.cyan(sourceHtmlRelativePath));
+        }).catch(function (err) {
+            console.log('ERROR in updateLanguageXlfJson():\n' + err.stack);
         });
-        console.log('XLIFF and HTML files updated for ' + chalk.cyan(sourceHtmlRelativePath));
-    }).catch(function (err) {
-        console.log('ERROR in updateLanguageXlfJson():\n' + err.stack);
+})).then(function () {
+    langs.forEach(function (lang) {
+        // Generate XLIFF file for this language
+        var xlfFile = path.resolve(__dirname, 'xliff', lang + '.xlf');
+        var xliffDoc = xliffConv.parseJson(langXliffs[lang]);
+        files.writeFileSync(xlfFile, pd.xml(new XMLSerializer().serializeToString(xliffDoc)));
+        console.log('XLIFF file updated for ' + chalk.cyan(lang));
     });
 });
 
