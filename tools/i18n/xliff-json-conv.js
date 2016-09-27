@@ -8,30 +8,28 @@ function parseXliffFile(xliffFile) {
 }
 
 function parseXliff(xliff) {
-    var result = {};
-
     var xliffDoc = new DOMParser().parseFromString(xliff, 'text/xml');
     var xliffNode = xliffDoc.firstChild;
-    var fileNode = getElementChild(xliffNode, 'file');
+    return getElementChildren(xliffNode, 'file').map(function (fileNode) {
+        var result = {};
+        result.original = fileNode.getAttribute('original');
+        result.lang = fileNode.getAttribute('target-language');
+        var items = {};
+        result.items = items;
 
-    result.original = fileNode.getAttribute('original');
-    result.lang = fileNode.getAttribute('target-language');
-    var items = {};
-    result.items = items;
-
-    var bodyNode = getElementChild(fileNode, 'body');
-    var transUnitNodes = getElementChildren(bodyNode, 'trans-unit');
-    transUnitNodes.forEach(function (transUnitNode) {
-        var targetNode = getElementChild(transUnitNode, 'target');
-        items[transUnitNode.getAttribute('id')] = {
-            "text": getElementChild(transUnitNode, 'source').firstChild.data,
-            "state": targetNode.getAttribute('state'),
-            "stateQualifier": targetNode.getAttribute('state-qualifier'),
-            "translatedText": targetNode.firstChild.data
-        };
+        var bodyNode = getElementChild(fileNode, 'body');
+        var transUnitNodes = getElementChildren(bodyNode, 'trans-unit');
+        transUnitNodes.forEach(function (transUnitNode) {
+            var targetNode = getElementChild(transUnitNode, 'target');
+            items[transUnitNode.getAttribute('id')] = {
+                "text": getElementChild(transUnitNode, 'source').firstChild.data,
+                "state": targetNode.getAttribute('state'),
+                "stateQualifier": targetNode.getAttribute('state-qualifier'),
+                "translatedText": targetNode.firstChild.data
+            };
+        });
+        return result;
     });
-
-    return result;
 }
 
 function getElementChild(node, tagName) {
@@ -60,40 +58,43 @@ function getElementChildren(node, tagName) {
 
 /**
  *
- * @param xlfJson
+ * @param xlfJsons
  * @returns {Document}
  */
-function parseJson(xlfJson) {
-    var targetLanguage = xlfJson.lang;
+function parseJson(xlfJsons) {
     var xliffDoc = new DOMParser().parseFromString('<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2"></xliff>', 'text/xml');
     var xliffNode = xliffDoc.firstChild;
 
-    var fileNode = xliffDoc.createElement('file');
-    fileNode.setAttribute('original', xlfJson.original);
-    fileNode.setAttribute('source-language', 'en');
-    fileNode.setAttribute('target-language', targetLanguage);
-    xliffNode.appendChild(fileNode);
+    xlfJsons.forEach(function (xlfJson) {
+        var targetLanguage = xlfJson.lang;
 
-    var bodyNode = xliffDoc.createElement('body');
-    fileNode.appendChild(bodyNode);
+        var fileNode = xliffDoc.createElement('file');
+        fileNode.setAttribute('original', xlfJson.original);
+        fileNode.setAttribute('source-language', 'en');
+        fileNode.setAttribute('target-language', targetLanguage);
+        xliffNode.appendChild(fileNode);
 
-    var items = xlfJson.items;
-    var ids = Object.getOwnPropertyNames(items);
+        var bodyNode = xliffDoc.createElement('body');
+        fileNode.appendChild(bodyNode);
 
-    // Create an array of strings to be translated, for machine translation
-    var fromStrings = ids.map(function (id) {
-        return items[id].text;
-    });
+        var items = xlfJson.items;
+        var ids = Object.getOwnPropertyNames(items);
 
-    ids.forEach(function (id, index) {
-        var item = items[id];
+        // Create an array of strings to be translated, for machine translation
+        var fromStrings = ids.map(function (id) {
+            return items[id].text;
+        });
 
-        var transUnitNode = xliffDoc.createElement('trans-unit');
-        transUnitNode.setAttribute('id', id);
-        bodyNode.appendChild(transUnitNode);
+        ids.forEach(function (id, index) {
+            var item = items[id];
 
-        createSourceNode(xliffDoc, transUnitNode, 'en', item.text);
-        createTargetNode(xliffDoc, transUnitNode, targetLanguage, item.translatedText, item.state, item.stateQualifier);
+            var transUnitNode = xliffDoc.createElement('trans-unit');
+            transUnitNode.setAttribute('id', id);
+            bodyNode.appendChild(transUnitNode);
+
+            createSourceNode(xliffDoc, transUnitNode, 'en', item.text);
+            createTargetNode(xliffDoc, transUnitNode, targetLanguage, item.translatedText, item.state, item.stateQualifier);
+        });
     });
 
     return xliffDoc;
