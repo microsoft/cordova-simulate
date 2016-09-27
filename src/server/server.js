@@ -382,11 +382,15 @@ var parseStartPage = function (projectRoot) {
 };
 
 function processPluginHtml(htmlFile, pluginId, lang) {
+    if (lang) {
+        var localizedHtmlFile = getLocalizedHtmlFile(htmlFile, lang);
+        if (localizedHtmlFile) {
+            htmlFile = localizedHtmlFile;
+        }
+    }
+
     var html = fs.readFileSync(htmlFile, 'utf8');
 
-    if (lang) {
-        html = localizeHtmlFile(htmlFile, html, lang);
-    }
 
     var tags = [
         /<script[^>]*src\s*=\s*"([^"]*)"[^>]*>/g,
@@ -404,59 +408,20 @@ function processPluginHtml(htmlFile, pluginId, lang) {
     });
 }
 
-function localizeHtmlFile(htmlFile, html, lang) {
-    // Replace localized strings
-    var targetJsonFile = getI18nJsonFile(htmlFile, lang);
-    if (utils.existsSync(targetJsonFile)) {
-        var locItems;
-        try {
-            locItems = require(targetJsonFile);
-        } catch (e) {
-            // Don't care if it fails
-            return;
-        }
-
-        locItems.forEach(function (locItem) {
-            html = replaceLocalizationItem(html, locItem);
-        });
-    }
-    return html;
-}
-
-function replaceLocalizationItem(html, locItem) {
-    // To try and be as targeted as possible, we replace attribute by looking for 'attribute="value"', and
-    // regular text by looking for '>text<'. If we don't find it that way, we revert to a simpler approach.
-
-    var attribute = locItem.attribute;
-    var source, target;
-    if (attribute) {
-        source = attribute + '="' + locItem.source + '"';
-        target = attribute + '="' + locItem.target + '"';
-    } else {
-        source = '>' + locItem.source + '<';
-        target = '>' + locItem.target + '<';
-    }
-    var newHtml = html.replace(source, target);
-    if (newHtml !== html) {
-        return newHtml;
+function getLocalizedHtmlFile(htmlFile, lang) {
+    // For built-in plugins, look under src/i18n/lang for the localized file
+    var localizedHtmlFile = htmlFile.split(path.sep);
+    var pos = localizedHtmlFile.indexOf('src');
+    localizedHtmlFile.splice(pos + 1, 0, 'i18n', lang);
+    localizedHtmlFile = localizedHtmlFile.join(path.sep);
+    if (utils.existsSync(localizedHtmlFile)) {
+        return localizedHtmlFile
     }
 
-    // If didn't find it, try something simpler
-    if (attribute) {
-        source = '"' + locItem.source + '"';
-        target = '"' + locItem.target + '"';
-    } else {
-        source = locItem.source;
-        target = locItem.target;
-    }
-    return html.replace(source, target);
-}
-
-function getI18nJsonFile(htmlFile, lang) {
-    var targetJsonFile = htmlFile.split(path.sep);
-    var pos = targetJsonFile.indexOf('src');
-    targetJsonFile.splice(pos + 1, 0, 'i18n', lang);
-    return targetJsonFile.join(path.sep) + '.i18n.json';
+    // If didn't find that, look under directory that contains the source html files, which will be the case for plugins
+    // that define their own simulation.
+    localizedHtmlFile = path.join(path.dirname(htmlFile), 'i18n', lang, path.basename(htmlFile));
+    return utils.existsSync(localizedHtmlFile) ? localizedHtmlFile : null;
 }
 
 module.exports = SimulationServer;
