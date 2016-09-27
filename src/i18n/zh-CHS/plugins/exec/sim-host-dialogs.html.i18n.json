@@ -1,0 +1,43 @@
+[
+  {
+    "source": "Unhandled Exec Call",
+    "target": "未处理的 Exec 调用",
+    "attribute": "caption"
+  },
+  {
+    "source": "There is no handler for the following exec call:",
+    "target": "没有以下的 exec 调用的处理程序︰"
+  },
+  {
+    "source": "service",
+    "target": "服务"
+  },
+  {
+    "source": "action",
+    "target": "行动"
+  },
+  {
+    "source": "Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.",
+    "target": "请输入下面返回此调用，然后指示是否这表示成功或失败的一个值。如果你想要总是响应这个召唤，这一结果，选择 '坚持' 选项。"
+  },
+  {
+    "source": "The value must be valid JSON (",
+    "target": "值必须是有效的 JSON （"
+  },
+  {
+    "source": "error",
+    "target": "错误"
+  },
+  {
+    "source": "Persist",
+    "target": "坚持"
+  },
+  {
+    "source": "Success",
+    "target": "成功"
+  },
+  {
+    "source": "Failure",
+    "target": "失败"
+  }
+]

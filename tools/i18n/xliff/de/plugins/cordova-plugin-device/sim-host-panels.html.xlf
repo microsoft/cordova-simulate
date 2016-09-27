@@ -1,0 +1,64 @@
+<xliff 
+  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+  <file original="plugins\cordova-plugin-device\sim-host-panels.html" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="caption-c045b281">
+        <source xml:lang="en">Device</source>
+        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Gerät</target>
+      </trans-unit>
+      <trans-unit id="label-db946bb7">
+        <source xml:lang="en">Platform</source>
+        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Plattform</target>
+      </trans-unit>
+      <trans-unit id="label-7f7c31ee">
+        <source xml:lang="en">Device</source>
+        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Gerät</target>
+      </trans-unit>
+      <trans-unit id="label-39a39347">
+        <source xml:lang="en">OS version</source>
+        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">OS-version</target>
+      </trans-unit>
+      <trans-unit id="label-752a991e">
+        <source xml:lang="en">Physical resolution</source>
+        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Physikalische Auflösung</target>
+      </trans-unit>
+      <trans-unit id="label-f174cb0b">
+        <source xml:lang="en">Device pixel ratio</source>
+        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Pixelverhältnis Gerät</target>
+      </trans-unit>
+      <trans-unit id="label-df3f13eb">
+        <source xml:lang="en">Logical resolution (viewport size)</source>
+        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Logische Auflösung (Viewportgröße)</target>
+      </trans-unit>
+      <trans-unit id="label-3f939f37">
+        <source xml:lang="en">Cordova version</source>
+        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Cordova-version</target>
+      </trans-unit>
+      <trans-unit id="label-c0122d1e">
+        <source xml:lang="en">Model</source>
+        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Modell</target>
+      </trans-unit>
+      <trans-unit id="label-b3ca5c10">
+        <source xml:lang="en">Manufacturer</source>
+        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Hersteller</target>
+      </trans-unit>
+      <trans-unit id="label-f443efdd">
+        <source xml:lang="en">UUID</source>
+        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">UUID</target>
+      </trans-unit>
+      <trans-unit id="label-43cf4836">
+        <source xml:lang="en">Version</source>
+        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Version</target>
+      </trans-unit>
+      <trans-unit id="label-bcc45f6d">
+        <source xml:lang="en">Serial</source>
+        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Serielle</target>
+      </trans-unit>
+      <trans-unit id="c1a21524">
+        <source xml:lang="en">Virtual device</source>
+        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Virtuelles Gerät</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

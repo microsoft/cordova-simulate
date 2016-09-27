@@ -1,0 +1,43 @@
+[
+  {
+    "source": "Unhandled Exec Call",
+    "target": "Neošetřené Exec volání",
+    "attribute": "caption"
+  },
+  {
+    "source": "There is no handler for the following exec call:",
+    "target": "Není k dispozici žádný popisovač pro následující volání exec:"
+  },
+  {
+    "source": "service",
+    "target": "Služba"
+  },
+  {
+    "source": "action",
+    "target": "akce"
+  },
+  {
+    "source": "Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.",
+    "target": "Zadejte prosím hodnotu níže a vrátit toto volání, pak označuje, zda to představuje úspěch nebo neúspěch. Pokud chcete vždy reagovat na tuto výzvu s tímto výsledkem, zaškrtněte možnost \"zachovat\"."
+  },
+  {
+    "source": "The value must be valid JSON (",
+    "target": "Hodnota musí být platný JSON ("
+  },
+  {
+    "source": "error",
+    "target": "Chyba"
+  },
+  {
+    "source": "Persist",
+    "target": "Přetrvávají"
+  },
+  {
+    "source": "Success",
+    "target": "Úspěch"
+  },
+  {
+    "source": "Failure",
+    "target": "Neúspěch"
+  }
+]

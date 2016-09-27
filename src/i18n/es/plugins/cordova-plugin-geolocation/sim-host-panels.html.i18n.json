@@ -1,0 +1,68 @@
+[
+  {
+    "source": "Geolocation",
+    "target": "Geolocalización",
+    "attribute": "caption"
+  },
+  {
+    "source": "Zoom Level:",
+    "target": "Nivel de zoom:"
+  },
+  {
+    "source": "Latitude",
+    "target": "Latitud",
+    "attribute": "label"
+  },
+  {
+    "source": "Longitude",
+    "target": "Longitud",
+    "attribute": "label"
+  },
+  {
+    "source": "Altitude (m)",
+    "target": "Altitud (m)",
+    "attribute": "label"
+  },
+  {
+    "source": "Accuracy (m)",
+    "target": "Precisión (m)",
+    "attribute": "label"
+  },
+  {
+    "source": "Altitude accuracy (m)",
+    "target": "Precisión de la altitud (m)",
+    "attribute": "label"
+  },
+  {
+    "source": "Heading",
+    "target": "Título",
+    "attribute": "label"
+  },
+  {
+    "source": "Speed (m/s)",
+    "target": "Velocidad (m/s)",
+    "attribute": "label"
+  },
+  {
+    "source": "GPS Delay (seconds)",
+    "target": "GPS demora (segundos)",
+    "attribute": "label"
+  },
+  {
+    "source": "Simulate GPS Timeout",
+    "target": "Simular el tiempo de espera de GPS"
+  },
+  {
+    "source": "Navigation Simulator",
+    "target": "Simulador de navegación",
+    "attribute": "label"
+  },
+  {
+    "source": "Choose File",
+    "target": "Seleccione Archivo"
+  },
+  {
+    "source": "Go",
+    "target": "Ir"
+  }
+]

@@ -1,0 +1,19 @@
+[
+  {
+    "source": "Camera: Choose Image",
+    "target": "Fotograf makinesi: Resim seçin",
+    "attribute": "caption"
+  },
+  {
+    "source": "Choose File",
+    "target": "Dosyayı seçin"
+  },
+  {
+    "source": "Use Image",
+    "target": "Görüntü kullan"
+  },
+  {
+    "source": "Cancel",
+    "target": "İptal"
+  }
+]

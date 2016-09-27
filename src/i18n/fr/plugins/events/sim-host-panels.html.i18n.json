@@ -1,0 +1,16 @@
+[
+  {
+    "source": "Events",
+    "target": "Événements",
+    "attribute": "caption"
+  },
+  {
+    "source": "Select the event to fire:",
+    "target": "Sélectionnez l’événement se déclenche :",
+    "attribute": "label"
+  },
+  {
+    "source": "Fire Event",
+    "target": "Événement de feu"
+  }
+]

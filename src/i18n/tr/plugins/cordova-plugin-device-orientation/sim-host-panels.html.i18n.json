@@ -1,0 +1,15 @@
+[
+  {
+    "source": "Compass",
+    "target": "Pusula",
+    "attribute": "caption"
+  },
+  {
+    "source": "<em>Click and drag with the mouse to manipulate the device compass.</em>",
+    "target": "<em>Tıklayın ve sürükleyin fare ile aygıt pusula işlemek için.</em>"
+  },
+  {
+    "source": "Heading (deg)",
+    "target": "Başlık (deg)"
+  }
+]

@@ -1,0 +1,48 @@
+<xliff 
+  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+  <file original="plugins\exec\sim-host-dialogs.html" source-language="en" target-language="zh-CHT">
+    <body>
+      <trans-unit id="caption-f7283850">
+        <source xml:lang="en">Unhandled Exec Call</source>
+        <target xml:lang="zh-CHT" state="needs-translation" state-qualifier="mt-suggestion">未處理的 Exec 調用</target>
+      </trans-unit>
+      <trans-unit id="a1a63f26">
+        <source xml:lang="en">There is no handler for the following exec call:</source>
+        <target xml:lang="zh-CHT" state="needs-translation" state-qualifier="mt-suggestion">沒有以下的 exec 調用的處理常式︰</target>
+      </trans-unit>
+      <trans-unit id="ba2b4c80">
+        <source xml:lang="en">service</source>
+        <target xml:lang="zh-CHT" state="needs-translation" state-qualifier="mt-suggestion">服務</target>
+      </trans-unit>
+      <trans-unit id="e4c1ba28">
+        <source xml:lang="en">action</source>
+        <target xml:lang="zh-CHT" state="needs-translation" state-qualifier="mt-suggestion">行動</target>
+      </trans-unit>
+      <trans-unit id="54b83b14">
+        <source xml:lang="en">Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.</source>
+        <target xml:lang="zh-CHT" state="needs-translation" state-qualifier="mt-suggestion">請輸入下面返回此調用，然後指示是否這表示成功或失敗的一個值。如果你想要總是回應這個召喚，這一結果，選擇 '堅持' 選項。</target>
+      </trans-unit>
+      <trans-unit id="874c9be3">
+        <source xml:lang="en">The value must be valid JSON (</source>
+        <target xml:lang="zh-CHT" state="needs-translation" state-qualifier="mt-suggestion">值必須是有效的 JSON （</target>
+      </trans-unit>
+      <trans-unit id="8679c185">
+        <source xml:lang="en">error</source>
+        <target xml:lang="zh-CHT" state="needs-translation" state-qualifier="mt-suggestion">錯誤</target>
+      </trans-unit>
+      <trans-unit id="bce2c943">
+        <source xml:lang="en">Persist</source>
+        <target xml:lang="zh-CHT" state="needs-translation" state-qualifier="mt-suggestion">堅持</target>
+      </trans-unit>
+      <trans-unit id="17ccfb90">
+        <source xml:lang="en">Success</source>
+        <target xml:lang="zh-CHT" state="needs-translation" state-qualifier="mt-suggestion">成功</target>
+      </trans-unit>
+      <trans-unit id="5c16961d">
+        <source xml:lang="en">Failure</source>
+        <target xml:lang="zh-CHT" state="needs-translation" state-qualifier="mt-suggestion">失敗</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

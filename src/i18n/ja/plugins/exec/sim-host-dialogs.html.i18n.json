@@ -1,0 +1,43 @@
+[
+  {
+    "source": "Unhandled Exec Call",
+    "target": "未処理の Exec の呼び出し",
+    "attribute": "caption"
+  },
+  {
+    "source": "There is no handler for the following exec call:",
+    "target": "次の exec 呼び出しのハンドラーはありません。"
+  },
+  {
+    "source": "service",
+    "target": "サービス"
+  },
+  {
+    "source": "action",
+    "target": "アクション"
+  },
+  {
+    "source": "Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.",
+    "target": "この呼び出し、返されるし、これは成功または失敗を表すかどうかを示すには、次の値を入力してください。常にこの結果にこの呼び出しに応答したい場合は、'を保持するオプションを選択します。"
+  },
+  {
+    "source": "The value must be valid JSON (",
+    "target": "値は有効な JSON (をする必要があります。"
+  },
+  {
+    "source": "error",
+    "target": "エラー"
+  },
+  {
+    "source": "Persist",
+    "target": "永続化します。"
+  },
+  {
+    "source": "Success",
+    "target": "成功"
+  },
+  {
+    "source": "Failure",
+    "target": "障害"
+  }
+]

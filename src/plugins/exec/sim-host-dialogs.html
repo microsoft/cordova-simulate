@@ -1,20 +1,20 @@
 <!-- Copyright (c) Microsoft Corporation. All rights reserved. -->
 
-<cordova-dialog id="exec-dialog" caption="Unhandled Exec Call">
+<cordova-dialog id="exec-dialog" caption="Unhandled Exec Call" data-loc-id="f7283850">
     <cordova-group>
-        <p>There is no handler for the following exec call:</p>
-        <p style="font-style:italic;color:black"><span id="exec-service">service</span>.<span id="exec-action">action</span></p>
-        <p>Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.</p>
+        <p data-loc-id="a1a63f26">There is no handler for the following exec call:</p>
+        <p style="font-style:italic;color:black"><span id="exec-service" data-loc-id="ba2b4c80">service</span>.<span id="exec-action" data-loc-id="e4c1ba28">action</span></p>
+        <p data-loc-id="54b83b14">Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.</p>
     </cordova-group>
     <cordova-group>
         <textarea id="exec-response" rows="10" class="cordova-widget cordova-state-default"></textarea>
-        <div class="p" id="exec-error" style="color: red;">The value must be valid JSON (<span style="font-style:italic;" id="exec-parse-error">error</span>)</div>
+        <div class="p" id="exec-error" style="color: red;" data-loc-id="874c9be3">The value must be valid JSON (<span style="font-style:italic;" id="exec-parse-error" data-loc-id="8679c185">error</span>)</div>
     </cordova-group>
     <cordova-panel-row>
-        <cordova-checkbox id="exec-persist">Persist</cordova-checkbox>
+        <cordova-checkbox id="exec-persist" data-loc-id="bce2c943">Persist</cordova-checkbox>
         <cordova-group>
-            <cordova-button id="exec-success">Success</cordova-button>
-            <cordova-button id="exec-failure">Failure</cordova-button>
+            <cordova-button id="exec-success" data-loc-id="17ccfb90">Success</cordova-button>
+            <cordova-button id="exec-failure" data-loc-id="5c16961d">Failure</cordova-button>
         </cordova-group>
     </cordova-panel-row>
 </cordova-dialog>

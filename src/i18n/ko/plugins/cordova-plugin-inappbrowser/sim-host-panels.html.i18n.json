@@ -1,0 +1,19 @@
+[
+  {
+    "source": "InAppBrowser",
+    "target": "InAppBrowser",
+    "attribute": "caption"
+  },
+  {
+    "source": "Select the default behaviour of InAppBrowser when opening using the <em>_blank</em> target",
+    "target": "<em>_Blank</em> 대상을 사용 하 여 열 때 InAppBrowser의 기본 동작 선택"
+  },
+  {
+    "source": "Open in a new window: <em>_system</em> target",
+    "target": "새 창에서 열기: <em>_system</em> 대상"
+  },
+  {
+    "source": "Open in a InAppBrowser based on an iframe",
+    "target": "Iframe에 따라 InAppBrowser에 오픈"
+  }
+]

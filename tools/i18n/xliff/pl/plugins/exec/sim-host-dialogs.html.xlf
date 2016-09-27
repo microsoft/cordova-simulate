@@ -1,0 +1,48 @@
+<xliff 
+  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+  <file original="plugins\exec\sim-host-dialogs.html" source-language="en" target-language="pl">
+    <body>
+      <trans-unit id="caption-f7283850">
+        <source xml:lang="en">Unhandled Exec Call</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Wywołanie Exec nieobsługiwany</target>
+      </trans-unit>
+      <trans-unit id="a1a63f26">
+        <source xml:lang="en">There is no handler for the following exec call:</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Tam jest brak obsługi dla następujące wywołanie exec:</target>
+      </trans-unit>
+      <trans-unit id="ba2b4c80">
+        <source xml:lang="en">service</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">usługi</target>
+      </trans-unit>
+      <trans-unit id="e4c1ba28">
+        <source xml:lang="en">action</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">działania</target>
+      </trans-unit>
+      <trans-unit id="54b83b14">
+        <source xml:lang="en">Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Proszę wprowadź wartość poniżej, aby zwracane dla tego wywołania, a następnie wskazać, czy reprezentuje sukces lub niepowodzenie. Jeśli chcesz zawsze odpowiedzieć na to wywołanie z tego wyniku, zaznacz opcję 'utrwalić'.</target>
+      </trans-unit>
+      <trans-unit id="874c9be3">
+        <source xml:lang="en">The value must be valid JSON (</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Wartość musi być ważne JSON (</target>
+      </trans-unit>
+      <trans-unit id="8679c185">
+        <source xml:lang="en">error</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">błąd</target>
+      </trans-unit>
+      <trans-unit id="bce2c943">
+        <source xml:lang="en">Persist</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Utrzymują się</target>
+      </trans-unit>
+      <trans-unit id="17ccfb90">
+        <source xml:lang="en">Success</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Sukces</target>
+      </trans-unit>
+      <trans-unit id="5c16961d">
+        <source xml:lang="en">Failure</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Awaria</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

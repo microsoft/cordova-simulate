@@ -1,0 +1,12 @@
+[
+  {
+    "source": "Persisted Exec Calls",
+    "target": "Exec Aufrufe beibehalten",
+    "attribute": "caption"
+  },
+  {
+    "source": "No values saved",
+    "target": "Keine gespeicherten Werte",
+    "attribute": "label"
+  }
+]

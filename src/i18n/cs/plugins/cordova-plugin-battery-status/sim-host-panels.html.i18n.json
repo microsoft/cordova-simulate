@@ -1,0 +1,16 @@
+[
+  {
+    "source": "Battery Status",
+    "target": "Stav baterie",
+    "attribute": "caption"
+  },
+  {
+    "source": "Battery level",
+    "target": "Úroveň nabití baterie",
+    "attribute": "label"
+  },
+  {
+    "source": "Device plugged",
+    "target": "Zařízení připojeno"
+  }
+]

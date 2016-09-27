@@ -1,0 +1,16 @@
+[
+  {
+    "source": "Events",
+    "target": "Veranstaltungen",
+    "attribute": "caption"
+  },
+  {
+    "source": "Select the event to fire:",
+    "target": "Wählen Sie das Ereignis ausgelöst:",
+    "attribute": "label"
+  },
+  {
+    "source": "Fire Event",
+    "target": "Feuer-Event"
+  }
+]

@@ -2,10 +2,10 @@
 
 <!-- Include OpenLayers here rather than require'ing it, since it doesn't expose global variables when require'd -->
 <script src="OpenLayers.js"></script>
-<link href="sim-host.css" rel="stylesheet"/>
+<link href="sim-host.css" rel="stylesheet">
 
 <!-- Panels -->
-<cordova-panel id="geolocation" caption="Geolocation">
+<cordova-panel id="geolocation" caption="Geolocation" data-loc-id="e4b82624">
     <style>
         #geo-heading-label, #geo-delay-label {
             margin-right: 5px;
@@ -32,40 +32,40 @@
         <cordova-button id="geo-map-zoom-decrease" style="min-width:0;">-</cordova-button>
         <cordova-button id="geo-map-zoom-increase" style="min-width:0;">+</cordova-button>
         </section>
-        <section class="geo-map-zoomlevel">
+        <section class="geo-map-zoomlevel" data-loc-id="7e9696b6">
             Zoom Level:&nbsp;
             <span id="geo-map-zoomlevel-value"></span>
         </section>
     </cordova-panel-row>
 
-    <cordova-number-entry label="Latitude" id="geo-latitude" step="any"></cordova-number-entry>
-    <cordova-number-entry label="Longitude" id="geo-longitude" step="any"></cordova-number-entry>
-    <cordova-number-entry label="Altitude (m)" id="geo-altitude" step="any"></cordova-number-entry>
-    <cordova-number-entry label="Accuracy (m)" id="geo-accuracy" min="0" step="any"></cordova-number-entry>
-    <cordova-number-entry label="Altitude accuracy (m)" id="geo-altitude-accuracy" min="0" step="any"></cordova-number-entry>
+    <cordova-number-entry label="Latitude" id="geo-latitude" step="any" data-loc-id="41fd30cf"></cordova-number-entry>
+    <cordova-number-entry label="Longitude" id="geo-longitude" step="any" data-loc-id="9db6eee1"></cordova-number-entry>
+    <cordova-number-entry label="Altitude (m)" id="geo-altitude" step="any" data-loc-id="079f55f6"></cordova-number-entry>
+    <cordova-number-entry label="Accuracy (m)" id="geo-accuracy" min="0" step="any" data-loc-id="dbece2f9"></cordova-number-entry>
+    <cordova-number-entry label="Altitude accuracy (m)" id="geo-altitude-accuracy" min="0" step="any" data-loc-id="718f25cb"></cordova-number-entry>
     <cordova-panel-row>
-        <cordova-label label="Heading"></cordova-label>
+        <cordova-label label="Heading" data-loc-id="64da0839"></cordova-label>
         <cordova-label label="N" id="geo-heading-label"></cordova-label>
         <input id="geo-heading" type="range" value="0" min="0" max="359.99" step="any" style="width:112px;">
     </cordova-panel-row>
-    <cordova-number-entry label="Speed (m/s)" id="geo-speed" min="0" step="any"></cordova-number-entry>
+    <cordova-number-entry label="Speed (m/s)" id="geo-speed" min="0" step="any" data-loc-id="8fefe84e"></cordova-number-entry>
     <cordova-panel-row>
-        <cordova-label label="GPS Delay (seconds)"></cordova-label>
+        <cordova-label label="GPS Delay (seconds)" data-loc-id="42557ee2"></cordova-label>
         <cordova-label label="0" id="geo-delay-label"></cordova-label>
         <input id="geo-delay" type="range" value="0" min="0" max="30" style="width:112px;">
     </cordova-panel-row>
-    <cordova-checkbox id="geo-timeout">Simulate GPS Timeout</cordova-checkbox>
+    <cordova-checkbox id="geo-timeout" data-loc-id="b2d5a0cc">Simulate GPS Timeout</cordova-checkbox>
 
     <cordova-panel-row>
-        <cordova-label label="Navigation Simulator"></cordova-label>
+        <cordova-label label="Navigation Simulator" data-loc-id="f89bb5e3"></cordova-label>
     </cordova-panel-row>
     <cordova-panel-row>
         <section>
-            <cordova-button id="geo-gpxfile-button" style="width:100%">Choose File</cordova-button>
+            <cordova-button id="geo-gpxfile-button" style="width:100%" data-loc-id="f6c1471b">Choose File</cordova-button>
             <cordova-file hidden="true" id="geo-gpxfile"></cordova-file>
         </section>
         <section>
-            <cordova-button id="geo-gpx-go" style="min-width:0;">Go</cordova-button>
+            <cordova-button id="geo-gpx-go" style="min-width:0;" data-loc-id="323b1c35">Go</cordova-button>
             <cordova-combo id="geo-gpxmultiplier-select" style="width:auto;min-width:0;display:inline;">
                 <option value="1">1x</option>
                 <option value="2">2x</option>

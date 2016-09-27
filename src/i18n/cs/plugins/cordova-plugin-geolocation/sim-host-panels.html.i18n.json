@@ -1,0 +1,68 @@
+[
+  {
+    "source": "Geolocation",
+    "target": "Geolocation",
+    "attribute": "caption"
+  },
+  {
+    "source": "Zoom Level:",
+    "target": "Úroveň přiblížení:"
+  },
+  {
+    "source": "Latitude",
+    "target": "Zeměpisná šířka",
+    "attribute": "label"
+  },
+  {
+    "source": "Longitude",
+    "target": "Zeměpisná délka",
+    "attribute": "label"
+  },
+  {
+    "source": "Altitude (m)",
+    "target": "Nadmořská výška (m)",
+    "attribute": "label"
+  },
+  {
+    "source": "Accuracy (m)",
+    "target": "Přesnost (m)",
+    "attribute": "label"
+  },
+  {
+    "source": "Altitude accuracy (m)",
+    "target": "Přesnost nadmořská výška (m)",
+    "attribute": "label"
+  },
+  {
+    "source": "Heading",
+    "target": "Nadpis",
+    "attribute": "label"
+  },
+  {
+    "source": "Speed (m/s)",
+    "target": "Rychlost (m/s)",
+    "attribute": "label"
+  },
+  {
+    "source": "GPS Delay (seconds)",
+    "target": "GPS zpoždění (sekundy)",
+    "attribute": "label"
+  },
+  {
+    "source": "Simulate GPS Timeout",
+    "target": "Simulovat GPS časový limit"
+  },
+  {
+    "source": "Navigation Simulator",
+    "target": "Navigace simulátor",
+    "attribute": "label"
+  },
+  {
+    "source": "Choose File",
+    "target": "Zvolte soubor"
+  },
+  {
+    "source": "Go",
+    "target": "Přejít"
+  }
+]

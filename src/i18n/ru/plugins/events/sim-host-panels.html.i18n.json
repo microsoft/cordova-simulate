@@ -1,0 +1,16 @@
+[
+  {
+    "source": "Events",
+    "target": "События",
+    "attribute": "caption"
+  },
+  {
+    "source": "Select the event to fire:",
+    "target": "Выберите событие:",
+    "attribute": "label"
+  },
+  {
+    "source": "Fire Event",
+    "target": "Событие пожара"
+  }
+]

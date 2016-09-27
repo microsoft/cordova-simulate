@@ -1,0 +1,15 @@
+[
+  {
+    "source": "Compass",
+    "target": "Kompas",
+    "attribute": "caption"
+  },
+  {
+    "source": "<em>Click and drag with the mouse to manipulate the device compass.</em>",
+    "target": "<em>Kliknij i przeciągnij myszą, aby manipulować kompas urządzenia.</em>"
+  },
+  {
+    "source": "Heading (deg)",
+    "target": "Nagłówek (stopnie)"
+  }
+]

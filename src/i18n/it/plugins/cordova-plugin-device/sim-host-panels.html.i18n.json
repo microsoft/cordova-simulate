@@ -1,0 +1,71 @@
+[
+  {
+    "source": "Device",
+    "target": "Dispositivo",
+    "attribute": "caption"
+  },
+  {
+    "source": "Platform",
+    "target": "Piattaforma",
+    "attribute": "label"
+  },
+  {
+    "source": "Device",
+    "target": "Dispositivo",
+    "attribute": "label"
+  },
+  {
+    "source": "OS version",
+    "target": "Versione del sistema operativo",
+    "attribute": "label"
+  },
+  {
+    "source": "Physical resolution",
+    "target": "Risoluzione fisica",
+    "attribute": "label"
+  },
+  {
+    "source": "Device pixel ratio",
+    "target": "Rapporto di pixel del dispositivo",
+    "attribute": "label"
+  },
+  {
+    "source": "Logical resolution (viewport size)",
+    "target": "Risoluzione logica (dimensioni del riquadro di visualizzazione)",
+    "attribute": "label"
+  },
+  {
+    "source": "Cordova version",
+    "target": "Versione di Cordova",
+    "attribute": "label"
+  },
+  {
+    "source": "Model",
+    "target": "Modello",
+    "attribute": "label"
+  },
+  {
+    "source": "Manufacturer",
+    "target": "Produttore",
+    "attribute": "label"
+  },
+  {
+    "source": "UUID",
+    "target": "UUID",
+    "attribute": "label"
+  },
+  {
+    "source": "Version",
+    "target": "Versione",
+    "attribute": "label"
+  },
+  {
+    "source": "Serial",
+    "target": "Numero di serie",
+    "attribute": "label"
+  },
+  {
+    "source": "Virtual device",
+    "target": "Periferica virtuale"
+  }
+]

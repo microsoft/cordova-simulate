@@ -1,0 +1,16 @@
+[
+  {
+    "source": "Battery Status",
+    "target": "배터리 상태",
+    "attribute": "caption"
+  },
+  {
+    "source": "Battery level",
+    "target": "배터리 수준",
+    "attribute": "label"
+  },
+  {
+    "source": "Device plugged",
+    "target": "장치 연결"
+  }
+]

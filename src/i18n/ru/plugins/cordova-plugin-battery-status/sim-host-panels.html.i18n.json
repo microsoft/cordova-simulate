@@ -1,0 +1,16 @@
+[
+  {
+    "source": "Battery Status",
+    "target": "Состояние аккумулятора",
+    "attribute": "caption"
+  },
+  {
+    "source": "Battery level",
+    "target": "Уровень заряда аккумулятора",
+    "attribute": "label"
+  },
+  {
+    "source": "Device plugged",
+    "target": "Устройство подключено"
+  }
+]

@@ -1,0 +1,43 @@
+[
+  {
+    "source": "Unhandled Exec Call",
+    "target": "처리 되지 않은 Exec 호출",
+    "attribute": "caption"
+  },
+  {
+    "source": "There is no handler for the following exec call:",
+    "target": "다음 exec 호출에 대 한 처리기는:"
+  },
+  {
+    "source": "service",
+    "target": "서비스"
+  },
+  {
+    "source": "action",
+    "target": "액션"
+  },
+  {
+    "source": "Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.",
+    "target": "아래이 호출에 대해 반환 될 다음이 성공 또는 실패를 나타내는지 여부를 나타내는 값을 입력 하십시오. 항상이 결과 함께이 호출에 응답 하려면 '계속' 옵션을 선택 합니다."
+  },
+  {
+    "source": "The value must be valid JSON (",
+    "target": "값 유효한 JSON (여야 합니다."
+  },
+  {
+    "source": "error",
+    "target": "오류"
+  },
+  {
+    "source": "Persist",
+    "target": "유지"
+  },
+  {
+    "source": "Success",
+    "target": "성공"
+  },
+  {
+    "source": "Failure",
+    "target": "실패"
+  }
+]

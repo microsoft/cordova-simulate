@@ -1,0 +1,16 @@
+[
+  {
+    "source": "Battery Status",
+    "target": "Stan baterii",
+    "attribute": "caption"
+  },
+  {
+    "source": "Battery level",
+    "target": "Poziom naładowania baterii",
+    "attribute": "label"
+  },
+  {
+    "source": "Device plugged",
+    "target": "Urządzenie podłączone"
+  }
+]

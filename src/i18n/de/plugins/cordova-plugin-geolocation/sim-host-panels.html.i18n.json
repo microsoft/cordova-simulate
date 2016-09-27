@@ -1,0 +1,68 @@
+[
+  {
+    "source": "Geolocation",
+    "target": "Geolocation",
+    "attribute": "caption"
+  },
+  {
+    "source": "Zoom Level:",
+    "target": "Zoom-Stufe:"
+  },
+  {
+    "source": "Latitude",
+    "target": "Breitengrad",
+    "attribute": "label"
+  },
+  {
+    "source": "Longitude",
+    "target": "Länge",
+    "attribute": "label"
+  },
+  {
+    "source": "Altitude (m)",
+    "target": "Höhe (m)",
+    "attribute": "label"
+  },
+  {
+    "source": "Accuracy (m)",
+    "target": "Genauigkeit (m)",
+    "attribute": "label"
+  },
+  {
+    "source": "Altitude accuracy (m)",
+    "target": "Höhe Genauigkeit (m)",
+    "attribute": "label"
+  },
+  {
+    "source": "Heading",
+    "target": "Überschrift",
+    "attribute": "label"
+  },
+  {
+    "source": "Speed (m/s)",
+    "target": "Geschwindigkeit (m/s)",
+    "attribute": "label"
+  },
+  {
+    "source": "GPS Delay (seconds)",
+    "target": "GPS-Verzögerung (Sekunden)",
+    "attribute": "label"
+  },
+  {
+    "source": "Simulate GPS Timeout",
+    "target": "GPS-Timeout zu simulieren"
+  },
+  {
+    "source": "Navigation Simulator",
+    "target": "Navigation-Simulator",
+    "attribute": "label"
+  },
+  {
+    "source": "Choose File",
+    "target": "Wählen Sie Datei"
+  },
+  {
+    "source": "Go",
+    "target": "Gehen"
+  }
+]

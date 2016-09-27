@@ -1,0 +1,15 @@
+[
+  {
+    "source": "Compass",
+    "target": "コンパス",
+    "attribute": "caption"
+  },
+  {
+    "source": "<em>Click and drag with the mouse to manipulate the device compass.</em>",
+    "target": "<em>デバイス コンパスを操作するをクリックしてマウスでドラッグします</em>。"
+  },
+  {
+    "source": "Heading (deg)",
+    "target": "見出し (度)"
+  }
+]

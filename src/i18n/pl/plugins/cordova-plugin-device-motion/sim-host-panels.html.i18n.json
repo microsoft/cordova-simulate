@@ -1,0 +1,20 @@
+[
+  {
+    "source": "Accelerometer",
+    "target": "Akcelerometr",
+    "attribute": "caption"
+  },
+  {
+    "source": "Click and drag with the mouse to manipulate the device. <br> Hold the Shift key to modify 'alpha'",
+    "target": "Kliknij i przeciągnij myszą, aby manipulować urządzenia. <br>Przytrzymaj klawisz Shift, aby zmodyfikować 'alfa'"
+  },
+  {
+    "source": "Recorded Data",
+    "target": "Zapisywanych danych",
+    "attribute": "label"
+  },
+  {
+    "source": "Play",
+    "target": "Zagraj"
+  }
+]

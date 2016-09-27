@@ -1,0 +1,19 @@
+[
+  {
+    "source": "Camera",
+    "target": "Fotoaparát",
+    "attribute": "caption"
+  },
+  {
+    "source": "Prompt me for a file",
+    "target": "Nezobrazování výzvy k souboru"
+  },
+  {
+    "source": "Use this file:",
+    "target": "Používejte tento soubor:"
+  },
+  {
+    "source": "Choose File",
+    "target": "Zvolte soubor"
+  }
+]

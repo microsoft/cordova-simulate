@@ -1,0 +1,12 @@
+[
+  {
+    "source": "Persisted Exec Calls",
+    "target": "Trwały rozmowy Exec",
+    "attribute": "caption"
+  },
+  {
+    "source": "No values saved",
+    "target": "Nie wartości zapisane",
+    "attribute": "label"
+  }
+]

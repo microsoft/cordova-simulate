@@ -1,0 +1,19 @@
+[
+  {
+    "source": "InAppBrowser",
+    "target": "InAppBrowser",
+    "attribute": "caption"
+  },
+  {
+    "source": "Select the default behaviour of InAppBrowser when opening using the <em>_blank</em> target",
+    "target": "当打开使用 <em>_blank</em> 目标选择 InAppBrowser 的默认行为"
+  },
+  {
+    "source": "Open in a new window: <em>_system</em> target",
+    "target": "在新窗口中打开︰ <em>_system</em> 目标"
+  },
+  {
+    "source": "Open in a InAppBrowser based on an iframe",
+    "target": "在基于 iframe InAppBrowser 中打开"
+  }
+]

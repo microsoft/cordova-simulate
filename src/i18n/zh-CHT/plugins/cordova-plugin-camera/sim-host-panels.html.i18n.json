@@ -1,0 +1,19 @@
+[
+  {
+    "source": "Camera",
+    "target": "相機",
+    "attribute": "caption"
+  },
+  {
+    "source": "Prompt me for a file",
+    "target": "提示我輸入檔"
+  },
+  {
+    "source": "Use this file:",
+    "target": "使用此檔︰"
+  },
+  {
+    "source": "Choose File",
+    "target": "選擇檔"
+  }
+]
