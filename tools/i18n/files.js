@@ -66,10 +66,19 @@ function removeDirectoryIfEmptyRecursive(directory) {
     }
 }
 
+function writeFileSync(file, contents) {
+    var directory = path.dirname(file);
+    if (!existsSync(directory)) {
+        makeDirectoryRecursiveSync(directory);
+    }
+    fs.writeFileSync(file, contents, 'utf8');
+}
+
 module.exports = {
     findFiles: findFiles,
     isDirectory: isDirectory,
     makeDirectoryRecursiveSync: makeDirectoryRecursiveSync,
     existsSync: existsSync,
-    removeFileAndDirectoryIfEmpty: removeFileAndDirectoryIfEmpty
+    removeFileAndDirectoryIfEmpty: removeFileAndDirectoryIfEmpty,
+    writeFileSync: writeFileSync
 };
