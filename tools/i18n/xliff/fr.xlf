@@ -1,0 +1,340 @@
+<xliff 
+  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+  <file original="plugins\cordova-plugin-battery-status\sim-host-panels.html" source-language="en" target-language="fr">
+    <body>
+      <trans-unit id="caption-ac1dbd34">
+        <source xml:lang="en">Battery Status</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">État de la batterie</target>
+      </trans-unit>
+      <trans-unit id="label-e0d4e236">
+        <source xml:lang="en">Battery level</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Niveau de batterie</target>
+      </trans-unit>
+      <trans-unit id="10cfe833:1">
+        <source xml:lang="en">Device plugged</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Appareil branché</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="plugins\cordova-plugin-camera\sim-host-dialogs.html" source-language="en" target-language="fr">
+    <body>
+      <trans-unit id="caption-5f1798d9">
+        <source xml:lang="en">Camera: Choose Image</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Caméra : Choisissez Image</target>
+      </trans-unit>
+      <trans-unit id="030b9963:1">
+        <source xml:lang="en">Choose File</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Choisissez fichier</target>
+      </trans-unit>
+      <trans-unit id="ad62e973:1">
+        <source xml:lang="en">Use Image</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Utiliser une Image</target>
+      </trans-unit>
+      <trans-unit id="be241b52:1">
+        <source xml:lang="en">Cancel</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Annuler</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="plugins\cordova-plugin-camera\sim-host-panels.html" source-language="en" target-language="fr">
+    <body>
+      <trans-unit id="caption-553fc9a5">
+        <source xml:lang="en">Camera</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Appareil photo</target>
+      </trans-unit>
+      <trans-unit id="4f087d38:1">
+        <source xml:lang="en">Prompt me for a file</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">M’inviter pour un fichier</target>
+      </trans-unit>
+      <trans-unit id="145af9c0:1">
+        <source xml:lang="en">Use this file:</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Utilisez ce fichier :</target>
+      </trans-unit>
+      <trans-unit id="2c4e6d12:1">
+        <source xml:lang="en">Choose File</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Choisissez fichier</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="plugins\cordova-plugin-device\sim-host-panels.html" source-language="en" target-language="fr">
+    <body>
+      <trans-unit id="caption-c045b281">
+        <source xml:lang="en">Device</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Appareil</target>
+      </trans-unit>
+      <trans-unit id="label-db946bb7">
+        <source xml:lang="en">Platform</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Plate-forme</target>
+      </trans-unit>
+      <trans-unit id="label-7f7c31ee">
+        <source xml:lang="en">Device</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Appareil</target>
+      </trans-unit>
+      <trans-unit id="label-39a39347">
+        <source xml:lang="en">OS version</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Version de l’OS</target>
+      </trans-unit>
+      <trans-unit id="label-752a991e">
+        <source xml:lang="en">Physical resolution</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Résolution physique</target>
+      </trans-unit>
+      <trans-unit id="label-f174cb0b">
+        <source xml:lang="en">Device pixel ratio</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Pixels de périphérique</target>
+      </trans-unit>
+      <trans-unit id="label-df3f13eb">
+        <source xml:lang="en">Logical resolution (viewport size)</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Résolution logique (taille de la fenêtre d’affichage)</target>
+      </trans-unit>
+      <trans-unit id="label-3f939f37">
+        <source xml:lang="en">Cordova version</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Version de Cordova</target>
+      </trans-unit>
+      <trans-unit id="label-c0122d1e">
+        <source xml:lang="en">Model</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Modèle</target>
+      </trans-unit>
+      <trans-unit id="label-b3ca5c10">
+        <source xml:lang="en">Manufacturer</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Référence du fabricant</target>
+      </trans-unit>
+      <trans-unit id="label-f443efdd">
+        <source xml:lang="en">UUID</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">UUID</target>
+      </trans-unit>
+      <trans-unit id="label-43cf4836">
+        <source xml:lang="en">Version</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Version</target>
+      </trans-unit>
+      <trans-unit id="label-bcc45f6d">
+        <source xml:lang="en">Serial</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Serial</target>
+      </trans-unit>
+      <trans-unit id="c1a21524:1">
+        <source xml:lang="en">Virtual device</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Périphérique virtuel</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="plugins\cordova-plugin-device-motion\sim-host-panels.html" source-language="en" target-language="fr">
+    <body>
+      <trans-unit id="caption-9a8c8723">
+        <source xml:lang="en">Accelerometer</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Accéléromètre</target>
+      </trans-unit>
+      <trans-unit id="label-d240cacf">
+        <source xml:lang="en">Recorded Data</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Données enregistrées</target>
+      </trans-unit>
+      <trans-unit id="c562ff87:1">
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br> Hold the Shift key to modify 'alpha'</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Cliquez et faites glisser avec la souris pour manipuler l’appareil. &lt;br>, Maintenez la touche Maj enfoncée pour modifier « alpha »</target>
+      </trans-unit>
+      <trans-unit id="1b009684:1">
+        <source xml:lang="en">Play</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Jouer</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="plugins\cordova-plugin-device-orientation\sim-host-panels.html" source-language="en" target-language="fr">
+    <body>
+      <trans-unit id="caption-8310fdf4">
+        <source xml:lang="en">Compass</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Boussole</target>
+      </trans-unit>
+      <trans-unit id="c4c80de2:1">
+        <source xml:lang="en">&lt;em>Click and drag with the mouse to manipulate the device compass.&lt;/em></source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">&lt;em>Et faites glisser avec la souris pour manipuler la boussole périphérique.&lt;/em></target>
+      </trans-unit>
+      <trans-unit id="ae47e3ec:1">
+        <source xml:lang="en">Heading (deg)</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Rubrique (deg)</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="plugins\cordova-plugin-geolocation\sim-host-panels.html" source-language="en" target-language="fr">
+    <body>
+      <trans-unit id="caption-e4b82624">
+        <source xml:lang="en">Geolocation</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Géolocalisation</target>
+      </trans-unit>
+      <trans-unit id="label-41fd30cf">
+        <source xml:lang="en">Latitude</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Latitude</target>
+      </trans-unit>
+      <trans-unit id="label-9db6eee1">
+        <source xml:lang="en">Longitude</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Longitude</target>
+      </trans-unit>
+      <trans-unit id="label-079f55f6">
+        <source xml:lang="en">Altitude (m)</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Altitude (m)</target>
+      </trans-unit>
+      <trans-unit id="label-dbece2f9">
+        <source xml:lang="en">Accuracy (m)</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Précision (m)</target>
+      </trans-unit>
+      <trans-unit id="label-718f25cb">
+        <source xml:lang="en">Altitude accuracy (m)</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Précision de l’altitude (m)</target>
+      </trans-unit>
+      <trans-unit id="label-64da0839">
+        <source xml:lang="en">Heading</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Rubrique</target>
+      </trans-unit>
+      <trans-unit id="label-8fefe84e">
+        <source xml:lang="en">Speed (m/s)</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Vitesse (m/s)</target>
+      </trans-unit>
+      <trans-unit id="label-42557ee2">
+        <source xml:lang="en">GPS Delay (seconds)</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">GPS délai (secondes)</target>
+      </trans-unit>
+      <trans-unit id="label-f89bb5e3">
+        <source xml:lang="en">Navigation Simulator</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Simulateur de navigation</target>
+      </trans-unit>
+      <trans-unit id="7e9696b6:1">
+        <source xml:lang="en">Zoom Level:</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Niveau de zoom :</target>
+      </trans-unit>
+      <trans-unit id="b2d5a0cc:1">
+        <source xml:lang="en">Simulate GPS Timeout</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Simuler le GPS Timeout</target>
+      </trans-unit>
+      <trans-unit id="f6c1471b:1">
+        <source xml:lang="en">Choose File</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Choisissez fichier</target>
+      </trans-unit>
+      <trans-unit id="323b1c35:1">
+        <source xml:lang="en">Go</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Aller</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="plugins\cordova-plugin-globalization\sim-host-panels.html" source-language="en" target-language="fr">
+    <body>
+      <trans-unit id="caption-5ffc4b1e">
+        <source xml:lang="en">Globalization</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Mondialisation</target>
+      </trans-unit>
+      <trans-unit id="label-9e831385">
+        <source xml:lang="en">Select the locale:</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Sélectionnez les paramètres régionaux :</target>
+      </trans-unit>
+      <trans-unit id="label-ee1bad9c">
+        <source xml:lang="en">Select the first day of the week:</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Sélectionnez le premier jour de la semaine :</target>
+      </trans-unit>
+      <trans-unit id="24aa60d4:1">
+        <source xml:lang="en">Is daylight saving time</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Est l’heure d’été</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="plugins\cordova-plugin-inappbrowser\sim-host-panels.html" source-language="en" target-language="fr">
+    <body>
+      <trans-unit id="caption-4c1114ef">
+        <source xml:lang="en">InAppBrowser</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">InAppBrowser</target>
+      </trans-unit>
+      <trans-unit id="99399f4d:1">
+        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em>_blank&lt;/em> target</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Sélectionnez le comportement par défaut de InAppBrowser lors de l’ouverture à l’aide de la cible &lt;em>_blank&lt;/em></target>
+      </trans-unit>
+      <trans-unit id="c10cdf5b:1">
+        <source xml:lang="en">Open in a new window: &lt;em>_system&lt;/em> target</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Ouvert dans une nouvelle fenêtre : &lt;em>_system&lt;/em> cible</target>
+      </trans-unit>
+      <trans-unit id="d107e851:1">
+        <source xml:lang="en">Open in a InAppBrowser based on an iframe</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Ouvert dans un InAppBrowser basé sur un iframe</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="plugins\cordova-plugin-network-information\sim-host-panels.html" source-language="en" target-language="fr">
+    <body>
+      <trans-unit id="caption-a4a98056">
+        <source xml:lang="en">Network Connection</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Connexion réseau</target>
+      </trans-unit>
+      <trans-unit id="label-27c4a479">
+        <source xml:lang="en">Connection type</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Type de connexion</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="plugins\events\sim-host-panels.html" source-language="en" target-language="fr">
+    <body>
+      <trans-unit id="caption-c9b16703">
+        <source xml:lang="en">Events</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Événements</target>
+      </trans-unit>
+      <trans-unit id="label-4eb9640f">
+        <source xml:lang="en">Select the event to fire:</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Sélectionnez l’événement se déclenche :</target>
+      </trans-unit>
+      <trans-unit id="064dde5f:1">
+        <source xml:lang="en">Fire Event</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Événement de feu</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="plugins\exec\sim-host-dialogs.html" source-language="en" target-language="fr">
+    <body>
+      <trans-unit id="caption-f7283850">
+        <source xml:lang="en">Unhandled Exec Call</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Appel non gérée Exec</target>
+      </trans-unit>
+      <trans-unit id="a1a63f26:1">
+        <source xml:lang="en">There is no handler for the following exec call:</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Il n’y a aucun gestionnaire pour l’appel suivant d’exec :</target>
+      </trans-unit>
+      <trans-unit id="ba2b4c80:1">
+        <source xml:lang="en">service</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">service</target>
+      </trans-unit>
+      <trans-unit id="e4c1ba28:1">
+        <source xml:lang="en">action</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">action</target>
+      </trans-unit>
+      <trans-unit id="54b83b14:1">
+        <source xml:lang="en">Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Veuillez entrer un montant inférieur à être retourné pour cet appel, puis indiquer si cela représente la réussite ou l’échec. Si vous souhaitez toujours répondre à cet appel avec ce résultat, sélectionnez l’option « persistent ».</target>
+      </trans-unit>
+      <trans-unit id="874c9be3:1">
+        <source xml:lang="en">The value must be valid JSON (</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">La valeur doit être valide (JSON</target>
+      </trans-unit>
+      <trans-unit id="8679c185:1">
+        <source xml:lang="en">error</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">erreur</target>
+      </trans-unit>
+      <trans-unit id="bce2c943:1">
+        <source xml:lang="en">Persist</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Persistent</target>
+      </trans-unit>
+      <trans-unit id="17ccfb90:1">
+        <source xml:lang="en">Success</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Succès</target>
+      </trans-unit>
+      <trans-unit id="5c16961d:1">
+        <source xml:lang="en">Failure</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Échec</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="plugins\exec\sim-host-panels.html" source-language="en" target-language="fr">
+    <body>
+      <trans-unit id="caption-983d0535">
+        <source xml:lang="en">Persisted Exec Calls</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">A persisté appels Exec</target>
+      </trans-unit>
+      <trans-unit id="label-b58dd0ca">
+        <source xml:lang="en">No values saved</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Aucune valeur enregistrée</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
