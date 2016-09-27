@@ -1,0 +1,12 @@
+[
+  {
+    "source": "Network Connection",
+    "target": "網路連接",
+    "attribute": "caption"
+  },
+  {
+    "source": "Connection type",
+    "target": "連線類型",
+    "attribute": "label"
+  }
+]

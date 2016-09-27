@@ -1,0 +1,24 @@
+<xliff 
+  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+  <file original="plugins\cordova-plugin-device-motion\sim-host-panels.html" source-language="en" target-language="it">
+    <body>
+      <trans-unit id="caption-9a8c8723">
+        <source xml:lang="en">Accelerometer</source>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Accelerometro</target>
+      </trans-unit>
+      <trans-unit id="c562ff87">
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br> Hold the Shift key to modify 'alpha'</source>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Fare clic e trascinare con il mouse per manipolare il dispositivo. &lt;br>Tenendo premuto MAIUSC per modificare 'alpha'</target>
+      </trans-unit>
+      <trans-unit id="label-d240cacf">
+        <source xml:lang="en">Recorded Data</source>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Dati registrati</target>
+      </trans-unit>
+      <trans-unit id="1b009684">
+        <source xml:lang="en">Play</source>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Gioca</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

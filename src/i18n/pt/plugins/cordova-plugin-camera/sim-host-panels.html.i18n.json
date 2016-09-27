@@ -1,0 +1,19 @@
+[
+  {
+    "source": "Camera",
+    "target": "Câmera",
+    "attribute": "caption"
+  },
+  {
+    "source": "Prompt me for a file",
+    "target": "Pedir-me para um arquivo"
+  },
+  {
+    "source": "Use this file:",
+    "target": "Use este arquivo:"
+  },
+  {
+    "source": "Choose File",
+    "target": "Escolha ' arquivo '"
+  }
+]

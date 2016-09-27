@@ -1,0 +1,21 @@
+[
+  {
+    "source": "Globalization",
+    "target": "Globalisierung",
+    "attribute": "caption"
+  },
+  {
+    "source": "Select the locale:",
+    "target": "Wählen Sie das Gebietsschema:",
+    "attribute": "label"
+  },
+  {
+    "source": "Is daylight saving time",
+    "target": "Sommerzeit ist"
+  },
+  {
+    "source": "Select the first day of the week:",
+    "target": "Wählen Sie den ersten Tag der Woche:",
+    "attribute": "label"
+  }
+]

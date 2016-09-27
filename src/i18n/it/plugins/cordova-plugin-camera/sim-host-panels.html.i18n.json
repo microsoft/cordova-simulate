@@ -1,0 +1,19 @@
+[
+  {
+    "source": "Camera",
+    "target": "Fotocamera",
+    "attribute": "caption"
+  },
+  {
+    "source": "Prompt me for a file",
+    "target": "Richiedi conferma per un file"
+  },
+  {
+    "source": "Use this file:",
+    "target": "Utilizzare questo file:"
+  },
+  {
+    "source": "Choose File",
+    "target": "Scegliere File"
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "source": "Events",
+    "target": "イベント",
+    "attribute": "caption"
+  },
+  {
+    "source": "Select the event to fire:",
+    "target": "起動するイベントを選択します。",
+    "attribute": "label"
+  },
+  {
+    "source": "Fire Event",
+    "target": "火災イベント"
+  }
+]

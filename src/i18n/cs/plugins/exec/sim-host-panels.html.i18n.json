@@ -1,0 +1,12 @@
+[
+  {
+    "source": "Persisted Exec Calls",
+    "target": "Trvalé Exec volání",
+    "attribute": "caption"
+  },
+  {
+    "source": "No values saved",
+    "target": "Žádné uložené hodnoty",
+    "attribute": "label"
+  }
+]

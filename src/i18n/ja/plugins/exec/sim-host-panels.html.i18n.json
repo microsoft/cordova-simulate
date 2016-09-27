@@ -1,0 +1,12 @@
+[
+  {
+    "source": "Persisted Exec Calls",
+    "target": "Exec 呼び出しを永続化",
+    "attribute": "caption"
+  },
+  {
+    "source": "No values saved",
+    "target": "保存値を持たない",
+    "attribute": "label"
+  }
+]

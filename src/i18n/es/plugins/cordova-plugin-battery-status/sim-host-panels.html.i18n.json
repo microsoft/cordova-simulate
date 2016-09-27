@@ -1,0 +1,16 @@
+[
+  {
+    "source": "Battery Status",
+    "target": "Estado de la batería",
+    "attribute": "caption"
+  },
+  {
+    "source": "Battery level",
+    "target": "Nivel de batería",
+    "attribute": "label"
+  },
+  {
+    "source": "Device plugged",
+    "target": "Dispositivo conectado"
+  }
+]

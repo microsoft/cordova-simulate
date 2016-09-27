@@ -1,0 +1,68 @@
+[
+  {
+    "source": "Geolocation",
+    "target": "地理位置情報",
+    "attribute": "caption"
+  },
+  {
+    "source": "Zoom Level:",
+    "target": "ズーム レベル:"
+  },
+  {
+    "source": "Latitude",
+    "target": "緯度",
+    "attribute": "label"
+  },
+  {
+    "source": "Longitude",
+    "target": "経度",
+    "attribute": "label"
+  },
+  {
+    "source": "Altitude (m)",
+    "target": "高度 (m)",
+    "attribute": "label"
+  },
+  {
+    "source": "Accuracy (m)",
+    "target": "精度 (m)",
+    "attribute": "label"
+  },
+  {
+    "source": "Altitude accuracy (m)",
+    "target": "精度高度 (m)",
+    "attribute": "label"
+  },
+  {
+    "source": "Heading",
+    "target": "見出し",
+    "attribute": "label"
+  },
+  {
+    "source": "Speed (m/s)",
+    "target": "速度 (m/s)",
+    "attribute": "label"
+  },
+  {
+    "source": "GPS Delay (seconds)",
+    "target": "GPS の遅延 (秒)",
+    "attribute": "label"
+  },
+  {
+    "source": "Simulate GPS Timeout",
+    "target": "GPS タイムアウトをシミュレートします。"
+  },
+  {
+    "source": "Navigation Simulator",
+    "target": "航行シミュレータ",
+    "attribute": "label"
+  },
+  {
+    "source": "Choose File",
+    "target": "ファイルを選択します。"
+  },
+  {
+    "source": "Go",
+    "target": "行く"
+  }
+]

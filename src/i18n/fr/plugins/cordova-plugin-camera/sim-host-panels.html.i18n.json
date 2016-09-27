@@ -1,0 +1,19 @@
+[
+  {
+    "source": "Camera",
+    "target": "Appareil photo",
+    "attribute": "caption"
+  },
+  {
+    "source": "Prompt me for a file",
+    "target": "M’inviter pour un fichier"
+  },
+  {
+    "source": "Use this file:",
+    "target": "Utilisez ce fichier :"
+  },
+  {
+    "source": "Choose File",
+    "target": "Choisissez fichier"
+  }
+]

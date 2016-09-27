@@ -1,0 +1,24 @@
+<xliff 
+  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+  <file original="plugins\cordova-plugin-globalization\sim-host-panels.html" source-language="en" target-language="it">
+    <body>
+      <trans-unit id="caption-5ffc4b1e">
+        <source xml:lang="en">Globalization</source>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Globalizzazione</target>
+      </trans-unit>
+      <trans-unit id="label-9e831385">
+        <source xml:lang="en">Select the locale:</source>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Selezionare le impostazioni internazionali:</target>
+      </trans-unit>
+      <trans-unit id="24aa60d4">
+        <source xml:lang="en">Is daylight saving time</source>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">È l'ora legale</target>
+      </trans-unit>
+      <trans-unit id="label-ee1bad9c">
+        <source xml:lang="en">Select the first day of the week:</source>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Selezionare il primo giorno della settimana:</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

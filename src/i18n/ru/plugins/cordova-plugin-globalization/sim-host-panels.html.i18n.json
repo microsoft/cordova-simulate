@@ -1,0 +1,21 @@
+[
+  {
+    "source": "Globalization",
+    "target": "Глобализация",
+    "attribute": "caption"
+  },
+  {
+    "source": "Select the locale:",
+    "target": "Выберите язык:",
+    "attribute": "label"
+  },
+  {
+    "source": "Is daylight saving time",
+    "target": "Это летнее время"
+  },
+  {
+    "source": "Select the first day of the week:",
+    "target": "Выберите первый день недели:",
+    "attribute": "label"
+  }
+]

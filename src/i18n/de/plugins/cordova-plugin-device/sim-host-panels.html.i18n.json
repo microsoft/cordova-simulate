@@ -1,0 +1,71 @@
+[
+  {
+    "source": "Device",
+    "target": "Gerät",
+    "attribute": "caption"
+  },
+  {
+    "source": "Platform",
+    "target": "Plattform",
+    "attribute": "label"
+  },
+  {
+    "source": "Device",
+    "target": "Gerät",
+    "attribute": "label"
+  },
+  {
+    "source": "OS version",
+    "target": "OS-version",
+    "attribute": "label"
+  },
+  {
+    "source": "Physical resolution",
+    "target": "Physikalische Auflösung",
+    "attribute": "label"
+  },
+  {
+    "source": "Device pixel ratio",
+    "target": "Pixelverhältnis Gerät",
+    "attribute": "label"
+  },
+  {
+    "source": "Logical resolution (viewport size)",
+    "target": "Logische Auflösung (Viewportgröße)",
+    "attribute": "label"
+  },
+  {
+    "source": "Cordova version",
+    "target": "Cordova-version",
+    "attribute": "label"
+  },
+  {
+    "source": "Model",
+    "target": "Modell",
+    "attribute": "label"
+  },
+  {
+    "source": "Manufacturer",
+    "target": "Hersteller",
+    "attribute": "label"
+  },
+  {
+    "source": "UUID",
+    "target": "UUID",
+    "attribute": "label"
+  },
+  {
+    "source": "Version",
+    "target": "Version",
+    "attribute": "label"
+  },
+  {
+    "source": "Serial",
+    "target": "Serielle",
+    "attribute": "label"
+  },
+  {
+    "source": "Virtual device",
+    "target": "Virtuelles Gerät"
+  }
+]

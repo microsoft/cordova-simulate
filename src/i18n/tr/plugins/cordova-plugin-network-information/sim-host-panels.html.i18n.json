@@ -1,0 +1,12 @@
+[
+  {
+    "source": "Network Connection",
+    "target": "Ağ bağlantısı",
+    "attribute": "caption"
+  },
+  {
+    "source": "Connection type",
+    "target": "Bağlantı türü",
+    "attribute": "label"
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "source": "Persisted Exec Calls",
+    "target": "Persistieron las llamadas Exec",
+    "attribute": "caption"
+  },
+  {
+    "source": "No values saved",
+    "target": "No valores guardados",
+    "attribute": "label"
+  }
+]

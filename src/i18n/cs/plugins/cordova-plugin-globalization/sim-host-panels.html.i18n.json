@@ -1,0 +1,21 @@
+[
+  {
+    "source": "Globalization",
+    "target": "Globalizace",
+    "attribute": "caption"
+  },
+  {
+    "source": "Select the locale:",
+    "target": "Vyberte národní prostředí:",
+    "attribute": "label"
+  },
+  {
+    "source": "Is daylight saving time",
+    "target": "Je letní čas"
+  },
+  {
+    "source": "Select the first day of the week:",
+    "target": "Vyberte první den v týdnu:",
+    "attribute": "label"
+  }
+]

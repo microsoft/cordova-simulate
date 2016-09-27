@@ -1,0 +1,43 @@
+[
+  {
+    "source": "Unhandled Exec Call",
+    "target": "Unbehandelte Exec-Aufruf",
+    "attribute": "caption"
+  },
+  {
+    "source": "There is no handler for the following exec call:",
+    "target": "Es gibt kein Handler für den folgenden Exec-Aufruf:"
+  },
+  {
+    "source": "service",
+    "target": "Service"
+  },
+  {
+    "source": "action",
+    "target": "Aktion"
+  },
+  {
+    "source": "Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.",
+    "target": "Bitte geben Sie einen Wert aus, um für diesen Aufruf zurückgegeben werden, dann angeben, ob dies steht für Erfolg oder Misserfolg. Möchten Sie immer auf diese Aufforderung mit diesem Ergebnis reagieren, die Option \"bestehen\"."
+  },
+  {
+    "source": "The value must be valid JSON (",
+    "target": "Der Wert muss eine gültige JSON ("
+  },
+  {
+    "source": "error",
+    "target": "Fehler"
+  },
+  {
+    "source": "Persist",
+    "target": "Bestehen"
+  },
+  {
+    "source": "Success",
+    "target": "Erfolg"
+  },
+  {
+    "source": "Failure",
+    "target": "Fehler"
+  }
+]

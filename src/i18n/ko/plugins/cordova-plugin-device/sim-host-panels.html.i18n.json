@@ -1,0 +1,71 @@
+[
+  {
+    "source": "Device",
+    "target": "장치",
+    "attribute": "caption"
+  },
+  {
+    "source": "Platform",
+    "target": "플랫폼",
+    "attribute": "label"
+  },
+  {
+    "source": "Device",
+    "target": "장치",
+    "attribute": "label"
+  },
+  {
+    "source": "OS version",
+    "target": "운영 체제 버전",
+    "attribute": "label"
+  },
+  {
+    "source": "Physical resolution",
+    "target": "실제 해상도",
+    "attribute": "label"
+  },
+  {
+    "source": "Device pixel ratio",
+    "target": "장치 픽셀 비율",
+    "attribute": "label"
+  },
+  {
+    "source": "Logical resolution (viewport size)",
+    "target": "논리적 해상도 (뷰포트 크기)",
+    "attribute": "label"
+  },
+  {
+    "source": "Cordova version",
+    "target": "코르 도우 바 버전",
+    "attribute": "label"
+  },
+  {
+    "source": "Model",
+    "target": "모델",
+    "attribute": "label"
+  },
+  {
+    "source": "Manufacturer",
+    "target": "제조 업체",
+    "attribute": "label"
+  },
+  {
+    "source": "UUID",
+    "target": "UUID",
+    "attribute": "label"
+  },
+  {
+    "source": "Version",
+    "target": "버전",
+    "attribute": "label"
+  },
+  {
+    "source": "Serial",
+    "target": "직렬",
+    "attribute": "label"
+  },
+  {
+    "source": "Virtual device",
+    "target": "가상 장치"
+  }
+]

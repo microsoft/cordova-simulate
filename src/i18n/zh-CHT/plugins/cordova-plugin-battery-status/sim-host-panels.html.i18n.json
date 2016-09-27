@@ -1,0 +1,16 @@
+[
+  {
+    "source": "Battery Status",
+    "target": "電池狀態",
+    "attribute": "caption"
+  },
+  {
+    "source": "Battery level",
+    "target": "電池計量水準",
+    "attribute": "label"
+  },
+  {
+    "source": "Device plugged",
+    "target": "插入的設備"
+  }
+]

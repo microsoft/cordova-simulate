@@ -1,0 +1,19 @@
+[
+  {
+    "source": "Camera: Choose Image",
+    "target": "攝像頭︰ 選擇圖像",
+    "attribute": "caption"
+  },
+  {
+    "source": "Choose File",
+    "target": "選擇檔"
+  },
+  {
+    "source": "Use Image",
+    "target": "使用圖像"
+  },
+  {
+    "source": "Cancel",
+    "target": "取消"
+  }
+]

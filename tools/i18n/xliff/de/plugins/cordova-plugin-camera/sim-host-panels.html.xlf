@@ -1,0 +1,24 @@
+<xliff 
+  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+  <file original="plugins\cordova-plugin-camera\sim-host-panels.html" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="caption-553fc9a5">
+        <source xml:lang="en">Camera</source>
+        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Kamera</target>
+      </trans-unit>
+      <trans-unit id="4f087d38">
+        <source xml:lang="en">Prompt me for a file</source>
+        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Eingabeaufforderung für eine Datei</target>
+      </trans-unit>
+      <trans-unit id="145af9c0">
+        <source xml:lang="en">Use this file:</source>
+        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Verwenden Sie diese Datei:</target>
+      </trans-unit>
+      <trans-unit id="2c4e6d12">
+        <source xml:lang="en">Choose File</source>
+        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Wählen Sie Datei</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,19 @@
+[
+  {
+    "source": "InAppBrowser",
+    "target": "InAppBrowser",
+    "attribute": "caption"
+  },
+  {
+    "source": "Select the default behaviour of InAppBrowser when opening using the <em>_blank</em> target",
+    "target": "<em>_Blank</em> hedef kullanarak açarken InAppBrowser varsayılan davranışını seçin"
+  },
+  {
+    "source": "Open in a new window: <em>_system</em> target",
+    "target": "Yeni bir pencerede aç: <em>_system</em> hedef"
+  },
+  {
+    "source": "Open in a InAppBrowser based on an iframe",
+    "target": "Açık bir iframe esaslı bir InAppBrowser içinde"
+  }
+]

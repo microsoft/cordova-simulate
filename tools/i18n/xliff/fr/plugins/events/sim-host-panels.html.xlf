@@ -1,0 +1,20 @@
+<xliff 
+  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+  <file original="plugins\events\sim-host-panels.html" source-language="en" target-language="fr">
+    <body>
+      <trans-unit id="caption-c9b16703">
+        <source xml:lang="en">Events</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Événements</target>
+      </trans-unit>
+      <trans-unit id="label-4eb9640f">
+        <source xml:lang="en">Select the event to fire:</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Sélectionnez l’événement se déclenche :</target>
+      </trans-unit>
+      <trans-unit id="064dde5f">
+        <source xml:lang="en">Fire Event</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Événement de feu</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

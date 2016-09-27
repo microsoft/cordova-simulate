@@ -1,0 +1,71 @@
+[
+  {
+    "source": "Device",
+    "target": "设备",
+    "attribute": "caption"
+  },
+  {
+    "source": "Platform",
+    "target": "平台",
+    "attribute": "label"
+  },
+  {
+    "source": "Device",
+    "target": "设备",
+    "attribute": "label"
+  },
+  {
+    "source": "OS version",
+    "target": "操作系统版本",
+    "attribute": "label"
+  },
+  {
+    "source": "Physical resolution",
+    "target": "物理分辨率",
+    "attribute": "label"
+  },
+  {
+    "source": "Device pixel ratio",
+    "target": "设备像素比",
+    "attribute": "label"
+  },
+  {
+    "source": "Logical resolution (viewport size)",
+    "target": "逻辑的决议 （视口大小）",
+    "attribute": "label"
+  },
+  {
+    "source": "Cordova version",
+    "target": "科尔多瓦版本",
+    "attribute": "label"
+  },
+  {
+    "source": "Model",
+    "target": "模型",
+    "attribute": "label"
+  },
+  {
+    "source": "Manufacturer",
+    "target": "制造商",
+    "attribute": "label"
+  },
+  {
+    "source": "UUID",
+    "target": "UUID",
+    "attribute": "label"
+  },
+  {
+    "source": "Version",
+    "target": "版本",
+    "attribute": "label"
+  },
+  {
+    "source": "Serial",
+    "target": "串行",
+    "attribute": "label"
+  },
+  {
+    "source": "Virtual device",
+    "target": "虚拟设备"
+  }
+]

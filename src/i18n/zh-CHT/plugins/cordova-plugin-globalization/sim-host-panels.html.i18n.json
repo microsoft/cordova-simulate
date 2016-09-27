@@ -1,0 +1,21 @@
+[
+  {
+    "source": "Globalization",
+    "target": "全球化",
+    "attribute": "caption"
+  },
+  {
+    "source": "Select the locale:",
+    "target": "選擇的地區設定︰",
+    "attribute": "label"
+  },
+  {
+    "source": "Is daylight saving time",
+    "target": "是夏令時"
+  },
+  {
+    "source": "Select the first day of the week:",
+    "target": "選擇一周的第一天︰",
+    "attribute": "label"
+  }
+]

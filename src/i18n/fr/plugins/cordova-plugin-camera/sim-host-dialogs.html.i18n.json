@@ -1,0 +1,19 @@
+[
+  {
+    "source": "Camera: Choose Image",
+    "target": "Caméra : Choisissez Image",
+    "attribute": "caption"
+  },
+  {
+    "source": "Choose File",
+    "target": "Choisissez fichier"
+  },
+  {
+    "source": "Use Image",
+    "target": "Utiliser une Image"
+  },
+  {
+    "source": "Cancel",
+    "target": "Annuler"
+  }
+]

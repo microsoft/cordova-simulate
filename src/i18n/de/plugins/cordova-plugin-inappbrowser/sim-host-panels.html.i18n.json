@@ -1,0 +1,19 @@
+[
+  {
+    "source": "InAppBrowser",
+    "target": "InAppBrowser",
+    "attribute": "caption"
+  },
+  {
+    "source": "Select the default behaviour of InAppBrowser when opening using the <em>_blank</em> target",
+    "target": "Wählen Sie das Standardverhalten des InAppBrowser beim Öffnen mit <em>_blank</em> target"
+  },
+  {
+    "source": "Open in a new window: <em>_system</em> target",
+    "target": "In einem neuen Fenster geöffnet: <em>_system</em> Ziel"
+  },
+  {
+    "source": "Open in a InAppBrowser based on an iframe",
+    "target": "In einer InAppBrowser basierend auf einem Iframe öffnen"
+  }
+]

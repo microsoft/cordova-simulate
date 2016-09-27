@@ -1,0 +1,12 @@
+[
+  {
+    "source": "Network Connection",
+    "target": "Conexão de rede",
+    "attribute": "caption"
+  },
+  {
+    "source": "Connection type",
+    "target": "Tipo de Conexão",
+    "attribute": "label"
+  }
+]

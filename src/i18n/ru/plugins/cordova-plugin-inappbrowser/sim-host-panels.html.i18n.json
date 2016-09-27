@@ -1,0 +1,19 @@
+[
+  {
+    "source": "InAppBrowser",
+    "target": "InAppBrowser",
+    "attribute": "caption"
+  },
+  {
+    "source": "Select the default behaviour of InAppBrowser when opening using the <em>_blank</em> target",
+    "target": "Выберите поведение по умолчанию InAppBrowser при открытии с помощью <em>_blank</em> целевой"
+  },
+  {
+    "source": "Open in a new window: <em>_system</em> target",
+    "target": "Открыть в новом окне: <em>_системная</em> цель"
+  },
+  {
+    "source": "Open in a InAppBrowser based on an iframe",
+    "target": "Открыть в InAppBrowser на основе iframe"
+  }
+]

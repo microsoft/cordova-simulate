@@ -1,0 +1,21 @@
+[
+  {
+    "source": "Globalization",
+    "target": "Küreselleşme",
+    "attribute": "caption"
+  },
+  {
+    "source": "Select the locale:",
+    "target": "Yerel ayarı seçin:",
+    "attribute": "label"
+  },
+  {
+    "source": "Is daylight saving time",
+    "target": "Yaz saati uygulaması olduğunu"
+  },
+  {
+    "source": "Select the first day of the week:",
+    "target": "Haftanın ilk günü seçin:",
+    "attribute": "label"
+  }
+]
