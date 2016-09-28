@@ -20,7 +20,7 @@ var NEEDS_TRANSLATION = 'needs-translation';
 var MACHINE_SUGGESTION = 'mt-suggestion';
 var htmlparser2TreeAdapter = parse5.treeAdapters.htmlparser2;
 
-var langs = ['zh-CHS', 'zh-CHT', 'cs', 'de', 'es', 'fr', 'it', 'ja', 'ko', 'pl', 'pt', 'ru', 'tr'];
+var langs = ['zh-HanS', 'zh-HanT', 'cs', 'de', 'es', 'fr', 'it', 'ja', 'ko', 'pl', 'pt', 'ru', 'tr'];
 
 var htmlRootPath = path.resolve(__dirname, '../../src');
 var htmlFiles = files.findFiles(path.join(htmlRootPath, 'plugins'), 'html');
@@ -97,7 +97,14 @@ Promise.all(htmlFiles.map(function (htmlFile) {
     langs.forEach(function (lang) {
         // Generate XLIFF file for this language
         var xlfFile = path.resolve(__dirname, 'xliff', lang + '.xlf');
-        var xliffDoc = xliffConv.parseJson(langXliffs[lang]);
+
+        // Sort by file name so xliff file is constructed in a predictable order
+        var langXliff = langXliffs[lang];
+        langXliff.sort(function (left, right) {
+            return left.original < right.original ? -1 : 1;
+        });
+
+        var xliffDoc = xliffConv.parseJson(langXliff);
         files.writeFileSync(xlfFile, pd.xml(new XMLSerializer().serializeToString(xliffDoc)));
         console.log('XLIFF file updated for ' + chalk.cyan(lang));
     });
