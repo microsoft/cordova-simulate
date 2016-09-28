@@ -57,6 +57,42 @@
       </trans-unit>
     </body>
   </file>
+  <file original="plugins\cordova-plugin-device-motion\sim-host-panels.html" source-language="en" target-language="tr">
+    <body>
+      <trans-unit id="caption-9a8c8723">
+        <source xml:lang="en">Accelerometer</source>
+        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Accelerometer</target>
+      </trans-unit>
+      <trans-unit id="label-d240cacf">
+        <source xml:lang="en">Recorded Data</source>
+        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Kaydedilen verileri</target>
+      </trans-unit>
+      <trans-unit id="c562ff87:1">
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br> Hold the Shift key to modify 'alpha'</source>
+        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">' I tıklatın ve aygıtı değiştirmek için fareyi sürükleyin. 'Alfa' değiştirmek için Shift tuşunu basılı tutun &lt;br></target>
+      </trans-unit>
+      <trans-unit id="1b009684:1">
+        <source xml:lang="en">Play</source>
+        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Oyun</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="plugins\cordova-plugin-device-orientation\sim-host-panels.html" source-language="en" target-language="tr">
+    <body>
+      <trans-unit id="caption-8310fdf4">
+        <source xml:lang="en">Compass</source>
+        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Pusula</target>
+      </trans-unit>
+      <trans-unit id="c4c80de2:1">
+        <source xml:lang="en">&lt;em>Click and drag with the mouse to manipulate the device compass.&lt;/em></source>
+        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">&lt;em>Tıklayın ve sürükleyin fare ile aygıt pusula işlemek için.&lt;/em></target>
+      </trans-unit>
+      <trans-unit id="ae47e3ec:1">
+        <source xml:lang="en">Heading (deg)</source>
+        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Başlık (deg)</target>
+      </trans-unit>
+    </body>
+  </file>
   <file original="plugins\cordova-plugin-device\sim-host-panels.html" source-language="en" target-language="tr">
     <body>
       <trans-unit id="caption-c045b281">
@@ -114,42 +150,6 @@
       <trans-unit id="c1a21524:1">
         <source xml:lang="en">Virtual device</source>
         <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Sanal aygıt</target>
-      </trans-unit>
-    </body>
-  </file>
-  <file original="plugins\cordova-plugin-device-motion\sim-host-panels.html" source-language="en" target-language="tr">
-    <body>
-      <trans-unit id="caption-9a8c8723">
-        <source xml:lang="en">Accelerometer</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Accelerometer</target>
-      </trans-unit>
-      <trans-unit id="label-d240cacf">
-        <source xml:lang="en">Recorded Data</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Kaydedilen verileri</target>
-      </trans-unit>
-      <trans-unit id="c562ff87:1">
-        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br> Hold the Shift key to modify 'alpha'</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">' I tıklatın ve aygıtı değiştirmek için fareyi sürükleyin. 'Alfa' değiştirmek için Shift tuşunu basılı tutun &lt;br></target>
-      </trans-unit>
-      <trans-unit id="1b009684:1">
-        <source xml:lang="en">Play</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Oyun</target>
-      </trans-unit>
-    </body>
-  </file>
-  <file original="plugins\cordova-plugin-device-orientation\sim-host-panels.html" source-language="en" target-language="tr">
-    <body>
-      <trans-unit id="caption-8310fdf4">
-        <source xml:lang="en">Compass</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Pusula</target>
-      </trans-unit>
-      <trans-unit id="c4c80de2:1">
-        <source xml:lang="en">&lt;em>Click and drag with the mouse to manipulate the device compass.&lt;/em></source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">&lt;em>Tıklayın ve sürükleyin fare ile aygıt pusula işlemek için.&lt;/em></target>
-      </trans-unit>
-      <trans-unit id="ae47e3ec:1">
-        <source xml:lang="en">Heading (deg)</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Başlık (deg)</target>
       </trans-unit>
     </body>
   </file>
