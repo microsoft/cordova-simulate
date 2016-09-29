@@ -20,7 +20,7 @@ var NEEDS_TRANSLATION = 'needs-translation';
 var MACHINE_SUGGESTION = 'mt-suggestion';
 var htmlparser2TreeAdapter = parse5.treeAdapters.htmlparser2;
 
-var langs = ['zh-HanS', 'zh-HanT', 'cs', 'de', 'es', 'fr', 'it', 'ja', 'ko', 'pl', 'pt', 'ru', 'tr'];
+var langs = ['zh-Hans', 'zh-Hant', 'cs', 'de', 'es', 'fr', 'it', 'ja', 'ko', 'pl', 'pt', 'ru', 'tr'];
 
 var htmlRootPath = path.resolve(__dirname, '../../src');
 var htmlFiles = files.findFiles(path.join(htmlRootPath, 'plugins'), 'html');

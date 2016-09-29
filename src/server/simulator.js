@@ -228,12 +228,40 @@ function parseOptions(opts) {
     config.xhrProxy = opts.hasOwnProperty('corsproxy') ? !!opts.corsproxy : true;
     config.touchEvents = opts.hasOwnProperty('touchevents') ? !!opts.touchevents : true;
 
-    config.lang = opts.lang;
+    config.lang = normalizeLanguage(opts.lang);
 
     config.deviceInfo = device.getDeviceInfo(opts.platform, opts.device);
     opts.platform = config.deviceInfo.platform;
 
     return config;
+}
+
+function normalizeLanguage(lang) {
+    // Tries to find the best match for the provided language
+
+    if (!lang) {
+        return null;
+    }
+
+    lang = lang.toLowerCase();
+
+    // This list matches the case of the relevant directory names, which is important for systems with case sensitive
+    // file systems.
+    var supportedLangs = ['zh-Hans', 'zh-Hant', 'cs', 'de', 'es', 'fr', 'it', 'ja', 'ko', 'pl', 'pt', 'ru', 'tr'];
+
+    // Look for exact match (case insensitive)
+    var idx = supportedLangs.map(function (lang) {
+        return lang.toLowerCase()
+    }).indexOf(lang);
+
+    if (idx == -1) {
+        // That didn't match, so try to match just the language
+        idx = supportedLangs.map(function (lang) {
+            return lang.split('-')[0];
+        }).indexOf(lang.split('-')[0]);
+    }
+
+    return idx > -1 ? supportedLangs[idx] : null;
 }
 
 module.exports = Simulator;
