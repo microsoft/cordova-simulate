@@ -1,5 +1,12 @@
 # cordova-simulate Release Notes
 
+### 0.3.2 (Sep 29, 2016)
+* Add localization support (current machine localized for 13 languages - real translations coming soon)
+  ([#153](https://github.com/Microsoft/cordova-simulate/pull/153), [#155](https://github.com/Microsoft/cordova-simulate/pull/155),
+  [#156](https://github.com/Microsoft/cordova-simulate/pull/156), [#158](https://github.com/Microsoft/cordova-simulate/pull/158),
+  [#159](https://github.com/Microsoft/cordova-simulate/pull/159)) 
+* Updated Device panel and devices list ([#150](https://github.com/Microsoft/cordova-simulate/pull/150))
+
 ### 0.3.1 (Sep 17, 2016)
 * Fix [#152](https://github.com/Microsoft/cordova-simulate/issues/152): Published package fails when run on command line (windows newline)
 * Fix live-reload when launching from VS ([#151](https://github.com/Microsoft/cordova-simulate/pull/151))
