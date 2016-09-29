@@ -34,15 +34,26 @@ simulate(opts);
 Where opts is an object with the following properties (all optional):
 
 * **platform** - any Cordova platform that has been added to your project. Defaults to `browser`.
+* **device** - specify the id of a device to start with instead of a platform (the platform will be determined by the
+  device). Supported `android` devices are `Nexus4`, `Nexus6`, `Nexus7`, `Nexus10`, `OptimusL70`, `G5`, `GalaxyNote7`
+  and `GalaxyS5`. Supported `ios` devices are `iPhone4`, `iPhone5`, `iPhone6`, `iPhone6Plus`, `iPad` and `iPadPro`.
+  Supported `windows` devices are `Lumia930`, `Lumia950` and `SurfacePro`. Supported generic devices (which will use the
+  `browser` platform) are `Generic320x480`, `Generic320x568`, `Generic360x640`, `Generic384x640`, `Generic412x732`,
+  `Generic768x1024`, `Generic800x1280` and `Generic1920x1080`.
 * **target** - the name of the browser to launch your app in. Can be any of the following: `chrome`, `chromium`, `edge`, `firefox`, `ie`, `opera`, `safari`. Defaults to `chrome`.
 * **port** - the desired port for the server to use. Defaults to `8000`.
+* **lang** - the language to display in the interface (does not impact console output). Supported values (case-insensitive)
+  are `cs` (Czech), `de` (German), `es` (Spanish), `fr` (French), `it` (Italian), `ja` (Japanese), `ko` (Korean), `pl` (Polish),
+  `pt` (Portuguese), `ru` (Russian), `tr` (Turkish), `zh-Hans` (Simplified Chinese) and `zh-Hant` (Traditional Chinese).
+   Additional tags are ignored (for example, `de-DE` is treated as `de`).
 * **dir** - the directory to launch from (where it should look for a Cordova project). Defaults to cwd.
 * **simhostui** - the directory containing the UI specific files of the simulation host. Defaults to the bundled simulation host files, found in `src/sim-host/ui`.
-* **livereload** - A boolean. Set to false to disable live reload. Defaults to true.
-* **forceprepare** - A boolean. Set to true to force a `cordova prepare` whenever a file changes during live reload. If this is false, the server will simply copy the changed file to the platform rather than doing a `cordova prepare`. Ignored if live reload is disabled. Defaults to false.
-* **corsproxy** - Boolean indicating if XMLHttpRequest is proxied through the simulate server. This is useful for working around CORS issues at development time. Defaults to true.
-* **touchevents** - A boolean. Set to false to disable the simulaton of touch events in App-Host. Defaults to true.
+* **livereload** - A boolean. Set to `false` to disable live reload. Defaults to `true`.
+* **forceprepare** - A boolean. Set to `true` to force a `cordova prepare` whenever a file changes during live reload. If this is `false`, the server will simply copy the changed file to the platform rather than doing a `cordova prepare`. Ignored if live reload is disabled. Defaults to `false`.
+* **corsproxy** - Boolean indicating if XMLHttpRequest is proxied through the simulate server. This is useful for working around CORS issues at development time. Defaults to `true`.
+* **touchevents** - A boolean. Set to `false` to disable the simulation of touch events in App-Host. Defaults to `true`.
 * **simulationpath** - the directory where temporary simulation files are hosted. Defaults to `projectRoot/simulate`.
+* **simhosttitle** - specifies the title of the simulation window. Defaults to `Plugin Simulation`.
 
 
 # What it does
