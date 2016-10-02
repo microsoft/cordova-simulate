@@ -12,25 +12,25 @@ var APP_HOST = 'APP_HOST',
  * SIM_HOST states
  */
 var SH_STATE_DISCONNECTED   = 1 << 0,
-    SH_STATE_CONNECTED      = 1 << 2,
-    SH_STATE_INIT_SENT      = 1 << 3,
-    SH_STATE_READY          = 1 << 4;
+    SH_STATE_CONNECTED      = 1 << 1,
+    SH_STATE_READY          = 1 << 2;
 
 /**
  * APP_HOST states
  */
-var AH_STATE_DISCONNECTED   = 1 << 5,
-    AH_STATE_CONNECTED      = 1 << 6,
-    AH_STATE_INIT_SENT      = 1 << 7,
-    AH_STATE_PLUGINS_READY  = 1 << 8,
-    AH_STATE_START_SENT     = 1 << 9;
+var AH_STATE_DISCONNECTED   = 1 << 8,
+    AH_STATE_CONNECTED      = 1 << 9,
+    AH_STATE_PLUGINS_READY  = 1 << 10,
+    AH_STATE_START_SENT     = 1 << 11;
 
 /**
- * It creates a Web Socket server to enable RPC communication between simulation hosts
- * running in different process. This object implements the server part of the communication
- * protocol as described at
-    https://github.com/Microsoft/cordova-simulate/wiki/The-cordova-simulate-bootstrap-protocol
- * with a limitation that only single app-host is supported per server (and sim-host).
+ * Creates a Web Socket server to enable RPC communication between simulation
+ * hosts running in different process. This object implements the server part of
+ * the communication protocol as described at
+ *      https://github.com/Microsoft/cordova-simulate/wiki/The-cordova-simulate-bootstrap-protocol
+ * with a limitation that only single app-host is supported per server (and
+ * sim-host).
+ *
  * @param {object} simulatorProxy
  * @param {object} project
  * @constructor
@@ -70,7 +70,6 @@ SocketServer.prototype._handleStateChange = function (appHostState, simHostState
                 this._setAppHostState(AH_STATE_PLUGINS_READY);
             }.bind(this), true);
             this._emitTo(APP_HOST, 'init');
-            this._setAppHostState(AH_STATE_INIT_SENT);
             break;
         case AH_STATE_PLUGINS_READY | SH_STATE_READY:
             this._subscribeTo(SIM_HOST, 'start', function () {
@@ -87,33 +86,52 @@ SocketServer.prototype._handleStateChange = function (appHostState, simHostState
  * Handles state changes in APP_HOST.
  */
 SocketServer.prototype._setAppHostState = function (appHostState) {
+    var err;
+    // check if the new state is a valid one and capture the data
     switch (appHostState) {
         case AH_STATE_DISCONNECTED:
+            // this normally happens on a disconnect from APP_HOST
             if (this._ahState > AH_STATE_DISCONNECTED) {
                 this._hostSockets[APP_HOST].disconnect(true);
                 delete this._hostSockets[APP_HOST];
+                break;
             }
             break;
         case AH_STATE_CONNECTED:
             if (this._ahState !== AH_STATE_DISCONNECTED) {
-                // TODO: error
+                err = 'APP_HOST: cannot change state to CONNECTED from '
+                        + this._ahState;
+                break;
             }
             this._hostSockets[APP_HOST] = arguments[1];
             break;
-        case AH_STATE_INIT_SENT:
-            break;
         case AH_STATE_PLUGINS_READY:
+            if (this._ahState !== AH_STATE_CONNECTED) {
+                err = 'APP_HOST: cannot change state to PLUGINS_READY from '
+                        + this._ahState;
+                break;
+            }
             break;
         case AH_STATE_START_SENT:
+            if (this._ahState !== AH_STATE_PLUGINS_READY) {
+                err = 'APP_HOST: cannot change state to START_SENT from '
+                        + this._ahState;
+                break;
+            }
             break;
         default:
-            // TODO: internal error
+            err = 'APP_HOST: unknown state ' + appHostState;
             break;
+    }
+
+    if (err) {
+        throw err;
     }
 
     // see if there's any protocol action to be taken
     this._handleStateChange(appHostState, this._shState);
 
+    // finally change the state
     this._ahState = appHostState;
 };
 
@@ -121,32 +139,53 @@ SocketServer.prototype._setAppHostState = function (appHostState) {
  * Handles state changes in SIM_HOST.
  */
 SocketServer.prototype._setSimHostState = function (simHostState) {
+    var err;
+    // check if the state change is valid and make necessary changes
     switch (simHostState) {
         case SH_STATE_DISCONNECTED:
+            // normally happens on SIM_HOST disconnect
             if (this._shState > SH_STATE_DISCONNECTED) {
                 this._hostSockets[SIM_HOST].disconnect(true);
                 delete this._hostSockets[SIM_HOST];
+                break;
             }
             break;
         case SH_STATE_CONNECTED:
             if (this._shState !== SH_STATE_DISCONNECTED) {
-                // TODO: error
+                err = 'SIM_HOST: cannot change state to DISCONNECTED from '
+                        + this._shState;
+                break;
+            }
+            if (!arguments[1]) {
+                err = 'SIM_HOST: no socket instance recieved on connect';
+                break;
             }
             this._hostSockets[SIM_HOST] = arguments[1];
-            this._handleSimHostRegistration();
-            break;
-        case SH_STATE_INIT_SENT:
+            this._subscribeTo(SIM_HOST, 'ready', function () {
+                this._setSimHostState(SH_STATE_READY);
+            }.bind(this), true);
+            this._emitTo(SIM_HOST, 'init', this._simulatorProxy.config.deviceInfo);
             break;
         case SH_STATE_READY:
+            if (this._shState !== SH_STATE_CONNECTED) {
+                err = 'SIM_HOST: cannot change state to READY from '
+                        + this._shState;
+                break;
+            }
             break;
         default:
-            // TODO: internal error
+            err = 'SIM_HOST: unknown state ' + simHostState;
             break;
+    }
+
+    if (err) {
+        throw err;
     }
 
     // see if there's any protocol action to be taken
     this._handleStateChange(this._ahState, simHostState);
 
+    // finally, change the state
     this._shState = simHostState;
 };
 
@@ -178,6 +217,10 @@ SocketServer.prototype.init = function (server) {
                 that._setSimHostState(SH_STATE_DISCONNECTED);
             }
             that._setSimHostState(SH_STATE_CONNECTED, socket);
+        });
+
+        socket.on('error', function (err) {
+            log.error(err);
         });
 
         socket.on('register-debug-host', function (data) {
@@ -284,14 +327,6 @@ SocketServer.prototype._setupAppHostHandlers = function () {
     if (config.touchEvents) {
         this._emitTo(APP_HOST, 'init-touch-events');
     }
-};
-
-SocketServer.prototype._handleSimHostRegistration = function () {
-    this._subscribeTo(SIM_HOST, 'ready', function () {
-        this._setSimHostState(SH_STATE_READY);
-    }.bind(this), true);
-    this._emitTo(SIM_HOST, 'init', this._simulatorProxy.config.deviceInfo);
-    this._setSimHostState(SH_STATE_INIT_SENT);
 };
 
 SocketServer.prototype._setupSimHostHandlers = function () {
