@@ -1,13 +1,29 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var Q = require('q'),
-    log = require('./utils/log'),
+var log = require('./utils/log'),
     LiveReload = require('./live-reload/live-reload');
 
 // make variable match the literal
 var APP_HOST = 'APP_HOST',
     SIM_HOST = 'SIM_HOST',
     DEBUG_HOST = 'DEBUG_HOST';
+
+/**
+ * SIM_HOST states
+ */
+var SH_STATE_DISCONNECTED   = 1 << 0,
+    SH_STATE_CONNECTED      = 1 << 2,
+    SH_STATE_INIT_SENT      = 1 << 3,
+    SH_STATE_READY          = 1 << 4;
+
+/**
+ * APP_HOST states
+ */
+var AH_STATE_DISCONNECTED   = 1 << 5,
+    AH_STATE_CONNECTED      = 1 << 6,
+    AH_STATE_INIT_SENT      = 1 << 7,
+    AH_STATE_PLUGINS_READY  = 1 << 8,
+    AH_STATE_START_SENT     = 1 << 9;
 
 /**
  * It creates a Web Socket server to enable RPC communication between simulation hosts
@@ -28,19 +44,111 @@ function SocketServer(simulatorProxy, project) {
     this._pendingEmits[SIM_HOST] = [];
     this._pendingEmits[DEBUG_HOST] = [];
 
-    /* Deferred are used to delay the actions until an event happens.
-     * Two major events are kept track of:
-     *      - When app-host connects (sends initial message)
-     *      - When sim-host notifies it's ready to serve an app-host.
-     */
-    this._whenAppHostConnected = Q.defer();
-    this._whenSimHostReady     = Q.defer();
+    // current client states
+    this._ahState = AH_STATE_DISCONNECTED;
+    this._shState = SH_STATE_DISCONNECTED;
 
     var config = this._simulatorProxy.config,
         telemetry = this._simulatorProxy.telemetry;
 
     this._liveReload = new LiveReload(project, telemetry, config.forcePrepare);
 }
+
+/**
+ * Handles protocol events triggered by the change of states in one of the
+ * clients (APP_HOST or SIM_HOST). Protocol events are those which depend on
+ * both APP_HOST and SIM_HOST.
+ */
+SocketServer.prototype._handleStateChange = function (appHostState, simHostState) {
+    var state = appHostState | simHostState;
+    switch (state) {
+        case AH_STATE_CONNECTED | SH_STATE_READY:
+            this._setupAppHostHandlers();
+            this._setupSimHostHandlers();
+            this._subscribeTo(APP_HOST, 'app-plugin-list', function (data) {
+                this._emitTo(SIM_HOST, 'app-plugin-list', data);
+                this._setAppHostState(AH_STATE_PLUGINS_READY);
+            }.bind(this), true);
+            this._emitTo(APP_HOST, 'init');
+            this._setAppHostState(AH_STATE_INIT_SENT);
+            break;
+        case AH_STATE_PLUGINS_READY | SH_STATE_READY:
+            this._subscribeTo(SIM_HOST, 'start', function () {
+                this._emitTo(APP_HOST, 'start');
+                this._setAppHostState(AH_STATE_START_SENT);
+            }.bind(this), true);
+            break;
+        default:
+            break;
+    }
+};
+
+/**
+ * Handles state changes in APP_HOST.
+ */
+SocketServer.prototype._setAppHostState = function (appHostState) {
+    switch (appHostState) {
+        case AH_STATE_DISCONNECTED:
+            if (this._ahState > AH_STATE_DISCONNECTED) {
+                this._hostSockets[APP_HOST].disconnect(true);
+                delete this._hostSockets[APP_HOST];
+            }
+            break;
+        case AH_STATE_CONNECTED:
+            if (this._ahState !== AH_STATE_DISCONNECTED) {
+                // TODO: error
+            }
+            this._hostSockets[APP_HOST] = arguments[1];
+            break;
+        case AH_STATE_INIT_SENT:
+            break;
+        case AH_STATE_PLUGINS_READY:
+            break;
+        case AH_STATE_START_SENT:
+            break;
+        default:
+            // TODO: internal error
+            break;
+    }
+
+    // see if there's any protocol action to be taken
+    this._handleStateChange(appHostState, this._shState);
+
+    this._ahState = appHostState;
+};
+
+/**
+ * Handles state changes in SIM_HOST.
+ */
+SocketServer.prototype._setSimHostState = function (simHostState) {
+    switch (simHostState) {
+        case SH_STATE_DISCONNECTED:
+            if (this._shState > SH_STATE_DISCONNECTED) {
+                this._hostSockets[SIM_HOST].disconnect(true);
+                delete this._hostSockets[SIM_HOST];
+            }
+            break;
+        case SH_STATE_CONNECTED:
+            if (this._shState !== SH_STATE_DISCONNECTED) {
+                // TODO: error
+            }
+            this._hostSockets[SIM_HOST] = arguments[1];
+            this._handleSimHostRegistration();
+            break;
+        case SH_STATE_INIT_SENT:
+            break;
+        case SH_STATE_READY:
+            break;
+        default:
+            // TODO: internal error
+            break;
+    }
+
+    // see if there's any protocol action to be taken
+    this._handleStateChange(this._ahState, simHostState);
+
+    this._shState = simHostState;
+};
 
 SocketServer.prototype.init = function (server) {
     var that = this,
@@ -57,25 +165,19 @@ SocketServer.prototype.init = function (server) {
         });
 
         socket.on('register-app-host', function () {
-            log.log('APP_HOST connected to the server');
-            if (that._hostSockets[APP_HOST]) {
+            if (that._ahState > AH_STATE_DISCONNECTED) {
                 log.log('Overriding previously connected APP_HOST');
-                that._resetAppHostState();
+                that._setAppHostState(AH_STATE_DISCONNECTED);
             }
-            that._hostSockets[APP_HOST] = socket;
-            that._whenSimHostReady.promise
-                .then(that._onSimHostReady.bind(that));
-            that._whenAppHostConnected.resolve();
+            that._setAppHostState(AH_STATE_CONNECTED, socket);
         });
 
         socket.on('register-simulation-host', function () {
-            log.log('SIM_HOST connected to the server');
-            if (that._hostSockets[SIM_HOST]) {
+            if (that._shState > SH_STATE_DISCONNECTED) {
                 log.log('Overriding previously connected SIM_HOST');
-                that._resetSimHostState();
+                that._setSimHostState(SH_STATE_DISCONNECTED);
             }
-            that._hostSockets[SIM_HOST] = socket;
-            that._handleSimHostRegistration(socket);
+            that._setSimHostState(SH_STATE_CONNECTED, socket);
         });
 
         socket.on('register-debug-host', function (data) {
@@ -103,14 +205,12 @@ SocketServer.prototype.init = function (server) {
                 log.log('Disconnect for an inactive socket');
                 return;
             }
-            that._hostSockets[type] = undefined;
-            log.log(type + ' disconnected from the server');
             switch (type) {
                 case APP_HOST:
-                    that._resetAppHostState();
+                    that._setAppHostState(AH_STATE_DISCONNECTED);
                     break;
                 case SIM_HOST:
-                    that._resetSimHostState();
+                    that._setSimHostState(SH_STATE_DISCONNECTED);
                     break;
                 case DEBUG_HOST:
                     config.debugHostHandlers = null;
@@ -142,28 +242,10 @@ SocketServer.prototype.closeConnections = function () {
     this._io = null;
     this._hostSockets = {};
     this._pendingEmits = {};
-    this._pendingEmits[APP_HOST] = [];
-    this._pendingEmits[SIM_HOST] = [];
     this._pendingEmits[DEBUG_HOST] = [];
-    this._whenAppHostConnected = Q.defer();
-    this._whenSimHostReady = Q.defer();
-};
-
-SocketServer.prototype._resetAppHostState = function () {
-    this._whenAppHostConnected = Q.defer();
-    this._whenAppHostConnected.promise
-        .then(this._onAppHostConnected.bind(this));
-};
-
-SocketServer.prototype._resetSimHostState = function () {
-    this._whenSimHostReady = Q.defer();
-    this._whenSimHostReady.promise
-        .then(this._onSimHostReady.bind(this));
 };
 
 SocketServer.prototype._setupAppHostHandlers = function () {
-    log.log('Setup handlers for APP_HOST');
-
     var config = this._simulatorProxy.config;
 
     this._subscribeTo(APP_HOST, 'exec', function (data) {
@@ -202,53 +284,17 @@ SocketServer.prototype._setupAppHostHandlers = function () {
     if (config.touchEvents) {
         this._emitTo(APP_HOST, 'init-touch-events');
     }
-
-    this._handlePendingEmits(APP_HOST);
 };
 
 SocketServer.prototype._handleSimHostRegistration = function () {
-    this._subscribeTo(SIM_HOST, 'ready', this._handleSimHostReady.bind(this), true);
-
+    this._subscribeTo(SIM_HOST, 'ready', function () {
+        this._setSimHostState(SH_STATE_READY);
+    }.bind(this), true);
     this._emitTo(SIM_HOST, 'init', this._simulatorProxy.config.deviceInfo);
-};
-
-SocketServer.prototype._onAppHostConnected = function () {
-    this._whenSimHostReady.promise
-        .then(function () {
-            this._subscribeTo(APP_HOST, 'app-plugin-list', this._handleAppPluginList.bind(this), true);
-            this._emitTo(APP_HOST, 'init');
-        }.bind(this));
-};
-
-SocketServer.prototype._onSimHostReady = function () {
-    this._setupAppHostHandlers();
-};
-
-SocketServer.prototype._handleSimHostReady = function () {
-    // Resolve the deferred
-    this._whenSimHostReady.resolve();
-
-    this._setupSimHostHandlers();
-
-    this._whenAppHostConnected.promise
-        .then(this._onAppHostConnected.bind(this));
-};
-
-SocketServer.prototype._handleAppPluginList = function (data) {
-    this._whenSimHostReady.promise
-        .then(function () {
-            this._subscribeTo(SIM_HOST, 'start', this._handleStart.bind(this), true);
-            this._emitTo(SIM_HOST, 'app-plugin-list', data);
-        }.bind(this));
-};
-
-SocketServer.prototype._handleStart = function () {
-    this._emitTo(APP_HOST, 'start');
+    this._setSimHostState(SH_STATE_INIT_SENT);
 };
 
 SocketServer.prototype._setupSimHostHandlers = function () {
-    log.log('Setup handlers for SIM_HOST');
-
     this._subscribeTo(SIM_HOST, 'exec-success', function (data) {
         this._emitTo(APP_HOST, 'exec-success', data);
     }.bind(this));
@@ -278,15 +324,13 @@ SocketServer.prototype._setupSimHostHandlers = function () {
 
         this._emitTo(SIM_HOST, 'init-telemetry');
     }
-
-    this._handlePendingEmits(SIM_HOST);
 };
 
 /**
  * @private
  */
 SocketServer.prototype._handlePendingEmits = function (host) {
-    log.log('Handling pending emits for ' + host);
+    log.log('Handling pending emits for ' + host + '. Total: ' + this._pendingEmits[host].length);
     this._pendingEmits[host].forEach(function (pendingEmit) {
         this._emitTo(host, pendingEmit.msg, pendingEmit.data, pendingEmit.callback);
     }.bind(this));
