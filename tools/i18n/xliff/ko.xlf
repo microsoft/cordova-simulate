@@ -1,19 +1,18 @@
-<xliff 
-  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
   <file original="plugins\cordova-plugin-battery-status\sim-host-panels.html" source-language="en" target-language="ko">
     <body>
       <trans-unit id="caption-ac1dbd34">
         <source xml:lang="en">Battery Status</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">배터리 상태</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">배터리 상태</target>
       </trans-unit>
       <trans-unit id="label-e0d4e236">
         <source xml:lang="en">Battery level</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">배터리 수준</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">배터리 수준</target>
       </trans-unit>
       <trans-unit id="10cfe833:1">
         <source xml:lang="en">Device plugged</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">장치 연결</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">장치 연결됨</target>
       </trans-unit>
     </body>
   </file>
@@ -21,19 +20,19 @@
     <body>
       <trans-unit id="caption-5f1798d9">
         <source xml:lang="en">Camera: Choose Image</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">카메라: 이미지를 선택 하십시오.</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">카메라: 이미지 선택</target>
       </trans-unit>
       <trans-unit id="030b9963:1">
         <source xml:lang="en">Choose File</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">파일 선택</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">파일 선택</target>
       </trans-unit>
       <trans-unit id="ad62e973:1">
         <source xml:lang="en">Use Image</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">이미지를 사용 하 여</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">이미지 사용</target>
       </trans-unit>
       <trans-unit id="be241b52:1">
         <source xml:lang="en">Cancel</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">취소</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">취소</target>
       </trans-unit>
     </body>
   </file>
@@ -41,19 +40,19 @@
     <body>
       <trans-unit id="caption-553fc9a5">
         <source xml:lang="en">Camera</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">카메라</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">카메라</target>
       </trans-unit>
       <trans-unit id="4f087d38:1">
         <source xml:lang="en">Prompt me for a file</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">파일 나 라는 메시지를 표시합니다</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">파일에 대해 메시지 표시</target>
       </trans-unit>
       <trans-unit id="145af9c0:1">
         <source xml:lang="en">Use this file:</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">이 파일 사용:</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">이 파일 사용:</target>
       </trans-unit>
       <trans-unit id="2c4e6d12:1">
         <source xml:lang="en">Choose File</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">파일 선택</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">파일 선택</target>
       </trans-unit>
     </body>
   </file>
@@ -61,19 +60,19 @@
     <body>
       <trans-unit id="caption-9a8c8723">
         <source xml:lang="en">Accelerometer</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">가 속도계</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">가속도계</target>
       </trans-unit>
       <trans-unit id="label-d240cacf">
         <source xml:lang="en">Recorded Data</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">기록된 데이터</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">기록된 데이터</target>
       </trans-unit>
       <trans-unit id="c562ff87:1">
-        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br> Hold the Shift key to modify 'alpha'</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">클릭 하 고 장치를 조작 하는 마우스로 드래그. &lt;br>Shift 키 수정 '알파'를</target>
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br&gt; Hold the Shift key to modify 'alpha'</source>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">마우스로 클릭하고 끌어 장치를 조작합니다. &lt;br&gt; &amp;lt;Shift&amp;gt; 키를 누른 채로 '알파'를 수정합니다.</target>
       </trans-unit>
       <trans-unit id="1b009684:1">
         <source xml:lang="en">Play</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">플레이</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">재생</target>
       </trans-unit>
     </body>
   </file>
@@ -81,15 +80,15 @@
     <body>
       <trans-unit id="caption-8310fdf4">
         <source xml:lang="en">Compass</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">나침반</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">나침반</target>
       </trans-unit>
       <trans-unit id="c4c80de2:1">
-        <source xml:lang="en">&lt;em>Click and drag with the mouse to manipulate the device compass.&lt;/em></source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">&lt;em>클릭 하 고 마우스로 드래그 조작 장치 나침반.&lt;/em></target>
+        <source xml:lang="en">&lt;em&gt;Click and drag with the mouse to manipulate the device compass.&lt;/em&gt;</source>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">&lt;em&gt;마우스로 클릭하고 끌어 장치 나침반을 조작합니다.&lt;/em&gt;</target>
       </trans-unit>
       <trans-unit id="ae47e3ec:1">
         <source xml:lang="en">Heading (deg)</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">제목 (deg)</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">제목(deg)</target>
       </trans-unit>
     </body>
   </file>
@@ -97,59 +96,59 @@
     <body>
       <trans-unit id="caption-c045b281">
         <source xml:lang="en">Device</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">장치</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">장치</target>
       </trans-unit>
       <trans-unit id="label-db946bb7">
         <source xml:lang="en">Platform</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">플랫폼</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">플랫폼</target>
       </trans-unit>
       <trans-unit id="label-7f7c31ee">
         <source xml:lang="en">Device</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">장치</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">장치</target>
       </trans-unit>
       <trans-unit id="label-39a39347">
         <source xml:lang="en">OS version</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">운영 체제 버전</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">OS 버전</target>
       </trans-unit>
       <trans-unit id="label-752a991e">
         <source xml:lang="en">Physical resolution</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">실제 해상도</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">실제 해상도</target>
       </trans-unit>
       <trans-unit id="label-f174cb0b">
         <source xml:lang="en">Device pixel ratio</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">장치 픽셀 비율</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">장치 픽셀 비율</target>
       </trans-unit>
       <trans-unit id="label-df3f13eb">
         <source xml:lang="en">Logical resolution (viewport size)</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">논리적 해상도 (뷰포트 크기)</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">논리적 해상도(뷰포트 크기)</target>
       </trans-unit>
       <trans-unit id="label-3f939f37">
         <source xml:lang="en">Cordova version</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">코르 도우 바 버전</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">Cordova 버전</target>
       </trans-unit>
       <trans-unit id="label-c0122d1e">
         <source xml:lang="en">Model</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">모델</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">모델</target>
       </trans-unit>
       <trans-unit id="label-b3ca5c10">
         <source xml:lang="en">Manufacturer</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">제조 업체</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">제조업체</target>
       </trans-unit>
       <trans-unit id="label-f443efdd">
         <source xml:lang="en">UUID</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">UUID</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">UUID</target>
       </trans-unit>
       <trans-unit id="label-43cf4836">
         <source xml:lang="en">Version</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">버전</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">버전</target>
       </trans-unit>
       <trans-unit id="label-bcc45f6d">
         <source xml:lang="en">Serial</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">직렬</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">직렬</target>
       </trans-unit>
       <trans-unit id="c1a21524:1">
         <source xml:lang="en">Virtual device</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">가상 장치</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">가상 장치</target>
       </trans-unit>
     </body>
   </file>
@@ -157,59 +156,59 @@
     <body>
       <trans-unit id="caption-e4b82624">
         <source xml:lang="en">Geolocation</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">지리적 위치</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">지리적 위치</target>
       </trans-unit>
       <trans-unit id="label-41fd30cf">
         <source xml:lang="en">Latitude</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">위도</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">위도</target>
       </trans-unit>
       <trans-unit id="label-9db6eee1">
         <source xml:lang="en">Longitude</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">경도</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">경도</target>
       </trans-unit>
       <trans-unit id="label-079f55f6">
         <source xml:lang="en">Altitude (m)</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">고도 (m)</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">고도(m)</target>
       </trans-unit>
       <trans-unit id="label-dbece2f9">
         <source xml:lang="en">Accuracy (m)</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">정확도 (m)</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">정확도(m)</target>
       </trans-unit>
       <trans-unit id="label-718f25cb">
         <source xml:lang="en">Altitude accuracy (m)</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">고도 정확도 (m)</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">고도 정확도(m)</target>
       </trans-unit>
       <trans-unit id="label-64da0839">
         <source xml:lang="en">Heading</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">제목</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">제목</target>
       </trans-unit>
       <trans-unit id="label-8fefe84e">
         <source xml:lang="en">Speed (m/s)</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">속도 (m/s)</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">속도(m/s)</target>
       </trans-unit>
       <trans-unit id="label-42557ee2">
         <source xml:lang="en">GPS Delay (seconds)</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">GPS 지연 (초)</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">GPS 지연(초)</target>
       </trans-unit>
       <trans-unit id="label-f89bb5e3">
         <source xml:lang="en">Navigation Simulator</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">탐색 시뮬레이터</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">탐색 시뮬레이터</target>
       </trans-unit>
       <trans-unit id="7e9696b6:1">
         <source xml:lang="en">Zoom Level:</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">확대/축소 수준:</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">확대/축소 수준:</target>
       </trans-unit>
       <trans-unit id="b2d5a0cc:1">
         <source xml:lang="en">Simulate GPS Timeout</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">GPS 타임 아웃을 시뮬레이션</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">GPS 제한 시간 시뮬레이션</target>
       </trans-unit>
       <trans-unit id="f6c1471b:1">
         <source xml:lang="en">Choose File</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">파일 선택</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">파일 선택</target>
       </trans-unit>
       <trans-unit id="323b1c35:1">
         <source xml:lang="en">Go</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">이동</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">이동</target>
       </trans-unit>
     </body>
   </file>
@@ -217,19 +216,19 @@
     <body>
       <trans-unit id="caption-5ffc4b1e">
         <source xml:lang="en">Globalization</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">세계화</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">세계화</target>
       </trans-unit>
       <trans-unit id="label-9e831385">
         <source xml:lang="en">Select the locale:</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">로케일을 선택 합니다.</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">로캘 선택:</target>
       </trans-unit>
       <trans-unit id="label-ee1bad9c">
         <source xml:lang="en">Select the first day of the week:</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">첫 번째 요일을 선택 합니다.</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">첫 번째 요일 선택:</target>
       </trans-unit>
       <trans-unit id="24aa60d4:1">
         <source xml:lang="en">Is daylight saving time</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">이 일광 절약 시간</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">일광 절약 시간</target>
       </trans-unit>
     </body>
   </file>
@@ -237,19 +236,19 @@
     <body>
       <trans-unit id="caption-4c1114ef">
         <source xml:lang="en">InAppBrowser</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">InAppBrowser</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">InAppBrowser</target>
       </trans-unit>
       <trans-unit id="99399f4d:1">
-        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em>_blank&lt;/em> target</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">&lt;em>_Blank&lt;/em> 대상을 사용 하 여 열 때 InAppBrowser의 기본 동작 선택</target>
+        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em&gt;_blank&lt;/em&gt; target</source>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">&lt;em&gt;_blank&lt;/em&gt; 대상을 사용하여 열 때 InAppBrowser의 기본 동작 선택</target>
       </trans-unit>
       <trans-unit id="c10cdf5b:1">
-        <source xml:lang="en">Open in a new window: &lt;em>_system&lt;/em> target</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">새 창에서 열기: &lt;em>_system&lt;/em> 대상</target>
+        <source xml:lang="en">Open in a new window: &lt;em&gt;_system&lt;/em&gt; target</source>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">새 창에서 열기: &lt;em&gt;_system&lt;/em&gt; 대상</target>
       </trans-unit>
       <trans-unit id="d107e851:1">
         <source xml:lang="en">Open in a InAppBrowser based on an iframe</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">Iframe에 따라 InAppBrowser에 오픈</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">iframe을 기준으로 InAppBrowser에서 열기</target>
       </trans-unit>
     </body>
   </file>
@@ -257,11 +256,11 @@
     <body>
       <trans-unit id="caption-a4a98056">
         <source xml:lang="en">Network Connection</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">네트워크 연결</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">네트워크 연결</target>
       </trans-unit>
       <trans-unit id="label-27c4a479">
         <source xml:lang="en">Connection type</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">연결 유형</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">연결 형식</target>
       </trans-unit>
     </body>
   </file>
@@ -269,15 +268,15 @@
     <body>
       <trans-unit id="caption-c9b16703">
         <source xml:lang="en">Events</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">이벤트</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">이벤트</target>
       </trans-unit>
       <trans-unit id="label-4eb9640f">
         <source xml:lang="en">Select the event to fire:</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">이벤트를를 선택 합니다.</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">발생시킬 이벤트 선택:</target>
       </trans-unit>
       <trans-unit id="064dde5f:1">
         <source xml:lang="en">Fire Event</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">화재 이벤트</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">이벤트 발생</target>
       </trans-unit>
     </body>
   </file>
@@ -285,43 +284,43 @@
     <body>
       <trans-unit id="caption-f7283850">
         <source xml:lang="en">Unhandled Exec Call</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">처리 되지 않은 Exec 호출</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">처리되지 않은 Exec 호출</target>
       </trans-unit>
       <trans-unit id="a1a63f26:1">
         <source xml:lang="en">There is no handler for the following exec call:</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">다음 exec 호출에 대 한 처리기는:</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">다음 exec 호출에 대한 처리기가 없습니다.</target>
       </trans-unit>
       <trans-unit id="ba2b4c80:1">
         <source xml:lang="en">service</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">서비스</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">서비스</target>
       </trans-unit>
       <trans-unit id="e4c1ba28:1">
         <source xml:lang="en">action</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">액션</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">작업</target>
       </trans-unit>
       <trans-unit id="54b83b14:1">
         <source xml:lang="en">Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">아래이 호출에 대해 반환 될 다음이 성공 또는 실패를 나타내는지 여부를 나타내는 값을 입력 하십시오. 항상이 결과 함께이 호출에 응답 하려면 '계속' 옵션을 선택 합니다.</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">이 호출에 대해 반환할 값을 아래에 입력한 다음 성공을 나타내는지 실패를 나타내는지를 나타내세요. 이 호출에 대해 항상 이 결과로 응답하려면 'persist(유지)' 옵션을 선택하세요.</target>
       </trans-unit>
       <trans-unit id="874c9be3:1">
         <source xml:lang="en">The value must be valid JSON (</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">값 유효한 JSON (여야 합니다.</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">값은 유효한 JSON이어야 합니다.</target>
       </trans-unit>
       <trans-unit id="8679c185:1">
         <source xml:lang="en">error</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">오류</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">오류</target>
       </trans-unit>
       <trans-unit id="bce2c943:1">
         <source xml:lang="en">Persist</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">유지</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">유지</target>
       </trans-unit>
       <trans-unit id="17ccfb90:1">
         <source xml:lang="en">Success</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">성공</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">성공</target>
       </trans-unit>
       <trans-unit id="5c16961d:1">
         <source xml:lang="en">Failure</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">실패</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">실패</target>
       </trans-unit>
     </body>
   </file>
@@ -329,11 +328,11 @@
     <body>
       <trans-unit id="caption-983d0535">
         <source xml:lang="en">Persisted Exec Calls</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">Exec 호출 유지</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">지속되는 Exec 호출</target>
       </trans-unit>
       <trans-unit id="label-b58dd0ca">
         <source xml:lang="en">No values saved</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">값 저장</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">저장된 값이 없습니다.</target>
       </trans-unit>
     </body>
   </file>
