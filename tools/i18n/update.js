@@ -16,6 +16,7 @@ var inlineTags = ['a', 'abbr', 'acronym', 'applet', 'b', 'bdo', 'big', 'blink', 
 var ignoreWords = [/\balpha\b/gi, /\bbeta\b/gi, /\bgamma\b/gi, /\bdeg\b/gi];
 var singleCharRegex = /\b\S\b/g;
 var nonAlphaRegex = /[^a-z]/gi;
+var TRANSLATED = 'translated';
 var NEEDS_TRANSLATION = 'needs-translation';
 var MACHINE_SUGGESTION = 'mt-suggestion';
 var htmlparser2TreeAdapter = parse5.treeAdapters.htmlparser2;
@@ -100,13 +101,19 @@ Promise.all(htmlFiles.map(function (htmlFile) {
 
         // Sort by file name so xliff file is constructed in a predictable order
         var langXliff = langXliffs[lang];
-        langXliff.sort(function (left, right) {
-            return left.original < right.original ? -1 : 1;
-        });
 
-        var xliffDoc = xliffConv.parseJson(langXliff);
-        files.writeFileSync(xlfFile, pd.xml(new XMLSerializer().serializeToString(xliffDoc)));
-        console.log('XLIFF file updated for ' + chalk.cyan(lang));
+        // Recreate xliff if marked as dirty for any file
+        if (langXliff.some(function (item) {return item.dirty})) {
+            langXliff.sort(function (left, right) {
+                return left.original < right.original ? -1 : 1;
+            });
+
+            var xliffDoc = xliffConv.parseJson(langXliff);
+            files.writeFileSync(xlfFile, pd.xml(new XMLSerializer().serializeToString(xliffDoc)));
+            console.log('XLIFF file updated: ' + chalk.cyan(lang));
+        } else {
+            console.log('XLIFF file unchanged: ' + chalk.cyan(lang));
+        }
     });
 });
 
@@ -184,12 +191,12 @@ function applyTranslationsToDocument(xlfJson, stringsById) {
 function updateLanguageXlfJson(sourceHtmlRelativePath, strings) {
     return Promise.all(langs.map(function (lang) {
         var langJsons = xliffs[lang] || {};
-        var xlfJson = langJsons[sourceHtmlRelativePath] || {};
+        var xlfJson = langJsons[sourceHtmlRelativePath] || {dirty: true};
         var existingIDs = xlfJson.items ? Object.getOwnPropertyNames(xlfJson.items) : [];
 
-        xlfJson.lang = xlfJson.lang || lang;
-        xlfJson.original = xlfJson.original || sourceHtmlRelativePath;
-        xlfJson.items = xlfJson.items || {};
+        addXlfJsonProp(xlfJson, 'lang', lang);
+        addXlfJsonProp(xlfJson, 'original', sourceHtmlRelativePath);
+        addXlfJsonProp(xlfJson, 'items', {});
 
         var idsRequiringTranslation = [];
 
@@ -204,20 +211,35 @@ function updateLanguageXlfJson(sourceHtmlRelativePath, strings) {
             var existingValue = xlfJson.items[id];
             if (!existingValue || existingValue.text !== string.text) {
                 xlfJson.items[id] = {text: string.text, state: NEEDS_TRANSLATION, stateQualifier: MACHINE_SUGGESTION};
+                xlfJson.dirty = true;
                 idsRequiringTranslation.push(id);
+            } else if (existingValue.state === TRANSLATED && existingValue.stateQualifier === MACHINE_SUGGESTION) {
+                // Remove 'mt-suggestion' state qualifier if item has been translated
+                delete existingValue.stateQualifier;
+                xlfJson.dirty = true;
             }
         });
 
         // If there are any ids left in existingIDs, they should be removed from xlfJson (which will mean they also get
         // removed from the xlf file).
-        existingIDs.forEach(function (id) {
-            delete xlfJson.items[id];
-        });
+        if (existingIDs.length) {
+            xlfJson.dirty = true;
+            existingIDs.forEach(function (id) {
+                delete xlfJson.items[id];
+            });
+        }
 
         return applyTranslations(xlfJson.items, idsRequiringTranslation, lang).then(function () {
             return xlfJson;
         });
     }));
+}
+
+function addXlfJsonProp(xlfJson, propName, propValue) {
+    if (!xlfJson[propName]) {
+        xlfJson[propName] = propValue;
+        xlfJson.dirty = true;
+    }
 }
 
 function applyTranslations(items, idsRequiringTranslation, targetLanguage) {

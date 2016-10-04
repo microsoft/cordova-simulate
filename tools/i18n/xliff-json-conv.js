@@ -9,7 +9,7 @@ function parseXliffFile(xliffFile) {
 
 function parseXliff(xliff) {
     var xliffDoc = new DOMParser().parseFromString(xliff, 'text/xml');
-    var xliffNode = xliffDoc.firstChild;
+    var xliffNode = getElementChild(xliffDoc, 'xliff');
     return getElementChildren(xliffNode, 'file').map(function (fileNode) {
         var result = {};
         result.original = fileNode.getAttribute('original');
@@ -62,8 +62,8 @@ function getElementChildren(node, tagName) {
  * @returns {Document}
  */
 function parseJson(xlfJsons) {
-    var xliffDoc = new DOMParser().parseFromString('<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2"></xliff>', 'text/xml');
-    var xliffNode = xliffDoc.firstChild;
+    var xliffDoc = new DOMParser().parseFromString('<?xml version="1.0" encoding="utf-8"?><xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2"></xliff>', 'text/xml');
+    var xliffNode = getElementChild(xliffDoc, 'xliff');
 
     xlfJsons.forEach(function (xlfJson) {
         var targetLanguage = xlfJson.lang;
