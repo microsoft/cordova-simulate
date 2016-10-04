@@ -43,7 +43,7 @@
     <cordova-number-entry label="Precisão (m)" id="geo-accuracy" min="0" step="any" data-loc-id="dbece2f9"></cordova-number-entry>
     <cordova-number-entry label="Precisão de altitude (m)" id="geo-altitude-accuracy" min="0" step="any" data-loc-id="718f25cb"></cordova-number-entry>
     <cordova-panel-row>
-        <cordova-label label="Indo para" data-loc-id="64da0839"></cordova-label>
+        <cordova-label label="Cabeçalho" data-loc-id="64da0839"></cordova-label>
         <cordova-label label="N" id="geo-heading-label"></cordova-label>
         <input id="geo-heading" type="range" value="0" min="0" max="359.99" step="any" style="width:112px;">
     </cordova-panel-row>
@@ -53,14 +53,14 @@
         <cordova-label label="0" id="geo-delay-label"></cordova-label>
         <input id="geo-delay" type="range" value="0" min="0" max="30" style="width:112px;">
     </cordova-panel-row>
-    <cordova-checkbox id="geo-timeout" data-loc-id="b2d5a0cc">Simular o tempo limite GPS</cordova-checkbox>
+    <cordova-checkbox id="geo-timeout" data-loc-id="b2d5a0cc">Simular o tempo limite de GPS</cordova-checkbox>
 
     <cordova-panel-row>
         <cordova-label label="Simulador de navegação" data-loc-id="f89bb5e3"></cordova-label>
     </cordova-panel-row>
     <cordova-panel-row>
         <section>
-            <cordova-button id="geo-gpxfile-button" style="width:100%" data-loc-id="f6c1471b">Escolha ' arquivo '</cordova-button>
+            <cordova-button id="geo-gpxfile-button" style="width:100%" data-loc-id="f6c1471b">Escolher o arquivo</cordova-button>
             <cordova-file hidden="true" id="geo-gpxfile"></cordova-file>
         </section>
         <section>
