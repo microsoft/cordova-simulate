@@ -1,7 +1,10 @@
 # cordova-simulate Release Notes
 
+### 0.3.3 (Oct 4, 2016)
+* Updated localized files with real translations ([#161](https://github.com/Microsoft/cordova-simulate/pull/161), [#162](https://github.com/Microsoft/cordova-simulate/pull/162), [#163](https://github.com/Microsoft/cordova-simulate/pull/163))
+
 ### 0.3.2 (Sep 29, 2016)
-* Add localization support (current machine localized for 13 languages - real translations coming soon)
+* Add localization support (currently machine localized for 13 languages - real translations coming soon)
   ([#153](https://github.com/Microsoft/cordova-simulate/pull/153), [#155](https://github.com/Microsoft/cordova-simulate/pull/155),
   [#156](https://github.com/Microsoft/cordova-simulate/pull/156), [#158](https://github.com/Microsoft/cordova-simulate/pull/158),
   [#159](https://github.com/Microsoft/cordova-simulate/pull/159)) 
