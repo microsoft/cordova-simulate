@@ -41,30 +41,30 @@
     <cordova-number-entry label="Longitude" id="geo-longitude" step="any" data-loc-id="9db6eee1"></cordova-number-entry>
     <cordova-number-entry label="Altitude (m)" id="geo-altitude" step="any" data-loc-id="079f55f6"></cordova-number-entry>
     <cordova-number-entry label="Précision (m)" id="geo-accuracy" min="0" step="any" data-loc-id="dbece2f9"></cordova-number-entry>
-    <cordova-number-entry label="Précision de l’altitude (m)" id="geo-altitude-accuracy" min="0" step="any" data-loc-id="718f25cb"></cordova-number-entry>
+    <cordova-number-entry label="Précision de l'altitude (m)" id="geo-altitude-accuracy" min="0" step="any" data-loc-id="718f25cb"></cordova-number-entry>
     <cordova-panel-row>
-        <cordova-label label="Rubrique" data-loc-id="64da0839"></cordova-label>
+        <cordova-label label="Direction" data-loc-id="64da0839"></cordova-label>
         <cordova-label label="N" id="geo-heading-label"></cordova-label>
         <input id="geo-heading" type="range" value="0" min="0" max="359.99" step="any" style="width:112px;">
     </cordova-panel-row>
     <cordova-number-entry label="Vitesse (m/s)" id="geo-speed" min="0" step="any" data-loc-id="8fefe84e"></cordova-number-entry>
     <cordova-panel-row>
-        <cordova-label label="GPS délai (secondes)" data-loc-id="42557ee2"></cordova-label>
+        <cordova-label label="Délai GPS (secondes)" data-loc-id="42557ee2"></cordova-label>
         <cordova-label label="0" id="geo-delay-label"></cordova-label>
         <input id="geo-delay" type="range" value="0" min="0" max="30" style="width:112px;">
     </cordova-panel-row>
-    <cordova-checkbox id="geo-timeout" data-loc-id="b2d5a0cc">Simuler le GPS Timeout</cordova-checkbox>
+    <cordova-checkbox id="geo-timeout" data-loc-id="b2d5a0cc">Simuler le délai d'attente du GPS</cordova-checkbox>
 
     <cordova-panel-row>
         <cordova-label label="Simulateur de navigation" data-loc-id="f89bb5e3"></cordova-label>
     </cordova-panel-row>
     <cordova-panel-row>
         <section>
-            <cordova-button id="geo-gpxfile-button" style="width:100%" data-loc-id="f6c1471b">Choisissez fichier</cordova-button>
+            <cordova-button id="geo-gpxfile-button" style="width:100%" data-loc-id="f6c1471b">Choisir un fichier</cordova-button>
             <cordova-file hidden="true" id="geo-gpxfile"></cordova-file>
         </section>
         <section>
-            <cordova-button id="geo-gpx-go" style="min-width:0;" data-loc-id="323b1c35">Aller</cordova-button>
+            <cordova-button id="geo-gpx-go" style="min-width:0;" data-loc-id="323b1c35">Atteindre</cordova-button>
             <cordova-combo id="geo-gpxmultiplier-select" style="width:auto;min-width:0;display:inline;">
                 <option value="1">1x</option>
                 <option value="2">2x</option>

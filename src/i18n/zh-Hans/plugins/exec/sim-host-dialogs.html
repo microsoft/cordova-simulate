@@ -3,16 +3,16 @@
 
 <cordova-dialog id="exec-dialog" caption="未处理的 Exec 调用" data-loc-id="f7283850">
     <cordova-group>
-        <p data-loc-id="a1a63f26">没有以下的 exec 调用的处理程序︰</p>
-        <p style="font-style:italic;color:black"><span id="exec-service" data-loc-id="ba2b4c80">服务</span>.<span id="exec-action" data-loc-id="e4c1ba28">行动</span></p>
-        <p data-loc-id="54b83b14">请输入下面返回此调用，然后指示是否这表示成功或失败的一个值。如果你想要总是响应这个召唤，这一结果，选择 '坚持' 选项。</p>
+        <p data-loc-id="a1a63f26">没有以下 exec 调用的处理程序:</p>
+        <p style="font-style:italic;color:black"><span id="exec-service" data-loc-id="ba2b4c80">服务</span>.<span id="exec-action" data-loc-id="e4c1ba28">操作</span></p>
+        <p data-loc-id="54b83b14">请在下面输入要对此调用返回的值，然后指示该值表示成功还是失败。如果要始终使用该结果响应此调用，请选择“永久”选项。</p>
     </cordova-group>
     <cordova-group>
         <textarea id="exec-response" rows="10" class="cordova-widget cordova-state-default"></textarea>
-        <div class="p" id="exec-error" style="color: red;" data-loc-id="874c9be3">值必须是有效的 JSON （<span style="font-style:italic;" id="exec-parse-error" data-loc-id="8679c185">错误</span>)</div>
+        <div class="p" id="exec-error" style="color: red;" data-loc-id="874c9be3">值必须是有效的 JSON (<span style="font-style:italic;" id="exec-parse-error" data-loc-id="8679c185">错误</span>)</div>
     </cordova-group>
     <cordova-panel-row>
-        <cordova-checkbox id="exec-persist" data-loc-id="bce2c943">坚持</cordova-checkbox>
+        <cordova-checkbox id="exec-persist" data-loc-id="bce2c943">永久</cordova-checkbox>
         <cordova-group>
             <cordova-button id="exec-success" data-loc-id="17ccfb90">成功</cordova-button>
             <cordova-button id="exec-failure" data-loc-id="5c16961d">失败</cordova-button>
