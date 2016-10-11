@@ -175,7 +175,7 @@ module.exports = function (messages) {
             function onHeadingValueUpdated(value) {
                 heading.value = value;
 
-                var headingDeg  = parseFloat(heading.value),
+                var headingDeg  = parseInt(heading.value),
                     headingText = navUtils.getDirection(headingDeg);
 
                 headingLabel.value = headingText;
