@@ -14,9 +14,9 @@ var baseProps = {
     panel: 'accelerometer'
 };
 
-// For telemetry about dragging the 3D device in the accelerometer panel, we "batch" the mouse drag events to prevent sending too many messages.
+// For telemetry about dragging the 3D device in the accelerometer panel, we 'batch' the mouse drag events to prevent sending too many messages.
 var mouseDragEventHoldDelay = 1000; // The inactivity delay to wait before sending a telemetry event when the user rotates the 3D device.
-var pendingMouseDragEvents = 0; // The number of mouse drag events that are "on hold".
+var pendingMouseDragEvents = 0; // The number of mouse drag events that are 'on hold'.
 
 var axisX,
     axisY,
@@ -102,6 +102,14 @@ function initialize() {
         if (axis.hasOwnProperty('y')) axisY.value = axis.y;
         if (axis.hasOwnProperty('z')) axisZ.value = axis.z;
     });
+
+    // Determine a scale to use for the compass. This treats a panel width of 320px as being '100%'
+    var scale = parseFloat(window.getComputedStyle(document.querySelector('cordova-panel')).width) / 320;
+    var canvasElement = document.getElementById('accelerometer-canvas');
+    var canvas = canvasElement.getContext('2d');
+    canvasElement.setAttribute('width', Math.round(scale * 200));
+    canvasElement.setAttribute('height', Math.round(scale * 160));
+    canvas.scale(scale, scale);
 
     createCanvas();
 
