@@ -20,7 +20,7 @@ function CompassWidget(options) {
     this._context = this._canvasElement.getContext('2d');
     this._diameter = (typeof options.diameter === 'number') ? options.diameter : CompassWidget.Defaults.DIAMETER;
 
-    this._wrapperSize = 25;
+    this._wrapperSize = 24;
     this._compassBorderSize = 15;
 
     this._canvasElement.style.position = 'absolute';
