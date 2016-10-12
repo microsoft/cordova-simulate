@@ -17,16 +17,18 @@ function CompassWidget(options) {
     this._container.appendChild(this._indicatorCanvasElement);
     this._container.appendChild(this._canvasElement);
 
-    this._context = this._canvasElement.getContext('2d');
-    this._diameter = (typeof options.diameter === 'number') ? options.diameter : CompassWidget.Defaults.DIAMETER;
+    this._scale = (typeof options.scale === 'number') ? options.scale : 1;
 
-    this._wrapperSize = 24;
-    this._compassBorderSize = 15;
+    this._context = this._canvasElement.getContext('2d');
+    this._diameter = ((typeof options.diameter === 'number') ? options.diameter : CompassWidget.Defaults.DIAMETER) * this._scale;
+
+    this._wrapperSize = 24 * this._scale;
+    this._compassBorderSize = 15 * this._scale;
 
     this._canvasElement.style.position = 'absolute';
     this._canvasElement.style.cursor = 'pointer';
-    this._canvasElement.style.top = '12px';
-    this._canvasElement.style.left = '12px';
+    this._canvasElement.style.top = 12 * this._scale + 'px';
+    this._canvasElement.style.left = 12 * this._scale + 'px';
     this._canvasElement.width = this._diameter;
     this._canvasElement.height = this._diameter;
 
@@ -59,7 +61,7 @@ function CompassWidget(options) {
 
     this._heading = {
         value: 0,
-        direction: navigationUtils.getDirection(this.value)
+        direction: navigationUtils.getDirection(0)
     };
 
     if (typeof options.headingUpdatedCallback === 'function') {
@@ -82,8 +84,8 @@ CompassWidget.prototype.initialize = function (headingValue) {
         y = this._center.y + this._wrapperSize / 2;
 
     this._indicatorCanvasElement.style.position = 'absolute';
-    this._indicatorCanvasElement.width = this._diameter + this._wrapperSize;
-    this._indicatorCanvasElement.height = this._diameter + this._wrapperSize;
+    this._indicatorCanvasElement.width = (this._diameter + this._wrapperSize) * this._scale;
+    this._indicatorCanvasElement.height = (this._diameter + this._wrapperSize) * this._scale;
 
     indicatorContext.beginPath();
     indicatorContext.arc(x, y, diameter / 2, 0, Math.PI * 2, false);
@@ -187,11 +189,11 @@ CompassWidget.prototype._drawCompass = function () {
 
     // directions
     this._context.fillStyle = '#000000';
-    this._context.font = '14px Arial';
-    this._context.fillText(navigationUtils.Directions.N, this._center.x - 5, this._compassBorderSize - 3);
-    this._context.fillText(navigationUtils.Directions.E, this._center.x + this._diameter / 2 - this._compassBorderSize + 3, this._center.y);
-    this._context.fillText(navigationUtils.Directions.S, this._center.x - 5, this._center.y + this._diameter / 2 - 3);
-    this._context.fillText(navigationUtils.Directions.W, this._center.x - this._diameter / 2 + 1, this._center.y);
+    this._context.font = 14 * this._scale + 'px Arial';
+    this._context.fillText(navigationUtils.Directions.N, this._center.x - 5 * this._scale, this._compassBorderSize - 2 * this._scale);
+    this._context.fillText(navigationUtils.Directions.E, this._center.x + this._diameter / 2 - this._compassBorderSize + 3 * this._scale, this._center.y + 4 * this._scale);
+    this._context.fillText(navigationUtils.Directions.S, this._center.x - 5 * this._scale, this._center.y + this._diameter / 2 - 2 * this._scale);
+    this._context.fillText(navigationUtils.Directions.W, this._center.x - this._diameter / 2 + this._scale, this._center.y + 4 * this._scale);
 };
 
 /**
