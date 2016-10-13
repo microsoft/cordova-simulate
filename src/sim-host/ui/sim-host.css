@@ -4,7 +4,6 @@ body {
     margin: 0 !important;
     padding: 0 !important;
     border: 0 !important;
-    font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
     background: transparent;
     user-select: none;
     -moz-user-select: none;
@@ -17,17 +16,10 @@ html {
     height: 100%;
 }
 
-h1 {
-    font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
-    font-size: 16pt;
-    font-weight: bold;
-}
-
 a {
     text-decoration: underline;
     outline: none;
     cursor: pointer;
-    font-size: 12px;
     color: rgb(128, 128, 128);
 }
 
@@ -48,32 +40,107 @@ cordova-panel, cordova-dialog {
     display: block;
 }
 
+/* Properties that will be themed */
+body {
+    font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
+    font-size: 13px;
+}
+
+cordova-button /deep/ button {
+    font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    color: black;
+    background: #ffffff;
+    border: 1px solid #d3d3d3;
+}
+
+cordova-button /deep/ button:active {
+    color: #212121;
+    background: #ffffff;
+    border: 1px solid #CCCCCC;
+}
+
+body /deep/ label {
+    font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    color: rgba(0,0,0,0.95);
+}
+
+body /deep/ p, body /deep/ .p {
+    font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    color: rgba(0,0,0,0.95);
+}
+
+
+cordova-combo /deep/ select,
+body /deep/ textarea,
+body /deep/ input[type^=text],
+body /deep/ input[type^=number],
+input[type^=number] {
+    font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    color: black;
+    background: #ffffff;
+    border: 1px solid #d3d3d3;;
+}
+
+cordova-combo /deep/ select:hover,
+body /deep/ textarea:hover,
+body /deep/ input[type^=text]:hover,
+body /deep/ input[type^=number]:hover,
+input[type^=number]:hover {
+    font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    color: #212121;
+    background: #ffffff;
+    border: 1px solid #CCCCCC;
+}
+
+body /deep/ input[type^=range] {
+    /* Set the font so em sizing will work correctly */
+    font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+body /deep/ .cordova-value {
+    font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    color: black;
+}
+
 body /deep/ .cordova-panel-inner {
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgba(0,0,0,0.785);
+    border: 1px solid rgba(0, 0, 0, 0.785);
     background: rgba(255,255,255,0.97);
-    border-radius: 0px;
+}
+
+body /deep/ .cordova-header {
+    background-color: black;
+    opacity: 0.7;
+    color: rgb(204,204,204);
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+/* End properties that will be themed */
+
+body /deep/ .cordova-panel-inner {
     overflow: hidden;
 }
 
 body /deep/ .cordova-header {
     padding: 5px 9px;
     position: relative;
-    background-color: black;
-    opacity: 0.7;
-    color: rgb(204,204,204);
-    font-size: 12px;
     height: 20px;
     line-height: 20px;
-    text-transform: uppercase;
-    font-weight: bold;
     cursor: pointer;
-}
-
-body /deep/ .cordova-widget {
-    font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
-    font-size: 13px;
 }
 
 /* 12px margin around top level items in the content a panel */
@@ -92,14 +159,7 @@ body /deep/ .cordova-content > ::content > * {
     -webkit-column-gap: 0;
 }
 
-body /deep/ label, body /deep/ p, body /deep/ .p {
-    color: rgba(0,0,0,0.95);
-    font-size: 13px;
-}
-
 body /deep/ .cordova-value {
-    color: black;
-    font-size: 14px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -127,6 +187,10 @@ body /deep/ .cordova-overlay {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+body /deep/ input[type^=range] {
+    width: 112px;
 }
 
 cordova-combo /deep/ select {
@@ -160,11 +224,8 @@ body /deep/ input[type^=number], input[type^=number] {
 
 body /deep/ input,
 body /deep/ textarea,
-body /deep/ keygen,
 body /deep/ select,
-body /deep/ button,
-body /deep/ isindex {
-    font-size: 14px;
+body /deep/ button {
     margin-left: 0;
     margin-right: 0;
     resize: none;
@@ -179,25 +240,6 @@ body /deep/ textarea {
 body /deep/ input[type^=text],
 body /deep/ input[type^=number] {
     width: 100px;
-}
-
-body /deep/ button:active,
-body /deep/ textarea:hover,
-body /deep/ textarea:active,
-body /deep/ input[type^=text]:focus,
-body /deep/ input[type^=number]:focus,
-body /deep/ input[type^=text]:hover,
-body /deep/ input[type^=number]:hover {
-    border: 1px solid #CCCCCC;
-    background: #ffffff;
-    font-weight: normal;
-    color: #212121;
-}
-
-body /deep/ .cordova-state-default {
-    border: 1px solid #d3d3d3;
-    background: #ffffff;
-    font-weight: normal;
 }
 
 body /deep/ input:focus,
