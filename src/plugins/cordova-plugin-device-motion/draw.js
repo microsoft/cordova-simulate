@@ -51,7 +51,7 @@ function Drawing(){
 Drawing.prototype.initialize = function(canvas){
 	CANVAS = canvas.getContext("2d");
 	CANVAS.lineJoin = "round";
-	CANVAS.lineWidth = 1;
+	CANVAS.lineWidth = 0.75;
 }
 Drawing.prototype.loadTextures = function(textures){ TEXTURES = textures; }
 Drawing.prototype.setFillColor = function(r,g,b){ CANVAS.fillStyle = "rgb("+(r>255?255:(r<0?0:r|0))+", "+(g>255?255:(g<0?0:g|0))+", "+(b>255?255:(b<0?0:b|0))+")"; }
