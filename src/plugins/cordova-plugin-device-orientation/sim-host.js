@@ -33,7 +33,6 @@ module.exports = function (messages) {
 
         var compassWidget = new CompassWidget({
             container: container,
-            scale: scale,
             headingUpdatedCallback: function (heading) {
                 messages.emit('device-orientation-updated', heading.value, true);
             },
@@ -47,7 +46,7 @@ module.exports = function (messages) {
             headingText.textContent = heading.direction;
         };
 
-        compassWidget.initialize(compass.heading);
+        compassWidget.updateHeading(compass.heading);
         updateHeadingValue();
 
         inputHeading.addEventListener('change', function () {

@@ -12,20 +12,132 @@
             margin-left: auto;
         }
 
-        #device-orientation .compass-help-info {
+        #device-orientation .compass-help-info em {
             font-size: 0.9em;
             text-align: center;
             padding: 1.5em 0;
-        }
-
-        #device-orientation .compass-help-info em {
             margin-left: auto;
             margin-right: auto;
         }
     </style>
     <cordova-group>
         <cordova-panel-row>
-            <div id="compass-widget"></div>
+            <div id="compass-widget">
+                <svg width="100%" height="100%" viewBox="-2.5 -2.5 205 205" style="position: absolute;">
+                    <defs>
+                        <clipPath id="half-circle">
+                            <rect x="0" y="0" width="200" height="100"></rect>
+                        </clipPath>
+                        <linearGradient id="compassFill" gradientTransform="rotate(45, 0.5, 0.5)">
+                            <stop offset="25%" stop-color="rgb(255, 255, 255)" stop-opacity="0.25"></stop>
+                            <stop offset="60%" stop-color="rgb(180, 180, 180)" stop-opacity="0.25"></stop>
+                            <stop offset="100%" stop-color="rgb(180, 180, 180)" stop-opacity="0.35"></stop>
+                        </linearGradient>
+                        <linearGradient id="compass-rim-inner" gradientTransform="rotate(45, 0.5, 0.5)">
+                            <stop offset="0%" stop-color="rgb(80,80,80)"></stop>
+                            <stop offset="100%" stop-color="rgb(255,255,255)"></stop>
+                        </linearGradient>
+                        <linearGradient id="compass-rim" gradientTransform="rotate(45, 0.5, 0.5)">
+                            <stop offset="0%" stop-color="rgb(185,185,185)"></stop>
+                            <stop offset="100%" stop-color="rgb(125,125,125)"></stop>
+                        </linearGradient>
+
+                        <linearGradient id="needle-center-rim" gradientTransform="rotate(45, 0.5, 0.5)">
+                            <stop offset="0%" stop-color="rgb(255,255,255)"></stop>
+                            <stop offset="100%" stop-color="rgb(150,150,150)"></stop>
+                        </linearGradient>
+
+                        <linearGradient id="needle-center" gradientTransform="rotate(45, 0.5, 0.5)">
+                            <stop offset="0%" stop-color="rgb(150,150,150)"></stop>
+                            <stop offset="100%" stop-color="rgb(200,200,200)"></stop>
+                        </linearGradient>
+
+                        <path id="needle-part" d="M 100,100 L 90,100 A 10 10 0 0 1 94 92 L 100,20"></path>
+
+                        <g id="needle-source">
+                            <use class="red-1" xlink:href="#needle-part" fill="hsl(0,100%,40%)" stroke="rgb(150,0,0)"></use>
+                            <use class="red-2" transform="scale(-1,1) translate(-200,0)" xlink:href="#needle-part" fill="hsl(0,100%,30%)" stroke="hsl(0,100%,30%)"></use>
+                            <use class="blue-1" transform="scale(1,-1) translate(0,-200)" xlink:href="#needle-part" fill="hsl(214,53%,40%)" stroke="rgb(31,67,117)"></use>
+                            <use class="blue-2" transform="rotate(180,100,100)" xlink:href="#needle-part" fill="hsl(214,53%,30%)" stroke="rgb(31,67,117)"></use>
+                        </g>
+
+                        <path id="indicator" d="M 100,25 L 91.5,1.4 A 98 98 0 0 1 108.5,1.4 L 100,25" stroke-width="1" stroke-linejoin="round"></path>
+
+                        <filter id="blur-me">
+                            <feGaussianBlur in="SourceAlpha" stdDeviation="1" ></feGaussianBlur>
+                        </filter>
+
+                        <filter id="blur-me-2">
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="1" ></feGaussianBlur>
+                        </filter>
+
+                        <filter id="point-light">
+                            <feDiffuseLighting in="SourceGraphic" result="light"
+                                               lighting-color="white">
+                                <fePointLight x="60" y="60" z="72" ></fePointLight>
+                            </feDiffuseLighting>
+
+                            <feComposite in="SourceGraphic" in2="light"
+                                         operator="arithmetic" k1="1" k2="0.1" k3="0" k4="0"></feComposite>
+                        </filter>
+
+                        <line id="radial-line" x1="100" y1="100" x2="100" y2="15" stroke-width="0.5" stroke="rgb(225,225,225)"></line>
+                        <polygon id="large-pointer" points="97,100 100,35 103,100" fill="rgb(175,198,197)" ></polygon>
+                        <polygon id="small-pointer" points="98,100 100,55 102,100" fill="rgb(175,198,197)" ></polygon>
+                    </defs>
+
+                    <circle r="97" cx="100" cy="100" fill="url(#compass-rim)" stroke="black" stroke-width="1"></circle>
+
+                    <g filter="url(#point-light)">
+                        <g id="compass-face">
+                            <circle r="83.5" cx="100" cy="100" fill="white" stroke="rgb(225,225,225)" stroke-width="3"></circle>
+
+                            <use xlink:href="#radial-line" transform="rotate(22.5,100,100)"></use>
+                            <use xlink:href="#radial-line" transform="rotate(67.5,100,100)"></use>
+                            <use xlink:href="#radial-line" transform="rotate(112.5,100,100)"></use>
+                            <use xlink:href="#radial-line" transform="rotate(157.5,100,100)"></use>
+                            <use xlink:href="#radial-line" transform="rotate(202.5,100,100)"></use>
+                            <use xlink:href="#radial-line" transform="rotate(247.5,100,100)"></use>
+                            <use xlink:href="#radial-line" transform="rotate(292.5,100,100)"></use>
+                            <use xlink:href="#radial-line" transform="rotate(337.5,100,100)"></use>
+
+                            <circle r="46" cx="100" cy="100" fill-opacity="0" stroke-width="0.5" stroke="rgb(225,225,225)" ></circle>
+
+                            <use xlink:href="#large-pointer"></use>
+                            <use xlink:href="#large-pointer" transform="rotate(90,100,100)"></use>
+                            <use xlink:href="#large-pointer" transform="rotate(180,100,100)"></use>
+                            <use xlink:href="#large-pointer" transform="rotate(270,100,100)"></use>
+
+                            <use xlink:href="#small-pointer" transform="rotate(45,100,100)"></use>
+                            <use xlink:href="#small-pointer" transform="rotate(135,100,100)"></use>
+                            <use xlink:href="#small-pointer" transform="rotate(225,100,100)"></use>
+                            <use xlink:href="#small-pointer" transform="rotate(315,100,100)"></use>
+
+                            <text x="100" y="42" font-family="serif" font-size="25" text-anchor="middle" fill="rgb(40,40,40)">N</text>
+                            <text transform="rotate(-90,100,100)" x="100" y="42" text-anchor="middle" font-family="serif" font-size="25" fill="rgb(40,40,40)" >W</text>
+                            <text transform="rotate(90,100,100)" x="100" y="42" text-anchor="middle" font-family="serif" font-size="25" fill="rgb(40,40,40)" >E</text>
+                            <text transform="rotate(180,100,100)" x="100" y="42" text-anchor="middle" font-family="serif" font-size="25" fill="rgb(40,40,40)" >S</text>
+
+                            <text transform="rotate(45,100,100)" x="100" y="53" font-family="serif" font-size="12" text-anchor="middle" fill="rgb(40,40,40)">NE</text>
+                            <text transform="rotate(135,100,100)" x="100" y="53" font-family="serif" font-size="12" text-anchor="middle" fill="rgb(40,40,40)">SE</text>
+                            <text transform="rotate(225,100,100)" x="100" y="53" font-family="serif" font-size="12" text-anchor="middle" fill="rgb(40,40,40)">SW</text>
+                            <text transform="rotate(315,100,100)" x="100" y="53" font-family="serif" font-size="12" text-anchor="middle" fill="rgb(40,40,40)">NW</text>
+                        </g>
+                    </g>
+
+                    <circle r="84.5" cx="100" cy="100" fill-opacity="0" stroke="url(#compass-rim-inner)" stroke-width="2" ></circle>
+
+                    <use id="needle-shadow" xlink:href="#needle-source" filter="url(#blur-me)" transform="translate(4,4)" opacity="0.35"></use>
+                    <use id="needle" xlink:href="#needle-source"></use>
+
+                    <circle r="6.5" cx="100" cy="100" fill="url(#needle-center-rim)"></circle>
+                    <circle r="5.5" cx="100" cy="100" fill="url(#needle-center)" ></circle>
+
+
+                    <use xlink:href="#indicator" fill="black" stroke="black" filter="url(#blur-me-2)" transform="translate(1,1)" opacity="0.5" ></use>
+                    <use xlink:href="#indicator" fill="rgb(200,0,0)" stroke="rgb(160,0,0)"></use>
+                </svg>
+            </div>
         </cordova-panel-row>
 
         <cordova-panel-row class="compass-help-info" data-loc-id="c4c80de2">
