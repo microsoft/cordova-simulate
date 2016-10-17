@@ -2,22 +2,6 @@
 
 var navigationUtils = require('utils').navHelper();
 
-var COMPASS_NEEDLE = {
-    SHADOW_TRANSLATE: 'translate(4,4)',
-    LUMINOSITY: {
-        MIN: 30,
-        MAX: 45
-    },
-    RED: {
-        HUE: '0',
-        SATURATION: '100%'
-    },
-    BLUE: {
-        HUE: '214',
-        SATURATION: '53%'
-    }
-};
-
 /**
  * @param {object=} options
  * @constructor
@@ -30,8 +14,6 @@ function CompassWidget(options) {
     checkPolyfillUseElements(this._svgElement);
 
     this._compassFaceElement = this._svgElement.querySelector('#compass-face');
-    this._needleElement = this._svgElement.querySelector('#needle');
-    this._needleShadowElement = this._svgElement.querySelector('#needle-shadow');
 
     this._onDragStartCallback = this._onDragStart.bind(this);
     this._onDraggingCallback = this._onDragging.bind(this);
@@ -123,39 +105,6 @@ CompassWidget.prototype._updateHeadingToPosition = function (x, y) {
 CompassWidget.prototype._updateRotation = function (rotationAngle) {
     var transform = 'rotate(' + rotationAngle + ', 100, 100)';
     this._compassFaceElement.setAttribute('transform', transform);
-    this._needleElement.setAttribute('transform', transform);
-    this._needleShadowElement.setAttribute('transform', COMPASS_NEEDLE.SHADOW_TRANSLATE + ' ' + transform);
-
-    // Determine color of needle components
-    var rating = (225 - rotationAngle) / 180;
-    if (rating < 0) {
-        rating = -rating;
-    }
-    if (rating > 1) {
-        rating = 2 - rating;
-    }
-
-    var luminosityRange = COMPASS_NEEDLE.LUMINOSITY.MAX - COMPASS_NEEDLE.LUMINOSITY.MIN;
-    var lum1 = '' + (COMPASS_NEEDLE.LUMINOSITY.MIN + luminosityRange * rating) + '%';
-    var lum2 = '' + (COMPASS_NEEDLE.LUMINOSITY.MAX - luminosityRange * rating) + '%';
-
-    this._applyColor('.red-1', COMPASS_NEEDLE.RED.HUE + ',' + COMPASS_NEEDLE.RED.SATURATION + ',' + lum1);
-    this._applyColor('.red-2', COMPASS_NEEDLE.RED.HUE + ',' + COMPASS_NEEDLE.RED.SATURATION + ',' + lum2);
-    this._applyColor('.blue-1', COMPASS_NEEDLE.BLUE.HUE + ',' + COMPASS_NEEDLE.BLUE.SATURATION + ',' + lum1);
-    this._applyColor('.blue-2', COMPASS_NEEDLE.BLUE.HUE + ',' + COMPASS_NEEDLE.BLUE.SATURATION + ',' + lum2);
-};
-
-/**
- * Applies an HSL fill color to any elements that match the provided selector. Used to adjust the luminosity of
- * components of the needle as the compass rotates.
- * @param {string} selector
- * @param {string} color
- * @private
- */
-CompassWidget.prototype._applyColor = function (selector, color) {
-    Array.prototype.forEach.call(this._svgElement.querySelectorAll(selector), function (targetElement) {
-        targetElement.setAttribute('fill', 'hsl(' + color + ')');
-    });
 };
 
 /**
