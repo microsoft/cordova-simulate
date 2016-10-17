@@ -20,8 +20,8 @@ module.exports.attach = function (app) {
             headers: request.headers
         };
 
-        var proxyCallback = function (proxyReponse) {
-            proxyReponse.pipe(response);
+        var proxyCallback = function (proxyResponse) {
+            proxyResponse.pipe(response);
         };
         
         var proxyRequest;
@@ -35,6 +35,6 @@ module.exports.attach = function (app) {
         proxyRequest.on('error', function (err) {
             response.status(502).send(err.toString()).end();
         });
-        proxyRequest.end();
+        request.pipe(proxyRequest);
     });
 };
