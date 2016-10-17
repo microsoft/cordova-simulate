@@ -3,6 +3,8 @@
 var dialog = require('dialog'),
     utils = require('utils');
 
+var uniqueIdSuffix = 0;
+
 function initialize(changePanelVisibilityCallback) {
     registerCustomElement('cordova-panel', {
         proto: {
@@ -21,8 +23,7 @@ function initialize(changePanelVisibilityCallback) {
             }
         },
         initialize: function () {
-            var panel = this;
-            var content = panel.shadowRoot.querySelector('.cordova-content');
+            var content = this.shadowRoot.querySelector('.cordova-content');
             var panelId = this.getAttribute('id');
             var collapseIcon = this.shadowRoot.querySelector('.cordova-collapse-icon');
 
@@ -454,9 +455,8 @@ function registerCustomElement(name, opts) {
         shadowRoot.appendChild(document.importNode(t.content, true));
 
         if (mungeIds) {
-            var prefix = getId();
             mungeIds.forEach(function (idToMunge) {
-                var mungedId = prefix + '-' + idToMunge;
+                var mungedId = idToMunge + '-' + uniqueIdSuffix++;
                 var target = shadowRoot.querySelector('#' + idToMunge);
                 if (target) {
                     target.setAttribute('id', mungedId);
@@ -478,14 +478,6 @@ function registerCustomElement(name, opts) {
     window[constructorName] = document.registerElement(name, {
         prototype: proto
     });
-}
-
-function getId() {
-    var result = [];
-    for (var i = 0; i < 8; i++) {
-        result.push((Math.random() * 16 | 0).toString(16));
-    }
-    return result.join('');
 }
 
 function collapsePanel(iconElem, content) {
