@@ -9,39 +9,11 @@ var navigationUtils = require('utils').navHelper();
 function CompassWidget(options) {
     options = options || {};
 
-    this._container = options.container || document.body;
+    var container = options.container || document.body;
+    this._svgElement = container.querySelector('svg');
+    checkPolyfillUseElements(this._svgElement);
 
-    this._canvasElement = document.createElement('canvas');
-    this._indicatorCanvasElement = document.createElement('canvas');
-
-    this._container.appendChild(this._indicatorCanvasElement);
-    this._container.appendChild(this._canvasElement);
-
-    this._scale = (typeof options.scale === 'number') ? options.scale : 1;
-
-    this._context = this._canvasElement.getContext('2d');
-    this._diameter = ((typeof options.diameter === 'number') ? options.diameter : CompassWidget.Defaults.DIAMETER) * this._scale;
-
-    this._wrapperSize = 24 * this._scale;
-    this._compassBorderSize = 15 * this._scale;
-
-    this._canvasElement.style.position = 'absolute';
-    this._canvasElement.style.cursor = 'pointer';
-    this._canvasElement.style.top = 12 * this._scale + 'px';
-    this._canvasElement.style.left = 12 * this._scale + 'px';
-    this._canvasElement.width = this._diameter;
-    this._canvasElement.height = this._diameter;
-
-    this._center = {
-        x: this._diameter / 2,
-        y: this._diameter / 2
-    };
-
-    this._pointer = {
-        width: 30,
-        height: this._diameter - this._compassBorderSize * 2,
-        offset: this._compassBorderSize
-    };
+    this._compassFaceElement = this._svgElement.querySelector('#compass-face');
 
     this._onDragStartCallback = this._onDragStart.bind(this);
     this._onDraggingCallback = this._onDragging.bind(this);
@@ -49,9 +21,9 @@ function CompassWidget(options) {
     this._onHeadingUpdatedCallback = null;
     this._sendUITelemetry = null;
 
-    this._canvasElement.addEventListener('mousedown', this._onDragStartCallback);
+    this._svgElement.addEventListener('mousedown', this._onDragStartCallback);
 
-    this._canvasElement.addEventListener('click', function (event) {
+    this._svgElement.addEventListener('click', function (event) {
         this._updateHeadingToPosition(event.clientX, event.clientY);
 
         if (this._sendUITelemetry) {
@@ -73,45 +45,12 @@ function CompassWidget(options) {
     }
 }
 
-CompassWidget.Defaults = {
-    DIAMETER: 160
-};
-
-CompassWidget.prototype.initialize = function (headingValue) {
-    var indicatorContext = this._indicatorCanvasElement.getContext('2d'),
-        diameter = this._diameter + this._wrapperSize,
-        x = this._center.x + this._wrapperSize / 2,
-        y = this._center.y + this._wrapperSize / 2;
-
-    this._indicatorCanvasElement.style.position = 'absolute';
-    this._indicatorCanvasElement.width = (this._diameter + this._wrapperSize) * this._scale;
-    this._indicatorCanvasElement.height = (this._diameter + this._wrapperSize) * this._scale;
-
-    indicatorContext.beginPath();
-    indicatorContext.arc(x, y, diameter / 2, 0, Math.PI * 2, false);
-    indicatorContext.fillStyle = '#CCCCCC';
-    indicatorContext.fill();
-
-    indicatorContext.beginPath();
-    indicatorContext.moveTo(x - this._wrapperSize / 3, 0);
-    indicatorContext.lineTo(x, this._wrapperSize / 2);
-    indicatorContext.lineTo(x + this._wrapperSize / 3, 0);
-    indicatorContext.lineTo(x, 0);
-    indicatorContext.fillStyle = '#DC052C';
-    indicatorContext.fill();
-
-    this._drawCompass();
-
-    this.updateHeading(headingValue);
-};
-
 /**
- * Set the headig value, udpate the rotation and notify that it has changed.
+ * Set the heading value, update the rotation and notify that it has changed.
  * @param {number} value
  */
 CompassWidget.prototype.updateHeading = function (value) {
     this.setHeading(value);
-
     this._notifyHeadingUpdated();
 };
 
@@ -140,81 +79,21 @@ CompassWidget.prototype.setHeading = function (value) {
 };
 
 /**
- * Draw the main compass, including the pointer and the directions section.
- * @private
- */
-CompassWidget.prototype._drawCompass = function () {
-    this._context.beginPath();
-    this._context.arc(this._center.x, this._center.y, this._diameter / 2, 0, Math.PI * 2, false);
-    this._context.fillStyle = '#58B8EB';
-    this._context.fill();
-
-    this._context.beginPath();
-    this._context.arc(this._center.x, this._center.y, (this._diameter / 2) - this._compassBorderSize, 0, Math.PI * 2, false);
-    this._context.fillStyle = '#AFEEF9';
-    this._context.fill();
-
-    // pointer
-    this._context.beginPath();
-    this._context.moveTo(this._center.x, this._center.y);
-    this._context.lineTo(this._center.x - this._pointer.width / 2, this._center.y);
-    this._context.lineTo(this._center.x, this._pointer.offset);
-    this._context.lineTo(this._center.x, this._center.y);
-    this._context.fillStyle = '#FF532B';
-    this._context.fill();
-
-    this._context.beginPath();
-    this._context.moveTo(this._center.x, this._center.y);
-    this._context.lineTo(this._center.x + this._pointer.width / 2, this._center.y);
-    this._context.lineTo(this._center.x, this._pointer.offset);
-    this._context.lineTo(this._center.x, this._center.y);
-    this._context.fillStyle = '#DC052C';
-    this._context.fill();
-
-    this._context.beginPath();
-    this._context.moveTo(this._center.x, this._center.y);
-    this._context.lineTo(this._center.x - this._pointer.width / 2, this._center.y);
-    this._context.lineTo(this._center.x, this._center.y + this._pointer.height / 2);
-    this._context.lineTo(this._center.x, this._center.y);
-    this._context.fillStyle = '#DAE1EF';
-    this._context.fill();
-
-    this._context.beginPath();
-    this._context.moveTo(this._center.x, this._center.y);
-    this._context.lineTo(this._center.x + this._pointer.width / 2, this._center.y);
-    this._context.lineTo(this._center.x, this._center.y + this._pointer.height / 2);
-    this._context.lineTo(this._center.x, this._center.y);
-    this._context.fillStyle = '#91AEDC';
-    this._context.fill();
-
-    // directions
-    this._context.fillStyle = '#000000';
-    this._context.font = 14 * this._scale + 'px Arial';
-    this._context.fillText(navigationUtils.Directions.N, this._center.x - 5 * this._scale, this._compassBorderSize - 2 * this._scale);
-    this._context.fillText(navigationUtils.Directions.E, this._center.x + this._diameter / 2 - this._compassBorderSize + 3 * this._scale, this._center.y + 4 * this._scale);
-    this._context.fillText(navigationUtils.Directions.S, this._center.x - 5 * this._scale, this._center.y + this._diameter / 2 - 2 * this._scale);
-    this._context.fillText(navigationUtils.Directions.W, this._center.x - this._diameter / 2 + this._scale, this._center.y + 4 * this._scale);
-};
-
-/**
  * Update the heading to the given position in coordinates.
  * @param {number} x
  * @param {number} y
  * @private
  */
 CompassWidget.prototype._updateHeadingToPosition = function (x, y) {
-    var rect = this._indicatorCanvasElement.getBoundingClientRect(),
-        radius = this._diameter / 2,
-        top = rect.top + radius + this._compassBorderSize,
-        left = rect.left + radius + this._compassBorderSize,
-        rotationAngle = parseInt(Math.atan2(x - left, -(y - top)) * (180 / Math.PI));
+    var rect = this._svgElement.getBoundingClientRect();
+    var centerX = (rect.left + rect.right) / 2;
+    var centerY = (rect.top + rect.bottom) / 2;
 
+    var rotationAngle = parseInt(Math.atan2(x - centerX, -(y - centerY)) * (180 / Math.PI));
     if (rotationAngle < 0) {
-        rotationAngle = parseInt(360 + rotationAngle);
+        rotationAngle = 360 + rotationAngle;
     }
-
     this.setHeading((rotationAngle !== 0) ? 360 - rotationAngle : rotationAngle);
-
     this._notifyHeadingUpdated();
 };
 
@@ -224,12 +103,8 @@ CompassWidget.prototype._updateHeadingToPosition = function (x, y) {
  * @private
  */
 CompassWidget.prototype._updateRotation = function (rotationAngle) {
-    var rotate = 'rotate(' + rotationAngle + 'deg)';
-    this._canvasElement.style.transform = rotate;
-    this._canvasElement.style.webkitTransform = rotate;
-    this._canvasElement.style.MozTransform = rotate;
-    this._canvasElement.style.msTransform = rotate;
-    this._canvasElement.style.oTransform = rotate;
+    var transform = 'rotate(' + rotationAngle + ', 100, 100)';
+    this._compassFaceElement.setAttribute('transform', transform);
 };
 
 /**
@@ -263,5 +138,36 @@ CompassWidget.prototype._onDragEnd = function (event) {
     document.removeEventListener('mousemove', this._onDraggingCallback);
     document.removeEventListener('mouseup', this._onDragEndCallback);
 };
+
+function checkPolyfillUseElements(svgElement) {
+    var ie = /\bTrident\/[567]\b|\bMSIE (?:9|10)\.0\b/;
+    var webkit = /\bAppleWebKit\/(\d+)\b/;
+    var edge = /\bEdge\/12\.(\d+)\b/;
+    if (ie.test(navigator.userAgent) || (navigator.userAgent.match(edge) || [])[1] < 10547 || (navigator.userAgent.match(webkit) || [])[1] < 537) {
+        polyfillUseElements(svgElement);
+    }
+}
+
+function polyfillUseElements(containerElement, svgElement) {
+    svgElement = svgElement || containerElement;
+    Array.prototype.forEach.call(containerElement.querySelectorAll('use'), function (useElement) {
+        var parentNode = useElement.parentNode;
+        var srcRef = useElement.getAttribute('xlink:href');
+        var srcElement = svgElement.querySelector(srcRef);
+
+        var newElement = srcElement.cloneNode(true);
+        newElement.id = null;
+
+        Array.prototype.forEach.call(useElement.attributes, function (attr) {
+            newElement.setAttribute(attr.name, attr.value);
+        });
+
+        // The new element might have use element children that haven't been replaced yet
+        polyfillUseElements(newElement, svgElement);
+
+        parentNode.insertBefore(newElement, useElement);
+        parentNode.removeChild(useElement);
+    });
+}
 
 module.exports = CompassWidget;
