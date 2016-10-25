@@ -1,5 +1,9 @@
 /* Copyright (c) Microsoft Corporation. All rights reserved. */
 
+/* Note that this file doesn't include any properties that can be themed (default values for those properties are
+   defined in theme.js) or properties the are sizes (they are defined in sim-host-sizes.css, and will be scaled and
+   included in the theme css file). */
+
 body {
     margin: 0 !important;
     padding: 0 !important;
@@ -23,14 +27,6 @@ a {
     color: rgb(128, 128, 128);
 }
 
-cordova-panel {
-    width: 320px;
-}
-
-cordova-dialog {
-    width: 377px;
-}
-
 cordova-panel, cordova-dialog {
     z-index: 50;
     position: relative;
@@ -40,120 +36,20 @@ cordova-panel, cordova-dialog {
     display: block;
 }
 
-/* Properties that will be themed */
-body {
-    font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
-    font-size: 13px;
-}
-
-cordova-button /deep/ button {
-    font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
-    font-size: 13px;
-    font-weight: normal;
-    color: black;
-    background: #ffffff;
-    border: 1px solid #d3d3d3;
-}
-
-cordova-button /deep/ button:active {
-    color: #212121;
-    background: #ffffff;
-    border: 1px solid #CCCCCC;
-}
-
-body /deep/ label {
-    font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
-    font-size: 13px;
-    font-weight: normal;
-    color: rgba(0,0,0,0.95);
-}
-
-body /deep/ p, body /deep/ .p {
-    font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
-    font-size: 13px;
-    font-weight: normal;
-    color: rgba(0,0,0,0.95);
-}
-
-
-cordova-combo /deep/ select,
-body /deep/ textarea,
-body /deep/ input[type^=text],
-body /deep/ input[type^=number],
-input[type^=number] {
-    font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
-    font-size: 13px;
-    font-weight: normal;
-    color: black;
-    background: #ffffff;
-    border: 1px solid #d3d3d3;;
-}
-
-cordova-combo /deep/ select:hover,
-body /deep/ textarea:hover,
-body /deep/ input[type^=text]:hover,
-body /deep/ input[type^=number]:hover,
-input[type^=number]:hover {
-    font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
-    font-size: 13px;
-    font-weight: normal;
-    color: #212121;
-    background: #ffffff;
-    border: 1px solid #CCCCCC;
-}
-
-body /deep/ input[type^=range] {
-    /* Set the font so em sizing will work correctly */
-    font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
-    font-size: 13px;
-    font-weight: normal;
-}
-
-body /deep/ .cordova-value {
-    font-family: 'Helvetica Neue', 'Roboto', 'Segoe UI', sans-serif;
-    font-size: 13px;
-    font-weight: normal;
-    color: black;
-}
-
-body /deep/ .cordova-panel-inner {
-    border: 1px solid rgba(0, 0, 0, 0.785);
-    background: rgba(255,255,255,0.97);
-}
-
-body /deep/ .cordova-header {
-    background-color: black;
-    opacity: 0.7;
-    color: rgb(204,204,204);
-    font-size: 13px;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-/* End properties that will be themed */
-
 body /deep/ .cordova-panel-inner {
     overflow: hidden;
 }
 
 body /deep/ .cordova-header {
-    padding: 5px 9px;
     position: relative;
-    height: 20px;
-    line-height: 20px;
     cursor: pointer;
 }
 
-/* 12px margin around top level items in the content a panel */
 body /deep/ .cordova-content > ::content > * {
-    margin: 12px;
     position: relative;
 }
 
 .cordova-main {
-    margin: 5px 0 0 5px;
-    column-width: 330px;
-    -moz-column-width: 330px;
-    -webkit-column-width: 330px;
     column-gap: 0;
     -moz-column-gap: 0;
     -webkit-column-gap: 0;
@@ -163,11 +59,9 @@ body /deep/ .cordova-value {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-left: 6px;
 }
 
 body /deep/ input {
-    margin: 0 10px;
     padding: 0;
 }
 
@@ -189,16 +83,7 @@ body /deep/ .cordova-overlay {
     align-items: center;
 }
 
-body /deep/ input[type^=range] {
-    width: 112px;
-}
-
-cordova-combo /deep/ select {
-    min-width: 112px;
-}
-
 cordova-button {
-    min-width: 112px;
     display: inline-block;
     position: relative;
     text-align: center;
@@ -216,30 +101,22 @@ body /deep/ select {
     cursor: pointer;
 }
 
-body /deep/ select,
-body /deep/ input[type^=text],
-body /deep/ input[type^=number], input[type^=number] {
-    padding: 5px;
+select::-ms-expand { /* for IE 11 */
+    border: 0 solid black;
+    background: transparent;
+    color: currentColor;
 }
 
 body /deep/ input,
 body /deep/ textarea,
 body /deep/ select,
 body /deep/ button {
-    margin-left: 0;
-    margin-right: 0;
+    margin: 0;
     resize: none;
 }
 
 body /deep/ textarea {
-    padding: 2px 4px;
-    width: calc(100% - 10px); /* Account for padding and border */
     overflow-y: auto;
-}
-
-body /deep/ input[type^=text],
-body /deep/ input[type^=number] {
-    width: 100px;
 }
 
 body /deep/ input:focus,
@@ -253,7 +130,6 @@ body /deep/ select:focus {
 body /deep/ cordova-radio {
     display: flex;
     align-items: center;
-    padding: 2px;
 }
 
 body /deep/ .cordova-panel-row {
@@ -276,9 +152,6 @@ body /deep/ .cordova-radio-label {
 
 body /deep/ cordova-item + cordova-item {
     display: block;
-    border-top: #d3d3d3 1px solid;
-    margin-top: 10px;
-    padding-top: 10px;
 }
 
 body /deep/ cordova-item:hover:before {
@@ -287,24 +160,21 @@ body /deep/ cordova-item:hover:before {
     margin-left: auto;
     right: 0;
     background: white;
-    font-size: 14px;
-    padding-left: 8px;
     font-weight: bold;
     color: darkred;
     cursor: pointer;
 }
 
-body /deep/ .cordova-collapse-icon {
+body /deep/ .cordova-collapse-icon,
+body /deep/ .cordova-close-icon {
     cursor: pointer;
-    background: url('collapse.png') no-repeat 50% 50%;
-    width: 22px;
-    height: 22px;
     position: absolute;
-    margin-top: 1px;
     margin-bottom: auto;
-    right: 6px;
-    bottom: 4px;
     margin-left: auto;
+}
+
+body /deep/ .cordova-collapse-icon {
+    background: url('collapse.png') no-repeat 50% 50%;
 }
 
 body /deep/ .cordova-collapse-icon.cordova-collapsed {
@@ -312,16 +182,7 @@ body /deep/ .cordova-collapse-icon.cordova-collapsed {
 }
 
 body /deep/ .cordova-close-icon {
-    cursor: pointer;
     background: url('close.png') no-repeat 50% 50%;
-    width: 22px;
-    height: 22px;
-    position: absolute;
-    margin-top: 1px;
-    margin-bottom: auto;
-    right: 6px;
-    bottom: 4px;
-    margin-left: auto;
 }
 
 body /deep/ .cordova-content {
@@ -333,34 +194,43 @@ body /deep/ .cordova-hidden {
     display: none;
 }
 
+body /deep/ input[type=range] {
+    background: transparent;
+    outline: none;
+
+    /* Need this so Firefox focus rectangle doesn't overlap the slider*/
+    border: 1px solid transparent;
+}
+
+::-moz-focus-inner {
+    border: none;
+}
+
+input[type=range]::-ms-track {
+    background: transparent;
+    color: transparent;
+    border-left: none;
+    border-right: none;
+}
+
+body /deep/ input[type=range] {
+    -webkit-appearance: none;
+}
+
+body /deep/ input[type=range]::-webkit-slider-runnable-track,
+body /deep/ input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}
+
 /* Hacks to work around multi-column bug in Chrome 48+. The following section
    is removed for other browsers when the file is served */
 
 /* BEGIN CHROME */
 body /deep/ .cordova-panel-inner {
     overflow: visible;
-    padding-bottom: 1px;
 }
 
 body /deep/ .cordova-content {
     overflow: visible;
 }
-
-cordova-panel {
-    padding: 5px 0;
-}
-
-.cordova-main {
-    padding-left: 5px;
-}
 /* END CHROME */
-
-/* BEGIN !CHROME */
-body .cordova-panel-inner {
-    margin-bottom: 10px;
-}
-
-.cordova-main {
-    padding: 5px;
-}
-/* END !CHROME */

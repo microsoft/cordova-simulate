@@ -10,7 +10,8 @@ var Q = require('q'),
     Project = require('./project'),
     SimulationServer = require('./server'),
     Telemetry = require('./telemetry'),
-    device = require('./device');
+    device = require('./device'),
+    theme = require('./theme');
 
 require('../modules/polyfills');
 
@@ -49,6 +50,8 @@ function Simulator(opts) {
         telemetry: this.telemetry,
         updateDevice: this.updateDevice
     };
+
+    this._config.theme = theme.createTheme(simulatorProxy, opts.theme);
 
     this._project = new Project(simulatorProxy, opts.platform);
     this._server = new SimulationServer(simulatorProxy, this._project, this.hostRoot);
