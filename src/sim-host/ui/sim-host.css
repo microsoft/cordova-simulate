@@ -172,7 +172,8 @@ body /deep/ .cordova-close-icon {
     margin-left: auto;
 }
 
-body /deep/ .cordova-collapse-icon svg {
+body /deep/ .cordova-collapse-icon svg,
+body /deep/ .cordova-close-icon svg{
     stroke: currentColor;
     fill-opacity: 0;
 }
@@ -187,10 +188,6 @@ body /deep/ .cordova-collapse-icon .cordova-collapse-down {
 
 body /deep/ .cordova-collapse-icon.cordova-collapsed .cordova-collapse-down {
     display: inline;
-}
-
-body /deep/ .cordova-close-icon {
-    background: url('close.png') no-repeat 50% 50%;
 }
 
 body /deep/ .cordova-content {

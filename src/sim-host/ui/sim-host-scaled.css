@@ -81,7 +81,8 @@ body /deep/ cordova-item:hover:before {
     padding-left: 8px;
 }
 
-body /deep/ .cordova-collapse-icon svg {
+body /deep/ .cordova-collapse-icon svg,
+body /deep/ .cordova-close-icon svg {
     width: 14px;
     height: 14px;
 }
