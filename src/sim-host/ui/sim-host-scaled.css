@@ -1,0 +1,161 @@
+/* Copyright (c) Microsoft Corporation. All rights reserved. */
+
+/* Sizes below here will be scaled to the current theme, and the result included in the theme CSS file */
+
+cordova-panel {
+    width: 320px;
+}
+
+cordova-dialog {
+    width: 377px;
+}
+
+.cordova-main {
+    margin: 5px 0 0 5px;
+    column-width: 330px;
+    -moz-column-width: 330px;
+    -webkit-column-width: 330px;
+}
+
+body /deep/ .cordova-header {
+    padding: 5px 9px;
+    height: 20px;
+    line-height: 20px;
+}
+
+/* 12px margin around top level items in the content a panel */
+body /deep/ .cordova-content > ::content > * {
+    margin: 12px;
+}
+
+body /deep/ .cordova-value {
+    margin-left: 6px;
+}
+
+body /deep/ input[type^=range] {
+    width: 112px;
+}
+
+body /deep/ input[type^=checkbox],
+body /deep/ input[type^=radio]{
+    width: 17px;
+    height: 17px;
+}
+
+cordova-combo /deep/ select {
+    min-width: 112px;
+}
+
+cordova-button {
+    min-width: 112px;
+}
+
+body /deep/ select,
+body /deep/ input[type^=text],
+body /deep/ input[type^=number], input[type^=number] {
+    padding: 5px;
+}
+
+body /deep/ textarea {
+    padding: 2px 4px;
+    width: calc(100% - 10px); /* Account for padding and border */
+}
+
+body /deep/ input[type^=text],
+body /deep/ input[type^=number] {
+    width: 100px;
+}
+
+body /deep/ cordova-radio {
+    padding: 2px;
+}
+
+body /deep/ cordova-item + cordova-item {
+    border-top: #d3d3d3 1px solid;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+body /deep/ cordova-item:hover:before {
+    font-size: 14px;
+    padding-left: 8px;
+}
+
+body /deep/ .cordova-collapse-icon,
+body /deep/ .cordova-close-icon {
+    width: 22px;
+    height: 22px;
+    margin-top: 1px;
+    right: 6px;
+    bottom: 4px;
+}
+
+/* Style slider for Chrome/Safari */
+
+body /deep/ input[type=range]::-webkit-slider-runnable-track {
+    height: 2px;
+}
+
+body /deep/ input[type=range]::-webkit-slider-thumb {
+    height: 20px;
+    width: 11px;
+    margin-top: -10px;
+}
+
+/* Style slider for IE */
+
+input[type=range]::-ms-track {
+    height: 2px;
+    border-top: solid transparent 10px;
+    border-bottom: solid transparent 10px;
+}
+
+input[type=range]::-ms-thumb {
+    height: 18px;
+    width: 9px;
+}
+
+/* Style slider for Firefox */
+
+input[type=range]::-moz-range-track {
+    height: 0;
+}
+
+input[type=range]::-moz-range-thumb {
+    height: 18px;
+    width: 9px;
+    border-radius: 0;
+}
+
+/* Hacks to work around multi-column bug in Chrome 48+. The following section
+   is removed for other browsers when the file is served */
+
+/* BEGIN CHROME */
+body /deep/ .cordova-panel-inner {
+    padding-bottom: 1px;
+}
+
+cordova-panel {
+    padding: 5px 0;
+}
+
+.cordova-main {
+    padding-left: 5px;
+}
+
+body /deep/ input[type=range] {
+    border-top: solid transparent 9px;
+    border-bottom: solid transparent 9px;
+}
+
+/* END CHROME */
+
+/* BEGIN !CHROME */
+body .cordova-panel-inner {
+    margin-bottom: 10px;
+}
+
+.cordova-main {
+    padding: 5px;
+}
+/* END !CHROME */
