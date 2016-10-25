@@ -169,16 +169,24 @@ body /deep/ .cordova-collapse-icon,
 body /deep/ .cordova-close-icon {
     cursor: pointer;
     position: absolute;
-    margin-bottom: auto;
     margin-left: auto;
 }
 
-body /deep/ .cordova-collapse-icon {
-    background: url('collapse.png') no-repeat 50% 50%;
+body /deep/ .cordova-collapse-icon svg {
+    stroke: currentColor;
+    fill-opacity: 0;
 }
 
-body /deep/ .cordova-collapse-icon.cordova-collapsed {
-    background: url('expand.png') no-repeat 50% 50%;
+body /deep/ .cordova-collapse-icon.cordova-collapsed .cordova-collapse-up {
+    display: none;
+}
+
+body /deep/ .cordova-collapse-icon .cordova-collapse-down {
+    display: none;
+}
+
+body /deep/ .cordova-collapse-icon.cordova-collapsed .cordova-collapse-down {
+    display: inline;
 }
 
 body /deep/ .cordova-close-icon {
