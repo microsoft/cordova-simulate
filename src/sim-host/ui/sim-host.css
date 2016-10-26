@@ -91,7 +91,7 @@ cordova-button {
     overflow: visible;
 }
 
-cordova-button /deep/ button {
+body /deep/ button {
     width: 100%;
     padding: .4em 1em;
     cursor: pointer;
@@ -154,15 +154,16 @@ body /deep/ cordova-item + cordova-item {
     display: block;
 }
 
-body /deep/ cordova-item:hover:before {
-    content: url(delete.png);
+body /deep/ cordova-item /deep/ .close-button {
     position: absolute;
-    margin-left: auto;
+    top: 0;
     right: 0;
-    background: white;
-    font-weight: bold;
-    color: darkred;
-    cursor: pointer;
+    padding: 0;
+    display: none;
+}
+
+body /deep/ cordova-item:hover /deep/ .close-button {
+    display: block;
 }
 
 body /deep/ .cordova-collapse-icon,

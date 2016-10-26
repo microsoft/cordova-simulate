@@ -76,9 +76,9 @@ body /deep/ cordova-item + cordova-item {
     padding-top: 10px;
 }
 
-body /deep/ cordova-item:hover:before {
-    font-size: 14px;
-    padding-left: 8px;
+body /deep/ cordova-item /deep/ .close-button {
+    width: 17px;
+    height: 17px;
 }
 
 body /deep/ .cordova-collapse-icon svg,
