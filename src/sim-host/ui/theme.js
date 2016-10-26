@@ -9,7 +9,7 @@ module.exports = {
             'input[type=range]::-moz-range-track'],
         'thumb': ['input[type=range]::-ms-thumb', 'input[type=range]::-webkit-slider-thumb','input[type=range]::-moz-range-thumb'],
         'check': '::-ms-check',
-        'button': 'cordova-button /deep/ button',
+        'button': 'body /deep/ button',
         'label': 'body /deep/ label',
         'value': 'body /deep/ .cordova-value',
         'panel': 'body /deep/ .cordova-panel-inner',

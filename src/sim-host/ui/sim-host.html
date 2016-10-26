@@ -43,7 +43,15 @@
     </template>
 
     <template id="cordova-item-template">
-        <content></content>
+        <section style="position: relative">
+            <content></content>
+            <button class="close-button">
+                <svg style="width:100%;height:100%" viewBox="0 0 14 14">
+                    <line x1="4" y1="4" x2="10" y2="10" stroke-width="1.5" stroke="currentColor"></line>
+                    <line x1="10" y1="4" x2="4" y2="10" stroke-width="1.5" stroke="currentColor"></line>
+                </svg>
+            </button>
+        </section>
     </template>
 
     <template id="cordova-panel-row-template">
