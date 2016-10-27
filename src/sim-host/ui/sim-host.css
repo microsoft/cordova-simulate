@@ -107,6 +107,11 @@ select::-ms-expand { /* for IE 11 */
     color: currentColor;
 }
 
+body /deep/ input[type=checkbox],
+body /deep/ input[type=radio] {
+    vertical-align: bottom;
+}
+
 body /deep/ input,
 body /deep/ textarea,
 body /deep/ select,
