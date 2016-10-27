@@ -6,6 +6,8 @@ var crypto = require('crypto'),
     log = require('./utils/log'),
     utils = require('./utils/jsUtils');
 
+var selectorStateToken = '%state%';
+
 // Properties that will be applied from the set of default properties if they're not defined for an element. Themes
 // should define these properties on 'default' if they want them applied as defaults on the various element types.
 var appliedDefaultProperties = {
@@ -22,6 +24,8 @@ var appliedDefaultProperties = {
 
 // States that will be applied from the set of default states if they're not defined for an element
 var appliedDefaultStates = {
+    'panel': ['focus'],
+    'panel-caption': ['focus'],
     'button': ['hover', 'focus'],
     'input': ['hover', 'focus'],
     'thumb': ['hover', 'focus'],
@@ -229,14 +233,20 @@ function formatSelector(selector, state) {
 
 function appendState(selector, state) {
     if (!state) {
-        return selector;
+        return selector.replace(selectorStateToken, '');
     }
+
+    if (selector.indexOf(selectorStateToken) > -1) {
+        // If the selector specifies where the state should go, put it there
+        return selector.replace(selectorStateToken, ':' + state);
+    }
+
+    // Otherwise, Look for first pseudo-element in last selector - we want to put the state before that (so we're
+    // detecting state on the actual element, not the pseudo-element).
 
     // Split selector on whitespace
     selector = selector.split(/\s+/g);
 
-    // Look for first pseudo-element in last selector - we want to put the state before that (so we're detecting state
-    // on the actual element, not the pseudo-element).
     var idx = selector[selector.length - 1].indexOf('::');
     if (idx > -1) {
         selector[selector.length - 1] = selector[selector.length - 1].substring(0, idx) + ':' + state + selector[selector.length - 1].substring(idx);

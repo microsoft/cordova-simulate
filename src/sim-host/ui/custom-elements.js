@@ -28,7 +28,8 @@ function initialize(changePanelVisibilityCallback) {
             var collapseIcon = this.shadowRoot.querySelector('.cordova-collapse-icon');
 
             this.shadowRoot.querySelector('.cordova-header span').textContent = this.getAttribute('caption');
-            this.shadowRoot.querySelector('.cordova-header').addEventListener('click', function () {
+
+            function expandCollapse() {
                 var collapsed = collapseIcon.classList.contains('cordova-collapsed');
 
                 if (collapsed) {
@@ -39,6 +40,13 @@ function initialize(changePanelVisibilityCallback) {
 
                 if (changePanelVisibilityCallback && typeof changePanelVisibilityCallback === 'function') {
                     changePanelVisibilityCallback(panelId, !collapsed);
+                }
+            }
+
+            this.shadowRoot.querySelector('.cordova-header').addEventListener('click', expandCollapse);
+            this.shadowRoot.querySelector('.cordova-panel-inner').addEventListener('keydown', function (e) {
+                if (e.target === this && e.keyCode === 32 && !(e.altKey || e.ctrlKey || e.shiftKey)) {
+                    expandCollapse();
                 }
             });
         }

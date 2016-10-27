@@ -13,7 +13,7 @@ module.exports = {
         'label': 'body /deep/ label',
         'value': 'body /deep/ .cordova-value',
         'panel': 'body /deep/ .cordova-panel-inner',
-        'panel-caption': 'body /deep/ .cordova-header'
+        'panel-caption': 'body /deep/ .cordova-panel-inner%state% .cordova-header'
     },
 
     defaultTheme: {
@@ -54,6 +54,10 @@ module.exports = {
             '': {
                 'border': '1px solid rgba(0, 0, 0, 0.785)',
                 'background': 'rgba(255,255,255,0.97)'
+            },
+            'focus': {
+                'border': '1px solid rgb(128,128,128)',
+                'outline': 'none'
             }
         },
         'panel-caption': {
@@ -63,6 +67,10 @@ module.exports = {
                 'color': 'rgb(204,204,204)',
                 'text-transform': 'uppercase',
                 'font-weight': 'bold'
+            },
+            'focus': {
+                'background': 'rgb(128,128,128)',
+                'color': 'black'
             }
         },
         'thumb': {
