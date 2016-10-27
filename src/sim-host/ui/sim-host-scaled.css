@@ -11,10 +11,10 @@ cordova-dialog {
 }
 
 .cordova-main {
-    margin: 5px 0 0 5px;
-    column-width: 330px;
-    -moz-column-width: 330px;
-    -webkit-column-width: 330px;
+    margin: 1px 0 0 1px;
+    column-width: 323px;
+    -moz-column-width: 323px;
+    -webkit-column-width: 323px;
 }
 
 body /deep/ .cordova-header {
@@ -138,11 +138,12 @@ body /deep/ .cordova-panel-inner {
 }
 
 cordova-panel {
-    padding: 5px 0;
+    padding: 3px 0;
 }
 
 .cordova-main {
     padding-left: 5px;
+    padding-top: 2px;
 }
 
 body /deep/ input[type=range] {
@@ -154,7 +155,7 @@ body /deep/ input[type=range] {
 
 /* BEGIN !CHROME */
 body .cordova-panel-inner {
-    margin-bottom: 10px;
+    margin-bottom: 7px;
 }
 
 .cordova-main {

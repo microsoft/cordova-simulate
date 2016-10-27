@@ -67,10 +67,10 @@ function sizeContent() {
     var bodyWidth = parseInt(window.getComputedStyle(document.body).width);
     var panelWidth = parseInt(window.getComputedStyle(document.querySelector('cordova-panel')).width);
 
-    // Ratio of column to panel width is 330 to 320. Unfortunately we can't get the column width directly, as the
+    // Ratio of column to panel width is 323 to 320. Unfortunately we can't get the column width directly, as the
     // computed value is inconsistent between browsers. So if we change either of these widths, we'll need to update
     // this equation.
-    var columnWidth = panelWidth / 32 * 33 + 3;
+    var columnWidth = panelWidth / 320 * 323 + 3;
 
     var contentWidth = (Math.floor((bodyWidth - 1) / columnWidth) || 1) * columnWidth;
     document.querySelector('.cordova-main').style.width = contentWidth + 'px';
