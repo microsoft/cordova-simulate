@@ -112,9 +112,11 @@ input[type=range]::-ms-track {
     border-bottom: solid transparent 10px;
 }
 
+/* These properties !important to override -webkit-slider-thumb values in Edge */
 input[type=range]::-ms-thumb {
-    height: 18px;
-    width: 9px;
+    height: 18px !important;
+    width: 9px !important;
+    margin-top: 0 !important;
 }
 
 /* Style slider for Firefox */

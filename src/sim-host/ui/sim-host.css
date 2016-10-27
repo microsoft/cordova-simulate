@@ -224,10 +224,7 @@ input[type=range]::-ms-track {
     border-right: none;
 }
 
-body /deep/ input[type=range] {
-    -webkit-appearance: none;
-}
-
+body /deep/ input[type=range],
 body /deep/ input[type=range]::-webkit-slider-runnable-track,
 body /deep/ input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
