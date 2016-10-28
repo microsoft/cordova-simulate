@@ -1,5 +1,13 @@
 # cordova-simulate Release Notes
 
+### 0.3.4 (Oct 28, 2016)
+* Now supports themes ([#175](https://github.com/Microsoft/cordova-simulate/pull/175)) - see [Support for Themes](https://github.com/Microsoft/cordova-simulate/wiki/Support-for-Themes) for more information.
+* Updated compass that can be themed ([#172](https://github.com/Microsoft/cordova-simulate/pull/172))
+* Modernized Accelerometer panel device ([#173](https://github.com/Microsoft/cordova-simulate/pull/173))
+* Better keyboard support ([#180](https://github.com/Microsoft/cordova-simulate/pull/180), [#181](https://github.com/Microsoft/cordova-simulate/pull/181), [#182](https://github.com/Microsoft/cordova-simulate/pull/182))
+* XHR proxy: ensure post data forwarded to proxied server ([#174](https://github.com/Microsoft/cordova-simulate/pull/174))
+* Ensure elements within custom elements have unique ids ([#165](https://github.com/Microsoft/cordova-simulate/pull/165))
+
 ### 0.3.3 (Oct 4, 2016)
 * Updated localized files with real translations ([#161](https://github.com/Microsoft/cordova-simulate/pull/161), [#162](https://github.com/Microsoft/cordova-simulate/pull/162), [#163](https://github.com/Microsoft/cordova-simulate/pull/163))
 
