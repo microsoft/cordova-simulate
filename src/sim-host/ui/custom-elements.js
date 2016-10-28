@@ -4,6 +4,7 @@ var dialog = require('dialog'),
     utils = require('utils');
 
 var uniqueIdSuffix = 0;
+var interactiveElementSelector = '* /deep/ input, * /deep/ select, * /deep/ button, * /deep/ textarea';
 
 function initialize(changePanelVisibilityCallback) {
     registerCustomElement('cordova-panel', {
@@ -19,6 +20,31 @@ function initialize(changePanelVisibilityCallback) {
                     } else if (!value && isCurrentlyCollapsed) {
                         expandPanel(icon, content);
                     }
+                }
+            },
+            enabled: {
+                set: function (value) {
+                    if (value) {
+                        if (this.elementEnabledState) {
+                            this.elementEnabledState.forEach(function (enabledState) {
+                                enabledState.element.disabled = enabledState.disabled;
+                            });
+                            delete this.elementEnabledState;
+                            this.shadowRoot.querySelector('.cordova-panel-inner').setAttribute('tabIndex', '0');
+                        }
+                    } else {
+                        this.elementEnabledState = [];
+                        Array.prototype.forEach.call(this.querySelectorAll(interactiveElementSelector), function (element) {
+                            this.elementEnabledState.push({element: element, disabled: element.disabled});
+                            element.disabled = true;
+                        }, this);
+                        this.shadowRoot.querySelector('.cordova-panel-inner').setAttribute('tabIndex', '');
+                    }
+                }
+            },
+            focus: {
+                value: function () {
+                    this.shadowRoot.querySelector('.cordova-panel-inner').focus();
                 }
             }
         },
@@ -53,6 +79,26 @@ function initialize(changePanelVisibilityCallback) {
     });
 
     registerCustomElement('cordova-dialog', {
+        proto: {
+            show: {
+                value: function () {
+                    document.getElementById('popup-window').style.display = '';
+                    this.style.display = '';
+
+                    // Set focus to first focusable element in panel (simplistic until we need otherwise).
+                    var focusElement = this.querySelector(interactiveElementSelector);
+                    if (focusElement) {
+                        focusElement.focus();
+                    }
+                }
+            },
+            hide: {
+                value: function () {
+                    document.getElementById('popup-window').style.display = 'none';
+                    this.style.display = 'none';
+                }
+            }
+        },
         initialize: function () {
             this.shadowRoot.querySelector('.cordova-header span').textContent = this.getAttribute('caption');
             this.shadowRoot.querySelector('.cordova-close-icon').addEventListener('click', function () {
@@ -122,6 +168,11 @@ function initialize(changePanelVisibilityCallback) {
                 set: function (value) {
                     setValueSafely(this.shadowRoot.querySelector('input'), 'checked', value);
                 }
+            },
+            focus: {
+                value: function () {
+                    this.shadowRoot.querySelector('input').focus();
+                }
             }
         },
         initialize: function () {
@@ -143,6 +194,11 @@ function initialize(changePanelVisibilityCallback) {
                 },
                 set: function (value) {
                     setValueSafely(this.shadowRoot.querySelector('input'), 'checked', value);
+                }
+            },
+            focus: {
+                value: function () {
+                    this.shadowRoot.querySelector('input').focus();
                 }
             }
         },
@@ -192,6 +248,11 @@ function initialize(changePanelVisibilityCallback) {
                 set: function (value) {
                     setValueSafely(this.shadowRoot.querySelector('input'), 'disabled', value);
                 }
+            },
+            focus: {
+                value: function () {
+                    this.shadowRoot.querySelector('input').focus();
+                }
             }
         },
         initialize: function () {
@@ -223,6 +284,11 @@ function initialize(changePanelVisibilityCallback) {
             disabled: {
                 set: function (value) {
                     setValueSafely(this.shadowRoot.querySelector('input'), 'disabled', value);
+                }
+            },
+            focus: {
+                value: function () {
+                    this.shadowRoot.querySelector('input').focus();
                 }
             }
         },
@@ -301,7 +367,16 @@ function initialize(changePanelVisibilityCallback) {
         }
     });
 
-    registerCustomElement('cordova-button', {eventTarget: 'button'});
+    registerCustomElement('cordova-button', {
+        proto: {
+            focus: {
+                value: function () {
+                    this.shadowRoot.querySelector('button').focus();
+                }
+            }
+        },
+        eventTarget: 'button'
+    });
 
     registerCustomElement('cordova-file', {
         proto: {
@@ -347,6 +422,11 @@ function initialize(changePanelVisibilityCallback) {
             appendChild: {
                 value: function (node) {
                     this.shadowRoot.querySelector('select').appendChild(node);
+                }
+            },
+            focus: {
+                value: function () {
+                    this.shadowRoot.querySelector('select').focus();
                 }
             }
         },

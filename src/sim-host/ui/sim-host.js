@@ -122,14 +122,6 @@ function initializePlugins(device) {
 
     // Hide and register dialogs
     Array.prototype.forEach.call(document.getElementById('popup-window').children, function (dialogRef) {
-        dialogRef.show = function () {
-            document.getElementById('popup-window').style.display = '';
-            this.style.display = '';
-        };
-        dialogRef.hide = function () {
-            document.getElementById('popup-window').style.display = 'none';
-            this.style.display = 'none';
-        };
         dialog.pluginDialogs[dialogRef.id] = dialogRef;
         dialogRef.style.display = 'none';
     });
