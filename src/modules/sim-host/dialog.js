@@ -11,6 +11,9 @@ var dialogQueue = [];
 
 module.exports.pluginDialogs = pluginDialogs;
 
+var panelsDisabled = false;
+var activeElement = null;
+
 function showDialog(dialogId, cb) {
     var dialog = pluginDialogs[dialogId];
     if (!dialog) {
@@ -27,6 +30,15 @@ function showDialog(dialogId, cb) {
     cb && cb('showing');
 
     currentDialogId = dialogId;
+
+    // Disable the panels if they're not already
+    if (!panelsDisabled) {
+        activeElement = document.activeElement;
+        getPanels().forEach(function (panel) {
+            panel.enabled = false;
+        });
+        panelsDisabled = true;
+    }
 
     dialog.show();
 
@@ -64,10 +76,26 @@ function hideDialog(dialogId) {
         var dialogInfo = findNextDialog();
         if (dialogInfo) {
             showDialog(dialogInfo.id, dialogInfo.callback);
+        } else {
+            // No dialog to show? Re-enable the panels
+            getPanels().forEach(function (panel) {
+                panel.enabled = true;
+            });
+
+            if (activeElement) {
+                activeElement.focus();
+                activeElement = null;
+            }
+
+            panelsDisabled = false;
         }
     }, 0);
 }
 module.exports.hideDialog = hideDialog;
+
+function getPanels() {
+    return Array.prototype.slice.call(document.querySelectorAll('body /deep/ cordova-panel'));
+}
 
 function findNextDialog() {
     while (dialogQueue.length) {
