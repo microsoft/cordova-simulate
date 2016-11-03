@@ -1,16 +1,10 @@
 <!-- Copyright (c) Microsoft Corporation. All rights reserved. -->
 
 <cordova-panel id="battery-status" caption="Battery Status" data-loc-id="ac1dbd34">
-    <style>
-        #battery-level-label {
-            margin-right: 5px;
-            margin-left: auto;
-        }
-    </style>
     <cordova-group>
         <cordova-panel-row>
-            <cordova-label label="Battery level" data-loc-id="e0d4e236"></cordova-label>
-            <cordova-label id="battery-level-label" label="100%"></cordova-label>
+            <cordova-label for="battery-level" label="Battery level" data-loc-id="e0d4e236"></cordova-label>
+            <cordova-label id="battery-level-label" label="100%" style="margin-right:5px;margin-left:auto;"></cordova-label>
             <input id="battery-level" type="range" value="100" min="0" max="100">
         </cordova-panel-row>
     </cordova-group>

@@ -100,3 +100,8 @@
 #geo-gpxreplaystatus:empty {
     display: none;
 }
+
+#geo-heading-label, #geo-delay-label {
+    margin-right: 5px;
+    margin-left: auto;
+}
