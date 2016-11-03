@@ -93,7 +93,6 @@ cordova-button {
 
 body /deep/ button {
     width: 100%;
-    padding: .4em 1em;
     cursor: pointer;
 }
 
@@ -155,14 +154,8 @@ body /deep/ .cordova-radio-label {
     padding-left: 0.25em;
 }
 
-body /deep/ cordova-item + cordova-item {
-    display: block;
-}
-
 body /deep/ cordova-item /deep/ .close-button {
     position: absolute;
-    top: 0;
-    right: 0;
     padding: 0;
     display: none;
 }
@@ -170,6 +163,22 @@ body /deep/ cordova-item /deep/ .close-button {
 body /deep/ cordova-item:hover /deep/ .close-button {
     display: block;
 }
+
+body /deep/ .cordova-item-wrapper {
+    margin: -1px 0;
+}
+
+body /deep/ .cordova-item-wrapper:focus,
+body /deep/ .cordova-item-wrapper:hover {
+    z-index: 1000;
+}
+
+body /deep/ .cordova-item-wrapper {
+    /* cordova-item borrows button style, but forces border to a single pixel so overlap works correctly */
+    border-style: solid !important;
+    border-width: 1px !important;
+}
+
 
 body /deep/ .cordova-collapse-icon,
 body /deep/ .cordova-close-icon {

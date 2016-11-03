@@ -132,23 +132,96 @@ function initialize(changePanelVisibilityCallback) {
     });
 
     registerCustomElement('cordova-item', {
+        proto: {
+            focus: {
+                value: function () {
+                    this.shadowRoot.querySelector('.cordova-item-wrapper').focus();
+                }
+            }
+        },
         initialize: function () {
             this.classList.add('cordova-group');
-            this.addEventListener('click', function (e) {
-                if (e.target === this) {
-                    // If the click target is our self, the only thing that could have been clicked is the delete icon.
-                    var list = this.parentNode;
 
-                    // If we're within a list, calculate index in the list
-                    var childIndex = list && list.tagName === 'CORDOVA-ITEM-LIST' ? Array.prototype.indexOf.call(list.children, this) : -1;
+            this.addEventListener('mousedown', function () {
+                var that = this;
+                window.setTimeout(function () {
+                    if (document.activeElement !== that) {
+                        that.focus();
+                    }
+                }, 0);
+            });
 
-                    // Raise an event on ourselves
-                    var itemRemovedEvent = new CustomEvent('itemremoved', { detail: { itemIndex: childIndex }, bubbles: true });
-                    this.dispatchEvent(itemRemovedEvent);
+            var that = this;
+            this.shadowRoot.querySelector('.close-button').addEventListener('click', function () {
+                removeItem(that);
+            });
 
-                    list.removeChild(this);
+            this.addEventListener('keydown', function (e) {
+                if (isModifyKeyPressed(e)) {
+                    return;
+                }
+
+                var list, childIndex;
+
+                switch (e.keyCode) {
+                    case 46:
+                        // Delete key
+                        removeItem(this, true);
+                        break;
+
+                    case 38:
+                        // Up arrow
+                        e.preventDefault();
+                        list = this.parentNode;
+                        childIndex = getItemIndex(this, list);
+                        if (childIndex > 0) {
+                            list.children[childIndex - 1].focus();
+                        }
+                        break;
+
+                    case 40:
+                        // Down arrow
+                        e.preventDefault();
+                        list = this.parentNode;
+                        childIndex = getItemIndex(this, list);
+                        if (childIndex < list.children.length - 1) {
+                            list.children[childIndex + 1].focus();
+                        }
+                        break;
                 }
             });
+
+            function getItemIndex(item, list) {
+                return list && list.tagName === 'CORDOVA-ITEM-LIST' ? Array.prototype.indexOf.call(list.children, item) : -1;
+            }
+
+            function removeItem(item, setFocus) {
+                var list = item.parentNode;
+
+                // If we're within a list, calculate index in the list
+                var childIndex = getItemIndex(item, list);
+                if (childIndex > -1) {
+                    // Raise an event on ourselves
+                    var itemRemovedEvent = new CustomEvent('itemremoved', { detail: { itemIndex: childIndex }, bubbles: true });
+                    item.dispatchEvent(itemRemovedEvent);
+
+                    list.removeChild(item);
+
+                    if (setFocus) {
+                        var itemCount = list.children.length;
+                        if (itemCount > 0) {
+                            if (childIndex >= itemCount) {
+                                childIndex = itemCount - 1;
+                            }
+                            list.children[childIndex].focus();
+                        } else {
+                            // If no items left, set focus to containing panel if there is one
+                            var panel = findParent(list, 'cordova-panel');
+                            panel && panel.focus();
+                        }
+                    }
+                }
+            }
         }
     });
 
