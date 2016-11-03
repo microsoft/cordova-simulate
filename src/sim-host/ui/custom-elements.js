@@ -183,7 +183,8 @@ function initialize(changePanelVisibilityCallback) {
                 // Reverse the order of the checkbox and caption
                 this.shadowRoot.appendChild(this.shadowRoot.querySelector('label'));
             }
-        }
+        },
+        mungeIds: 'cordova-checkbox-template-input'
     });
 
     registerCustomElement('cordova-radio', {
@@ -230,6 +231,8 @@ function initialize(changePanelVisibilityCallback) {
         },
         initialize: function () {
             this.shadowRoot.querySelector('label').textContent = this.getAttribute('label');
+            this.shadowRoot.querySelector('label').setAttribute('for', this.getAttribute('for'));
+            this.setAttribute('for', '');
         }
     });
 
