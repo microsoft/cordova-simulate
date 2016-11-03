@@ -71,7 +71,7 @@ function initialize(changePanelVisibilityCallback) {
 
             this.shadowRoot.querySelector('.cordova-header').addEventListener('click', expandCollapse);
             this.shadowRoot.querySelector('.cordova-panel-inner').addEventListener('keydown', function (e) {
-                if (e.target === this && e.keyCode === 32 && !(e.altKey || e.ctrlKey || e.shiftKey)) {
+                if (e.target === this && e.keyCode === 32 && !isModifyKeyPressed(e)) {
                     expandCollapse();
                 }
             });
@@ -103,6 +103,12 @@ function initialize(changePanelVisibilityCallback) {
             this.shadowRoot.querySelector('.cordova-header span').textContent = this.getAttribute('caption');
             this.shadowRoot.querySelector('.cordova-close-icon').addEventListener('click', function () {
                 dialog.hideDialog();
+            });
+            this.addEventListener('keydown', function (e) {
+                if (e.keyCode === 27 && !isModifyKeyPressed(e)) {
+                    // Escape key pressed
+                    dialog.hideDialog();
+                }
             });
         }
     });
@@ -308,7 +314,7 @@ function initialize(changePanelVisibilityCallback) {
                 value = this.getAttribute('value'),
                 step = this.getAttribute('step');
 
-            // initialize _internalValue with one of the availale values,
+            // initialize _internalValue with one of the available values,
             // otherwise it remains 0
             if (value !== null && utils.isNumber(value)) {
                 this._internalValue = value;
@@ -569,6 +575,10 @@ function registerCustomElement(name, opts) {
     window[constructorName] = document.registerElement(name, {
         prototype: proto
     });
+}
+
+function isModifyKeyPressed(e) {
+    return e.altKey || e.ctrlKey || e.shiftKey || e.metaKey;
 }
 
 function collapsePanel(iconElem, content) {
