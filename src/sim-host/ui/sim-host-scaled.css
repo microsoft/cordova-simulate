@@ -70,15 +70,19 @@ body /deep/ cordova-radio {
     padding: 2px;
 }
 
-body /deep/ cordova-item + cordova-item {
-    border-top: #d3d3d3 1px solid;
-    margin-top: 10px;
-    padding-top: 10px;
+body /deep/ button {
+    padding: 5px 13px;
+}
+
+body /deep/ .cordova-item-wrapper {
+    padding: 5px;
 }
 
 body /deep/ cordova-item /deep/ .close-button {
     width: 17px;
     height: 17px;
+    top: 5px;
+    right: 5px;
 }
 
 body /deep/ .cordova-collapse-icon svg,
@@ -131,6 +135,35 @@ input[type=range]::-moz-range-thumb {
     border-radius: 0;
 }
 
+/* The following items are here only to ensure they come after the theme css rules, since they override them
+   (cordova-item 'borrows' button themeing, but doesn't want full borders). */
+
+body /deep/ cordova-item:first-child /deep/ .cordova-item-wrapper,
+body /deep/ cordova-item:first-child /deep/ .cordova-item-wrapper:hover,
+body /deep/ cordova-item:first-child /deep/ .cordova-item-wrapper:focus,
+body /deep/ cordova-item:first-child /deep/ .cordova-item-wrapper:hover:active {
+    border-top-color: rgba(0,0,0,0);
+}
+
+body /deep/ cordova-item:last-child /deep/ .cordova-item-wrapper,
+body /deep/ cordova-item:last-child /deep/ .cordova-item-wrapper:hover,
+body /deep/ cordova-item:last-child /deep/ .cordova-item-wrapper:focus,
+body /deep/ cordova-item:last-child /deep/ .cordova-item-wrapper:hover:active {
+    border-bottom-color: rgba(0,0,0,0);
+}
+
+body /deep/ .cordova-item-wrapper,
+body /deep/ .cordova-item-wrapper:hover,
+body /deep/ .cordova-item-wrapper:focus,
+body /deep/ .cordova-item-wrapper:hover:active {
+    border-left-color: rgba(0,0,0,0);
+    border-right-color: rgba(0,0,0,0);
+}
+
+body /deep/ .cordova-item-wrapper {
+    background: transparent;
+}
+
 /* Hacks to work around multi-column bug in Chrome 48+. The following section
    is removed for other browsers when the file is served */
 
@@ -163,3 +196,4 @@ body .cordova-panel-inner {
     padding: 5px;
 }
 /* END !CHROME */
+
