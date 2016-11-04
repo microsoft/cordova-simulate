@@ -9,7 +9,7 @@
     <!-- Note that this needs to be a cordova-group not a cordova-panel-row as the flex box arranging of the latter
      screws up sizing of the map box in Firefox -->
     <cordova-group>
-        <div class="geo-box">
+        <div aria-hidden="true" class="geo-box">
             <div class="geo-content">
                 <div id="geo-map-container"></div>
                 <div id="geo-map-marker"></div>
@@ -46,7 +46,7 @@
     <cordova-panel-row>
         <cordova-label for="geo-delay" label="GPS Delay (seconds)" data-loc-id="42557ee2"></cordova-label>
         <cordova-label label="0" id="geo-delay-label"></cordova-label>
-        <input id="geo-delay" type="range" value="0" min="0" max="30">
+        <input aria-hidden="true" id="geo-delay" type="range" value="0" min="0" max="30">
     </cordova-panel-row>
     <cordova-checkbox id="geo-timeout" data-loc-id="b2d5a0cc">Simulate GPS Timeout</cordova-checkbox>
 
