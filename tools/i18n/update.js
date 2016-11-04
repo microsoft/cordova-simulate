@@ -10,7 +10,7 @@ var fs = require('fs'),
     XMLSerializer = require('xmldom').XMLSerializer,
     translate = require('./translate');
 
-var translatedAttributes = ['label', 'caption'];
+var translatedAttributes = ['label', 'caption', 'panel-label'];
 var LOC_ID_ATTRIB = 'data-loc-id';
 var inlineTags = ['a', 'abbr', 'acronym', 'applet', 'b', 'bdo', 'big', 'blink', 'br', 'cite', 'code', 'del', 'dfn', 'em', 'embed', 'face', 'font', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'map', 'nobr', 'object', 'param', 'q', 'rb', 'rbc', 'rp', 'rt', 'rtc', 'ruby', 's', 'samp', 'select', 'small', 'spacer', 'span', 'strike', 'strong', 'sub', 'sup', 'symbol', 'textarea', 'tt', 'u', 'var', 'wbr'];
 var ignoreWords = [/\balpha\b/gi, /\bbeta\b/gi, /\bgamma\b/gi, /\bdeg\b/gi, /\bNE\b/gi, /\bNW\b/gi, /\bSE\b/gi, /\bSW\b/gi];
