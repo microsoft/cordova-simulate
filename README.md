@@ -67,6 +67,7 @@ Calling `simulate()` will launch your app in the browser, and open a second brow
 * Allows user to persist the settings for a plug-in response.
 * Allows plugins to customize their own UI.
 * Reloads the simulated app as the user makes changes to source files.
+
 > **Note for live reload:**
 Changes to files such as images, stylesheets and other resources are propagated to the running app without a full page reload. Other changes, such as those to scripts and HTML files, trigger a full page reload.
 
