@@ -16,7 +16,7 @@
          getting cropped in Chrome when wrapping columns -->
     <template id="cordova-panel-template">
         <section class="cordova-panel-inner" tabindex="0">
-            <section class="cordova-header"><div id="panel-label" /><span aria-hidden="true"></span><span class="cordova-collapse-icon"><svg focusable="false" viewBox="0 0 14 14">
+            <section class="cordova-header"><span id="panel-label"><span aria-hidden="true"></span></span><span class="cordova-collapse-icon"><svg focusable="false" viewBox="0 0 14 14">
                 <polyline class="cordova-collapse-up" points="2,11 7,6 12,11" stroke-width="1.5" ></polyline>
                 <polyline class="cordova-collapse-down" points="2,6 7,11 12,6" stroke-width="1.5"></polyline>
             </svg></span></section>
@@ -77,7 +77,7 @@
     </template>
 
     <template id="cordova-label-template">
-        <label></label>
+        <label aria-hidden="true"></label>
     </template>
 
     <template id="cordova-labeled-value-template">

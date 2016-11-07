@@ -53,7 +53,7 @@ function initialize(changePanelVisibilityCallback) {
             var panelId = this.getAttribute('id');
             var collapseIcon = this.shadowRoot.querySelector('.cordova-collapse-icon');
 
-            this.shadowRoot.querySelector('.cordova-header span').textContent = this.getAttribute('caption');
+            this.shadowRoot.querySelector('.cordova-header #panel-label span').textContent = this.getAttribute('caption');
             this.shadowRoot.querySelector('.cordova-header #panel-label').setAttribute('aria-label', this.getAttribute('panel-label'));
             
             function expandCollapse() {
