@@ -101,7 +101,9 @@ function initialize(changePanelVisibilityCallback) {
             }
         },
         initialize: function () {
-            this.shadowRoot.querySelector('.cordova-header span').textContent = this.getAttribute('caption');
+            this.shadowRoot.querySelector('.cordova-header #panel-label span').textContent = this.getAttribute('caption');
+            this.shadowRoot.querySelector('.cordova-header #panel-label').setAttribute('aria-label', this.getAttribute('panel-label'));
+
             this.shadowRoot.querySelector('.cordova-close-icon').addEventListener('click', function () {
                 dialog.hideDialog();
             });
