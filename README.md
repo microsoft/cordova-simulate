@@ -31,7 +31,7 @@ var simulate = require('cordova-simulate');
 simulate(opts);
 ```
 
-Where opts is an object with the following properties (all optional):
+Where `opts` is an object with the following properties (all optional):
 
 * **platform** - any Cordova platform that has been added to your project. Defaults to `browser`.
 * **device** - specify the id of a device to start with instead of a platform (the platform will be determined by the
