@@ -458,7 +458,16 @@ function initialize(changePanelVisibilityCallback) {
             }
         },
         initialize: function () {
-            this.shadowRoot.querySelector('label').textContent = this.getAttribute('label');
+            var label = this.shadowRoot.querySelector('label');
+            label.textContent = this.getAttribute('label');
+            var readLabelDiv = this.shadowRoot.querySelector('.read-label');
+            var readLabel = this.getAttribute('read-label');
+            if (readLabel) {
+                readLabelDiv.setAttribute('aria-label', readLabel);
+            } else {
+                readLabelDiv.setAttribute('aria-label', label);
+            }
+            
             this.shadowRoot.querySelector('span').textContent = this.getAttribute('value');
             this.classList.add('cordova-panel-row');
             this.classList.add('cordova-group');
