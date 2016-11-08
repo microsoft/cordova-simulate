@@ -1,5 +1,14 @@
 <!-- Copyright (c) Microsoft Corporation. All rights reserved. -->
 
 <cordova-panel id="network-information" caption="Network Connection" data-loc-id="a4a98056">
-    <cordova-combo id="connection-list" label="Connection type" data-loc-id="27c4a479"></cordova-combo>
+    <cordova-combo id="connection-list" label="Connection type" data-loc-id="27c4a479">
+        <option value="unknown">Unknown</option>
+        <option value="ethernet">Ethernet</option>
+        <option value="wifi">Wi-Fi</option>
+        <option value="2g">2G</option>
+        <option value="3g">3G</option>
+        <option value="4g">4G</option>
+        <option value="cellular">Cellular (unknown speed)</option>
+        <option value="none">None</option>
+    </cordova-combo>
 </cordova-panel>

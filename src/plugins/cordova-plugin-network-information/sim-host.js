@@ -12,32 +12,11 @@ var baseProps = {
 network.initialize();
 
 function initialize() {
-    var connectionTypeList = document.getElementById('connection-list'),
-        ConnectionTypes = network.ConnectionTypes,
-        key,
-        option,
-        connection;
-
-    for (key in ConnectionTypes) {
-        if (ConnectionTypes.hasOwnProperty(key)) {
-            connection = ConnectionTypes[key];
-
-            option = document.createElement('option');
-            option.appendChild(document.createTextNode(connection));
-            option.value = connection;
-
-            if (connection === network.connectionType) {
-                option.selected = true;
-            }
-
-            connectionTypeList.appendChild(option);
-        }
-    }
-
+    var connectionTypeList = document.getElementById('connection-list');
+    connectionTypeList.value = network.connectionType;
     connectionTypeList.addEventListener('change', function () {
         network.updateNetworkType(connectionTypeList.value);
     });
-
     registerTelemetryEvents();
 }
 
