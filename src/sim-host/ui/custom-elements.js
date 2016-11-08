@@ -91,6 +91,7 @@ function initialize(changePanelVisibilityCallback) {
                     if (focusElement) {
                         focusElement.focus();
                     }
+                    this.querySelector('.cordova-panel-inner').focus();
                 }
             },
             hide: {
@@ -312,9 +313,14 @@ function initialize(changePanelVisibilityCallback) {
             }
         },
         initialize: function () {
-            this.shadowRoot.querySelector('label').textContent = this.getAttribute('label');
-            this.shadowRoot.querySelector('label').setAttribute('for', this.getAttribute('for'));
+            var label = this.shadowRoot.querySelector('label');
+            label.textContent = this.getAttribute('label');
+            label.setAttribute('for', this.getAttribute('for'));
             this.setAttribute('for', '');
+            var shouldReadOut = this.getAttribute('read-out');
+            if (shouldReadOut && shouldReadOut == 'true') {
+                label.setAttribute('aria-hidden', 'false');
+            }
         }
     });
 
@@ -378,12 +384,19 @@ function initialize(changePanelVisibilityCallback) {
             }
         },
         initialize: function () {
-            this.shadowRoot.querySelector('label').textContent = this.getAttribute('label');
+            var displayLabel = this.getAttribute('label');
+            this.shadowRoot.querySelector('label').textContent = displayLabel;
             this.classList.add('cordova-panel-row');
             this.classList.add('cordova-group');
             this._internalValue = 0;
 
             var input = this.shadowRoot.querySelector('input');
+            var readLabel = this.getAttribute('read-label');
+            if (readLabel) {
+                input.setAttribute('aria-label', readLabel);
+            } else {
+                input.setAttribute('aria-label', displayLabel);
+            }
 
             var maxValue = this.getAttribute('max'),
                 minValue = this.getAttribute('min'),
@@ -458,6 +471,12 @@ function initialize(changePanelVisibilityCallback) {
                 value: function () {
                     this.shadowRoot.querySelector('button').focus();
                 }
+            }
+        },
+        initialize: function () {
+            var readLabel = this.getAttribute('read-label');
+            if (readLabel) {
+                this.shadowRoot.querySelector('button').setAttribute('aria-label', readLabel);
             }
         },
         eventTarget: 'button'
