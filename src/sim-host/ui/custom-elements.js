@@ -266,6 +266,10 @@ function initialize(changePanelVisibilityCallback) {
                 // Reverse the order of the checkbox and caption
                 this.shadowRoot.appendChild(this.shadowRoot.querySelector('label'));
             }
+            var shouldReadOut = this.getAttribute('read-out');
+            if (shouldReadOut && shouldReadOut == 'true') {
+                this.shadowRoot.querySelector('label').setAttribute('aria-hidden', false);
+            }
         },
         mungeIds: 'cordova-checkbox-template-input'
     });
@@ -465,9 +469,9 @@ function initialize(changePanelVisibilityCallback) {
             if (readLabel) {
                 readLabelDiv.setAttribute('aria-label', readLabel);
             } else {
-                readLabelDiv.setAttribute('aria-label', label);
+                readLabelDiv.setAttribute('aria-label', label.textContent);
             }
-            
+
             this.shadowRoot.querySelector('span').textContent = this.getAttribute('value');
             this.classList.add('cordova-panel-row');
             this.classList.add('cordova-group');
