@@ -53,8 +53,8 @@ function initialize(changePanelVisibilityCallback) {
             var panelId = this.getAttribute('id');
             var collapseIcon = this.shadowRoot.querySelector('.cordova-collapse-icon');
 
-            this.shadowRoot.querySelector('.cordova-header .panel-label span').textContent = this.getAttribute('caption');
-            this.shadowRoot.querySelector('.cordova-header .panel-label').setAttribute('aria-label', this.getAttribute('panel-label'));
+            this.shadowRoot.querySelector('.cordova-header .spoken-text span').textContent = this.getAttribute('caption');
+            this.shadowRoot.querySelector('.cordova-header .spoken-text').setAttribute('aria-label', this.getAttribute('spoken-text'));
             
             function expandCollapse() {
                 var collapsed = collapseIcon.classList.contains('cordova-collapsed');
@@ -102,8 +102,8 @@ function initialize(changePanelVisibilityCallback) {
             }
         },
         initialize: function () {
-            this.shadowRoot.querySelector('.cordova-header .panel-label span').textContent = this.getAttribute('caption');
-            this.shadowRoot.querySelector('.cordova-header .panel-label').setAttribute('aria-label', this.getAttribute('panel-label'));
+            this.shadowRoot.querySelector('.cordova-header .spoken-text span').textContent = this.getAttribute('caption');
+            this.shadowRoot.querySelector('.cordova-header .spoken-text').setAttribute('aria-label', this.getAttribute('spoken-text'));
 
             this.shadowRoot.querySelector('.cordova-close-icon').addEventListener('click', function () {
                 dialog.hideDialog();
@@ -267,7 +267,7 @@ function initialize(changePanelVisibilityCallback) {
                 this.shadowRoot.appendChild(this.shadowRoot.querySelector('label'));
             }
 
-            if (this.hasAttribute('read-out')) {
+            if (this.hasAttribute('spoken')) {
                 this.shadowRoot.querySelector('label').setAttribute('aria-hidden', false);
             }
         },
@@ -322,7 +322,7 @@ function initialize(changePanelVisibilityCallback) {
             label.setAttribute('for', this.getAttribute('for'));
             this.setAttribute('for', '');
 
-            if (this.hasAttribute('read-out')) {
+            if (this.hasAttribute('spoken')) {
                 label.setAttribute('aria-hidden', 'false');
             }
         }
@@ -395,7 +395,7 @@ function initialize(changePanelVisibilityCallback) {
             this._internalValue = 0;
 
             var input = this.shadowRoot.querySelector('input');
-            var readLabel = this.getAttribute('read-label');
+            var readLabel = this.getAttribute('spoken-text');
             if (readLabel) {
                 input.setAttribute('aria-label', readLabel);
             } else {
@@ -464,8 +464,8 @@ function initialize(changePanelVisibilityCallback) {
         initialize: function () {
             var label = this.shadowRoot.querySelector('label');
             label.textContent = this.getAttribute('label');
-            var readLabelDiv = this.shadowRoot.querySelector('.read-label');
-            var readLabel = this.getAttribute('read-label');
+            var readLabelDiv = this.shadowRoot.querySelector('.spoken-text');
+            var readLabel = this.getAttribute('spoken-text');
             if (readLabel) {
                 readLabelDiv.setAttribute('aria-label', readLabel);
             } else {
@@ -487,7 +487,7 @@ function initialize(changePanelVisibilityCallback) {
             }
         },
         initialize: function () {
-            var readLabel = this.getAttribute('read-label');
+            var readLabel = this.getAttribute('spoken-text');
             if (readLabel) {
                 this.shadowRoot.querySelector('button').setAttribute('aria-label', readLabel);
             }
