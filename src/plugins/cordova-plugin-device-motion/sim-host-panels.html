@@ -9,14 +9,13 @@
         <em id="accelerometer-help" aria-hidden="true" data-loc-id="c562ff87">Click and drag with the mouse to manipulate the device. <br> Hold the Shift key to modify 'alpha'</em>
     </cordova-panel-row>
 
-    <cordova-labeled-value id="accel-x" label="X (m/s²)" spoken-text="X (meters per second squared)" value="0"></cordova-labeled-value>
-    <cordova-labeled-value id="accel-y" label="Y (m/s²)" spoken-text="Y (meters per second squared)" value="0"></cordova-labeled-value>
-    <cordova-labeled-value id="accel-z" label="Z (m/s²)" spoken-text="Z (meters per second squared)" value="0"></cordova-labeled-value>
-    <cordova-labeled-value id="accel-alpha" label="alpha (deg)" spoken-text="alpha (degree)" value="0"></cordova-labeled-value>
-    <cordova-labeled-value id="accel-beta" label="beta (deg)" spoken-text="beta (degree)"value="0"></cordova-labeled-value>
-    <cordova-labeled-value id="accel-gamma" label="gamma (deg)" spoken-text="gamma (degree)" value="0"></cordova-labeled-value>
+    <cordova-number-entry id="accel-x" label="X (m/s²)" spoken-text="X (meters per second squared)" value="0" step="any"></cordova-number-entry>
+    <cordova-number-entry id="accel-y" label="Y (m/s²)" spoken-text="Y (meters per second squared)" value="0" step="any"></cordova-number-entry>
+    <cordova-number-entry id="accel-z" label="Z (m/s²)" spoken-text="Z (meters per second squared)" value="0" step="any"></cordova-number-entry>
+    <cordova-number-entry id="accel-alpha" label="alpha (deg)" spoken-text="alpha (degree)" value="0" min="0" max="360" step="1"></cordova-number-entry>
+    <cordova-number-entry id="accel-beta" label="beta (deg)" spoken-text="beta (degree)" value="0" min="-180" max="180" step="1"></cordova-number-entry>
+    <cordova-number-entry id="accel-gamma" label="gamma (deg)" spoken-text="gamma (degree)" value="0" min="-90" max="90" step="1"></cordova-number-entry>
 
     <cordova-combo id="accel-recorded-data" label="Recorded Data" data-loc-id="d240cacf"></cordova-combo>
     <cordova-panel-row><cordova-button id="accel-play-recorded" data-loc-id="1b009684">Play</cordova-button></cordova-panel-row>
-
 </cordova-panel>

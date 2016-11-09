@@ -35,12 +35,7 @@ var _mouseDown,
     _oldY,
     _oldAlphaX,
     _deltaAlpha,
-    _alpha,
-    _beta,
-    _gamma,
     _shape = require('./device-mesh.json');
-
-var G_CONSTANT = 9.81;
 
 var recordedGestures = [
     {
@@ -48,6 +43,29 @@ var recordedGestures = [
         fn: shake
     }
 ];
+
+function updateAccel() {
+    deviceMotionModel.updateAxis(getUiValues());
+    _deltaAlpha = 360 - deviceMotionModel.alpha;
+    updateCanvas(_deltaAlpha, -deviceMotionModel.beta, deviceMotionModel.gamma);
+}
+
+function updateRotation() {
+    deviceMotionModel.updateRotation(getUiValues());
+    _deltaAlpha = 360 - deviceMotionModel.alpha;
+    updateCanvas(_deltaAlpha, -deviceMotionModel.beta, deviceMotionModel.gamma);
+}
+
+function getUiValues() {
+    return {
+        x: axisX.value,
+        y: axisY.value,
+        z: axisZ.value,
+        alpha: alpha.value,
+        beta: beta.value,
+        gamma: gamma.value
+    }
+}
 
 function initialize() {
     axisX = document.getElementById('accel-x');
@@ -57,10 +75,20 @@ function initialize() {
     beta = document.getElementById('accel-beta');
     gamma = document.getElementById('accel-gamma');
 
+    axisX.addEventListener('change', updateAccel);
+    axisY.addEventListener('change', updateAccel);
+    axisZ.addEventListener('change', updateAccel);
+    alpha.addEventListener('change', updateRotation);
+    beta.addEventListener('change', updateRotation);
+    gamma.addEventListener('change', updateRotation);
+
     deviceMotionModel.addAxisChangeCallback(function (axis) {
         if (axis.hasOwnProperty('x')) axisX.value = axis.x;
         if (axis.hasOwnProperty('y')) axisY.value = axis.y;
         if (axis.hasOwnProperty('z')) axisZ.value = axis.z;
+        if (axis.hasOwnProperty('alpha')) alpha.value = axis.alpha;
+        if (axis.hasOwnProperty('beta')) beta.value = axis.beta;
+        if (axis.hasOwnProperty('gamma')) gamma.value = axis.gamma;
     });
 
     // Determine a scale to use for the compass. This treats a panel width of 320px as being '100%'
@@ -90,26 +118,21 @@ function initialize() {
 }
 
 function setToDefaultPosition() {
-    var accel = { x: 0, y: 0, z: -1 };
+    var x = 0,
+        y = 0,
+        z = -1;
 
-    _alpha = 0;
-    _beta = 0;
-    _gamma = 0;
     _deltaAlpha = 360;
 
     _oldX = 0;
     _oldY = 0;
     _oldAlphaX = 0;
-    _offsets = {
-        x: accel.x,
-        y: accel.y,
-        z: accel.z
-    };
+    _offsets = {x: x, y: y, z: z};
 
     deviceMotionModel.updateAxis({
-        x: (accel.x * G_CONSTANT).toFixed(2),
-        y: (accel.y * G_CONSTANT).toFixed(2),
-        z: (accel.z * G_CONSTANT).toFixed(2)
+        x: x * deviceMotionModel.G_CONSTANT,
+        y: y * deviceMotionModel.G_CONSTANT,
+        z: z * deviceMotionModel.G_CONSTANT
     });
 
     updateCanvas(0, 0);
@@ -136,7 +159,7 @@ function shake() {
         }
 
         deviceMotionModel.updateAxis({
-            x: (value * G_CONSTANT).toFixed(2)
+            x: value * deviceMotionModel.G_CONSTANT
         });
         // shake effect
         var center = Math.random() * 10 + (defaultXAxis - 5);
@@ -166,8 +189,7 @@ function updateCanvas(a, b, g) {
 }
 
 function createCanvas() {
-    var node = document.getElementById('accelerometer-canvas'),
-        cosX, sinX, cosY, sinY;
+    var node = document.getElementById('accelerometer-canvas');
 
     ThreeDee.setCenter(defaultXAxis, defaultYAxis);
     ThreeDee.setLight(-300, -300, 800);
@@ -177,46 +199,18 @@ function createCanvas() {
             if (!_shiftKeyDown) {
                 _offsets.x = (_offsets.x + _oldX - e.offsetX) % 360;
                 _offsets.y = (_offsets.y + _oldY - e.offsetY) % 360;
-
-                _alpha = _alpha || 0;
-
-                // enforce gamma in [-90,90] as per w3c spec
-                _gamma = -_offsets.x;
-                if (_gamma < -90) {
-                    _gamma = -90;
-                }
-                if (_gamma > 90) {
-                    _gamma = 90;
-                }
-
-                // enforce beta in [-180,180] as per w3c spec
-                _beta = -_offsets.y % 360;
-                if (_beta < -180) {
-                    _beta += 360;
-                }
-                else if (_beta >= 180) {
-                    _beta -= 360;
-                }
-
-                cosX = Math.cos((_gamma) * (Math.PI / 180));
-                sinX = Math.sin((_gamma) * (Math.PI / 180));
-                cosY = Math.cos((_beta) * (Math.PI / 180));
-                sinY = Math.sin((_beta) * (Math.PI / 180));
-
-                deviceMotionModel.updateAxis({
-                    x: (cosY * sinX * G_CONSTANT).toFixed(2),
-                    y: (-sinY * G_CONSTANT).toFixed(2),
-                    z: (-cosY * cosX * G_CONSTANT).toFixed(2)
+                deviceMotionModel.updateRotation({
+                    alpha: deviceMotionModel.alpha,
+                    beta: -_offsets.y % 360,
+                    gamma: -_offsets.x
                 });
-
-                beta.value = _beta;
-                gamma.value = _gamma;
-
             } else {
                 _deltaAlpha = (_deltaAlpha - (_oldAlphaX - e.offsetX) * 2.5) % 360;
-                _alpha = (360 - _deltaAlpha) % 360;
-
-                alpha.value = _alpha;
+                deviceMotionModel.updateRotation({
+                    alpha: Math.round((360 - _deltaAlpha) % 360),
+                    beta: deviceMotionModel.beta,
+                    gamma: deviceMotionModel.gamma
+                });
             }
 
             pendingMouseDragEvents++;
@@ -233,7 +227,7 @@ function createCanvas() {
         _oldY = e.offsetY;
         _oldAlphaX = e.offsetX;
 
-        updateCanvas(_deltaAlpha, -_beta, _gamma);
+        updateCanvas(_deltaAlpha, -deviceMotionModel.beta, deviceMotionModel.gamma);
     });
 
     node.addEventListener('mousedown', function (e) {
