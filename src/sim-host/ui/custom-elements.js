@@ -53,8 +53,8 @@ function initialize(changePanelVisibilityCallback) {
             var panelId = this.getAttribute('id');
             var collapseIcon = this.shadowRoot.querySelector('.cordova-collapse-icon');
 
-            this.shadowRoot.querySelector('.cordova-header #panel-label span').textContent = this.getAttribute('caption');
-            this.shadowRoot.querySelector('.cordova-header #panel-label').setAttribute('aria-label', this.getAttribute('panel-label'));
+            this.shadowRoot.querySelector('.cordova-header .panel-label span').textContent = this.getAttribute('caption');
+            this.shadowRoot.querySelector('.cordova-header .panel-label').setAttribute('aria-label', this.getAttribute('panel-label'));
             
             function expandCollapse() {
                 var collapsed = collapseIcon.classList.contains('cordova-collapsed');
@@ -102,8 +102,8 @@ function initialize(changePanelVisibilityCallback) {
             }
         },
         initialize: function () {
-            this.shadowRoot.querySelector('.cordova-header #panel-label span').textContent = this.getAttribute('caption');
-            this.shadowRoot.querySelector('.cordova-header #panel-label').setAttribute('aria-label', this.getAttribute('panel-label'));
+            this.shadowRoot.querySelector('.cordova-header .panel-label span').textContent = this.getAttribute('caption');
+            this.shadowRoot.querySelector('.cordova-header .panel-label').setAttribute('aria-label', this.getAttribute('panel-label'));
 
             this.shadowRoot.querySelector('.cordova-close-icon').addEventListener('click', function () {
                 dialog.hideDialog();
@@ -266,8 +266,8 @@ function initialize(changePanelVisibilityCallback) {
                 // Reverse the order of the checkbox and caption
                 this.shadowRoot.appendChild(this.shadowRoot.querySelector('label'));
             }
-            var shouldReadOut = this.getAttribute('read-out');
-            if (shouldReadOut && shouldReadOut == 'true') {
+
+            if (this.hasAttribute('read-out')) {
                 this.shadowRoot.querySelector('label').setAttribute('aria-hidden', false);
             }
         },
@@ -321,8 +321,8 @@ function initialize(changePanelVisibilityCallback) {
             label.textContent = this.getAttribute('label');
             label.setAttribute('for', this.getAttribute('for'));
             this.setAttribute('for', '');
-            var shouldReadOut = this.getAttribute('read-out');
-            if (shouldReadOut && shouldReadOut == 'true') {
+
+            if (this.hasAttribute('read-out')) {
                 label.setAttribute('aria-hidden', 'false');
             }
         }
