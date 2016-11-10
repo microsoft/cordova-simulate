@@ -462,17 +462,8 @@ function initialize(changePanelVisibilityCallback) {
             }
         },
         initialize: function () {
-            var label = this.shadowRoot.querySelector('label');
-            label.textContent = this.getAttribute('label');
-            var readLabelDiv = this.shadowRoot.querySelector('.spoken-text');
-            var readLabel = this.getAttribute('spoken-text');
-            if (readLabel) {
-                readLabelDiv.setAttribute('aria-label', readLabel);
-            } else {
-                readLabelDiv.setAttribute('aria-label', label.textContent);
-            }
-
-            this.shadowRoot.querySelector('span').textContent = this.getAttribute('value');
+            this.shadowRoot.querySelector('label').textContent = this.getAttribute('label'); 
+            this.shadowRoot.querySelector('.cordova-value').textContent = this.getAttribute('value');
             this.classList.add('cordova-panel-row');
             this.classList.add('cordova-group');
         }
