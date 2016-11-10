@@ -463,7 +463,7 @@ function initialize(changePanelVisibilityCallback) {
         },
         initialize: function () {
             this.shadowRoot.querySelector('label').textContent = this.getAttribute('label'); 
-            this.shadowRoot.querySelector('.cordova-value').textContent = this.getAttribute('value');
+            this.shadowRoot.querySelector('span').textContent = this.getAttribute('value');
             this.classList.add('cordova-panel-row');
             this.classList.add('cordova-group');
         }
