@@ -6,17 +6,11 @@
 <link href="sim-host.css" rel="stylesheet">
 
 <!-- Panels -->
-<cordova-panel id="geolocation" caption="Геолокация" data-loc-id="e4b82624">
-    <style>
-        #geo-heading-label, #geo-delay-label {
-            margin-right: 5px;
-            margin-left: auto;
-        }
-    </style>
+<cordova-panel id="geolocation" caption="Геолокация" spoken-text="Geolocation Panel" data-loc-id="e4b82624" spoken="Географическое расположение панели">
     <!-- Note that this needs to be a cordova-group not a cordova-panel-row as the flex box arranging of the latter
      screws up sizing of the map box in Firefox -->
     <cordova-group>
-        <div class="geo-box">
+        <div aria-hidden="true" class="geo-box">
             <div class="geo-content">
                 <div id="geo-map-container"></div>
                 <div id="geo-map-marker"></div>
@@ -30,8 +24,8 @@
     </cordova-group>
     <cordova-panel-row>
         <section>
-        <cordova-button id="geo-map-zoom-decrease" style="min-width:0;">-</cordova-button>
-        <cordova-button id="geo-map-zoom-increase" style="min-width:0;">+</cordova-button>
+        <cordova-button id="geo-map-zoom-decrease" spoken-text="zoom map out" style="min-width:0;" data-loc-id="77f82a12" spoken="масштаб карты">-</cordova-button>
+        <cordova-button id="geo-map-zoom-increase" spoken-text="zoom map in" style="min-width:0;" data-loc-id="dbeaf956" spoken="увеличить карту">+</cordova-button>
         </section>
         <section class="geo-map-zoomlevel" data-loc-id="7e9696b6">Масштаб:<span id="geo-map-zoomlevel-value"></span>
         </section>
@@ -39,24 +33,24 @@
 
     <cordova-number-entry label="Широта" id="geo-latitude" step="any" data-loc-id="41fd30cf"></cordova-number-entry>
     <cordova-number-entry label="Долгота" id="geo-longitude" step="any" data-loc-id="9db6eee1"></cordova-number-entry>
-    <cordova-number-entry label="Высота (м)" id="geo-altitude" step="any" data-loc-id="079f55f6"></cordova-number-entry>
-    <cordova-number-entry label="Точность (м)" id="geo-accuracy" min="0" step="any" data-loc-id="dbece2f9"></cordova-number-entry>
-    <cordova-number-entry label="Точность высоты (м)" id="geo-altitude-accuracy" min="0" step="any" data-loc-id="718f25cb"></cordova-number-entry>
+    <cordova-number-entry label="Высота (м)" spoken-text="Altitude (meters)" id="geo-altitude" step="any" data-loc-id="079f55f6" spoken="Высота (м)"></cordova-number-entry>
+    <cordova-number-entry label="Точность (м)" spoken-text="Accuracy (meters)" id="geo-accuracy" min="0" step="any" data-loc-id="dbece2f9" spoken="Точность (метров)"></cordova-number-entry>
+    <cordova-number-entry label="Точность высоты (м)" spoken-text="Altitude accuracy (meters)" id="geo-altitude-accuracy" min="0" step="any" data-loc-id="718f25cb" spoken="Точность высоты (метров)"></cordova-number-entry>
     <cordova-panel-row>
-        <cordova-label label="Заголовок" data-loc-id="64da0839"></cordova-label>
-        <cordova-label label="N" id="geo-heading-label"></cordova-label>
+        <cordova-label for="geo-heading" spoken="" label="Заголовок" data-loc-id="64da0839"></cordova-label>
+        <cordova-label label="N" spoken="" id="geo-heading-label"></cordova-label>
         <input id="geo-heading" type="range" value="0" min="0" max="359.99" step="any">
     </cordova-panel-row>
-    <cordova-number-entry label="Скорость (м/с)" id="geo-speed" min="0" step="any" data-loc-id="8fefe84e"></cordova-number-entry>
+    <cordova-number-entry label="Скорость (м/с)" spoken-text="Speed (meters per second)" id="geo-speed" min="0" step="any" data-loc-id="8fefe84e" spoken="Скорость (метров в секунду)"></cordova-number-entry>
     <cordova-panel-row>
-        <cordova-label label="Задержка GPS (с)" data-loc-id="42557ee2"></cordova-label>
+        <cordova-label spoken="" for="geo-delay" label="Задержка GPS (с)" data-loc-id="42557ee2"></cordova-label>
         <cordova-label label="0" id="geo-delay-label"></cordova-label>
         <input id="geo-delay" type="range" value="0" min="0" max="30">
     </cordova-panel-row>
     <cordova-checkbox id="geo-timeout" data-loc-id="b2d5a0cc">Имитировать время ожидания GPS</cordova-checkbox>
 
     <cordova-panel-row>
-        <cordova-label label="Симулятор навигации" data-loc-id="f89bb5e3"></cordova-label>
+        <cordova-label label="Симулятор навигации" spoken="" data-loc-id="f89bb5e3"></cordova-label>
     </cordova-panel-row>
     <cordova-panel-row>
         <section>

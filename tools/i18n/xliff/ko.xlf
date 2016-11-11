@@ -13,8 +13,12 @@
         <target xml:lang="ko" state="translated">배터리 수준</target>
       </trans-unit>
       <trans-unit id="10cfe833:1">
-        <source xml:lang="en">Device plugged</source>
-        <target xml:lang="ko" state="translated">장치 연결됨</target>
+        <source xml:lang="en">Device connected to power</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">전원에 연결 하는 장치</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-ac1dbd34">
+        <source xml:lang="en">Battery Status Panel</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">배터리 상태 패널</target>
       </trans-unit>
     </body>
   </file>
@@ -36,6 +40,10 @@
         <source xml:lang="en">Cancel</source>
         <target xml:lang="ko" state="translated">취소</target>
       </trans-unit>
+      <trans-unit id="spoken-text-5f1798d9">
+        <source xml:lang="en">Camera: Choose Image diaglog</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">카메라: 선택 이미지 diaglog</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-camera\sim-host-panels.html" source-language="en" target-language="ko">
@@ -55,6 +63,10 @@
       <trans-unit id="2c4e6d12:1">
         <source xml:lang="en">Choose File</source>
         <target xml:lang="ko" state="translated">파일 선택</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-553fc9a5">
+        <source xml:lang="en">Camera Panel</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">카메라 패널</target>
       </trans-unit>
     </body>
   </file>
@@ -76,6 +88,34 @@
         <source xml:lang="en">Play</source>
         <target xml:lang="ko" state="translated">재생</target>
       </trans-unit>
+      <trans-unit id="spoken-text-9a8c8723">
+        <source xml:lang="en">Accelerometer Panel</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">가 속도계 패널</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-f0ba631d">
+        <source xml:lang="en">X (meters per second squared)</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">X (초당 미터 제곱)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-f452bcba">
+        <source xml:lang="en">Y (meters per second squared)</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">Y (초당 미터 제곱)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-e4ed20c6">
+        <source xml:lang="en">Z (meters per second squared)</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">Z (초당 미터 제곱)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-a4c24c61">
+        <source xml:lang="en">alpha (degrees)</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">알파 (도)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-92916831">
+        <source xml:lang="en">beta (degrees)</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">(도) 베타</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-a107533e">
+        <source xml:lang="en">gamma (degrees)</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">감마 (도)</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-device-orientation\sim-host-panels.html" source-language="en" target-language="ko">
@@ -84,13 +124,17 @@
         <source xml:lang="en">Compass</source>
         <target xml:lang="ko" state="translated">나침반</target>
       </trans-unit>
-      <trans-unit id="c4c80de2:1">
-        <source xml:lang="en">&lt;em>Click and drag with the mouse to manipulate the device compass.&lt;/em></source>
-        <target xml:lang="ko" state="translated">&lt;em>마우스로 클릭하고 끌어 장치 나침반을 조작합니다.&lt;/em></target>
-      </trans-unit>
       <trans-unit id="ae47e3ec:1">
         <source xml:lang="en">Heading (deg)</source>
         <target xml:lang="ko" state="translated">제목(deg)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-8310fdf4">
+        <source xml:lang="en">Compass Panel</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">나침반 패널</target>
+      </trans-unit>
+      <trans-unit id="0d7d15fa:1">
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device compass.</source>
+        <target xml:lang="ko" state="translated">마우스로 클릭하고 끌어 장치 나침반을 조작합니다.</target>
       </trans-unit>
     </body>
   </file>
@@ -152,6 +196,10 @@
         <source xml:lang="en">Virtual device</source>
         <target xml:lang="ko" state="translated">가상 장치</target>
       </trans-unit>
+      <trans-unit id="spoken-text-c045b281">
+        <source xml:lang="en">Device Panel</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">장치 패널</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-geolocation\sim-host-panels.html" source-language="en" target-language="ko">
@@ -212,6 +260,34 @@
         <source xml:lang="en">Go</source>
         <target xml:lang="ko" state="translated">이동</target>
       </trans-unit>
+      <trans-unit id="spoken-text-e4b82624">
+        <source xml:lang="en">Geolocation Panel</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">지리적 위치 패널</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-77f82a12">
+        <source xml:lang="en">zoom map out</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">줌 지도 밖으로</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-dbeaf956">
+        <source xml:lang="en">zoom map in</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">에 확대/축소 지도</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-079f55f6">
+        <source xml:lang="en">Altitude (meters)</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">고도 (미터)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-dbece2f9">
+        <source xml:lang="en">Accuracy (meters)</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">정확도 (미터)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-718f25cb">
+        <source xml:lang="en">Altitude accuracy (meters)</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">고도 정확도 (미터)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-8fefe84e">
+        <source xml:lang="en">Speed (meters per second)</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">속도 (초당 미터)</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-globalization\sim-host-panels.html" source-language="en" target-language="ko">
@@ -221,16 +297,20 @@
         <target xml:lang="ko" state="translated">세계화</target>
       </trans-unit>
       <trans-unit id="label-9e831385">
-        <source xml:lang="en">Select the locale:</source>
-        <target xml:lang="ko" state="translated">로캘 선택:</target>
+        <source xml:lang="en">Locale</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">로캘</target>
       </trans-unit>
       <trans-unit id="label-ee1bad9c">
-        <source xml:lang="en">Select the first day of the week:</source>
-        <target xml:lang="ko" state="translated">첫 번째 요일 선택:</target>
+        <source xml:lang="en">First day of the week</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">첫 번째 요일</target>
       </trans-unit>
       <trans-unit id="24aa60d4:1">
-        <source xml:lang="en">Is daylight saving time</source>
-        <target xml:lang="ko" state="translated">일광 절약 시간</target>
+        <source xml:lang="en">Daylight saving time</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">일광 절약 시간</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-5ffc4b1e">
+        <source xml:lang="en">Globalization Panel</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">세계화 패널</target>
       </trans-unit>
     </body>
   </file>
@@ -252,6 +332,10 @@
         <source xml:lang="en">Open in a InAppBrowser based on an iframe</source>
         <target xml:lang="ko" state="translated">iframe을 기준으로 InAppBrowser에서 열기</target>
       </trans-unit>
+      <trans-unit id="spoken-text-4c1114ef">
+        <source xml:lang="en">InAppBrowser Panel</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">InAppBrowser 패널</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-network-information\sim-host-panels.html" source-language="en" target-language="ko">
@@ -264,6 +348,30 @@
         <source xml:lang="en">Connection type</source>
         <target xml:lang="ko" state="translated">연결 형식</target>
       </trans-unit>
+      <trans-unit id="spoken-text-a4a98056">
+        <source xml:lang="en">Network Connection Panel</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">네트워크 연결 패널</target>
+      </trans-unit>
+      <trans-unit id="97ac48aa:1">
+        <source xml:lang="en">Unknown</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">알 수 없는</target>
+      </trans-unit>
+      <trans-unit id="fdf8871a:1">
+        <source xml:lang="en">Ethernet</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">이더넷</target>
+      </trans-unit>
+      <trans-unit id="525d0a74:1">
+        <source xml:lang="en">Wi-Fi</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">Wi-Fi</target>
+      </trans-unit>
+      <trans-unit id="78db3e46:1">
+        <source xml:lang="en">Cellular (unknown speed)</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">(알 수 없는 속도) 휴대</target>
+      </trans-unit>
+      <trans-unit id="3eca86f2:1">
+        <source xml:lang="en">None</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">없음</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\events\sim-host-panels.html" source-language="en" target-language="ko">
@@ -273,12 +381,16 @@
         <target xml:lang="ko" state="translated">이벤트</target>
       </trans-unit>
       <trans-unit id="label-4eb9640f">
-        <source xml:lang="en">Select the event to fire:</source>
-        <target xml:lang="ko" state="translated">발생시킬 이벤트 선택:</target>
+        <source xml:lang="en">Event to fire</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">화재 이벤트</target>
       </trans-unit>
       <trans-unit id="064dde5f:1">
         <source xml:lang="en">Fire Event</source>
         <target xml:lang="ko" state="translated">이벤트 발생</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-c9b16703">
+        <source xml:lang="en">Events Panel</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">이벤트 패널</target>
       </trans-unit>
     </body>
   </file>
@@ -335,6 +447,10 @@
       <trans-unit id="label-b58dd0ca">
         <source xml:lang="en">No values saved</source>
         <target xml:lang="ko" state="translated">저장된 값이 없습니다.</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-983d0535">
+        <source xml:lang="en">Persisted Exec Calls Panel</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">Exec 호출 패널을 유지</target>
       </trans-unit>
     </body>
   </file>

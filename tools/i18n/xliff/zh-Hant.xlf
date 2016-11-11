@@ -13,8 +13,12 @@
         <target xml:lang="zh-Hant" state="translated">電池電量</target>
       </trans-unit>
       <trans-unit id="10cfe833:1">
-        <source xml:lang="en">Device plugged</source>
-        <target xml:lang="zh-Hant" state="translated">已接上電源的裝置</target>
+        <source xml:lang="en">Device connected to power</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">設備連接到電源</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-ac1dbd34">
+        <source xml:lang="en">Battery Status Panel</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">電池狀態面板</target>
       </trans-unit>
     </body>
   </file>
@@ -36,6 +40,10 @@
         <source xml:lang="en">Cancel</source>
         <target xml:lang="zh-Hant" state="translated">取消</target>
       </trans-unit>
+      <trans-unit id="spoken-text-5f1798d9">
+        <source xml:lang="en">Camera: Choose Image diaglog</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">攝像頭︰ 選擇圖像 diaglog</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-camera\sim-host-panels.html" source-language="en" target-language="zh-Hant">
@@ -55,6 +63,10 @@
       <trans-unit id="2c4e6d12:1">
         <source xml:lang="en">Choose File</source>
         <target xml:lang="zh-Hant" state="translated">選擇檔案</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-553fc9a5">
+        <source xml:lang="en">Camera Panel</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">觀景窗面板</target>
       </trans-unit>
     </body>
   </file>
@@ -76,6 +88,34 @@
         <source xml:lang="en">Play</source>
         <target xml:lang="zh-Hant" state="translated">播放</target>
       </trans-unit>
+      <trans-unit id="spoken-text-9a8c8723">
+        <source xml:lang="en">Accelerometer Panel</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">加速度感應器面板</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-f0ba631d">
+        <source xml:lang="en">X (meters per second squared)</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">X （米每秒的平方）</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-f452bcba">
+        <source xml:lang="en">Y (meters per second squared)</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">Y （米 / 秒平方）</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-e4ed20c6">
+        <source xml:lang="en">Z (meters per second squared)</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">Z （米每秒的平方）</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-a4c24c61">
+        <source xml:lang="en">alpha (degrees)</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">阿爾法 （度）</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-92916831">
+        <source xml:lang="en">beta (degrees)</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">Beta （度）</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-a107533e">
+        <source xml:lang="en">gamma (degrees)</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">伽瑪 （度）</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-device-orientation\sim-host-panels.html" source-language="en" target-language="zh-Hant">
@@ -84,13 +124,17 @@
         <source xml:lang="en">Compass</source>
         <target xml:lang="zh-Hant" state="translated">指南針</target>
       </trans-unit>
-      <trans-unit id="c4c80de2:1">
-        <source xml:lang="en">&lt;em>Click and drag with the mouse to manipulate the device compass.&lt;/em></source>
-        <target xml:lang="zh-Hant" state="translated">&lt;em>按一下並以滑鼠拖曳來操控裝置指南針。&lt;/em></target>
-      </trans-unit>
       <trans-unit id="ae47e3ec:1">
         <source xml:lang="en">Heading (deg)</source>
         <target xml:lang="zh-Hant" state="translated">航向 (度)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-8310fdf4">
+        <source xml:lang="en">Compass Panel</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">指南針的面板</target>
+      </trans-unit>
+      <trans-unit id="0d7d15fa:1">
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device compass.</source>
+        <target xml:lang="zh-Hant" state="translated">按一下並以滑鼠拖曳來操控裝置指南針。</target>
       </trans-unit>
     </body>
   </file>
@@ -152,6 +196,10 @@
         <source xml:lang="en">Virtual device</source>
         <target xml:lang="zh-Hant" state="translated">虛擬裝置</target>
       </trans-unit>
+      <trans-unit id="spoken-text-c045b281">
+        <source xml:lang="en">Device Panel</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">設備面板</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-geolocation\sim-host-panels.html" source-language="en" target-language="zh-Hant">
@@ -212,6 +260,34 @@
         <source xml:lang="en">Go</source>
         <target xml:lang="zh-Hant" state="translated">前往</target>
       </trans-unit>
+      <trans-unit id="spoken-text-e4b82624">
+        <source xml:lang="en">Geolocation Panel</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">地理定位面板</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-77f82a12">
+        <source xml:lang="en">zoom map out</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">縮放地圖出</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-dbeaf956">
+        <source xml:lang="en">zoom map in</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">在縮放地圖</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-079f55f6">
+        <source xml:lang="en">Altitude (meters)</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">海拔高度 （米）</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-dbece2f9">
+        <source xml:lang="en">Accuracy (meters)</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">精度 （米）</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-718f25cb">
+        <source xml:lang="en">Altitude accuracy (meters)</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">高度測量精度 （米）</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-8fefe84e">
+        <source xml:lang="en">Speed (meters per second)</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">速度 （米 / 秒）</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-globalization\sim-host-panels.html" source-language="en" target-language="zh-Hant">
@@ -221,16 +297,20 @@
         <target xml:lang="zh-Hant" state="translated">全球化</target>
       </trans-unit>
       <trans-unit id="label-9e831385">
-        <source xml:lang="en">Select the locale:</source>
-        <target xml:lang="zh-Hant" state="translated">選取地區設定:</target>
+        <source xml:lang="en">Locale</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">地區設定</target>
       </trans-unit>
       <trans-unit id="24aa60d4:1">
-        <source xml:lang="en">Is daylight saving time</source>
-        <target xml:lang="zh-Hant" state="translated">為日光節約時間</target>
+        <source xml:lang="en">Daylight saving time</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">夏令時</target>
       </trans-unit>
       <trans-unit id="label-ee1bad9c">
-        <source xml:lang="en">Select the first day of the week:</source>
-        <target xml:lang="zh-Hant" state="translated">選取一週的第一天:</target>
+        <source xml:lang="en">First day of the week</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">周第一天</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-5ffc4b1e">
+        <source xml:lang="en">Globalization Panel</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">全球化小組</target>
       </trans-unit>
     </body>
   </file>
@@ -252,6 +332,10 @@
         <source xml:lang="en">Open in a InAppBrowser based on an iframe</source>
         <target xml:lang="zh-Hant" state="translated">依據 iframe 在 InAppBrowser 中開啟</target>
       </trans-unit>
+      <trans-unit id="spoken-text-4c1114ef">
+        <source xml:lang="en">InAppBrowser Panel</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">InAppBrowser 小組</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-network-information\sim-host-panels.html" source-language="en" target-language="zh-Hant">
@@ -264,6 +348,30 @@
         <source xml:lang="en">Connection type</source>
         <target xml:lang="zh-Hant" state="translated">連線類型</target>
       </trans-unit>
+      <trans-unit id="spoken-text-a4a98056">
+        <source xml:lang="en">Network Connection Panel</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">網路連接面板</target>
+      </trans-unit>
+      <trans-unit id="97ac48aa:1">
+        <source xml:lang="en">Unknown</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">未知</target>
+      </trans-unit>
+      <trans-unit id="fdf8871a:1">
+        <source xml:lang="en">Ethernet</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">乙太網</target>
+      </trans-unit>
+      <trans-unit id="525d0a74:1">
+        <source xml:lang="en">Wi-Fi</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">無線上網</target>
+      </trans-unit>
+      <trans-unit id="78db3e46:1">
+        <source xml:lang="en">Cellular (unknown speed)</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">細胞 （未知速度）</target>
+      </trans-unit>
+      <trans-unit id="3eca86f2:1">
+        <source xml:lang="en">None</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">沒有一個</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\events\sim-host-panels.html" source-language="en" target-language="zh-Hant">
@@ -273,12 +381,16 @@
         <target xml:lang="zh-Hant" state="translated">事件</target>
       </trans-unit>
       <trans-unit id="label-4eb9640f">
-        <source xml:lang="en">Select the event to fire:</source>
-        <target xml:lang="zh-Hant" state="translated">選取要觸發的事件:</target>
+        <source xml:lang="en">Event to fire</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">觸發事件，</target>
       </trans-unit>
       <trans-unit id="064dde5f:1">
         <source xml:lang="en">Fire Event</source>
         <target xml:lang="zh-Hant" state="translated">觸發事件</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-c9b16703">
+        <source xml:lang="en">Events Panel</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">事件小組</target>
       </trans-unit>
     </body>
   </file>
@@ -335,6 +447,10 @@
       <trans-unit id="label-b58dd0ca">
         <source xml:lang="en">No values saved</source>
         <target xml:lang="zh-Hant" state="translated">未儲存任何值</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-983d0535">
+        <source xml:lang="en">Persisted Exec Calls Panel</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">堅持 Exec 調用面板</target>
       </trans-unit>
     </body>
   </file>
