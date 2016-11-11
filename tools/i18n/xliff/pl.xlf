@@ -13,8 +13,12 @@
         <target xml:lang="pl" state="translated">Poziom naładowania baterii</target>
       </trans-unit>
       <trans-unit id="10cfe833:1">
-        <source xml:lang="en">Device plugged</source>
-        <target xml:lang="pl" state="translated">Urządzenie podłączone</target>
+        <source xml:lang="en">Device connected to power</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Urządzenie podłączone do źródła zasilania</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-ac1dbd34">
+        <source xml:lang="en">Battery Status Panel</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Panel stan baterii</target>
       </trans-unit>
     </body>
   </file>
@@ -36,6 +40,10 @@
         <source xml:lang="en">Cancel</source>
         <target xml:lang="pl" state="translated">Anuluj</target>
       </trans-unit>
+      <trans-unit id="spoken-text-5f1798d9">
+        <source xml:lang="en">Camera: Choose Image diaglog</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Aparat fotograficzny: Wybierz obraz diaglog</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-camera\sim-host-panels.html" source-language="en" target-language="pl">
@@ -55,6 +63,10 @@
       <trans-unit id="2c4e6d12:1">
         <source xml:lang="en">Choose File</source>
         <target xml:lang="pl" state="translated">Wybierz plik</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-553fc9a5">
+        <source xml:lang="en">Camera Panel</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Panel z kamerą</target>
       </trans-unit>
     </body>
   </file>
@@ -76,6 +88,34 @@
         <source xml:lang="en">Play</source>
         <target xml:lang="pl" state="translated">Odtwórz</target>
       </trans-unit>
+      <trans-unit id="spoken-text-9a8c8723">
+        <source xml:lang="en">Accelerometer Panel</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Panel Przyspieszeniomierz</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-f0ba631d">
+        <source xml:lang="en">X (meters per second squared)</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">X (metrów na sekundę do kwadratu)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-f452bcba">
+        <source xml:lang="en">Y (meters per second squared)</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Y (metrów na sekundę do kwadratu)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-e4ed20c6">
+        <source xml:lang="en">Z (meters per second squared)</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Z (metrów na sekundę do kwadratu)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-a4c24c61">
+        <source xml:lang="en">alpha (degrees)</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">alfa (w stopniach)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-92916831">
+        <source xml:lang="en">beta (degrees)</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Beta (w stopniach)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-a107533e">
+        <source xml:lang="en">gamma (degrees)</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">gamma (w stopniach)</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-device-orientation\sim-host-panels.html" source-language="en" target-language="pl">
@@ -84,13 +124,17 @@
         <source xml:lang="en">Compass</source>
         <target xml:lang="pl" state="translated">Kompas</target>
       </trans-unit>
-      <trans-unit id="c4c80de2:1">
-        <source xml:lang="en">&lt;em>Click and drag with the mouse to manipulate the device compass.&lt;/em></source>
-        <target xml:lang="pl" state="translated">&lt;em>Kliknij i przeciągnij myszą, aby manipulować kompasem urządzenia.&lt;/em></target>
-      </trans-unit>
       <trans-unit id="ae47e3ec:1">
         <source xml:lang="en">Heading (deg)</source>
         <target xml:lang="pl" state="translated">Kurs (stopnie)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-8310fdf4">
+        <source xml:lang="en">Compass Panel</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Kompas Panel</target>
+      </trans-unit>
+      <trans-unit id="0d7d15fa:1">
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device compass.</source>
+        <target xml:lang="pl" state="translated">Kliknij i przeciągnij myszą, aby manipulować kompasem urządzenia.</target>
       </trans-unit>
     </body>
   </file>
@@ -152,6 +196,10 @@
         <source xml:lang="en">Virtual device</source>
         <target xml:lang="pl" state="translated">Urządzenie wirtualne</target>
       </trans-unit>
+      <trans-unit id="spoken-text-c045b281">
+        <source xml:lang="en">Device Panel</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Panel urządzenia</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-geolocation\sim-host-panels.html" source-language="en" target-language="pl">
@@ -212,6 +260,34 @@
         <source xml:lang="en">Go</source>
         <target xml:lang="pl" state="translated">Przejdź</target>
       </trans-unit>
+      <trans-unit id="spoken-text-e4b82624">
+        <source xml:lang="en">Geolocation Panel</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Geolocation Panel</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-77f82a12">
+        <source xml:lang="en">zoom map out</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Powiększ mapę z</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-dbeaf956">
+        <source xml:lang="en">zoom map in</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Powiększ mapę w</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-079f55f6">
+        <source xml:lang="en">Altitude (meters)</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Wysokość (metry)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-dbece2f9">
+        <source xml:lang="en">Accuracy (meters)</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Dokładność (m)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-718f25cb">
+        <source xml:lang="en">Altitude accuracy (meters)</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Dokładność w wysokości (metry)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-8fefe84e">
+        <source xml:lang="en">Speed (meters per second)</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Prędkość (m / s)</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-globalization\sim-host-panels.html" source-language="en" target-language="pl">
@@ -221,16 +297,20 @@
         <target xml:lang="pl" state="translated">Globalizacja</target>
       </trans-unit>
       <trans-unit id="label-9e831385">
-        <source xml:lang="en">Select the locale:</source>
-        <target xml:lang="pl" state="translated">Wybierz ustawienia regionalne:</target>
+        <source xml:lang="en">Locale</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Ustawienia regionalne</target>
       </trans-unit>
       <trans-unit id="label-ee1bad9c">
-        <source xml:lang="en">Select the first day of the week:</source>
-        <target xml:lang="pl" state="translated">Wybierz pierwszy dzień tygodnia:</target>
+        <source xml:lang="en">First day of the week</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Pierwszy dzień tygodnia</target>
       </trans-unit>
       <trans-unit id="24aa60d4:1">
-        <source xml:lang="en">Is daylight saving time</source>
-        <target xml:lang="pl" state="translated">Jest czas letni</target>
+        <source xml:lang="en">Daylight saving time</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Czas letni</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-5ffc4b1e">
+        <source xml:lang="en">Globalization Panel</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Globalizacja Panel</target>
       </trans-unit>
     </body>
   </file>
@@ -252,6 +332,10 @@
         <source xml:lang="en">Open in a InAppBrowser based on an iframe</source>
         <target xml:lang="pl" state="translated">Otwórz w elemencie InAppBrowser na podstawie elementu iframe</target>
       </trans-unit>
+      <trans-unit id="spoken-text-4c1114ef">
+        <source xml:lang="en">InAppBrowser Panel</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">InAppBrowser Panel</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-network-information\sim-host-panels.html" source-language="en" target-language="pl">
@@ -264,6 +348,30 @@
         <source xml:lang="en">Connection type</source>
         <target xml:lang="pl" state="translated">Typ połączenia</target>
       </trans-unit>
+      <trans-unit id="spoken-text-a4a98056">
+        <source xml:lang="en">Network Connection Panel</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Panel połączeń sieciowych</target>
+      </trans-unit>
+      <trans-unit id="97ac48aa:1">
+        <source xml:lang="en">Unknown</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Nieznane</target>
+      </trans-unit>
+      <trans-unit id="fdf8871a:1">
+        <source xml:lang="en">Ethernet</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Sieci Ethernet</target>
+      </trans-unit>
+      <trans-unit id="525d0a74:1">
+        <source xml:lang="en">Wi-Fi</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Wi-Fi</target>
+      </trans-unit>
+      <trans-unit id="78db3e46:1">
+        <source xml:lang="en">Cellular (unknown speed)</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Sieć komórkowa (nieznany prędkości)</target>
+      </trans-unit>
+      <trans-unit id="3eca86f2:1">
+        <source xml:lang="en">None</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Brak</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\events\sim-host-panels.html" source-language="en" target-language="pl">
@@ -273,12 +381,16 @@
         <target xml:lang="pl" state="translated">Zdarzenia</target>
       </trans-unit>
       <trans-unit id="label-4eb9640f">
-        <source xml:lang="en">Select the event to fire:</source>
-        <target xml:lang="pl" state="translated">Wybierz zdarzenie do uruchomienia:</target>
+        <source xml:lang="en">Event to fire</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Zdarzenia</target>
       </trans-unit>
       <trans-unit id="064dde5f:1">
         <source xml:lang="en">Fire Event</source>
         <target xml:lang="pl" state="translated">Uruchom zdarzenie</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-c9b16703">
+        <source xml:lang="en">Events Panel</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Zdarzenia Panel</target>
       </trans-unit>
     </body>
   </file>
@@ -335,6 +447,10 @@
       <trans-unit id="label-b58dd0ca">
         <source xml:lang="en">No values saved</source>
         <target xml:lang="pl" state="translated">Nie zapisano wartości</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-983d0535">
+        <source xml:lang="en">Persisted Exec Calls Panel</source>
+        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Utrwalone Exec wywołuje Panel</target>
       </trans-unit>
     </body>
   </file>
