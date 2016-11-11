@@ -54,8 +54,8 @@ function initialize(changePanelVisibilityCallback) {
             var collapseIcon = this.shadowRoot.querySelector('.cordova-collapse-icon');
 
             this.shadowRoot.querySelector('.cordova-header .spoken-text span').textContent = this.getAttribute('caption');
-            this.shadowRoot.querySelector('.cordova-header .spoken-text').setAttribute('aria-label', this.getAttribute('spoken-text'));
-            
+            this.shadowRoot.querySelector('.cordova-header .spoken-text').setAttribute('aria-label', this.getAttribute('spoken-text') || this.getAttribute('caption'));
+
             function expandCollapse() {
                 var collapsed = collapseIcon.classList.contains('cordova-collapsed');
 
@@ -85,12 +85,6 @@ function initialize(changePanelVisibilityCallback) {
                 value: function () {
                     document.getElementById('popup-window').style.display = '';
                     this.style.display = '';
-
-                    // Set focus to first focusable element in panel (simplistic until we need otherwise).
-                    var focusElement = this.querySelector(interactiveElementSelector);
-                    if (focusElement) {
-                        focusElement.focus();
-                    }
                     this.querySelector('.cordova-panel-inner').focus();
                 }
             },
@@ -103,7 +97,7 @@ function initialize(changePanelVisibilityCallback) {
         },
         initialize: function () {
             this.shadowRoot.querySelector('.cordova-header .spoken-text span').textContent = this.getAttribute('caption');
-            this.shadowRoot.querySelector('.cordova-header .spoken-text').setAttribute('aria-label', this.getAttribute('spoken-text'));
+            this.shadowRoot.querySelector('.cordova-header .spoken-text').setAttribute('aria-label', this.getAttribute('spoken-text') || this.getAttribute('caption'));
 
             this.shadowRoot.querySelector('.cordova-close-icon').addEventListener('click', function () {
                 dialog.hideDialog();
@@ -395,12 +389,7 @@ function initialize(changePanelVisibilityCallback) {
             this._internalValue = 0;
 
             var input = this.shadowRoot.querySelector('input');
-            var readLabel = this.getAttribute('spoken-text');
-            if (readLabel) {
-                input.setAttribute('aria-label', readLabel);
-            } else {
-                input.setAttribute('aria-label', displayLabel);
-            }
+            input.setAttribute('aria-label', this.getAttribute('spoken-text') || displayLabel);
 
             var maxValue = this.getAttribute('max'),
                 minValue = this.getAttribute('min'),
@@ -462,7 +451,7 @@ function initialize(changePanelVisibilityCallback) {
             }
         },
         initialize: function () {
-            this.shadowRoot.querySelector('label').textContent = this.getAttribute('label'); 
+            this.shadowRoot.querySelector('label').textContent = this.getAttribute('label');
             this.shadowRoot.querySelector('span').textContent = this.getAttribute('value');
             this.classList.add('cordova-panel-row');
             this.classList.add('cordova-group');
