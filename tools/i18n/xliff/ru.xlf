@@ -136,6 +136,10 @@
         <source xml:lang="en">Click and drag with the mouse to manipulate the device compass.</source>
         <target xml:lang="ru" state="translated">Щелкните и перетащите для управления компасом устройства.</target>
       </trans-unit>
+      <trans-unit id="aria-label-77b16982">
+        <source xml:lang="en">Heading (degrees)</source>
+        <target xml:lang="ru" state="needs-translation" state-qualifier="mt-suggestion">Заголовок (градусы)</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-device\sim-host-panels.html" source-language="en" target-language="ru">

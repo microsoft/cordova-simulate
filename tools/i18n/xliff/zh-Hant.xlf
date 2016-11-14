@@ -136,6 +136,10 @@
         <source xml:lang="en">Click and drag with the mouse to manipulate the device compass.</source>
         <target xml:lang="zh-Hant" state="translated">按一下並以滑鼠拖曳來操控裝置指南針。</target>
       </trans-unit>
+      <trans-unit id="aria-label-77b16982">
+        <source xml:lang="en">Heading (degrees)</source>
+        <target xml:lang="zh-Hant" state="needs-translation" state-qualifier="mt-suggestion">標題 （度）</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-device\sim-host-panels.html" source-language="en" target-language="zh-Hant">

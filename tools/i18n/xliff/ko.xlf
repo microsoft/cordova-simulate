@@ -136,6 +136,10 @@
         <source xml:lang="en">Click and drag with the mouse to manipulate the device compass.</source>
         <target xml:lang="ko" state="translated">마우스로 클릭하고 끌어 장치 나침반을 조작합니다.</target>
       </trans-unit>
+      <trans-unit id="aria-label-77b16982">
+        <source xml:lang="en">Heading (degrees)</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">제목 (도)</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-device\sim-host-panels.html" source-language="en" target-language="ko">

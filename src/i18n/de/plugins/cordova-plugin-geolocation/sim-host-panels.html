@@ -6,7 +6,7 @@
 <link href="sim-host.css" rel="stylesheet">
 
 <!-- Panels -->
-<cordova-panel id="geolocation" caption="Geolocation" spoken-text="Geolocation Panel" data-loc-id="e4b82624" spoken="Geolocation-Panel">
+<cordova-panel id="geolocation" caption="Geolocation" spoken-text="Geolocation-Panel" data-loc-id="e4b82624">
     <!-- Note that this needs to be a cordova-group not a cordova-panel-row as the flex box arranging of the latter
      screws up sizing of the map box in Firefox -->
     <cordova-group>
@@ -24,8 +24,8 @@
     </cordova-group>
     <cordova-panel-row>
         <section>
-        <cordova-button id="geo-map-zoom-decrease" spoken-text="zoom map out" style="min-width:0;" data-loc-id="77f82a12" spoken="Zoom-Karte heraus">-</cordova-button>
-        <cordova-button id="geo-map-zoom-increase" spoken-text="zoom map in" style="min-width:0;" data-loc-id="dbeaf956" spoken="Zoom-Karte in">+</cordova-button>
+        <cordova-button id="geo-map-zoom-decrease" spoken-text="Zoom-Karte heraus" style="min-width:0;" data-loc-id="77f82a12">-</cordova-button>
+        <cordova-button id="geo-map-zoom-increase" spoken-text="Zoom-Karte in" style="min-width:0;" data-loc-id="dbeaf956">+</cordova-button>
         </section>
         <section class="geo-map-zoomlevel" data-loc-id="7e9696b6">Zoomfaktor:<span id="geo-map-zoomlevel-value"></span>
         </section>
@@ -33,15 +33,15 @@
 
     <cordova-number-entry label="Breitengrad" id="geo-latitude" step="any" data-loc-id="41fd30cf"></cordova-number-entry>
     <cordova-number-entry label="Längengrad" id="geo-longitude" step="any" data-loc-id="9db6eee1"></cordova-number-entry>
-    <cordova-number-entry label="Höhe (m)" spoken-text="Altitude (meters)" id="geo-altitude" step="any" data-loc-id="079f55f6" spoken="Höhe (m)"></cordova-number-entry>
-    <cordova-number-entry label="Genauigkeit (m)" spoken-text="Accuracy (meters)" id="geo-accuracy" min="0" step="any" data-loc-id="dbece2f9" spoken="Genauigkeit (m)"></cordova-number-entry>
-    <cordova-number-entry label="Genauigkeit der Höhe (m)" spoken-text="Altitude accuracy (meters)" id="geo-altitude-accuracy" min="0" step="any" data-loc-id="718f25cb" spoken="Höhe Genauigkeit (m)"></cordova-number-entry>
+    <cordova-number-entry label="Höhe (m)" spoken-text="Höhe (m)" id="geo-altitude" step="any" data-loc-id="079f55f6"></cordova-number-entry>
+    <cordova-number-entry label="Genauigkeit (m)" spoken-text="Genauigkeit (m)" id="geo-accuracy" min="0" step="any" data-loc-id="dbece2f9"></cordova-number-entry>
+    <cordova-number-entry label="Genauigkeit der Höhe (m)" spoken-text="Höhe Genauigkeit (m)" id="geo-altitude-accuracy" min="0" step="any" data-loc-id="718f25cb"></cordova-number-entry>
     <cordova-panel-row>
         <cordova-label for="geo-heading" spoken="" label="Richtung" data-loc-id="64da0839"></cordova-label>
         <cordova-label label="N" spoken="" id="geo-heading-label"></cordova-label>
         <input id="geo-heading" type="range" value="0" min="0" max="359.99" step="any">
     </cordova-panel-row>
-    <cordova-number-entry label="Geschwindigkeit (m/s)" spoken-text="Speed (meters per second)" id="geo-speed" min="0" step="any" data-loc-id="8fefe84e" spoken="Geschwindigkeit (Meter pro Sekunde)"></cordova-number-entry>
+    <cordova-number-entry label="Geschwindigkeit (m/s)" spoken-text="Geschwindigkeit (Meter pro Sekunde)" id="geo-speed" min="0" step="any" data-loc-id="8fefe84e"></cordova-number-entry>
     <cordova-panel-row>
         <cordova-label spoken="" for="geo-delay" label="GPS-Verzögerung (Sekunden)" data-loc-id="42557ee2"></cordova-label>
         <cordova-label label="0" id="geo-delay-label"></cordova-label>

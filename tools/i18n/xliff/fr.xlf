@@ -136,6 +136,10 @@
         <source xml:lang="en">Click and drag with the mouse to manipulate the device compass.</source>
         <target xml:lang="fr" state="translated">Cliquez et faites glisser la souris pour manipuler la boussole de l'appareil.</target>
       </trans-unit>
+      <trans-unit id="aria-label-77b16982">
+        <source xml:lang="en">Heading (degrees)</source>
+        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Rubrique (degrés)</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-device\sim-host-panels.html" source-language="en" target-language="fr">
