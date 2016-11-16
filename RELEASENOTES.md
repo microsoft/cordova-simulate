@@ -1,5 +1,9 @@
 # cordova-simulate Release Notes
 
+### 0.3.5 (Nov 16, 2016)
+* Improved support for screen readers ([#185](https://github.com/Microsoft/cordova-simulate/pull/185), [#186](https://github.com/Microsoft/cordova-simulate/pull/186), [#189](https://github.com/Microsoft/cordova-simulate/pull/189), [#197](https://github.com/Microsoft/cordova-simulate/pull/197))
+* Further keyboard improvements (`esc` closes dialogs, `del` deletes persisted exec calls, editable *Accelerometer* panel values) ([#188](https://github.com/Microsoft/cordova-simulate/pull/188), [#187](https://github.com/Microsoft/cordova-simulate/pull/187), [#190](https://github.com/Microsoft/cordova-simulate/pull/190)) 
+
 ### 0.3.4 (Oct 28, 2016)
 * Now supports themes ([#175](https://github.com/Microsoft/cordova-simulate/pull/175)) - see [Support for Themes](https://github.com/Microsoft/cordova-simulate/wiki/Support-for-Themes) for more information.
 * Updated compass that can be themed ([#172](https://github.com/Microsoft/cordova-simulate/pull/172))
