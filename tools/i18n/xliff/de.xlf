@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xliff 
-  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
   <file original="plugins\cordova-plugin-battery-status\sim-host-panels.html" source-language="en" target-language="de">
     <body>
       <trans-unit id="caption-ac1dbd34">
@@ -14,11 +12,11 @@
       </trans-unit>
       <trans-unit id="10cfe833:1">
         <source xml:lang="en">Device connected to power</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Gerät an die Stromversorgung angeschlossen</target>
+        <target xml:lang="de" state="translated">Gerät an Stromversorgung angeschlossen</target>
       </trans-unit>
       <trans-unit id="spoken-text-ac1dbd34">
         <source xml:lang="en">Battery Status Panel</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Batterie-Status-Panel</target>
+        <target xml:lang="de" state="translated">Bereich "Akkustatus"</target>
       </trans-unit>
     </body>
   </file>
@@ -42,7 +40,7 @@
       </trans-unit>
       <trans-unit id="spoken-text-5f1798d9">
         <source xml:lang="en">Camera: Choose Image diaglog</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Kamera: Wählen Sie Bild diaglog</target>
+        <target xml:lang="de" state="translated">Dialogfeld "Kamera: Bild auswählen"</target>
       </trans-unit>
     </body>
   </file>
@@ -66,7 +64,7 @@
       </trans-unit>
       <trans-unit id="spoken-text-553fc9a5">
         <source xml:lang="en">Camera Panel</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Kamera-Panel</target>
+        <target xml:lang="de" state="translated">Bereich "Kamera"</target>
       </trans-unit>
     </body>
   </file>
@@ -81,8 +79,8 @@
         <target xml:lang="de" state="translated">Aufgezeichnete Daten</target>
       </trans-unit>
       <trans-unit id="c562ff87:1">
-        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br> Hold the Shift key to modify 'alpha'</source>
-        <target xml:lang="de" state="translated">Klicken und ziehen Sie mit der Maus, um das Gerät zu bearbeiten. &lt;br> Halten Sie die UMSCHALTTASTE gedrückt, um "alpha" zu ändern.</target>
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br&gt; Hold the Shift key to modify 'alpha'</source>
+        <target xml:lang="de" state="translated">Klicken und ziehen Sie mit der Maus, um das Gerät zu bearbeiten. &lt;br&gt; Halten Sie die UMSCHALTTASTE gedrückt, um "alpha" zu ändern.</target>
       </trans-unit>
       <trans-unit id="1b009684:1">
         <source xml:lang="en">Play</source>
@@ -90,31 +88,31 @@
       </trans-unit>
       <trans-unit id="spoken-text-9a8c8723">
         <source xml:lang="en">Accelerometer Panel</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Beschleunigungsmesser Panel</target>
+        <target xml:lang="de" state="translated">Bereich "Beschleunigungsmesser"</target>
       </trans-unit>
       <trans-unit id="spoken-text-f0ba631d">
         <source xml:lang="en">X (meters per second squared)</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">X (Meter pro Sekunde im Quadrat)</target>
+        <target xml:lang="de" state="translated">X (Meter pro Sekunde im Quadrat)</target>
       </trans-unit>
       <trans-unit id="spoken-text-f452bcba">
         <source xml:lang="en">Y (meters per second squared)</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Y (Meter pro Sekunde im Quadrat)</target>
+        <target xml:lang="de" state="translated">Y (Meter pro Sekunde im Quadrat)</target>
       </trans-unit>
       <trans-unit id="spoken-text-e4ed20c6">
         <source xml:lang="en">Z (meters per second squared)</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Z (Meter pro Sekunde im Quadrat)</target>
+        <target xml:lang="de" state="translated">Z (Meter pro Sekunde im Quadrat)</target>
       </trans-unit>
       <trans-unit id="spoken-text-a4c24c61">
         <source xml:lang="en">alpha (degrees)</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Alpha (Grad)</target>
+        <target xml:lang="de" state="translated">Alpha (Grad)</target>
       </trans-unit>
       <trans-unit id="spoken-text-92916831">
         <source xml:lang="en">beta (degrees)</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Beta (Grad)</target>
+        <target xml:lang="de" state="translated">Beta (Grad)</target>
       </trans-unit>
       <trans-unit id="spoken-text-a107533e">
         <source xml:lang="en">gamma (degrees)</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Gamma (Grad)</target>
+        <target xml:lang="de" state="translated">Gamma (Grad)</target>
       </trans-unit>
     </body>
   </file>
@@ -130,7 +128,7 @@
       </trans-unit>
       <trans-unit id="spoken-text-8310fdf4">
         <source xml:lang="en">Compass Panel</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Kompass-Panel</target>
+        <target xml:lang="de" state="translated">Bereich "Kompass"</target>
       </trans-unit>
       <trans-unit id="0d7d15fa:1">
         <source xml:lang="en">Click and drag with the mouse to manipulate the device compass.</source>
@@ -138,7 +136,7 @@
       </trans-unit>
       <trans-unit id="aria-label-77b16982">
         <source xml:lang="en">Heading (degrees)</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Überschrift (Grad)</target>
+        <target xml:lang="de" state="translated">Richtung (Grad)</target>
       </trans-unit>
     </body>
   </file>
@@ -202,7 +200,7 @@
       </trans-unit>
       <trans-unit id="spoken-text-c045b281">
         <source xml:lang="en">Device Panel</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Gerätebereich</target>
+        <target xml:lang="de" state="translated">Bereich "Geräte"</target>
       </trans-unit>
     </body>
   </file>
@@ -266,31 +264,31 @@
       </trans-unit>
       <trans-unit id="spoken-text-e4b82624">
         <source xml:lang="en">Geolocation Panel</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Geolocation-Panel</target>
+        <target xml:lang="de" state="translated">Bereich "Geolocation"</target>
       </trans-unit>
       <trans-unit id="spoken-text-77f82a12">
         <source xml:lang="en">zoom map out</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Zoom-Karte heraus</target>
+        <target xml:lang="de" state="translated">Karte verkleinern</target>
       </trans-unit>
       <trans-unit id="spoken-text-dbeaf956">
         <source xml:lang="en">zoom map in</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Zoom-Karte in</target>
+        <target xml:lang="de" state="translated">Karte vergrößern</target>
       </trans-unit>
       <trans-unit id="spoken-text-079f55f6">
         <source xml:lang="en">Altitude (meters)</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Höhe (m)</target>
+        <target xml:lang="de" state="translated">Höhe (Meter)</target>
       </trans-unit>
       <trans-unit id="spoken-text-dbece2f9">
         <source xml:lang="en">Accuracy (meters)</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Genauigkeit (m)</target>
+        <target xml:lang="de" state="translated">Genauigkeit (Meter)</target>
       </trans-unit>
       <trans-unit id="spoken-text-718f25cb">
         <source xml:lang="en">Altitude accuracy (meters)</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Höhe Genauigkeit (m)</target>
+        <target xml:lang="de" state="translated">Genauigkeit der Höhe (Meter)</target>
       </trans-unit>
       <trans-unit id="spoken-text-8fefe84e">
         <source xml:lang="en">Speed (meters per second)</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Geschwindigkeit (Meter pro Sekunde)</target>
+        <target xml:lang="de" state="translated">Geschwindigkeit (Meter pro Sekunde)</target>
       </trans-unit>
     </body>
   </file>
@@ -302,19 +300,19 @@
       </trans-unit>
       <trans-unit id="label-9e831385">
         <source xml:lang="en">Locale</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Gebietsschema</target>
+        <target xml:lang="de" state="translated">Gebietsschema</target>
       </trans-unit>
       <trans-unit id="label-ee1bad9c">
         <source xml:lang="en">First day of the week</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Ersten Tag der Woche</target>
+        <target xml:lang="de" state="translated">Erster Tag der Woche</target>
       </trans-unit>
       <trans-unit id="24aa60d4:1">
         <source xml:lang="en">Daylight saving time</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Daylight Saving time</target>
+        <target xml:lang="de" state="translated">Sommerzeit</target>
       </trans-unit>
       <trans-unit id="spoken-text-5ffc4b1e">
         <source xml:lang="en">Globalization Panel</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Globalisierung-Panel</target>
+        <target xml:lang="de" state="translated">Bereich "Globalisierung"</target>
       </trans-unit>
     </body>
   </file>
@@ -325,12 +323,12 @@
         <target xml:lang="de" state="translated">InAppBrowser</target>
       </trans-unit>
       <trans-unit id="99399f4d:1">
-        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em>_blank&lt;/em> target</source>
-        <target xml:lang="de" state="translated">Wählen Sie das Standardverhalten von InAppBrowser beim Öffnen mit dem Ziel &lt;em>_blank&lt;/em>.</target>
+        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em&gt;_blank&lt;/em&gt; target</source>
+        <target xml:lang="de" state="translated">Wählen Sie das Standardverhalten von InAppBrowser beim Öffnen mit dem Ziel &lt;em&gt;_blank&lt;/em&gt;.</target>
       </trans-unit>
       <trans-unit id="c10cdf5b:1">
-        <source xml:lang="en">Open in a new window: &lt;em>_system&lt;/em> target</source>
-        <target xml:lang="de" state="translated">In neuem Fenster öffnen: Ziel &lt;em>_system&lt;/em></target>
+        <source xml:lang="en">Open in a new window: &lt;em&gt;_system&lt;/em&gt; target</source>
+        <target xml:lang="de" state="translated">In neuem Fenster öffnen: Ziel &lt;em&gt;_system&lt;/em&gt;</target>
       </trans-unit>
       <trans-unit id="d107e851:1">
         <source xml:lang="en">Open in a InAppBrowser based on an iframe</source>
@@ -338,7 +336,7 @@
       </trans-unit>
       <trans-unit id="spoken-text-4c1114ef">
         <source xml:lang="en">InAppBrowser Panel</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">InAppBrowser Panel</target>
+        <target xml:lang="de" state="translated">Bereich "InAppBrowser"</target>
       </trans-unit>
     </body>
   </file>
@@ -354,27 +352,27 @@
       </trans-unit>
       <trans-unit id="spoken-text-a4a98056">
         <source xml:lang="en">Network Connection Panel</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Netzwerk-Anschlussfeld</target>
+        <target xml:lang="de" state="translated">Bereich "Netzwerkverbindung"</target>
       </trans-unit>
       <trans-unit id="97ac48aa:1">
         <source xml:lang="en">Unknown</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Unbekannt</target>
+        <target xml:lang="de" state="translated">Unbekannt</target>
       </trans-unit>
       <trans-unit id="fdf8871a:1">
         <source xml:lang="en">Ethernet</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Ethernet</target>
+        <target xml:lang="de" state="translated">Ethernet</target>
       </trans-unit>
       <trans-unit id="525d0a74:1">
         <source xml:lang="en">Wi-Fi</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Wi-Fi</target>
+        <target xml:lang="de" state="translated">WLAN</target>
       </trans-unit>
       <trans-unit id="78db3e46:1">
         <source xml:lang="en">Cellular (unknown speed)</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Mobilfunk (unbekannter Geschwindigkeit)</target>
+        <target xml:lang="de" state="translated">Mobilfunk (unbekannte Geschwindigkeit)</target>
       </trans-unit>
       <trans-unit id="3eca86f2:1">
         <source xml:lang="en">None</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Keine</target>
+        <target xml:lang="de" state="translated">Keine</target>
       </trans-unit>
     </body>
   </file>
@@ -386,7 +384,7 @@
       </trans-unit>
       <trans-unit id="label-4eb9640f">
         <source xml:lang="en">Event to fire</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Ereignis ausgelöst</target>
+        <target xml:lang="de" state="translated">Auszulösende Ereignisse</target>
       </trans-unit>
       <trans-unit id="064dde5f:1">
         <source xml:lang="en">Fire Event</source>
@@ -394,7 +392,7 @@
       </trans-unit>
       <trans-unit id="spoken-text-c9b16703">
         <source xml:lang="en">Events Panel</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Ereignisfenster</target>
+        <target xml:lang="de" state="translated">Bereich "Ereignisse"</target>
       </trans-unit>
     </body>
   </file>
@@ -454,7 +452,7 @@
       </trans-unit>
       <trans-unit id="spoken-text-983d0535">
         <source xml:lang="en">Persisted Exec Calls Panel</source>
-        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Exec Anrufe Panel beibehalten</target>
+        <target xml:lang="de" state="translated">Bereich "Gespeicherte Exec-Aufrufe"</target>
       </trans-unit>
     </body>
   </file>

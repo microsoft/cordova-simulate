@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xliff 
-  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
   <file original="plugins\cordova-plugin-battery-status\sim-host-panels.html" source-language="en" target-language="zh-Hans">
     <body>
       <trans-unit id="caption-ac1dbd34">
@@ -14,11 +12,11 @@
       </trans-unit>
       <trans-unit id="10cfe833:1">
         <source xml:lang="en">Device connected to power</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">设备连接到电源</target>
+        <target xml:lang="zh-Hans" state="translated">连接到电源的设备</target>
       </trans-unit>
       <trans-unit id="spoken-text-ac1dbd34">
         <source xml:lang="en">Battery Status Panel</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">电池状态面板</target>
+        <target xml:lang="zh-Hans" state="translated">“电池状态”面板</target>
       </trans-unit>
     </body>
   </file>
@@ -26,7 +24,7 @@
     <body>
       <trans-unit id="caption-5f1798d9">
         <source xml:lang="en">Camera: Choose Image</source>
-        <target xml:lang="zh-Hans" state="translated">摄像头: 选择图像</target>
+        <target xml:lang="zh-Hans" state="translated">相机: 选择图像</target>
       </trans-unit>
       <trans-unit id="030b9963:1">
         <source xml:lang="en">Choose File</source>
@@ -42,7 +40,7 @@
       </trans-unit>
       <trans-unit id="spoken-text-5f1798d9">
         <source xml:lang="en">Camera: Choose Image diaglog</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">摄像头︰ 选择图像 diaglog</target>
+        <target xml:lang="zh-Hans" state="translated">“相机: 选择图像”对话框</target>
       </trans-unit>
     </body>
   </file>
@@ -66,7 +64,7 @@
       </trans-unit>
       <trans-unit id="spoken-text-553fc9a5">
         <source xml:lang="en">Camera Panel</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">照相机面板</target>
+        <target xml:lang="zh-Hans" state="translated">“相机”面板</target>
       </trans-unit>
     </body>
   </file>
@@ -77,8 +75,8 @@
         <target xml:lang="zh-Hans" state="translated">加速计</target>
       </trans-unit>
       <trans-unit id="c562ff87:1">
-        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br> Hold the Shift key to modify 'alpha'</source>
-        <target xml:lang="zh-Hans" state="translated">单击并拖动鼠标可操作设备。&lt;br>按住 Shift 键可修改“alpha”</target>
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br&gt; Hold the Shift key to modify 'alpha'</source>
+        <target xml:lang="zh-Hans" state="translated">单击并拖动鼠标可操作设备。&lt;br&gt;按住 Shift 键可修改“阿尔法”</target>
       </trans-unit>
       <trans-unit id="label-d240cacf">
         <source xml:lang="en">Recorded Data</source>
@@ -90,31 +88,31 @@
       </trans-unit>
       <trans-unit id="spoken-text-9a8c8723">
         <source xml:lang="en">Accelerometer Panel</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">加速度传感器面板</target>
+        <target xml:lang="zh-Hans" state="translated">“加速计”面板</target>
       </trans-unit>
       <trans-unit id="spoken-text-f0ba631d">
         <source xml:lang="en">X (meters per second squared)</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">X （米每秒的平方）</target>
+        <target xml:lang="zh-Hans" state="translated">X (米每平方秒)</target>
       </trans-unit>
       <trans-unit id="spoken-text-f452bcba">
         <source xml:lang="en">Y (meters per second squared)</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">Y （米 / 秒平方）</target>
+        <target xml:lang="zh-Hans" state="translated">Y (米每平方秒)</target>
       </trans-unit>
       <trans-unit id="spoken-text-e4ed20c6">
         <source xml:lang="en">Z (meters per second squared)</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">Z （米每秒的平方）</target>
+        <target xml:lang="zh-Hans" state="translated">Z (米每平方秒)</target>
       </trans-unit>
       <trans-unit id="spoken-text-a4c24c61">
         <source xml:lang="en">alpha (degrees)</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">阿尔法 （度）</target>
+        <target xml:lang="zh-Hans" state="translated">阿尔法(度)</target>
       </trans-unit>
       <trans-unit id="spoken-text-92916831">
         <source xml:lang="en">beta (degrees)</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">beta （度）</target>
+        <target xml:lang="zh-Hans" state="translated">贝塔(度)</target>
       </trans-unit>
       <trans-unit id="spoken-text-a107533e">
         <source xml:lang="en">gamma (degrees)</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">伽玛 （度）</target>
+        <target xml:lang="zh-Hans" state="translated">伽玛(度)</target>
       </trans-unit>
     </body>
   </file>
@@ -130,7 +128,7 @@
       </trans-unit>
       <trans-unit id="spoken-text-8310fdf4">
         <source xml:lang="en">Compass Panel</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">指南针的面板</target>
+        <target xml:lang="zh-Hans" state="translated">“指南针”面板</target>
       </trans-unit>
       <trans-unit id="0d7d15fa:1">
         <source xml:lang="en">Click and drag with the mouse to manipulate the device compass.</source>
@@ -138,7 +136,7 @@
       </trans-unit>
       <trans-unit id="aria-label-77b16982">
         <source xml:lang="en">Heading (degrees)</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">标题 （度）</target>
+        <target xml:lang="zh-Hans" state="translated">朝向值(度)</target>
       </trans-unit>
     </body>
   </file>
@@ -202,7 +200,7 @@
       </trans-unit>
       <trans-unit id="spoken-text-c045b281">
         <source xml:lang="en">Device Panel</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">设备面板</target>
+        <target xml:lang="zh-Hans" state="translated">“设备”面板</target>
       </trans-unit>
     </body>
   </file>
@@ -266,31 +264,31 @@
       </trans-unit>
       <trans-unit id="spoken-text-e4b82624">
         <source xml:lang="en">Geolocation Panel</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">地理定位面板</target>
+        <target xml:lang="zh-Hans" state="translated">“地理位置”面板</target>
       </trans-unit>
       <trans-unit id="spoken-text-77f82a12">
         <source xml:lang="en">zoom map out</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">缩放地图出</target>
+        <target xml:lang="zh-Hans" state="translated">缩放地图</target>
       </trans-unit>
       <trans-unit id="spoken-text-dbeaf956">
         <source xml:lang="en">zoom map in</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">在缩放地图</target>
+        <target xml:lang="zh-Hans" state="translated">放大地图</target>
       </trans-unit>
       <trans-unit id="spoken-text-079f55f6">
         <source xml:lang="en">Altitude (meters)</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">海拔高度 （米）</target>
+        <target xml:lang="zh-Hans" state="translated">海拔(米)</target>
       </trans-unit>
       <trans-unit id="spoken-text-dbece2f9">
         <source xml:lang="en">Accuracy (meters)</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">精度 （米）</target>
+        <target xml:lang="zh-Hans" state="translated">精度(米)</target>
       </trans-unit>
       <trans-unit id="spoken-text-718f25cb">
         <source xml:lang="en">Altitude accuracy (meters)</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">高度测量精度 （米）</target>
+        <target xml:lang="zh-Hans" state="translated">海拔精度(米)</target>
       </trans-unit>
       <trans-unit id="spoken-text-8fefe84e">
         <source xml:lang="en">Speed (meters per second)</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">速度 （米 / 秒）</target>
+        <target xml:lang="zh-Hans" state="translated">速度(米/秒)</target>
       </trans-unit>
     </body>
   </file>
@@ -302,19 +300,19 @@
       </trans-unit>
       <trans-unit id="label-9e831385">
         <source xml:lang="en">Locale</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">区域设置</target>
+        <target xml:lang="zh-Hans" state="translated">区域设置</target>
       </trans-unit>
       <trans-unit id="24aa60d4:1">
         <source xml:lang="en">Daylight saving time</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">夏令时</target>
+        <target xml:lang="zh-Hans" state="translated">夏令时</target>
       </trans-unit>
       <trans-unit id="label-ee1bad9c">
         <source xml:lang="en">First day of the week</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">周第一天</target>
+        <target xml:lang="zh-Hans" state="translated">一周的第一天</target>
       </trans-unit>
       <trans-unit id="spoken-text-5ffc4b1e">
         <source xml:lang="en">Globalization Panel</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">全球化小组</target>
+        <target xml:lang="zh-Hans" state="translated">“全球化”面板</target>
       </trans-unit>
     </body>
   </file>
@@ -325,12 +323,12 @@
         <target xml:lang="zh-Hans" state="translated">InAppBrowser</target>
       </trans-unit>
       <trans-unit id="99399f4d:1">
-        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em>_blank&lt;/em> target</source>
-        <target xml:lang="zh-Hans" state="translated">打开使用 &lt;em>_blank&lt;/em> 目标时，选择 InAppBrowser 的默认行为</target>
+        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em&gt;_blank&lt;/em&gt; target</source>
+        <target xml:lang="zh-Hans" state="translated">打开使用 &lt;em&gt;_blank&lt;/em&gt; 目标时，选择 InAppBrowser 的默认行为</target>
       </trans-unit>
       <trans-unit id="c10cdf5b:1">
-        <source xml:lang="en">Open in a new window: &lt;em>_system&lt;/em> target</source>
-        <target xml:lang="zh-Hans" state="translated">在新窗口中打开: &lt;em>_system&lt;/em> 目标</target>
+        <source xml:lang="en">Open in a new window: &lt;em&gt;_system&lt;/em&gt; target</source>
+        <target xml:lang="zh-Hans" state="translated">在新窗口中打开: &lt;em&gt;_system&lt;/em&gt; 目标</target>
       </trans-unit>
       <trans-unit id="d107e851:1">
         <source xml:lang="en">Open in a InAppBrowser based on an iframe</source>
@@ -338,7 +336,7 @@
       </trans-unit>
       <trans-unit id="spoken-text-4c1114ef">
         <source xml:lang="en">InAppBrowser Panel</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">InAppBrowser 小组</target>
+        <target xml:lang="zh-Hans" state="translated">InAppBrowser 面板</target>
       </trans-unit>
     </body>
   </file>
@@ -354,27 +352,27 @@
       </trans-unit>
       <trans-unit id="spoken-text-a4a98056">
         <source xml:lang="en">Network Connection Panel</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">网络连接面板</target>
+        <target xml:lang="zh-Hans" state="translated">“网络连接”面板</target>
       </trans-unit>
       <trans-unit id="97ac48aa:1">
         <source xml:lang="en">Unknown</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">未知</target>
+        <target xml:lang="zh-Hans" state="translated">未知</target>
       </trans-unit>
       <trans-unit id="fdf8871a:1">
         <source xml:lang="en">Ethernet</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">以太网</target>
+        <target xml:lang="zh-Hans" state="translated">以太网</target>
       </trans-unit>
       <trans-unit id="525d0a74:1">
         <source xml:lang="en">Wi-Fi</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">无线上网</target>
+        <target xml:lang="zh-Hans" state="translated">无线网</target>
       </trans-unit>
       <trans-unit id="78db3e46:1">
         <source xml:lang="en">Cellular (unknown speed)</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">细胞 （未知速度）</target>
+        <target xml:lang="zh-Hans" state="translated">数据网(速度未知)</target>
       </trans-unit>
       <trans-unit id="3eca86f2:1">
         <source xml:lang="en">None</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">没有一个</target>
+        <target xml:lang="zh-Hans" state="translated">无</target>
       </trans-unit>
     </body>
   </file>
@@ -386,7 +384,7 @@
       </trans-unit>
       <trans-unit id="label-4eb9640f">
         <source xml:lang="en">Event to fire</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">触发事件，</target>
+        <target xml:lang="zh-Hans" state="translated">要触发的事件</target>
       </trans-unit>
       <trans-unit id="064dde5f:1">
         <source xml:lang="en">Fire Event</source>
@@ -394,7 +392,7 @@
       </trans-unit>
       <trans-unit id="spoken-text-c9b16703">
         <source xml:lang="en">Events Panel</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">事件小组</target>
+        <target xml:lang="zh-Hans" state="translated">“事件”面板</target>
       </trans-unit>
     </body>
   </file>
@@ -454,7 +452,7 @@
       </trans-unit>
       <trans-unit id="spoken-text-983d0535">
         <source xml:lang="en">Persisted Exec Calls Panel</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">坚持 Exec 调用面板</target>
+        <target xml:lang="zh-Hans" state="translated">“持久性 Exec 调用”调用</target>
       </trans-unit>
     </body>
   </file>

@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xliff 
-  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
   <file original="plugins\cordova-plugin-battery-status\sim-host-panels.html" source-language="en" target-language="tr">
     <body>
       <trans-unit id="caption-ac1dbd34">
@@ -14,11 +12,11 @@
       </trans-unit>
       <trans-unit id="10cfe833:1">
         <source xml:lang="en">Device connected to power</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Güç kaynağına bağlı aygıt</target>
+        <target xml:lang="tr" state="translated">Cihaz güç kaynağına bağlandı</target>
       </trans-unit>
       <trans-unit id="spoken-text-ac1dbd34">
         <source xml:lang="en">Battery Status Panel</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Pil durum paneli</target>
+        <target xml:lang="tr" state="translated">Pil Durumu Paneli</target>
       </trans-unit>
     </body>
   </file>
@@ -42,7 +40,7 @@
       </trans-unit>
       <trans-unit id="spoken-text-5f1798d9">
         <source xml:lang="en">Camera: Choose Image diaglog</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Fotograf makinesi: Görüntü diaglog seçin</target>
+        <target xml:lang="tr" state="translated">Kamera: Resim Seçin iletişim kutusu</target>
       </trans-unit>
     </body>
   </file>
@@ -66,7 +64,7 @@
       </trans-unit>
       <trans-unit id="spoken-text-553fc9a5">
         <source xml:lang="en">Camera Panel</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Kamera paneli</target>
+        <target xml:lang="tr" state="translated">Kamera Paneli</target>
       </trans-unit>
     </body>
   </file>
@@ -81,8 +79,8 @@
         <target xml:lang="tr" state="translated">Kaydedilen Veriler</target>
       </trans-unit>
       <trans-unit id="c562ff87:1">
-        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br> Hold the Shift key to modify 'alpha'</source>
-        <target xml:lang="tr" state="translated">Cihazı yönetmek için tıklayıp sürükleyin. &lt;br>’Alfa’ değerini değiştirmek için Shift tuşunu basılı tutun</target>
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br&gt; Hold the Shift key to modify 'alpha'</source>
+        <target xml:lang="tr" state="translated">Cihazı yönetmek için tıklayıp sürükleyin. &lt;br&gt;’Alfa’ değerini değiştirmek için Shift tuşunu basılı tutun</target>
       </trans-unit>
       <trans-unit id="1b009684:1">
         <source xml:lang="en">Play</source>
@@ -90,31 +88,31 @@
       </trans-unit>
       <trans-unit id="spoken-text-9a8c8723">
         <source xml:lang="en">Accelerometer Panel</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Accelerometer paneli</target>
+        <target xml:lang="tr" state="translated">İvme Ölçer Paneli</target>
       </trans-unit>
       <trans-unit id="spoken-text-f0ba631d">
         <source xml:lang="en">X (meters per second squared)</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">X (saniyede metre kare)</target>
+        <target xml:lang="tr" state="translated">X (metre / saniye kare)</target>
       </trans-unit>
       <trans-unit id="spoken-text-f452bcba">
         <source xml:lang="en">Y (meters per second squared)</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Y (saniyede metre kare)</target>
+        <target xml:lang="tr" state="translated">Y (metre / saniye kare)</target>
       </trans-unit>
       <trans-unit id="spoken-text-e4ed20c6">
         <source xml:lang="en">Z (meters per second squared)</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Z (saniyede metre kare)</target>
+        <target xml:lang="tr" state="translated">Z (metre / saniye kare)</target>
       </trans-unit>
       <trans-unit id="spoken-text-a4c24c61">
         <source xml:lang="en">alpha (degrees)</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Alfa (derece)</target>
+        <target xml:lang="tr" state="translated">alfa (derece)</target>
       </trans-unit>
       <trans-unit id="spoken-text-92916831">
         <source xml:lang="en">beta (degrees)</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Beta (derece)</target>
+        <target xml:lang="tr" state="translated">beta (derece)</target>
       </trans-unit>
       <trans-unit id="spoken-text-a107533e">
         <source xml:lang="en">gamma (degrees)</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Gama (derece)</target>
+        <target xml:lang="tr" state="translated">gama (derece)</target>
       </trans-unit>
     </body>
   </file>
@@ -130,7 +128,7 @@
       </trans-unit>
       <trans-unit id="spoken-text-8310fdf4">
         <source xml:lang="en">Compass Panel</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Pusula paneli</target>
+        <target xml:lang="tr" state="translated">Pusula Paneli</target>
       </trans-unit>
       <trans-unit id="0d7d15fa:1">
         <source xml:lang="en">Click and drag with the mouse to manipulate the device compass.</source>
@@ -138,7 +136,7 @@
       </trans-unit>
       <trans-unit id="aria-label-77b16982">
         <source xml:lang="en">Heading (degrees)</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">(Derece)</target>
+        <target xml:lang="tr" state="translated">Yön (derece)</target>
       </trans-unit>
     </body>
   </file>
@@ -202,7 +200,7 @@
       </trans-unit>
       <trans-unit id="spoken-text-c045b281">
         <source xml:lang="en">Device Panel</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Aygıt Bölmesi</target>
+        <target xml:lang="tr" state="translated">Cihaz Paneli</target>
       </trans-unit>
     </body>
   </file>
@@ -266,31 +264,31 @@
       </trans-unit>
       <trans-unit id="spoken-text-e4b82624">
         <source xml:lang="en">Geolocation Panel</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Geolocation paneli</target>
+        <target xml:lang="tr" state="translated">Coğrafi Konum Paneli</target>
       </trans-unit>
       <trans-unit id="spoken-text-77f82a12">
         <source xml:lang="en">zoom map out</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Zoom harita dışarı</target>
+        <target xml:lang="tr" state="translated">haritayı uzaklaştır</target>
       </trans-unit>
       <trans-unit id="spoken-text-dbeaf956">
         <source xml:lang="en">zoom map in</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Zoom harita</target>
+        <target xml:lang="tr" state="translated">haritayı yakınlaştır</target>
       </trans-unit>
       <trans-unit id="spoken-text-079f55f6">
         <source xml:lang="en">Altitude (meters)</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Yükseklik (metre)</target>
+        <target xml:lang="tr" state="translated">Yükseklik (metre)</target>
       </trans-unit>
       <trans-unit id="spoken-text-dbece2f9">
         <source xml:lang="en">Accuracy (meters)</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Doğruluk (metre)</target>
+        <target xml:lang="tr" state="translated">Doğruluk (metre)</target>
       </trans-unit>
       <trans-unit id="spoken-text-718f25cb">
         <source xml:lang="en">Altitude accuracy (meters)</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Yükseklik doğruluğu (metre)</target>
+        <target xml:lang="tr" state="translated">Yükseklik doğruluğu (metre)</target>
       </trans-unit>
       <trans-unit id="spoken-text-8fefe84e">
         <source xml:lang="en">Speed (meters per second)</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Hız (metre / saniye)</target>
+        <target xml:lang="tr" state="translated">Hız (metre / saniye)</target>
       </trans-unit>
     </body>
   </file>
@@ -302,19 +300,19 @@
       </trans-unit>
       <trans-unit id="label-9e831385">
         <source xml:lang="en">Locale</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Yerel ayar ayar ayarı</target>
+        <target xml:lang="tr" state="translated">Yerel ayar</target>
       </trans-unit>
       <trans-unit id="label-ee1bad9c">
         <source xml:lang="en">First day of the week</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Haftanın ilk günü</target>
+        <target xml:lang="tr" state="translated">Haftanın ilk günü</target>
       </trans-unit>
       <trans-unit id="24aa60d4:1">
         <source xml:lang="en">Daylight saving time</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Yaz saati</target>
+        <target xml:lang="tr" state="translated">Gün ışığından yararlanma saati</target>
       </trans-unit>
       <trans-unit id="spoken-text-5ffc4b1e">
         <source xml:lang="en">Globalization Panel</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Küreselleşme paneli</target>
+        <target xml:lang="tr" state="translated">Globalleştirme Paneli</target>
       </trans-unit>
     </body>
   </file>
@@ -325,12 +323,12 @@
         <target xml:lang="tr" state="translated">InAppBrowser</target>
       </trans-unit>
       <trans-unit id="99399f4d:1">
-        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em>_blank&lt;/em> target</source>
-        <target xml:lang="tr" state="translated">&lt;em>_blank&lt;/em> hedefini kullanarak açarken, InAppBrowser varsayılan davranışını seçin</target>
+        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em&gt;_blank&lt;/em&gt; target</source>
+        <target xml:lang="tr" state="translated">&lt;em&gt;_blank&lt;/em&gt; hedefini kullanarak açarken, InAppBrowser varsayılan davranışını seçin</target>
       </trans-unit>
       <trans-unit id="c10cdf5b:1">
-        <source xml:lang="en">Open in a new window: &lt;em>_system&lt;/em> target</source>
-        <target xml:lang="tr" state="translated">Yeni bir pencerede aç: &lt;em>_system&lt;/em> hedefi</target>
+        <source xml:lang="en">Open in a new window: &lt;em&gt;_system&lt;/em&gt; target</source>
+        <target xml:lang="tr" state="translated">Yeni bir pencerede aç: &lt;em&gt;_system&lt;/em&gt; hedefi</target>
       </trans-unit>
       <trans-unit id="d107e851:1">
         <source xml:lang="en">Open in a InAppBrowser based on an iframe</source>
@@ -338,7 +336,7 @@
       </trans-unit>
       <trans-unit id="spoken-text-4c1114ef">
         <source xml:lang="en">InAppBrowser Panel</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">InAppBrowser Masası</target>
+        <target xml:lang="tr" state="translated">InAppBrowser Paneli</target>
       </trans-unit>
     </body>
   </file>
@@ -354,27 +352,27 @@
       </trans-unit>
       <trans-unit id="spoken-text-a4a98056">
         <source xml:lang="en">Network Connection Panel</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Ağ bağlantı paneli</target>
+        <target xml:lang="tr" state="translated">Ağ Bağlantısı Paneli</target>
       </trans-unit>
       <trans-unit id="97ac48aa:1">
         <source xml:lang="en">Unknown</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Bilinmiyor</target>
+        <target xml:lang="tr" state="translated">Bilinmiyor</target>
       </trans-unit>
       <trans-unit id="fdf8871a:1">
         <source xml:lang="en">Ethernet</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Ethernet</target>
+        <target xml:lang="tr" state="translated">Ethernet</target>
       </trans-unit>
       <trans-unit id="525d0a74:1">
         <source xml:lang="en">Wi-Fi</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Wi-Fi</target>
+        <target xml:lang="tr" state="translated">Wi-Fi</target>
       </trans-unit>
       <trans-unit id="78db3e46:1">
         <source xml:lang="en">Cellular (unknown speed)</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Cep (bilinmeyen hız)</target>
+        <target xml:lang="tr" state="translated">Hücresel (bilinmeyen hız)</target>
       </trans-unit>
       <trans-unit id="3eca86f2:1">
         <source xml:lang="en">None</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Hiçbiri</target>
+        <target xml:lang="tr" state="translated">Hiçbiri</target>
       </trans-unit>
     </body>
   </file>
@@ -386,7 +384,7 @@
       </trans-unit>
       <trans-unit id="label-4eb9640f">
         <source xml:lang="en">Event to fire</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Olay ateş</target>
+        <target xml:lang="tr" state="translated">Tetiklenecek olay</target>
       </trans-unit>
       <trans-unit id="064dde5f:1">
         <source xml:lang="en">Fire Event</source>
@@ -394,7 +392,7 @@
       </trans-unit>
       <trans-unit id="spoken-text-c9b16703">
         <source xml:lang="en">Events Panel</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Olaylar paneli</target>
+        <target xml:lang="tr" state="translated">Olaylar Paneli</target>
       </trans-unit>
     </body>
   </file>
@@ -454,7 +452,7 @@
       </trans-unit>
       <trans-unit id="spoken-text-983d0535">
         <source xml:lang="en">Persisted Exec Calls Panel</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Exec aramalar Panel kalıcı</target>
+        <target xml:lang="tr" state="translated">Kalıcı Yürütme Çağrıları Paneli</target>
       </trans-unit>
     </body>
   </file>
