@@ -54,6 +54,7 @@ function initialize(changePanelVisibilityCallback) {
             var collapseIcon = this.shadowRoot.querySelector('.cordova-collapse-icon');
 
             this.shadowRoot.querySelector('.cordova-header .spoken-text span').textContent = this.getAttribute('caption');
+            this.shadowRoot.querySelector('.cordova-header .spoken-text span').setAttribute('title', this.getAttribute('caption'));
             this.shadowRoot.querySelector('.cordova-header .spoken-text').setAttribute('aria-label', this.getAttribute('spoken-text') || this.getAttribute('caption'));
 
             function expandCollapse() {
@@ -97,6 +98,7 @@ function initialize(changePanelVisibilityCallback) {
         },
         initialize: function () {
             this.shadowRoot.querySelector('.cordova-header .spoken-text span').textContent = this.getAttribute('caption');
+            this.shadowRoot.querySelector('.cordova-header .spoken-text span').setAttribute('title', this.getAttribute('caption'));
             this.shadowRoot.querySelector('.cordova-header .spoken-text').setAttribute('aria-label', this.getAttribute('spoken-text') || this.getAttribute('caption'));
 
             this.shadowRoot.querySelector('.cordova-close-icon').addEventListener('click', function () {

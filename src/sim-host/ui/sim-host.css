@@ -55,10 +55,15 @@ body /deep/ .cordova-content > ::content > * {
     -webkit-column-gap: 0;
 }
 
-body /deep/ .cordova-value {
+body /deep/ .cordova-value,
+body /deep/ .cordova-header .spoken-text span {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+body /deep/ .cordova-header .spoken-text span {
+    position: absolute;
 }
 
 body /deep/ input {
