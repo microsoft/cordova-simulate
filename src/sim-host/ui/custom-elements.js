@@ -443,7 +443,7 @@ function initialize(changePanelVisibilityCallback) {
             value: {
                 set: function (value) {
                     setValueSafely(this.shadowRoot.querySelector('span'), 'textContent', value);
-					setValueSafely(this.shadowRoot.querySelector('span'), 'title', value);
+                    setValueSafely(this.shadowRoot.querySelector('span'), 'title', value);
                 },
 
                 get: function () {
