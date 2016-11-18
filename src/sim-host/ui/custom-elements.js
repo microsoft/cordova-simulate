@@ -443,6 +443,7 @@ function initialize(changePanelVisibilityCallback) {
             value: {
                 set: function (value) {
                     setValueSafely(this.shadowRoot.querySelector('span'), 'textContent', value);
+					setValueSafely(this.shadowRoot.querySelector('span'), 'title', value);
                 },
 
                 get: function () {
@@ -453,6 +454,7 @@ function initialize(changePanelVisibilityCallback) {
         initialize: function () {
             this.shadowRoot.querySelector('label').textContent = this.getAttribute('label');
             this.shadowRoot.querySelector('span').textContent = this.getAttribute('value');
+            this.shadowRoot.querySelector('span').setAttribute('title', this.getAttribute('value'));
             this.classList.add('cordova-panel-row');
             this.classList.add('cordova-group');
         }
