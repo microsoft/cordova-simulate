@@ -23,6 +23,10 @@ body /deep/ .cordova-header {
     line-height: 20px;
 }
 
+body /deep/ .cordova-header .spoken-text span {
+    width: calc(100% - 40px);
+}
+
 /* 12px margin around top level items in the content a panel */
 body /deep/ .cordova-content > ::content > * {
     margin: 12px;
