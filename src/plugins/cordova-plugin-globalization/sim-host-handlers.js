@@ -296,8 +296,7 @@ function dstOffsetAbs(date) {
 }
 
 function getLocaleName () {
-    var localeList = document.querySelector('#locale-list');
-    return globalizationData.locales[localeList.selectedIndex];
+    return document.querySelector('#locale-list').value;
 }
 
 module.exports = {
