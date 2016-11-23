@@ -51,7 +51,7 @@ function Simulator(opts) {
         updateDevice: this.updateDevice
     };
 
-    this._config.theme = theme.createTheme(simulatorProxy, opts.theme);
+    this.updateTheme(opts.theme);
 
     this._project = new Project(simulatorProxy, opts.platform);
     this._server = new SimulationServer(simulatorProxy, this._project, this.hostRoot);
@@ -201,6 +201,10 @@ Simulator.prototype.stopSimulation = function () {
 Simulator.prototype.updateDevice = function (newDevice) {
     this.config.deviceInfo = device.updateDeviceInfo(newDevice);
 };
+
+Simulator.prototype.updateTheme = function (themeData) {
+    this._config.theme = theme.createTheme(this.hostRoot['sim-host'], themeData);
+}
 
 /**
  * Parse the options provided and create the configuration instance for the current
