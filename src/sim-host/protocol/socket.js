@@ -50,13 +50,10 @@ module.exports.initialize = function (pluginHandlers, services) {
     });
 
     socket.on('retheme', function () {
-        var links = document.head.getElementsByTagName('link');
-        var themeLinks = Array.prototype.filter.call(links, function (elt){
-            return elt.href.indexOf('sim-host-theme.css') >= 0;
-        });
-        if (themeLinks.length > 0) {
+        var themeLink = document.head.querySelector('link[href="sim-host-theme.css"]');
+        if (themeLink) {
             // Trigger the script to reload
-            themeLinks[0].href = 'sim-host-theme.css';
+            themeLink.href = 'sim-host-theme.css';
         }
     });
 
