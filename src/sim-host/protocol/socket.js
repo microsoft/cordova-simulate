@@ -52,11 +52,11 @@ module.exports.initialize = function (pluginHandlers, services) {
     socket.on('retheme', function () {
         var links = document.head.getElementsByTagName('link');
         var themeLinks = Array.prototype.filter.call(links, function (elt){
-            return elt.href.indexOf("sim-host-theme.css") >= 0;
+            return elt.href.indexOf('sim-host-theme.css') >= 0;
         });
         if (themeLinks.length > 0) {
             // Trigger the script to reload
-            themeLinks[0].href = "sim-host-theme.css";
+            themeLinks[0].href = 'sim-host-theme.css';
         }
     });
 
