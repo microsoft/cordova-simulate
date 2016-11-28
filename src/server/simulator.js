@@ -204,7 +204,7 @@ Simulator.prototype.updateDevice = function (newDevice) {
 
 Simulator.prototype.updateTheme = function (themeData) {
     this._config.theme = theme.createTheme(this.hostRoot['sim-host'], themeData);
-    if (this._server.simSocket) {
+    if (this._server && this._server.simSocket) {
         this._server.simSocket.rethemeSimHost();
     }
 }
