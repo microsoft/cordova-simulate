@@ -51,7 +51,7 @@ function Simulator(opts) {
         updateDevice: this.updateDevice
     };
 
-    this.updateTheme(opts.theme);
+    this._createTheme(opts.theme);
 
     this._project = new Project(simulatorProxy, opts.platform);
     this._server = new SimulationServer(simulatorProxy, this._project, this.hostRoot);
@@ -203,7 +203,14 @@ Simulator.prototype.updateDevice = function (newDevice) {
 };
 
 Simulator.prototype.updateTheme = function (themeData) {
-    this._config.theme = theme.createTheme(this.hostRoot['sim-host'], themeData);
+    this._createTheme(themeData);
+    if (this._server && this._server.simSocket) {
+        this._server.simSocket.rethemeSimHost();
+    }
+}
+
+Simulator.prototype._createTheme = function (themeData) {
+    this._config.theme = theme.createTheme(this.hostRoot['sim-host'], themeData);   
 }
 
 /**
