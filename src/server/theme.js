@@ -33,13 +33,13 @@ var appliedDefaultStates = {
 };
 
 module.exports = {
-    createTheme: function (simulatorProxy, theme) {
-        var simHostThemeFile = path.resolve(simulatorProxy.config.simHostOptions.simHostRoot, 'theme.js');
+    createTheme: function (simHostRoot, theme) {
+        var simHostThemeFile = path.resolve(simHostRoot, 'theme.js');
         if (!utils.existsSync(simHostThemeFile)) {
             // The current sim host does not support themes
             return null;
         }
-        return new Theme(simulatorProxy, theme, simHostThemeFile);
+        return new Theme(simHostRoot, theme, simHostThemeFile);
     }
 };
 
@@ -47,11 +47,11 @@ module.exports = {
  * @constructor
  * @private
  */
-function Theme(simulatorProxy, theme, simHostThemeFile) {
+function Theme(simHostRoot, theme, simHostThemeFile) {
     this._themeFileName = null;
     this._simHostThemeInfo = require(simHostThemeFile);
     this._simHostThemeFile = simHostThemeFile;
-    this._simulatorProxy = simulatorProxy;
+    this._simHostRoot = simHostRoot;
     this.themeObject = this._createThemeObject(theme);
 }
 
@@ -168,7 +168,7 @@ Theme.prototype._createThemeCssFile = function (themeCssFileName) {
     // and scales them based on the current font size compared to the sim-host's default font size (always rounded to a
     // whole pixel). This works better than, say, em sizing, which results in fractional pixel sizes and inconsistent
     // results.
-    var simHostScaledCssFile = path.resolve(this._simulatorProxy.config.simHostOptions.simHostRoot, 'sim-host-scaled.css');
+    var simHostScaledCssFile = path.resolve(this._simHostRoot, 'sim-host-scaled.css');
     if (utils.existsSync(simHostScaledCssFile)) {
         var defaultFontSize = this._simHostThemeInfo.defaultFontSize;
         var fontSize = parseFontSize(themeObject.default['']) || 16;

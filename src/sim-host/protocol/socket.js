@@ -49,6 +49,14 @@ module.exports.initialize = function (pluginHandlers, services) {
         document.location.reload(true);
     });
 
+    socket.on('retheme', function () {
+        var themeLink = document.head.querySelector('link[href="sim-host-theme.css"]');
+        if (themeLink) {
+            // Trigger the script to reload
+            themeLink.href = 'sim-host-theme.css';
+        }
+    });
+
     socket.on('connect', function () {
         registerSimHost();
     });
