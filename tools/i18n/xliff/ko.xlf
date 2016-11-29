@@ -1,5 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+<?xml version="1.0" encoding="utf-8"?>
+<xliff 
+  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
   <file original="plugins\cordova-plugin-battery-status\sim-host-panels.html" source-language="en" target-language="ko">
     <body>
       <trans-unit id="caption-ac1dbd34">
@@ -79,8 +81,8 @@
         <target xml:lang="ko" state="translated">기록된 데이터</target>
       </trans-unit>
       <trans-unit id="c562ff87:1">
-        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br&gt; Hold the Shift key to modify 'alpha'</source>
-        <target xml:lang="ko" state="translated">마우스로 클릭하고 끌어 장치를 조작합니다. &lt;br&gt; &amp;lt;Shift&amp;gt; 키를 누른 채로 '알파'를 수정합니다.</target>
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br> Hold the Shift key to modify 'alpha'</source>
+        <target xml:lang="ko" state="translated">마우스로 클릭하고 끌어 장치를 조작합니다. &lt;br> &amp;lt;Shift&amp;gt; 키를 누른 채로 '알파'를 수정합니다.</target>
       </trans-unit>
       <trans-unit id="1b009684:1">
         <source xml:lang="en">Play</source>
@@ -314,6 +316,58 @@
         <source xml:lang="en">Globalization Panel</source>
         <target xml:lang="ko" state="translated">세계화 패널</target>
       </trans-unit>
+      <trans-unit id="0ebb8953:1">
+        <source xml:lang="en">English</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">English</target>
+      </trans-unit>
+      <trans-unit id="84807dbd:1">
+        <source xml:lang="en">English (Canadian)</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">English (Canadian)</target>
+      </trans-unit>
+      <trans-unit id="28183d78:1">
+        <source xml:lang="en">French</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">French</target>
+      </trans-unit>
+      <trans-unit id="cc60c446:1">
+        <source xml:lang="en">French (Canadian)</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">French (Canadian)</target>
+      </trans-unit>
+      <trans-unit id="7a9d0031:1">
+        <source xml:lang="en">German</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">German</target>
+      </trans-unit>
+      <trans-unit id="a84e5586:1">
+        <source xml:lang="en">Russian</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">Russian</target>
+      </trans-unit>
+      <trans-unit id="4fdbcc70:1">
+        <source xml:lang="en">Sunday</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">Sunday</target>
+      </trans-unit>
+      <trans-unit id="336f3d4d:1">
+        <source xml:lang="en">Monday</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">Monday</target>
+      </trans-unit>
+      <trans-unit id="f5dc2559:1">
+        <source xml:lang="en">Tuesday</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">Tuesday</target>
+      </trans-unit>
+      <trans-unit id="6bc25447:1">
+        <source xml:lang="en">Wednesday</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">Wednesday</target>
+      </trans-unit>
+      <trans-unit id="9c641b0a:1">
+        <source xml:lang="en">Thursday</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">Thursday</target>
+      </trans-unit>
+      <trans-unit id="bcf881cf:1">
+        <source xml:lang="en">Friday</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">Friday</target>
+      </trans-unit>
+      <trans-unit id="2c722da0:1">
+        <source xml:lang="en">Saturday</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">Saturday</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-inappbrowser\sim-host-panels.html" source-language="en" target-language="ko">
@@ -323,12 +377,12 @@
         <target xml:lang="ko" state="translated">InAppBrowser</target>
       </trans-unit>
       <trans-unit id="99399f4d:1">
-        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em&gt;_blank&lt;/em&gt; target</source>
-        <target xml:lang="ko" state="translated">&lt;em&gt;_blank&lt;/em&gt; 대상을 사용하여 열 때 InAppBrowser의 기본 동작 선택</target>
+        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em>_blank&lt;/em> target</source>
+        <target xml:lang="ko" state="translated">&lt;em>_blank&lt;/em> 대상을 사용하여 열 때 InAppBrowser의 기본 동작 선택</target>
       </trans-unit>
       <trans-unit id="c10cdf5b:1">
-        <source xml:lang="en">Open in a new window: &lt;em&gt;_system&lt;/em&gt; target</source>
-        <target xml:lang="ko" state="translated">새 창에서 열기: &lt;em&gt;_system&lt;/em&gt; 대상</target>
+        <source xml:lang="en">Open in a new window: &lt;em>_system&lt;/em> target</source>
+        <target xml:lang="ko" state="translated">새 창에서 열기: &lt;em>_system&lt;/em> 대상</target>
       </trans-unit>
       <trans-unit id="d107e851:1">
         <source xml:lang="en">Open in a InAppBrowser based on an iframe</source>
