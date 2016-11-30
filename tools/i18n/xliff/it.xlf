@@ -318,55 +318,55 @@
       </trans-unit>
       <trans-unit id="0ebb8953:1">
         <source xml:lang="en">English</source>
-        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">English</target>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Inglese</target>
       </trans-unit>
       <trans-unit id="84807dbd:1">
         <source xml:lang="en">English (Canadian)</source>
-        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">English (Canadian)</target>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Inglese (Canada)</target>
       </trans-unit>
       <trans-unit id="28183d78:1">
         <source xml:lang="en">French</source>
-        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">French</target>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Francese</target>
       </trans-unit>
       <trans-unit id="cc60c446:1">
         <source xml:lang="en">French (Canadian)</source>
-        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">French (Canadian)</target>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Francese (Canada)</target>
       </trans-unit>
       <trans-unit id="7a9d0031:1">
         <source xml:lang="en">German</source>
-        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">German</target>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Tedesco</target>
       </trans-unit>
       <trans-unit id="a84e5586:1">
         <source xml:lang="en">Russian</source>
-        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Russian</target>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Russo</target>
       </trans-unit>
       <trans-unit id="4fdbcc70:1">
         <source xml:lang="en">Sunday</source>
-        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Sunday</target>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Domenica</target>
       </trans-unit>
       <trans-unit id="336f3d4d:1">
         <source xml:lang="en">Monday</source>
-        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Monday</target>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Lunedì</target>
       </trans-unit>
       <trans-unit id="f5dc2559:1">
         <source xml:lang="en">Tuesday</source>
-        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Tuesday</target>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Martedì</target>
       </trans-unit>
       <trans-unit id="6bc25447:1">
         <source xml:lang="en">Wednesday</source>
-        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Wednesday</target>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Mercoledì</target>
       </trans-unit>
       <trans-unit id="9c641b0a:1">
         <source xml:lang="en">Thursday</source>
-        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Thursday</target>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Giovedì</target>
       </trans-unit>
       <trans-unit id="bcf881cf:1">
         <source xml:lang="en">Friday</source>
-        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Friday</target>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Venerdì</target>
       </trans-unit>
       <trans-unit id="2c722da0:1">
         <source xml:lang="en">Saturday</source>
-        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Saturday</target>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Sabato</target>
       </trans-unit>
     </body>
   </file>

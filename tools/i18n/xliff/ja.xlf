@@ -318,55 +318,55 @@
       </trans-unit>
       <trans-unit id="0ebb8953:1">
         <source xml:lang="en">English</source>
-        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">English</target>
+        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">英語</target>
       </trans-unit>
       <trans-unit id="84807dbd:1">
         <source xml:lang="en">English (Canadian)</source>
-        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">English (Canadian)</target>
+        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">英語 (カナダ)</target>
       </trans-unit>
       <trans-unit id="28183d78:1">
         <source xml:lang="en">French</source>
-        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">French</target>
+        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">フランス語</target>
       </trans-unit>
       <trans-unit id="cc60c446:1">
         <source xml:lang="en">French (Canadian)</source>
-        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">French (Canadian)</target>
+        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">フランス語 (カナダ)</target>
       </trans-unit>
       <trans-unit id="7a9d0031:1">
         <source xml:lang="en">German</source>
-        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">German</target>
+        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">ドイツ語</target>
       </trans-unit>
       <trans-unit id="a84e5586:1">
         <source xml:lang="en">Russian</source>
-        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">Russian</target>
+        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">ロシア語</target>
       </trans-unit>
       <trans-unit id="4fdbcc70:1">
         <source xml:lang="en">Sunday</source>
-        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">Sunday</target>
+        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">日曜日</target>
       </trans-unit>
       <trans-unit id="336f3d4d:1">
         <source xml:lang="en">Monday</source>
-        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">Monday</target>
+        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">(月曜日)</target>
       </trans-unit>
       <trans-unit id="f5dc2559:1">
         <source xml:lang="en">Tuesday</source>
-        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">Tuesday</target>
+        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">(火曜日)</target>
       </trans-unit>
       <trans-unit id="6bc25447:1">
         <source xml:lang="en">Wednesday</source>
-        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">Wednesday</target>
+        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">(水曜日)</target>
       </trans-unit>
       <trans-unit id="9c641b0a:1">
         <source xml:lang="en">Thursday</source>
-        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">Thursday</target>
+        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">(木曜日)</target>
       </trans-unit>
       <trans-unit id="bcf881cf:1">
         <source xml:lang="en">Friday</source>
-        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">Friday</target>
+        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">金曜日</target>
       </trans-unit>
       <trans-unit id="2c722da0:1">
         <source xml:lang="en">Saturday</source>
-        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">Saturday</target>
+        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">土曜日</target>
       </trans-unit>
     </body>
   </file>
