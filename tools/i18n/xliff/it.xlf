@@ -82,7 +82,7 @@
       </trans-unit>
       <trans-unit id="c562ff87:1">
         <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br> Hold the Shift key to modify 'alpha'</source>
-        <target xml:lang="it" state="translated">Fare clic e trascinare con il mouse per modificare il dispositivo. &lt;br>Tenere premuto MAIUSC per modificare il valore di 'alfa'</target>
+        <target xml:lang="it" state="translated">Fare clic e trascinare con il mouse per modificare il dispositivo. &lt;br>Tenere premuto MAIUSC per modificare il valore di 'alpha'</target>
       </trans-unit>
       <trans-unit id="1b009684:1">
         <source xml:lang="en">Play</source>
