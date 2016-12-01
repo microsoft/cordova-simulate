@@ -1,5 +1,13 @@
 # cordova-simulate Release Notes
 
+### 0.3.6 (Dec 1, 2016)
+* Ensure XHR proxy forwards headers ([#212](https://github.com/Microsoft/cordova-simulate/pull/212))
+* Don't localize 'alpha' ([#208](https://github.com/Microsoft/cordova-simulate/pull/208), [#209](https://github.com/Microsoft/cordova-simulate/pull/209))
+* Support updating the current theme on the fly ([#205](https://github.com/Microsoft/cordova-simulate/pull/205), [#206](https://github.com/Microsoft/cordova-simulate/pull/206))
+* Localize languages and day names in *Globalization* panel ([#204](https://github.com/Microsoft/cordova-simulate/pull/204))
+* Ellipsize panel captions that are too wide to fit, and provide a tooltip ([#202](https://github.com/Microsoft/cordova-simulate/pull/202))
+* Add tooltips to labeled values, so value can be seen when label is wide (in certain languages) ([#201](https://github.com/Microsoft/cordova-simulate/pull/201))
+
 ### 0.3.5 (Nov 16, 2016)
 * Improved support for screen readers ([#185](https://github.com/Microsoft/cordova-simulate/pull/185), [#186](https://github.com/Microsoft/cordova-simulate/pull/186), [#189](https://github.com/Microsoft/cordova-simulate/pull/189), [#197](https://github.com/Microsoft/cordova-simulate/pull/197))
 * Further keyboard improvements (`esc` closes dialogs, `del` deletes persisted exec calls, editable *Accelerometer* panel values) ([#188](https://github.com/Microsoft/cordova-simulate/pull/188), [#187](https://github.com/Microsoft/cordova-simulate/pull/187), [#190](https://github.com/Microsoft/cordova-simulate/pull/190)) 
