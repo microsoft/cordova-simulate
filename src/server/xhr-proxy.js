@@ -21,6 +21,7 @@ module.exports.attach = function (app) {
         };
 
         var proxyCallback = function (proxyResponse) {
+            response.writeHead(proxyResponse.statusCode, proxyResponse.statusMessage, proxyResponse.headers);
             proxyResponse.pipe(response);
         };
         
