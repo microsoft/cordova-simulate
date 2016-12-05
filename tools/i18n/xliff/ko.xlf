@@ -80,7 +80,7 @@
       </trans-unit>
       <trans-unit id="c562ff87:1">
         <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br&gt; Hold the Shift key to modify 'alpha'</source>
-        <target xml:lang="ko" state="translated">마우스로 클릭하고 끌어 장치를 조작합니다. &amp;lt;br&gt; &amp;amp;lt;Shift&amp;amp;gt; 키를 누른 채로 ' alpha'를 수정합니다.</target>
+        <target xml:lang="ko" state="translated">마우스로 클릭하고 끌어 장치를 조작합니다. &lt;br&gt; &amp;lt;Shift&amp;gt; 키를 누른 채로 ' alpha'를 수정합니다.</target>
       </trans-unit>
       <trans-unit id="1b009684:1">
         <source xml:lang="en">Play</source>
