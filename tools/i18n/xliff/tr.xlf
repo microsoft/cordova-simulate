@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xliff 
-  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
   <file original="plugins\cordova-plugin-battery-status\sim-host-panels.html" source-language="en" target-language="tr">
     <body>
       <trans-unit id="caption-ac1dbd34">
@@ -81,8 +79,8 @@
         <target xml:lang="tr" state="translated">Kaydedilen Veriler</target>
       </trans-unit>
       <trans-unit id="c562ff87:1">
-        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br> Hold the Shift key to modify 'alpha'</source>
-        <target xml:lang="tr" state="translated">Cihazı yönetmek için tıklayıp sürükleyin. &lt;br>’Alpha’ değerini değiştirmek için Shift tuşunu basılı tutun</target>
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br&gt; Hold the Shift key to modify 'alpha'</source>
+        <target xml:lang="tr" state="translated">Cihazı yönetmek için tıklayıp sürükleyin. &lt;br&gt;’Alpha’ değerini değiştirmek için Shift tuşunu basılı tutun</target>
       </trans-unit>
       <trans-unit id="1b009684:1">
         <source xml:lang="en">Play</source>
@@ -318,55 +316,55 @@
       </trans-unit>
       <trans-unit id="0ebb8953:1">
         <source xml:lang="en">English</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">İngilizce</target>
+        <target xml:lang="tr" state="translated">İngilizce</target>
       </trans-unit>
       <trans-unit id="84807dbd:1">
         <source xml:lang="en">English (Canadian)</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">İngilizce (Kanada)</target>
+        <target xml:lang="tr" state="translated">İngilizce (Kanada)</target>
       </trans-unit>
       <trans-unit id="28183d78:1">
         <source xml:lang="en">French</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Fransızca</target>
+        <target xml:lang="tr" state="translated">Fransızca</target>
       </trans-unit>
       <trans-unit id="cc60c446:1">
         <source xml:lang="en">French (Canadian)</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Fransızca (Kanada)</target>
+        <target xml:lang="tr" state="translated">Fransızca (Kanada)</target>
       </trans-unit>
       <trans-unit id="7a9d0031:1">
         <source xml:lang="en">German</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Almanca</target>
+        <target xml:lang="tr" state="translated">Almanca</target>
       </trans-unit>
       <trans-unit id="a84e5586:1">
         <source xml:lang="en">Russian</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Rusça</target>
+        <target xml:lang="tr" state="translated">Rusça</target>
       </trans-unit>
       <trans-unit id="4fdbcc70:1">
         <source xml:lang="en">Sunday</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Pazar</target>
+        <target xml:lang="tr" state="translated">Pazar</target>
       </trans-unit>
       <trans-unit id="336f3d4d:1">
         <source xml:lang="en">Monday</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Pazartesi</target>
+        <target xml:lang="tr" state="translated">Pazartesi</target>
       </trans-unit>
       <trans-unit id="f5dc2559:1">
         <source xml:lang="en">Tuesday</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Salı</target>
+        <target xml:lang="tr" state="translated">Salı</target>
       </trans-unit>
       <trans-unit id="6bc25447:1">
         <source xml:lang="en">Wednesday</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Çarşamba</target>
+        <target xml:lang="tr" state="translated">Çarşamba</target>
       </trans-unit>
       <trans-unit id="9c641b0a:1">
         <source xml:lang="en">Thursday</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Perşembe</target>
+        <target xml:lang="tr" state="translated">Perşembe</target>
       </trans-unit>
       <trans-unit id="bcf881cf:1">
         <source xml:lang="en">Friday</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Cuma</target>
+        <target xml:lang="tr" state="translated">Cuma</target>
       </trans-unit>
       <trans-unit id="2c722da0:1">
         <source xml:lang="en">Saturday</source>
-        <target xml:lang="tr" state="needs-translation" state-qualifier="mt-suggestion">Cumartesi</target>
+        <target xml:lang="tr" state="translated">Cumartesi</target>
       </trans-unit>
     </body>
   </file>
@@ -377,12 +375,12 @@
         <target xml:lang="tr" state="translated">InAppBrowser</target>
       </trans-unit>
       <trans-unit id="99399f4d:1">
-        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em>_blank&lt;/em> target</source>
-        <target xml:lang="tr" state="translated">&lt;em>_blank&lt;/em> hedefini kullanarak açarken, InAppBrowser varsayılan davranışını seçin</target>
+        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em&gt;_blank&lt;/em&gt; target</source>
+        <target xml:lang="tr" state="translated">&lt;em&gt;_blank&lt;/em&gt; hedefini kullanarak açarken, InAppBrowser varsayılan davranışını seçin</target>
       </trans-unit>
       <trans-unit id="c10cdf5b:1">
-        <source xml:lang="en">Open in a new window: &lt;em>_system&lt;/em> target</source>
-        <target xml:lang="tr" state="translated">Yeni bir pencerede aç: &lt;em>_system&lt;/em> hedefi</target>
+        <source xml:lang="en">Open in a new window: &lt;em&gt;_system&lt;/em&gt; target</source>
+        <target xml:lang="tr" state="translated">Yeni bir pencerede aç: &lt;em&gt;_system&lt;/em&gt; hedefi</target>
       </trans-unit>
       <trans-unit id="d107e851:1">
         <source xml:lang="en">Open in a InAppBrowser based on an iframe</source>

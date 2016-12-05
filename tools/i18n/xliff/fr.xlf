@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xliff 
-  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
   <file original="plugins\cordova-plugin-battery-status\sim-host-panels.html" source-language="en" target-language="fr">
     <body>
       <trans-unit id="caption-ac1dbd34">
@@ -81,8 +79,8 @@
         <target xml:lang="fr" state="translated">Données enregistrées</target>
       </trans-unit>
       <trans-unit id="c562ff87:1">
-        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br> Hold the Shift key to modify 'alpha'</source>
-        <target xml:lang="fr" state="translated">Cliquez et faites glisser la souris pour manipuler l'appareil. &lt;br> Maintenez la touche Maj enfoncée pour modifier la valeur 'alpha'</target>
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br&gt; Hold the Shift key to modify 'alpha'</source>
+        <target xml:lang="fr" state="translated">Cliquez et faites glisser la souris pour manipuler l'appareil. &lt;br&gt; Maintenez la touche Maj enfoncée pour modifier la valeur 'alpha'</target>
       </trans-unit>
       <trans-unit id="1b009684:1">
         <source xml:lang="en">Play</source>
@@ -318,55 +316,55 @@
       </trans-unit>
       <trans-unit id="0ebb8953:1">
         <source xml:lang="en">English</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Anglais</target>
+        <target xml:lang="fr" state="translated">Anglais</target>
       </trans-unit>
       <trans-unit id="84807dbd:1">
         <source xml:lang="en">English (Canadian)</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Anglais (Canada)</target>
+        <target xml:lang="fr" state="translated">Anglais (Canada)</target>
       </trans-unit>
       <trans-unit id="28183d78:1">
         <source xml:lang="en">French</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Français</target>
+        <target xml:lang="fr" state="translated">Français</target>
       </trans-unit>
       <trans-unit id="cc60c446:1">
         <source xml:lang="en">French (Canadian)</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Français (Canada)</target>
+        <target xml:lang="fr" state="translated">Français (Canada)</target>
       </trans-unit>
       <trans-unit id="7a9d0031:1">
         <source xml:lang="en">German</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Allemand</target>
+        <target xml:lang="fr" state="translated">Allemand</target>
       </trans-unit>
       <trans-unit id="a84e5586:1">
         <source xml:lang="en">Russian</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Russe</target>
+        <target xml:lang="fr" state="translated">Russe</target>
       </trans-unit>
       <trans-unit id="4fdbcc70:1">
         <source xml:lang="en">Sunday</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Dimanche</target>
+        <target xml:lang="fr" state="translated">Dimanche</target>
       </trans-unit>
       <trans-unit id="336f3d4d:1">
         <source xml:lang="en">Monday</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Lundi</target>
+        <target xml:lang="fr" state="translated">Lundi</target>
       </trans-unit>
       <trans-unit id="f5dc2559:1">
         <source xml:lang="en">Tuesday</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Mardi</target>
+        <target xml:lang="fr" state="translated">Mardi</target>
       </trans-unit>
       <trans-unit id="6bc25447:1">
         <source xml:lang="en">Wednesday</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Mercredi</target>
+        <target xml:lang="fr" state="translated">Mercredi</target>
       </trans-unit>
       <trans-unit id="9c641b0a:1">
         <source xml:lang="en">Thursday</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Jeudi</target>
+        <target xml:lang="fr" state="translated">Jeudi</target>
       </trans-unit>
       <trans-unit id="bcf881cf:1">
         <source xml:lang="en">Friday</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Vendredi</target>
+        <target xml:lang="fr" state="translated">Vendredi</target>
       </trans-unit>
       <trans-unit id="2c722da0:1">
         <source xml:lang="en">Saturday</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Samedi</target>
+        <target xml:lang="fr" state="translated">Samedi</target>
       </trans-unit>
     </body>
   </file>
@@ -377,12 +375,12 @@
         <target xml:lang="fr" state="translated">InAppBrowser</target>
       </trans-unit>
       <trans-unit id="99399f4d:1">
-        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em>_blank&lt;/em> target</source>
-        <target xml:lang="fr" state="translated">Sélectionner le comportement par défaut de InAppBrowser à l'ouverture pour la cible &lt;em>_blank&lt;/em></target>
+        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em&gt;_blank&lt;/em&gt; target</source>
+        <target xml:lang="fr" state="translated">Sélectionner le comportement par défaut de InAppBrowser à l'ouverture pour la cible &lt;em&gt;_blank&lt;/em&gt;</target>
       </trans-unit>
       <trans-unit id="c10cdf5b:1">
-        <source xml:lang="en">Open in a new window: &lt;em>_system&lt;/em> target</source>
-        <target xml:lang="fr" state="translated">Ouvrir dans une nouvelle fenêtre : cible &lt;em>_system&lt;/em></target>
+        <source xml:lang="en">Open in a new window: &lt;em&gt;_system&lt;/em&gt; target</source>
+        <target xml:lang="fr" state="translated">Ouvrir dans une nouvelle fenêtre : cible &lt;em&gt;_system&lt;/em&gt;</target>
       </trans-unit>
       <trans-unit id="d107e851:1">
         <source xml:lang="en">Open in a InAppBrowser based on an iframe</source>
