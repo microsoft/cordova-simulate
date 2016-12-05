@@ -1,5 +1,8 @@
 # cordova-simulate Release Notes
 
+### 0.3.7 (Dec 5, 2016)
+* Loc team pass on recent machine translated strings ([#213](https://github.com/Microsoft/cordova-simulate/pull/213), [#214](https://github.com/Microsoft/cordova-simulate/pull/214))
+
 ### 0.3.6 (Dec 1, 2016)
 * Ensure XHR proxy forwards headers ([#212](https://github.com/Microsoft/cordova-simulate/pull/212))
 * Don't localize 'alpha' ([#208](https://github.com/Microsoft/cordova-simulate/pull/208), [#209](https://github.com/Microsoft/cordova-simulate/pull/209))
