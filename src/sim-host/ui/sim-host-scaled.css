@@ -118,6 +118,10 @@ input[type=range]::-ms-track {
     height: 2px;
     border-top: solid transparent 10px;
     border-bottom: solid transparent 10px;
+    /* This keeps the transparency so the slider bar is against
+       background color rather than button-color */
+    -ms-high-contrast-adjust: none;
+
 }
 
 /* These properties !important to override -webkit-slider-thumb values in Edge */
