@@ -6,8 +6,10 @@
     margin-right: auto;
 }
 
-#accelerometer-canvas {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+#device-motion #accelerometer-canvas {
+    margin: 0 auto;
+    position: relative;
+
+    /* Weird percentage is 200/294, which keeps size the same as it used to be */
+    width: 68.03%;
 }
