@@ -24,15 +24,8 @@ module.exports = function (messages) {
         var inputHeading = document.getElementById('compass-heading-value'),
             headingText = document.querySelector('[data-compass-heading="text"]');
 
-        // Determine a scale to use for the compass. This treats a panel width of 320px as being "100%"
-        var scale = parseFloat(window.getComputedStyle(document.querySelector('cordova-panel')).width) / 320;
-        var container = document.querySelector('#device-orientation #compass-widget');
-        var containerSize = (184 * scale) + 'px';
-        container.style.width = containerSize;
-        container.style.height = containerSize;
-
         var compassWidget = new CompassWidget({
-            container: container,
+            container: document.querySelector('#device-orientation #compass-widget'),
             headingUpdatedCallback: function (heading) {
                 messages.emit('device-orientation-updated', heading.value, true);
             },
