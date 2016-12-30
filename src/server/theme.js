@@ -12,24 +12,24 @@ var selectorStateToken = '%state%';
 // should define these properties on 'default' if they want them applied as defaults on the various element types.
 var appliedDefaultProperties = {
     'body': ['background', 'color', 'font-family', 'font-size', 'font-weight'],
-    'panel': ['border', 'background'],
-    'panel-caption': ['font-family', 'font-size', 'font-weight', 'background'],
-    'button': ['border', 'background', 'color', 'font-family', 'font-size', 'font-weight', 'outline'],
-    'input': ['border', 'background', 'color', 'font-family', 'font-size', 'font-weight', 'outline'],
+    'panel': ['background', 'border', 'outline'],
+    'panel-caption': ['background', 'color', 'font-family', 'font-size', 'font-weight'],
+    'button': ['background', 'border', 'color', 'font-family', 'font-size', 'font-weight', 'outline'],
+    'input': ['background', 'border', 'color', 'font-family', 'font-size', 'font-weight', 'outline'],
     'label': ['color', 'font-family', 'font-size', 'font-weight'],
     'value': ['color', 'font-family', 'font-size', 'font-weight'],
-    'thumb': ['border', 'background'],
-    'check': ['color', 'border', 'background']
+    'thumb': ['background', 'border'],
+    'check': ['background', 'border', 'color']
 };
 
 // States that will be applied from the set of default states if they're not defined for an element
 var appliedDefaultStates = {
     'panel': ['focus'],
     'panel-caption': ['focus'],
-    'button': ['hover', 'focus'],
-    'input': ['hover', 'focus'],
-    'thumb': ['hover', 'focus'],
-    'check': ['hover', 'focus']
+    'button': ['active:hover', 'focus', 'hover'],
+    'input': ['focus', 'hover'],
+    'thumb': ['focus', 'hover'],
+    'check': ['focus', 'hover']
 };
 
 module.exports = {
