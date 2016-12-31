@@ -91,14 +91,6 @@ function initialize() {
         if (axis.hasOwnProperty('gamma')) gamma.value = axis.gamma;
     });
 
-    // Determine a scale to use for the compass. This treats a panel width of 320px as being '100%'
-    var scale = parseFloat(window.getComputedStyle(document.querySelector('cordova-panel')).width) / 320;
-    var canvasElement = document.getElementById('accelerometer-canvas');
-    var canvas = canvasElement.getContext('2d');
-    canvasElement.setAttribute('width', Math.round(scale * 200));
-    canvasElement.setAttribute('height', Math.round(scale * 160));
-    canvas.scale(scale, scale);
-
     createCanvas();
 
     setToDefaultPosition();
