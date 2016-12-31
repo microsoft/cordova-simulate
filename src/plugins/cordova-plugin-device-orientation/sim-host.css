@@ -1,6 +1,9 @@
 #device-orientation #compass-widget {
     margin: 0 auto;
     position: relative;
+
+    /* Weird percentage is 184/294, which keeps size the same as it used to be */
+    width: 62.59%;
 }
 
 #device-orientation [data-compass-heading="text"] {

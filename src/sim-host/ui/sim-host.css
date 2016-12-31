@@ -219,6 +219,18 @@ body /deep/ .cordova-hidden {
     display: none;
 }
 
+body /deep/ .cordova-square-box-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+}
+
+body /deep/ .cordova-square-box-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
 body /deep/ input[type=range] {
     background: transparent;
     outline: none;
