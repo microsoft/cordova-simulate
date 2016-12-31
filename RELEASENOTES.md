@@ -1,5 +1,9 @@
 # cordova-simulate Release Notes
 
+### 0.3.8 (Dec 30, 2016)
+* Update compass and accelerometer panel device widget to scale dynamically when font size changes ([#219](https://github.com/Microsoft/cordova-simulate/pull/219), [#220](https://github.com/Microsoft/cordova-simulate/pull/220))
+* Update slider controls to work better in high contrast mode in IE ([#216](https://github.com/Microsoft/cordova-simulate/pull/216))
+
 ### 0.3.7 (Dec 5, 2016)
 * Loc team pass on recent machine translated strings ([#213](https://github.com/Microsoft/cordova-simulate/pull/213), [#214](https://github.com/Microsoft/cordova-simulate/pull/214))
 
