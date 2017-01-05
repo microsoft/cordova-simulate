@@ -164,6 +164,11 @@ Theme.prototype._createThemeCssFile = function (themeCssFileName) {
         });
     });
 
+    // Allow the sim host to do any custom stuff that couldn't be handled with the default selector handling
+    if (this._simHostThemeInfo.doCustom) {
+        this._simHostThemeInfo.doCustom(css, themeObject)
+    }
+
     // If sim host provides a CSS file to be scaled, scale and append it. Scaling searches for sizes declared in pixels,
     // and scales them based on the current font size compared to the sim-host's default font size (always rounded to a
     // whole pixel). This works better than, say, em sizing, which results in fractional pixel sizes and inconsistent

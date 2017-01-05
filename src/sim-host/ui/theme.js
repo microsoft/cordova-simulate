@@ -85,5 +85,34 @@ module.exports = {
         }
     },
 
-    defaultFontSize: 13
+    defaultFontSize: 13,
+
+    doCustom: function (css, themeObject) {
+        // Support scroll bar colors. Note that this is only supported for IE, because Webkit/Chrome makes it too difficult.
+        var scrollBarColors = themeObject.scrollbar && themeObject.scrollbar[''];
+        if (scrollBarColors) {
+            var ieScrollBarColorCssProperties = [];
+            if (scrollBarColors.arrow) {
+                ieScrollBarColorCssProperties.push('  scrollbar-arrow-color: ' + scrollBarColors.arrow + ';');
+            }
+
+            if (scrollBarColors.face) {
+                ieScrollBarColorCssProperties.push('  scrollbar-face-color: ' + scrollBarColors.face + ';');
+            }
+
+            if (scrollBarColors.background) {
+                ieScrollBarColorCssProperties.push('  scrollbar-3dlight-color: ' + scrollBarColors.background + ';');
+                ieScrollBarColorCssProperties.push('  scrollbar-darkshadow-color: ' + scrollBarColors.background + ';');
+                ieScrollBarColorCssProperties.push('  scrollbar-highlight-color: ' + scrollBarColors.background + ';');
+                ieScrollBarColorCssProperties.push('  scrollbar-shadow-color: ' + scrollBarColors.background + ';');
+                ieScrollBarColorCssProperties.push('  scrollbar-track-color: ' + scrollBarColors.background + ';');
+            }
+
+            if (ieScrollBarColorCssProperties.length) {
+                css.push('body {');
+                css.push(ieScrollBarColorCssProperties.join('\n'));
+                css.push('}');
+            }
+        }
+    }
 };
