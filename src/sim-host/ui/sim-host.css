@@ -55,6 +55,14 @@ body /deep/ .cordova-content > ::content > * {
     -webkit-column-gap: 0;
 }
 
+.cordova-labeled-value-wrapper {
+    width: 100%;
+}
+
+.cordova-labeled-value-wrapper span {
+    float: right;
+}
+
 body /deep/ .cordova-value,
 body /deep/ .cordova-header .spoken-text span {
     white-space: nowrap;
