@@ -22,11 +22,11 @@ module.exports.attach = function (app) {
 
         var proxyCallback = function (proxyResponse) {
 
-            if(requestURL.protocol === 'https:' && proxyResponse.headers.hasOwnProperty("set-cookie")) {
-                proxyResponse.headers['set-cookie'] = proxyResponse.headers['set-cookie'].map(h => {
-                    return h.split('; ').filter(o => {
+            if(requestURL.protocol === 'https:' && proxyResponse.headers.hasOwnProperty('set-cookie')) {
+                proxyResponse.headers['set-cookie'] = proxyResponse.headers['set-cookie'].map(function(h) {
+                    return h.split('; ').filter(function(o) {
                         return o !== 'secure';
-                    }).join("; ");
+                    }).join('; ');
                 });
             }
 
