@@ -68,15 +68,9 @@ function handleWatcherEvent(root, fileRelativePath) {
         return;
     }
 
-    this._ignoreEvents[ignoreId] = true;
-    setTimeout(function () {
-        this._ignoreEvents[ignoreId] = false;
-    }.bind(this), EVENT_IGNORE_DURATION);
-
     if (!fileRelativePath) {
         // fs.watch() doesn't always set the fileRelativePath argument properly. If that happens, let the user know.
         log.warning('Could not reload the modified file because fs.watch() didn\'t specify which file was changed');
-
         return;
     }
 
@@ -95,7 +89,11 @@ function handleWatcherEvent(root, fileRelativePath) {
         return;
     }
 
-    this.emit('file-changed', fileRelativePath, root);
+    this._ignoreEvents[ignoreId] = true;
+    setTimeout(function () {
+        this._ignoreEvents[ignoreId] = false;
+        this.emit('file-changed', fileRelativePath, root);
+    }.bind(this), EVENT_IGNORE_DURATION);
 }
 
 function fileHasMergesOverride(fileRelativePath) {
