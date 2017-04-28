@@ -79,8 +79,13 @@ module.exports = function (messages) {
             // Setup handlers for choosing an image in the panel
             filenameInput.accept = 'image/*';
             document.getElementById('camera-choose-filename').addEventListener('click', function () {
+                if (this.disabled) {
+                    return;
+                }
+                this.disabled = true;
                 telemetry.sendUITelemetry(Object.assign({}, baseProps, { control: 'camera-choose-filename' }));
                 filenameInput.input.click();
+                this.disabled = false;
             });
 
             filenameInput.addEventListener('change', function () {
