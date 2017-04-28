@@ -35,7 +35,7 @@ module.exports = {
                     errorDisplay.style.display = 'none';
                     document.getElementById('exec-service').textContent = service;
                     document.getElementById('exec-action').textContent = action;
-                    document.getElementById('exec-args').textContent = (args || []).map(JSON.stringify).join(", ");
+                    document.getElementById('exec-args').textContent = (args || []).map(JSON.stringify).join(', ');
 
                     /*eslint-disable no-inner-declarations */
                     function handleSuccess() {
