@@ -462,10 +462,6 @@
         <source xml:lang="en">service</source>
         <target xml:lang="pt" state="translated">serviço</target>
       </trans-unit>
-      <trans-unit id="veyymo5t:1">
-        <source xml:lang="en">arguments</source>
-        <target xml:lang="pt" state="needs-translation">arguments</target>
-      </trans-unit>
       <trans-unit id="e4c1ba28:1">
         <source xml:lang="en">action</source>
         <target xml:lang="pt" state="translated">ação</target>
