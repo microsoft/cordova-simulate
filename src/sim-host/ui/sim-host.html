@@ -12,6 +12,22 @@
     <script src="/simulator/thirdparty/socket.io.js"></script>
     <script src="sim-host.js"></script>
 
+    <style>
+        @media screen and (-ms-high-contrast: white-on-black) {
+            button:hover {
+                border-color: cyan;
+                color: cyan;
+            }
+        }
+
+        @media screen and (-ms-high-contrast: black-on-white) {
+            button:hover {
+                border-color: darkmagenta;
+                color: darkmagenta;
+            }
+        }
+    </style>
+
     <!-- For cordova-panel and cordova-dialog, the shadow is applied to the inner section, in order to prevent it
          getting cropped in Chrome when wrapping columns -->
     <template id="cordova-panel-template">
