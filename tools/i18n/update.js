@@ -12,6 +12,8 @@ var fs = require('fs'),
 
 var translatedAttributes = ['label', 'caption', 'spoken-text', 'aria-label', 'name'];
 var LOC_ID_ATTRIB = 'data-loc-id';
+var IGNORE_ELEMENT_CONTENT_ATTRIB = 'data-loc-ignore-content';
+var IGNORE_ELEMENT_ATTRIBS_ATTRIB = 'data-loc-ignore-attribs';
 var inlineTags = ['a', 'abbr', 'acronym', 'applet', 'b', 'bdo', 'big', 'blink', 'br', 'cite', 'code', 'del', 'dfn', 'em', 'embed', 'face', 'font', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'map', 'nobr', 'object', 'param', 'q', 'rb', 'rbc', 'rp', 'rt', 'rtc', 'ruby', 's', 'samp', 'select', 'small', 'spacer', 'span', 'strike', 'strong', 'sub', 'sup', 'symbol', 'textarea', 'tt', 'u', 'var', 'wbr'];
 var ignoreWords = [/\balpha\b/gi, /\bbeta\b/gi, /\bgamma\b/gi, /\bdeg\b/gi, /\bNE\b/gi, /\bNW\b/gi, /\bSE\b/gi, /\bSW\b/gi];
 var singleCharRegex = /\b\S\b/g;
@@ -279,13 +281,18 @@ function processNode(node, strings, currentText, usedLocIds) {
             break;
 
         case 'tag':
+            // Check if tag contents should be ignored
+            var ignoreElementContent = node.attribs[IGNORE_ELEMENT_CONTENT_ATTRIB];
+
             // If tag is not an inline tag, or it has attributes, finish off currentText and start clean
-            if (hasAttributes(node) || inlineTags.indexOf(node.name) == -1) {
+            if (hasAttributes(node) || inlineTags.indexOf(node.name) === -1) {
                 processCurrentText(strings, currentText, usedLocIds);
                 processAttributes(node, strings);
-                node.children.forEach(function (child) {
-                    processNode(child, strings, currentText, usedLocIds);
-                });
+                if (!ignoreElementContent) {
+                    node.children.forEach(function (child) {
+                        processNode(child, strings, currentText, usedLocIds);
+                    });
+                }
                 processCurrentText(strings, currentText, usedLocIds);
                 return;
             }
@@ -395,14 +402,21 @@ function processAttributes(element, strings) {
     }
 
     var attributes = element.attribs;
+
+    // Check if any attributes should be ignored
+    var ignoreAttributes = attributes[IGNORE_ELEMENT_ATTRIBS_ATTRIB];
+    ignoreAttributes = (ignoreAttributes && ignoreAttributes.split(',')) || [];
+
     var locId = attributes[LOC_ID_ATTRIB];
     translatedAttributes.forEach(function (translatedAttribute) {
-        var attValue = attributes[translatedAttribute];
-        if (attValue && shouldTranslate(attValue)) {
-            if (!locId) {
-                locId = applyId(element)
+        if (ignoreAttributes.indexOf(translatedAttribute) === -1) {
+            var attValue = attributes[translatedAttribute];
+            if (attValue && shouldTranslate(attValue)) {
+                if (!locId) {
+                    locId = applyId(element)
+                }
+                strings.push({id: translatedAttribute + '-' + locId, text: attValue, parentElement: element});
             }
-            strings.push({id: translatedAttribute + '-' + locId, text: attValue, parentElement: element});
         }
     });
 }
