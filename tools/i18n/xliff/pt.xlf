@@ -464,25 +464,13 @@
         <source xml:lang="en">There is no handler for the following exec call:</source>
         <target xml:lang="pt" state="translated">Não há nenhum manipulador para a seguinte chamada exec:</target>
       </trans-unit>
-      <trans-unit id="ba2b4c80:1">
-        <source xml:lang="en">service</source>
-        <target xml:lang="pt" state="translated">serviço</target>
-      </trans-unit>
-      <trans-unit id="e4c1ba28:1">
-        <source xml:lang="en">action</source>
-        <target xml:lang="pt" state="translated">ação</target>
-      </trans-unit>
       <trans-unit id="54b83b14:1">
-        <source xml:lang="en">Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.</source>
-        <target xml:lang="pt" state="translated">Insira um valor abaixo para ser retornado por essa chamada e, em seguida, indique isso representa o sucesso ou falha. Se você desejar sempre responder a esta chamada com este resultado, selecione a opção 'persist'.</target>
+        <source xml:lang="en">Please enter a return value below to simulate a call to this function and choose if this value represents success or failure. If you'd like this value returned for all future calls to this function, select the 'persist' option.</source>
+        <target xml:lang="pt" state="needs-translation" state-qualifier="mt-suggestion">Por favor insira um valor de retorno abaixo para simular uma chamada para esta função e escolher se esse valor representa o sucesso ou fracasso. Se quiser que este valor retornado para todas as chamadas para esta função, selecione a opção 'manter'.</target>
       </trans-unit>
       <trans-unit id="874c9be3:1">
         <source xml:lang="en">The value must be valid JSON (</source>
         <target xml:lang="pt" state="translated">O valor deve ser um JSON válido</target>
-      </trans-unit>
-      <trans-unit id="8679c185:1">
-        <source xml:lang="en">error</source>
-        <target xml:lang="pt" state="translated">erro</target>
       </trans-unit>
       <trans-unit id="bce2c943:1">
         <source xml:lang="en">Persist</source>

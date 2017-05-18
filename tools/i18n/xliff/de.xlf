@@ -464,25 +464,13 @@
         <source xml:lang="en">There is no handler for the following exec call:</source>
         <target xml:lang="de" state="translated">Für den folgenden Exec-Aufruf gibt es keinen Handler:</target>
       </trans-unit>
-      <trans-unit id="ba2b4c80:1">
-        <source xml:lang="en">service</source>
-        <target xml:lang="de" state="translated">Dienst</target>
-      </trans-unit>
-      <trans-unit id="e4c1ba28:1">
-        <source xml:lang="en">action</source>
-        <target xml:lang="de" state="translated">Aktion</target>
-      </trans-unit>
       <trans-unit id="54b83b14:1">
-        <source xml:lang="en">Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.</source>
-        <target xml:lang="de" state="translated">Bitte geben Sie unten einen Wert ein, der für diesen Aufruf zurückgegeben werden soll. Geben Sie dann an, ob dieser Wert für einen Erfolg oder einen Fehler steht. Wenn Sie auf diesen Aufruf immer mit diesem Ergebnis reagieren möchten, wählen Sie die Option "Speichern".</target>
+        <source xml:lang="en">Please enter a return value below to simulate a call to this function and choose if this value represents success or failure. If you'd like this value returned for all future calls to this function, select the 'persist' option.</source>
+        <target xml:lang="de" state="needs-translation" state-qualifier="mt-suggestion">Bitte geben Sie unten, um ein Aufruf dieser Funktion zu simulieren und wählen, ob dieser Wert steht für Erfolg oder Misserfolg der Rückgabewert. Wenn Sie, dass dieser Wert für alle zukünftigen Aufrufe dieser Funktion zurückgegeben möchten, die Option "bestehen".</target>
       </trans-unit>
       <trans-unit id="874c9be3:1">
         <source xml:lang="en">The value must be valid JSON (</source>
         <target xml:lang="de" state="translated">Der Wert muss in gültiger JSON vorliegen (</target>
-      </trans-unit>
-      <trans-unit id="8679c185:1">
-        <source xml:lang="en">error</source>
-        <target xml:lang="de" state="translated">Fehler</target>
       </trans-unit>
       <trans-unit id="bce2c943:1">
         <source xml:lang="en">Persist</source>

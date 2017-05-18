@@ -4,12 +4,12 @@
 <cordova-dialog id="exec-dialog" caption="Appel d'exécution non pris en charge" data-loc-id="f7283850">
     <cordova-group>
         <p data-loc-id="a1a63f26">Il n'existe aucun gestionnaire pour l'appel d'exécution suivant&nbsp;:</p>
-        <p style="font-style:italic"><span id="exec-service" data-loc-id="ba2b4c80">service</span>.<span id="exec-action" data-loc-id="e4c1ba28">action</span></p>
-        <p data-loc-id="54b83b14">Entrez une valeur ci-dessous à retourner pour cet appel, puis indiquez si elle représente une réussite ou un échec. Si vous souhaitez toujours répondre à cet appel avec ce résultat, sélectionnez l'option 'Persistant'.</p>
+        <p style="font-style:italic"><span id="exec-service" data-loc-ignore-content="true">service</span>.<span id="exec-action" data-loc-ignore-content="true">action</span>(<span id="exec-args" data-loc-ignore-content="true">arguments</span>)</p>
+        <p data-loc-id="54b83b14">Veuillez entrer une valeur de retour ci-dessous pour simuler un appel à cette fonction et de choisir si cette valeur représente la réussite ou l’échec. Si vous souhaitez que cette valeur retournée pour tous les futurs appels à cette fonction, sélectionnez l’option «&nbsp;persistent&nbsp;».</p>
     </cordova-group>
     <cordova-group>
         <textarea id="exec-response" rows="10"></textarea>
-        <div class="p" id="exec-error" style="color: red;" data-loc-id="874c9be3">La valeur doit être une valeur JSON valide (<span style="font-style:italic;" id="exec-parse-error" data-loc-id="8679c185">erreur</span>)</div>
+        <div class="p" id="exec-error" style="color: red;" data-loc-id="874c9be3">La valeur doit être une valeur JSON valide (<span style="font-style:italic;" id="exec-parse-error" data-loc-ignore-content="true">error</span>)</div>
     </cordova-group>
     <cordova-panel-row>
         <cordova-checkbox id="exec-persist" data-loc-id="bce2c943">Persistant</cordova-checkbox>

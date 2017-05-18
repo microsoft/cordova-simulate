@@ -4,12 +4,12 @@
 <cordova-dialog id="exec-dialog" caption="Вызов необработанной функции Exec" data-loc-id="f7283850">
     <cordova-group>
         <p data-loc-id="a1a63f26">Нет обработчика для следующего вызова Exec:</p>
-        <p style="font-style:italic"><span id="exec-service" data-loc-id="ba2b4c80">служба</span>.<span id="exec-action" data-loc-id="e4c1ba28">действие</span></p>
-        <p data-loc-id="54b83b14">Введите ниже значение, которое следует вернуть для этого вызова, а затем укажите, соответствует ли оно успешному выполнению или сбою. Если вы хотите всегда получать этот результат в ответ на вызов, выберите параметр "Сохраняемое".</p>
+        <p style="font-style:italic"><span id="exec-service" data-loc-ignore-content="true">service</span>.<span id="exec-action" data-loc-ignore-content="true">action</span>(<span id="exec-args" data-loc-ignore-content="true">arguments</span>)</p>
+        <p data-loc-id="54b83b14">Пожалуйста, введите ниже для имитации вызова этой функции и выбрать, если это значение представляет собой успех или неудача возвращаемое значение. Если вы хотите это значение, возвращаемое для всех последующих вызовов этой функции, выберите «Сохранить».</p>
     </cordova-group>
     <cordova-group>
         <textarea id="exec-response" rows="10"></textarea>
-        <div class="p" id="exec-error" style="color: red;" data-loc-id="874c9be3">Значение должно быть допустимым JSON (<span style="font-style:italic;" id="exec-parse-error" data-loc-id="8679c185">ошибка</span>)</div>
+        <div class="p" id="exec-error" style="color: red;" data-loc-id="874c9be3">Значение должно быть допустимым JSON (<span style="font-style:italic;" id="exec-parse-error" data-loc-ignore-content="true">error</span>)</div>
     </cordova-group>
     <cordova-panel-row>
         <cordova-checkbox id="exec-persist" data-loc-id="bce2c943">Сохраняемое</cordova-checkbox>

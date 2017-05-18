@@ -464,25 +464,13 @@
         <source xml:lang="en">There is no handler for the following exec call:</source>
         <target xml:lang="zh-Hans" state="translated">没有以下 exec 调用的处理程序:</target>
       </trans-unit>
-      <trans-unit id="ba2b4c80:1">
-        <source xml:lang="en">service</source>
-        <target xml:lang="zh-Hans" state="translated">服务</target>
-      </trans-unit>
-      <trans-unit id="e4c1ba28:1">
-        <source xml:lang="en">action</source>
-        <target xml:lang="zh-Hans" state="translated">操作</target>
-      </trans-unit>
       <trans-unit id="54b83b14:1">
-        <source xml:lang="en">Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.</source>
-        <target xml:lang="zh-Hans" state="translated">请在下面输入要对此调用返回的值，然后指示该值表示成功还是失败。如果要始终使用该结果响应此调用，请选择“永久”选项。</target>
+        <source xml:lang="en">Please enter a return value below to simulate a call to this function and choose if this value represents success or failure. If you'd like this value returned for all future calls to this function, select the 'persist' option.</source>
+        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">请输入下面来模拟对此函数的调用和选择是否此值表示成功或失败的返回值。如果你想要为所有未来调用这个函数返回此值，选择 '坚持' 选项。</target>
       </trans-unit>
       <trans-unit id="874c9be3:1">
         <source xml:lang="en">The value must be valid JSON (</source>
         <target xml:lang="zh-Hans" state="translated">值必须是有效的 JSON (</target>
-      </trans-unit>
-      <trans-unit id="8679c185:1">
-        <source xml:lang="en">error</source>
-        <target xml:lang="zh-Hans" state="translated">错误</target>
       </trans-unit>
       <trans-unit id="bce2c943:1">
         <source xml:lang="en">Persist</source>

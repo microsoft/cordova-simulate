@@ -464,25 +464,13 @@
         <source xml:lang="en">There is no handler for the following exec call:</source>
         <target xml:lang="ko" state="translated">다음 exec 호출에 대한 처리기가 없습니다.</target>
       </trans-unit>
-      <trans-unit id="ba2b4c80:1">
-        <source xml:lang="en">service</source>
-        <target xml:lang="ko" state="translated">서비스</target>
-      </trans-unit>
-      <trans-unit id="e4c1ba28:1">
-        <source xml:lang="en">action</source>
-        <target xml:lang="ko" state="translated">작업</target>
-      </trans-unit>
       <trans-unit id="54b83b14:1">
-        <source xml:lang="en">Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.</source>
-        <target xml:lang="ko" state="translated">이 호출에 대해 반환할 값을 아래에 입력한 다음 성공을 나타내는지 실패를 나타내는지를 나타내세요. 이 호출에 대해 항상 이 결과로 응답하려면 'persist(유지)' 옵션을 선택하세요.</target>
+        <source xml:lang="en">Please enter a return value below to simulate a call to this function and choose if this value represents success or failure. If you'd like this value returned for all future calls to this function, select the 'persist' option.</source>
+        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">반환 값이이 함수에 대 한 호출을 시뮬레이션 하 고 선택 하는 경우이 값은 성공 또는 실패를 나타냅니다에 아래를 입력 하십시오. 이 값이이 함수에 모든 미래 호출에 대해 반환을 원하시면 '유지' 옵션을 선택 합니다.</target>
       </trans-unit>
       <trans-unit id="874c9be3:1">
         <source xml:lang="en">The value must be valid JSON (</source>
         <target xml:lang="ko" state="translated">값은 유효한 JSON이어야 합니다.</target>
-      </trans-unit>
-      <trans-unit id="8679c185:1">
-        <source xml:lang="en">error</source>
-        <target xml:lang="ko" state="translated">오류</target>
       </trans-unit>
       <trans-unit id="bce2c943:1">
         <source xml:lang="en">Persist</source>

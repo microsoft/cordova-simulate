@@ -464,25 +464,13 @@
         <source xml:lang="en">There is no handler for the following exec call:</source>
         <target xml:lang="ru" state="translated">Нет обработчика для следующего вызова Exec:</target>
       </trans-unit>
-      <trans-unit id="ba2b4c80:1">
-        <source xml:lang="en">service</source>
-        <target xml:lang="ru" state="translated">служба</target>
-      </trans-unit>
-      <trans-unit id="e4c1ba28:1">
-        <source xml:lang="en">action</source>
-        <target xml:lang="ru" state="translated">действие</target>
-      </trans-unit>
       <trans-unit id="54b83b14:1">
-        <source xml:lang="en">Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.</source>
-        <target xml:lang="ru" state="translated">Введите ниже значение, которое следует вернуть для этого вызова, а затем укажите, соответствует ли оно успешному выполнению или сбою. Если вы хотите всегда получать этот результат в ответ на вызов, выберите параметр "Сохраняемое".</target>
+        <source xml:lang="en">Please enter a return value below to simulate a call to this function and choose if this value represents success or failure. If you'd like this value returned for all future calls to this function, select the 'persist' option.</source>
+        <target xml:lang="ru" state="needs-translation" state-qualifier="mt-suggestion">Пожалуйста, введите ниже для имитации вызова этой функции и выбрать, если это значение представляет собой успех или неудача возвращаемое значение. Если вы хотите это значение, возвращаемое для всех последующих вызовов этой функции, выберите «Сохранить».</target>
       </trans-unit>
       <trans-unit id="874c9be3:1">
         <source xml:lang="en">The value must be valid JSON (</source>
         <target xml:lang="ru" state="translated">Значение должно быть допустимым JSON (</target>
-      </trans-unit>
-      <trans-unit id="8679c185:1">
-        <source xml:lang="en">error</source>
-        <target xml:lang="ru" state="translated">ошибка</target>
       </trans-unit>
       <trans-unit id="bce2c943:1">
         <source xml:lang="en">Persist</source>

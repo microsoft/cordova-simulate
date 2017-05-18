@@ -4,12 +4,12 @@
 <cordova-dialog id="exec-dialog" caption="Llamada de Exec no controlada" data-loc-id="f7283850">
     <cordova-group>
         <p data-loc-id="a1a63f26">No hay ningún controlador para la siguiente llamada de Exec:</p>
-        <p style="font-style:italic"><span id="exec-service" data-loc-id="ba2b4c80">servicio</span>.<span id="exec-action" data-loc-id="e4c1ba28">acción</span></p>
-        <p data-loc-id="54b83b14">Escriba uno de los valores que se indican a continuación para que devuelva en esta llamada y luego indique si representa un acierto o un error. Si quiere responder siempre a esta llamada con este resultado, seleccione la opción 'continuar'.</p>
+        <p style="font-style:italic"><span id="exec-service" data-loc-ignore-content="true">service</span>.<span id="exec-action" data-loc-ignore-content="true">action</span>(<span id="exec-args" data-loc-ignore-content="true">arguments</span>)</p>
+        <p data-loc-id="54b83b14">Introduce un valor devuelto para simular una llamada a esta función y elegir si este valor representa el éxito o fracaso. Si quieres que este valor devuelto para todas las futuras llamadas a esta función, seleccione la opción 'persisten'.</p>
     </cordova-group>
     <cordova-group>
         <textarea id="exec-response" rows="10"></textarea>
-        <div class="p" id="exec-error" style="color: red;" data-loc-id="874c9be3">El valor debe ser un JSON válido (<span style="font-style:italic;" id="exec-parse-error" data-loc-id="8679c185">error</span>)</div>
+        <div class="p" id="exec-error" style="color: red;" data-loc-id="874c9be3">El valor debe ser un JSON válido (<span style="font-style:italic;" id="exec-parse-error" data-loc-ignore-content="true">error</span>)</div>
     </cordova-group>
     <cordova-panel-row>
         <cordova-checkbox id="exec-persist" data-loc-id="bce2c943">Continuar</cordova-checkbox>

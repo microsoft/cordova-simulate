@@ -464,25 +464,13 @@
         <source xml:lang="en">There is no handler for the following exec call:</source>
         <target xml:lang="ja" state="translated">次の exec 呼び出しのハンドラーはありません。</target>
       </trans-unit>
-      <trans-unit id="ba2b4c80:1">
-        <source xml:lang="en">service</source>
-        <target xml:lang="ja" state="translated">サービス</target>
-      </trans-unit>
-      <trans-unit id="e4c1ba28:1">
-        <source xml:lang="en">action</source>
-        <target xml:lang="ja" state="translated">アクション</target>
-      </trans-unit>
       <trans-unit id="54b83b14:1">
-        <source xml:lang="en">Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.</source>
-        <target xml:lang="ja" state="translated">この呼び出しに対して返される値を以下に入力し、次いでこれが成功または失敗のどちらを表すかを示してください。この呼び出しに対して常にこの結果で応答する場合は、[保持] オプションを選択します。</target>
+        <source xml:lang="en">Please enter a return value below to simulate a call to this function and choose if this value represents success or failure. If you'd like this value returned for all future calls to this function, select the 'persist' option.</source>
+        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">この関数の呼び出しをシミュレートし、この値が成功または失敗を表すかどうかには、以下の戻り値を入力してください。この関数の以降のすべての呼び出しに返された値が希望の場合は、'を保持するオプションを選択します。</target>
       </trans-unit>
       <trans-unit id="874c9be3:1">
         <source xml:lang="en">The value must be valid JSON (</source>
         <target xml:lang="ja" state="translated">値は有効な JSON でなければならない (</target>
-      </trans-unit>
-      <trans-unit id="8679c185:1">
-        <source xml:lang="en">error</source>
-        <target xml:lang="ja" state="translated">エラー</target>
       </trans-unit>
       <trans-unit id="bce2c943:1">
         <source xml:lang="en">Persist</source>

@@ -464,25 +464,13 @@
         <source xml:lang="en">There is no handler for the following exec call:</source>
         <target xml:lang="cs" state="translated">Pro následující volání metody Exec není k dispozici obslužná rutina:</target>
       </trans-unit>
-      <trans-unit id="ba2b4c80:1">
-        <source xml:lang="en">service</source>
-        <target xml:lang="cs" state="translated">služba</target>
-      </trans-unit>
-      <trans-unit id="e4c1ba28:1">
-        <source xml:lang="en">action</source>
-        <target xml:lang="cs" state="translated">akce</target>
-      </trans-unit>
       <trans-unit id="54b83b14:1">
-        <source xml:lang="en">Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.</source>
-        <target xml:lang="cs" state="translated">Zadejte hodnotu, která se má u tohoto volání vracet, a potom určete, jestli znamená úspěch nebo neúspěch. Pokud chcete, aby odpověď na toto volání měla vždy tento výsledek, vyberte možnost „Zachovat“.</target>
+        <source xml:lang="en">Please enter a return value below to simulate a call to this function and choose if this value represents success or failure. If you'd like this value returned for all future calls to this function, select the 'persist' option.</source>
+        <target xml:lang="cs" state="needs-translation" state-qualifier="mt-suggestion">Zadejte prosím níže k simulaci volání této funkce a zvolit, pokud je tato hodnota představuje úspěch nebo neúspěch návratovou hodnotu. Pokud chcete tuto hodnotu vrácené pro všechny budoucí volání této funkce, vyberte možnost "zachovat".</target>
       </trans-unit>
       <trans-unit id="874c9be3:1">
         <source xml:lang="en">The value must be valid JSON (</source>
         <target xml:lang="cs" state="translated">Hodnota musí mít platný formát JSON (</target>
-      </trans-unit>
-      <trans-unit id="8679c185:1">
-        <source xml:lang="en">error</source>
-        <target xml:lang="cs" state="translated">chyba</target>
       </trans-unit>
       <trans-unit id="bce2c943:1">
         <source xml:lang="en">Persist</source>
