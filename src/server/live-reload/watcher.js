@@ -79,7 +79,7 @@ function handleWatcherEvent(root, fileRelativePath) {
     var srcPathPrefix = isWww ? path.join(this._projectRoot, WWW_ROOT) : this._mergesOverridePath;
     var filePathFromProjectRoot = path.join(srcPathPrefix, fileRelativePath);
 
-    if (fs.statSync(filePathFromProjectRoot).isDirectory()) {
+    if (fs.existsSync(filePathFromProjectRoot) && fs.statSync(filePathFromProjectRoot).isDirectory()) {
         return;
     }
 
