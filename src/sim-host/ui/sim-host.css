@@ -264,6 +264,21 @@ body /deep/ input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
 }
 
+/* Use correct colors for buttons in IE in high-contrast mode */
+@media screen and (-ms-high-contrast: active) {
+    button {
+        color: buttonText;
+        border-color: buttonText;
+        background-color: buttonFace;
+    }
+
+    button:hover, button:focus {
+        color: highlightText;
+        border-color: buttonText;
+        background-color: highlight;
+    }
+}
+
 /* Hacks to work around multi-column bug in Chrome 48+. The following section
    is removed for other browsers when the file is served */
 
