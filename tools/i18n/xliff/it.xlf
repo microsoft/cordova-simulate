@@ -1,5 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+<?xml version="1.0" encoding="utf-8"?>
+<xliff 
+  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
   <file original="plugins\cordova-plugin-battery-status\sim-host-panels.html" source-language="en" target-language="it">
     <body>
       <trans-unit id="caption-ac1dbd34">
@@ -79,8 +81,8 @@
         <target xml:lang="it" state="translated">Dati registrati</target>
       </trans-unit>
       <trans-unit id="c562ff87:1">
-        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br&gt; Hold the Shift key to modify 'alpha'</source>
-        <target xml:lang="it" state="translated">Fare clic e trascinare con il mouse per modificare il dispositivo. &lt;br&gt;Tenere premuto MAIUSC per modificare il valore di 'alpha'</target>
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br> Hold the Shift key to modify 'alpha'</source>
+        <target xml:lang="it" state="translated">Fare clic e trascinare con il mouse per modificare il dispositivo. &lt;br>Tenere premuto MAIUSC per modificare il valore di 'alpha'</target>
       </trans-unit>
       <trans-unit id="1b009684:1">
         <source xml:lang="en">Play</source>
@@ -290,6 +292,10 @@
         <source xml:lang="en">Speed (meters per second)</source>
         <target xml:lang="it" state="translated">Velocità (metri al secondo)</target>
       </trans-unit>
+      <trans-unit id="name-11d32900">
+        <source xml:lang="en">GPX playback speed</source>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Velocità di riproduzione GPX</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-globalization\sim-host-panels.html" source-language="en" target-language="it">
@@ -375,12 +381,12 @@
         <target xml:lang="it" state="translated">InAppBrowser</target>
       </trans-unit>
       <trans-unit id="99399f4d:1">
-        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em&gt;_blank&lt;/em&gt; target</source>
-        <target xml:lang="it" state="translated">Consente di selezionare il comportamento predefinito di InAppBrowser quando viene aperto con la destinazione &lt;em&gt;_blank&lt;/em&gt;</target>
+        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em>_blank&lt;/em> target</source>
+        <target xml:lang="it" state="translated">Consente di selezionare il comportamento predefinito di InAppBrowser quando viene aperto con la destinazione &lt;em>_blank&lt;/em></target>
       </trans-unit>
       <trans-unit id="c10cdf5b:1">
-        <source xml:lang="en">Open in a new window: &lt;em&gt;_system&lt;/em&gt; target</source>
-        <target xml:lang="it" state="translated">Apri in una nuova finestra: destinazione &lt;em&gt;_system&lt;/em&gt;</target>
+        <source xml:lang="en">Open in a new window: &lt;em>_system&lt;/em> target</source>
+        <target xml:lang="it" state="translated">Apri in una nuova finestra: destinazione &lt;em>_system&lt;/em></target>
       </trans-unit>
       <trans-unit id="d107e851:1">
         <source xml:lang="en">Open in a InAppBrowser based on an iframe</source>
