@@ -101,7 +101,7 @@ SimulationServer.prototype.start = function (platform, opts) {
 
             this._urls = {
                 root: urlRoot,
-                app: urlRoot + parseStartPage(projectRoot),
+                app: urlRoot,
                 simHost: urlRoot + 'simulator/index.html'
             };
 
@@ -212,7 +212,15 @@ SimulationServer.prototype._sendHostJsFile = function (request, response, hostTy
  */
 SimulationServer.prototype._streamAppHostHtml = function (request, response) {
     var config = this._simulatorProxy.config;
-    var filePath = path.join(this._project.platformRoot, url.parse(request.url).pathname);
+
+    var requestUrl = request.url;
+    if (requestUrl === '/') {
+        if (!this._startPage) {
+            this._startPage = parseStartPage(this._project.projectRoot);
+        }
+        requestUrl = this._startPage;
+    }
+    var filePath = path.join(this._project.platformRoot, url.parse(requestUrl).pathname);
 
     if (request.query && request.query['cdvsim-enabled'] === 'false') {
         response.sendFile(filePath);
