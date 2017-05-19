@@ -1,5 +1,14 @@
 # cordova-simulate Release Notes
 
+### 0.3.10 (May 19, 2017)
+* Localization tool updates ([#240](https://github.com/Microsoft/cordova-simulate/pull/240), [#242](https://github.com/Microsoft/cordova-simulate/pull/242))
+* Display arguments in "Unhandled Exec Call" dialog ([#231](https://github.com/Microsoft/cordova-simulate/pull/231))
+* Fix Live Reload to handle deleted files ([#233](https://github.com/Microsoft/cordova-simulate/pull/233))
+* Fix exception when HTML file contains a `<header>` tag ([#238](https://github.com/Microsoft/cordova-simulate/pull/238))
+* Fix buttons not indicating focus and hover in high contrast mode in Internet Explorer ([#236](https://github.com/Microsoft/cordova-simulate/pull/236))
+* Fix Live Reload failure with Ionic 2 templates and watcher task in Visual Studio ([#226](https://github.com/Microsoft/cordova-simulate/pull/226))
+* Improvements for screen readers ([#222](https://github.com/Microsoft/cordova-simulate/pull/222), [#223](https://github.com/Microsoft/cordova-simulate/pull/223)) 
+
 ### 0.3.9 (Jan 5, 2017)
 * Support scroll bar color in themes ([#221](https://github.com/Microsoft/cordova-simulate/pull/221))
 
