@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xliff 
-  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
   <file original="plugins\cordova-plugin-battery-status\sim-host-panels.html" source-language="en" target-language="pl">
     <body>
       <trans-unit id="caption-ac1dbd34">
@@ -81,8 +79,8 @@
         <target xml:lang="pl" state="translated">Zarejestrowane dane</target>
       </trans-unit>
       <trans-unit id="c562ff87:1">
-        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br> Hold the Shift key to modify 'alpha'</source>
-        <target xml:lang="pl" state="translated">Kliknij i przeciągnij myszą, aby manipulować urządzeniem. &lt;br> Przytrzymaj klawisz Shift, aby zmodyfikować wartość „alpha”.</target>
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br&gt; Hold the Shift key to modify 'alpha'</source>
+        <target xml:lang="pl" state="translated">Kliknij i przeciągnij myszą, aby manipulować urządzeniem. &lt;br&gt; Przytrzymaj klawisz Shift, aby zmodyfikować wartość „alpha”.</target>
       </trans-unit>
       <trans-unit id="1b009684:1">
         <source xml:lang="en">Play</source>
@@ -294,7 +292,7 @@
       </trans-unit>
       <trans-unit id="name-11d32900">
         <source xml:lang="en">GPX playback speed</source>
-        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Prędkość odtwarzania GPX</target>
+        <target xml:lang="pl" state="translated" state-qualifier="mt-suggestion">Prędkość odtwarzania pliku GPX</target>
       </trans-unit>
     </body>
   </file>
@@ -381,12 +379,12 @@
         <target xml:lang="pl" state="translated">InAppBrowser</target>
       </trans-unit>
       <trans-unit id="99399f4d:1">
-        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em>_blank&lt;/em> target</source>
-        <target xml:lang="pl" state="translated">Wybierz domyślne zachowanie elementu InAppBrowser podczas otwierania za pomocą elementu docelowego &lt;em>_blank&lt;/em></target>
+        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em&gt;_blank&lt;/em&gt; target</source>
+        <target xml:lang="pl" state="translated">Wybierz domyślne zachowanie elementu InAppBrowser podczas otwierania za pomocą elementu docelowego &lt;em&gt;_blank&lt;/em&gt;</target>
       </trans-unit>
       <trans-unit id="c10cdf5b:1">
-        <source xml:lang="en">Open in a new window: &lt;em>_system&lt;/em> target</source>
-        <target xml:lang="pl" state="translated">Otwórz w nowym oknie: element docelowy &lt;em>_system&lt;/em></target>
+        <source xml:lang="en">Open in a new window: &lt;em&gt;_system&lt;/em&gt; target</source>
+        <target xml:lang="pl" state="translated">Otwórz w nowym oknie: element docelowy &lt;em&gt;_system&lt;/em&gt;</target>
       </trans-unit>
       <trans-unit id="d107e851:1">
         <source xml:lang="en">Open in a InAppBrowser based on an iframe</source>
@@ -466,7 +464,7 @@
       </trans-unit>
       <trans-unit id="54b83b14:1">
         <source xml:lang="en">Please enter a return value below to simulate a call to this function and choose if this value represents success or failure. If you'd like this value returned for all future calls to this function, select the 'persist' option.</source>
-        <target xml:lang="pl" state="needs-translation" state-qualifier="mt-suggestion">Proszę wpisać poniżej, aby symulować wywołania do tej funkcji i wybrać, jeśli wartość ta oznacza sukces lub niepowodzenie wartości zwracanej. Jeśli chcieliby Państwo tę wartość zwracana dla wszystkich przyszłych wywołania tej funkcji, należy wybrać opcję 'utrwalić'.</target>
+        <target xml:lang="pl" state="translated" state-qualifier="mt-suggestion">Wprowadź poniżej wartość zwracaną, aby zasymulować wywołanie tej funkcji i wybrać, czy wartość ta reprezentuje powodzenie, czy niepowodzenie. Jeśli chcesz, aby ta wartość była zwracana dla wszystkich przyszłych wywołań tej funkcji, wybierz opcję „Utrwal”.</target>
       </trans-unit>
       <trans-unit id="874c9be3:1">
         <source xml:lang="en">The value must be valid JSON (</source>
