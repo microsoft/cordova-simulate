@@ -1,5 +1,8 @@
 # cordova-simulate Release Notes
 
+### 0.3.11 (May 19, 2017)
+* Remove spurious CSS file from root folder
+
 ### 0.3.10 (May 19, 2017)
 * Localization tool updates ([#240](https://github.com/Microsoft/cordova-simulate/pull/240), [#242](https://github.com/Microsoft/cordova-simulate/pull/242))
 * Display arguments in "Unhandled Exec Call" dialog ([#231](https://github.com/Microsoft/cordova-simulate/pull/231))
