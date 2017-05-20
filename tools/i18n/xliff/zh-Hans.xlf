@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xliff 
-  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
   <file original="plugins\cordova-plugin-battery-status\sim-host-panels.html" source-language="en" target-language="zh-Hans">
     <body>
       <trans-unit id="caption-ac1dbd34">
@@ -77,8 +75,8 @@
         <target xml:lang="zh-Hans" state="translated">加速计</target>
       </trans-unit>
       <trans-unit id="c562ff87:1">
-        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br> Hold the Shift key to modify 'alpha'</source>
-        <target xml:lang="zh-Hans" state="translated">单击并拖动鼠标可操作设备。&lt;br>按住 Shift 键可修改“alpha”</target>
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br&gt; Hold the Shift key to modify 'alpha'</source>
+        <target xml:lang="zh-Hans" state="translated">单击并拖动鼠标可操作设备。&lt;br&gt;按住 Shift 键可修改“alpha”</target>
       </trans-unit>
       <trans-unit id="label-d240cacf">
         <source xml:lang="en">Recorded Data</source>
@@ -294,7 +292,7 @@
       </trans-unit>
       <trans-unit id="name-11d32900">
         <source xml:lang="en">GPX playback speed</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">GPX 回放速度</target>
+        <target xml:lang="zh-Hans" state="translated" state-qualifier="mt-suggestion">GPX 播放速度</target>
       </trans-unit>
     </body>
   </file>
@@ -381,12 +379,12 @@
         <target xml:lang="zh-Hans" state="translated">InAppBrowser</target>
       </trans-unit>
       <trans-unit id="99399f4d:1">
-        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em>_blank&lt;/em> target</source>
-        <target xml:lang="zh-Hans" state="translated">打开使用 &lt;em>_blank&lt;/em> 目标时，选择 InAppBrowser 的默认行为</target>
+        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em&gt;_blank&lt;/em&gt; target</source>
+        <target xml:lang="zh-Hans" state="translated">打开使用 &lt;em&gt;_blank&lt;/em&gt; 目标时，选择 InAppBrowser 的默认行为</target>
       </trans-unit>
       <trans-unit id="c10cdf5b:1">
-        <source xml:lang="en">Open in a new window: &lt;em>_system&lt;/em> target</source>
-        <target xml:lang="zh-Hans" state="translated">在新窗口中打开: &lt;em>_system&lt;/em> 目标</target>
+        <source xml:lang="en">Open in a new window: &lt;em&gt;_system&lt;/em&gt; target</source>
+        <target xml:lang="zh-Hans" state="translated">在新窗口中打开: &lt;em&gt;_system&lt;/em&gt; 目标</target>
       </trans-unit>
       <trans-unit id="d107e851:1">
         <source xml:lang="en">Open in a InAppBrowser based on an iframe</source>
@@ -466,7 +464,7 @@
       </trans-unit>
       <trans-unit id="54b83b14:1">
         <source xml:lang="en">Please enter a return value below to simulate a call to this function and choose if this value represents success or failure. If you'd like this value returned for all future calls to this function, select the 'persist' option.</source>
-        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">请输入下面来模拟对此函数的调用和选择是否此值表示成功或失败的返回值。如果你想要为所有未来调用这个函数返回此值，选择 '坚持' 选项。</target>
+        <target xml:lang="zh-Hans" state="translated" state-qualifier="mt-suggestion">请输入下方的某个返回值来模拟此函数调用，并选择该值表示成功还是失败。如果希望对此函数的所有后续调用均返回该值，请选择“永久”选项。</target>
       </trans-unit>
       <trans-unit id="874c9be3:1">
         <source xml:lang="en">The value must be valid JSON (</source>

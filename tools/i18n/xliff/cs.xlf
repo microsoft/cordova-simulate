@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xliff 
-  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
   <file original="plugins\cordova-plugin-battery-status\sim-host-panels.html" source-language="en" target-language="cs">
     <body>
       <trans-unit id="caption-ac1dbd34">
@@ -81,8 +79,8 @@
         <target xml:lang="cs" state="translated">Zaznamenaná data</target>
       </trans-unit>
       <trans-unit id="c562ff87:1">
-        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br> Hold the Shift key to modify 'alpha'</source>
-        <target xml:lang="cs" state="translated">Pokud chcete ovládat zařízení, klikněte a táhněte myší. &lt;br> Pokud chcete změnit „alpha“, podržte klávesu Shift.</target>
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br&gt; Hold the Shift key to modify 'alpha'</source>
+        <target xml:lang="cs" state="translated">Pokud chcete ovládat zařízení, klikněte a táhněte myší. &lt;br&gt; Pokud chcete změnit „alpha“, podržte klávesu Shift.</target>
       </trans-unit>
       <trans-unit id="1b009684:1">
         <source xml:lang="en">Play</source>
@@ -146,19 +144,19 @@
     <body>
       <trans-unit id="caption-c045b281">
         <source xml:lang="en">Device</source>
-        <target xml:lang="cs" state="translated">Platforma</target>
+        <target xml:lang="cs" state="translated">Zařízení</target>
       </trans-unit>
       <trans-unit id="label-db946bb7">
         <source xml:lang="en">Platform</source>
-        <target xml:lang="cs" state="translated">zařízení</target>
+        <target xml:lang="cs" state="translated">Platforma</target>
       </trans-unit>
       <trans-unit id="label-7f7c31ee">
         <source xml:lang="en">Device</source>
-        <target xml:lang="cs" state="translated">Verze OS</target>
+        <target xml:lang="cs" state="translated">Zařízení</target>
       </trans-unit>
       <trans-unit id="label-39a39347">
         <source xml:lang="en">OS version</source>
-        <target xml:lang="cs" state="translated">zařízení</target>
+        <target xml:lang="cs" state="translated">Verze OS</target>
       </trans-unit>
       <trans-unit id="label-752a991e">
         <source xml:lang="en">Physical resolution</source>
@@ -294,7 +292,7 @@
       </trans-unit>
       <trans-unit id="name-11d32900">
         <source xml:lang="en">GPX playback speed</source>
-        <target xml:lang="cs" state="needs-translation" state-qualifier="mt-suggestion">Rychlost přehrávání GPX</target>
+        <target xml:lang="cs" state="translated" state-qualifier="mt-suggestion">Rychlost přehrávání GPX</target>
       </trans-unit>
     </body>
   </file>
@@ -381,12 +379,12 @@
         <target xml:lang="cs" state="translated">InAppBrowser</target>
       </trans-unit>
       <trans-unit id="99399f4d:1">
-        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em>_blank&lt;/em> target</source>
-        <target xml:lang="cs" state="translated">Vyberte výchozí chování pluginu InAppBrowser při otevření &lt;em>_blank&lt;/em> target</target>
+        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em&gt;_blank&lt;/em&gt; target</source>
+        <target xml:lang="cs" state="translated">Vyberte výchozí chování pluginu InAppBrowser při otevření &lt;em&gt;_blank&lt;/em&gt; target</target>
       </trans-unit>
       <trans-unit id="c10cdf5b:1">
-        <source xml:lang="en">Open in a new window: &lt;em>_system&lt;/em> target</source>
-        <target xml:lang="cs" state="translated">Otevřít v novém okně: &lt;em>_system&lt;/em> target</target>
+        <source xml:lang="en">Open in a new window: &lt;em&gt;_system&lt;/em&gt; target</source>
+        <target xml:lang="cs" state="translated">Otevřít v novém okně: &lt;em&gt;_system&lt;/em&gt; target</target>
       </trans-unit>
       <trans-unit id="d107e851:1">
         <source xml:lang="en">Open in a InAppBrowser based on an iframe</source>
@@ -466,7 +464,7 @@
       </trans-unit>
       <trans-unit id="54b83b14:1">
         <source xml:lang="en">Please enter a return value below to simulate a call to this function and choose if this value represents success or failure. If you'd like this value returned for all future calls to this function, select the 'persist' option.</source>
-        <target xml:lang="cs" state="needs-translation" state-qualifier="mt-suggestion">Zadejte prosím níže k simulaci volání této funkce a zvolit, pokud je tato hodnota představuje úspěch nebo neúspěch návratovou hodnotu. Pokud chcete tuto hodnotu vrácené pro všechny budoucí volání této funkce, vyberte možnost "zachovat".</target>
+        <target xml:lang="cs" state="translated" state-qualifier="mt-suggestion">Zadejte prosím níže návratovou hodnotu pro simulaci volání této funkce a zvolte, jestli tato hodnota představuje úspěch, nebo neúspěch. Pokud chcete, aby se tato hodnota vracela pro všechna budoucí volání této funkce, vyberte možnost persist.</target>
       </trans-unit>
       <trans-unit id="874c9be3:1">
         <source xml:lang="en">The value must be valid JSON (</source>

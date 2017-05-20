@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xliff 
-  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
   <file original="plugins\cordova-plugin-battery-status\sim-host-panels.html" source-language="en" target-language="ko">
     <body>
       <trans-unit id="caption-ac1dbd34">
@@ -81,8 +79,8 @@
         <target xml:lang="ko" state="translated">기록된 데이터</target>
       </trans-unit>
       <trans-unit id="c562ff87:1">
-        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br> Hold the Shift key to modify 'alpha'</source>
-        <target xml:lang="ko" state="translated">마우스로 클릭하고 끌어 장치를 조작합니다. &lt;br> &amp;lt;Shift&amp;gt; 키를 누른 채로 ' alpha'를 수정합니다.</target>
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br&gt; Hold the Shift key to modify 'alpha'</source>
+        <target xml:lang="ko" state="translated">마우스로 클릭하고 끌어 장치를 조작합니다. &amp;lt;br&gt; &amp;amp;lt;Shift&amp;amp;gt; 키를 누른 채로 ' alpha'를 수정합니다.</target>
       </trans-unit>
       <trans-unit id="1b009684:1">
         <source xml:lang="en">Play</source>
@@ -294,7 +292,7 @@
       </trans-unit>
       <trans-unit id="name-11d32900">
         <source xml:lang="en">GPX playback speed</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">GPX 재생 속도</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">GPX 재생 속도</target>
       </trans-unit>
     </body>
   </file>
@@ -381,12 +379,12 @@
         <target xml:lang="ko" state="translated">InAppBrowser</target>
       </trans-unit>
       <trans-unit id="99399f4d:1">
-        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em>_blank&lt;/em> target</source>
-        <target xml:lang="ko" state="translated">&lt;em>_blank&lt;/em> 대상을 사용하여 열 때 InAppBrowser의 기본 동작 선택</target>
+        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em&gt;_blank&lt;/em&gt; target</source>
+        <target xml:lang="ko" state="translated">&lt;em&gt;_blank&lt;/em&gt; 대상을 사용하여 열 때 InAppBrowser의 기본 동작 선택</target>
       </trans-unit>
       <trans-unit id="c10cdf5b:1">
-        <source xml:lang="en">Open in a new window: &lt;em>_system&lt;/em> target</source>
-        <target xml:lang="ko" state="translated">새 창에서 열기: &lt;em>_system&lt;/em> 대상</target>
+        <source xml:lang="en">Open in a new window: &lt;em&gt;_system&lt;/em&gt; target</source>
+        <target xml:lang="ko" state="translated">새 창에서 열기: &lt;em&gt;_system&lt;/em&gt; 대상</target>
       </trans-unit>
       <trans-unit id="d107e851:1">
         <source xml:lang="en">Open in a InAppBrowser based on an iframe</source>
@@ -466,7 +464,7 @@
       </trans-unit>
       <trans-unit id="54b83b14:1">
         <source xml:lang="en">Please enter a return value below to simulate a call to this function and choose if this value represents success or failure. If you'd like this value returned for all future calls to this function, select the 'persist' option.</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">반환 값이이 함수에 대 한 호출을 시뮬레이션 하 고 선택 하는 경우이 값은 성공 또는 실패를 나타냅니다에 아래를 입력 하십시오. 이 값이이 함수에 모든 미래 호출에 대해 반환을 원하시면 '유지' 옵션을 선택 합니다.</target>
+        <target xml:lang="ko" state="translated" state-qualifier="mt-suggestion">이 함수에 대한 호출을 시뮬레이트하기 위해 아래에 반환 값을 입력하고, 이 값이 성공 또는 실패 중 어떤 것을 나타내는지 선택하세요. 이 함수에 대한 향후의 모든 호출에 있어 이 값을 반환하려면 ‘유지’ 옵션을 선택하세요.</target>
       </trans-unit>
       <trans-unit id="874c9be3:1">
         <source xml:lang="en">The value must be valid JSON (</source>
