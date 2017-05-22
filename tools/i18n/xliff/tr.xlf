@@ -1,5 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+<?xml version="1.0" encoding="utf-8"?>
+<xliff 
+  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
   <file original="plugins\cordova-plugin-battery-status\sim-host-panels.html" source-language="en" target-language="tr">
     <body>
       <trans-unit id="caption-ac1dbd34">
@@ -79,8 +81,8 @@
         <target xml:lang="tr" state="translated">Kaydedilen Veriler</target>
       </trans-unit>
       <trans-unit id="c562ff87:1">
-        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br&gt; Hold the Shift key to modify 'alpha'</source>
-        <target xml:lang="tr" state="translated">Cihazı yönetmek için tıklayıp sürükleyin. &lt;br&gt;’Alpha’ değerini değiştirmek için Shift tuşunu basılı tutun</target>
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br> Hold the Shift key to modify 'alpha'</source>
+        <target xml:lang="tr" state="translated">Cihazı yönetmek için tıklayıp sürükleyin. &lt;br>’Alpha’ değerini değiştirmek için Shift tuşunu basılı tutun</target>
       </trans-unit>
       <trans-unit id="1b009684:1">
         <source xml:lang="en">Play</source>
@@ -292,7 +294,7 @@
       </trans-unit>
       <trans-unit id="name-11d32900">
         <source xml:lang="en">GPX playback speed</source>
-        <target xml:lang="tr" state="translated" state-qualifier="mt-suggestion">GPX kayıttan yürütme hızı</target>
+        <target xml:lang="tr" state="translated">GPX kayıttan yürütme hızı</target>
       </trans-unit>
     </body>
   </file>
@@ -379,12 +381,12 @@
         <target xml:lang="tr" state="translated">InAppBrowser</target>
       </trans-unit>
       <trans-unit id="99399f4d:1">
-        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em&gt;_blank&lt;/em&gt; target</source>
-        <target xml:lang="tr" state="translated">&lt;em&gt;_blank&lt;/em&gt; hedefini kullanarak açarken, InAppBrowser varsayılan davranışını seçin</target>
+        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em>_blank&lt;/em> target</source>
+        <target xml:lang="tr" state="translated">&lt;em>_blank&lt;/em> hedefini kullanarak açarken, InAppBrowser varsayılan davranışını seçin</target>
       </trans-unit>
       <trans-unit id="c10cdf5b:1">
-        <source xml:lang="en">Open in a new window: &lt;em&gt;_system&lt;/em&gt; target</source>
-        <target xml:lang="tr" state="translated">Yeni bir pencerede aç: &lt;em&gt;_system&lt;/em&gt; hedefi</target>
+        <source xml:lang="en">Open in a new window: &lt;em>_system&lt;/em> target</source>
+        <target xml:lang="tr" state="translated">Yeni bir pencerede aç: &lt;em>_system&lt;/em> hedefi</target>
       </trans-unit>
       <trans-unit id="d107e851:1">
         <source xml:lang="en">Open in a InAppBrowser based on an iframe</source>
@@ -464,7 +466,7 @@
       </trans-unit>
       <trans-unit id="54b83b14:1">
         <source xml:lang="en">Please enter a return value below to simulate a call to this function and choose if this value represents success or failure. If you'd like this value returned for all future calls to this function, select the 'persist' option.</source>
-        <target xml:lang="tr" state="translated" state-qualifier="mt-suggestion">Bu işleve yönelik bir çağrının simülasyonunu yapmak için aşağıya bir dönüş değeri girin ve bu değerin başarıyı ya da başarısızlığı temsil ettiğini belirtin. Bundan sonra bu işleve yönelik tüm çağrılarda bu değerin döndürülmesini istiyorsanız 'persist' seçeneğini belirleyin.</target>
+        <target xml:lang="tr" state="translated">Bu işleve yönelik bir çağrının simülasyonunu yapmak için aşağıya bir dönüş değeri girin ve bu değerin başarıyı ya da başarısızlığı temsil ettiğini belirtin. Bundan sonra bu işleve yönelik tüm çağrılarda bu değerin döndürülmesini istiyorsanız 'persist' seçeneğini belirleyin.</target>
       </trans-unit>
       <trans-unit id="874c9be3:1">
         <source xml:lang="en">The value must be valid JSON (</source>
