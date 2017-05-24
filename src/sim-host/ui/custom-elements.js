@@ -297,7 +297,7 @@ function initialize(changePanelVisibilityCallback) {
                 var radioButton = this.shadowRoot.querySelector('input');
                 radioButton.setAttribute('name', parentGroup.id);
                 
-                var isChrome = /Chrome/.test(navigator.userAgent);
+                var isChrome = /Chrome\//.test(navigator.userAgent) && !/Edge\//.test(navigator.userAgent);
                 var cordovaRadioId = this.id;
                 if (isChrome && cordovaRadioId) {
                     this.shadowRoot.querySelector('input').addEventListener('click', function() {
