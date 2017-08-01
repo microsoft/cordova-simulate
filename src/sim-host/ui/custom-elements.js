@@ -468,6 +468,14 @@ function initialize(changePanelVisibilityCallback) {
                 value: function () {
                     this.shadowRoot.querySelector('button').focus();
                 }
+            },
+            spoken: {
+                set: function (value) {
+                    this.shadowRoot.querySelector('button').setAttribute('aria-label', value);
+                },
+                get: function () {
+                    return this.shadowRoot.querySelector('button').getAttribute('aria-label');
+                }
             }
         },
         initialize: function () {
@@ -543,11 +551,17 @@ function initialize(changePanelVisibilityCallback) {
 
             var label = this.getAttribute('label');
             if (label) {
-                this.shadowRoot.querySelector('label').textContent = this.getAttribute('label');
+                this.shadowRoot.querySelector('label').textContent = label;
             } else {
                 select.style.width = this.style.width || '100%';
                 select.style.minWidth = this.style.minWidth;
             }
+
+            var spokenText = this.getAttribute('spoken-text');
+            if (spokenText) {
+                select.setAttribute('aria-label', spokenText);
+            }
+
             // Move option elements to be children of select element
             var options = this.querySelectorAll('option');
             Array.prototype.forEach.call(options, function (option) {
