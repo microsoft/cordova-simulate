@@ -487,12 +487,8 @@ module.exports = function (messages) {
                 }
             });
 
-            var navSimulationLabel = document.querySelector('[data-loc-id="f89bb5e3"]');
-            var navSimulationTitle = navSimulationLabel && navSimulationLabel.value;
-            if (navSimulationTitle) {
-                gpxFileButton.spoken = [navSimulationTitle, gpxFileButton.textContent].join(' ');
-                gpxGo.spoken = [navSimulationTitle, gpxGo.textContent].join(' ');
-            }
+            gpxFileButton.spoken = gpxFileButton.getAttribute('spoken-text')
+            gpxGo.spoken = gpxGo.getAttribute('spoken-text')
 
             gpxGo.addEventListener('click', function () {
                 replayGpxTrack();
