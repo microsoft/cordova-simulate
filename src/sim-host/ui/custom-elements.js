@@ -468,14 +468,6 @@ function initialize(changePanelVisibilityCallback) {
                 value: function () {
                     this.shadowRoot.querySelector('button').focus();
                 }
-            },
-            spoken: {
-                set: function (value) {
-                    this.shadowRoot.querySelector('button').setAttribute('aria-label', value);
-                },
-                get: function () {
-                    return this.shadowRoot.querySelector('button').getAttribute('aria-label');
-                }
             }
         },
         initialize: function () {
@@ -556,10 +548,10 @@ function initialize(changePanelVisibilityCallback) {
                 select.style.width = this.style.width || '100%';
                 select.style.minWidth = this.style.minWidth;
             }
-
-            var spokenText = this.getAttribute('spoken-text');
-            if (spokenText) {
-                select.setAttribute('aria-label', spokenText);
+            
+            var readLabel = this.getAttribute('spoken-text');
+            if (readLabel) {
+                select.setAttribute('aria-label', readLabel);
             }
 
             // Move option elements to be children of select element

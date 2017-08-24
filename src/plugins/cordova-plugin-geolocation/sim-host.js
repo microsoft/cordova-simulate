@@ -487,9 +487,6 @@ module.exports = function (messages) {
                 }
             });
 
-            gpxFileButton.spoken = gpxFileButton.getAttribute('spoken-text')
-            gpxGo.spoken = gpxGo.getAttribute('spoken-text')
-
             gpxGo.addEventListener('click', function () {
                 replayGpxTrack();
             });
