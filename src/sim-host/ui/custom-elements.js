@@ -543,11 +543,17 @@ function initialize(changePanelVisibilityCallback) {
 
             var label = this.getAttribute('label');
             if (label) {
-                this.shadowRoot.querySelector('label').textContent = this.getAttribute('label');
+                this.shadowRoot.querySelector('label').textContent = label;
             } else {
                 select.style.width = this.style.width || '100%';
                 select.style.minWidth = this.style.minWidth;
             }
+            
+            var readLabel = this.getAttribute('spoken-text');
+            if (readLabel) {
+                select.setAttribute('aria-label', readLabel);
+            }
+
             // Move option elements to be children of select element
             var options = this.querySelectorAll('option');
             Array.prototype.forEach.call(options, function (option) {
