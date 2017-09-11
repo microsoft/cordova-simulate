@@ -292,9 +292,17 @@
         <source xml:lang="en">Speed (meters per second)</source>
         <target xml:lang="it" state="translated">Velocità (metri al secondo)</target>
       </trans-unit>
-      <trans-unit id="name-11d32900">
-        <source xml:lang="en">GPX playback speed</source>
-        <target xml:lang="it" state="translated">Velocità di riproduzione GPX</target>
+      <trans-unit id="spoken-text-f6c1471b">
+        <source xml:lang="en">Navigation Simulator - Choose File</source>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Simulatore di navigazione - Scegli File</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-323b1c35">
+        <source xml:lang="en">Navigation Simulator - Go</source>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Simulatore di navigazione - Vai</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-11d32900">
+        <source xml:lang="en">Navigation Simulator - playback speed multiplier</source>
+        <target xml:lang="it" state="needs-translation" state-qualifier="mt-suggestion">Simulatore di navigazione - moltiplicatore di velocità di riproduzione</target>
       </trans-unit>
     </body>
   </file>

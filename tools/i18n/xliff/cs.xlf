@@ -292,9 +292,17 @@
         <source xml:lang="en">Speed (meters per second)</source>
         <target xml:lang="cs" state="translated">Rychlost (metry za sekundu)</target>
       </trans-unit>
-      <trans-unit id="name-11d32900">
-        <source xml:lang="en">GPX playback speed</source>
-        <target xml:lang="cs" state="translated">Rychlost přehrávání GPX</target>
+      <trans-unit id="spoken-text-f6c1471b">
+        <source xml:lang="en">Navigation Simulator - Choose File</source>
+        <target xml:lang="cs" state="needs-translation" state-qualifier="mt-suggestion">Navigační simulátor - zvolte soubor</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-323b1c35">
+        <source xml:lang="en">Navigation Simulator - Go</source>
+        <target xml:lang="cs" state="needs-translation" state-qualifier="mt-suggestion">Navigační simulátor - Go</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-11d32900">
+        <source xml:lang="en">Navigation Simulator - playback speed multiplier</source>
+        <target xml:lang="cs" state="needs-translation" state-qualifier="mt-suggestion">Navigační simulátor - multiplikátor rychlosti přehrávání</target>
       </trans-unit>
     </body>
   </file>

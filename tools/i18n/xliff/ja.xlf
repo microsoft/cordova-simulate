@@ -292,9 +292,17 @@
         <source xml:lang="en">Speed (meters per second)</source>
         <target xml:lang="ja" state="translated">速度 (メートル毎秒)</target>
       </trans-unit>
-      <trans-unit id="name-11d32900">
-        <source xml:lang="en">GPX playback speed</source>
-        <target xml:lang="ja" state="translated">GPX 再生速度</target>
+      <trans-unit id="spoken-text-f6c1471b">
+        <source xml:lang="en">Navigation Simulator - Choose File</source>
+        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">航行シミュレータ - ファイルを選択</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-323b1c35">
+        <source xml:lang="en">Navigation Simulator - Go</source>
+        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">航行シミュレータ - 行く</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-11d32900">
+        <source xml:lang="en">Navigation Simulator - playback speed multiplier</source>
+        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">航行シミュレータ - 再生速度乗数</target>
       </trans-unit>
     </body>
   </file>

@@ -292,9 +292,17 @@
         <source xml:lang="en">Speed (meters per second)</source>
         <target xml:lang="ru" state="translated">Скорость (метры в секунду)</target>
       </trans-unit>
-      <trans-unit id="name-11d32900">
-        <source xml:lang="en">GPX playback speed</source>
-        <target xml:lang="ru" state="translated">Скорость воспроизведения GPX</target>
+      <trans-unit id="spoken-text-f6c1471b">
+        <source xml:lang="en">Navigation Simulator - Choose File</source>
+        <target xml:lang="ru" state="needs-translation" state-qualifier="mt-suggestion">Навигационный тренажер - выберите файл</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-323b1c35">
+        <source xml:lang="en">Navigation Simulator - Go</source>
+        <target xml:lang="ru" state="needs-translation" state-qualifier="mt-suggestion">Навигационный тренажер - Go</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-11d32900">
+        <source xml:lang="en">Navigation Simulator - playback speed multiplier</source>
+        <target xml:lang="ru" state="needs-translation" state-qualifier="mt-suggestion">Навигационный тренажер - коэффициент скорости воспроизведения</target>
       </trans-unit>
     </body>
   </file>
