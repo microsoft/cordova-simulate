@@ -292,9 +292,17 @@
         <source xml:lang="en">Speed (meters per second)</source>
         <target xml:lang="zh-Hans" state="translated">速度(米/秒)</target>
       </trans-unit>
-      <trans-unit id="name-11d32900">
-        <source xml:lang="en">GPX playback speed</source>
-        <target xml:lang="zh-Hans" state="translated">GPX 播放速度</target>
+      <trans-unit id="spoken-text-f6c1471b">
+        <source xml:lang="en">Navigation Simulator - Choose File</source>
+        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">航海模拟器-选择文件</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-323b1c35">
+        <source xml:lang="en">Navigation Simulator - Go</source>
+        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">航海模拟器-Go</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-11d32900">
+        <source xml:lang="en">Navigation Simulator - playback speed multiplier</source>
+        <target xml:lang="zh-Hans" state="needs-translation" state-qualifier="mt-suggestion">航海模拟器-播放速度倍增</target>
       </trans-unit>
     </body>
   </file>
