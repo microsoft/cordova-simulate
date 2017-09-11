@@ -48,7 +48,7 @@
     "gulp-eslint": "^2.0.0",
     "gulp-jsonlint": "^1.1.2",
     "in-publish": "^2.0.0",
-    "mstranslator": "^2.1.2",
+    "mstranslator": "^3.0.0",
     "parse5": "^2.2.1",
     "pretty-data": "^0.40.0",
     "xmldom": "^0.1.22"
