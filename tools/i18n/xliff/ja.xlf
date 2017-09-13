@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xliff 
-  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
   <file original="plugins\cordova-plugin-battery-status\sim-host-panels.html" source-language="en" target-language="ja">
     <body>
       <trans-unit id="caption-ac1dbd34">
@@ -81,8 +79,8 @@
         <target xml:lang="ja" state="translated">記録済みデータ</target>
       </trans-unit>
       <trans-unit id="c562ff87:1">
-        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br> Hold the Shift key to modify 'alpha'</source>
-        <target xml:lang="ja" state="translated">デバイスを操作するには、マウスでクリックし、ドラッグします。&lt;br> Shift キーを押しながら 'alpha' を変更します。</target>
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br&gt; Hold the Shift key to modify 'alpha'</source>
+        <target xml:lang="ja" state="translated">デバイスを操作するには、マウスでクリックし、ドラッグします。&lt;br&gt; Shift キーを押しながら 'alpha' を変更します。</target>
       </trans-unit>
       <trans-unit id="1b009684:1">
         <source xml:lang="en">Play</source>
@@ -294,15 +292,15 @@
       </trans-unit>
       <trans-unit id="spoken-text-f6c1471b">
         <source xml:lang="en">Navigation Simulator - Choose File</source>
-        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">航行シミュレータ - ファイルを選択</target>
+        <target xml:lang="ja" state="translated">ナビゲーション シミュレーター - ファイルを選択</target>
       </trans-unit>
       <trans-unit id="spoken-text-323b1c35">
         <source xml:lang="en">Navigation Simulator - Go</source>
-        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">航行シミュレータ - 行く</target>
+        <target xml:lang="ja" state="translated">ナビゲーション シミュレーター - 開始</target>
       </trans-unit>
       <trans-unit id="spoken-text-11d32900">
         <source xml:lang="en">Navigation Simulator - playback speed multiplier</source>
-        <target xml:lang="ja" state="needs-translation" state-qualifier="mt-suggestion">航行シミュレータ - 再生速度乗数</target>
+        <target xml:lang="ja" state="translated">ナビゲーション シミュレーター - 再生速度調整</target>
       </trans-unit>
     </body>
   </file>
@@ -389,12 +387,12 @@
         <target xml:lang="ja" state="translated">InAppBrowser</target>
       </trans-unit>
       <trans-unit id="99399f4d:1">
-        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em>_blank&lt;/em> target</source>
-        <target xml:lang="ja" state="translated">&lt;em>_blank&lt;/em> ターゲットを使用して開くときの InAppBrowser の既定の動作を選択する</target>
+        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em&gt;_blank&lt;/em&gt; target</source>
+        <target xml:lang="ja" state="translated">&lt;em&gt;_blank&lt;/em&gt; ターゲットを使用して開くときの InAppBrowser の既定の動作を選択する</target>
       </trans-unit>
       <trans-unit id="c10cdf5b:1">
-        <source xml:lang="en">Open in a new window: &lt;em>_system&lt;/em> target</source>
-        <target xml:lang="ja" state="translated">新しいウィンドウで開く: &lt;em>_system&lt;/em> ターゲット</target>
+        <source xml:lang="en">Open in a new window: &lt;em&gt;_system&lt;/em&gt; target</source>
+        <target xml:lang="ja" state="translated">新しいウィンドウで開く: &lt;em&gt;_system&lt;/em&gt; ターゲット</target>
       </trans-unit>
       <trans-unit id="d107e851:1">
         <source xml:lang="en">Open in a InAppBrowser based on an iframe</source>
