@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xliff 
-  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
   <file original="plugins\cordova-plugin-battery-status\sim-host-panels.html" source-language="en" target-language="ko">
     <body>
       <trans-unit id="caption-ac1dbd34">
@@ -81,8 +79,8 @@
         <target xml:lang="ko" state="translated">기록된 데이터</target>
       </trans-unit>
       <trans-unit id="c562ff87:1">
-        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br> Hold the Shift key to modify 'alpha'</source>
-        <target xml:lang="ko" state="translated">마우스로 클릭하고 끌어 장치를 조작합니다. &amp;lt;br> &amp;amp;lt;Shift&amp;amp;gt; 키를 누른 채로 ' alpha'를 수정합니다.</target>
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br&gt; Hold the Shift key to modify 'alpha'</source>
+        <target xml:lang="ko" state="translated">마우스로 클릭하고 끌어 장치를 조작합니다. &amp;lt;br&gt; &amp;amp;lt;Shift&amp;amp;gt; 키를 누른 채로 ' alpha'를 수정합니다.</target>
       </trans-unit>
       <trans-unit id="1b009684:1">
         <source xml:lang="en">Play</source>
@@ -294,15 +292,15 @@
       </trans-unit>
       <trans-unit id="spoken-text-f6c1471b">
         <source xml:lang="en">Navigation Simulator - Choose File</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">탐색 시뮬레이터-파일 선택</target>
+        <target xml:lang="ko" state="translated">탐색 시뮬레이터 - 파일 선택</target>
       </trans-unit>
       <trans-unit id="spoken-text-323b1c35">
         <source xml:lang="en">Navigation Simulator - Go</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">탐색 시뮬레이터-이동</target>
+        <target xml:lang="ko" state="translated">탐색 시뮬레이터 - 이동</target>
       </trans-unit>
       <trans-unit id="spoken-text-11d32900">
         <source xml:lang="en">Navigation Simulator - playback speed multiplier</source>
-        <target xml:lang="ko" state="needs-translation" state-qualifier="mt-suggestion">탐색 시뮬레이터-재생 속도 멀티 플라이어</target>
+        <target xml:lang="ko" state="translated">탐색 시뮬레이터 - 재생 속도 승수</target>
       </trans-unit>
     </body>
   </file>
@@ -389,12 +387,12 @@
         <target xml:lang="ko" state="translated">InAppBrowser</target>
       </trans-unit>
       <trans-unit id="99399f4d:1">
-        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em>_blank&lt;/em> target</source>
-        <target xml:lang="ko" state="translated">&lt;em>_blank&lt;/em> 대상을 사용하여 열 때 InAppBrowser의 기본 동작 선택</target>
+        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em&gt;_blank&lt;/em&gt; target</source>
+        <target xml:lang="ko" state="translated">&lt;em&gt;_blank&lt;/em&gt; 대상을 사용하여 열 때 InAppBrowser의 기본 동작 선택</target>
       </trans-unit>
       <trans-unit id="c10cdf5b:1">
-        <source xml:lang="en">Open in a new window: &lt;em>_system&lt;/em> target</source>
-        <target xml:lang="ko" state="translated">새 창에서 열기: &lt;em>_system&lt;/em> 대상</target>
+        <source xml:lang="en">Open in a new window: &lt;em&gt;_system&lt;/em&gt; target</source>
+        <target xml:lang="ko" state="translated">새 창에서 열기: &lt;em&gt;_system&lt;/em&gt; 대상</target>
       </trans-unit>
       <trans-unit id="d107e851:1">
         <source xml:lang="en">Open in a InAppBrowser based on an iframe</source>
