@@ -1,5 +1,8 @@
 # cordova-simulate Release Notes
 
+### 0.3.13 (Sept 20, 2017)
+* Fix accessibility issue with GPX playback speed combobox ([#247](https://github.com/Microsoft/cordova-simulate/pull/247))
+
 ### 0.3.12 (May 22, 2017)
 * Update with real translations ([ee5fa92](https://github.com/Microsoft/cordova-simulate/commit/ee5fa9242d8e514cb8995373dc826344cb18267f))
 
