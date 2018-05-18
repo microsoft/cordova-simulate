@@ -2,7 +2,7 @@
 
 [Describe your issue in detail here.]
 
-## Reproducation
+## Steps to Reproduce
 
 [If possible try to reproduce your issue on application generated via `cordova create` and share it with us. If you can't reproduce the bug on it, provide us as much info as possible about your project.]
 
