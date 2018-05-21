@@ -1,7 +1,7 @@
 # cordova-simulate Release Notes
 
 ### 0.3.14 (March 6, 2018)
-* Fixed an issue caused by differences in the path on some macOS installs *[#256](https://github.com/Microsoft/cordova-simulate/pull/256))
+* Fixed an issue caused by differences in the path on some macOS installs ([#256](https://github.com/Microsoft/cordova-simulate/pull/256))
 
 ### 0.3.13 (Sept 20, 2017)
 * Fix accessibility issue with GPX playback speed combobox ([#247](https://github.com/Microsoft/cordova-simulate/pull/247))
