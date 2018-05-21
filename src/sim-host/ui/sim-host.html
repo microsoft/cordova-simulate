@@ -15,6 +15,10 @@
     <!-- For cordova-panel and cordova-dialog, the shadow is applied to the inner section, in order to prevent it
          getting cropped in Chrome when wrapping columns -->
     <template id="cordova-panel-template">
+        <style>
+            @import "sim-host.css";
+            @import "sim-host-theme.css";
+        </style>
         <section class="cordova-panel-inner" tabindex="0">
             <section class="cordova-header"><span class="spoken-text"><span aria-hidden="true"></span></span><span class="cordova-collapse-icon"><svg focusable="false" viewBox="0 0 14 14">
                 <polyline class="cordova-collapse-up" points="2,11 7,6 12,11" stroke-width="1.5" ></polyline>
@@ -27,6 +31,10 @@
     </template>
 
     <template id="cordova-dialog-template">
+        <style>
+            @import "sim-host.css";
+            @import "sim-host-theme.css";
+        </style>
         <section class="cordova-panel-inner" tabindex="0">
             <section class="cordova-header"><span class="spoken-text"><span aria-hidden="true"></span></span><span class="cordova-close-icon"><svg focusable="false" viewBox="0 0 14 14">
                 <line x1="2" y1="4" x2="11" y2="13" stroke-width="1.5"></line>
@@ -39,10 +47,34 @@
     </template>
 
     <template id="cordova-item-list-template">
+        <style>
+            @import "sim-host.css";
+            @import "sim-host-theme.css";
+            :first-child .cordova-item-wrapper,
+            :first-child .cordova-item-wrapper:hover,
+            :first-child .cordova-item-wrapper:focus,
+            :first-child .cordova-item-wrapper:hover:active {
+                border-top-color: rgba(0,0,0,0);
+            }
+
+            :last-child .cordova-item-wrapper,
+            :last-child .cordova-item-wrapper:hover,
+            :last-child .cordova-item-wrapper:focus,
+            :last-child .cordova-item-wrapper:hover:active {
+                border-bottom-color: rgba(0,0,0,0);
+            }
+        </style>
         <content></content>
     </template>
 
     <template id="cordova-item-template">
+        <style>
+            @import "sim-host.css";
+            @import "sim-host-theme.css";
+            :hover .close-button {
+                display: block;
+            }
+        </style>
         <section style="position: relative" tabindex="0" class="cordova-item-wrapper">
             <content></content>
             <button class="close-button" tabindex="-1">
@@ -55,14 +87,26 @@
     </template>
 
     <template id="cordova-panel-row-template">
+        <style>
+            @import "sim-host.css";
+            @import "sim-host-theme.css";
+        </style>
         <content></content>
     </template>
 
     <template id="cordova-group-template">
+        <style>
+            @import "sim-host.css";
+            @import "sim-host-theme.css";
+        </style>
         <content></content>
     </template>
 
     <template id="cordova-radio-template">
+        <style>
+            @import "sim-host.css";
+            @import "sim-host-theme.css";
+        </style>
         <input id="cordova-radio-template-input" type="radio">
         <label aria-hidden="true" for="cordova-radio-template-input" class="cordova-radio-label">
             <content></content>
@@ -70,6 +114,10 @@
     </template>
 
     <template id="cordova-checkbox-template">
+        <style>
+            @import "sim-host.css";
+            @import "sim-host-theme.css";
+        </style>
         <label aria-hidden="true" for="cordova-checkbox-template-input">
             <content></content>
         </label>
@@ -77,10 +125,18 @@
     </template>
 
     <template id="cordova-label-template">
+        <style>
+            @import "sim-host.css";
+            @import "sim-host-theme.css";
+        </style>
         <label aria-hidden="true"></label>
     </template>
 
     <template id="cordova-labeled-value-template">
+        <style>
+            @import "sim-host.css";
+            @import "sim-host-theme.css";
+        </style>
         <div class="cordova-labeled-value-wrapper" tabindex="0">
             <label></label>
             <span class="cordova-value"></span>
@@ -88,26 +144,46 @@
     </template>
 
     <template id="cordova-text-entry-template">
+        <style>
+            @import "sim-host.css";
+            @import "sim-host-theme.css";
+        </style>
         <label for="cordova-text-entry-template-input"></label>
         <input id="cordova-text-entry-template-input" type="text">
     </template>
 
     <template id="cordova-number-entry-template">
+        <style>
+            @import "sim-host.css";
+            @import "sim-host-theme.css";
+        </style>
         <label aria-hidden="true" for="cordova-number-entry-template-input"></label>
         <input id="cordova-number-entry-template-input" type="number">
     </template>
 
     <template id="cordova-button-template">
+        <style>
+            @import "sim-host.css";
+            @import "sim-host-theme.css";
+        </style>
         <button>
             <span><content></content></span>
         </button>
     </template>
 
     <template id="cordova-file-template">
+        <style>
+            @import "sim-host.css";
+            @import "sim-host-theme.css";
+        </style>
         <input type="file" style="display: none;">
     </template>
 
     <template id="cordova-combo-template">
+        <style>
+            @import "sim-host.css";
+            @import "sim-host-theme.css";
+        </style>
         <label aria-hidden="true" for="cordova-combo-template-select"></label>
         <select id="cordova-combo-template-select"></select>
     </template>
