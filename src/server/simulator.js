@@ -167,11 +167,11 @@ Simulator.prototype.startSimulation = function () {
 
             this._state = Simulator.State.RUNNING;
         }.bind(this))
-        .fail(function (error) {
+        .catch(function (error) {
             log.warning('Error starting the simulation');
-            log.error(error);
 
             this._state = Simulator.State.IDLE;
+            throw error;
         }.bind(this));
 };
 
