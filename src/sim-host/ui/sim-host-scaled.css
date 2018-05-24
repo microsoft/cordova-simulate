@@ -143,8 +143,26 @@ input[type=range]::-moz-range-thumb {
     border-right-color: rgba(0,0,0,0);
 }
 
+.cordova-item-first-child,
+.cordova-item-first-child:hover,
+.cordova-item-first-child:focus,
+.cordova-item-first-child:hover:active {
+    border-top-color: rgba(0,0,0,0);
+}
+
+.cordova-item-last-child,
+.cordova-item-last-child:hover,
+.cordova-item-last-child:focus,
+.cordova-item-last-child:hover:active {
+    border-bottom-color: rgba(0,0,0,0);
+}
+
 .cordova-item-wrapper {
     background: transparent;
+}
+
+.cordova-item-wrapper:hover .close-button {
+    display: block;
 }
 
 /* Hacks to work around multi-column bug in Chrome 48+. The following section
