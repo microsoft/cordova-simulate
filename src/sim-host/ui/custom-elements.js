@@ -296,6 +296,19 @@ function initialize(changePanelVisibilityCallback) {
             if (parentGroup) {
                 var radioButton = this.shadowRoot.querySelector('input');
                 radioButton.setAttribute('name', parentGroup.id);
+                
+                var isChrome = /Chrome\//.test(navigator.userAgent) && !/Edge\//.test(navigator.userAgent);
+                var cordovaRadioId = this.id;
+                if (isChrome && cordovaRadioId) {
+                    this.shadowRoot.querySelector('input').addEventListener('click', function() {
+                        var radios = parentGroup.querySelectorAll('cordova-radio:not(#' + cordovaRadioId + ')');
+                        for (var i = 0; i < radios.length; i++) {
+                            if (radios[i].checked) {
+                                radios[i].checked = false;
+                            }
+                        }
+                    });
+                }
             }
         },
         mungeIds: 'cordova-radio-template-input'
