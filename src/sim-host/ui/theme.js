@@ -3,7 +3,7 @@
 module.exports = {
     elementSelectors: {
         'body': 'body',
-        'input': ['textarea, input[type^=text], input[type^=number], input[type^=checkbox]',
+        'input': ['select', 'textarea, input[type^=text], input[type^=number], input[type^=checkbox]',
             'input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper',
             'input[type=range]::-webkit-slider-runnable-track',
             'input[type=range]::-moz-range-track'],
