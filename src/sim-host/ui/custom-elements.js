@@ -118,11 +118,13 @@ function initialize(changePanelVisibilityCallback) {
             addItem: {
                 value: function (item) {
                     this.appendChild(item);
+                    setClassWrapper(this.children);
                 }
             },
             removeItem: {
                 value: function (item) {
                     this.removeChild(this.children[item]);
+                    setClassWrapper(this.children);
                 }
             }
         },
@@ -206,6 +208,7 @@ function initialize(changePanelVisibilityCallback) {
                     item.dispatchEvent(itemRemovedEvent);
 
                     list.removeChild(item);
+                    setClassWrapper(list.children);
 
                     if (setFocus) {
                         var itemCount = list.children.length;
@@ -715,6 +718,19 @@ function setValueSafely(el, prop, value) {
         window.setTimeout(function () {
             el[prop] = value;
         }, 0);
+    }
+}
+
+function setClassWrapper(list) {
+    var length = list.length;
+    if (length == 1) {
+        list[0].shadowRoot.querySelector('.cordova-item-wrapper').className = 'cordova-item-wrapper cordova-item-first-child cordova-item-last-child';
+    } else if (length > 0) {
+        list[0].shadowRoot.querySelector('.cordova-item-wrapper').className = 'cordova-item-wrapper cordova-item-first-child';
+        for (var i = 1; i < length - 1; i++) {
+            list[i].shadowRoot.querySelector('.cordova-item-wrapper').className = 'cordova-item-wrapper';
+        } 
+        list[length - 1].shadowRoot.querySelector('.cordova-item-wrapper').className = 'cordova-item-wrapper cordova-item-last-child';   
     }
 }
 
