@@ -1,6 +1,6 @@
 {
   "name": "cordova-simulate",
-  "version": "0.3.15",
+  "version": "0.4.0",
   "description": "Simulates your Cordova application in the browser.",
   "main": "src/simulate.js",
   "bin": {
@@ -31,7 +31,7 @@
     "browserify": "^13.0.1",
     "chalk": "^1.1.1",
     "cordova-registry-mapper": "^1.1.12",
-    "cordova-serve": "^1.0.0",
+    "cordova-serve": "^2.0.1",
     "csp-parse": "^0.0.2",
     "glob": "^7.0.5",
     "minimist": "^1.2.0",
