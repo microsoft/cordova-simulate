@@ -1,5 +1,9 @@
 # cordova-simulate Release Notes
 
+### 0.3.15 (May 18, 2018)
+* Fixed rendering in Chrome ([#265](https://github.com/Microsoft/cordova-simulate/pull/265))
+* Fixed switcher for radio buttons in camera plugin ([#268](https://github.com/Microsoft/cordova-simulate/pull/268))
+
 ### 0.3.14 (March 6, 2018)
 * Fixed an issue caused by differences in the path on some macOS installs ([#256](https://github.com/Microsoft/cordova-simulate/pull/256))
 

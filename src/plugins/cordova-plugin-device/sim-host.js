@@ -155,7 +155,7 @@ module.exports = function (messages) {
     simStatus.whenAppHostReady(function () {
         messages.call('cordova-version').then(function (version) {
             cordovaVersionLabel.value = version;
-        }).fail(function () {
+        }).catch(function () {
             cordovaVersionLabel.value = 'unknown';
         });
     });
