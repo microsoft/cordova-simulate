@@ -1,5 +1,9 @@
 # cordova-simulate Release Notes
 
+### 0.4.0 (June 21, 2018)
+* Migrate to [cordova-serve@2.0.1](https://github.com/apache/cordova-serve/releases/tag/rel%2F2.0.1)
+* Fixed work with Cordova Android 7.0.0
+
 ### 0.3.15 (June 18, 2018)
 * Fixed rendering in Chrome ([#265](https://github.com/Microsoft/cordova-simulate/pull/265))
 * Fixed switcher for radio buttons in camera plugin ([#268](https://github.com/Microsoft/cordova-simulate/pull/268))

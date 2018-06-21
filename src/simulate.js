@@ -9,7 +9,7 @@ var launchBrowser = function (target, url) {
 };
 
 var simulate = function (opts) {
-    var target = opts.target || 'chrome';
+    var target = opts.target || 'default';
     var simulator = new Simulator(opts);
 
     return simulator.startSimulation()
