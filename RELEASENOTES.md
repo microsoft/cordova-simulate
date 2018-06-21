@@ -1,6 +1,6 @@
 # cordova-simulate Release Notes
 
-### 0.4.0 (June, 2018)
+### 0.4.0 (June 21, 2018)
 * Migrate to [cordova-serve@2.0.1](https://github.com/apache/cordova-serve/releases/tag/rel%2F2.0.1)
 * Fixed work with Cordova Android 7.0.0
 
