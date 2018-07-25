@@ -76,11 +76,47 @@ module.exports = function (messages) {
             dialogImg = document.getElementById('camera-dialog-image');
             var panelImg = document.getElementById('camera-img');
 
+            function ChooseFile(fileInput, srcButton) {
+                if (srcButton.disabled) {
+                    return;
+                }
+                srcButton.disabled = true;
+                fileInput.value = ''; // reset
+                fileInput.click();
+                // timer is needed to enable the button if the dialog box is closed without selecting a file
+                var timeOutId = setTimeout(function() {
+                    srcButton.disabled = false;
+                    fileInput.removeAttribute('cordova-buttonId');
+                    fileInput.removeAttribute('timerId');
+                }, 3000);
+                
+                if (srcButton.offsetParent && srcButton.offsetParent.id) {
+                    fileInput.setAttribute('cordova-buttonId', srcButton.offsetParent.id);
+                    fileInput.setAttribute('timerId', timeOutId);
+                }
+            }
+            
+            function EnableChooseFileButton(fileInput) {
+                var cordovaButtonId = fileInput.getAttribute('cordova-buttonId');
+                var cordovaButton = document.getElementById(cordovaButtonId);
+                if (!cordovaButton) {
+                    return;
+                }
+                var disabledButton = cordovaButton.shadowRoot.querySelector('button:disabled');
+                if (!disabledButton) {
+                    return;
+                }
+                disabledButton.disabled = false;
+                clearTimeout(fileInput.getAttribute('timerId'));
+                fileInput.removeAttribute('cordova-buttonId');
+                fileInput.removeAttribute('timerId');
+            }
+            
             // Setup handlers for choosing an image in the panel
             filenameInput.accept = 'image/*';
             document.getElementById('camera-choose-filename').addEventListener('click', function () {
                 telemetry.sendUITelemetry(Object.assign({}, baseProps, { control: 'camera-choose-filename' }));
-                filenameInput.input.click();
+                ChooseFile(filenameInput.input, this);
             });
 
             filenameInput.addEventListener('change', function () {
@@ -88,13 +124,14 @@ module.exports = function (messages) {
                     preSelectedFile = filenameInput.files[0];
                     panelImg.src = URL.createObjectURL(preSelectedFile);
                     panelImg.style.display = '';
+                    EnableChooseFileButton(this);
                 }
             });
 
             // Setup handlers for choosing an image in the dialog
             dialogFilenameInput.accept = 'image/*';
             document.getElementById('camera-dialog-choose-filename').addEventListener('click', function () {
-                dialogFilenameInput.input.click();
+                ChooseFile(dialogFilenameInput.input, this);
             });
 
             dialogFilenameInput.addEventListener('change', function () {
@@ -104,6 +141,7 @@ module.exports = function (messages) {
                     dialogImg.src = URL.createObjectURL(dialogSelectedFile);
                     dialogImg.style.display = '';
                     document.getElementById('camera-dialog-use-image').style.display = '';
+                    EnableChooseFileButton(this);
                 }
             });
 
