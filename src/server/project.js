@@ -327,7 +327,7 @@ Project.prototype._getProjectState = function() {
             var pluginsJsonPath = path.join(projectRoot, 'plugins', platform + '.json');
             return Q.nfcall(fs.readFile, pluginsJsonPath);
         })
-        .fail(function () {
+        .catch(function () {
             // an error ocurred trying to read the file for the current platform,
             // return an empty json file content
             return '{}';

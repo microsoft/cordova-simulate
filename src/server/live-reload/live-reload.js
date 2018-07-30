@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
+var fs = require('fs');
 var ncp = require('ncp');
 var path = require('path');
 var Q = require('q');
@@ -59,10 +60,17 @@ LiveReload.prototype._onFileChanged = function (fileRelativePath, parentDir) {
         var sourceAbsolutePath = path.join(this._project.projectRoot, parentDir, fileRelativePath);
         var destAbsolutePath = path.join(this._project.platformRoot, fileRelativePath);
 
-        propagateChangePromise = copyFile(sourceAbsolutePath, destAbsolutePath)
-            .then(function () {
-                return true;
-            });
+        if (!fs.existsSync(sourceAbsolutePath)) {
+            propagateChangePromise = deleteFile(destAbsolutePath)
+                .then(function () {
+                    return false;
+                });
+        } else {
+            propagateChangePromise = copyFile(sourceAbsolutePath, destAbsolutePath)
+                .then(function () {
+                    return true;
+                });
+        }
     }
 
     // Notify app-host. The delay is needed as a workaround on Windows, because shortly after copying the file, it is
@@ -87,6 +95,10 @@ LiveReload.prototype._onFileChanged = function (fileRelativePath, parentDir) {
 
 function copyFile(src, dest) {
     return Q.nfcall(ncp, src, dest);
+}
+
+function deleteFile(file) {
+    return Q.nfcall(fs.unlink, file);
 }
 
 module.exports = LiveReload;

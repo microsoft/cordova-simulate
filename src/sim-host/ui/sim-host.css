@@ -36,16 +36,16 @@ cordova-panel, cordova-dialog {
     display: block;
 }
 
-body /deep/ .cordova-panel-inner {
+.cordova-panel-inner {
     overflow: hidden;
 }
 
-body /deep/ .cordova-header {
+.cordova-header {
     position: relative;
     cursor: pointer;
 }
 
-body /deep/ .cordova-content > ::content > * {
+.cordova-content > ::content > * {
     position: relative;
 }
 
@@ -63,22 +63,22 @@ body /deep/ .cordova-content > ::content > * {
     float: right;
 }
 
-body /deep/ .cordova-value,
-body /deep/ .cordova-header .spoken-text span {
+.cordova-value,
+.cordova-header .spoken-text span {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-body /deep/ .cordova-header .spoken-text span {
+.cordova-header .spoken-text span {
     position: absolute;
 }
 
-body /deep/ input {
+input {
     padding: 0;
 }
 
-body /deep/ .cordova-overlay {
+.cordova-overlay {
     position: fixed;
     left: 0;
     top: 0;
@@ -104,12 +104,12 @@ cordova-button {
     overflow: visible;
 }
 
-body /deep/ button {
+button {
     width: 100%;
     cursor: pointer;
 }
 
-body /deep/ select {
+select {
     cursor: pointer;
 }
 
@@ -119,127 +119,127 @@ select::-ms-expand { /* for IE 11 */
     color: currentColor;
 }
 
-body /deep/ input[type=checkbox],
-body /deep/ input[type=radio] {
+input[type=checkbox],
+input[type=radio] {
     vertical-align: bottom;
 }
 
-body /deep/ input,
-body /deep/ textarea,
-body /deep/ select,
-body /deep/ button {
+input,
+textarea,
+select,
+button {
     margin: 0;
     resize: none;
 }
 
-body /deep/ textarea {
+textarea {
     overflow-y: auto;
 }
 
-body /deep/ input:focus,
-body /deep/ textarea:focus,
-body /deep/ isindex:focus,
-body /deep/ keygen:focus,
-body /deep/ select:focus {
+input:focus,
+textarea:focus,
+isindex:focus,
+keygen:focus,
+select:focus {
     outline: none;
 }
 
-body /deep/ cordova-radio {
+cordova-radio {
     display: flex;
     align-items: center;
 }
 
-body /deep/ .cordova-panel-row {
+.cordova-panel-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-body /deep/ cordova-group, body /deep/ cordova-item-list {
+cordova-group, cordova-item-list {
     display: block;
 }
 
-body /deep/ .cordova-radio-wrapper.cordova-inline {
+.cordova-radio-wrapper.cordova-inline {
     display: inline-flex;
 }
 
-body /deep/ .cordova-radio-label {
+.cordova-radio-label {
     padding-left: 0.25em;
 }
 
-body /deep/ cordova-item /deep/ .close-button {
+.cordova-item-wrapper {
+    margin: -1px 0;
+}
+
+.close-button {
+    width: 17px;
+    height: 17px;
+    top: 5px;
+    right: 5px;
     position: absolute;
     padding: 0;
     display: none;
 }
 
-body /deep/ cordova-item:hover /deep/ .close-button {
-    display: block;
-}
-
-body /deep/ .cordova-item-wrapper {
-    margin: -1px 0;
-}
-
-body /deep/ .cordova-item-wrapper:focus,
-body /deep/ .cordova-item-wrapper:hover {
+.cordova-item-wrapper:focus,
+.cordova-item-wrapper:hover {
     z-index: 1000;
 }
 
-body /deep/ .cordova-item-wrapper {
+.cordova-item-wrapper {
     /* cordova-item borrows button style, but forces border to a single pixel so overlap works correctly */
     border-style: solid !important;
     border-width: 1px !important;
 }
 
 
-body /deep/ .cordova-collapse-icon,
-body /deep/ .cordova-close-icon {
+.cordova-collapse-icon,
+.cordova-close-icon {
     cursor: pointer;
     position: absolute;
     margin-left: auto;
 }
 
-body /deep/ .cordova-collapse-icon svg,
-body /deep/ .cordova-close-icon svg{
+.cordova-collapse-icon svg,
+.cordova-close-icon svg{
     stroke: currentColor;
     fill-opacity: 0;
 }
 
-body /deep/ .cordova-collapse-icon.cordova-collapsed .cordova-collapse-up {
+.cordova-collapse-icon.cordova-collapsed .cordova-collapse-up {
     display: none;
 }
 
-body /deep/ .cordova-collapse-icon .cordova-collapse-down {
+.cordova-collapse-icon .cordova-collapse-down {
     display: none;
 }
 
-body /deep/ .cordova-collapse-icon.cordova-collapsed .cordova-collapse-down {
+.cordova-collapse-icon.cordova-collapsed .cordova-collapse-down {
     display: inline;
 }
 
-body /deep/ .cordova-content {
+.cordova-content {
     overflow: hidden;
     transition: height 0.2s;
 }
 
-body /deep/ .cordova-hidden {
+.cordova-hidden {
     display: none;
 }
 
-body /deep/ .cordova-square-box-container {
+.cordova-square-box-container {
     position: relative;
     width: 100%;
     padding-bottom: 100%;
 }
 
-body /deep/ .cordova-square-box-content {
+.cordova-square-box-content {
     position: absolute;
     width: 100%;
     height: 100%;
 }
 
-body /deep/ input[type=range] {
+input[type=range] {
     background: transparent;
     outline: none;
 
@@ -258,21 +258,36 @@ input[type=range]::-ms-track {
     border-right: none;
 }
 
-body /deep/ input[type=range],
-body /deep/ input[type=range]::-webkit-slider-runnable-track,
-body /deep/ input[type=range]::-webkit-slider-thumb {
+input[type=range],
+input[type=range]::-webkit-slider-runnable-track,
+input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
+}
+
+/* Use correct colors for buttons in IE in high-contrast mode */
+@media screen and (-ms-high-contrast: active) {
+    button {
+        color: buttonText;
+        border-color: buttonText;
+        background-color: buttonFace;
+    }
+
+    button:hover, button:focus {
+        color: highlightText;
+        border-color: buttonText;
+        background-color: highlight;
+    }
 }
 
 /* Hacks to work around multi-column bug in Chrome 48+. The following section
    is removed for other browsers when the file is served */
 
 /* BEGIN CHROME */
-body /deep/ .cordova-panel-inner {
+.cordova-panel-inner {
     overflow: visible;
 }
 
-body /deep/ .cordova-content {
+.cordova-content {
     overflow: visible;
 }
 /* END CHROME */

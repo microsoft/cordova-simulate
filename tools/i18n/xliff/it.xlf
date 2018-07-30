@@ -290,6 +290,18 @@
         <source xml:lang="en">Speed (meters per second)</source>
         <target xml:lang="it" state="translated">Velocità (metri al secondo)</target>
       </trans-unit>
+      <trans-unit id="spoken-text-f6c1471b">
+        <source xml:lang="en">Navigation Simulator - Choose File</source>
+        <target xml:lang="it" state="translated">Simulatore di spostamento - Scegli file</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-323b1c35">
+        <source xml:lang="en">Navigation Simulator - Go</source>
+        <target xml:lang="it" state="translated">Simulatore di spostamento - Vai</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-11d32900">
+        <source xml:lang="en">Navigation Simulator - playback speed multiplier</source>
+        <target xml:lang="it" state="translated">Simulatore di spostamento - Moltiplicatore della velocità di riproduzione</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-globalization\sim-host-panels.html" source-language="en" target-language="it">
@@ -458,25 +470,13 @@
         <source xml:lang="en">There is no handler for the following exec call:</source>
         <target xml:lang="it" state="translated">Non esiste alcun gestore per la chiamata exec seguente:</target>
       </trans-unit>
-      <trans-unit id="ba2b4c80:1">
-        <source xml:lang="en">service</source>
-        <target xml:lang="it" state="translated">servizio</target>
-      </trans-unit>
-      <trans-unit id="e4c1ba28:1">
-        <source xml:lang="en">action</source>
-        <target xml:lang="it" state="translated">azione</target>
-      </trans-unit>
       <trans-unit id="54b83b14:1">
-        <source xml:lang="en">Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.</source>
-        <target xml:lang="it" state="translated">Immettere sotto un valore che deve essere restituito per questa chiamata, quindi indicare se rappresenta una chiamata riuscita o non riuscita. Se si vuole rispondere a questa chiamata sempre con questo risultato, selezionare l'opzione 'Salva in modo permanente'.</target>
+        <source xml:lang="en">Please enter a return value below to simulate a call to this function and choose if this value represents success or failure. If you'd like this value returned for all future calls to this function, select the 'persist' option.</source>
+        <target xml:lang="it" state="translated">Immettere sotto un valore restituito per simulare una chiamata a questa funzione e scegliere se questo valore rappresenta un'operazione riuscita o un errore. Se si vuole che questo valore venga restituito per tutte le chiamate future a questa funzione, selezionare l'opzione 'persist'.</target>
       </trans-unit>
       <trans-unit id="874c9be3:1">
         <source xml:lang="en">The value must be valid JSON (</source>
         <target xml:lang="it" state="translated">Il valore deve essere in formato JSON valido (</target>
-      </trans-unit>
-      <trans-unit id="8679c185:1">
-        <source xml:lang="en">error</source>
-        <target xml:lang="it" state="translated">errore</target>
       </trans-unit>
       <trans-unit id="bce2c943:1">
         <source xml:lang="en">Persist</source>

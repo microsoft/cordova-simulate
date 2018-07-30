@@ -4,12 +4,12 @@
 <cordova-dialog id="exec-dialog" caption="Neošetřené volání metody Exec" data-loc-id="f7283850">
     <cordova-group>
         <p data-loc-id="a1a63f26">Pro následující volání metody Exec není k dispozici obslužná rutina:</p>
-        <p style="font-style:italic"><span id="exec-service" data-loc-id="ba2b4c80">služba</span>.<span id="exec-action" data-loc-id="e4c1ba28">akce</span></p>
-        <p data-loc-id="54b83b14">Zadejte hodnotu, která se má u tohoto volání vracet, a potom určete, jestli znamená úspěch nebo neúspěch. Pokud chcete, aby odpověď na toto volání měla vždy tento výsledek, vyberte možnost „Zachovat“.</p>
+        <p style="font-style:italic"><span id="exec-service" data-loc-ignore-content="true">service</span>.<span id="exec-action" data-loc-ignore-content="true">action</span>(<span id="exec-args" data-loc-ignore-content="true">arguments</span>)</p>
+        <p data-loc-id="54b83b14">Zadejte prosím níže návratovou hodnotu pro simulaci volání této funkce a zvolte, jestli tato hodnota představuje úspěch, nebo neúspěch. Pokud chcete, aby se tato hodnota vracela pro všechna budoucí volání této funkce, vyberte možnost persist.</p>
     </cordova-group>
     <cordova-group>
         <textarea id="exec-response" rows="10"></textarea>
-        <div class="p" id="exec-error" style="color: red;" data-loc-id="874c9be3">Hodnota musí mít platný formát JSON (<span style="font-style:italic;" id="exec-parse-error" data-loc-id="8679c185">chyba</span>)</div>
+        <div class="p" id="exec-error" style="color: red;" data-loc-id="874c9be3">Hodnota musí mít platný formát JSON (<span style="font-style:italic;" id="exec-parse-error" data-loc-ignore-content="true">error</span>)</div>
     </cordova-group>
     <cordova-panel-row>
         <cordova-checkbox id="exec-persist" data-loc-id="bce2c943">Zachovat</cordova-checkbox>

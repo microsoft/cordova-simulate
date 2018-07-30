@@ -1,5 +1,34 @@
 # cordova-simulate Release Notes
 
+### 0.4.0 (June 21, 2018)
+* Migrate to [cordova-serve@2.0.1](https://github.com/apache/cordova-serve/releases/tag/rel%2F2.0.1)
+* Fixed work with Cordova Android 7.0.0
+
+### 0.3.15 (June 18, 2018)
+* Fixed rendering in Chrome ([#265](https://github.com/Microsoft/cordova-simulate/pull/265))
+* Fixed switcher for radio buttons in camera plugin ([#268](https://github.com/Microsoft/cordova-simulate/pull/268))
+
+### 0.3.14 (March 6, 2018)
+* Fixed an issue caused by differences in the path on some macOS installs ([#256](https://github.com/Microsoft/cordova-simulate/pull/256))
+
+### 0.3.13 (Sept 20, 2017)
+* Fix accessibility issue with GPX playback speed combobox ([#247](https://github.com/Microsoft/cordova-simulate/pull/247))
+
+### 0.3.12 (May 22, 2017)
+* Update with real translations ([ee5fa92](https://github.com/Microsoft/cordova-simulate/commit/ee5fa9242d8e514cb8995373dc826344cb18267f))
+
+### 0.3.11 (May 19, 2017)
+* Remove spurious CSS file from root folder
+
+### 0.3.10 (May 19, 2017)
+* Localization tool updates ([#240](https://github.com/Microsoft/cordova-simulate/pull/240), [#242](https://github.com/Microsoft/cordova-simulate/pull/242))
+* Display arguments in "Unhandled Exec Call" dialog ([#231](https://github.com/Microsoft/cordova-simulate/pull/231))
+* Fix Live Reload to handle deleted files ([#233](https://github.com/Microsoft/cordova-simulate/pull/233))
+* Fix exception when HTML file contains a `<header>` tag ([#238](https://github.com/Microsoft/cordova-simulate/pull/238))
+* Fix buttons not indicating focus and hover in high contrast mode in Internet Explorer ([#236](https://github.com/Microsoft/cordova-simulate/pull/236))
+* Fix Live Reload failure with Ionic 2 templates and watcher task in Visual Studio ([#226](https://github.com/Microsoft/cordova-simulate/pull/226))
+* Improvements for screen readers ([#222](https://github.com/Microsoft/cordova-simulate/pull/222), [#223](https://github.com/Microsoft/cordova-simulate/pull/223)) 
+
 ### 0.3.9 (Jan 5, 2017)
 * Support scroll bar color in themes ([#221](https://github.com/Microsoft/cordova-simulate/pull/221))
 

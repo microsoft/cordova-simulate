@@ -4,7 +4,8 @@ var fs = require('fs'),
     path = require('path'),
     util = require('util'),
     EventEmitter = require('events').EventEmitter,
-    log = require('../utils/log');
+    log = require('../utils/log'),
+    chokidar = require('chokidar');
 
 var EVENT_IGNORE_DURATION = 150;
 var WWW_ROOT = 'www';
@@ -27,7 +28,7 @@ util.inherits(Watcher, EventEmitter);
 
 Watcher.prototype.startWatching = function () {
     var watchPath = path.join(this._projectRoot, WWW_ROOT);
-    this.wwwWatcher = fs.watch(watchPath, { recursive: true }, handleWwwWatcherEvent.bind(this));
+    this.wwwWatcher = chokidar.watch(watchPath, {cwd: watchPath}).on('all', handleWwwWatcherEvent.bind(this));
 
     if (this._mergesOverrideExists) {
         this.mergesWatcher = fs.watch(this._mergesOverridePath, { recursive: true }, handleMergesWatcherEvent.bind(this));
@@ -79,7 +80,7 @@ function handleWatcherEvent(root, fileRelativePath) {
     var srcPathPrefix = isWww ? path.join(this._projectRoot, WWW_ROOT) : this._mergesOverridePath;
     var filePathFromProjectRoot = path.join(srcPathPrefix, fileRelativePath);
 
-    if (fs.statSync(filePathFromProjectRoot).isDirectory()) {
+    if (fs.existsSync(filePathFromProjectRoot) && fs.statSync(filePathFromProjectRoot).isDirectory()) {
         return;
     }
 

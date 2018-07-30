@@ -180,6 +180,10 @@ module.exports = function (messages) {
             var previousSelection = 'camera-prompt';
             function handleRadioClick(radioName) {
                 if (radioName !== previousSelection) {
+                    //manually changing "checked" state because radiobuttons are in different isolated shadowRoots
+                    document.getElementById(radioName).checked = true;
+                    document.getElementById(previousSelection).checked = false;
+
                     previousSelection = radioName;
                     telemetry.sendUITelemetry(Object.assign({}, baseProps, { control: radioName }));
                 }

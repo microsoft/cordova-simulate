@@ -178,7 +178,7 @@ module.exports = function (messages) {
                 var headingDeg  = parseInt(heading.value),
                     headingText = navUtils.getDirection(headingDeg);
 
-                headingLabel.value = headingText;
+                headingLabel.value = headingText + ' ' + headingDeg + '\u00B0';
                 headingMapLabel.innerHTML = headingText + '</br>' + headingDeg + '&deg;';
 
                 var style = ['-webkit-transform', '-ms-transform', '-moz-transform', '-o-transform', 'transform'].map(function (prop) {
