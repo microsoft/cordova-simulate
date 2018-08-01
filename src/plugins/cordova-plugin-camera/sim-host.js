@@ -16,33 +16,16 @@ module.exports = function (messages) {
         preSelectedFile;
 
     messages.register('takePicture', function (args, callback) {
+        var canvas;
         if (document.getElementById('camera-host').checked) {
-            navigator.mediaDevices.getUserMedia({ video: true}).then(function(stream) {
-                var video = document.getElementById('camera-stream');
-                video.src = window.URL.createObjectURL(stream);
-                video.play();
-                video.onplaying = function() {
-                    var canvas = document.getElementById('camera-host-canvas');
-                    var width = video.videoWidth;
-                    var height = video.videoHeight;
-
-                    if (width && height) {
-                        canvas.width = width;
-                        canvas.height = height;
-                    }
-
-                    canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-                    video.pause();
-
-                    getPictureFromCanvas(canvas, callback, args);
-                };
-            }).catch(function(err){
-                window.alert('There was an error with accessing the camera stream: ' + err.name, err);
+            canvas = document.getElementById('camera-host-canvas');
+            takeSampleFromCamera(canvas, function (canvas) {
+                getPictureFromCanvas(canvas, callback, args);
             });
         } else if (document.getElementById('camera-prompt').checked) {
             dialog.showDialog('camera-choose-image', function (msg) {
                 if (msg === 'showing') {
-                    // Not we use .onclick etc here rather than addEventListener() to ensure we replace any existing
+                    // Now we use .onclick etc here rather than addEventListener() to ensure we replace any existing
                     // handler with one that uses the appropriate value of 'callback' from the current closure.
                     document.getElementById('camera-dialog-use-image').onclick = function () {
                         dialog.hideDialog('camera-choose-image');
@@ -59,8 +42,9 @@ module.exports = function (messages) {
                 }
             });
         } else if (document.getElementById('camera-sample').checked) {
-            var canvas = document.getElementById('camera-sample-canvas');
-            if (canvas.getAttribute('done')) {
+            var cameraSampleImg = document.getElementById('camera-sample-img');
+            if (cameraSampleImg.getAttribute('src')) {
+                canvas = document.getElementById('camera-sample-canvas');
                 getPictureFromCanvas(canvas, callback, args);
             }
         }
@@ -69,14 +53,48 @@ module.exports = function (messages) {
         }
     });
 
+    function takeSampleFromCamera(canvas, callback) {
+        navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
+            var video = document.getElementById('camera-stream');
+            video.src = window.URL.createObjectURL(stream);
+            video.play();
+            video.onplaying = function () {
+                var width = video.videoWidth;
+                var height = video.videoHeight;
+
+                if (width && height) {
+                    canvas.width = width;
+                    canvas.height = height;
+                }
+
+                canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+                video.pause();
+
+                callback(canvas);
+            };
+        }).catch(function (error) {
+            var errorMessage = 'There was an error with accessing the camera stream: ' + error.name;
+            if (error.message) {
+                errorMessage += ', ' + error.message;
+            }
+            console.error(error);
+            window.alert(errorMessage);
+        });
+    }
+
     function getPictureFromCanvas(canvas, callback, args) {
         if (args && args[1] === 0) {
             /* Destination type is DATA_URL */
-            callback(null, canvas.toDataURL('image/png'));
+            // TODO: Add support for Camera.EncodingType instead of hardcoded image/jpeg
+            var imageData = canvas.toDataURL('image/jpeg');
+            if (imageData) {
+                imageData = imageData.substr(imageData.indexOf(',') + 1);
+            }
+            callback(null, imageData);
         } else {
-            canvas.toBlob(function(blob) { 
+            canvas.toBlob(function (blob) {
                 createArrayBuffer(blob, callback);
-            }, 'image/png');
+            }, 'image/jpeg');
         }
     }
 
@@ -100,6 +118,7 @@ module.exports = function (messages) {
     function createDataUrl(blob, callback) {
         var reader = new FileReader();
         reader.onloadend = function () {
+            // TODO: Add support for Camera.EncodingType instead of hardcoded image/jpeg
             var imageData = reader.result;
             if (imageData) {
                 imageData = imageData.substr(imageData.indexOf(',') + 1);
@@ -122,34 +141,15 @@ module.exports = function (messages) {
                 telemetry.sendUITelemetry(Object.assign({}, baseProps, { control: 'camera-choose-filename' }));
                 filenameInput.input.click();
             });
-            
+
             document.getElementById('camera-make-sample').addEventListener('click', function () {
-                navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
-                    var video = document.getElementById('camera-stream');
-                    video.src = window.URL.createObjectURL(stream);
-                    video.play();
-                    video.onplaying = function() {
-                        var canvas = document.getElementById('camera-sample-canvas');
-                        var width = video.videoWidth;
-                        var height = video.videoHeight;
-
-                        if (width && height) {
-                            canvas.width = width;
-                            canvas.height = height;
-                        }
-
-                        canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-                        canvas.setAttribute('done', true);
-                        video.pause();
-                        
-                        // preview
-                        var data = canvas.toDataURL('image/png');
-                        var panelImg = document.getElementById('camera-img');
-                        panelImg.setAttribute('src', data);
-                        panelImg.style.display = 'block';
-                    };
-                }).catch(function(err){
-                    window.alert('There was an error with accessing the camera stream: ' + err.name, err);
+                var canvas = document.getElementById('camera-sample-canvas');
+                takeSampleFromCamera(canvas, function (canvas) {
+                    // preview
+                    var data = canvas.toDataURL('image/jpeg');
+                    var panelImg = document.getElementById('camera-sample-img');
+                    panelImg.setAttribute('src', data);
+                    panelImg.style.display = 'block';
                 });
             });
 
@@ -195,9 +195,9 @@ module.exports = function (messages) {
             document.getElementById('camera-sample').onclick = handleRadioClick.bind(this, 'camera-sample');
 
             // hide actions if they are not supported by the browser (IE 11, Safari, Opera mini)
-            if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
                 document.getElementById('camera-host').style.display = 'none';
-                document.getElementById('camera-sample-row').style.display = 'none';
+                document.getElementById('camera-sample-options').style.display = 'none';
             }
         }
     };
