@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/Microsoft/cordova-simulate",
   "engines": {
-    "node": ">= 4.5.0",
+    "node": ">= 6.0.0",
     "npm": ">= 2.5.1"
   },
   "dependencies": {
