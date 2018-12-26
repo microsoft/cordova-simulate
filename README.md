@@ -133,8 +133,7 @@ files that can be included using `require()`.
 This defines any dialogs that will be used (dialogs are simple modal popups - such as used for the Camera plugin). At
 the top level it should contain one or more `cordova-dialog` elements. Each of these must have `id` and `caption`
 attributes (as for `sim-host-panels.html`). The `id` will be used in calls to `dialog.showDialog()` and
-`dialog.hideDialog()` (see [cordova-simulate/src/plugins/cordova-plugin-camera/sim-host.js]
-(https://github.com/Microsoft/cordova-simulate/blob/master/src/plugins/cordova-plugin-camera/sim-host.js)
+`dialog.hideDialog()` (see [cordova-simulate/src/plugins/cordova-plugin-camera/sim-host.js](https://github.com/Microsoft/cordova-simulate/blob/master/src/plugins/cordova-plugin-camera/sim-host.js)
 for example code).
 
 Other rules for this file are the same as for `sim-host-panels.html`.
