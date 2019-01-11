@@ -27,8 +27,8 @@ util.inherits(Watcher, EventEmitter);
 
 Watcher.prototype.startWatching = function () {
     var watchPath = path.join(this._projectRoot, WWW_ROOT);
-    // Chokidar@2.0.4 dependency is breaking VS Code extensions since 1.31 version(https://github.com/Microsoft/vscode/issues/64981#issuecomment-447880936)
-    // TODO: Return Chokidar when it would be compatible with VS Code version >= 1.31 
+    // chokidar@2.0.4 dependency is breaking VS Code extensions since 1.31 version(https://github.com/Microsoft/vscode/issues/64981#issuecomment-447880936)
+    // TODO: Return chokidar when it would be compatible with VS Code version >= 1.31 
     // this.wwwWatcher = chokidar.watch(watchPath, {cwd: watchPath}).on('all', handleWwwWatcherEvent.bind(this));
     this.wwwWatcher = fs.watch(watchPath, { recursive: true }, handleWwwWatcherEvent.bind(this));
 
