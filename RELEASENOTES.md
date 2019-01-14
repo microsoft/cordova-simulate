@@ -1,5 +1,8 @@
 # cordova-simulate Release Notes
 
+### 0.5.1 (January 14, 2019)
+* Temporarily undo fix for [#105](https://github.com/Microsoft/cordova-simulate/issues/105), more info [here](https://github.com/Microsoft/cordova-simulate/issues/105#issuecomment-453950879).
+
 ### 0.5.0 (December 26, 2018)
 * Migrate to [cordova-serve@3.0.0](https://github.com/apache/cordova-serve/releases/tag/rel%2F3.0.0), which fixes several bugs affecting cordova-simulate: [apache/cordova-serve/#10](https://github.com/apache/cordova-serve/pull/10), [apache/cordova-serve/#14](https://github.com/apache/cordova-serve/pull/14)
 * Breaking change: minimal version of supported Node.js is set to 6.0.0
