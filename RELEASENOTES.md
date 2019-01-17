@@ -1,5 +1,8 @@
 # cordova-simulate Release Notes
 
+### 0.6.0 (January 17, 2019)
+* Fix security vulnerabilities [#284](https://github.com/Microsoft/cordova-simulate/pull/284), [#278](https://github.com/Microsoft/cordova-simulate/pull/278)
+
 ### 0.5.1 (January 14, 2019)
 * Temporarily undo fix for [#105](https://github.com/Microsoft/cordova-simulate/issues/105), more info [here](https://github.com/Microsoft/cordova-simulate/issues/105#issuecomment-453950879).
 
