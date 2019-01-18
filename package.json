@@ -38,7 +38,7 @@
     "ncp": "^2.0.0",
     "q": "^1.4.1",
     "replacestream": "^4.0.0",
-    "send-transform": "0.15.0",
+    "send-transform": "^0.15.1",
     "socket.io": "^2.2.0",
     "through2": "^2.0.0"
   },
