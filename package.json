@@ -30,6 +30,7 @@
   "dependencies": {
     "browserify": "^16.2.3",
     "chalk": "^1.1.1",
+    "chokidar": "^3.0.0",
     "cordova-registry-mapper": "^1.1.12",
     "cordova-serve": "^3.0.0",
     "csp-parse": "^0.0.2",
