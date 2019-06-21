@@ -290,6 +290,18 @@
         <source xml:lang="en">Speed (meters per second)</source>
         <target xml:lang="ja" state="translated">速度 (メートル毎秒)</target>
       </trans-unit>
+      <trans-unit id="spoken-text-f6c1471b">
+        <source xml:lang="en">Navigation Simulator - Choose File</source>
+        <target xml:lang="ja" state="translated">ナビゲーション シミュレーター - ファイルを選択</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-323b1c35">
+        <source xml:lang="en">Navigation Simulator - Go</source>
+        <target xml:lang="ja" state="translated">ナビゲーション シミュレーター - 開始</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-11d32900">
+        <source xml:lang="en">Navigation Simulator - playback speed multiplier</source>
+        <target xml:lang="ja" state="translated">ナビゲーション シミュレーター - 再生速度調整</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-globalization\sim-host-panels.html" source-language="en" target-language="ja">
@@ -458,25 +470,13 @@
         <source xml:lang="en">There is no handler for the following exec call:</source>
         <target xml:lang="ja" state="translated">次の exec 呼び出しのハンドラーはありません。</target>
       </trans-unit>
-      <trans-unit id="ba2b4c80:1">
-        <source xml:lang="en">service</source>
-        <target xml:lang="ja" state="translated">サービス</target>
-      </trans-unit>
-      <trans-unit id="e4c1ba28:1">
-        <source xml:lang="en">action</source>
-        <target xml:lang="ja" state="translated">アクション</target>
-      </trans-unit>
       <trans-unit id="54b83b14:1">
-        <source xml:lang="en">Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.</source>
-        <target xml:lang="ja" state="translated">この呼び出しに対して返される値を以下に入力し、次いでこれが成功または失敗のどちらを表すかを示してください。この呼び出しに対して常にこの結果で応答する場合は、[保持] オプションを選択します。</target>
+        <source xml:lang="en">Please enter a return value below to simulate a call to this function and choose if this value represents success or failure. If you'd like this value returned for all future calls to this function, select the 'persist' option.</source>
+        <target xml:lang="ja" state="translated">以下に戻り値を入力してこの関数への呼び出しをシミュレーションし、この値が成功または失敗のいずれを表すかを選択してください。この関数への今後のすべての呼び出しでこの値が返されるのが望ましい場合、'保持' のオプションを選択してください。</target>
       </trans-unit>
       <trans-unit id="874c9be3:1">
         <source xml:lang="en">The value must be valid JSON (</source>
         <target xml:lang="ja" state="translated">値は有効な JSON でなければならない (</target>
-      </trans-unit>
-      <trans-unit id="8679c185:1">
-        <source xml:lang="en">error</source>
-        <target xml:lang="ja" state="translated">エラー</target>
       </trans-unit>
       <trans-unit id="bce2c943:1">
         <source xml:lang="en">Persist</source>

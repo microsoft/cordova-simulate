@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
   <file original="plugins\cordova-plugin-battery-status\sim-host-panels.html" source-language="en" target-language="zh-Hans">
     <body>
@@ -290,6 +290,18 @@
         <source xml:lang="en">Speed (meters per second)</source>
         <target xml:lang="zh-Hans" state="translated">速度(米/秒)</target>
       </trans-unit>
+      <trans-unit id="spoken-text-f6c1471b">
+        <source xml:lang="en">Navigation Simulator - Choose File</source>
+        <target xml:lang="zh-Hans" state="translated">导航模拟器 - 选择文件</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-323b1c35">
+        <source xml:lang="en">Navigation Simulator - Go</source>
+        <target xml:lang="zh-Hans" state="translated">导航模拟器 - 转到</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-11d32900">
+        <source xml:lang="en">Navigation Simulator - playback speed multiplier</source>
+        <target xml:lang="zh-Hans" state="translated">导航模拟器 - 播放倍速器</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-globalization\sim-host-panels.html" source-language="en" target-language="zh-Hans">
@@ -458,25 +470,13 @@
         <source xml:lang="en">There is no handler for the following exec call:</source>
         <target xml:lang="zh-Hans" state="translated">没有以下 exec 调用的处理程序:</target>
       </trans-unit>
-      <trans-unit id="ba2b4c80:1">
-        <source xml:lang="en">service</source>
-        <target xml:lang="zh-Hans" state="translated">服务</target>
-      </trans-unit>
-      <trans-unit id="e4c1ba28:1">
-        <source xml:lang="en">action</source>
-        <target xml:lang="zh-Hans" state="translated">操作</target>
-      </trans-unit>
       <trans-unit id="54b83b14:1">
-        <source xml:lang="en">Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.</source>
-        <target xml:lang="zh-Hans" state="translated">请在下面输入要对此调用返回的值，然后指示该值表示成功还是失败。如果要始终使用该结果响应此调用，请选择“永久”选项。</target>
+        <source xml:lang="en">Please enter a return value below to simulate a call to this function and choose if this value represents success or failure. If you'd like this value returned for all future calls to this function, select the 'persist' option.</source>
+        <target xml:lang="zh-Hans" state="translated">请输入下方的某个返回值来模拟此函数调用，并选择该值表示成功还是失败。如果希望对此函数的所有后续调用均返回该值，请选择“永久”选项。</target>
       </trans-unit>
       <trans-unit id="874c9be3:1">
         <source xml:lang="en">The value must be valid JSON (</source>
         <target xml:lang="zh-Hans" state="translated">值必须是有效的 JSON (</target>
-      </trans-unit>
-      <trans-unit id="8679c185:1">
-        <source xml:lang="en">error</source>
-        <target xml:lang="zh-Hans" state="translated">错误</target>
       </trans-unit>
       <trans-unit id="bce2c943:1">
         <source xml:lang="en">Persist</source>

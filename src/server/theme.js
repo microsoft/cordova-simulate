@@ -51,6 +51,7 @@ function Theme(simHostRoot, theme, simHostThemeFile) {
     this._themeFileName = null;
     this._simHostThemeInfo = require(simHostThemeFile);
     this._simHostThemeFile = simHostThemeFile;
+    this._simHostScaledCssFile = path.resolve(simHostRoot, 'sim-host-scaled.css');
     this._simHostRoot = simHostRoot;
     this.themeObject = this._createThemeObject(theme);
 }
@@ -61,7 +62,14 @@ Theme.prototype.getCssFileName = function () {
         this.themeObject = this._createThemeObject(this._themeFileName);
     }
 
-    var simHostHash = createThemeHash(this._simHostThemeFile);
+    var contentToHash = fs.readFileSync(this._simHostThemeFile).toString();
+
+    if (utils.existsSync(this._simHostScaledCssFile)) {
+        contentToHash += fs.readFileSync(this._simHostScaledCssFile).toString();     
+    }
+
+    var simHostHash = createThemeHash(contentToHash.trim());
+
     var themeCssFileName = path.join(utils.getAppDataPath(), simHostHash + (this.themeObject ? '-' + createThemeHash(this.themeObject) : '') + '.css');
     if (!utils.existsSync(themeCssFileName)) {
         this._createThemeCssFile(themeCssFileName);
@@ -173,11 +181,10 @@ Theme.prototype._createThemeCssFile = function (themeCssFileName) {
     // and scales them based on the current font size compared to the sim-host's default font size (always rounded to a
     // whole pixel). This works better than, say, em sizing, which results in fractional pixel sizes and inconsistent
     // results.
-    var simHostScaledCssFile = path.resolve(this._simHostRoot, 'sim-host-scaled.css');
-    if (utils.existsSync(simHostScaledCssFile)) {
+    if (utils.existsSync(this._simHostScaledCssFile)) {
         var defaultFontSize = this._simHostThemeInfo.defaultFontSize;
         var fontSize = parseFontSize(themeObject.default['']) || 16;
-        var scaledCss = fs.readFileSync(simHostScaledCssFile, 'utf8');
+        var scaledCss = fs.readFileSync(this._simHostScaledCssFile, 'utf8');
 
         if (fontSize === defaultFontSize) {
             css.push(scaledCss);
@@ -263,5 +270,6 @@ function appendState(selector, state) {
 }
 
 function createThemeHash(themeObject) {
-    return crypto.createHash('md5').update(JSON.stringify(themeObject)).digest('hex').substring(0, 8);
+    var str = typeof themeObject === 'string' ? themeObject : JSON.stringify(themeObject); 
+    return crypto.createHash('md5').update(str).digest('hex').substring(0, 8);
 }

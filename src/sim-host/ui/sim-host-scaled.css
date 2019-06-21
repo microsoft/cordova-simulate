@@ -17,96 +17,88 @@ cordova-dialog {
     -webkit-column-width: 323px;
 }
 
-body /deep/ .cordova-header {
+.cordova-header {
     padding: 5px 9px;
     height: 20px;
     line-height: 20px;
 }
 
-body /deep/ .cordova-header .spoken-text span {
+.cordova-header .spoken-text span {
     width: calc(100% - 40px);
 }
 
 /* 12px margin around top level items in the content a panel */
-body /deep/ .cordova-content > ::content > * {
+.cordova-content > ::content > * {
     margin: 12px;
 }
 
-body /deep/ .cordova-value {
+.cordova-value {
     margin-left: 6px;
 }
 
-body /deep/ input[type^=range] {
+input[type^=range] {
     width: 112px;
 }
 
-body /deep/ input[type^=checkbox],
-body /deep/ input[type^=radio]{
+input[type^=checkbox],
+input[type^=radio]{
     width: 17px;
     height: 17px;
 }
 
-cordova-combo /deep/ select {
+select {
     min-width: 112px;
 }
-
 cordova-button {
     min-width: 112px;
 }
 
-body /deep/ select,
-body /deep/ input[type^=text],
-body /deep/ input[type^=number], input[type^=number] {
+select,
+input[type^=text],
+input[type^=number], input[type^=number] {
     padding: 5px;
 }
 
-body /deep/ textarea {
+textarea {
     padding: 2px 4px;
     width: calc(100% - 10px); /* Account for padding and border */
 }
 
-body /deep/ input[type^=text],
-body /deep/ input[type^=number] {
+input[type^=text],
+input[type^=number] {
     width: 100px;
 }
 
-body /deep/ cordova-radio {
+cordova-radio {
     padding: 2px;
 }
 
-body /deep/ button {
+button {
     padding: 5px 13px;
 }
 
-body /deep/ .cordova-item-wrapper {
+.cordova-item-wrapper {
     padding: 5px;
 }
 
-body /deep/ cordova-item /deep/ .close-button {
-    width: 17px;
-    height: 17px;
-    top: 5px;
-    right: 5px;
-}
-
-body /deep/ .cordova-collapse-icon svg,
-body /deep/ .cordova-close-icon svg {
+.cordova-collapse-icon svg,
+.cordova-close-icon svg {
     width: 14px;
     height: 14px;
 }
 
-body /deep/ .cordova-collapse-icon,
-body /deep/ .cordova-close-icon {
+.cordova-collapse-icon,
+.cordova-close-icon {
     right: 10px;
 }
 
 /* Style slider for Chrome/Safari */
 
-body /deep/ input[type=range]::-webkit-slider-runnable-track {
+input[type=range]::-webkit-slider-runnable-track {
     height: 2px;
 }
 
-body /deep/ input[type=range]::-webkit-slider-thumb {
+input[type=range]::-webkit-slider-thumb {
     height: 20px;
     width: 11px;
     margin-top: -10px;
@@ -143,40 +135,41 @@ input[type=range]::-moz-range-thumb {
     border-radius: 0;
 }
 
-/* The following items are here only to ensure they come after the theme css rules, since they override them
-   (cordova-item 'borrows' button themeing, but doesn't want full borders). */
-
-body /deep/ cordova-item:first-child /deep/ .cordova-item-wrapper,
-body /deep/ cordova-item:first-child /deep/ .cordova-item-wrapper:hover,
-body /deep/ cordova-item:first-child /deep/ .cordova-item-wrapper:focus,
-body /deep/ cordova-item:first-child /deep/ .cordova-item-wrapper:hover:active {
-    border-top-color: rgba(0,0,0,0);
-}
-
-body /deep/ cordova-item:last-child /deep/ .cordova-item-wrapper,
-body /deep/ cordova-item:last-child /deep/ .cordova-item-wrapper:hover,
-body /deep/ cordova-item:last-child /deep/ .cordova-item-wrapper:focus,
-body /deep/ cordova-item:last-child /deep/ .cordova-item-wrapper:hover:active {
-    border-bottom-color: rgba(0,0,0,0);
-}
-
-body /deep/ .cordova-item-wrapper,
-body /deep/ .cordova-item-wrapper:hover,
-body /deep/ .cordova-item-wrapper:focus,
-body /deep/ .cordova-item-wrapper:hover:active {
+.cordova-item-wrapper,
+.cordova-item-wrapper:hover,
+.cordova-item-wrapper:focus,
+.cordova-item-wrapper:hover:active {
     border-left-color: rgba(0,0,0,0);
     border-right-color: rgba(0,0,0,0);
 }
 
-body /deep/ .cordova-item-wrapper {
+.cordova-item-first-child,
+.cordova-item-first-child:hover,
+.cordova-item-first-child:focus,
+.cordova-item-first-child:hover:active {
+    border-top-color: rgba(0,0,0,0);
+}
+
+.cordova-item-last-child,
+.cordova-item-last-child:hover,
+.cordova-item-last-child:focus,
+.cordova-item-last-child:hover:active {
+    border-bottom-color: rgba(0,0,0,0);
+}
+
+.cordova-item-wrapper {
     background: transparent;
+}
+
+.cordova-item-wrapper:hover .close-button {
+    display: block;
 }
 
 /* Hacks to work around multi-column bug in Chrome 48+. The following section
    is removed for other browsers when the file is served */
 
 /* BEGIN CHROME */
-body /deep/ .cordova-panel-inner {
+.cordova-panel-inner {
     padding-bottom: 1px;
 }
 
@@ -188,7 +181,7 @@ cordova-panel {
     padding: 2px 0 0 5px;
 }
 
-body /deep/ input[type=range] {
+input[type=range] {
     border-top: solid transparent 9px;
     border-bottom: solid transparent 9px;
 }
