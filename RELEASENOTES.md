@@ -1,5 +1,25 @@
 # cordova-simulate Release Notes
 
+### 0.6.2 (May 23, 2019)
+* Return fix for [#105](https://github.com/microsoft/cordova-simulate/issues/105)
+* Fix security vulnerabilities [#289](https://github.com/microsoft/cordova-simulate/pull/289)
+
+### 0.6.1 (January 18, 2019)
+* Fix security vulnerability WS-2017-0247 [#286](https://github.com/Microsoft/cordova-simulate/pull/286)
+
+### 0.6.0 (January 17, 2019)
+* Fix security vulnerabilities [#284](https://github.com/Microsoft/cordova-simulate/pull/284), [#278](https://github.com/Microsoft/cordova-simulate/pull/278)
+
+### 0.5.1 (January 14, 2019)
+* Temporarily undo fix for [#105](https://github.com/Microsoft/cordova-simulate/issues/105), more info [here](https://github.com/Microsoft/cordova-simulate/issues/105#issuecomment-453950879).
+
+### 0.5.0 (December 26, 2018)
+* Migrate to [cordova-serve@3.0.0](https://github.com/apache/cordova-serve/releases/tag/rel%2F3.0.0), which fixes several bugs affecting cordova-simulate: [apache/cordova-serve/#10](https://github.com/apache/cordova-serve/pull/10), [apache/cordova-serve/#14](https://github.com/apache/cordova-serve/pull/14)
+* Breaking change: minimal version of supported Node.js is set to 6.0.0
+* Fixed issue with CSS livereload doesn't pick up changes on Linux ([#105](https://github.com/Microsoft/cordova-simulate/issues/105)) 
+* Improved geolocation ([#80](https://github.com/Microsoft/cordova-simulate/issues/80))
+* Added support for host system camera and default camera image ([#234](https://github.com/Microsoft/cordova-simulate/pull/234))
+
 ### 0.4.0 (June 21, 2018)
 * Migrate to [cordova-serve@2.0.1](https://github.com/apache/cordova-serve/releases/tag/rel%2F2.0.1)
 * Fixed work with Cordova Android 7.0.0
