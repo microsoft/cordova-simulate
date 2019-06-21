@@ -680,7 +680,7 @@ function resolveLocalFileSystemURI(successCallback, errorCallback, args) {
         requestFileSystem(function() {
             getFile(successCallback, function() {
                 getDirectory(successCallback, errorCallback, [pathsPrefix.dataDirectory, path,
-                {create: false}]);
+                    {create: false}]);
             }, [pathsPrefix.dataDirectory, path, {create: false}]);
         }, errorCallback, [window.LocalFileSystem.PERSISTENT]);
     } else if (path.indexOf(pathsPrefix.cacheDirectory) === 0) {
@@ -690,7 +690,7 @@ function resolveLocalFileSystemURI(successCallback, errorCallback, args) {
         requestFileSystem(function() {
             getFile(successCallback, function() {
                 getDirectory(successCallback, errorCallback, [pathsPrefix.cacheDirectory, path,
-                {create: false}]);
+                    {create: false}]);
             }, [pathsPrefix.cacheDirectory, path, {create: false}]);
         }, errorCallback, [window.LocalFileSystem.TEMPORARY]);
     } else if (path.indexOf(pathsPrefix.applicationDirectory) === 0) {

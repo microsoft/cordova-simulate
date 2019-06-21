@@ -32,11 +32,11 @@ module.exports = function (messages) {
         if (mapContainer) {
             geo.map.setCenter(new OpenLayers.LonLat(positionInfo.longitude, positionInfo.latitude) // Center of the map
                 .transform(
-                new OpenLayers.Projection('EPSG:4326'), // transform from WGS 1984
-                new OpenLayers.Projection('EPSG:900913') // to Spherical Mercator Projection
+                    new OpenLayers.Projection('EPSG:4326'), // transform from WGS 1984
+                    new OpenLayers.Projection('EPSG:900913') // to Spherical Mercator Projection
                 ),
-                _gpsMapZoomLevel,
-                true // don't trigger dragging events
+            _gpsMapZoomLevel,
+            true // don't trigger dragging events
             );
         }
 
@@ -165,8 +165,8 @@ module.exports = function (messages) {
                             speed: speed.value ? parseInt(speed.value, 10) : 0, // HACK: see techdebt http://www.pivotaltracker.com/story/show/5478847
                             timeStamp: new Date()
                         },
-                            delay.value,
-                            timeout.checked);
+                        delay.value,
+                        timeout.checked);
                         updateGeoPending = false;
                     }, 0);
                 }
