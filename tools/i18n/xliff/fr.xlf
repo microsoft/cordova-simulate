@@ -1,19 +1,22 @@
-<xliff 
-  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd" version="1.2">
   <file original="plugins\cordova-plugin-battery-status\sim-host-panels.html" source-language="en" target-language="fr">
     <body>
       <trans-unit id="caption-ac1dbd34">
         <source xml:lang="en">Battery Status</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">État de la batterie</target>
+        <target xml:lang="fr" state="translated">État de la batterie</target>
       </trans-unit>
       <trans-unit id="label-e0d4e236">
         <source xml:lang="en">Battery level</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Niveau de batterie</target>
+        <target xml:lang="fr" state="translated">Niveau de la batterie</target>
       </trans-unit>
       <trans-unit id="10cfe833:1">
-        <source xml:lang="en">Device plugged</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Appareil branché</target>
+        <source xml:lang="en">Device connected to power</source>
+        <target xml:lang="fr" state="translated">Appareil connecté à l’alimentation</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-ac1dbd34">
+        <source xml:lang="en">Battery Status Panel</source>
+        <target xml:lang="fr" state="translated">Panneau de l’état de la batterie</target>
       </trans-unit>
     </body>
   </file>
@@ -21,19 +24,23 @@
     <body>
       <trans-unit id="caption-5f1798d9">
         <source xml:lang="en">Camera: Choose Image</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Caméra : Choisissez Image</target>
+        <target xml:lang="fr" state="translated">Appareil photo : choisir une image</target>
       </trans-unit>
       <trans-unit id="030b9963:1">
         <source xml:lang="en">Choose File</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Choisissez fichier</target>
+        <target xml:lang="fr" state="translated">Choisir un fichier</target>
       </trans-unit>
       <trans-unit id="ad62e973:1">
         <source xml:lang="en">Use Image</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Utiliser une Image</target>
+        <target xml:lang="fr" state="translated">Utiliser une image</target>
       </trans-unit>
       <trans-unit id="be241b52:1">
         <source xml:lang="en">Cancel</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Annuler</target>
+        <target xml:lang="fr" state="translated">Annuler</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-5f1798d9">
+        <source xml:lang="en">Camera: Choose Image diaglog</source>
+        <target xml:lang="fr" state="translated">Caméra : choisir une image (boîte de dialogue)</target>
       </trans-unit>
     </body>
   </file>
@@ -41,19 +48,23 @@
     <body>
       <trans-unit id="caption-553fc9a5">
         <source xml:lang="en">Camera</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Appareil photo</target>
+        <target xml:lang="fr" state="translated">Appareil photo</target>
       </trans-unit>
       <trans-unit id="4f087d38:1">
         <source xml:lang="en">Prompt me for a file</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">M’inviter pour un fichier</target>
+        <target xml:lang="fr" state="translated">Me demander un fichier</target>
       </trans-unit>
       <trans-unit id="145af9c0:1">
         <source xml:lang="en">Use this file:</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Utilisez ce fichier :</target>
+        <target xml:lang="fr" state="translated">Utiliser ce fichier :</target>
       </trans-unit>
       <trans-unit id="2c4e6d12:1">
         <source xml:lang="en">Choose File</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Choisissez fichier</target>
+        <target xml:lang="fr" state="translated">Choisir un fichier</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-553fc9a5">
+        <source xml:lang="en">Camera Panel</source>
+        <target xml:lang="fr" state="translated">Panneau de la caméra</target>
       </trans-unit>
     </body>
   </file>
@@ -61,19 +72,47 @@
     <body>
       <trans-unit id="caption-9a8c8723">
         <source xml:lang="en">Accelerometer</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Accéléromètre</target>
+        <target xml:lang="fr" state="translated">Accéléromètre</target>
       </trans-unit>
       <trans-unit id="label-d240cacf">
         <source xml:lang="en">Recorded Data</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Données enregistrées</target>
+        <target xml:lang="fr" state="translated">Données enregistrées</target>
       </trans-unit>
       <trans-unit id="c562ff87:1">
-        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br> Hold the Shift key to modify 'alpha'</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Cliquez et faites glisser avec la souris pour manipuler l’appareil. &lt;br>, Maintenez la touche Maj enfoncée pour modifier « alpha »</target>
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device. &lt;br&gt; Hold the Shift key to modify 'alpha'</source>
+        <target xml:lang="fr" state="translated">Cliquez et faites glisser la souris pour manipuler l'appareil. &lt;br&gt; Maintenez la touche Maj enfoncée pour modifier la valeur 'alpha'</target>
       </trans-unit>
       <trans-unit id="1b009684:1">
         <source xml:lang="en">Play</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Jouer</target>
+        <target xml:lang="fr" state="translated">Lecture</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-9a8c8723">
+        <source xml:lang="en">Accelerometer Panel</source>
+        <target xml:lang="fr" state="translated">Panneau de l’accéléromètre</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-f0ba631d">
+        <source xml:lang="en">X (meters per second squared)</source>
+        <target xml:lang="fr" state="translated">X (mètres par seconde au carré)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-f452bcba">
+        <source xml:lang="en">Y (meters per second squared)</source>
+        <target xml:lang="fr" state="translated">Y (mètres par seconde au carré)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-e4ed20c6">
+        <source xml:lang="en">Z (meters per second squared)</source>
+        <target xml:lang="fr" state="translated">Z (mètres par seconde au carré)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-a4c24c61">
+        <source xml:lang="en">alpha (degrees)</source>
+        <target xml:lang="fr" state="translated">alpha (degrés)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-92916831">
+        <source xml:lang="en">beta (degrees)</source>
+        <target xml:lang="fr" state="translated">bêta (degrés)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-a107533e">
+        <source xml:lang="en">gamma (degrees)</source>
+        <target xml:lang="fr" state="translated">gamma (degrés)</target>
       </trans-unit>
     </body>
   </file>
@@ -81,15 +120,23 @@
     <body>
       <trans-unit id="caption-8310fdf4">
         <source xml:lang="en">Compass</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Boussole</target>
-      </trans-unit>
-      <trans-unit id="c4c80de2:1">
-        <source xml:lang="en">&lt;em>Click and drag with the mouse to manipulate the device compass.&lt;/em></source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">&lt;em>Et faites glisser avec la souris pour manipuler la boussole périphérique.&lt;/em></target>
+        <target xml:lang="fr" state="translated">Boussole</target>
       </trans-unit>
       <trans-unit id="ae47e3ec:1">
         <source xml:lang="en">Heading (deg)</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Rubrique (deg)</target>
+        <target xml:lang="fr" state="translated">Direction (deg)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-8310fdf4">
+        <source xml:lang="en">Compass Panel</source>
+        <target xml:lang="fr" state="translated">Panneau de la boussole</target>
+      </trans-unit>
+      <trans-unit id="0d7d15fa:1">
+        <source xml:lang="en">Click and drag with the mouse to manipulate the device compass.</source>
+        <target xml:lang="fr" state="translated">Cliquez et faites glisser la souris pour manipuler la boussole de l'appareil.</target>
+      </trans-unit>
+      <trans-unit id="aria-label-77b16982">
+        <source xml:lang="en">Heading (degrees)</source>
+        <target xml:lang="fr" state="translated">Direction (degrés)</target>
       </trans-unit>
     </body>
   </file>
@@ -97,59 +144,63 @@
     <body>
       <trans-unit id="caption-c045b281">
         <source xml:lang="en">Device</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Appareil</target>
+        <target xml:lang="fr" state="translated">Appareil</target>
       </trans-unit>
       <trans-unit id="label-db946bb7">
         <source xml:lang="en">Platform</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Plate-forme</target>
+        <target xml:lang="fr" state="translated">Plateforme</target>
       </trans-unit>
       <trans-unit id="label-7f7c31ee">
         <source xml:lang="en">Device</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Appareil</target>
+        <target xml:lang="fr" state="translated">Appareil</target>
       </trans-unit>
       <trans-unit id="label-39a39347">
         <source xml:lang="en">OS version</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Version de l’OS</target>
+        <target xml:lang="fr" state="translated">Version du système d'exploitation</target>
       </trans-unit>
       <trans-unit id="label-752a991e">
         <source xml:lang="en">Physical resolution</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Résolution physique</target>
+        <target xml:lang="fr" state="translated">Résolution physique</target>
       </trans-unit>
       <trans-unit id="label-f174cb0b">
         <source xml:lang="en">Device pixel ratio</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Pixels de périphérique</target>
+        <target xml:lang="fr" state="translated">Ratio de pixels de l'appareil</target>
       </trans-unit>
       <trans-unit id="label-df3f13eb">
         <source xml:lang="en">Logical resolution (viewport size)</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Résolution logique (taille de la fenêtre d’affichage)</target>
+        <target xml:lang="fr" state="translated">Résolution logique (taille de la fenêtre d'affichage)</target>
       </trans-unit>
       <trans-unit id="label-3f939f37">
         <source xml:lang="en">Cordova version</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Version de Cordova</target>
+        <target xml:lang="fr" state="translated">Version de Cordova</target>
       </trans-unit>
       <trans-unit id="label-c0122d1e">
         <source xml:lang="en">Model</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Modèle</target>
+        <target xml:lang="fr" state="translated">Modèle</target>
       </trans-unit>
       <trans-unit id="label-b3ca5c10">
         <source xml:lang="en">Manufacturer</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Référence du fabricant</target>
+        <target xml:lang="fr" state="translated">Fabricant</target>
       </trans-unit>
       <trans-unit id="label-f443efdd">
         <source xml:lang="en">UUID</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">UUID</target>
+        <target xml:lang="fr" state="translated">UUID</target>
       </trans-unit>
       <trans-unit id="label-43cf4836">
         <source xml:lang="en">Version</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Version</target>
+        <target xml:lang="fr" state="translated">Version</target>
       </trans-unit>
       <trans-unit id="label-bcc45f6d">
         <source xml:lang="en">Serial</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Serial</target>
+        <target xml:lang="fr" state="translated">Série</target>
       </trans-unit>
       <trans-unit id="c1a21524:1">
         <source xml:lang="en">Virtual device</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Périphérique virtuel</target>
+        <target xml:lang="fr" state="translated">Appareil virtuel</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-c045b281">
+        <source xml:lang="en">Device Panel</source>
+        <target xml:lang="fr" state="translated">Panneau de l’appareil</target>
       </trans-unit>
     </body>
   </file>
@@ -157,59 +208,99 @@
     <body>
       <trans-unit id="caption-e4b82624">
         <source xml:lang="en">Geolocation</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Géolocalisation</target>
+        <target xml:lang="fr" state="translated">Géolocalisation</target>
       </trans-unit>
       <trans-unit id="label-41fd30cf">
         <source xml:lang="en">Latitude</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Latitude</target>
+        <target xml:lang="fr" state="translated">Latitude</target>
       </trans-unit>
       <trans-unit id="label-9db6eee1">
         <source xml:lang="en">Longitude</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Longitude</target>
+        <target xml:lang="fr" state="translated">Longitude</target>
       </trans-unit>
       <trans-unit id="label-079f55f6">
         <source xml:lang="en">Altitude (m)</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Altitude (m)</target>
+        <target xml:lang="fr" state="translated">Altitude (m)</target>
       </trans-unit>
       <trans-unit id="label-dbece2f9">
         <source xml:lang="en">Accuracy (m)</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Précision (m)</target>
+        <target xml:lang="fr" state="translated">Précision (m)</target>
       </trans-unit>
       <trans-unit id="label-718f25cb">
         <source xml:lang="en">Altitude accuracy (m)</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Précision de l’altitude (m)</target>
+        <target xml:lang="fr" state="translated">Précision de l'altitude (m)</target>
       </trans-unit>
       <trans-unit id="label-64da0839">
         <source xml:lang="en">Heading</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Rubrique</target>
+        <target xml:lang="fr" state="translated">Direction</target>
       </trans-unit>
       <trans-unit id="label-8fefe84e">
         <source xml:lang="en">Speed (m/s)</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Vitesse (m/s)</target>
+        <target xml:lang="fr" state="translated">Vitesse (m/s)</target>
       </trans-unit>
       <trans-unit id="label-42557ee2">
         <source xml:lang="en">GPS Delay (seconds)</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">GPS délai (secondes)</target>
+        <target xml:lang="fr" state="translated">Délai GPS (secondes)</target>
       </trans-unit>
       <trans-unit id="label-f89bb5e3">
         <source xml:lang="en">Navigation Simulator</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Simulateur de navigation</target>
+        <target xml:lang="fr" state="translated">Simulateur de navigation</target>
       </trans-unit>
       <trans-unit id="7e9696b6:1">
         <source xml:lang="en">Zoom Level:</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Niveau de zoom :</target>
+        <target xml:lang="fr" state="translated">Niveau de zoom :</target>
       </trans-unit>
       <trans-unit id="b2d5a0cc:1">
         <source xml:lang="en">Simulate GPS Timeout</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Simuler le GPS Timeout</target>
+        <target xml:lang="fr" state="translated">Simuler le délai d'attente du GPS</target>
       </trans-unit>
       <trans-unit id="f6c1471b:1">
         <source xml:lang="en">Choose File</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Choisissez fichier</target>
+        <target xml:lang="fr" state="translated">Choisir un fichier</target>
       </trans-unit>
       <trans-unit id="323b1c35:1">
         <source xml:lang="en">Go</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Aller</target>
+        <target xml:lang="fr" state="translated">Atteindre</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-e4b82624">
+        <source xml:lang="en">Geolocation Panel</source>
+        <target xml:lang="fr" state="translated">Panneau de la géolocalisation</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-77f82a12">
+        <source xml:lang="en">zoom map out</source>
+        <target xml:lang="fr" state="translated">zoom avant sur la carte</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-dbeaf956">
+        <source xml:lang="en">zoom map in</source>
+        <target xml:lang="fr" state="translated">zoom arrière sur la carte</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-079f55f6">
+        <source xml:lang="en">Altitude (meters)</source>
+        <target xml:lang="fr" state="translated">Altitude (mètres)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-dbece2f9">
+        <source xml:lang="en">Accuracy (meters)</source>
+        <target xml:lang="fr" state="translated">Précision (mètres)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-718f25cb">
+        <source xml:lang="en">Altitude accuracy (meters)</source>
+        <target xml:lang="fr" state="translated">Précision de l’altitude (mètres)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-8fefe84e">
+        <source xml:lang="en">Speed (meters per second)</source>
+        <target xml:lang="fr" state="translated">Vitesse (mètre par seconde)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-f6c1471b">
+        <source xml:lang="en">Navigation Simulator - Choose File</source>
+        <target xml:lang="fr" state="translated">Simulateur de navigation - choisir un fichier</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-323b1c35">
+        <source xml:lang="en">Navigation Simulator - Go</source>
+        <target xml:lang="fr" state="translated">Simulateur de navigation - OK</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-11d32900">
+        <source xml:lang="en">Navigation Simulator - playback speed multiplier</source>
+        <target xml:lang="fr" state="translated">Simulateur de navigation - multiplicateur de vitesse de lecture</target>
       </trans-unit>
     </body>
   </file>
@@ -217,19 +308,75 @@
     <body>
       <trans-unit id="caption-5ffc4b1e">
         <source xml:lang="en">Globalization</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Mondialisation</target>
+        <target xml:lang="fr" state="translated">Mondialisation</target>
       </trans-unit>
       <trans-unit id="label-9e831385">
-        <source xml:lang="en">Select the locale:</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Sélectionnez les paramètres régionaux :</target>
+        <source xml:lang="en">Locale</source>
+        <target xml:lang="fr" state="translated">Paramètres régionaux</target>
       </trans-unit>
       <trans-unit id="label-ee1bad9c">
-        <source xml:lang="en">Select the first day of the week:</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Sélectionnez le premier jour de la semaine :</target>
+        <source xml:lang="en">First day of the week</source>
+        <target xml:lang="fr" state="translated">Premier jour de la semaine</target>
       </trans-unit>
       <trans-unit id="24aa60d4:1">
-        <source xml:lang="en">Is daylight saving time</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Est l’heure d’été</target>
+        <source xml:lang="en">Daylight saving time</source>
+        <target xml:lang="fr" state="translated">Heure d’été</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-5ffc4b1e">
+        <source xml:lang="en">Globalization Panel</source>
+        <target xml:lang="fr" state="translated">Panneau de la mondialisation</target>
+      </trans-unit>
+      <trans-unit id="0ebb8953:1">
+        <source xml:lang="en">English</source>
+        <target xml:lang="fr" state="translated">Anglais</target>
+      </trans-unit>
+      <trans-unit id="84807dbd:1">
+        <source xml:lang="en">English (Canadian)</source>
+        <target xml:lang="fr" state="translated">Anglais (Canada)</target>
+      </trans-unit>
+      <trans-unit id="28183d78:1">
+        <source xml:lang="en">French</source>
+        <target xml:lang="fr" state="translated">Français</target>
+      </trans-unit>
+      <trans-unit id="cc60c446:1">
+        <source xml:lang="en">French (Canadian)</source>
+        <target xml:lang="fr" state="translated">Français (Canada)</target>
+      </trans-unit>
+      <trans-unit id="7a9d0031:1">
+        <source xml:lang="en">German</source>
+        <target xml:lang="fr" state="translated">Allemand</target>
+      </trans-unit>
+      <trans-unit id="a84e5586:1">
+        <source xml:lang="en">Russian</source>
+        <target xml:lang="fr" state="translated">Russe</target>
+      </trans-unit>
+      <trans-unit id="4fdbcc70:1">
+        <source xml:lang="en">Sunday</source>
+        <target xml:lang="fr" state="translated">Dimanche</target>
+      </trans-unit>
+      <trans-unit id="336f3d4d:1">
+        <source xml:lang="en">Monday</source>
+        <target xml:lang="fr" state="translated">Lundi</target>
+      </trans-unit>
+      <trans-unit id="f5dc2559:1">
+        <source xml:lang="en">Tuesday</source>
+        <target xml:lang="fr" state="translated">Mardi</target>
+      </trans-unit>
+      <trans-unit id="6bc25447:1">
+        <source xml:lang="en">Wednesday</source>
+        <target xml:lang="fr" state="translated">Mercredi</target>
+      </trans-unit>
+      <trans-unit id="9c641b0a:1">
+        <source xml:lang="en">Thursday</source>
+        <target xml:lang="fr" state="translated">Jeudi</target>
+      </trans-unit>
+      <trans-unit id="bcf881cf:1">
+        <source xml:lang="en">Friday</source>
+        <target xml:lang="fr" state="translated">Vendredi</target>
+      </trans-unit>
+      <trans-unit id="2c722da0:1">
+        <source xml:lang="en">Saturday</source>
+        <target xml:lang="fr" state="translated">Samedi</target>
       </trans-unit>
     </body>
   </file>
@@ -237,19 +384,23 @@
     <body>
       <trans-unit id="caption-4c1114ef">
         <source xml:lang="en">InAppBrowser</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">InAppBrowser</target>
+        <target xml:lang="fr" state="translated">InAppBrowser</target>
       </trans-unit>
       <trans-unit id="99399f4d:1">
-        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em>_blank&lt;/em> target</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Sélectionnez le comportement par défaut de InAppBrowser lors de l’ouverture à l’aide de la cible &lt;em>_blank&lt;/em></target>
+        <source xml:lang="en">Select the default behaviour of InAppBrowser when opening using the &lt;em&gt;_blank&lt;/em&gt; target</source>
+        <target xml:lang="fr" state="translated">Sélectionner le comportement par défaut de InAppBrowser à l'ouverture pour la cible &lt;em&gt;_blank&lt;/em&gt;</target>
       </trans-unit>
       <trans-unit id="c10cdf5b:1">
-        <source xml:lang="en">Open in a new window: &lt;em>_system&lt;/em> target</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Ouvert dans une nouvelle fenêtre : &lt;em>_system&lt;/em> cible</target>
+        <source xml:lang="en">Open in a new window: &lt;em&gt;_system&lt;/em&gt; target</source>
+        <target xml:lang="fr" state="translated">Ouvrir dans une nouvelle fenêtre : cible &lt;em&gt;_system&lt;/em&gt;</target>
       </trans-unit>
       <trans-unit id="d107e851:1">
         <source xml:lang="en">Open in a InAppBrowser based on an iframe</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Ouvert dans un InAppBrowser basé sur un iframe</target>
+        <target xml:lang="fr" state="translated">Ouvrir dans un InAppBrowser en fonction d'un iframe</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-4c1114ef">
+        <source xml:lang="en">InAppBrowser Panel</source>
+        <target xml:lang="fr" state="translated">Panneau d’InAppBrowser</target>
       </trans-unit>
     </body>
   </file>
@@ -257,11 +408,35 @@
     <body>
       <trans-unit id="caption-a4a98056">
         <source xml:lang="en">Network Connection</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Connexion réseau</target>
+        <target xml:lang="fr" state="translated">Connexion réseau</target>
       </trans-unit>
       <trans-unit id="label-27c4a479">
         <source xml:lang="en">Connection type</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Type de connexion</target>
+        <target xml:lang="fr" state="translated">Type de connexion</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-a4a98056">
+        <source xml:lang="en">Network Connection Panel</source>
+        <target xml:lang="fr" state="translated">Panneau de la connexion réseau</target>
+      </trans-unit>
+      <trans-unit id="97ac48aa:1">
+        <source xml:lang="en">Unknown</source>
+        <target xml:lang="fr" state="translated">Inconnu</target>
+      </trans-unit>
+      <trans-unit id="fdf8871a:1">
+        <source xml:lang="en">Ethernet</source>
+        <target xml:lang="fr" state="translated">Ethernet</target>
+      </trans-unit>
+      <trans-unit id="525d0a74:1">
+        <source xml:lang="en">Wi-Fi</source>
+        <target xml:lang="fr" state="translated">Wi-Fi</target>
+      </trans-unit>
+      <trans-unit id="78db3e46:1">
+        <source xml:lang="en">Cellular (unknown speed)</source>
+        <target xml:lang="fr" state="translated">Cellulaire (vitesse inconnue)</target>
+      </trans-unit>
+      <trans-unit id="3eca86f2:1">
+        <source xml:lang="en">None</source>
+        <target xml:lang="fr" state="translated">Aucun</target>
       </trans-unit>
     </body>
   </file>
@@ -269,15 +444,19 @@
     <body>
       <trans-unit id="caption-c9b16703">
         <source xml:lang="en">Events</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Événements</target>
+        <target xml:lang="fr" state="translated">Événements</target>
       </trans-unit>
       <trans-unit id="label-4eb9640f">
-        <source xml:lang="en">Select the event to fire:</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Sélectionnez l’événement se déclenche :</target>
+        <source xml:lang="en">Event to fire</source>
+        <target xml:lang="fr" state="translated">Événement à déclencher</target>
       </trans-unit>
       <trans-unit id="064dde5f:1">
         <source xml:lang="en">Fire Event</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Événement de feu</target>
+        <target xml:lang="fr" state="translated">Déclencher l'événement</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-c9b16703">
+        <source xml:lang="en">Events Panel</source>
+        <target xml:lang="fr" state="translated">Panneau des événements</target>
       </trans-unit>
     </body>
   </file>
@@ -285,43 +464,31 @@
     <body>
       <trans-unit id="caption-f7283850">
         <source xml:lang="en">Unhandled Exec Call</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Appel non gérée Exec</target>
+        <target xml:lang="fr" state="translated">Appel d'exécution non pris en charge</target>
       </trans-unit>
       <trans-unit id="a1a63f26:1">
         <source xml:lang="en">There is no handler for the following exec call:</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Il n’y a aucun gestionnaire pour l’appel suivant d’exec :</target>
-      </trans-unit>
-      <trans-unit id="ba2b4c80:1">
-        <source xml:lang="en">service</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">service</target>
-      </trans-unit>
-      <trans-unit id="e4c1ba28:1">
-        <source xml:lang="en">action</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">action</target>
+        <target xml:lang="fr" state="translated">Il n'existe aucun gestionnaire pour l'appel d'exécution suivant :</target>
       </trans-unit>
       <trans-unit id="54b83b14:1">
-        <source xml:lang="en">Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Veuillez entrer un montant inférieur à être retourné pour cet appel, puis indiquer si cela représente la réussite ou l’échec. Si vous souhaitez toujours répondre à cet appel avec ce résultat, sélectionnez l’option « persistent ».</target>
+        <source xml:lang="en">Please enter a return value below to simulate a call to this function and choose if this value represents success or failure. If you'd like this value returned for all future calls to this function, select the 'persist' option.</source>
+        <target xml:lang="fr" state="translated">Entrez une valeur de retour ci-dessous pour simuler un appel à cette fonction et choisissez si cette valeur représente une réussite ou un échec. Si vous voulez que cette valeur soit retournée pour tous les futurs appels à cette fonction, sélectionnez l’option persist.</target>
       </trans-unit>
       <trans-unit id="874c9be3:1">
         <source xml:lang="en">The value must be valid JSON (</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">La valeur doit être valide (JSON</target>
-      </trans-unit>
-      <trans-unit id="8679c185:1">
-        <source xml:lang="en">error</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">erreur</target>
+        <target xml:lang="fr" state="translated">La valeur doit être une valeur JSON valide (</target>
       </trans-unit>
       <trans-unit id="bce2c943:1">
         <source xml:lang="en">Persist</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Persistent</target>
+        <target xml:lang="fr" state="translated">Persistant</target>
       </trans-unit>
       <trans-unit id="17ccfb90:1">
         <source xml:lang="en">Success</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Succès</target>
+        <target xml:lang="fr" state="translated">Réussite</target>
       </trans-unit>
       <trans-unit id="5c16961d:1">
         <source xml:lang="en">Failure</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Échec</target>
+        <target xml:lang="fr" state="translated">Échec</target>
       </trans-unit>
     </body>
   </file>
@@ -329,11 +496,15 @@
     <body>
       <trans-unit id="caption-983d0535">
         <source xml:lang="en">Persisted Exec Calls</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">A persisté appels Exec</target>
+        <target xml:lang="fr" state="translated">Appels d'exécution persistants</target>
       </trans-unit>
       <trans-unit id="label-b58dd0ca">
         <source xml:lang="en">No values saved</source>
-        <target xml:lang="fr" state="needs-translation" state-qualifier="mt-suggestion">Aucune valeur enregistrée</target>
+        <target xml:lang="fr" state="translated">Aucune valeur enregistrée</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-983d0535">
+        <source xml:lang="en">Persisted Exec Calls Panel</source>
+        <target xml:lang="fr" state="translated">Panneau des appels d’exécution persistants</target>
       </trans-unit>
     </body>
   </file>

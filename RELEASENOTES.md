@@ -1,7 +1,89 @@
 # cordova-simulate Release Notes
 
+### 0.6.2 (May 23, 2019)
+* Return fix for [#105](https://github.com/microsoft/cordova-simulate/issues/105)
+* Fix security vulnerabilities [#289](https://github.com/microsoft/cordova-simulate/pull/289)
+
+### 0.6.1 (January 18, 2019)
+* Fix security vulnerability WS-2017-0247 [#286](https://github.com/Microsoft/cordova-simulate/pull/286)
+
+### 0.6.0 (January 17, 2019)
+* Fix security vulnerabilities [#284](https://github.com/Microsoft/cordova-simulate/pull/284), [#278](https://github.com/Microsoft/cordova-simulate/pull/278)
+
+### 0.5.1 (January 14, 2019)
+* Temporarily undo fix for [#105](https://github.com/Microsoft/cordova-simulate/issues/105), more info [here](https://github.com/Microsoft/cordova-simulate/issues/105#issuecomment-453950879).
+
+### 0.5.0 (December 26, 2018)
+* Migrate to [cordova-serve@3.0.0](https://github.com/apache/cordova-serve/releases/tag/rel%2F3.0.0), which fixes several bugs affecting cordova-simulate: [apache/cordova-serve/#10](https://github.com/apache/cordova-serve/pull/10), [apache/cordova-serve/#14](https://github.com/apache/cordova-serve/pull/14)
+* Breaking change: minimal version of supported Node.js is set to 6.0.0
+* Fixed issue with CSS livereload doesn't pick up changes on Linux ([#105](https://github.com/Microsoft/cordova-simulate/issues/105)) 
+* Improved geolocation ([#80](https://github.com/Microsoft/cordova-simulate/issues/80))
+* Added support for host system camera and default camera image ([#234](https://github.com/Microsoft/cordova-simulate/pull/234))
+
+### 0.4.0 (June 21, 2018)
+* Migrate to [cordova-serve@2.0.1](https://github.com/apache/cordova-serve/releases/tag/rel%2F2.0.1)
+* Fixed work with Cordova Android 7.0.0
+
+### 0.3.15 (June 18, 2018)
+* Fixed rendering in Chrome ([#265](https://github.com/Microsoft/cordova-simulate/pull/265))
+* Fixed switcher for radio buttons in camera plugin ([#268](https://github.com/Microsoft/cordova-simulate/pull/268))
+
+### 0.3.14 (March 6, 2018)
+* Fixed an issue caused by differences in the path on some macOS installs ([#256](https://github.com/Microsoft/cordova-simulate/pull/256))
+
+### 0.3.13 (Sept 20, 2017)
+* Fix accessibility issue with GPX playback speed combobox ([#247](https://github.com/Microsoft/cordova-simulate/pull/247))
+
+### 0.3.12 (May 22, 2017)
+* Update with real translations ([ee5fa92](https://github.com/Microsoft/cordova-simulate/commit/ee5fa9242d8e514cb8995373dc826344cb18267f))
+
+### 0.3.11 (May 19, 2017)
+* Remove spurious CSS file from root folder
+
+### 0.3.10 (May 19, 2017)
+* Localization tool updates ([#240](https://github.com/Microsoft/cordova-simulate/pull/240), [#242](https://github.com/Microsoft/cordova-simulate/pull/242))
+* Display arguments in "Unhandled Exec Call" dialog ([#231](https://github.com/Microsoft/cordova-simulate/pull/231))
+* Fix Live Reload to handle deleted files ([#233](https://github.com/Microsoft/cordova-simulate/pull/233))
+* Fix exception when HTML file contains a `<header>` tag ([#238](https://github.com/Microsoft/cordova-simulate/pull/238))
+* Fix buttons not indicating focus and hover in high contrast mode in Internet Explorer ([#236](https://github.com/Microsoft/cordova-simulate/pull/236))
+* Fix Live Reload failure with Ionic 2 templates and watcher task in Visual Studio ([#226](https://github.com/Microsoft/cordova-simulate/pull/226))
+* Improvements for screen readers ([#222](https://github.com/Microsoft/cordova-simulate/pull/222), [#223](https://github.com/Microsoft/cordova-simulate/pull/223)) 
+
+### 0.3.9 (Jan 5, 2017)
+* Support scroll bar color in themes ([#221](https://github.com/Microsoft/cordova-simulate/pull/221))
+
+### 0.3.8 (Dec 30, 2016)
+* Update compass and accelerometer panel device widget to scale dynamically when font size changes ([#219](https://github.com/Microsoft/cordova-simulate/pull/219), [#220](https://github.com/Microsoft/cordova-simulate/pull/220))
+* Update slider controls to work better in high contrast mode in IE ([#216](https://github.com/Microsoft/cordova-simulate/pull/216))
+
+### 0.3.7 (Dec 5, 2016)
+* Loc team pass on recent machine translated strings ([#213](https://github.com/Microsoft/cordova-simulate/pull/213), [#214](https://github.com/Microsoft/cordova-simulate/pull/214))
+
+### 0.3.6 (Dec 1, 2016)
+* Ensure XHR proxy forwards headers ([#212](https://github.com/Microsoft/cordova-simulate/pull/212))
+* Don't localize 'alpha' ([#208](https://github.com/Microsoft/cordova-simulate/pull/208), [#209](https://github.com/Microsoft/cordova-simulate/pull/209))
+* Support updating the current theme on the fly ([#205](https://github.com/Microsoft/cordova-simulate/pull/205), [#206](https://github.com/Microsoft/cordova-simulate/pull/206))
+* Localize languages and day names in *Globalization* panel ([#204](https://github.com/Microsoft/cordova-simulate/pull/204))
+* Ellipsize panel captions that are too wide to fit, and provide a tooltip ([#202](https://github.com/Microsoft/cordova-simulate/pull/202))
+* Add tooltips to labeled values, so value can be seen when label is wide (in certain languages) ([#201](https://github.com/Microsoft/cordova-simulate/pull/201))
+
+### 0.3.5 (Nov 16, 2016)
+* Improved support for screen readers ([#185](https://github.com/Microsoft/cordova-simulate/pull/185), [#186](https://github.com/Microsoft/cordova-simulate/pull/186), [#189](https://github.com/Microsoft/cordova-simulate/pull/189), [#197](https://github.com/Microsoft/cordova-simulate/pull/197))
+* Further keyboard improvements (`esc` closes dialogs, `del` deletes persisted exec calls, editable *Accelerometer* panel values) ([#188](https://github.com/Microsoft/cordova-simulate/pull/188), [#187](https://github.com/Microsoft/cordova-simulate/pull/187), [#190](https://github.com/Microsoft/cordova-simulate/pull/190)) 
+
+### 0.3.4 (Oct 28, 2016)
+* Now supports themes ([#175](https://github.com/Microsoft/cordova-simulate/pull/175)) - see [Support for Themes](https://github.com/Microsoft/cordova-simulate/wiki/Support-for-Themes) for more information.
+* Updated compass that can be themed ([#172](https://github.com/Microsoft/cordova-simulate/pull/172))
+* Modernized Accelerometer panel device ([#173](https://github.com/Microsoft/cordova-simulate/pull/173))
+* Better keyboard support ([#180](https://github.com/Microsoft/cordova-simulate/pull/180), [#181](https://github.com/Microsoft/cordova-simulate/pull/181), [#182](https://github.com/Microsoft/cordova-simulate/pull/182))
+* XHR proxy: ensure post data forwarded to proxied server ([#174](https://github.com/Microsoft/cordova-simulate/pull/174))
+* Ensure elements within custom elements have unique ids ([#165](https://github.com/Microsoft/cordova-simulate/pull/165))
+
+### 0.3.3 (Oct 4, 2016)
+* Updated localized files with real translations ([#161](https://github.com/Microsoft/cordova-simulate/pull/161), [#162](https://github.com/Microsoft/cordova-simulate/pull/162), [#163](https://github.com/Microsoft/cordova-simulate/pull/163))
+
 ### 0.3.2 (Sep 29, 2016)
-* Add localization support (current machine localized for 13 languages - real translations coming soon)
+* Add localization support (currently machine localized for 13 languages - real translations coming soon)
   ([#153](https://github.com/Microsoft/cordova-simulate/pull/153), [#155](https://github.com/Microsoft/cordova-simulate/pull/155),
   [#156](https://github.com/Microsoft/cordova-simulate/pull/156), [#158](https://github.com/Microsoft/cordova-simulate/pull/158),
   [#159](https://github.com/Microsoft/cordova-simulate/pull/159)) 

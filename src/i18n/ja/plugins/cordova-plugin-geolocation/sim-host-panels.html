@@ -6,17 +6,11 @@
 <link href="sim-host.css" rel="stylesheet">
 
 <!-- Panels -->
-<cordova-panel id="geolocation" caption="地理位置情報" data-loc-id="e4b82624">
-    <style>
-        #geo-heading-label, #geo-delay-label {
-            margin-right: 5px;
-            margin-left: auto;
-        }
-    </style>
+<cordova-panel id="geolocation" caption="位置情報" spoken-text="位置情報パネル" data-loc-id="e4b82624">
     <!-- Note that this needs to be a cordova-group not a cordova-panel-row as the flex box arranging of the latter
      screws up sizing of the map box in Firefox -->
     <cordova-group>
-        <div class="geo-box">
+        <div aria-hidden="true" class="geo-box">
             <div class="geo-content">
                 <div id="geo-map-container"></div>
                 <div id="geo-map-marker"></div>
@@ -30,8 +24,8 @@
     </cordova-group>
     <cordova-panel-row>
         <section>
-        <cordova-button id="geo-map-zoom-decrease" style="min-width:0;">-</cordova-button>
-        <cordova-button id="geo-map-zoom-increase" style="min-width:0;">+</cordova-button>
+        <cordova-button id="geo-map-zoom-decrease" spoken-text="地図の縮小" style="min-width:0;" data-loc-id="77f82a12">-</cordova-button>
+        <cordova-button id="geo-map-zoom-increase" spoken-text="地図の拡大" style="min-width:0;" data-loc-id="dbeaf956">+</cordova-button>
         </section>
         <section class="geo-map-zoomlevel" data-loc-id="7e9696b6">ズーム レベル:<span id="geo-map-zoomlevel-value"></span>
         </section>
@@ -39,33 +33,33 @@
 
     <cordova-number-entry label="緯度" id="geo-latitude" step="any" data-loc-id="41fd30cf"></cordova-number-entry>
     <cordova-number-entry label="経度" id="geo-longitude" step="any" data-loc-id="9db6eee1"></cordova-number-entry>
-    <cordova-number-entry label="高度 (m)" id="geo-altitude" step="any" data-loc-id="079f55f6"></cordova-number-entry>
-    <cordova-number-entry label="精度 (m)" id="geo-accuracy" min="0" step="any" data-loc-id="dbece2f9"></cordova-number-entry>
-    <cordova-number-entry label="精度高度 (m)" id="geo-altitude-accuracy" min="0" step="any" data-loc-id="718f25cb"></cordova-number-entry>
+    <cordova-number-entry label="高度 (メートル)" spoken-text="高度 (メートル)" id="geo-altitude" step="any" data-loc-id="079f55f6"></cordova-number-entry>
+    <cordova-number-entry label="精度 (メートル)" spoken-text="精度 (メートル)" id="geo-accuracy" min="0" step="any" data-loc-id="dbece2f9"></cordova-number-entry>
+    <cordova-number-entry label="高度の精度 (メートル)" spoken-text="高度の精度 (メートル)" id="geo-altitude-accuracy" min="0" step="any" data-loc-id="718f25cb"></cordova-number-entry>
     <cordova-panel-row>
-        <cordova-label label="見出し" data-loc-id="64da0839"></cordova-label>
-        <cordova-label label="N" id="geo-heading-label"></cordova-label>
-        <input id="geo-heading" type="range" value="0" min="0" max="359.99" step="any" style="width:112px;">
+        <cordova-label for="geo-heading" spoken="" label="針路" data-loc-id="64da0839"></cordova-label>
+        <cordova-label label="N" spoken="" id="geo-heading-label"></cordova-label>
+        <input id="geo-heading" type="range" value="0" min="0" max="359.99" step="any">
     </cordova-panel-row>
-    <cordova-number-entry label="速度 (m/s)" id="geo-speed" min="0" step="any" data-loc-id="8fefe84e"></cordova-number-entry>
+    <cordova-number-entry label="速度 (メートル/秒)" spoken-text="速度 (メートル毎秒)" id="geo-speed" min="0" step="any" data-loc-id="8fefe84e"></cordova-number-entry>
     <cordova-panel-row>
-        <cordova-label label="GPS の遅延 (秒)" data-loc-id="42557ee2"></cordova-label>
+        <cordova-label spoken="" for="geo-delay" label="GPS 遅延 (秒)" data-loc-id="42557ee2"></cordova-label>
         <cordova-label label="0" id="geo-delay-label"></cordova-label>
-        <input id="geo-delay" type="range" value="0" min="0" max="30" style="width:112px;">
+        <input id="geo-delay" type="range" value="0" min="0" max="30">
     </cordova-panel-row>
-    <cordova-checkbox id="geo-timeout" data-loc-id="b2d5a0cc">GPS タイムアウトをシミュレートします。</cordova-checkbox>
+    <cordova-checkbox id="geo-timeout" data-loc-id="b2d5a0cc">GPS タイムアウトのシミュレーション</cordova-checkbox>
 
     <cordova-panel-row>
-        <cordova-label label="航行シミュレータ" data-loc-id="f89bb5e3"></cordova-label>
+        <cordova-label label="ナビゲーション シミュレーター" spoken="" data-loc-id="f89bb5e3"></cordova-label>
     </cordova-panel-row>
     <cordova-panel-row>
         <section>
-            <cordova-button id="geo-gpxfile-button" style="width:100%" data-loc-id="f6c1471b">ファイルを選択します。</cordova-button>
+            <cordova-button id="geo-gpxfile-button" spoken-text="ナビゲーション シミュレーター - ファイルを選択" style="width:100%" data-loc-id="f6c1471b">ファイルの選択</cordova-button>
             <cordova-file hidden="true" id="geo-gpxfile"></cordova-file>
         </section>
         <section>
-            <cordova-button id="geo-gpx-go" style="min-width:0;" data-loc-id="323b1c35">行く</cordova-button>
-            <cordova-combo id="geo-gpxmultiplier-select" style="width:auto;min-width:0;display:inline;">
+            <cordova-button id="geo-gpx-go" spoken-text="ナビゲーション シミュレーター - 開始" style="min-width:0;" data-loc-id="323b1c35">進む</cordova-button>
+            <cordova-combo spoken-text="ナビゲーション シミュレーター - 再生速度調整" id="geo-gpxmultiplier-select" style="width:auto;min-width:0;display:inline;" data-loc-id="11d32900">
                 <option value="1">1x</option>
                 <option value="2">2x</option>
                 <option value="4">4x</option>

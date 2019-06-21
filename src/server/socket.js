@@ -267,6 +267,10 @@ SocketServer.prototype.reloadSimHost = function () {
     this._emitTo(SIM_HOST, 'refresh');
 };
 
+SocketServer.prototype.rethemeSimHost = function () {
+    this._emitTo(SIM_HOST, 'retheme');
+}
+
 SocketServer.prototype.closeConnections = function () {
     // stop watching file changes
     if (this._simulatorProxy.config.liveReload) {

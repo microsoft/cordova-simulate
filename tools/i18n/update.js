@@ -10,12 +10,15 @@ var fs = require('fs'),
     XMLSerializer = require('xmldom').XMLSerializer,
     translate = require('./translate');
 
-var translatedAttributes = ['label', 'caption'];
+var translatedAttributes = ['label', 'caption', 'spoken-text', 'aria-label', 'name'];
 var LOC_ID_ATTRIB = 'data-loc-id';
+var IGNORE_ELEMENT_CONTENT_ATTRIB = 'data-loc-ignore-content';
+var IGNORE_ELEMENT_ATTRIBS_ATTRIB = 'data-loc-ignore-attribs';
 var inlineTags = ['a', 'abbr', 'acronym', 'applet', 'b', 'bdo', 'big', 'blink', 'br', 'cite', 'code', 'del', 'dfn', 'em', 'embed', 'face', 'font', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'map', 'nobr', 'object', 'param', 'q', 'rb', 'rbc', 'rp', 'rt', 'rtc', 'ruby', 's', 'samp', 'select', 'small', 'spacer', 'span', 'strike', 'strong', 'sub', 'sup', 'symbol', 'textarea', 'tt', 'u', 'var', 'wbr'];
-var ignoreWords = [/\balpha\b/gi, /\bbeta\b/gi, /\bgamma\b/gi, /\bdeg\b/gi];
+var ignoreWords = [/\balpha\b/gi, /\bbeta\b/gi, /\bgamma\b/gi, /\bdeg\b/gi, /\bNE\b/gi, /\bNW\b/gi, /\bSE\b/gi, /\bSW\b/gi];
 var singleCharRegex = /\b\S\b/g;
 var nonAlphaRegex = /[^a-z]/gi;
+var TRANSLATED = 'translated';
 var NEEDS_TRANSLATION = 'needs-translation';
 var MACHINE_SUGGESTION = 'mt-suggestion';
 var htmlparser2TreeAdapter = parse5.treeAdapters.htmlparser2;
@@ -100,13 +103,19 @@ Promise.all(htmlFiles.map(function (htmlFile) {
 
         // Sort by file name so xliff file is constructed in a predictable order
         var langXliff = langXliffs[lang];
-        langXliff.sort(function (left, right) {
-            return left.original < right.original ? -1 : 1;
-        });
 
-        var xliffDoc = xliffConv.parseJson(langXliff);
-        files.writeFileSync(xlfFile, pd.xml(new XMLSerializer().serializeToString(xliffDoc)));
-        console.log('XLIFF file updated for ' + chalk.cyan(lang));
+        // Recreate xliff if marked as dirty for any file
+        if (langXliff.some(function (item) {return item.dirty})) {
+            langXliff.sort(function (left, right) {
+                return left.original < right.original ? -1 : 1;
+            });
+
+            var xliffDoc = xliffConv.parseJson(langXliff);
+            files.writeFileSync(xlfFile, pd.xml(new XMLSerializer().serializeToString(xliffDoc)));
+            console.log('XLIFF file updated: ' + chalk.cyan(lang));
+        } else {
+            console.log('XLIFF file unchanged: ' + chalk.cyan(lang));
+        }
     });
 });
 
@@ -149,8 +158,9 @@ function applyTranslationsToDocument(xlfJson, stringsById) {
 
         var parentElement = string.parentElement;
 
-        if (id.indexOf('-') > 0) {
-            var attributeName = id.split('-')[0];
+        var pos = id.lastIndexOf('-');
+        if (pos > 0) {
+            var attributeName = id.substring(0, pos);
             parentElement.attribs[attributeName] = item.translatedText;
         } else {
             var newNodes = parse5.parseFragment(item.translatedText, {treeAdapter: htmlparser2TreeAdapter}).children;
@@ -184,12 +194,12 @@ function applyTranslationsToDocument(xlfJson, stringsById) {
 function updateLanguageXlfJson(sourceHtmlRelativePath, strings) {
     return Promise.all(langs.map(function (lang) {
         var langJsons = xliffs[lang] || {};
-        var xlfJson = langJsons[sourceHtmlRelativePath] || {};
+        var xlfJson = langJsons[sourceHtmlRelativePath] || {dirty: true};
         var existingIDs = xlfJson.items ? Object.getOwnPropertyNames(xlfJson.items) : [];
 
-        xlfJson.lang = xlfJson.lang || lang;
-        xlfJson.original = xlfJson.original || sourceHtmlRelativePath;
-        xlfJson.items = xlfJson.items || {};
+        addXlfJsonProp(xlfJson, 'lang', lang);
+        addXlfJsonProp(xlfJson, 'original', sourceHtmlRelativePath);
+        addXlfJsonProp(xlfJson, 'items', {});
 
         var idsRequiringTranslation = [];
 
@@ -204,20 +214,35 @@ function updateLanguageXlfJson(sourceHtmlRelativePath, strings) {
             var existingValue = xlfJson.items[id];
             if (!existingValue || existingValue.text !== string.text) {
                 xlfJson.items[id] = {text: string.text, state: NEEDS_TRANSLATION, stateQualifier: MACHINE_SUGGESTION};
+                xlfJson.dirty = true;
                 idsRequiringTranslation.push(id);
+            } else if (existingValue.state === TRANSLATED && existingValue.stateQualifier === MACHINE_SUGGESTION) {
+                // Remove 'mt-suggestion' state qualifier if item has been translated
+                delete existingValue.stateQualifier;
+                xlfJson.dirty = true;
             }
         });
 
         // If there are any ids left in existingIDs, they should be removed from xlfJson (which will mean they also get
         // removed from the xlf file).
-        existingIDs.forEach(function (id) {
-            delete xlfJson.items[id];
-        });
+        if (existingIDs.length) {
+            xlfJson.dirty = true;
+            existingIDs.forEach(function (id) {
+                delete xlfJson.items[id];
+            });
+        }
 
         return applyTranslations(xlfJson.items, idsRequiringTranslation, lang).then(function () {
             return xlfJson;
         });
     }));
+}
+
+function addXlfJsonProp(xlfJson, propName, propValue) {
+    if (!xlfJson[propName]) {
+        xlfJson[propName] = propValue;
+        xlfJson.dirty = true;
+    }
 }
 
 function applyTranslations(items, idsRequiringTranslation, targetLanguage) {
@@ -256,13 +281,18 @@ function processNode(node, strings, currentText, usedLocIds) {
             break;
 
         case 'tag':
+            // Check if tag contents should be ignored
+            var ignoreElementContent = node.attribs[IGNORE_ELEMENT_CONTENT_ATTRIB];
+
             // If tag is not an inline tag, or it has attributes, finish off currentText and start clean
-            if (hasAttributes(node) || inlineTags.indexOf(node.name) == -1) {
+            if (hasAttributes(node) || inlineTags.indexOf(node.name) === -1) {
                 processCurrentText(strings, currentText, usedLocIds);
                 processAttributes(node, strings);
-                node.children.forEach(function (child) {
-                    processNode(child, strings, currentText, usedLocIds);
-                });
+                if (!ignoreElementContent) {
+                    node.children.forEach(function (child) {
+                        processNode(child, strings, currentText, usedLocIds);
+                    });
+                }
                 processCurrentText(strings, currentText, usedLocIds);
                 return;
             }
@@ -372,14 +402,21 @@ function processAttributes(element, strings) {
     }
 
     var attributes = element.attribs;
+
+    // Check if any attributes should be ignored
+    var ignoreAttributes = attributes[IGNORE_ELEMENT_ATTRIBS_ATTRIB];
+    ignoreAttributes = (ignoreAttributes && ignoreAttributes.split(',')) || [];
+
     var locId = attributes[LOC_ID_ATTRIB];
     translatedAttributes.forEach(function (translatedAttribute) {
-        var attValue = attributes[translatedAttribute];
-        if (attValue && shouldTranslate(attValue)) {
-            if (!locId) {
-                locId = applyId(element)
+        if (ignoreAttributes.indexOf(translatedAttribute) === -1) {
+            var attValue = attributes[translatedAttribute];
+            if (attValue && shouldTranslate(attValue)) {
+                if (!locId) {
+                    locId = applyId(element)
+                }
+                strings.push({id: translatedAttribute + '-' + locId, text: attValue, parentElement: element});
             }
-            strings.push({id: translatedAttribute + '-' + locId, text: attValue, parentElement: element});
         }
     });
 }

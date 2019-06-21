@@ -1,4 +1,4 @@
-# Cordova-Simulate [![Build Status](https://travis-ci.org/Microsoft/cordova-simulate.svg?branch=master)](https://travis-ci.org/Microsoft/cordova-simulate)
+# Cordova-Simulate [![Build status](https://dev.azure.com/vscode-webdiag-extensions/VS%20Code%20WebDiag%20extensions/_apis/build/status/cordova-simulate%20%5Bmaster%5D)](https://dev.azure.com/vscode-webdiag-extensions/VS%20Code%20WebDiag%20extensions/_build/latest?definitionId=35)
 
 Simulates your Apache Cordova application in the browser.
 
@@ -21,7 +21,7 @@ simulate [<platform>] [--target=<browser>]
 Where:
 
 * **platform** is any Cordova platform that has been added to your project. Defaults to `browser`.
-* **browser** is the name of the browser to launch your app in. Can be any of the following: `chrome`, `chromium`, `edge`, `firefox`, `ie`, `opera`, `safari`. Defaults to `chrome`.
+* **browser** is the name of the browser to launch your app in. Can be any of the following: `default`, `chrome`, `chromium`, `edge`, `firefox`, `ie`, `opera`, `safari`.
 
 ## API
 Use `require('cordova-simulate')` to launch a simulation via the API:
@@ -31,7 +31,7 @@ var simulate = require('cordova-simulate');
 simulate(opts);
 ```
 
-Where opts is an object with the following properties (all optional):
+Where `opts` is an object with the following properties (all optional):
 
 * **platform** - any Cordova platform that has been added to your project. Defaults to `browser`.
 * **device** - specify the id of a device to start with instead of a platform (the platform will be determined by the
@@ -40,7 +40,7 @@ Where opts is an object with the following properties (all optional):
   Supported `windows` devices are `Lumia930`, `Lumia950` and `SurfacePro`. Supported generic devices (which will use the
   `browser` platform) are `Generic320x480`, `Generic320x568`, `Generic360x640`, `Generic384x640`, `Generic412x732`,
   `Generic768x1024`, `Generic800x1280` and `Generic1920x1080`.
-* **target** - the name of the browser to launch your app in. Can be any of the following: `chrome`, `chromium`, `edge`, `firefox`, `ie`, `opera`, `safari`. Defaults to `chrome`.
+* **target** - the name of the browser to launch your app in. Can be any of the following: `default`, `chrome`, `chromium`, `edge`, `firefox`, `ie`, `opera`, `safari`.
 * **port** - the desired port for the server to use. Defaults to `8000`.
 * **lang** - the language to display in the interface (does not impact console output). Supported values (case-insensitive)
   are `cs` (Czech), `de` (German), `es` (Spanish), `fr` (French), `it` (Italian), `ja` (Japanese), `ko` (Korean), `pl` (Polish),
@@ -67,6 +67,7 @@ Calling `simulate()` will launch your app in the browser, and open a second brow
 * Allows user to persist the settings for a plug-in response.
 * Allows plugins to customize their own UI.
 * Reloads the simulated app as the user makes changes to source files.
+
 > **Note for live reload:**
 Changes to files such as images, stylesheets and other resources are propagated to the running app without a full page reload. Other changes, such as those to scripts and HTML files, trigger a full page reload.
 

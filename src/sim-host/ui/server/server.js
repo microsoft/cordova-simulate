@@ -9,14 +9,16 @@ var BROWSER_REPLACE_OPTIONS = {maxMatchLen: BROWSER_REPLACE_MAX_MATCH_LENGTH};
 
 module.exports.attach = function (app, dirs, hostRoot) {
     app.get('/simulator/sim-host.css', function (request, response) {
-        var userAgent = request.headers['user-agent'];
         send(request, path.resolve(hostRoot['sim-host'], 'sim-host.css'), {
-            transform: getTransform(userAgent)
+            transform: getTransform(request)
         }).pipe(response);
     });
 };
 
-function getTransform(userAgent) {
+module.exports.cssTransform = getTransform;
+
+function getTransform(request) {
+    var userAgent = request.headers['user-agent'];
     if (isChrome(userAgent)) {
         // If target browser is Chrome, remove any sections marked as not for Chrome.
         return function (stream) {

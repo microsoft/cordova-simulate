@@ -71,8 +71,10 @@ SimulationServer.prototype.start = function (platform, opts) {
 
     /* attach simulation host middleware */
     var middlewarePath = path.join(config.simHostOptions.simHostRoot, 'server', 'server.js');
+    var simHostMiddleware = null;
     if (fs.existsSync(middlewarePath)) {
-        require(middlewarePath).attach(this._cordovaServer.app, dirs, this._hostRoot);
+        simHostMiddleware = require(middlewarePath);
+        simHostMiddleware.attach(this._cordovaServer.app, dirs, this._hostRoot);
     }
 
     /* attach CORS proxy middleware */
@@ -80,7 +82,7 @@ SimulationServer.prototype.start = function (platform, opts) {
         require('./xhr-proxy').attach(this._cordovaServer.app);
     }
 
-    this._prepareRoutes();
+    this._prepareRoutes(simHostMiddleware);
 
     var serverOpts = {
         port: opts.port,
@@ -152,7 +154,7 @@ SimulationServer.prototype.stop = function () {
  * Define the routes for the current express app to the simulation files.
  * @private
  */
-SimulationServer.prototype._prepareRoutes = function () {
+SimulationServer.prototype._prepareRoutes = function (simHostMiddleware) {
     var app = this._cordovaServer.app;
 
     var streamSimHostHtml = this._streamSimHostHtml.bind(this),
@@ -167,6 +169,9 @@ SimulationServer.prototype._prepareRoutes = function () {
     }.bind(this));
     app.get('/simulator/sim-host.js', function (request, response) {
         this._sendHostJsFile(request, response, 'sim-host');
+    }.bind(this));
+    app.get('/simulator/sim-host-theme.css', function (request, response, next) {
+        this._sendSimHostThemeCssFile(request, response, next, simHostMiddleware);
     }.bind(this));
     app.use(this._project.getRouter());
     app.use('/simulator', cordovaServe.static(this._hostRoot['sim-host']));
@@ -247,7 +252,7 @@ SimulationServer.prototype._streamAppHostHtml = function (request, response) {
             send(request, filePath, {
                 transform: function (stream) {
                     return stream
-                        .pipe(replaceStream(/(<\s*head[^>]*>)/, '$1' + scriptTags))
+                        .pipe(replaceStream(/(<\s*head\b[^>]*>)/, '$1' + scriptTags))
                         .pipe(replaceStream(metaTagRegex, function (metaTag) {
                             if (!cspRegex.test(metaTag)) {
                                 // Not a CSP tag; return unchanged
@@ -328,6 +333,29 @@ SimulationServer.prototype._streamSimHostHtml = function (request, response) {
             }).pipe(response);
         }.bind(this))
         .done();
+};
+
+/**
+ * Serves the CSS file for the current theme, if there is one.
+ * @param {object} request
+ * @param {object} response
+ * @param {Function} next
+ * @param simHostMiddleware
+ * @private
+ */
+SimulationServer.prototype._sendSimHostThemeCssFile = function (request, response, next, simHostMiddleware) {
+    if (this._simulatorProxy.config.theme) {
+        var themeCssFileName = this._simulatorProxy.config.theme.getCssFileName();
+        if (simHostMiddleware && simHostMiddleware.cssTransform) {
+            send(request, themeCssFileName, {
+                transform: simHostMiddleware.cssTransform(request)
+            }).pipe(response);
+        } else {
+            send(request, themeCssFileName).pipe(response);
+        }
+    } else {
+        next();
+    }
 };
 
 /**

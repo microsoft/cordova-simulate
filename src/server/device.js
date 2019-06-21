@@ -1,3 +1,5 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+
 var localStorage = require('./utils/local-storage'),
     log = require('./utils/log');
 

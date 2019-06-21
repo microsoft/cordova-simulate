@@ -56,8 +56,13 @@ ThreeD.prototype.setPoints = function(Points){
 	for(var value=Points.length;--value>=0;) POLYMESH[value] = Points[value].slice();
 }
 ThreeD.prototype.loadMesh = function(array){
-	if(POLYMESH = array.split(";")) for(i=POLYMESH.length;--i>=0;) POLYMESH[i] = POLYMESH[i].split(",");
+	if (Array.isArray(array)) {
+		POLYMESH = JSON.parse(JSON.stringify(array));
+	} else {
+		if(POLYMESH = array.split(";")) for(i=POLYMESH.length;--i>=0;) POLYMESH[i] = POLYMESH[i].split(",");
+	}
 }
+
 ThreeD.prototype.getPoints = function(){ return POLYMESH; }
 
 ThreeD.prototype.setCenter = function(x,y){ CENTERX = x|0; CENTERY = y|0; }

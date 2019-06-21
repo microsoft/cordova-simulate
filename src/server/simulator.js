@@ -10,7 +10,8 @@ var Q = require('q'),
     Project = require('./project'),
     SimulationServer = require('./server'),
     Telemetry = require('./telemetry'),
-    device = require('./device');
+    device = require('./device'),
+    theme = require('./theme');
 
 require('../modules/polyfills');
 
@@ -49,6 +50,8 @@ function Simulator(opts) {
         telemetry: this.telemetry,
         updateDevice: this.updateDevice
     };
+
+    this._createTheme(opts.theme);
 
     this._project = new Project(simulatorProxy, opts.platform);
     this._server = new SimulationServer(simulatorProxy, this._project, this.hostRoot);
@@ -164,11 +167,11 @@ Simulator.prototype.startSimulation = function () {
 
             this._state = Simulator.State.RUNNING;
         }.bind(this))
-        .fail(function (error) {
+        .catch(function (error) {
             log.warning('Error starting the simulation');
-            log.error(error);
 
             this._state = Simulator.State.IDLE;
+            throw error;
         }.bind(this));
 };
 
@@ -198,6 +201,17 @@ Simulator.prototype.stopSimulation = function () {
 Simulator.prototype.updateDevice = function (newDevice) {
     this.config.deviceInfo = device.updateDeviceInfo(newDevice);
 };
+
+Simulator.prototype.updateTheme = function (themeData) {
+    this._createTheme(themeData);
+    if (this._server && this._server.simSocket) {
+        this._server.simSocket.rethemeSimHost();
+    }
+}
+
+Simulator.prototype._createTheme = function (themeData) {
+    this._config.theme = theme.createTheme(this.hostRoot['sim-host'], themeData);   
+}
 
 /**
  * Parse the options provided and create the configuration instance for the current

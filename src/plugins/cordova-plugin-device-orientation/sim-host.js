@@ -25,7 +25,7 @@ module.exports = function (messages) {
             headingText = document.querySelector('[data-compass-heading="text"]');
 
         var compassWidget = new CompassWidget({
-            container: document.getElementById('compass-widget'),
+            container: document.querySelector('#device-orientation #compass-widget'),
             headingUpdatedCallback: function (heading) {
                 messages.emit('device-orientation-updated', heading.value, true);
             },
@@ -39,7 +39,7 @@ module.exports = function (messages) {
             headingText.textContent = heading.direction;
         };
 
-        compassWidget.initialize(compass.heading);
+        compassWidget.updateHeading(compass.heading);
         updateHeadingValue();
 
         inputHeading.addEventListener('change', function () {

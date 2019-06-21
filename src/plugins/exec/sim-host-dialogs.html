@@ -3,12 +3,12 @@
 <cordova-dialog id="exec-dialog" caption="Unhandled Exec Call" data-loc-id="f7283850">
     <cordova-group>
         <p data-loc-id="a1a63f26">There is no handler for the following exec call:</p>
-        <p style="font-style:italic;color:black"><span id="exec-service" data-loc-id="ba2b4c80">service</span>.<span id="exec-action" data-loc-id="e4c1ba28">action</span></p>
-        <p data-loc-id="54b83b14">Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.</p>
+        <p style="font-style:italic"><span id="exec-service" data-loc-ignore-content="true">service</span>.<span id="exec-action" data-loc-ignore-content="true">action</span>(<span id="exec-args" data-loc-ignore-content="true">arguments</span>)</p>
+        <p data-loc-id="54b83b14">Please enter a return value below to simulate a call to this function and choose if this value represents success or failure. If you'd like this value returned for all future calls to this function, select the 'persist' option.</p>
     </cordova-group>
     <cordova-group>
-        <textarea id="exec-response" rows="10" class="cordova-widget cordova-state-default"></textarea>
-        <div class="p" id="exec-error" style="color: red;" data-loc-id="874c9be3">The value must be valid JSON (<span style="font-style:italic;" id="exec-parse-error" data-loc-id="8679c185">error</span>)</div>
+        <textarea id="exec-response" rows="10"></textarea>
+        <div class="p" id="exec-error" style="color: red;" data-loc-id="874c9be3">The value must be valid JSON (<span style="font-style:italic;" id="exec-parse-error" data-loc-ignore-content="true">error</span>)</div>
     </cordova-group>
     <cordova-panel-row>
         <cordova-checkbox id="exec-persist" data-loc-id="bce2c943">Persist</cordova-checkbox>

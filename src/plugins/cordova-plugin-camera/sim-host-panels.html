@@ -1,16 +1,24 @@
 <!-- Copyright (c) Microsoft Corporation. All rights reserved. -->
 
-<cordova-panel id="camera" caption="Camera" data-loc-id="553fc9a5">
+<cordova-panel id="camera" caption="Camera" spoken-text="Camera Panel" data-loc-id="553fc9a5">
     <cordova-group id="camera-options">
-        <!--<cordova-radio id="camera-host">Use host system camera</cordova-radio>-->
+        <cordova-radio id="camera-host" data-loc-id="???">Use host system camera</cordova-radio>
         <cordova-radio id="camera-prompt" checked="true" data-loc-id="4f087d38">Prompt me for a file</cordova-radio>
-        <!--<cordova-radio id="camera-sample">Use built-in sample file</cordova-radio>-->
+        <cordova-group id="camera-sample-options">
+            <cordova-panel-row id="camera-sample-row">
+                <cordova-radio id="camera-sample" data-loc-id="???">Use sample file:</cordova-radio>
+                <cordova-button id="camera-make-sample" data-loc-id="???" style="width: 120px;">Make Sample</cordova-button>
+            </cordova-panel-row>
+            <img id="camera-sample-img" style="width: 100%; padding-top: 10px; padding-bottom: 10px; display: none;" src="">
+        </cordova-group>
         <cordova-panel-row>
             <cordova-radio id="camera-file" inline="true" data-loc-id="145af9c0">Use this file:</cordova-radio>
-            <cordova-button id="camera-choose-filename" data-loc-id="2c4e6d12">Choose File
-            </cordova-button>
+            <cordova-button id="camera-choose-filename" data-loc-id="2c4e6d12" style="width: 120px;">Choose File</cordova-button>
         </cordova-panel-row>
         <cordova-file hidden="true" id="camera-filename"></cordova-file>
+        <video id="camera-stream" style="display: none;"></video>
+        <canvas id="camera-host-canvas" style="display: none;"></canvas>
+        <canvas id="camera-sample-canvas" style="display: none;"></canvas>
         <img id="camera-img" style="width: 100%; margin-top: 10px; display: none;" src="">
     </cordova-group>
 </cordova-panel>

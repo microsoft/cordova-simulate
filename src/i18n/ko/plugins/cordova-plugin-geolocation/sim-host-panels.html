@@ -6,17 +6,11 @@
 <link href="sim-host.css" rel="stylesheet">
 
 <!-- Panels -->
-<cordova-panel id="geolocation" caption="지리적 위치" data-loc-id="e4b82624">
-    <style>
-        #geo-heading-label, #geo-delay-label {
-            margin-right: 5px;
-            margin-left: auto;
-        }
-    </style>
+<cordova-panel id="geolocation" caption="지리적 위치" spoken-text="지리적 위치 패널" data-loc-id="e4b82624">
     <!-- Note that this needs to be a cordova-group not a cordova-panel-row as the flex box arranging of the latter
      screws up sizing of the map box in Firefox -->
     <cordova-group>
-        <div class="geo-box">
+        <div aria-hidden="true" class="geo-box">
             <div class="geo-content">
                 <div id="geo-map-container"></div>
                 <div id="geo-map-marker"></div>
@@ -30,8 +24,8 @@
     </cordova-group>
     <cordova-panel-row>
         <section>
-        <cordova-button id="geo-map-zoom-decrease" style="min-width:0;">-</cordova-button>
-        <cordova-button id="geo-map-zoom-increase" style="min-width:0;">+</cordova-button>
+        <cordova-button id="geo-map-zoom-decrease" spoken-text="지도 축소" style="min-width:0;" data-loc-id="77f82a12">-</cordova-button>
+        <cordova-button id="geo-map-zoom-increase" spoken-text="지도 확대" style="min-width:0;" data-loc-id="dbeaf956">+</cordova-button>
         </section>
         <section class="geo-map-zoomlevel" data-loc-id="7e9696b6">확대/축소 수준:<span id="geo-map-zoomlevel-value"></span>
         </section>
@@ -39,33 +33,33 @@
 
     <cordova-number-entry label="위도" id="geo-latitude" step="any" data-loc-id="41fd30cf"></cordova-number-entry>
     <cordova-number-entry label="경도" id="geo-longitude" step="any" data-loc-id="9db6eee1"></cordova-number-entry>
-    <cordova-number-entry label="고도 (m)" id="geo-altitude" step="any" data-loc-id="079f55f6"></cordova-number-entry>
-    <cordova-number-entry label="정확도 (m)" id="geo-accuracy" min="0" step="any" data-loc-id="dbece2f9"></cordova-number-entry>
-    <cordova-number-entry label="고도 정확도 (m)" id="geo-altitude-accuracy" min="0" step="any" data-loc-id="718f25cb"></cordova-number-entry>
+    <cordova-number-entry label="고도(m)" spoken-text="고도(미터)" id="geo-altitude" step="any" data-loc-id="079f55f6"></cordova-number-entry>
+    <cordova-number-entry label="정확도(m)" spoken-text="정확도(미터)" id="geo-accuracy" min="0" step="any" data-loc-id="dbece2f9"></cordova-number-entry>
+    <cordova-number-entry label="고도 정확도(m)" spoken-text="고도 정확도(미터)" id="geo-altitude-accuracy" min="0" step="any" data-loc-id="718f25cb"></cordova-number-entry>
     <cordova-panel-row>
-        <cordova-label label="제목" data-loc-id="64da0839"></cordova-label>
-        <cordova-label label="N" id="geo-heading-label"></cordova-label>
-        <input id="geo-heading" type="range" value="0" min="0" max="359.99" step="any" style="width:112px;">
+        <cordova-label for="geo-heading" spoken="" label="제목" data-loc-id="64da0839"></cordova-label>
+        <cordova-label label="N" spoken="" id="geo-heading-label"></cordova-label>
+        <input id="geo-heading" type="range" value="0" min="0" max="359.99" step="any">
     </cordova-panel-row>
-    <cordova-number-entry label="속도 (m/s)" id="geo-speed" min="0" step="any" data-loc-id="8fefe84e"></cordova-number-entry>
+    <cordova-number-entry label="속도(m/s)" spoken-text="속도(미터 매초)" id="geo-speed" min="0" step="any" data-loc-id="8fefe84e"></cordova-number-entry>
     <cordova-panel-row>
-        <cordova-label label="GPS 지연 (초)" data-loc-id="42557ee2"></cordova-label>
+        <cordova-label spoken="" for="geo-delay" label="GPS 지연(초)" data-loc-id="42557ee2"></cordova-label>
         <cordova-label label="0" id="geo-delay-label"></cordova-label>
-        <input id="geo-delay" type="range" value="0" min="0" max="30" style="width:112px;">
+        <input id="geo-delay" type="range" value="0" min="0" max="30">
     </cordova-panel-row>
-    <cordova-checkbox id="geo-timeout" data-loc-id="b2d5a0cc">GPS 타임 아웃을 시뮬레이션</cordova-checkbox>
+    <cordova-checkbox id="geo-timeout" data-loc-id="b2d5a0cc">GPS 제한 시간 시뮬레이션</cordova-checkbox>
 
     <cordova-panel-row>
-        <cordova-label label="탐색 시뮬레이터" data-loc-id="f89bb5e3"></cordova-label>
+        <cordova-label label="탐색 시뮬레이터" spoken="" data-loc-id="f89bb5e3"></cordova-label>
     </cordova-panel-row>
     <cordova-panel-row>
         <section>
-            <cordova-button id="geo-gpxfile-button" style="width:100%" data-loc-id="f6c1471b">파일 선택</cordova-button>
+            <cordova-button id="geo-gpxfile-button" spoken-text="탐색 시뮬레이터 - 파일 선택" style="width:100%" data-loc-id="f6c1471b">파일 선택</cordova-button>
             <cordova-file hidden="true" id="geo-gpxfile"></cordova-file>
         </section>
         <section>
-            <cordova-button id="geo-gpx-go" style="min-width:0;" data-loc-id="323b1c35">이동</cordova-button>
-            <cordova-combo id="geo-gpxmultiplier-select" style="width:auto;min-width:0;display:inline;">
+            <cordova-button id="geo-gpx-go" spoken-text="탐색 시뮬레이터 - 이동" style="min-width:0;" data-loc-id="323b1c35">이동</cordova-button>
+            <cordova-combo spoken-text="탐색 시뮬레이터 - 재생 속도 승수" id="geo-gpxmultiplier-select" style="width:auto;min-width:0;display:inline;" data-loc-id="11d32900">
                 <option value="1">1x</option>
                 <option value="2">2x</option>
                 <option value="4">4x</option>

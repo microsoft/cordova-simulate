@@ -65,7 +65,14 @@ function getCollapsedPanels() {
 function sizeContent() {
     // Size the content area to keep column widths fixed
     var bodyWidth = parseInt(window.getComputedStyle(document.body).width);
-    var contentWidth = (Math.floor((bodyWidth - 1) / 333) || 1) * 333;
+    var panelWidth = parseInt(window.getComputedStyle(document.querySelector('cordova-panel')).width);
+
+    // Ratio of column to panel width is 323 to 320. Unfortunately we can't get the column width directly, as the
+    // computed value is inconsistent between browsers. So if we change either of these widths, we'll need to update
+    // this equation.
+    var columnWidth = panelWidth / 320 * 323 + 3;
+
+    var contentWidth = (Math.floor((bodyWidth - 1) / columnWidth) || 1) * columnWidth;
     document.querySelector('.cordova-main').style.width = contentWidth + 'px';
 }
 
@@ -115,14 +122,6 @@ function initializePlugins(device) {
 
     // Hide and register dialogs
     Array.prototype.forEach.call(document.getElementById('popup-window').children, function (dialogRef) {
-        dialogRef.show = function () {
-            document.getElementById('popup-window').style.display = '';
-            this.style.display = '';
-        };
-        dialogRef.hide = function () {
-            document.getElementById('popup-window').style.display = 'none';
-            this.style.display = 'none';
-        };
         dialog.pluginDialogs[dialogRef.id] = dialogRef;
         dialogRef.style.display = 'none';
     });

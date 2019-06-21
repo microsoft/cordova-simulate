@@ -1,0 +1,200 @@
+/* Copyright (c) Microsoft Corporation. All rights reserved. */
+
+/* Sizes below here will be scaled to the current theme, and the result included in the theme CSS file */
+
+cordova-panel {
+    width: 320px;
+}
+
+cordova-dialog {
+    width: 377px;
+}
+
+.cordova-main {
+    margin: 1px 0 0 1px;
+    column-width: 323px;
+    -moz-column-width: 323px;
+    -webkit-column-width: 323px;
+}
+
+.cordova-header {
+    padding: 5px 9px;
+    height: 20px;
+    line-height: 20px;
+}
+
+.cordova-header .spoken-text span {
+    width: calc(100% - 40px);
+}
+
+/* 12px margin around top level items in the content a panel */
+.cordova-content > ::content > * {
+    margin: 12px;
+}
+
+.cordova-value {
+    margin-left: 6px;
+}
+
+input[type^=range] {
+    width: 112px;
+}
+
+input[type^=checkbox],
+input[type^=radio]{
+    width: 17px;
+    height: 17px;
+}
+
+select {
+    min-width: 112px;
+}
+cordova-button {
+    min-width: 112px;
+}
+
+select,
+input[type^=text],
+input[type^=number], input[type^=number] {
+    padding: 5px;
+}
+
+textarea {
+    padding: 2px 4px;
+    width: calc(100% - 10px); /* Account for padding and border */
+}
+
+input[type^=text],
+input[type^=number] {
+    width: 100px;
+}
+
+cordova-radio {
+    padding: 2px;
+}
+
+button {
+    padding: 5px 13px;
+}
+
+.cordova-item-wrapper {
+    padding: 5px;
+}
+
+.cordova-collapse-icon svg,
+.cordova-close-icon svg {
+    width: 14px;
+    height: 14px;
+}
+
+.cordova-collapse-icon,
+.cordova-close-icon {
+    right: 10px;
+}
+
+/* Style slider for Chrome/Safari */
+
+input[type=range]::-webkit-slider-runnable-track {
+    height: 2px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    height: 20px;
+    width: 11px;
+    margin-top: -10px;
+}
+
+/* Style slider for IE */
+
+input[type=range]::-ms-track {
+    height: 2px;
+    border-top: solid transparent 10px;
+    border-bottom: solid transparent 10px;
+    /* This keeps the transparency so the slider bar is against
+       background color rather than button-color */
+    -ms-high-contrast-adjust: none;
+
+}
+
+/* These properties !important to override -webkit-slider-thumb values in Edge */
+input[type=range]::-ms-thumb {
+    height: 18px !important;
+    width: 9px !important;
+    margin-top: 0 !important;
+}
+
+/* Style slider for Firefox */
+
+input[type=range]::-moz-range-track {
+    height: 0;
+}
+
+input[type=range]::-moz-range-thumb {
+    height: 18px;
+    width: 9px;
+    border-radius: 0;
+}
+
+.cordova-item-wrapper,
+.cordova-item-wrapper:hover,
+.cordova-item-wrapper:focus,
+.cordova-item-wrapper:hover:active {
+    border-left-color: rgba(0,0,0,0);
+    border-right-color: rgba(0,0,0,0);
+}
+
+.cordova-item-first-child,
+.cordova-item-first-child:hover,
+.cordova-item-first-child:focus,
+.cordova-item-first-child:hover:active {
+    border-top-color: rgba(0,0,0,0);
+}
+
+.cordova-item-last-child,
+.cordova-item-last-child:hover,
+.cordova-item-last-child:focus,
+.cordova-item-last-child:hover:active {
+    border-bottom-color: rgba(0,0,0,0);
+}
+
+.cordova-item-wrapper {
+    background: transparent;
+}
+
+.cordova-item-wrapper:hover .close-button {
+    display: block;
+}
+
+/* Hacks to work around multi-column bug in Chrome 48+. The following section
+   is removed for other browsers when the file is served */
+
+/* BEGIN CHROME */
+.cordova-panel-inner {
+    padding-bottom: 1px;
+}
+
+cordova-panel {
+    padding: 3px 0;
+}
+
+.cordova-main {
+    padding: 2px 0 0 5px;
+}
+
+input[type=range] {
+    border-top: solid transparent 9px;
+    border-bottom: solid transparent 9px;
+}
+
+/* END CHROME */
+
+/* BEGIN !CHROME */
+body .cordova-panel-inner {
+    margin-bottom: 7px;
+}
+
+.cordova-main {
+    padding: 5px;
+}
+/* END !CHROME */
+
