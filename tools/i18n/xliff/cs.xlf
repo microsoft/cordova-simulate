@@ -144,19 +144,19 @@
     <body>
       <trans-unit id="caption-c045b281">
         <source xml:lang="en">Device</source>
-        <target xml:lang="cs" state="translated">Platforma</target>
+        <target xml:lang="cs" state="translated">Zařízení</target>
       </trans-unit>
       <trans-unit id="label-db946bb7">
         <source xml:lang="en">Platform</source>
-        <target xml:lang="cs" state="translated">zařízení</target>
+        <target xml:lang="cs" state="translated">Platforma</target>
       </trans-unit>
       <trans-unit id="label-7f7c31ee">
         <source xml:lang="en">Device</source>
-        <target xml:lang="cs" state="translated">Verze OS</target>
+        <target xml:lang="cs" state="translated">Zařízení</target>
       </trans-unit>
       <trans-unit id="label-39a39347">
         <source xml:lang="en">OS version</source>
-        <target xml:lang="cs" state="translated">zařízení</target>
+        <target xml:lang="cs" state="translated">Verze OS</target>
       </trans-unit>
       <trans-unit id="label-752a991e">
         <source xml:lang="en">Physical resolution</source>
@@ -289,6 +289,18 @@
       <trans-unit id="spoken-text-8fefe84e">
         <source xml:lang="en">Speed (meters per second)</source>
         <target xml:lang="cs" state="translated">Rychlost (metry za sekundu)</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-f6c1471b">
+        <source xml:lang="en">Navigation Simulator - Choose File</source>
+        <target xml:lang="cs" state="translated">Navigační simulátor – Zvolit soubor</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-323b1c35">
+        <source xml:lang="en">Navigation Simulator - Go</source>
+        <target xml:lang="cs" state="translated">Navigační simulátor – Přejít</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-11d32900">
+        <source xml:lang="en">Navigation Simulator - playback speed multiplier</source>
+        <target xml:lang="cs" state="translated">Navigační simulátor – Multiplikátor rychlosti přehrávání</target>
       </trans-unit>
     </body>
   </file>
@@ -458,25 +470,13 @@
         <source xml:lang="en">There is no handler for the following exec call:</source>
         <target xml:lang="cs" state="translated">Pro následující volání metody Exec není k dispozici obslužná rutina:</target>
       </trans-unit>
-      <trans-unit id="ba2b4c80:1">
-        <source xml:lang="en">service</source>
-        <target xml:lang="cs" state="translated">služba</target>
-      </trans-unit>
-      <trans-unit id="e4c1ba28:1">
-        <source xml:lang="en">action</source>
-        <target xml:lang="cs" state="translated">akce</target>
-      </trans-unit>
       <trans-unit id="54b83b14:1">
-        <source xml:lang="en">Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.</source>
-        <target xml:lang="cs" state="translated">Zadejte hodnotu, která se má u tohoto volání vracet, a potom určete, jestli znamená úspěch nebo neúspěch. Pokud chcete, aby odpověď na toto volání měla vždy tento výsledek, vyberte možnost „Zachovat“.</target>
+        <source xml:lang="en">Please enter a return value below to simulate a call to this function and choose if this value represents success or failure. If you'd like this value returned for all future calls to this function, select the 'persist' option.</source>
+        <target xml:lang="cs" state="translated">Zadejte prosím níže návratovou hodnotu pro simulaci volání této funkce a zvolte, jestli tato hodnota představuje úspěch, nebo neúspěch. Pokud chcete, aby se tato hodnota vracela pro všechna budoucí volání této funkce, vyberte možnost persist.</target>
       </trans-unit>
       <trans-unit id="874c9be3:1">
         <source xml:lang="en">The value must be valid JSON (</source>
         <target xml:lang="cs" state="translated">Hodnota musí mít platný formát JSON (</target>
-      </trans-unit>
-      <trans-unit id="8679c185:1">
-        <source xml:lang="en">error</source>
-        <target xml:lang="cs" state="translated">chyba</target>
       </trans-unit>
       <trans-unit id="bce2c943:1">
         <source xml:lang="en">Persist</source>

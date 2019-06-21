@@ -3,14 +3,12 @@
 var chalk = require('chalk');
 var MsTranslator = require('mstranslator');
 
-var clientId = process.env['CORDOVA-SIMULATE-TRANSLATE-CLIENT-ID'];
-var clientSecret = process.env['CORDOVA-SIMULATE-TRANSLATE-CLIENT-SECRET'];
+var apiKey = process.env['CORDOVA-SIMULATE-TRANSLATE-API-KEY'];
 var translateArray;
 
-if (clientId && clientSecret) {
+if (apiKey) {
     var translatorClient = new MsTranslator({
-        client_id: clientId,
-        client_secret: clientSecret
+        api_key: apiKey
     }, true);
 
     translateArray = function (texts, targetLanguage) {
@@ -33,11 +31,9 @@ if (clientId && clientSecret) {
         });
     }
 } else {
-    console.log(chalk.yellow.bold('Warning: Machine assisted translation is not enabled. To enable it, you need an account\n' +
-        'and app registered with the Azure DataMarket, with Microsoft Translator Text Translation\n' +
-        'support active, then set the following environment variables:\n' +
-        'CORDOVA-SIMULATE-TRANSLATE-CLIENT-ID: Azure DataMarket application Client ID.\n' +
-        'CORDOVA-SIMULATE-TRANSLATE-CLIENT-SECRET: Azure DataMarket application Client Secret.'));
+    console.log(chalk.yellow.bold('Warning: Machine assisted translation is not enabled. To enable it, you need an Azure\n' +
+        'account with Text Translation support active, then set the following environment variable:\n' +
+        'CORDOVA-SIMULATE-TRANSLATE-API-KEY: Azure Text Translation key.'));
 
     translateArray = function (texts) {
         return Promise.resolve(texts.map(function (text) {

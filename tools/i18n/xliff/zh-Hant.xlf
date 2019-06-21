@@ -290,6 +290,18 @@
         <source xml:lang="en">Speed (meters per second)</source>
         <target xml:lang="zh-Hant" state="translated">速度 (每秒公尺數)</target>
       </trans-unit>
+      <trans-unit id="spoken-text-f6c1471b">
+        <source xml:lang="en">Navigation Simulator - Choose File</source>
+        <target xml:lang="zh-Hant" state="translated">瀏覽模擬器 - 選擇檔案</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-323b1c35">
+        <source xml:lang="en">Navigation Simulator - Go</source>
+        <target xml:lang="zh-Hant" state="translated">瀏覽模擬器 - 執行</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-11d32900">
+        <source xml:lang="en">Navigation Simulator - playback speed multiplier</source>
+        <target xml:lang="zh-Hant" state="translated">瀏覽模擬器 - 播放速度加倍</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-globalization\sim-host-panels.html" source-language="en" target-language="zh-Hant">
@@ -458,25 +470,13 @@
         <source xml:lang="en">There is no handler for the following exec call:</source>
         <target xml:lang="zh-Hant" state="translated">下列 exec 呼叫沒有任何處理常式:</target>
       </trans-unit>
-      <trans-unit id="ba2b4c80:1">
-        <source xml:lang="en">service</source>
-        <target xml:lang="zh-Hant" state="translated">service</target>
-      </trans-unit>
-      <trans-unit id="e4c1ba28:1">
-        <source xml:lang="en">action</source>
-        <target xml:lang="zh-Hant" state="translated">action</target>
-      </trans-unit>
       <trans-unit id="54b83b14:1">
-        <source xml:lang="en">Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.</source>
-        <target xml:lang="zh-Hant" state="translated">請在下方輸入要對此呼叫傳回的值，然後指示這代表成功或失敗。如果您想要一律以此結果回應此呼叫，請選取 [持續] 選項。</target>
+        <source xml:lang="en">Please enter a return value below to simulate a call to this function and choose if this value represents success or failure. If you'd like this value returned for all future calls to this function, select the 'persist' option.</source>
+        <target xml:lang="zh-Hant" state="translated">請在下方輸入傳回值，以模擬對此函式的呼叫，並選擇此值代表成功或失敗。若您希望後續對此函式的呼叫全都傳回此值，請選取 [持續] 選項。</target>
       </trans-unit>
       <trans-unit id="874c9be3:1">
         <source xml:lang="en">The value must be valid JSON (</source>
         <target xml:lang="zh-Hant" state="translated">值必須為有效的 JSON (</target>
-      </trans-unit>
-      <trans-unit id="8679c185:1">
-        <source xml:lang="en">error</source>
-        <target xml:lang="zh-Hant" state="translated">錯誤</target>
       </trans-unit>
       <trans-unit id="bce2c943:1">
         <source xml:lang="en">Persist</source>

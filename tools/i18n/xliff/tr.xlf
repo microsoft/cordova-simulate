@@ -290,6 +290,18 @@
         <source xml:lang="en">Speed (meters per second)</source>
         <target xml:lang="tr" state="translated">Hız (metre / saniye)</target>
       </trans-unit>
+      <trans-unit id="spoken-text-f6c1471b">
+        <source xml:lang="en">Navigation Simulator - Choose File</source>
+        <target xml:lang="tr" state="translated">Gezinti Simülatörü - Dosya Seçin</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-323b1c35">
+        <source xml:lang="en">Navigation Simulator - Go</source>
+        <target xml:lang="tr" state="translated">Gezinti Simülatörü - Git</target>
+      </trans-unit>
+      <trans-unit id="spoken-text-11d32900">
+        <source xml:lang="en">Navigation Simulator - playback speed multiplier</source>
+        <target xml:lang="tr" state="translated">Gezinti Simülatörü - kayıttan yürütme hızı çarpanı</target>
+      </trans-unit>
     </body>
   </file>
   <file original="plugins\cordova-plugin-globalization\sim-host-panels.html" source-language="en" target-language="tr">
@@ -458,25 +470,13 @@
         <source xml:lang="en">There is no handler for the following exec call:</source>
         <target xml:lang="tr" state="translated">Şu yürütme çağrısı için işleyici yok:</target>
       </trans-unit>
-      <trans-unit id="ba2b4c80:1">
-        <source xml:lang="en">service</source>
-        <target xml:lang="tr" state="translated">hizmet</target>
-      </trans-unit>
-      <trans-unit id="e4c1ba28:1">
-        <source xml:lang="en">action</source>
-        <target xml:lang="tr" state="translated">eylem</target>
-      </trans-unit>
       <trans-unit id="54b83b14:1">
-        <source xml:lang="en">Please enter a value below to be returned for this call, then indicate whether this represents success or failure. If you wish to always respond to this call with this result, select the 'persist' option.</source>
-        <target xml:lang="tr" state="translated">Lütfen aşağıya bu çağrı için döndürülecek bir değer girin, sonra bu değerin başarıyı mı, başarısızlığı mı gösterdiğini belirtin. Bu çağrıya her zaman bu sonuç ile yanıt vermek istiyorsanız, ‘kalıcı’ seçeneğini belirleyin.</target>
+        <source xml:lang="en">Please enter a return value below to simulate a call to this function and choose if this value represents success or failure. If you'd like this value returned for all future calls to this function, select the 'persist' option.</source>
+        <target xml:lang="tr" state="translated">Bu işleve yönelik bir çağrının simülasyonunu yapmak için aşağıya bir dönüş değeri girin ve bu değerin başarıyı ya da başarısızlığı temsil ettiğini belirtin. Bundan sonra bu işleve yönelik tüm çağrılarda bu değerin döndürülmesini istiyorsanız 'persist' seçeneğini belirleyin.</target>
       </trans-unit>
       <trans-unit id="874c9be3:1">
         <source xml:lang="en">The value must be valid JSON (</source>
         <target xml:lang="tr" state="translated">Değer geçerli JSON olmalıdır (</target>
-      </trans-unit>
-      <trans-unit id="8679c185:1">
-        <source xml:lang="en">error</source>
-        <target xml:lang="tr" state="translated">hata</target>
       </trans-unit>
       <trans-unit id="bce2c943:1">
         <source xml:lang="en">Persist</source>

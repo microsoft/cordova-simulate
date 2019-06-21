@@ -4,12 +4,12 @@
 <cordova-dialog id="exec-dialog" caption="ハンドルされない exec 呼び出し" data-loc-id="f7283850">
     <cordova-group>
         <p data-loc-id="a1a63f26">次の exec 呼び出しのハンドラーはありません。</p>
-        <p style="font-style:italic"><span id="exec-service" data-loc-id="ba2b4c80">サービス</span>.<span id="exec-action" data-loc-id="e4c1ba28">アクション</span></p>
-        <p data-loc-id="54b83b14">この呼び出しに対して返される値を以下に入力し、次いでこれが成功または失敗のどちらを表すかを示してください。この呼び出しに対して常にこの結果で応答する場合は、[保持] オプションを選択します。</p>
+        <p style="font-style:italic"><span id="exec-service" data-loc-ignore-content="true">service</span>.<span id="exec-action" data-loc-ignore-content="true">action</span>(<span id="exec-args" data-loc-ignore-content="true">arguments</span>)</p>
+        <p data-loc-id="54b83b14">以下に戻り値を入力してこの関数への呼び出しをシミュレーションし、この値が成功または失敗のいずれを表すかを選択してください。この関数への今後のすべての呼び出しでこの値が返されるのが望ましい場合、'保持' のオプションを選択してください。</p>
     </cordova-group>
     <cordova-group>
         <textarea id="exec-response" rows="10"></textarea>
-        <div class="p" id="exec-error" style="color: red;" data-loc-id="874c9be3">値は有効な JSON でなければならない (<span style="font-style:italic;" id="exec-parse-error" data-loc-id="8679c185">エラー</span>)</div>
+        <div class="p" id="exec-error" style="color: red;" data-loc-id="874c9be3">値は有効な JSON でなければならない (<span style="font-style:italic;" id="exec-parse-error" data-loc-ignore-content="true">error</span>)</div>
     </cordova-group>
     <cordova-panel-row>
         <cordova-checkbox id="exec-persist" data-loc-id="bce2c943">保持</cordova-checkbox>

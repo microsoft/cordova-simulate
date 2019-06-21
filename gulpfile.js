@@ -16,6 +16,6 @@ gulp.task('jsonlint', function () {
         .pipe(jsonlint.failAfterError());
 });
 
-gulp.task('lint', [ 'eslint', 'jsonlint' ]);
+gulp.task('lint', gulp.series('eslint', 'jsonlint'));
 
-gulp.task('default', [ 'lint' ]);
+gulp.task('default', gulp.series('lint'));

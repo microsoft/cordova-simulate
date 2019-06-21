@@ -160,7 +160,7 @@ function getAppDataPath() {
             break;
 
         case 'darwin':
-            appDataPath = process.env.HOMEPATH;
+            appDataPath = process.env.HOMEPATH || process.env.HOME;
             appDataPath = appDataPath && path.join(appDataPath, 'Library', 'Application Support');
             break;
 
