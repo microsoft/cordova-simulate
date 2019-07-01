@@ -1,5 +1,10 @@
 # cordova-simulate Release Notes
 
+## 0.6.3 (July 1, 2019)
+* Fix security vulnerabilities [#294](https://github.com/microsoft/cordova-simulate/pull/294)
+* Fix documentation typos [#280](https://github.com/microsoft/cordova-simulate/pull/280), thanks to [Darío Hereñú(@kant)](https://github.com/kant)
+* Migrate to Azure DevOps from Travis CI [#293](https://github.com/microsoft/cordova-simulate/pull/293)
+
 ## 0.6.2 (May 23, 2019)
 * Return fix for [#105](https://github.com/microsoft/cordova-simulate/issues/105)
 * Fix security vulnerabilities [#289](https://github.com/microsoft/cordova-simulate/pull/289)
