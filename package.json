@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "gulp": "^4.0.0",
-    "gulp-debug": "^2.1.2",
+    "gulp-debug": "^4.0.0",
     "gulp-eslint": "^4.0.2",
     "gulp-jsonlint": "^1.1.2",
     "in-publish": "^2.0.0",
