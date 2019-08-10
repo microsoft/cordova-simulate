@@ -41,7 +41,7 @@
     "replacestream": "^4.0.0",
     "send-transform": "^0.15.1",
     "socket.io": "^2.2.0",
-    "through2": "^2.0.0"
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "gulp": "^4.0.0",
@@ -54,6 +54,7 @@
     "xmldom": "^0.1.22"
   },
   "scripts": {
-    "update-loc": "node ./tools/i18n/update"
+    "update-loc": "node ./tools/i18n/update",
+    "post-install": "node ./src/devices/make-uuids"
   }
 }
