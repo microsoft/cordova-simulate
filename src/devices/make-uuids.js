@@ -1,9 +1,9 @@
-let fs = require('fs');
-let uuidv4 = require('uuid/v4');
-let path = require('path')
-let deviceList = require(path.resolve('src/devices/devices.json'));
+var fs = require('fs');
+var uuidv4 = require('uuid/v4');
+var path = require('path')
+var deviceList = require(path.resolve('src/devices/devices.json'));
 
-let UUIDBlacklist = ['android']
+var UUIDBlacklist = ['android']
 
 Object.keys(deviceList).filter(platform => !UUIDBlacklist.includes(platform) ).map(platform => {
     deviceList[platform] = deviceList[platform].map(device => {
