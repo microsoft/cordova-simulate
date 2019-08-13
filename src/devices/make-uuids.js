@@ -9,8 +9,8 @@ Object.keys(deviceList).filter(function(platform) {!UUIDBlacklist.includes(platf
     deviceList[platform] = deviceList[platform].map(function(device) {
         device.uuid = uuidv4();
         return device;
-        });
+    });
 });
 
 
-fs.writeFileSync(path.resolve('src/devices/devices.json'),JSON.stringify(devicelist))
+fs.writeFileSync(path.resolve('src/devices/devices.json'),JSON.stringify(deviceList))
