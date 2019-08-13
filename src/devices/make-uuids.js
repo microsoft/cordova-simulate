@@ -5,8 +5,8 @@ var deviceList = require(path.resolve('src/devices/devices.json'));
 
 var UUIDBlacklist = ['android']
 
-Object.keys(deviceList).filter(platform => !UUIDBlacklist.includes(platform) ).map(platform => {
-    deviceList[platform] = deviceList[platform].map(device => {
+Object.keys(deviceList).filter(function(platform) {!UUIDBlacklist.includes(platform)} ).map(function(platform) {
+    deviceList[platform] = deviceList[platform].map(function(device) {
         device.uuid = uuidv4();
         return device;
         });
