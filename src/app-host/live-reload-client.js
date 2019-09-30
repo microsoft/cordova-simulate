@@ -110,6 +110,11 @@ module.exports.start = function (sock) {
     function onFileChanged(fileRelativePath) {
         var associatedNodes = findDomNodesForFilePath(fileRelativePath);
 
+        //if associated nodes is empty and file is a map or a picture file, then it is an asset and nothing really needs refreshing
+        if (!associatedNodes.length && fileRelativePath.match(/(\.map|\.png|\.jpg|\.svg)$/ig)) {
+            return;
+        }
+
         if (associatedNodes.length) {
             refreshFile(fileRelativePath, associatedNodes);
         } else {
