@@ -12,4 +12,4 @@ Object.keys(deviceList).filter(function(platform) {
     });
 });
 
-fs.writeFileSync('./src/devices/devices.json',JSON.stringify(deviceList,null,4))
+fs.writeFileSync('./src/devices/devices.json',JSON.stringify(deviceList,null,2))
