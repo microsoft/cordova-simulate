@@ -347,7 +347,79 @@
         "width": 375,
         "height": 812
       },
-      "pixel-ratio": 3,
+      "pixel-ratio": 3
+    },
+    {
+      "id": "iPhoneXSMax",
+      "name": "iPhone XS Max",
+      "model": "iphone11,4",
+      "device-version-template": "<os-version>",
+      "default-os-version": "12",
+      "uuid": "99165CCD-0F74-4881-A271-47D1E176071A",
+      "manufacturer": "Apple",
+      "resolution": {
+        "width": 1242,
+        "height": 2688
+      },
+      "viewport": {
+        "width": 414,
+        "height": 896
+      },
+      "pixel-ratio": 3
+    },
+    {
+      "id": "iPhone11Pro",
+      "name": "iPhone 11 Pro",
+      "model": "iPhone12,2",
+      "device-version-template": "<os-version>",
+      "default-os-version": "13",
+      "uuid": "99165CCD-0F74-4881-A271-47D1E176071A",
+      "manufacturer": "Apple",
+      "resolution": {
+        "width": 1125,
+        "height": 2436
+      },
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "pixel-ratio": 3
+    },
+    {
+      "id": "iPhone11ProMax",
+      "name": "iPhone 11 Pro Max",
+      "model": "iPhone12,3",
+      "device-version-template": "<os-version>",
+      "default-os-version": "13",
+      "uuid": "99165CCD-0F74-4881-A271-47D1E176071A",
+      "manufacturer": "Apple",
+      "resolution": {
+        "width": 1242,
+        "height": 2688
+      },
+      "viewport": {
+        "width": 414,
+        "height": 896
+      },
+      "pixel-ratio": 3
+    },
+    {
+      "id": "iPhone11",
+      "name": "iPhone 11",
+      "model": "iPhone12,1",
+      "device-version-template": "<os-version>",
+      "default-os-version": "13",
+      "uuid": "99165CCD-0F74-4881-A271-47D1E176071A",
+      "manufacturer": "Apple",
+      "resolution": {
+        "width": 828,
+        "height": 1792
+      },
+      "viewport": {
+        "width": 414,
+        "height": 896
+      },
+      "pixel-ratio": 2,
       "default": true
     },
     {
