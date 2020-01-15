@@ -9,6 +9,9 @@ var launchBrowser = function (target, url) {
 };
 
 var simulate = function (opts) {
+    if(opts.generateids) {
+        require('./devices/make-uuids')
+    }
     var target = opts.target || 'default';
     var simulator = new Simulator(opts);
 

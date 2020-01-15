@@ -55,7 +55,6 @@
     "xmldom": "^0.1.22"
   },
   "scripts": {
-    "update-loc": "node ./tools/i18n/update",
-    "postinstall": "node ./src/devices/make-uuids"
+    "update-loc": "node ./tools/i18n/update"
   }
 }
