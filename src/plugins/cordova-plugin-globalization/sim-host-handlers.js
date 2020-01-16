@@ -19,7 +19,7 @@ function numberToString (win, fail, args) {
         validateNumberOptionType(options.type);
     } catch (e) {
         fail(new GlobalizationError(GlobalizationError.FORMATTING_ERROR,
-            e.hasOwnProperty('message')? e.message : e));
+            e.hasOwnProperty('message') ? e.message : e));
         return;
     }
 
@@ -70,7 +70,7 @@ function getDateNames (win, fail, args) {
 
         win({ value: result });
     } catch (e) {
-        fail({ code: 0, message: e.hasOwnProperty('message')? e.message : e });
+        fail({ code: 0, message: e.hasOwnProperty('message') ? e.message : e });
     }
 }
 
@@ -89,7 +89,7 @@ function getDatePattern (win, fail) {
         });
     } catch (e) {
         fail(new GlobalizationError(GlobalizationError.PATTERN_ERROR,
-            e.hasOwnProperty('message')? e.message : e));
+            e.hasOwnProperty('message') ? e.message : e));
     }
 }
 
@@ -101,7 +101,7 @@ function getNumberPattern (win, fail, args) {
         validateNumberOptionType(options.type);
     } catch (e) {
         fail(new GlobalizationError(GlobalizationError.PATTERN_ERROR,
-            e.hasOwnProperty('message')? e.message : e));
+            e.hasOwnProperty('message') ? e.message : e));
         return;
     }
 
@@ -171,7 +171,7 @@ function stringToDate (win, fail, args) {
         });
     } catch (e) {
         fail(new GlobalizationError(GlobalizationError.PARSING_ERROR,
-            e.hasOwnProperty('message')? e.message : e));
+            e.hasOwnProperty('message') ? e.message : e));
     }
 }
 
@@ -182,7 +182,7 @@ function stringToNumber (win, fail, args) {
         win({ value: accounting.unformat(numberString) });
     } catch (e) {
         fail(new GlobalizationError(GlobalizationError.FORMATTING_ERROR,
-            e.hasOwnProperty('message')? e.message : e));
+            e.hasOwnProperty('message') ? e.message : e));
     }
 }
 
@@ -195,7 +195,7 @@ function dateToString (win, fail, args) {
         win({ value : moment(date).format(options)});
     } catch (e) {
         fail(new GlobalizationError(GlobalizationError.FORMATTING_ERROR,
-            e.hasOwnProperty('message')? e.message : e));
+            e.hasOwnProperty('message') ? e.message : e));
     }
 }
 

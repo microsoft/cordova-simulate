@@ -636,7 +636,7 @@ function resolveLocalFileSystemURI(successCallback, errorCallback, args) {
     }
 
     //support for cdvfile
-    if (path.trim().substr(0,7) === 'cdvfile') {
+    if (path.trim().substr(0, 7) === 'cdvfile') {
         if (path.indexOf('cdvfile://localhost') === -1) {
             errorCallback && errorCallback(window.FileError.ENCODING_ERR);
             return;
@@ -749,7 +749,7 @@ function _getLocalFilesystemPathHandler(successCallback, errorCallback, module, 
     var stringToCut = 'file://';
     var fileIndex = url.indexOf(stringToCut);
     if (fileIndex !== -1) {
-        url = url.substr(stringToCut.length, url.length-stringToCut.length);
+        url = url.substr(stringToCut.length, url.length - stringToCut.length);
     }
     successCallback(url);
 }

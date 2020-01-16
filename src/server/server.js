@@ -197,7 +197,7 @@ SimulationServer.prototype._sendHostJsFile = function (request, response, hostTy
         send(request, hostJsFile, {
             transform: function (stream) {
                 return stream
-                    .pipe(replaceStream('/** USER-AGENT **/', config.deviceInfo.userAgent))
+                    .pipe(replaceStream('/** USER-AGENT **/', config.deviceInfo.userAgent));
             }
         }).pipe(response);
     } else {
@@ -443,7 +443,7 @@ function getLocalizedHtmlFile(htmlFile, lang) {
     localizedHtmlFile.splice(pos + 1, 0, 'i18n', lang);
     localizedHtmlFile = localizedHtmlFile.join(path.sep);
     if (utils.existsSync(localizedHtmlFile)) {
-        return localizedHtmlFile
+        return localizedHtmlFile;
     }
 
     // If didn't find that, look under directory that contains the source html files, which will be the case for plugins
