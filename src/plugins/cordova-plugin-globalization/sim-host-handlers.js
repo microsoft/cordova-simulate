@@ -10,7 +10,7 @@ var globalizationData = require('./globalization-data');
 // HANDLER FUNCTIONS
 
 function numberToString (win, fail, args) {
-    var options = args[0].options || { type : 'decimal' },
+    var options = args[0].options || { type: 'decimal' },
         number = args[0].number,
         value;
     options.type = options.type || 'decimal';
@@ -94,7 +94,7 @@ function getDatePattern (win, fail) {
 }
 
 function getNumberPattern (win, fail, args) {
-    var options = args[0].options || { type : 'decimal'};
+    var options = args[0].options || { type: 'decimal'};
     options.type = options.type || 'decimal';
 
     try {
@@ -192,7 +192,7 @@ function dateToString (win, fail, args) {
         var options = prepareAndGetDateOptions(args[0].options);
         moment.locale(getLocaleName());
 
-        win({ value : moment(date).format(options)});
+        win({ value: moment(date).format(options)});
     } catch (e) {
         fail(new GlobalizationError(GlobalizationError.FORMATTING_ERROR,
             e.hasOwnProperty('message') ? e.message : e));
@@ -278,7 +278,7 @@ function convertToMomentLocalizedFormat(options) {
 }
 
 function prepareAndGetDateOptions(options) {
-    options = options || {formatLength:'short', selector:'date and time'};
+    options = options || {formatLength: 'short', selector: 'date and time'};
     options.formatLength = options.formatLength || 'short';
     options.selector = options.selector || 'date and time';
 

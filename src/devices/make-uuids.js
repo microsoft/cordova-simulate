@@ -9,7 +9,7 @@ Object.keys(deviceList).filter(function(platform) {
     return !UUIDPlatformBlacklist.includes(platform);
 }).map(function(platform) {
     deviceList[platform] = deviceList[platform].map(function(device) {
-        return Object.assign(device, {uuid:uuidv4()});
+        return Object.assign(device, {uuid: uuidv4()});
     });
 });
 

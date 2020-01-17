@@ -30,7 +30,7 @@ function Simulator(opts) {
     this._state = Simulator.State.IDLE;
 
     this.hostRoot = {
-        'app-host':  path.join(dirs.root, 'app-host')
+        'app-host': path.join(dirs.root, 'app-host')
     };
 
     var that = this;

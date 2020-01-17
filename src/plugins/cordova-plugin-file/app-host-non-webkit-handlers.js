@@ -594,7 +594,7 @@ function copyTo(successCallback, errorCallback, args) {
             }, errorCallback, [parentFullPath, name, {create: true}]);
 
         }, function() { if (errorCallback) { errorCallback(window.FileError.NOT_FOUND_ERR); }},
-        [path.storagePath, null, {create:false}]);
+        [path.storagePath, null, {create: false}]);
 
     }, errorCallback, [srcPath, null]);
 }
