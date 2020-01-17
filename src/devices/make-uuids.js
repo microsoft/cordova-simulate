@@ -14,4 +14,4 @@ Object.keys(deviceList).filter(function(platform) {
 });
 
 /*global __dirname */
-fs.writeFileSync(path.join(__dirname, '/devices.json'), JSON.stringify(deviceList, null, 2));
+fs.writeFileSync(path.join(__dirname, 'devices.json'), JSON.stringify(deviceList, null, 2));
