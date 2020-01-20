@@ -11,7 +11,7 @@ function whenAppHostReady(handler) {
     idx = appHostReadyHandlers.push({'handler': handler, 'fired': false});
     if (isAppHostReady) {
         handler();
-        appHostReadyHandlers[idx-1].fired = true;
+        appHostReadyHandlers[idx - 1].fired = true;
     }
 }
 

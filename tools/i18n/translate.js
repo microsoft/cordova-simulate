@@ -29,7 +29,7 @@ if (apiKey) {
                 }
             });
         });
-    }
+    };
 } else {
     console.log(chalk.yellow.bold('Warning: Machine assisted translation is not enabled. To enable it, you need an Azure\n' +
         'account with Text Translation support active, then set the following environment variable:\n' +
@@ -37,9 +37,9 @@ if (apiKey) {
 
     translateArray = function (texts) {
         return Promise.resolve(texts.map(function (text) {
-            return text
+            return text;
         }));
-    }
+    };
 }
 
 module.exports = {

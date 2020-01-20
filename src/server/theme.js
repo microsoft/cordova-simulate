@@ -174,7 +174,7 @@ Theme.prototype._createThemeCssFile = function (themeCssFileName) {
 
     // Allow the sim host to do any custom stuff that couldn't be handled with the default selector handling
     if (this._simHostThemeInfo.doCustom) {
-        this._simHostThemeInfo.doCustom(css, themeObject)
+        this._simHostThemeInfo.doCustom(css, themeObject);
     }
 
     // If sim host provides a CSS file to be scaled, scale and append it. Scaling searches for sizes declared in pixels,
@@ -225,7 +225,7 @@ function outputSelectorProperties(css, selector, properties, state) {
     // Construct the property bundle
     var propertyBundle = [];
     Object.keys(properties).forEach(function (propertyName) {
-        propertyBundle.push('  ' + propertyName + ': ' + properties[propertyName] + ';')
+        propertyBundle.push('  ' + propertyName + ': ' + properties[propertyName] + ';');
     });
     propertyBundle = propertyBundle.join('\n');
 

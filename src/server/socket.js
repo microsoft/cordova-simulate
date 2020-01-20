@@ -126,7 +126,7 @@ SocketServer.prototype.reloadSimHost = function () {
 
 SocketServer.prototype.rethemeSimHost = function () {
     this._emitTo(SIM_HOST, 'retheme');
-}
+};
 
 SocketServer.prototype.closeConnections = function () {
     // stop watching file changes

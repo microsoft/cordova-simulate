@@ -115,7 +115,7 @@ function getDevice(platform, deviceId) {
 
     if (!device) {
         device = getDefaultDevice(defaultPlatform);
-        log.warning('Could not find device \'' + deviceId + '\'. Defaulting to device \'' + device.id + '\' for platform \'' + device.platform + '\'.')
+        log.warning('Could not find device \'' + deviceId + '\'. Defaulting to device \'' + device.id + '\' for platform \'' + device.platform + '\'.');
     }
 
     return device;
