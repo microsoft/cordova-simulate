@@ -7,7 +7,7 @@ module.exports = {
             'input[type=range]::-ms-fill-lower, input[type=range]::-ms-fill-upper',
             'input[type=range]::-webkit-slider-runnable-track',
             'input[type=range]::-moz-range-track'],
-        'thumb': ['input[type=range]::-ms-thumb', 'input[type=range]::-webkit-slider-thumb','input[type=range]::-moz-range-thumb'],
+        'thumb': ['input[type=range]::-ms-thumb', 'input[type=range]::-webkit-slider-thumb', 'input[type=range]::-moz-range-thumb'],
         'check': '::-ms-check',
         'button': 'button, .cordova-item-wrapper',
         'label': 'label',

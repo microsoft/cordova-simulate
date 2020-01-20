@@ -11,15 +11,15 @@ module.exports = {
 
     'FS_SIZE': 1024 * 1024 * 10,
 
-    'COMMON':  {
+    'COMMON': {
         'APPLICATION_STATE': 'ui-application-state-',
         'PREFIX': 'tinyhippos-',
-        'MENU_BUTTON' : 'menu-button',
-        'BACK_BUTTON' : 'back-button',
-        'HTML_CONTAINER' : 'document',
+        'MENU_BUTTON': 'menu-button',
+        'BACK_BUTTON': 'back-button',
+        'HTML_CONTAINER': 'document',
         'INFO_SECTION': 'information-sub-container',
-        'ORIENTATION_SELECT_PORTRAIT_ID' : 'layout-portrait',
-        'ORIENTATION_SELECT_LANDSCAPE_ID' : 'layout-landscape',
+        'ORIENTATION_SELECT_PORTRAIT_ID': 'layout-portrait',
+        'ORIENTATION_SELECT_LANDSCAPE_ID': 'layout-landscape',
         'PLATFORM_SELECT_ID': 'platform-select',
         'DEVICE_SELECT_ID': 'device-select',
         'STORAGE_TABLE_BODY_CLASS': 'preferences-list-body',
@@ -50,37 +50,37 @@ module.exports = {
         'INPUT_PREFIX_ID': '#panel-filesystem-'
     },
 
-    'PLATFORM':  {
+    'PLATFORM': {
         'DEFAULT': {
             'name': 'cordova',
             'version': '1.0.0'
         }
     },
 
-    'ENCAPSULATOR':  {
+    'ENCAPSULATOR': {
         'DEFAULT_HEIGHT': 684,
         'DEFAULT_WIDTH': 480
     },
 
-    'GEO':  {
-        'OPTIONS' : {
-            'LATITUDE' : 'geo-latitude',
-            'LONGITUDE' : 'geo-longitude',
-            'ALTITUDE' : 'geo-altitude',
-            'CELL_ID' : 'geo-cellid',
-            'ACCURACY' : 'geo-accuracy',
-            'ALTITUDE_ACCURACY' : 'geo-altitude-accuracy',
-            'HEADING' : 'geo-heading',
-            'SPEED' : 'geo-speed',
-            'TIME_STAMP' : 'geo-timestamp',
-            'DELAY' : 'geo-delay',
-            'DELAY_LABEL' : 'geo-delay-label',
-            'HEADING_LABEL' : 'geo-heading-label',
-            'HEADING_MAP_LABEL' : 'geo-map-direction-label',
-            'IMAGE' : 'geo-map-img',
-            'MAP_MARKER' : 'geo-map-marker',
-            'MAP_CONTAINER' : 'geo-map-container',
-            'TIMEOUT' : 'geo-timeout',
+    'GEO': {
+        'OPTIONS': {
+            'LATITUDE': 'geo-latitude',
+            'LONGITUDE': 'geo-longitude',
+            'ALTITUDE': 'geo-altitude',
+            'CELL_ID': 'geo-cellid',
+            'ACCURACY': 'geo-accuracy',
+            'ALTITUDE_ACCURACY': 'geo-altitude-accuracy',
+            'HEADING': 'geo-heading',
+            'SPEED': 'geo-speed',
+            'TIME_STAMP': 'geo-timestamp',
+            'DELAY': 'geo-delay',
+            'DELAY_LABEL': 'geo-delay-label',
+            'HEADING_LABEL': 'geo-heading-label',
+            'HEADING_MAP_LABEL': 'geo-map-direction-label',
+            'IMAGE': 'geo-map-img',
+            'MAP_MARKER': 'geo-map-marker',
+            'MAP_CONTAINER': 'geo-map-container',
+            'TIMEOUT': 'geo-timeout',
             'GPXFILE': 'geo-gpxfile',
             'GPXGO': 'geo-gpx-go',
             'GPXMULTIPLIER': 'geo-gpxmultiplier-select',
@@ -97,8 +97,8 @@ module.exports = {
     },
 
     'PUSH': {
-        'OPTIONS' : {
-            'PAYLOAD' : 'push-text'
+        'OPTIONS': {
+            'PAYLOAD': 'push-text'
         }
     },
 
@@ -116,7 +116,7 @@ module.exports = {
         'WARNING_TEXT': 'The runtime simulated saving the camera file to {file}. If you need to access this file in your application, please copy a file to the saved location'
     },
 
-    'AUDIOPLAYER' : {
+    'AUDIOPLAYER': {
         'WARNING_TEXT': 'The runtime simulated saving the audio file to {file}. If you need to access this file in your application, please copy a file to the saved location'
     },
 
@@ -124,7 +124,7 @@ module.exports = {
         'NO_APPLICATIONS_MESSAGE': 'No applications available for your platform'
     },
 
-    'NOTIFICATIONS':  {
+    'NOTIFICATIONS': {
         'MESSAGE_CONTAINER_CLASS': 'notification-message-div',
         'MAIN_CONTAINER_CLASS': 'panel-notification',
         'CLOSE_BUTTON_CLASS': 'panel-notification-closebtn',
@@ -136,25 +136,25 @@ module.exports = {
         }
     },
 
-    'BATTERY_STATUS' : {
+    'BATTERY_STATUS': {
         'BATTERY_STATUS_KEY': 'battery-status-key',
-        'IS_PLUGGED_KEY' : 'is-plugged-key',
-        'LEVEL_LABEL' : 'battery-level-label',
-        'LEVEL_VALUE' : 'battery-level',
-        'IS_PLUGGED_CHECKBOX' : 'is-plugged'
+        'IS_PLUGGED_KEY': 'is-plugged-key',
+        'LEVEL_LABEL': 'battery-level-label',
+        'LEVEL_VALUE': 'battery-level',
+        'IS_PLUGGED_CHECKBOX': 'is-plugged'
     },
 
-    'CSS_PREFIX':  {
-        'IRRELEVANT' : 'irrelevant'
+    'CSS_PREFIX': {
+        'IRRELEVANT': 'irrelevant'
     },
 
-    'STORAGE':  {
-        'PAIR_DELIMETER' : ',',
-        'KEY_VALUE_DELIMETER' : '|'
+    'STORAGE': {
+        'PAIR_DELIMETER': ',',
+        'KEY_VALUE_DELIMETER': '|'
     },
 
-    'REGEX':  {
-        'GEO' : /^geo-/,
+    'REGEX': {
+        'GEO': /^geo-/,
         'URL': /^((https?|ftp|gopher|telnet|file|notes|ms-help):((\/\/)|(\\\\))+[\w\d:#@%\/;$()~_?\+-=\\\.&]*)$/,
         //'Email': /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
         'EMAIL': /^([^@\s]+)@((?:[\-a-z0-9]+\.)+[a-z]{2,})$/,

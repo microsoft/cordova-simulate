@@ -90,9 +90,9 @@ indexedDB.getAllEntries = function(fullPath, storagePath, successCallback, error
 
             /* Input fullPath parameter  equals '//' for root folder */
             /* Entries in root folder has valPartsLen equals 2 (see below) */
-            if (fullPath[fullPath.length -1] === DIR_SEPARATOR && fullPath.trim().length === 2) {
+            if (fullPath[fullPath.length - 1] === DIR_SEPARATOR && fullPath.trim().length === 2) {
                 fullPathPartsLen = 1;
-            } else if (fullPath[fullPath.length -1] === DIR_SEPARATOR) {
+            } else if (fullPath[fullPath.length - 1] === DIR_SEPARATOR) {
                 fullPathPartsLen = fullPath.substr(0, fullPath.length - 1).split(DIR_SEPARATOR).length;
             } else {
                 fullPathPartsLen = fullPath.split(DIR_SEPARATOR).length;

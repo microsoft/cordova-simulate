@@ -30,7 +30,7 @@ function Simulator(opts) {
     this._state = Simulator.State.IDLE;
 
     this.hostRoot = {
-        'app-host':  path.join(dirs.root, 'app-host')
+        'app-host': path.join(dirs.root, 'app-host')
     };
 
     var that = this;
@@ -207,11 +207,11 @@ Simulator.prototype.updateTheme = function (themeData) {
     if (this._server && this._server.simSocket) {
         this._server.simSocket.rethemeSimHost();
     }
-}
+};
 
 Simulator.prototype._createTheme = function (themeData) {
     this._config.theme = theme.createTheme(this.hostRoot['sim-host'], themeData);   
-}
+};
 
 /**
  * Parse the options provided and create the configuration instance for the current
@@ -265,7 +265,7 @@ function normalizeLanguage(lang) {
 
     // Look for exact match (case insensitive)
     var idx = supportedLangs.map(function (lang) {
-        return lang.toLowerCase()
+        return lang.toLowerCase();
     }).indexOf(lang);
 
     if (idx == -1) {

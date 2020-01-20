@@ -430,7 +430,7 @@ function initialize(changePanelVisibilityCallback) {
                 }
             }.bind(this));
         },
-        eventTarget:'input',
+        eventTarget: 'input',
         mungeIds: 'cordova-number-entry-template-input'
     });
 
@@ -563,7 +563,7 @@ function initialize(changePanelVisibilityCallback) {
                 select.appendChild(option);
             });
         },
-        eventTarget:'select',
+        eventTarget: 'select',
         mungeIds: 'cordova-combo-template-select'
     });
 }
