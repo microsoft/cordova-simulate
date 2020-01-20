@@ -48,7 +48,7 @@ function processArgs() {
                 device: null,
                 lang: null,
                 theme: null,
-                middeware:null,
+                middeware: null,
                 generateids: false
             },
             unknown: unknownOptHandler
