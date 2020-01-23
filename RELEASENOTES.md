@@ -1,5 +1,10 @@
 # cordova-simulate Release Notes
 
+## 0.7.0 (January 23, 2020)
+* Fixed security vulnerabilities [#307](https://github.com/microsoft/cordova-simulate/pull/307)
+* Updated Device, OS and user-agent list for iOS devices [#302](https://github.com/microsoft/cordova-simulate/pull/302), thanks to [@mfish33](https://github.com/mfish33)
+* Added launch argument `--generateids` to generate unique UUIDs for simulated devices with UUID4 id format before simulate server launch [#303](https://github.com/microsoft/cordova-simulate/pull/303), thanks to [@mfish33](https://github.com/mfish33)
+
 ## 0.6.6 (August 27, 2019)
 * Fix security vulnerabilities [#304](https://github.com/microsoft/cordova-simulate/pull/304)
 
