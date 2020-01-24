@@ -101,7 +101,7 @@ SimulationServer.prototype.start = function (platform, opts) {
         noServerInfo: true
     };
 
-    if(this._config.middleware) {
+    if (this._config.middleware) {
         serverOpts.middleware = this._config.middleware;
     }
 
