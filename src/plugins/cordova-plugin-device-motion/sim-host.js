@@ -64,7 +64,7 @@ function getUiValues() {
         alpha: alpha.value,
         beta: beta.value,
         gamma: gamma.value
-    }
+    };
 }
 
 function initialize() {

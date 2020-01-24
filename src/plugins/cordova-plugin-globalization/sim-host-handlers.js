@@ -10,7 +10,7 @@ var globalizationData = require('./globalization-data');
 // HANDLER FUNCTIONS
 
 function numberToString (win, fail, args) {
-    var options = args[0].options || { type : 'decimal' },
+    var options = args[0].options || { type: 'decimal' },
         number = args[0].number,
         value;
     options.type = options.type || 'decimal';
@@ -19,7 +19,7 @@ function numberToString (win, fail, args) {
         validateNumberOptionType(options.type);
     } catch (e) {
         fail(new GlobalizationError(GlobalizationError.FORMATTING_ERROR,
-            e.hasOwnProperty('message')? e.message : e));
+            e.hasOwnProperty('message') ? e.message : e));
         return;
     }
 
@@ -70,7 +70,7 @@ function getDateNames (win, fail, args) {
 
         win({ value: result });
     } catch (e) {
-        fail({ code: 0, message: e.hasOwnProperty('message')? e.message : e });
+        fail({ code: 0, message: e.hasOwnProperty('message') ? e.message : e });
     }
 }
 
@@ -89,19 +89,19 @@ function getDatePattern (win, fail) {
         });
     } catch (e) {
         fail(new GlobalizationError(GlobalizationError.PATTERN_ERROR,
-            e.hasOwnProperty('message')? e.message : e));
+            e.hasOwnProperty('message') ? e.message : e));
     }
 }
 
 function getNumberPattern (win, fail, args) {
-    var options = args[0].options || { type : 'decimal'};
+    var options = args[0].options || { type: 'decimal'};
     options.type = options.type || 'decimal';
 
     try {
         validateNumberOptionType(options.type);
     } catch (e) {
         fail(new GlobalizationError(GlobalizationError.PATTERN_ERROR,
-            e.hasOwnProperty('message')? e.message : e));
+            e.hasOwnProperty('message') ? e.message : e));
         return;
     }
 
@@ -171,7 +171,7 @@ function stringToDate (win, fail, args) {
         });
     } catch (e) {
         fail(new GlobalizationError(GlobalizationError.PARSING_ERROR,
-            e.hasOwnProperty('message')? e.message : e));
+            e.hasOwnProperty('message') ? e.message : e));
     }
 }
 
@@ -182,7 +182,7 @@ function stringToNumber (win, fail, args) {
         win({ value: accounting.unformat(numberString) });
     } catch (e) {
         fail(new GlobalizationError(GlobalizationError.FORMATTING_ERROR,
-            e.hasOwnProperty('message')? e.message : e));
+            e.hasOwnProperty('message') ? e.message : e));
     }
 }
 
@@ -192,10 +192,10 @@ function dateToString (win, fail, args) {
         var options = prepareAndGetDateOptions(args[0].options);
         moment.locale(getLocaleName());
 
-        win({ value : moment(date).format(options)});
+        win({ value: moment(date).format(options)});
     } catch (e) {
         fail(new GlobalizationError(GlobalizationError.FORMATTING_ERROR,
-            e.hasOwnProperty('message')? e.message : e));
+            e.hasOwnProperty('message') ? e.message : e));
     }
 }
 
@@ -278,7 +278,7 @@ function convertToMomentLocalizedFormat(options) {
 }
 
 function prepareAndGetDateOptions(options) {
-    options = options || {formatLength:'short', selector:'date and time'};
+    options = options || {formatLength: 'short', selector: 'date and time'};
     options.formatLength = options.formatLength || 'short';
     options.selector = options.selector || 'date and time';
 

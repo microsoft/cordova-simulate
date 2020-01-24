@@ -15,7 +15,7 @@ module.exports = function (messages) {
                     fail(new PositionError(PositionError.TIMEOUT, 'Position retrieval timed out.'));
                 }
             } else {
-                win(geo.getPositionInfo())
+                win(geo.getPositionInfo());
             }
         }, delay);
     }
