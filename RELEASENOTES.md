@@ -1,5 +1,9 @@
 # cordova-simulate Release Notes
 
+## 0.8.0 (March 16, 2020)
+* Fixed security vulnerabilities [#311](https://github.com/microsoft/cordova-simulate/pull/311), [#312](https://github.com/microsoft/cordova-simulate/pull/312)
+* Added ability to use custom middleware to widen the range of supported plugins [#308](https://github.com/microsoft/cordova-simulate/pull/308), thanks to [@mfish33](https://github.com/mfish33)
+
 ## 0.7.0 (January 23, 2020)
 * Fixed security vulnerabilities [#307](https://github.com/microsoft/cordova-simulate/pull/307)
 * Updated Device, OS and user-agent list for iOS devices [#302](https://github.com/microsoft/cordova-simulate/pull/302), thanks to [@mfish33](https://github.com/mfish33)
