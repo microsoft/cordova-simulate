@@ -95,7 +95,7 @@ function getUsageString() {
         '[--target TARGET]',
         '[--lang LANG]',
         '[--theme THEME]',
-        '[--middlware MIDDLEWARE_PATH]',
+        '[--middleware MIDDLEWARE_PATH]',
         '[--generateids (GENERATEIDS)]'
     ];
 
