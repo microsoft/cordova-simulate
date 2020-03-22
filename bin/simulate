@@ -35,7 +35,7 @@ function unknownOptHandler(optName) {
 function processArgs() {
     try {
         var parserOptions = {
-            string: ['dir', 'simhostui', 'target', 'simulationpath', 'device', 'lang', 'theme'],
+            string: ['dir', 'simhostui', 'target', 'simulationpath', 'device', 'lang', 'theme', 'middleware'],
             boolean: ['livereload', 'forceprepare', 'corsproxy', 'generateids'],
             default: {
                 dir: null,
@@ -48,6 +48,7 @@ function processArgs() {
                 device: null,
                 lang: null,
                 theme: null,
+                middeware: null,
                 generateids: false
             },
             unknown: unknownOptHandler
@@ -71,6 +72,7 @@ function processArgs() {
             device: parsed.device,
             lang: parsed.lang,
             theme: parsed.theme,
+            middleware: parsed.middleware,
             generateids: parsed.generateids
         };
     } catch (err) {
@@ -93,6 +95,7 @@ function getUsageString() {
         '[--target TARGET]',
         '[--lang LANG]',
         '[--theme THEME]',
+        '[--middleware MIDDLEWARE_PATH]',
         '[--generateids (GENERATEIDS)]'
     ];
 

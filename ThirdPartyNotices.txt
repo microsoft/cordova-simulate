@@ -442,7 +442,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 -------------------------------------------------------------------
 
-qs 6.5.2 - BSD-3-Clause
+qs 6.7.0 - BSD-3-Clause
 https://github.com/ljharb/qs
 Copyright (c) 2014 Nathan LaFreniere and other contributors.
 
@@ -945,7 +945,7 @@ CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 -------------------------------------------------------------------
 
-setprototypeof 1.1.0 - ISC
+setprototypeof 1.1.1 - ISC
 https://github.com/wesleytodd/setprototypeof
 Copyright (c) 2015, Wes Todd
 
@@ -1012,6 +1012,107 @@ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
 WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
 IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+
+-------------------------------------------------------------------
+
+-------------------------------------------------------------------
+
+accepts 1.3.7 - MIT
+https://github.com/jshttp/accepts#readme
+Copyright (c) 2014 Jonathan Ong
+Copyright (c) 2015 Douglas Christopher Wilson
+Copyright (c) 2014 Jonathan Ong <me@jongleberry.com>
+Copyright (c) 2015 Douglas Christopher Wilson <doug@somethingdoug.com>
+
+(The MIT License)
+
+Copyright (c) 2014 Jonathan Ong <me@jongleberry.com>
+Copyright (c) 2015 Douglas Christopher Wilson <doug@somethingdoug.com>
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+-------------------------------------------------------------------
+
+-------------------------------------------------------------------
+
+acorn 6.4.1 - MIT
+https://github.com/acornjs/acorn
+Copyright (c) 2012-2018 by various contributors
+
+Copyright (C) 2012-2018 by various contributors (see AUTHORS)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+
+-------------------------------------------------------------------
+
+-------------------------------------------------------------------
+
+body-parser 1.19.0 - MIT
+https://github.com/expressjs/body-parser#readme
+Copyright (c) 2014 Jonathan Ong
+Copyright (c) 2014-2015 Douglas Christopher Wilson
+Copyright (c) 2014 Jonathan Ong <me@jongleberry.com>
+Copyright (c) 2014-2015 Douglas Christopher Wilson <doug@somethingdoug.com>
+
+(The MIT License)
+
+Copyright (c) 2014 Jonathan Ong <me@jongleberry.com>
+Copyright (c) 2014-2015 Douglas Christopher Wilson <doug@somethingdoug.com>
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 -------------------------------------------------------------------
@@ -1345,6 +1446,42 @@ THE SOFTWARE.
 
 -------------------------------------------------------------------
 
+bytes 3.1.0 - MIT
+https://github.com/visionmedia/bytes.js#readme
+Copyright (c) 2015 Jed Watson
+Copyright (c) 2012-2014 TJ Holowaychuk
+Copyright (c) 2015 Jed Watson <jed.watson@me.com>
+Copyright (c) 2012-2014 TJ Holowaychuk <tj@vision-media.ca>
+
+(The MIT License)
+
+Copyright (c) 2012-2014 TJ Holowaychuk <tj@vision-media.ca>
+Copyright (c) 2015 Jed Watson <jed.watson@me.com>
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+-------------------------------------------------------------------
+
+-------------------------------------------------------------------
+
 bytes 3.0.0 - MIT
 https://github.com/visionmedia/bytes.js#readme
 Copyright (c) 2015 Jed Watson
@@ -1447,7 +1584,7 @@ THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-chalk 2.4.1 - MIT
+chalk 2.4.2 - MIT
 https://github.com/chalk/chalk#readme
 Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
 
@@ -1680,7 +1817,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 -------------------------------------------------------------------
 
-compressible 2.0.15 - MIT
+compressible 2.0.18 - MIT
 https://github.com/jshttp/compressible#readme
 Copyright (c) 2013 Jonathan Ong
 Copyright (c) 2014 Jeremiah Senkpiel
@@ -1719,7 +1856,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-compression 1.7.3 - MIT
+compression 1.7.4 - MIT
 https://github.com/expressjs/compression#readme
 Copyright (c) 2010 Sencha Inc.
 Copyright (c) 2014 Jonathan Ong
@@ -1863,13 +2000,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 -------------------------------------------------------------------
 
-content-disposition 0.5.2 - MIT
+content-disposition 0.5.3 - MIT
 https://github.com/jshttp/content-disposition#readme
-Copyright (c) 2014 Douglas Christopher Wilson
+Copyright (c) 2014-2017 Douglas Christopher Wilson
 
 (The MIT License)
 
-Copyright (c) 2014 Douglas Christopher Wilson
+Copyright (c) 2014-2017 Douglas Christopher Wilson
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -1962,6 +2099,43 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 cookie 0.3.1 - MIT
 https://github.com/jshttp/cookie
+Copyright (c) 2012-2014 Roman Shtylman
+Copyright (c) 2015 Douglas Christopher Wilson
+Copyright (c) 2012-2014 Roman Shtylman <shtylman@gmail.com>
+Copyright (c) 2015 Douglas Christopher Wilson <doug@somethingdoug.com>
+
+(The MIT License)
+
+Copyright (c) 2012-2014 Roman Shtylman <shtylman@gmail.com>
+Copyright (c) 2015 Douglas Christopher Wilson <doug@somethingdoug.com>
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+-------------------------------------------------------------------
+
+-------------------------------------------------------------------
+
+cookie 0.4.0 - MIT
+https://github.com/jshttp/cookie#readme
 Copyright (c) 2012-2014 Roman Shtylman
 Copyright (c) 2015 Douglas Christopher Wilson
 Copyright (c) 2012-2014 Roman Shtylman <shtylman@gmail.com>
@@ -2200,6 +2374,36 @@ THE SOFTWARE.
 
 -------------------------------------------------------------------
 
+debug 2.6.9 - MIT
+https://github.com/visionmedia/debug#readme
+Copyright (c) 2014 TJ Holowaychuk <tj@vision-media.ca>
+Copyright (c) 2014-2016 TJ Holowaychuk <tj@vision-media.ca>
+
+(The MIT License)
+
+Copyright (c) 2014 TJ Holowaychuk <tj@vision-media.ca>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
+and associated documentation files (the 'Software'), to deal in the Software without restriction, 
+including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial 
+portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT 
+LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+-------------------------------------------------------------------
+
+-------------------------------------------------------------------
+
 debug 3.1.0 - MIT
 https://github.com/visionmedia/debug#readme
 Copyright (c) 2014 TJ Holowaychuk <tj@vision-media.ca>
@@ -2234,36 +2438,6 @@ debug 4.1.0 - MIT
 https://github.com/visionmedia/debug#readme
 Copyright (c) 2014 TJ Holowaychuk <tj@vision-media.ca>
 Copyright (c) 2014-2017 TJ Holowaychuk <tj@vision-media.ca>
-
-(The MIT License)
-
-Copyright (c) 2014 TJ Holowaychuk <tj@vision-media.ca>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
-and associated documentation files (the 'Software'), to deal in the Software without restriction, 
-including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
-and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial 
-portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT 
-LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-
--------------------------------------------------------------------
-
--------------------------------------------------------------------
-
-debug 2.6.9 - MIT
-https://github.com/visionmedia/debug#readme
-Copyright (c) 2014 TJ Holowaychuk <tj@vision-media.ca>
-Copyright (c) 2014-2016 TJ Holowaychuk <tj@vision-media.ca>
 
 (The MIT License)
 
@@ -2762,13 +2936,13 @@ THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-etag 1.7.0 - MIT
-https://github.com/jshttp/etag
-Copyright (c) 2014-2015 Douglas Christopher Wilson
+etag 1.8.1 - MIT
+https://github.com/jshttp/etag#readme
+Copyright (c) 2014-2016 Douglas Christopher Wilson
 
 (The MIT License)
 
-Copyright (c) 2014-2015 Douglas Christopher Wilson
+Copyright (c) 2014-2016 Douglas Christopher Wilson
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -2794,13 +2968,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-etag 1.8.1 - MIT
-https://github.com/jshttp/etag#readme
-Copyright (c) 2014-2016 Douglas Christopher Wilson
+etag 1.7.0 - MIT
+https://github.com/jshttp/etag
+Copyright (c) 2014-2015 Douglas Christopher Wilson
 
 (The MIT License)
 
-Copyright (c) 2014-2016 Douglas Christopher Wilson
+Copyright (c) 2014-2015 Douglas Christopher Wilson
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -2889,7 +3063,7 @@ SOFTWARE.
 
 -------------------------------------------------------------------
 
-express 4.16.4 - MIT
+express 4.17.1 - MIT
 http://expressjs.com/
 Copyright (c) 2013 Roman Shtylman
 Copyright (c) 2009-2013 TJ Holowaychuk
@@ -2960,7 +3134,7 @@ THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-finalhandler 1.1.1 - MIT
+finalhandler 1.1.2 - MIT
 https://github.com/pillarjs/finalhandler#readme
 Copyright (c) 2014-2017 Douglas Christopher Wilson
 Copyright (c) 2014-2017 Douglas Christopher Wilson <doug@somethingdoug.com>
@@ -3340,8 +3514,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 -------------------------------------------------------------------
 
-http-errors 1.6.3 - MIT
-https://github.com/jshttp/http-errors#readme
+http-errors 1.5.1 - MIT
+https://github.com/jshttp/http-errors
 Copyright (c) 2014 Jonathan Ong
 Copyright (c) 2016 Douglas Christopher Wilson
 Copyright (c) 2014 Jonathan Ong me@jongleberry.com
@@ -3376,8 +3550,8 @@ THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-http-errors 1.5.1 - MIT
-https://github.com/jshttp/http-errors
+http-errors 1.7.2 - MIT
+https://github.com/jshttp/http-errors#readme
 Copyright (c) 2014 Jonathan Ong
 Copyright (c) 2016 Douglas Christopher Wilson
 Copyright (c) 2014 Jonathan Ong me@jongleberry.com
@@ -3442,7 +3616,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-iconv-lite 0.4.23 - MIT
+iconv-lite 0.4.24 - MIT
 https://github.com/ashtuchkin/iconv-lite
 Copyright (c) Microsoft Corporation.
 Copyright (c) 2011 Alexander Shtuchkin
@@ -3550,18 +3724,30 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-ipaddr.js 1.8.0 - MIT
+ipaddr.js 1.9.0 - MIT
 https://github.com/whitequark/ipaddr.js#readme
+Copyright (c) 2011-2017
 
-MIT License
+Copyright (C) 2011-2017 whitequark <whitequark@whitequark.org>
 
-Copyright (c) <year> <copyright holders>
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
@@ -3747,7 +3933,7 @@ THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-isarray 2.0.4 - MIT
+isarray 2.0.1 - MIT
 https://github.com/juliangruber/isarray
 Copyright (c) 2013 Julian Gruber <julian@juliangruber.com>
 
@@ -3783,7 +3969,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 -------------------------------------------------------------------
 
-isarray 2.0.1 - MIT
+isarray 2.0.4 - MIT
 https://github.com/juliangruber/isarray
 Copyright (c) 2013 Julian Gruber <julian@juliangruber.com>
 
@@ -3863,14 +4049,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-kind-of 3.2.2 - MIT
+kind-of 5.1.0 - MIT
 https://github.com/jonschlinkert/kind-of
-Copyright (c) 2014-2017, Jon Schlinkert
+Copyright (c) 2014-2017, Jon Schlinkert.
 Copyright (c) 2017, Jon Schlinkert (https://github.com/jonschlinkert).
 
 The MIT License (MIT)
 
-Copyright (c) 2014-2017, Jon Schlinkert
+Copyright (c) 2014-2017, Jon Schlinkert.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -3895,14 +4081,14 @@ THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-kind-of 5.1.0 - MIT
+kind-of 3.2.2 - MIT
 https://github.com/jonschlinkert/kind-of
-Copyright (c) 2014-2017, Jon Schlinkert.
+Copyright (c) 2014-2017, Jon Schlinkert
 Copyright (c) 2017, Jon Schlinkert (https://github.com/jonschlinkert).
 
 The MIT License (MIT)
 
-Copyright (c) 2014-2017, Jon Schlinkert.
+Copyright (c) 2014-2017, Jon Schlinkert
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -4205,38 +4391,7 @@ THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-mime 1.4.1 - MIT
-https://github.com/broofa/node-mime#readme
-Copyright (c) 2010 Benjamin Thomas, Robert Kieffer
-
-The MIT License (MIT)
-
-Copyright (c) 2010 Benjamin Thomas, Robert Kieffer
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
-
--------------------------------------------------------------------
-
--------------------------------------------------------------------
-
-mime-db 1.37.0 - MIT
+mime-db 1.43.0 - MIT
 https://github.com/jshttp/mime-db#readme
 Copyright (c) 2014 Jonathan Ong
 Copyright (c) 2014 Jonathan Ong me@jongleberry.com
@@ -4338,6 +4493,42 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
+mime-types 2.1.26 - MIT
+https://github.com/jshttp/mime-types#readme
+Copyright (c) 2014 Jonathan Ong
+Copyright (c) 2015 Douglas Christopher Wilson
+Copyright (c) 2014 Jonathan Ong <me@jongleberry.com>
+Copyright (c) 2015 Douglas Christopher Wilson <doug@somethingdoug.com>
+
+(The MIT License)
+
+Copyright (c) 2014 Jonathan Ong <me@jongleberry.com>
+Copyright (c) 2015 Douglas Christopher Wilson <doug@somethingdoug.com>
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+-------------------------------------------------------------------
+
+-------------------------------------------------------------------
+
 minimalistic-crypto-utils 1.0.1 - MIT
 https://github.com/indutny/minimalistic-crypto-utils#readme
 Copyright Fedor Indutny, 2017.
@@ -4383,7 +4574,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-minimist 1.2.0 - MIT
+minimist 1.2.2 - MIT
 https://github.com/substack/minimist
 
 This software is released under the MIT license:
@@ -4601,6 +4792,46 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
+negotiator 0.6.2 - MIT
+https://github.com/jshttp/negotiator#readme
+Copyright (c) 2012 Federico Romero
+Copyright (c) 2014 Federico Romero
+Copyright (c) 2012 Isaac Z. Schlueter
+Copyright (c) 2012-2014 Federico Romero
+Copyright (c) 2012-2014 Isaac Z. Schlueter
+Copyright (c) 2015 Douglas Christopher Wilson
+Copyright (c) 2014-2015 Douglas Christopher Wilson
+
+(The MIT License)
+
+Copyright (c) 2012-2014 Federico Romero
+Copyright (c) 2012-2014 Isaac Z. Schlueter
+Copyright (c) 2014-2015 Douglas Christopher Wilson
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+-------------------------------------------------------------------
+
+-------------------------------------------------------------------
+
 normalize-path 3.0.0 - MIT
 https://github.com/jonschlinkert/normalize-path
 Copyright (c) 2014-2018, Jon Schlinkert.
@@ -4718,8 +4949,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-on-headers 1.0.1 - MIT
-https://github.com/jshttp/on-headers
+on-headers 1.0.2 - MIT
+https://github.com/jshttp/on-headers#readme
 Copyright (c) 2014 Douglas Christopher Wilson
 
 (The MIT License)
@@ -4750,7 +4981,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-opn 5.4.0 - MIT
+opn 5.5.0 - MIT
 https://github.com/sindresorhus/opn#readme
 (c) Sindre Sorhus (https://sindresorhus.com)
 Copyright 2006, Kevin Krammer <kevin.krammer@gmx.at>
@@ -4894,7 +5125,7 @@ THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-parseurl 1.3.2 - MIT
+parseurl 1.3.3 - MIT
 https://github.com/pillarjs/parseurl#readme
 Copyright (c) 2014 Jonathan Ong
 Copyright (c) 2014-2017 Douglas Christopher Wilson
@@ -5145,7 +5376,7 @@ SOFTWARE.**
 
 -------------------------------------------------------------------
 
-proxy-addr 2.0.4 - MIT
+proxy-addr 2.0.5 - MIT
 https://github.com/jshttp/proxy-addr#readme
 Copyright (c) 2014-2016 Douglas Christopher Wilson
 
@@ -5206,7 +5437,7 @@ SOFTWARE.
 
 -------------------------------------------------------------------
 
-punycode 1.3.2 - MIT
+punycode 1.4.1 - MIT
 https://mths.be/punycode
 Copyright Mathias Bynens <https://mathiasbynens.be/>
 
@@ -5236,7 +5467,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-punycode 1.4.1 - MIT
+punycode 1.3.2 - MIT
 https://mths.be/punycode
 Copyright Mathias Bynens <https://mathiasbynens.be/>
 
@@ -5419,6 +5650,42 @@ SOFTWARE.
 
 -------------------------------------------------------------------
 
+range-parser 1.2.1 - MIT
+https://github.com/jshttp/range-parser#readme
+Copyright (c) 2012-2014 TJ Holowaychuk
+Copyright (c) 2015-2016 Douglas Christopher Wilson
+Copyright (c) 2012-2014 TJ Holowaychuk <tj@vision-media.ca>
+Copyright (c) 2015-2016 Douglas Christopher Wilson doug@somethingdoug.com
+
+(The MIT License)
+
+Copyright (c) 2012-2014 TJ Holowaychuk <tj@vision-media.ca>
+Copyright (c) 2015-2016 Douglas Christopher Wilson <doug@somethingdoug.com
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+-------------------------------------------------------------------
+
+-------------------------------------------------------------------
+
 range-parser 1.2.0 - MIT
 https://github.com/jshttp/range-parser
 Copyright (c) 2012-2014 TJ Holowaychuk
@@ -5455,7 +5722,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-raw-body 2.3.3 - MIT
+raw-body 2.4.0 - MIT
 https://github.com/stream-utils/raw-body#readme
 Copyright (c) 2013-2014 Jonathan Ong
 Copyright (c) 2014-2015 Douglas Christopher Wilson
@@ -5517,7 +5784,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-readable-stream 2.3.6 - MIT
+readable-stream 2.3.5 - MIT
 https://github.com/nodejs/readable-stream#readme
 Copyright Joyent, Inc. and other Node contributors.
 
@@ -5574,7 +5841,7 @@ IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-readable-stream 2.3.5 - MIT
+readable-stream 2.3.6 - MIT
 https://github.com/nodejs/readable-stream#readme
 Copyright Joyent, Inc. and other Node contributors.
 
@@ -5663,8 +5930,8 @@ SOFTWARE.
 
 -------------------------------------------------------------------
 
-resolve 1.5.0 - MIT
-https://github.com/browserify/node-resolve#readme
+resolve 1.1.7 - MIT
+https://github.com/substack/node-resolve#readme
 
 This software is released under the MIT license:
 
@@ -5690,8 +5957,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-resolve 1.1.7 - MIT
-https://github.com/substack/node-resolve#readme
+resolve 1.5.0 - MIT
+https://github.com/browserify/node-resolve#readme
 
 This software is released under the MIT license:
 
@@ -5843,7 +6110,7 @@ SOFTWARE.
 
 -------------------------------------------------------------------
 
-send 0.16.2 - MIT
+send 0.17.1 - MIT
 https://github.com/pillarjs/send#readme
 Copyright (c) 2012 TJ Holowaychuk
 Copyright (c) 2014-2016 Douglas Christopher Wilson
@@ -5911,7 +6178,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-serve-static 1.13.2 - MIT
+serve-static 1.14.1 - MIT
 https://github.com/expressjs/serve-static#readme
 Copyright (c) 2011 LearnBoost
 Copyright (c) 2010 Sencha Inc.
@@ -6170,42 +6437,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-statuses 1.3.1 - MIT
-https://github.com/jshttp/statuses
-Copyright (c) 2014 Jonathan Ong
-Copyright (c) 2016 Douglas Christopher Wilson
-Copyright (c) 2014 Jonathan Ong me@jongleberry.com
-Copyright (c) 2016 Douglas Christopher Wilson doug@somethingdoug.com
-
-
-The MIT License (MIT)
-
-Copyright (c) 2014 Jonathan Ong me@jongleberry.com
-Copyright (c) 2016 Douglas Christopher Wilson doug@somethingdoug.com
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
-
--------------------------------------------------------------------
-
--------------------------------------------------------------------
-
 statuses 1.5.0 - MIT
 https://github.com/jshttp/statuses#readme
 Copyright (c) 2014 Jonathan Ong
@@ -6242,18 +6473,18 @@ THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-statuses 1.4.0 - MIT
-https://github.com/jshttp/statuses#readme
+statuses 1.3.1 - MIT
+https://github.com/jshttp/statuses
 Copyright (c) 2014 Jonathan Ong
 Copyright (c) 2016 Douglas Christopher Wilson
-Copyright (c) 2014 Jonathan Ong <me@jongleberry.com>
-Copyright (c) 2016 Douglas Christopher Wilson <doug@somethingdoug.com>
+Copyright (c) 2014 Jonathan Ong me@jongleberry.com
+Copyright (c) 2016 Douglas Christopher Wilson doug@somethingdoug.com
 
 
 The MIT License (MIT)
 
-Copyright (c) 2014 Jonathan Ong <me@jongleberry.com>
-Copyright (c) 2016 Douglas Christopher Wilson <doug@somethingdoug.com>
+Copyright (c) 2014 Jonathan Ong me@jongleberry.com
+Copyright (c) 2016 Douglas Christopher Wilson doug@somethingdoug.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -6399,8 +6630,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-string_decoder 1.0.3 - MIT
-https://github.com/rvagg/string_decoder
+string_decoder 1.1.1 - MIT
+https://github.com/nodejs/string_decoder
 Copyright Joyent, Inc. and other Node contributors.
 
 Node.js is licensed for use as follows:
@@ -6457,8 +6688,8 @@ IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-string_decoder 1.1.1 - MIT
-https://github.com/nodejs/string_decoder
+string_decoder 1.0.3 - MIT
+https://github.com/rvagg/string_decoder
 Copyright Joyent, Inc. and other Node contributors.
 
 Node.js is licensed for use as follows:
@@ -7250,6 +7481,38 @@ THE SOFTWARE.
 
 -------------------------------------------------------------------
 
+toidentifier 1.0.0 - MIT
+https://github.com/component/toidentifier#readme
+Copyright (c) 2016 Douglas Christopher Wilson
+Copyright (c) 2016 Douglas Christopher Wilson <doug@somethingdoug.com>
+
+MIT License
+
+Copyright (c) 2016 Douglas Christopher Wilson <doug@somethingdoug.com>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+-------------------------------------------------------------------
+
+-------------------------------------------------------------------
+
 tty-browserify 0.0.1 - MIT
 https://github.com/browserify/tty-browserify
 
@@ -7277,7 +7540,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-type-is 1.6.16 - MIT
+type-is 1.6.18 - MIT
 https://github.com/jshttp/type-is#readme
 Copyright (c) 2014 Jonathan Ong
 Copyright (c) 2014-2015 Douglas Christopher Wilson
@@ -7452,7 +7715,7 @@ SOFTWARE.
 
 -------------------------------------------------------------------
 
-util 0.10.4 - MIT
+util 0.10.3 - MIT
 https://github.com/defunctzombie/node-util
 Copyright Joyent, Inc. and other Node contributors.
 
@@ -7480,7 +7743,7 @@ IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-util 0.10.3 - MIT
+util 0.10.4 - MIT
 https://github.com/defunctzombie/node-util
 Copyright Joyent, Inc. and other Node contributors.
 
