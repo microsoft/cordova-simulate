@@ -54,6 +54,7 @@ Where `opts` is an object with the following properties (all optional):
 * **touchevents** - A boolean. Set to `false` to disable the simulation of touch events in App-Host. Defaults to `true`.
 * **simulationpath** - the directory where temporary simulation files are hosted. Defaults to `projectRoot/simulate`.
 * **simhosttitle** - specifies the title of the simulation window. Defaults to `Plugin Simulation`.
+* **middleware** - A path that points to express middleware. This can be used to write custom plugins that require the full power of NodeJS.
 * **generateids** - A boolean that generates unique ids for simulated devices at startup. Defaults to `false`.
 
 

@@ -54,7 +54,7 @@ function Simulator(opts) {
     this._createTheme(opts.theme);
 
     this._project = new Project(simulatorProxy, opts.platform);
-    this._server = new SimulationServer(simulatorProxy, this._project, this.hostRoot);
+    this._server = new SimulationServer(simulatorProxy, this._project, this.hostRoot, this._config);
 
     this._telemetry.initialize(this._project, this._config.telemetry);
 }
@@ -241,7 +241,7 @@ function parseOptions(opts) {
     config.forcePrepare = !!opts.forceprepare;
     config.xhrProxy = opts.hasOwnProperty('corsproxy') ? !!opts.corsproxy : true;
     config.touchEvents = opts.hasOwnProperty('touchevents') ? !!opts.touchevents : true;
-
+    config.middleware = opts.middleware;
     config.lang = normalizeLanguage(opts.lang);
 
     config.deviceInfo = device.getDeviceInfo(opts.platform, opts.device);
