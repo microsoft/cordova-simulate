@@ -3,7 +3,7 @@
 var Q = require('q'),
     log = require('./utils/log'),
     LiveReload = require('./live-reload/live-reload'),
-    nodePlugins = require('./node-plugins');
+    simulateGapPlugins = require('./node-plugins');
 
 // make variable match the literal
 var APP_HOST = 'APP_HOST',
@@ -175,14 +175,14 @@ SocketServer.prototype._setupAppHostHandlers = function () {
         //checks node plugins to see if there is a handler available. If not the exec is sent to the sim-host.
         try {
             // The individual plugin is given the nodePlugin object to allow plugins to call each other
-            nodePlugins[data.service][data.action](
+            simulateGapPlugins[data.service][data.action](
                 function(result) {
                     this._emitTo(APP_HOST, 'exec-success', {index: data.index, result: result});
                 }.bind(this), 
                 function(result) {
                     this._emitTo(APP_HOST, 'exec-failure', {index: data.index, result: result});
                 }.bind(this),
-                data.args, nodePlugins);
+                data.args, simulateGapPlugins);
         } catch(e) {
             this._emitTo(SIM_HOST, 'exec', data);
         }

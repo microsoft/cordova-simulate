@@ -54,7 +54,7 @@ Where `opts` is an object with the following properties (all optional):
 * **touchevents** - A boolean. Set to `false` to disable the simulation of touch events in App-Host. Defaults to `true`.
 * **simulationpath** - the directory where temporary simulation files are hosted. Defaults to `projectRoot/simulate`.
 * **simhosttitle** - specifies the title of the simulation window. Defaults to `Plugin Simulation`.
-* **middleware** - A path that points to express middleware. This can be used to write custom plugins that deal with manipulating request data from your app. Further, the middleware has access to all of your `simulate_gap.js` plugins mentioned below using the nodePlugins object. For more detail see the sampleMiddleware file in the docs folder.
+* **middleware** - A path that points to express middleware. This can be used to write custom plugins that deal with manipulating request data from your app. Further, the middleware has access to all of your `simulate_gap.js` plugins mentioned below using the simulateGapPlugins object. For more detail see the sampleMiddleware file in the docs folder.
 * **generateids** - A boolean that generates unique ids for simulated devices at startup. Defaults to `false`.
 
 
@@ -270,7 +270,7 @@ Note that:
 
 *simulate_gap.js*
 
-This file sits between the `app-host-handlers` and `sim-host-handlers`. The key difference between it and the previous two is that it runs in a nodejs context and has access to all the features that node provides(including NPM modules). This allows you to write any plugin for cordova simulate that you could write for a native device. Cordova_gap files are written in the same service-method style that the other plugin files are written in. Finally, simulate_gap plugins have access to all other simulate_gap plugins through the nodePlugins object. Other plugins can be called by using nodePlugins[`service`][`method`] syntax.
+This file sits between the `app-host-handlers` and `sim-host-handlers`. The key difference between it and the previous two is that it runs in a nodejs context and has access to all the features that node provides(including NPM modules). This allows you to write any plugin for cordova simulate that you could write for a native device. Cordova_gap files are written in the same service-method style that the other plugin files are written in. Finally, simulate_gap plugins have access to all other simulate_gap plugins through the simulateGapPlugins object. Other plugins can be called by using simulateGapPlugins[`service`][`method`] syntax.
 
 NOTE: Cordova-Simulate will first look for a exec handler in the app-host before checking a `simulate_gap.js` file. This means if you have a duplicate handler in `app-host-handlers.js` it will be run instead.
 
@@ -282,7 +282,7 @@ let storageBuckets = {}
 
 module.exports = {
     SecureStorage:{
-        init:async(success,failure,args,nodePlugins) => {
+        init:async(success,failure,args,simulateGapPlugins) => {
             let [bucket] = args
             storageBuckets[bucket] = nodePersist.create({dir: `.node-persist/${bucket}`})
             try{
@@ -292,7 +292,7 @@ module.exports = {
                 failure(e)
             }
         },
-        set:async(success,failure,args,nodePlugins) => {
+        set:async(success,failure,args,simulateGapPlugins) => {
             let [bucket,key,value] = args
             try{
                 await storageBuckets[bucket].setItem(key,value)
@@ -301,7 +301,7 @@ module.exports = {
                 failure(e)
             }
         },
-        get:async(success,failure,args,nodePlugins) => {
+        get:async(success,failure,args,simulateGapPlugins) => {
             let[bucket,key] = args
             try{
                 let value = await storageBuckets[bucket].getItem(key)
