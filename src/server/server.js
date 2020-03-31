@@ -31,7 +31,7 @@ var MAX_CSP_TAG_LENGTH = 1024;
  * @param {object} hostRoot
  * @constructor
  */
-function SimulationServer(simulatorProxy, project, hostRoot) {
+function SimulationServer(simulatorProxy, project, hostRoot, _config) {
     this._simulatorProxy = simulatorProxy;
     this._project = project;
     this._hostRoot = hostRoot;
@@ -39,6 +39,7 @@ function SimulationServer(simulatorProxy, project, hostRoot) {
     this._simSocket = new SocketServer(simulatorProxy, project);
     this._cordovaServer = null;
     this._urls = null;
+    this._config = _config;
 }
 
 Object.defineProperties(SimulationServer.prototype, {
@@ -77,6 +78,16 @@ SimulationServer.prototype.start = function (platform, opts) {
         simHostMiddleware.attach(this._cordovaServer.app, dirs, this._hostRoot);
     }
 
+    /* attach custom middleware */
+    if (this._config.middleware) {
+        var customiddlewarePath = path.join(process.cwd(), this._config.middleware);
+        if (!fs.existsSync(customiddlewarePath)) {
+            throw new Error('middleware could not be found');
+        }
+        this._cordovaServer.app.use(require('body-parser').json());
+        this._cordovaServer.app.use(require(customiddlewarePath));
+    }
+
     /* attach CORS proxy middleware */
     if (config.xhrProxy) {
         require('./xhr-proxy').attach(this._cordovaServer.app);
@@ -89,6 +100,10 @@ SimulationServer.prototype.start = function (platform, opts) {
         root: opts.dir,
         noServerInfo: true
     };
+
+    if (this._config.middleware) {
+        serverOpts.middleware = this._config.middleware;
+    }
 
     return this._cordovaServer.servePlatform(platform, serverOpts)
         .then(function () {
