@@ -1,4 +1,4 @@
-# Cordova-Simulate [![Build status](https://dev.azure.com/vscode-webdiag-extensions/VS%20Code%20WebDiag%20extensions/_apis/build/status/cordova-simulate%20%5Bmaster%5D)](https://dev.azure.com/vscode-webdiag-extensions/VS%20Code%20WebDiag%20extensions/_build/latest?definitionId=35)
+# Cordova-Simulate [![Build Status](https://dev.azure.com/vscode-webdiag-extensions/VS%20Code%20WebDiag%20extensions/_apis/build/status/cordova-simulate%20%5Bmaster%5D?branchName=master)](https://dev.azure.com/vscode-webdiag-extensions/VS%20Code%20WebDiag%20extensions/_build/latest?definitionId=64&branchName=master)
 
 Simulates your Apache Cordova application in the browser.
 
