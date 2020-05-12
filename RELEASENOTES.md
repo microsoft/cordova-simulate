@@ -1,6 +1,6 @@
 # cordova-simulate Release Notes
 
-## 0.8.1 (May 8, 2020)
+## 0.8.1 (May 12, 2020)
 * Fixed security vulnerabilities [#318](https://github.com/microsoft/cordova-simulate/pull/318)
 * Internal changes:
     * Added YAML based build definitions [#314](https://github.com/microsoft/cordova-simulate/pull/314), [#317](https://github.com/microsoft/cordova-simulate/pull/317)
