@@ -1446,7 +1446,7 @@ THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-bytes 3.1.0 - MIT
+bytes 3.0.0 - MIT
 https://github.com/visionmedia/bytes.js#readme
 Copyright (c) 2015 Jed Watson
 Copyright (c) 2012-2014 TJ Holowaychuk
@@ -1482,7 +1482,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-bytes 3.0.0 - MIT
+bytes 3.1.0 - MIT
 https://github.com/visionmedia/bytes.js#readme
 Copyright (c) 2015 Jed Watson
 Copyright (c) 2012-2014 TJ Holowaychuk
@@ -2097,8 +2097,8 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-cookie 0.3.1 - MIT
-https://github.com/jshttp/cookie
+cookie 0.4.0 - MIT
+https://github.com/jshttp/cookie#readme
 Copyright (c) 2012-2014 Roman Shtylman
 Copyright (c) 2015 Douglas Christopher Wilson
 Copyright (c) 2012-2014 Roman Shtylman <shtylman@gmail.com>
@@ -2134,8 +2134,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-cookie 0.4.0 - MIT
-https://github.com/jshttp/cookie#readme
+cookie 0.3.1 - MIT
+https://github.com/jshttp/cookie
 Copyright (c) 2012-2014 Roman Shtylman
 Copyright (c) 2015 Douglas Christopher Wilson
 Copyright (c) 2012-2014 Roman Shtylman <shtylman@gmail.com>
@@ -2374,10 +2374,10 @@ THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-debug 2.6.9 - MIT
+debug 4.1.0 - MIT
 https://github.com/visionmedia/debug#readme
 Copyright (c) 2014 TJ Holowaychuk <tj@vision-media.ca>
-Copyright (c) 2014-2016 TJ Holowaychuk <tj@vision-media.ca>
+Copyright (c) 2014-2017 TJ Holowaychuk <tj@vision-media.ca>
 
 (The MIT License)
 
@@ -2434,10 +2434,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-debug 4.1.0 - MIT
+debug 2.6.9 - MIT
 https://github.com/visionmedia/debug#readme
 Copyright (c) 2014 TJ Holowaychuk <tj@vision-media.ca>
-Copyright (c) 2014-2017 TJ Holowaychuk <tj@vision-media.ca>
+Copyright (c) 2014-2016 TJ Holowaychuk <tj@vision-media.ca>
 
 (The MIT License)
 
@@ -3514,8 +3514,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 -------------------------------------------------------------------
 
-http-errors 1.5.1 - MIT
-https://github.com/jshttp/http-errors
+http-errors 1.7.2 - MIT
+https://github.com/jshttp/http-errors#readme
 Copyright (c) 2014 Jonathan Ong
 Copyright (c) 2016 Douglas Christopher Wilson
 Copyright (c) 2014 Jonathan Ong me@jongleberry.com
@@ -3550,8 +3550,8 @@ THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-http-errors 1.7.2 - MIT
-https://github.com/jshttp/http-errors#readme
+http-errors 1.5.1 - MIT
+https://github.com/jshttp/http-errors
 Copyright (c) 2014 Jonathan Ong
 Copyright (c) 2016 Douglas Christopher Wilson
 Copyright (c) 2014 Jonathan Ong me@jongleberry.com
@@ -3933,7 +3933,7 @@ THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-isarray 2.0.1 - MIT
+isarray 2.0.4 - MIT
 https://github.com/juliangruber/isarray
 Copyright (c) 2013 Julian Gruber <julian@juliangruber.com>
 
@@ -3969,7 +3969,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 -------------------------------------------------------------------
 
-isarray 2.0.4 - MIT
+isarray 2.0.1 - MIT
 https://github.com/juliangruber/isarray
 Copyright (c) 2013 Julian Gruber <julian@juliangruber.com>
 
@@ -4049,14 +4049,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-kind-of 5.1.0 - MIT
+kind-of 3.2.2 - MIT
 https://github.com/jonschlinkert/kind-of
-Copyright (c) 2014-2017, Jon Schlinkert.
+Copyright (c) 2014-2017, Jon Schlinkert
 Copyright (c) 2017, Jon Schlinkert (https://github.com/jonschlinkert).
 
 The MIT License (MIT)
 
-Copyright (c) 2014-2017, Jon Schlinkert.
+Copyright (c) 2014-2017, Jon Schlinkert
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -4081,14 +4081,14 @@ THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-kind-of 3.2.2 - MIT
+kind-of 5.1.0 - MIT
 https://github.com/jonschlinkert/kind-of
-Copyright (c) 2014-2017, Jon Schlinkert
+Copyright (c) 2014-2017, Jon Schlinkert.
 Copyright (c) 2017, Jon Schlinkert (https://github.com/jonschlinkert).
 
 The MIT License (MIT)
 
-Copyright (c) 2014-2017, Jon Schlinkert
+Copyright (c) 2014-2017, Jon Schlinkert.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -4391,7 +4391,7 @@ THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-mime-db 1.43.0 - MIT
+mime-db 1.33.0 - MIT
 https://github.com/jshttp/mime-db#readme
 Copyright (c) 2014 Jonathan Ong
 Copyright (c) 2014 Jonathan Ong me@jongleberry.com
@@ -4424,7 +4424,7 @@ THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-mime-db 1.33.0 - MIT
+mime-db 1.43.0 - MIT
 https://github.com/jshttp/mime-db#readme
 Copyright (c) 2014 Jonathan Ong
 Copyright (c) 2014 Jonathan Ong me@jongleberry.com
@@ -4547,7 +4547,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 -------------------------------------------------------------------
 
-minimist 0.0.8 - MIT
+minimist 1.2.5 - MIT
 https://github.com/substack/minimist
 
 This software is released under the MIT license:
@@ -4574,7 +4574,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-minimist 1.2.2 - MIT
+minimist 1.2.3 - MIT
 https://github.com/substack/minimist
 
 This software is released under the MIT license:
@@ -4601,7 +4601,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-mkdirp 0.5.1 - MIT
+mkdirp 0.5.5 - MIT
 https://github.com/substack/node-mkdirp#readme
 Copyright 2010 James Halliday (mail@substack.net)
 
@@ -5437,7 +5437,7 @@ SOFTWARE.
 
 -------------------------------------------------------------------
 
-punycode 1.4.1 - MIT
+punycode 1.3.2 - MIT
 https://mths.be/punycode
 Copyright Mathias Bynens <https://mathiasbynens.be/>
 
@@ -5467,7 +5467,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -------------------------------------------------------------------
 
-punycode 1.3.2 - MIT
+punycode 1.4.1 - MIT
 https://mths.be/punycode
 Copyright Mathias Bynens <https://mathiasbynens.be/>
 
