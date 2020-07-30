@@ -1,5 +1,9 @@
 # cordova-simulate Release Notes
 
+## 0.8.2 (July 30, 2020)
+* Fixed security vulnerabilities [#321](https://github.com/microsoft/cordova-simulate/pull/321), [#322](https://github.com/microsoft/cordova-simulate/pull/322), [#323](https://github.com/microsoft/cordova-simulate/pull/323)
+* Improved live reload stability, thanks to [@CravateRouge](https://github.com/CravateRouge) [#320](https://github.com/microsoft/cordova-simulate/pull/320)
+
 ## 0.8.1 (May 12, 2020)
 * Fixed security vulnerabilities [#318](https://github.com/microsoft/cordova-simulate/pull/318)
 * Internal changes:
