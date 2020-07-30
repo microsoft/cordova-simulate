@@ -36,7 +36,7 @@
     "cordova-serve": "^3.0.0",
     "csp-parse": "^0.0.2",
     "glob": "^7.0.5",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.5",
     "ncp": "^2.0.0",
     "q": "^1.4.1",
     "replacestream": "^4.0.0",
