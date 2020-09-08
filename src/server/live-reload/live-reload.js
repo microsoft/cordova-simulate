@@ -94,7 +94,8 @@ LiveReload.prototype._onFileChanged = function (fileRelativePath, parentDir) {
 };
 
 function copyFile(src, dest) {
-    return Q.nfcall(ncp, src, dest);
+    utils.copyFileRecursiveSync(src, dest);
+    return Q({});
 }
 
 function deleteFile(file) {

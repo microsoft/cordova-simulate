@@ -150,6 +150,15 @@ function makeDirectoryRecursiveSync(dirPath) {
     fs.mkdirSync(dirPath);
 }
 
+function copyFileRecursiveSync(src, dest) {
+    var destPath = path.dirname(dest);
+    if (!fs.existsSync(destPath)) {
+        makeDirectoryRecursiveSync(destPath);
+    }
+
+    fs.copyFileSync(src, dest);
+}
+
 function getAppDataPath() {
     var appDataPath;
 
@@ -248,6 +257,7 @@ module.exports.compareArrays = compareArrays;
 module.exports.existsSync = existsSync;
 module.exports.getDirectoriesInPath = getDirectoriesInPath;
 module.exports.makeDirectoryRecursiveSync = makeDirectoryRecursiveSync;
+module.exports.copyFileRecursiveSync = copyFileRecursiveSync;
 module.exports.getAppDataPath = getAppDataPath;
 module.exports.getMtimeForFiles = getMtimeForFiles;
 module.exports.retryAsync = retryAsync;
