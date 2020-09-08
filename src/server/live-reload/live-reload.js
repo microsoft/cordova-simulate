@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
 var fs = require('fs');
-var ncp = require('ncp');
 var path = require('path');
 var Q = require('q');
 var Watcher = require('./watcher').Watcher;

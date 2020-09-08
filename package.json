@@ -24,16 +24,16 @@
   },
   "homepage": "https://github.com/Microsoft/cordova-simulate",
   "engines": {
-    "node": ">= 6.0.0",
-    "npm": ">= 3.0.0"
+    "node": ">= 10.0.0",
+    "npm": ">= 5.6.0"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
     "browserify": "^16.2.3",
     "chalk": "^1.1.1",
-    "chokidar": "^3.3.1",
+    "chokidar": "^3.4.2",
     "cordova-registry-mapper": "^1.1.12",
-    "cordova-serve": "^3.0.0",
+    "cordova-serve": "^4.0.0",
     "csp-parse": "^0.0.2",
     "glob": "^7.0.5",
     "minimist": "^1.2.5",
