@@ -252,6 +252,32 @@ function stripErrorColon(err) {
     return err.split('\n')[0];
 }
 
+function synchronizeAsync(asyncFunc, lock, delay, ...args) {
+    return retryAsyncIteration(
+        () => {
+            return Q.delay(delay).then(() =>
+                asyncFunc.apply(null, args)
+                    .finally(() => {
+                        lock.locked = false;
+                    })
+                );
+        },
+        50,
+        lock
+    );
+}
+
+function retryAsyncLockIteration(operation, delay, lock) {
+    if (!lock.locked) {
+        lock.locked = true;
+        return operation();
+    } else {
+        return Q.delay(delay)
+            .then(() => retryAsyncIteration(operation, delay, lock));
+    }
+}
+
+module.exports.synchronizeAsync = synchronizeAsync;
 module.exports.compareObjects = compareObjects;
 module.exports.compareArrays = compareArrays;
 module.exports.existsSync = existsSync;

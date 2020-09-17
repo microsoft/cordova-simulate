@@ -16,6 +16,9 @@ function LiveReload(project, telemetry, forcePrepare) {
     this._forcePrepare = forcePrepare;
     this._watcher = null;
     this._socket = null;
+    this._lock = {
+        locked: false,
+    };
 }
 
 LiveReload.prototype.start = function (socket) {
@@ -65,7 +68,7 @@ LiveReload.prototype._onFileChanged = function (fileRelativePath, parentDir) {
                     return false;
                 });
         } else {
-            propagateChangePromise = copyFile(sourceAbsolutePath, destAbsolutePath)
+            propagateChangePromise = utils.synchronizeAsync(copyFile, this._lock, 100, sourceAbsolutePath, destAbsolutePath)
                 .then(function () {
                     return true;
                 });
