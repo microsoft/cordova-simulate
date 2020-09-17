@@ -96,8 +96,7 @@ LiveReload.prototype._onFileChanged = function (fileRelativePath, parentDir) {
 };
 
 function copyFile(src, dest) {
-    utils.copyFileRecursiveSync(src, dest);
-    return Q({});
+    return Q(utils.copyFileRecursiveSync(src, dest));
 }
 
 function deleteFile(file) {
