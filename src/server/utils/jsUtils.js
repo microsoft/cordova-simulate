@@ -253,7 +253,7 @@ function stripErrorColon(err) {
 }
 
 function synchronizeAsync(asyncFunc, lock, delay, ...args) {
-    return retryAsyncIteration(
+    return retryAsyncLockIteration(
         () => {
             return Q.delay(delay).then(() =>
                 asyncFunc.apply(null, args)
@@ -273,7 +273,7 @@ function retryAsyncLockIteration(operation, delay, lock) {
         return operation();
     } else {
         return Q.delay(delay)
-            .then(() => retryAsyncIteration(operation, delay, lock));
+            .then(() => retryAsyncLockIteration(operation, delay, lock));
     }
 }
 
