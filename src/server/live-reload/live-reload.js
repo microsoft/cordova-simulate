@@ -67,7 +67,7 @@ LiveReload.prototype._onFileChanged = function (fileRelativePath, parentDir) {
                     return false;
                 });
         } else {
-            propagateChangePromise = this._copyFileWithDelay(sourceAbsolutePath, destAbsolutePath, reloadDelay)
+            propagateChangePromise = this._copyFileWithDelay(sourceAbsolutePath, destAbsolutePath, this._reloadDelay)
                 .then(function () {
                     return true;
                 });
@@ -94,31 +94,32 @@ LiveReload.prototype._onFileChanged = function (fileRelativePath, parentDir) {
         .done();
 };
 
-LiveReload.prototype._copyFileWithDelay = function(src, dest, delay) {
+LiveReload.prototype._copyFileWithDelay = function (src, dest, delay) {
     return this._retryAsyncLockIteration(
-        () => {
+        function() {
             return Q.delay(delay)
                 .then(copyFile(src, dest))
-                    .finally(() => {
-                        this._filesLocks.delete(dest);
-                    });
+                .finally(function() {
+                    this._filesLocks.delete(dest);
+                });
         },
         50,
-        dest
-    )
+        dest,
+        30
+    );
 };
 
-LiveReload.prototype._retryAsyncLockIteration = function (operation, delay, key, attempts = 30) {
+LiveReload.prototype._retryAsyncLockIteration = function (operation, delay, key, attempts) {
     if (!this._filesLocks.has(key)) {
         this._filesLocks.set(key, true);
         return operation();
     } else if (attempts <= 0) {
-        return Q.reject("Attempts to catch the lock have exceeded");
+        return Q.reject('Attempts to catch the lock have exceeded');
     } else {
         return Q.delay(delay)
-            .then(() => this._retryAsyncLockIteration(operation, delay, key, --attempts));
+            .then(function() { return this._retryAsyncLockIteration(operation, delay, key, --attempts); });
     }
-}
+};
 
 function copyFile(src, dest) {
     return Q(utils.copyFileRecursiveSync(src, dest));
