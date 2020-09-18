@@ -39,7 +39,7 @@ function SocketServer(simulatorProxy, project) {
     var config = this._simulatorProxy.config,
         telemetry = this._simulatorProxy.telemetry;
 
-    this._liveReload = new LiveReload(project, telemetry, config.forcePrepare);
+    this._liveReload = new LiveReload(project, telemetry, config.forcePrepare, config.liveReloadDelay);
 }
 
 SocketServer.prototype.init = function (server) {

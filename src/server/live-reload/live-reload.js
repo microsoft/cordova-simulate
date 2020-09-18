@@ -10,15 +10,14 @@ var utils = require('../utils/jsUtils');
 /**
  * @constructor
  */
-function LiveReload(project, telemetry, forcePrepare) {
+function LiveReload(project, telemetry, forcePrepare, reloadDelay) {
     this._project = project;
     this._telemetry = telemetry;
     this._forcePrepare = forcePrepare;
     this._watcher = null;
     this._socket = null;
-    this._lock = {
-        locked: false,
-    };
+    this._reloadDelay = reloadDelay;
+    this._filesLocks = new Map();
 }
 
 LiveReload.prototype.start = function (socket) {
@@ -68,7 +67,7 @@ LiveReload.prototype._onFileChanged = function (fileRelativePath, parentDir) {
                     return false;
                 });
         } else {
-            propagateChangePromise = utils.synchronizeAsync(copyFile, this._lock, 100, sourceAbsolutePath, destAbsolutePath)
+            propagateChangePromise = this._copyFileWithDelay(sourceAbsolutePath, destAbsolutePath, reloadDelay)
                 .then(function () {
                     return true;
                 });
@@ -94,6 +93,32 @@ LiveReload.prototype._onFileChanged = function (fileRelativePath, parentDir) {
         })
         .done();
 };
+
+LiveReload.prototype._copyFileWithDelay = function(src, dest, delay) {
+    return this._retryAsyncLockIteration(
+        () => {
+            return Q.delay(delay)
+                .then(copyFile(src, dest))
+                    .finally(() => {
+                        this._filesLocks.delete(dest);
+                    });
+        },
+        50,
+        dest
+    )
+};
+
+LiveReload.prototype._retryAsyncLockIteration = function (operation, delay, key, attempts = 30) {
+    if (!this._filesLocks.has(key)) {
+        this._filesLocks.set(key, true);
+        return operation();
+    } else if (attempts <= 0) {
+        return Q.reject("Attempts to catch the lock have exceeded");
+    } else {
+        return Q.delay(delay)
+            .then(() => this._retryAsyncLockIteration(operation, delay, key, --attempts));
+    }
+}
 
 function copyFile(src, dest) {
     return Q(utils.copyFileRecursiveSync(src, dest));
