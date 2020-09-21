@@ -11,6 +11,8 @@ var utils = require('../utils/jsUtils');
  * @constructor
  */
 function LiveReload(project, telemetry, forcePrepare, reloadDelay) {
+    this._DELAY_STEP = 50;
+
     this._project = project;
     this._telemetry = telemetry;
     this._forcePrepare = forcePrepare;
@@ -76,7 +78,7 @@ LiveReload.prototype._onFileChanged = function (fileRelativePath, parentDir) {
 
     // Notify app-host. The delay is needed as a workaround on Windows, because shortly after copying the file, it is
     // typically locked by the Firewall and can't be correctly sent by the server.
-    propagateChangePromise.delay(125)
+    propagateChangePromise.delay(this._reloadDelay)
         .then(function (shouldUpdateModifTime) {
             var props = { fileType: path.extname(fileRelativePath) };
 
@@ -103,10 +105,13 @@ LiveReload.prototype._copyFileWithDelay = function (src, dest, delay) {
                     this._filesLocks.delete(dest);
                 });
         },
-        50,
+        this._DELAY_STEP,
         dest,
-        30
-    );
+        (delay / this._DELAY_STEP) * 4
+    ).catch(err => {
+        this._filesLocks.delete(dest);
+        throw err;
+    });
 };
 
 LiveReload.prototype._retryAsyncLockIteration = function (operation, delay, key, attempts) {
