@@ -96,10 +96,10 @@ LiveReload.prototype._onFileChanged = function (fileRelativePath, parentDir) {
 
 LiveReload.prototype._copyFileWithDelay = function (src, dest, delay) {
     return this._retryAsyncLockIteration(
-        function() {
+        () => {
             return Q.delay(delay)
                 .then(copyFile(src, dest))
-                .finally(function() {
+                .finally(() => {
                     this._filesLocks.delete(dest);
                 });
         },
@@ -117,7 +117,7 @@ LiveReload.prototype._retryAsyncLockIteration = function (operation, delay, key,
         return Q.reject('Attempts to catch the lock have exceeded');
     } else {
         return Q.delay(delay)
-            .then(function() { return this._retryAsyncLockIteration(operation, delay, key, --attempts); });
+            .then(() => this._retryAsyncLockIteration(operation, delay, key, --attempts));
     }
 };
 
