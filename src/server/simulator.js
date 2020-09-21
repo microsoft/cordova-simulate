@@ -238,7 +238,7 @@ function parseOptions(opts) {
     config.simulationFilePath = opts.simulationpath;
     config.telemetry = opts.telemetry;
     config.liveReload = opts.hasOwnProperty('livereload') ? !!opts.livereload : true;
-    config.liveReloadDelay = opts.hasOwnProperty('livereloaddelay') ? opts.liveReloadDelay : 200;
+    config.liveReloadDelay = opts.hasOwnProperty('livereloaddelay') ? opts.livereloaddelay : 200;
     config.forcePrepare = !!opts.forceprepare;
     config.xhrProxy = opts.hasOwnProperty('corsproxy') ? !!opts.corsproxy : true;
     config.touchEvents = opts.hasOwnProperty('touchevents') ? !!opts.touchevents : true;
