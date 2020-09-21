@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
 var fs = require('fs');
-var ncp = require('ncp');
 var path = require('path');
 var Q = require('q');
 var Watcher = require('./watcher').Watcher;
@@ -11,12 +10,16 @@ var utils = require('../utils/jsUtils');
 /**
  * @constructor
  */
-function LiveReload(project, telemetry, forcePrepare) {
+function LiveReload(project, telemetry, forcePrepare, reloadDelay) {
+    this._DELAY_STEP = 50;
+
     this._project = project;
     this._telemetry = telemetry;
     this._forcePrepare = forcePrepare;
     this._watcher = null;
     this._socket = null;
+    this._reloadDelay = reloadDelay;
+    this._filesLocks = new Map();
 }
 
 LiveReload.prototype.start = function (socket) {
@@ -66,7 +69,7 @@ LiveReload.prototype._onFileChanged = function (fileRelativePath, parentDir) {
                     return false;
                 });
         } else {
-            propagateChangePromise = copyFile(sourceAbsolutePath, destAbsolutePath)
+            propagateChangePromise = this._copyFileWithDelay(sourceAbsolutePath, destAbsolutePath, this._reloadDelay)
                 .then(function () {
                     return true;
                 });
@@ -75,7 +78,7 @@ LiveReload.prototype._onFileChanged = function (fileRelativePath, parentDir) {
 
     // Notify app-host. The delay is needed as a workaround on Windows, because shortly after copying the file, it is
     // typically locked by the Firewall and can't be correctly sent by the server.
-    propagateChangePromise.delay(125)
+    propagateChangePromise.delay(this._reloadDelay)
         .then(function (shouldUpdateModifTime) {
             var props = { fileType: path.extname(fileRelativePath) };
 
@@ -93,8 +96,38 @@ LiveReload.prototype._onFileChanged = function (fileRelativePath, parentDir) {
         .done();
 };
 
+LiveReload.prototype._copyFileWithDelay = function (src, dest, delay) {
+    return this._retryAsyncLockIteration(
+        () => {
+            return Q.delay(delay)
+                .then(copyFile(src, dest))
+                .finally(() => {
+                    this._filesLocks.delete(dest);
+                });
+        },
+        this._DELAY_STEP,
+        dest,
+        (delay / this._DELAY_STEP) * 4
+    ).catch(err => {
+        this._filesLocks.delete(dest);
+        throw err;
+    });
+};
+
+LiveReload.prototype._retryAsyncLockIteration = function (operation, delay, key, attempts) {
+    if (!this._filesLocks.has(key)) {
+        this._filesLocks.set(key, true);
+        return operation();
+    } else if (attempts <= 0) {
+        return Q.reject('Attempts to catch the lock have exceeded');
+    } else {
+        return Q.delay(delay)
+            .then(() => this._retryAsyncLockIteration(operation, delay, key, --attempts));
+    }
+};
+
 function copyFile(src, dest) {
-    return Q.nfcall(ncp, src, dest);
+    return Q(utils.copyFileRecursiveSync(src, dest));
 }
 
 function deleteFile(file) {
