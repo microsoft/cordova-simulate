@@ -1,6 +1,6 @@
 # cordova-simulate Release Notes
 
-## 1.0.0 (September 10, 2020)
+## 1.0.0 (September 22, 2020)
 * Improved live reload stability. Added the `livereloaddelay` parameter to API, which allows to set the delay in milliseconds between saving of a modified file and the application page reloading [#326](https://github.com/microsoft/cordova-simulate/pull/326)
 * Updated extension dependencies [#326](https://github.com/microsoft/cordova-simulate/pull/326)
 * The minimum supported version of Node.js has been increased from `6.0.0` to `10.0.0`
