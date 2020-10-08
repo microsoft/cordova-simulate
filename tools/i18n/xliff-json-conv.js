@@ -22,10 +22,10 @@ function parseXliff(xliff) {
         transUnitNodes.forEach(function (transUnitNode) {
             var targetNode = getElementChild(transUnitNode, 'target');
             items[transUnitNode.getAttribute('id')] = {
-                "text": getElementChild(transUnitNode, 'source').firstChild.data,
-                "state": targetNode.getAttribute('state'),
-                "stateQualifier": targetNode.getAttribute('state-qualifier'),
-                "translatedText": targetNode.firstChild.data
+                'text': getElementChild(transUnitNode, 'source').firstChild.data,
+                'state': targetNode.getAttribute('state'),
+                'stateQualifier': targetNode.getAttribute('state-qualifier'),
+                'translatedText': targetNode.firstChild.data
             };
         });
         return result;

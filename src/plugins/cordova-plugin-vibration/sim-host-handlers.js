@@ -12,7 +12,7 @@ module.exports = function (messages) {
 
     function handleVibrationWithPattern(success, fail, args) {
         messages.call('vibrateWithPattern', args).then(function () {
-            console.log('Vibrating with pattern - ' +args);
+            console.log('Vibrating with pattern - ' + args);
         }, function (err) {
             throw new Error('Vibration with pattern failed: ' + err);
         });

@@ -39,7 +39,7 @@ function SocketServer(simulatorProxy, project) {
     var config = this._simulatorProxy.config,
         telemetry = this._simulatorProxy.telemetry;
 
-    this._liveReload = new LiveReload(project, telemetry, config.forcePrepare);
+    this._liveReload = new LiveReload(project, telemetry, config.forcePrepare, config.liveReloadDelay);
 }
 
 SocketServer.prototype.init = function (server) {
@@ -126,7 +126,7 @@ SocketServer.prototype.reloadSimHost = function () {
 
 SocketServer.prototype.rethemeSimHost = function () {
     this._emitTo(SIM_HOST, 'retheme');
-}
+};
 
 SocketServer.prototype.closeConnections = function () {
     // stop watching file changes

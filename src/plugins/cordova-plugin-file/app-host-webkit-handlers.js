@@ -121,7 +121,7 @@ document.addEventListener('deviceready', function () {
     window.resolveLocalFileSystemURL = function(url, win, fail) {
         /* If url starts with `cdvfile` then we need convert it to Chrome real url first:
           cdvfile://localhost/persistent/path/to/file -> filesystem:file://persistent/path/to/file */
-        if (url.trim().substr(0,7) === 'cdvfile') {
+        if (url.trim().substr(0, 7) === 'cdvfile') {
             /* Quirk:
             Plugin supports cdvfile://localhost (local resources) only.
             I.e. external resources are not supported via cdvfile. */
@@ -174,7 +174,7 @@ function _getLocalFilesystemPathHandler(successCallback, errorCallback, module, 
     var url = args[0];
     var localhostIndex = url.indexOf('localhost');
     if (localhostIndex !== -1) {
-        url = url.substr(localhostIndex, url.length-localhostIndex);
+        url = url.substr(localhostIndex, url.length - localhostIndex);
     }
     successCallback(url);
 }

@@ -86,7 +86,7 @@ module.exports.start = function (sock) {
             var nodeReference = currentNode.getAttribute(referenceAttribute);
 
             // If the node's url / href / src doesn't reference the modified file on the server, ignore the node.
-            if (!urlMatchesPath(url.parse(nodeReference).pathname, fileRelativePath)) {
+            if (!nodeReference || !urlMatchesPath(url.parse(nodeReference).pathname, fileRelativePath)) {
                 continue;
             }
 

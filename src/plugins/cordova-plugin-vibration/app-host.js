@@ -19,7 +19,7 @@ module.exports = function (messages) {
         }
 
         var ms = parseInt(event, 10);
-        var seconds = ms/1000;
+        var seconds = ms / 1000;
         currentVibrationNum++;
         vibrate(ms);
         console.log('vibrating for ' + seconds + ' second(s)');

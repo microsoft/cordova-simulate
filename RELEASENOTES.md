@@ -1,5 +1,28 @@
 # cordova-simulate Release Notes
 
+## 1.0.0 (September 22, 2020)
+* Improved live reload stability. Added the `livereloaddelay` parameter to API, which allows to set the delay in milliseconds between saving of a modified file and the application page reloading [#326](https://github.com/microsoft/cordova-simulate/pull/326)
+* Updated extension dependencies [#326](https://github.com/microsoft/cordova-simulate/pull/326)
+* The minimum supported version of Node.js has been increased from `6.0.0` to `10.0.0`
+
+## 0.8.2 (July 30, 2020)
+* Fixed security vulnerabilities [#321](https://github.com/microsoft/cordova-simulate/pull/321), [#322](https://github.com/microsoft/cordova-simulate/pull/322), [#323](https://github.com/microsoft/cordova-simulate/pull/323)
+* Improved live reload stability, thanks to [@CravateRouge](https://github.com/CravateRouge) [#320](https://github.com/microsoft/cordova-simulate/pull/320)
+
+## 0.8.1 (May 12, 2020)
+* Fixed security vulnerabilities [#318](https://github.com/microsoft/cordova-simulate/pull/318)
+* Internal changes:
+    * Added YAML based build definitions [#314](https://github.com/microsoft/cordova-simulate/pull/314), [#317](https://github.com/microsoft/cordova-simulate/pull/317)
+
+## 0.8.0 (March 16, 2020)
+* Fixed security vulnerabilities [#311](https://github.com/microsoft/cordova-simulate/pull/311), [#312](https://github.com/microsoft/cordova-simulate/pull/312)
+* Added ability to use custom middleware to widen the range of supported plugins [#308](https://github.com/microsoft/cordova-simulate/pull/308), thanks to [@mfish33](https://github.com/mfish33)
+
+## 0.7.0 (January 23, 2020)
+* Fixed security vulnerabilities [#307](https://github.com/microsoft/cordova-simulate/pull/307)
+* Updated Device, OS and user-agent list for iOS devices [#302](https://github.com/microsoft/cordova-simulate/pull/302), thanks to [@mfish33](https://github.com/mfish33)
+* Added launch argument `--generateids` to generate unique UUIDs for simulated devices with UUID4 id format before simulate server launch [#303](https://github.com/microsoft/cordova-simulate/pull/303), thanks to [@mfish33](https://github.com/mfish33)
+
 ## 0.6.6 (August 27, 2019)
 * Fix security vulnerabilities [#304](https://github.com/microsoft/cordova-simulate/pull/304)
 

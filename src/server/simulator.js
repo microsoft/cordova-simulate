@@ -30,7 +30,7 @@ function Simulator(opts) {
     this._state = Simulator.State.IDLE;
 
     this.hostRoot = {
-        'app-host':  path.join(dirs.root, 'app-host')
+        'app-host': path.join(dirs.root, 'app-host')
     };
 
     var that = this;
@@ -54,7 +54,7 @@ function Simulator(opts) {
     this._createTheme(opts.theme);
 
     this._project = new Project(simulatorProxy, opts.platform);
-    this._server = new SimulationServer(simulatorProxy, this._project, this.hostRoot);
+    this._server = new SimulationServer(simulatorProxy, this._project, this.hostRoot, this._config);
 
     this._telemetry.initialize(this._project, this._config.telemetry);
 }
@@ -207,11 +207,11 @@ Simulator.prototype.updateTheme = function (themeData) {
     if (this._server && this._server.simSocket) {
         this._server.simSocket.rethemeSimHost();
     }
-}
+};
 
 Simulator.prototype._createTheme = function (themeData) {
     this._config.theme = theme.createTheme(this.hostRoot['sim-host'], themeData);   
-}
+};
 
 /**
  * Parse the options provided and create the configuration instance for the current
@@ -238,10 +238,11 @@ function parseOptions(opts) {
     config.simulationFilePath = opts.simulationpath;
     config.telemetry = opts.telemetry;
     config.liveReload = opts.hasOwnProperty('livereload') ? !!opts.livereload : true;
+    config.liveReloadDelay = opts.hasOwnProperty('livereloaddelay') ? opts.livereloaddelay : 200;
     config.forcePrepare = !!opts.forceprepare;
     config.xhrProxy = opts.hasOwnProperty('corsproxy') ? !!opts.corsproxy : true;
     config.touchEvents = opts.hasOwnProperty('touchevents') ? !!opts.touchevents : true;
-
+    config.middleware = opts.middleware;
     config.lang = normalizeLanguage(opts.lang);
 
     config.deviceInfo = device.getDeviceInfo(opts.platform, opts.device);
@@ -265,7 +266,7 @@ function normalizeLanguage(lang) {
 
     // Look for exact match (case insensitive)
     var idx = supportedLangs.map(function (lang) {
-        return lang.toLowerCase()
+        return lang.toLowerCase();
     }).indexOf(lang);
 
     if (idx == -1) {

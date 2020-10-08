@@ -105,7 +105,7 @@ Promise.all(htmlFiles.map(function (htmlFile) {
         var langXliff = langXliffs[lang];
 
         // Recreate xliff if marked as dirty for any file
-        if (langXliff.some(function (item) {return item.dirty})) {
+        if (langXliff.some(function (item) {return item.dirty;})) {
             langXliff.sort(function (left, right) {
                 return left.original < right.original ? -1 : 1;
             });
@@ -343,7 +343,7 @@ function processCurrentText(strings, currentText, usedLocIds) {
         var locIdIndex = 1;
         var stringLocId;
         do {
-            stringLocId = elementLocId + ":" + locIdIndex;
+            stringLocId = elementLocId + ':' + locIdIndex;
             locIdIndex++;
         } while (usedLocIds[stringLocId]);
         usedLocIds[stringLocId] = true;
@@ -413,7 +413,7 @@ function processAttributes(element, strings) {
             var attValue = attributes[translatedAttribute];
             if (attValue && shouldTranslate(attValue)) {
                 if (!locId) {
-                    locId = applyId(element)
+                    locId = applyId(element);
                 }
                 strings.push({id: translatedAttribute + '-' + locId, text: attValue, parentElement: element});
             }

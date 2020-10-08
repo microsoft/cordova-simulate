@@ -1,4 +1,4 @@
-# Cordova-Simulate [![Build status](https://dev.azure.com/vscode-webdiag-extensions/VS%20Code%20WebDiag%20extensions/_apis/build/status/cordova-simulate%20%5Bmaster%5D)](https://dev.azure.com/vscode-webdiag-extensions/VS%20Code%20WebDiag%20extensions/_build/latest?definitionId=35)
+# Cordova-Simulate [![Build Status](https://dev.azure.com/vscode-webdiag-extensions/VS%20Code%20WebDiag%20extensions/_apis/build/status/cordova-simulate%20%5Bmaster%5D?branchName=master)](https://dev.azure.com/vscode-webdiag-extensions/VS%20Code%20WebDiag%20extensions/_build/latest?definitionId=64&branchName=master)
 
 Simulates your Apache Cordova application in the browser.
 
@@ -15,13 +15,10 @@ npm install -g cordova-simulate
 From the command line anywhere within a Cordova project, enter the following:
 
 ```
-simulate [<platform>] [--target=<browser>]
+simulate [<platform>] [--device=<DEVICE_ID>] [--corsproxy=<true|false>] [--dir=<DIR>] [--livereload=<true|false>] [--port=<PORT>] [--forceprepare=<true|false>] [--simhostui=<SIM_HOST_UI_MODULE_PATH>] [--simulationpath=<SIMULATION_PATH>] [--target=<BROWSER>] [--lang=<LANG>] [--theme=<THEME>] [--middleware=<MIDDLEWARE_PATH>] [--generateids=<true|false>]
 ```
 
-Where:
-
-* **platform** is any Cordova platform that has been added to your project. Defaults to `browser`.
-* **browser** is the name of the browser to launch your app in. Can be any of the following: `default`, `chrome`, `chromium`, `edge`, `firefox`, `ie`, `opera`, `safari`.
+See parameters description in the [API](#api) section.
 
 ## API
 Use `require('cordova-simulate')` to launch a simulation via the API:
@@ -48,12 +45,15 @@ Where `opts` is an object with the following properties (all optional):
    Additional tags are ignored (for example, `de-DE` is treated as `de`).
 * **dir** - the directory to launch from (where it should look for a Cordova project). Defaults to cwd.
 * **simhostui** - the directory containing the UI specific files of the simulation host. Defaults to the bundled simulation host files, found in `src/sim-host/ui`.
-* **livereload** - A boolean. Set to `false` to disable live reload. Defaults to `true`.
-* **forceprepare** - A boolean. Set to `true` to force a `cordova prepare` whenever a file changes during live reload. If this is `false`, the server will simply copy the changed file to the platform rather than doing a `cordova prepare`. Ignored if live reload is disabled. Defaults to `false`.
-* **corsproxy** - Boolean indicating if XMLHttpRequest is proxied through the simulate server. This is useful for working around CORS issues at development time. Defaults to `true`.
-* **touchevents** - A boolean. Set to `false` to disable the simulation of touch events in App-Host. Defaults to `true`.
+* **livereload** - a boolean. Set to `false` to disable live reload. Defaults to `true`.
+* **forceprepare** - a boolean. Set to `true` to force a `cordova prepare` whenever a file changes during live reload. If this is `false`, the server will simply copy the changed file to the platform rather than doing a `cordova prepare`. Ignored if live reload is disabled. Defaults to `false`.
+* **corsproxy** - boolean indicating if XMLHttpRequest is proxied through the simulate server. This is useful for working around CORS issues at development time. Defaults to `true`.
+* **touchevents** - a boolean. Set to `false` to disable the simulation of touch events in App-Host. Defaults to `true`.
 * **simulationpath** - the directory where temporary simulation files are hosted. Defaults to `projectRoot/simulate`.
 * **simhosttitle** - specifies the title of the simulation window. Defaults to `Plugin Simulation`.
+* **middleware** - a path that points to express middleware. This can be used to write custom plugins that require the full power of NodeJS.
+* **generateids** - a boolean that generates unique ids for simulated devices at startup. Defaults to `false`.
+* **livereloaddelay** - the delay in milliseconds between saving of a modified file and the application page reloading. You can try to increase the delay in case the simulator server crashes while frequent page reloading. Defaults to `200ms`.
 
 
 # What it does
