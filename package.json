@@ -52,7 +52,7 @@
     "mstranslator": "^3.0.0",
     "parse5": "^2.2.1",
     "pretty-data": "^0.40.0",
-    "xmldom": "^0.1.22"
+    "xmldom": "^0.5.0"
   },
   "scripts": {
     "update-loc": "node ./tools/i18n/update"
