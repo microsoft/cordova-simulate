@@ -1,7 +1,7 @@
 # cordova-simulate Release Notes
 
 ## 1.0.1 (May 5, 2021)
-* Fix security vulnerabilities [#330](https://github.com/microsoft/cordova-simulate/pull/330), [#331](https://github.com/microsoft/cordova-simulate/pull/331), [#332](https://github.com/microsoft/cordova-simulate/pull/332), [#333](https://github.com/microsoft/cordova-simulate/pull/333), [#334](https://github.com/microsoft/cordova-simulate/pull/334)
+* Fixed security vulnerabilities [#330](https://github.com/microsoft/cordova-simulate/pull/330), [#331](https://github.com/microsoft/cordova-simulate/pull/331), [#332](https://github.com/microsoft/cordova-simulate/pull/332), [#333](https://github.com/microsoft/cordova-simulate/pull/333), [#334](https://github.com/microsoft/cordova-simulate/pull/334)
 
 ## 1.0.0 (September 22, 2020)
 * Improved live reload stability. Added the `livereloaddelay` parameter to API, which allows to set the delay in milliseconds between saving of a modified file and the application page reloading [#326](https://github.com/microsoft/cordova-simulate/pull/326)
