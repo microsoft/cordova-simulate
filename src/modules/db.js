@@ -138,7 +138,7 @@ self = {
     },
 
     initialize: function () {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             if (!window.openDatabase) {
                 var store = localStorage[DB_NAME];
                 cache = store ? JSON.parse(store) : {};
