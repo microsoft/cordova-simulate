@@ -3,7 +3,6 @@
 var browserify = require('browserify'),
     fs = require('fs'),
     path = require('path'),
-    Q = require('q'),
     through = require('through2'),
     dirs = require('./dirs'),
     jsUtils = require('./utils/jsUtils'),
@@ -106,7 +105,7 @@ SimulationFiles.prototype.getHostJsFile = function (hostType, simulationFilePath
 SimulationFiles.prototype._waitOnAppHostJs = function (project, simulationFilePath) {
     if (this._builtOnce[appHost]) {
         // If we've ever built app-host, just use what we have (on a refresh of sim-host, we don't want to rebuild app-host).
-        return Q.when(loadJsonFile(path.join(simulationFilePath, 'app-host.json')).plugins);
+        return Promise.resolve(loadJsonFile(path.join(simulationFilePath, 'app-host.json')).plugins);
     } else {
         // Otherwise force it to build now (this is to handle the case where sim-host is requested before app-host).
         return this.createAppHostJsFile(project, simulationFilePath);
@@ -131,7 +130,7 @@ SimulationFiles.prototype._createHostJsFile = function (simulationFilePath, host
     if (fs.existsSync(outputFile) && validatePlugins(hostType, pluginList, simulationFilePath)) {
         log.log('Creating ' + hostType + '.js: Existing file found and is up-to-date.');
         this._builtOnce[hostType] = true;
-        return Q.when(pluginList);
+        return Promise.resolve(pluginList);
     }
 
     var filePath = this._hostTypeJsFile[hostType];
@@ -195,25 +194,24 @@ SimulationFiles.prototype._createHostJsFile = function (simulationFilePath, host
     });
 
     var outputFileStream = fs.createWriteStream(outputFile);
-    var d = Q.defer();
 
-    outputFileStream.on('finish', function () {
-        this._builtOnce[hostType] = true;
-        fs.writeFileSync(jsonFile, JSON.stringify({ plugins: pluginList, files: fileInfo }));
-        d.resolve(pluginList);
-    }.bind(this));
-    outputFileStream.on('error', function (error) {
-        d.reject(error);
+    return new Promise((resolve, reject) => {
+        outputFileStream.on('finish', function () {
+            this._builtOnce[hostType] = true;
+            fs.writeFileSync(jsonFile, JSON.stringify({ plugins: pluginList, files: fileInfo }));
+            resolve(pluginList);
+        }.bind(this));
+        outputFileStream.on('error', function (error) {
+            reject(error);
+        });
+    
+        let bundle = b.bundle();
+        bundle.on('error', function (error) {
+            reject(error);
+        });
+    
+        bundle.pipe(outputFileStream);
     });
-
-    var bundle = b.bundle();
-    bundle.on('error', function (error) {
-        d.reject(error);
-    });
-
-    bundle.pipe(outputFileStream);
-
-    return d.promise;
 };
 
 function validatePlugins(hostType, pluginList, simulationFilePath) {
