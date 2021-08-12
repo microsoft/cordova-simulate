@@ -6,7 +6,6 @@ var customElements = require('./custom-elements'),
     db = require('db'),
     dialog = require('dialog'),
     Messages = require('messages'),
-    Q = require('q'),
     socket = require('../protocol/socket');
 
 var COLLAPSED_PANELS_KEY = 'collapsed-panels';
@@ -20,7 +19,7 @@ customElements.initialize(changePanelVisibilityCallback);
 
 window.addEventListener('DOMContentLoaded', function () {
     sizeContent();
-    Q.all([db.initialize(), initSocketPromise]).then(function (result) {
+    Promise.all([db.initialize(), initSocketPromise]).then(function (result) {
         initializePlugins(result[1]);
 
         // Some panels, like geolocation, need to be fully initialized before they can be hidden, otherwise they will
@@ -32,7 +31,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 panel.cordovaCollapsed = true;
             }
         });
-    }).done();
+    });
 });
 
 window.addEventListener('resize', function () {

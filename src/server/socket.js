@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var Q = require('q'),
-    log = require('./utils/log'),
-    LiveReload = require('./live-reload/live-reload');
+var log = require('./utils/log'),
+    LiveReload = require('./live-reload/live-reload'),
+    DeferredPromise = require('./utils/deferredPromise');
 
 // make variable match the literal
 var APP_HOST = 'APP_HOST',
@@ -33,8 +33,8 @@ function SocketServer(simulatorProxy, project) {
      *      - When app-host connects (sends initial message)
      *      - When sim-host notifies it's ready to serve an app-host.
      */
-    this._whenAppHostConnected = Q.defer();
-    this._whenSimHostReady     = Q.defer();
+    this._whenAppHostConnected = new DeferredPromise();
+    this._whenSimHostReady     = new DeferredPromise();
 
     var config = this._simulatorProxy.config,
         telemetry = this._simulatorProxy.telemetry;
@@ -149,18 +149,18 @@ SocketServer.prototype.closeConnections = function () {
     this._pendingEmits[APP_HOST] = [];
     this._pendingEmits[SIM_HOST] = [];
     this._pendingEmits[DEBUG_HOST] = [];
-    this._whenAppHostConnected = Q.defer();
-    this._whenSimHostReady = Q.defer();
+    this._whenAppHostConnected = new DeferredPromise();
+    this._whenSimHostReady = new DeferredPromise();
 };
 
 SocketServer.prototype._resetAppHostState = function () {
-    this._whenAppHostConnected = Q.defer();
+    this._whenAppHostConnected = new DeferredPromise();
     this._whenAppHostConnected.promise
         .then(this._onAppHostConnected.bind(this));
 };
 
 SocketServer.prototype._resetSimHostState = function () {
-    this._whenSimHostReady = Q.defer();
+    this._whenSimHostReady = new DeferredPromise();
     this._whenSimHostReady.promise
         .then(this._onSimHostReady.bind(this));
 };

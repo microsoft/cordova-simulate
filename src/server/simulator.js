@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var Q = require('q'),
-    fs = require('fs'),
+var fs = require('fs'),
     path = require('path'),
     log = require('./utils/log'),
     dirs = require('./dirs'),
@@ -144,7 +143,7 @@ Simulator.prototype.simHostUrl = function () {
  */
 Simulator.prototype.startSimulation = function () {
     if (this.isActive()) {
-        return Q.reject('Simulation is active');
+        return Promise.reject('Simulation is active');
     }
 
     this._state = Simulator.State.STARTING;
@@ -182,7 +181,7 @@ Simulator.prototype.startSimulation = function () {
  */
 Simulator.prototype.stopSimulation = function () {
     if (!this.isRunning()) {
-        return Q.reject('Simulation is not running');
+        return Promise.reject('Simulation is not running');
     }
 
     this._state = Simulator.State.STOPPING;

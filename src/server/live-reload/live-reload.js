@@ -2,7 +2,6 @@
 
 var fs = require('fs');
 var path = require('path');
-var Q = require('q');
 var Watcher = require('./watcher').Watcher;
 var log = require('../utils/log');
 var utils = require('../utils/jsUtils');
@@ -78,7 +77,7 @@ LiveReload.prototype._onFileChanged = function (fileRelativePath, parentDir) {
 
     // Notify app-host. The delay is needed as a workaround on Windows, because shortly after copying the file, it is
     // typically locked by the Firewall and can't be correctly sent by the server.
-    propagateChangePromise.delay(this._reloadDelay)
+    propagateChangePromise.then(() => utils.delay(this._reloadDelay))
         .then(function (shouldUpdateModifTime) {
             var props = { fileType: path.extname(fileRelativePath) };
 
@@ -92,14 +91,13 @@ LiveReload.prototype._onFileChanged = function (fileRelativePath, parentDir) {
         .catch(function (err) {
             // Fail gracefully if live reload fails for some reason
             log.warning('Error in live reload processing changed file: ' + utils.stripErrorColon(err));
-        })
-        .done();
+        });
 };
 
 LiveReload.prototype._copyFileWithDelay = function (src, dest, delay) {
     return this._retryAsyncLockIteration(
         () => {
-            return Q.delay(delay)
+            return utils.delay(delay)
                 .then(copyFile(src, dest))
                 .finally(() => {
                     this._filesLocks.delete(dest);
@@ -119,19 +117,19 @@ LiveReload.prototype._retryAsyncLockIteration = function (operation, delay, key,
         this._filesLocks.set(key, true);
         return operation();
     } else if (attempts <= 0) {
-        return Q.reject('Attempts to catch the lock have exceeded');
+        return Promise.reject('Attempts to catch the lock have exceeded');
     } else {
-        return Q.delay(delay)
+        return utils.delay(delay)
             .then(() => this._retryAsyncLockIteration(operation, delay, key, --attempts));
     }
 };
 
 function copyFile(src, dest) {
-    return Q(utils.copyFileRecursiveSync(src, dest));
+    return Promise.resolve(utils.copyFileRecursiveSync(src, dest));
 }
 
 function deleteFile(file) {
-    return Q.nfcall(fs.unlink, file);
+    return fs.promises.unlink(file);
 }
 
 module.exports = LiveReload;
