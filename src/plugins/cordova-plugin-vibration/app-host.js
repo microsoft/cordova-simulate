@@ -20,7 +20,10 @@ module.exports = function (messages) {
         var ms = parseInt(event, 10);
         var seconds = ms / 1000;
         currentVibrationNum++;
-        vibrate(ms);
+        vibrate(ms)
+            .catch(err => {
+                if (err) throw err;
+            });
         console.log('vibrating for ' + seconds + ' second(s)');
         callback();
     });
@@ -35,7 +38,10 @@ module.exports = function (messages) {
         currentVibrationWithPatternIndex = 0;
         console.log('vibrating with pattern ' + pattern);
         currentVibrationNum++;
-        vibrateWithPattern(pattern, currentVibrationNum);
+        vibrateWithPattern(pattern, currentVibrationNum)
+            .catch(err => {
+                if (err) throw err;
+            });
         console.log(currentVibrationNum);
         callback();
     });
@@ -56,7 +62,10 @@ module.exports = function (messages) {
         currentVibrationNum++;
 
         // pass 0 to cancel vibration
-        vibrate(0);
+        vibrate(0)
+            .catch(err => {
+                if (err) throw err;
+            });
         vibrationCanceled = true;
         console.log('canceling vibration');
         callback();
