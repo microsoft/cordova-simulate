@@ -1,5 +1,11 @@
 # cordova-simulate Release Notes
 
+## 1.1.0 (August 18, 2021)
+* Added simulation of iPhone 12 devices [#345](https://github.com/microsoft/cordova-simulate/pull/345)
+* Fixed security vulnerabilities [#337](https://github.com/microsoft/cordova-simulate/pull/337), [#338](https://github.com/microsoft/cordova-simulate/pull/338), [#340](https://github.com/microsoft/cordova-simulate/pull/340), [#342](https://github.com/microsoft/cordova-simulate/pull/342)
+* Internal changes:
+    * Got rid of Q promises [#344](https://github.com/microsoft/cordova-simulate/pull/344)
+
 ## 1.0.1 (May 5, 2021)
 * Fixed security vulnerabilities [#330](https://github.com/microsoft/cordova-simulate/pull/330), [#331](https://github.com/microsoft/cordova-simulate/pull/331), [#332](https://github.com/microsoft/cordova-simulate/pull/332), [#333](https://github.com/microsoft/cordova-simulate/pull/333), [#334](https://github.com/microsoft/cordova-simulate/pull/334)
 
