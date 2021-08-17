@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-var Q = require('q');
-
 // Plugin communications layer. Two types of communication are supported:
 // 1. Messages - when emitted, any local handlers are notified, and it is also sent across to web sockets connection
 //    where any remote handlers are notified. There can be any number of local and/or remote handlers. There is no
@@ -53,19 +51,19 @@ Messages.prototype = {
      * @param method
      */
     call: function (method) {
-        var d = Q.defer();
-        this.socket.emit('plugin-method', {
-            pluginId: this.pluginId,
-            method: method,
-            args: Array.prototype.slice.call(arguments, 1)
-        }, function (err, result) {
-            if (err) {
-                d.reject(err);
-            } else {
-                d.resolve(result);
-            }
+        return new Promise((resolve, reject) => {
+            this.socket.emit('plugin-method', {
+                pluginId: this.pluginId,
+                method: method,
+                args: Array.prototype.slice.call(arguments, 1)
+            }, function (err, result) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(result);
+                }
+            });
         });
-        return d.promise;
     },
 
     register: function(method, handler) {

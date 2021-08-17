@@ -3,7 +3,6 @@
 var fs = require('fs'),
     path = require('path'),
     cordovaServe = require('cordova-serve'),
-    Q = require('q'),
     dirs = require('./dirs'),
     pluginUtil = require('./utils/plugins'),
     prepareUtil = require('./utils/prepare'),
@@ -183,45 +182,45 @@ Project.prototype.hasBuiltInPluginTelemetry = function (plugin) {
  */
 Project.prototype.prepare = function () {
     if (!this._preparePromise) {
-        var d = Q.defer();
-        var currentProjectState;
-
-        this._preparePromise = d.promise;
-        this._lastPlatform = this.platform;
-
-        this._getProjectState()
-            .then(function (currentState) {
-                currentProjectState = currentState;
-
-                if (this._shouldPrepare(currentProjectState)) {
-                    var platform = this._lastPlatform;
-                    return prepareUtil.execCordovaPrepare(this.projectRoot, platform)
-                        .catch(function (err) {
-                            log.warning('Preparing platform \'' + platform + '\' failed: ' + utils.stripErrorColon(err));
-                        }).then(function () {
-                            // Note that we return true even if we caught an error (in case the error
-                            // was in a hook, for example, and the prepare actually succeeded).
-                            return true;
-                        });
-                }
-
-                return Q(false);
-            }.bind(this))
-            .then(function (didPrepare) {
-                if (didPrepare || this._shouldInitPlugins(currentProjectState)) {
-                    this._previousPrepareStates[this.platform] = currentProjectState;
-                    this.initPlugins();
-                }
-
-                d.resolve();
-            }.bind(this))
-            .catch(function (err) {
-                d.reject(err);
-            })
-            .finally(function () {
-                this._lastPlatform = null;
-                this._preparePromise = null;
-            }.bind(this));
+        this._preparePromise = new Promise((resolve, reject) => {
+            let currentProjectState;
+    
+            this._lastPlatform = this.platform;
+    
+            this._getProjectState()
+                .then(function (currentState) {
+                    currentProjectState = currentState;
+    
+                    if (this._shouldPrepare(currentProjectState)) {
+                        let platform = this._lastPlatform;
+                        return prepareUtil.execCordovaPrepare(this.projectRoot, platform)
+                            .catch(function (err) {
+                                log.warning('Preparing platform \'' + platform + '\' failed: ' + utils.stripErrorColon(err));
+                            }).then(function () {
+                                // Note that we return true even if we caught an error (in case the error
+                                // was in a hook, for example, and the prepare actually succeeded).
+                                return true;
+                            });
+                    }
+    
+                    return Promise.resolve(false);
+                }.bind(this))
+                .then(function (didPrepare) {
+                    if (didPrepare || this._shouldInitPlugins(currentProjectState)) {
+                        this._previousPrepareStates[this.platform] = currentProjectState;
+                        this.initPlugins();
+                    }
+    
+                    resolve();
+                }.bind(this))
+                .catch(function (err) {
+                    reject(err);
+                })
+                .finally(function () {
+                    this._lastPlatform = null;
+                    this._preparePromise = null;
+                }.bind(this));
+        });
     } else if (this.platform !== this._lastPlatform) {
         // Sanity check to verify we never queue prepares for different platforms
         throw new Error('Unexpected request to prepare \'' + this.platform + '\' while prepare of \'' + this._lastPlatform + '\' still pending.');
@@ -317,23 +316,20 @@ Project.prototype.updateTimeStampForFile = function (fileRelativePath, parentDir
  * @private
  */
 Project.prototype._getProjectState = function() {
-    var platform = this.platform;
-    var projectRoot = this.projectRoot;
-    var newState = {};
+    let platform = this.platform;
+    let projectRoot = this.projectRoot;
+    let newState = {};
 
-    return Q()
-        .then(function () {
-            // Get the list of plugins for the current platform.
-            var pluginsJsonPath = path.join(projectRoot, 'plugins', platform + '.json');
-            return Q.nfcall(fs.readFile, pluginsJsonPath);
-        })
+    // Get the list of plugins for the current platform.
+    let pluginsJsonPath = path.join(projectRoot, 'plugins', platform + '.json');
+    return fs.promises.readFile(pluginsJsonPath)
         .catch(function () {
             // an error ocurred trying to read the file for the current platform,
             // return an empty json file content
             return '{}';
         })
         .then(function (fileContent) {
-            var installedPlugins;
+            let installedPlugins;
 
             try {
                 installedPlugins = Object.keys(JSON.parse(fileContent.toString())['installed_plugins'] || {});
@@ -347,12 +343,12 @@ Project.prototype._getProjectState = function() {
         })
         .then(function () {
             // Get the modification times for project files.
-            var wwwRoot = path.join(projectRoot, 'www');
-            var mergesRoot = path.join(projectRoot, 'merges', platform);
+            let wwwRoot = path.join(projectRoot, 'www');
+            let mergesRoot = path.join(projectRoot, 'merges', platform);
 
-            return Q.all([utils.getMtimeForFiles(wwwRoot), utils.getMtimeForFiles(mergesRoot)]);
+            return Promise.all([utils.getMtimeForFiles(wwwRoot), utils.getMtimeForFiles(mergesRoot)]);
         })
-        .spread(function (wwwFiles, mergesFiles) {
+        .then(function ([wwwFiles, mergesFiles]) {
             var files = {};
 
             files.www = wwwFiles || {};

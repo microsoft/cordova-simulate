@@ -7,7 +7,6 @@ var fs = require('fs'),
     cspParse = require('csp-parse'),
     send = require('send-transform'),
     url = require('url'),
-    Q = require('q'),
     dirs = require('./dirs'),
     log = require('./utils/log'),
     SimulationFiles = require('./sim-files'),
@@ -135,34 +134,31 @@ SimulationServer.prototype.start = function (platform, opts) {
  * @return {Promise} A promise that is resolved once the server has been closed.
  */
 SimulationServer.prototype.stop = function () {
-    if (!this._isServerReady()) {
-        return Q.resolve();
-    }
+    return new Promise((resolve) => {
+        if (!this._isServerReady()) {
+            return resolve();
+        }
 
-    var deferred = Q.defer(),
-        promise = deferred.promise;
-
-    try {
-        this._cordovaServer.server.close(function () {
-            deferred.resolve();
-        });
-    } catch (error) {
-        // calling server.close when the server was already closed
-        // throws an exception, so let's handle it, resolve the
-        // promise and continue cleaning up the state
-        deferred.resolve();
-    }
-
-    for (var id in this._connections) {
-        var socket = this._connections[id];
-        socket && socket.destroy();
-    }
-
-    this._simSocket.closeConnections();
-
-    this._connections = {};
-
-    return promise;
+        try {
+            this._cordovaServer.server.close(function () {
+                resolve();
+            });
+        } catch (error) {
+            // calling server.close when the server was already closed
+            // throws an exception, so let's handle it, resolve the
+            // promise and continue cleaning up the state
+            resolve();
+        }
+    
+        for (let id in this._connections) {
+            let socket = this._connections[id];
+            socket && socket.destroy();
+        }
+    
+        this._simSocket.closeConnections();
+    
+        this._connections = {};
+    });
 };
 
 /**
@@ -289,8 +285,7 @@ SimulationServer.prototype._streamAppHostHtml = function (request, response) {
                         }, {maxMatchLen: MAX_CSP_TAG_LENGTH}));
                 }
             }).pipe(response);
-        }.bind(this))
-        .done();
+        }.bind(this));
 };
 
 /**
@@ -346,8 +341,7 @@ SimulationServer.prototype._streamSimHostHtml = function (request, response) {
                         .pipe(replaceStream('<!-- DIALOGS -->', dialogsHtml.join('\n')));
                 }
             }).pipe(response);
-        }.bind(this))
-        .done();
+        }.bind(this));
 };
 
 /**

@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Based in part on code from Apache Ripple, https://github.com/apache/incubator-ripple
 
-var Q = require('q'),
-    utils = require('utils'),
+var utils = require('utils'),
     constants = require('sim-constants'),
     event = require('event'),
     DB_NAME = 'ripple',
@@ -139,33 +138,31 @@ self = {
     },
 
     initialize: function () {
-        var d = Q.defer();
-
-        if (!window.openDatabase) {
-            var store = localStorage[DB_NAME];
-            cache = store ? JSON.parse(store) : {};
-            saveToStorage();
-            d.resolve();
-        } else {
-            cache = {};
-            opendb = openDatabase('tinyHippos', '1.0', 'tiny Hippos persistence', 2 * 1024 * 1024);
-            opendb.transaction(function (tx) {
-                tx.executeSql('CREATE TABLE IF NOT EXISTS persistence (id unique, key, value, prefix)');
-
-                tx.executeSql('SELECT id, key, value, prefix FROM persistence', [], function (tx, results) {
-                    var len = results.rows.length, i, item;
-
-                    for (i = 0; i < len; i++) {
-                        item = results.rows.item(i);
-                        cache[item.id] = item;
-                    }
-
-                    d.resolve();
+        return new Promise((resolve) => {
+            if (!window.openDatabase) {
+                var store = localStorage[DB_NAME];
+                cache = store ? JSON.parse(store) : {};
+                saveToStorage();
+                resolve();
+            } else {
+                cache = {};
+                opendb = openDatabase('tinyHippos', '1.0', 'tiny Hippos persistence', 2 * 1024 * 1024);
+                opendb.transaction(function (tx) {
+                    tx.executeSql('CREATE TABLE IF NOT EXISTS persistence (id unique, key, value, prefix)');
+    
+                    tx.executeSql('SELECT id, key, value, prefix FROM persistence', [], function (tx, results) {
+                        var len = results.rows.length, i, item;
+    
+                        for (i = 0; i < len; i++) {
+                            item = results.rows.item(i);
+                            cache[item.id] = item;
+                        }
+    
+                        resolve();
+                    });
                 });
-            });
-        }
-
-        return d.promise;
+            }
+        });
     }
 };
 

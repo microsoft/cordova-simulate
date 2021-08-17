@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
 var exec = require('child_process').exec,
-    Q = require('q'),
     log = require('./log'),
     utils = require('./jsUtils');
 
@@ -16,21 +15,19 @@ function execCordovaPrepare(projectRoot, platform) {
 
 function getExecCordovaPrepareImpl(projectRoot, platform) {
     return function () {
-        var deferred = Q.defer();
+        return new Promise((resolve, reject) => {
+            log.log('Preparing platform \'' + platform + '\'.');
 
-        log.log('Preparing platform \'' + platform + '\'.');
-
-        exec('cordova prepare ' + platform, {
-            cwd: projectRoot
-        }, function (err) {
-            if (err) {
-                deferred.reject(err);
-            } else {
-                deferred.resolve();
-            }
+            exec('cordova prepare ' + platform, {
+                cwd: projectRoot
+            }, function (err) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve();
+                }
+            });
         });
-
-        return deferred.promise;
     };
 }
 
