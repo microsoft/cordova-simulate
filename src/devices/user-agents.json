@@ -18,7 +18,8 @@
     "10": "Mozilla/5.0 (<device-type>; CPU <os-name> 10_0 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Mobile/14A5346a",
     "11": "Mozilla/5.0 (<device-type>; CPU <os-name> 12_0 like Mac OS X) AppleWebKit/604.5.6 (KHTML, like Gecko) Mobile/15D100",
     "12": "Mozilla/5.0 (<device-type>; CPU <os-name> 12_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",
-    "13": "Mozilla/5.0 (<device-type>; CPU <os-name> 13_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
+    "13": "Mozilla/5.0 (<device-type>; CPU <os-name> 13_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",
+    "14": "Mozilla/5.0 (<device-type>; CPU <os-name> 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
   },
   "windows": {
     "8.1": {
