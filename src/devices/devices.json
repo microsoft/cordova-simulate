@@ -423,6 +423,78 @@
       "default": true
     },
     {
+      "id": "iPhone12mini",
+      "name": "iPhone 12 mini",
+      "model": "iPhone13,1",
+      "device-version-template": "<os-version>",
+      "default-os-version": "14",
+      "uuid": "9266C77B-7564-47A6-90A5-84CC0FFDCFBE",
+      "manufacturer": "Apple",
+      "resolution": {
+        "width": 1080,
+        "height": 2340
+      },
+      "viewport": {
+        "width": 360,
+        "height": 780
+      },
+      "pixel-ratio": 3
+    },
+    {
+      "id": "iPhone12",
+      "name": "iPhone 12",
+      "model": "iPhone13,2",
+      "device-version-template": "<os-version>",
+      "default-os-version": "14",
+      "uuid": "C6055154-1EA5-48E1-866E-3D36A4598EA8",
+      "manufacturer": "Apple",
+      "resolution": {
+        "width": 1170,
+        "height": 2532
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pixel-ratio": 3
+    },
+    {
+      "id": "iPhone12Pro",
+      "name": "iPhone 12 Pro",
+      "model": "iPhone13,3",
+      "device-version-template": "<os-version>",
+      "default-os-version": "14",
+      "uuid": "3297FCDC-87DF-4FE4-8D4B-B41F6A9831D3",
+      "manufacturer": "Apple",
+      "resolution": {
+        "width": 1170,
+        "height": 2532
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pixel-ratio": 3
+    },
+    {
+      "id": "iPhone12ProMax",
+      "name": "iPhone 12 Pro Max",
+      "model": "iPhone13,4",
+      "device-version-template": "<os-version>",
+      "default-os-version": "14",
+      "uuid": "482F2115-B64A-4127-A4EA-995E57F958D7",
+      "manufacturer": "Apple",
+      "resolution": {
+        "width": 1284,
+        "height": 2778
+      },
+      "viewport": {
+        "width": 428,
+        "height": 926
+      },
+      "pixel-ratio": 3
+    },
+    {
       "id": "iPad",
       "name": "iPad",
       "model": "iPad5,3",
