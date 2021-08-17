@@ -2,7 +2,6 @@
 
 var fs = require('fs'),
     path = require('path'),
-    Q = require('q'),
     glob = require('glob');
 
 var DEFAULT_ASYNC_RETRY_ATTEMPTS = 2;
@@ -197,24 +196,30 @@ function getAppDataPath() {
 }
 
 function getMtimeForFiles(dir) {
-    var files = {};
+    let files = {};
 
-    return Q.nfcall(glob, '**/*', { cwd: dir })
-        .then(function (rawFiles) {
-            var filePromises = [];
+    return new Promise((resolve, reject) => {
+        glob('**/*', { cwd: dir }, (err, rawFiles) => {
+            if (err) {
+                return reject(err);
+            }
 
-            rawFiles.forEach(function (file) {
+            let filePromises = [];
+
+            rawFiles.forEach(file => {
                 file = path.join(dir, file);
-
-                filePromises.push(Q.nfcall(fs.stat, file)
-                    .then(function (stats) {
+    
+                filePromises.push(fs.promises.stat(file)
+                    .then(stats => {
                         files[file] = new Date(stats.mtime).getTime();
-                    }));
+                    })
+                );
             });
 
-            return Q.all(filePromises);
-        })
-        .then(function () {
+            resolve(Promise.all(filePromises));
+        });
+    })
+        .then(() => {
             return files;
         });
 }
@@ -233,13 +238,13 @@ function retryAsync(promiseFunc, maxTries, delay, iteration) {
 
     return promiseFunc().catch(function (err) {
         if (iteration < maxTries) {
-            return Q.delay(delay)
+            return delay(delay)
                 .then(function () {
                     return retryAsync(promiseFunc, maxTries, delay, iteration + 1);
                 });
         }
 
-        return Q.reject(err);
+        return Promise.reject(err);
     });
 }
 
@@ -252,6 +257,10 @@ function stripErrorColon(err) {
     return err.split('\n')[0];
 }
 
+function delay(duration) {
+    return new Promise(resolve => setTimeout(resolve, duration));
+}
+
 module.exports.compareObjects = compareObjects;
 module.exports.compareArrays = compareArrays;
 module.exports.existsSync = existsSync;
@@ -262,3 +271,4 @@ module.exports.getAppDataPath = getAppDataPath;
 module.exports.getMtimeForFiles = getMtimeForFiles;
 module.exports.retryAsync = retryAsync;
 module.exports.stripErrorColon = stripErrorColon;
+module.exports.delay = delay;
