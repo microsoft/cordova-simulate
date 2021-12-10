@@ -189,7 +189,7 @@ SimulationServer.prototype._prepareRoutes = function (simHostMiddleware) {
     app.use('/simulator', cordovaServe.static(this._hostRoot['sim-host']));
     app.use('/simulator/thirdparty', cordovaServe.static(dirs.thirdParty));
 
-    if (this._config.spaurlrewrites) {
+    if (this._config.spaUrlRewrites) {
         app.get('*', defaultHandler);
     }
 };
