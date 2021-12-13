@@ -15,7 +15,7 @@ npm install -g cordova-simulate
 From the command line anywhere within a Cordova project, enter the following:
 
 ```
-simulate [<platform>] [--device=<DEVICE_ID>] [--corsproxy=<true|false>] [--dir=<DIR>] [--livereload=<true|false>] [--port=<PORT>] [--forceprepare=<true|false>] [--simhostui=<SIM_HOST_UI_MODULE_PATH>] [--simulationpath=<SIMULATION_PATH>] [--target=<BROWSER>] [--lang=<LANG>] [--theme=<THEME>] [--middleware=<MIDDLEWARE_PATH>] [--generateids=<true|false>]
+simulate [<platform>] [--device=<DEVICE_ID>] [--corsproxy=<true|false>] [--dir=<DIR>] [--livereload=<true|false>] [--port=<PORT>] [--forceprepare=<true|false>] [--simhostui=<SIM_HOST_UI_MODULE_PATH>] [--simulationpath=<SIMULATION_PATH>] [--target=<BROWSER>] [--lang=<LANG>] [--theme=<THEME>] [--middleware=<MIDDLEWARE_PATH>] [--generateids=<true|false>] [--spaurlrewrites=<true|false>]
 ```
 
 See parameters description in the [API](#api) section.
@@ -54,6 +54,7 @@ Where `opts` is an object with the following properties (all optional):
 * **middleware** - a path that points to express middleware. This can be used to write custom plugins that require the full power of NodeJS.
 * **generateids** - a boolean that generates unique ids for simulated devices at startup. Defaults to `false`.
 * **livereloaddelay** - the delay in milliseconds between saving of a modified file and the application page reloading. You can try to increase the delay in case the simulator server crashes while frequent page reloading. Defaults to `200ms`.
+* **spaurlrewrites** - a boolean. Set to `true` to fix page refreshing in single page applications. Defaults to `false`.
 
 
 # What it does
