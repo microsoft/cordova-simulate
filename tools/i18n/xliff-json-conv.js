@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
 var fs = require('fs'),
-    DOMParser = require('xmldom').DOMParser;
+    DOMParser = require('@xmldom/xmldom').DOMParser;
 
 function parseXliffFile(xliffFile) {
     return parseXliff(fs.readFileSync(xliffFile, 'utf8'));
