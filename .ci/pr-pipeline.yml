@@ -9,7 +9,7 @@ jobs:
   - job: Linux
     pool:
       vmImage: ubuntu-latest
-    timeoutInMinutes: 11
+    timeoutInMinutes: 10
     steps:
       - checkout: self
         clean: true
