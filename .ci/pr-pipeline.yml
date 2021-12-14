@@ -2,9 +2,6 @@ pr:
   branches:
     include: ["*", "master"]
 
-trigger:
-  - none
-
 jobs:
   - job: Linux
     pool:
