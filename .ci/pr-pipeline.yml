@@ -1,6 +1,9 @@
 pr:
   branches:
-    include: ["*", "master"]
+    include: ["*"]
+
+trigger:
+  - none
 
 jobs:
   - job: Linux
