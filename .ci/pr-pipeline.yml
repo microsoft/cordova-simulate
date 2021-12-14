@@ -1,7 +1,6 @@
 pr:
   branches:
-    include:
-    - '*'
+    include: ["*"]
 
 trigger:
   - none
