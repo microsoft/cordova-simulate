@@ -13,6 +13,7 @@
         "semi": ["error", "always"],
         "space-infix-ops": ["error", { "int32Hint": false }],
         "comma-spacing": ["error", { "before": false, "after": true }],
-        "key-spacing": ["error", { "beforeColon": false }]
+        "key-spacing": ["error", { "beforeColon": false }],
+        "no-prototype-builtins": "off"
     }
 }
