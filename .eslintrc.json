@@ -6,14 +6,15 @@
         "es6": true
     },
     "rules": {
-        "quotes": [ 2, "single", { "avoidEscape": false, "allowTemplateLiterals": true } ],
-        "no-console": [ 0 ],
-        "indent": [ "error", 4, { "SwitchCase": 1, "VariableDeclarator": 1 } ],
+        "quotes": [2, "single", { "avoidEscape": false, "allowTemplateLiterals": true }],
+        "no-console": [0],
+        "indent": ["error", 4, { "SwitchCase": 1, "VariableDeclarator": 1 }],
         "no-useless-escape": "off",
         "semi": ["error", "always"],
         "space-infix-ops": ["error", { "int32Hint": false }],
         "comma-spacing": ["error", { "before": false, "after": true }],
         "key-spacing": ["error", { "beforeColon": false }],
-        "no-prototype-builtins": "off"
+        "no-prototype-builtins": "off",
+        "no-redeclare": ["error", { "builtinGlobals": false }]
     }
 }
