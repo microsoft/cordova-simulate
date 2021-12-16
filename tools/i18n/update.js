@@ -7,7 +7,7 @@ var fs = require('fs'),
     xliffConv = require('./xliff-json-conv'),
     parse5 = require('parse5'),
     pd = require('pretty-data').pd,
-    XMLSerializer = require('xmldom').XMLSerializer,
+    XMLSerializer = require('@xmldom/xmldom').XMLSerializer,
     translate = require('./translate');
 
 var translatedAttributes = ['label', 'caption', 'spoken-text', 'aria-label', 'name'];

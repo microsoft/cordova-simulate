@@ -169,7 +169,8 @@ SimulationServer.prototype._prepareRoutes = function (simHostMiddleware) {
     var app = this._cordovaServer.app;
 
     var streamSimHostHtml = this._streamSimHostHtml.bind(this),
-        streamAppHostHtml = this._streamAppHostHtml.bind(this);
+        streamAppHostHtml = this._streamAppHostHtml.bind(this),
+        defaultHandler = this._defaultHandler.bind(this);
 
     app.get('/simulator/', streamSimHostHtml);
     app.get('/simulator/*.html', streamSimHostHtml);
@@ -187,6 +188,10 @@ SimulationServer.prototype._prepareRoutes = function (simHostMiddleware) {
     app.use(this._project.getRouter());
     app.use('/simulator', cordovaServe.static(this._hostRoot['sim-host']));
     app.use('/simulator/thirdparty', cordovaServe.static(dirs.thirdParty));
+
+    if (this._config.spaUrlRewrites) {
+        app.get('*', defaultHandler);
+    }
 };
 
 /**
@@ -365,6 +370,24 @@ SimulationServer.prototype._sendSimHostThemeCssFile = function (request, respons
     } else {
         next();
     }
+};
+
+/**
+ * @param {object} request
+ * @param {object} response
+ * @param {function} next
+ * @private
+ */
+SimulationServer.prototype._defaultHandler = function (request, response, next) {
+    var staticFileReg = /\/[^\/]*\.\w+$/;
+
+    if (staticFileReg.test(request.path)) {
+        return next();
+    }
+
+    // If the URL doesn't point to a static file and match any of our routes, 
+    // then redirect to the 'index.html' to avoid 'Cannot GET' errors
+    response.redirect('/index.html');
 };
 
 /**

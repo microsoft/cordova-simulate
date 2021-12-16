@@ -241,6 +241,7 @@ function parseOptions(opts) {
     config.forcePrepare = !!opts.forceprepare;
     config.xhrProxy = opts.hasOwnProperty('corsproxy') ? !!opts.corsproxy : true;
     config.touchEvents = opts.hasOwnProperty('touchevents') ? !!opts.touchevents : true;
+    config.spaUrlRewrites = opts.hasOwnProperty('spaurlrewrites') ? !!opts.spaurlrewrites : false;
     config.middleware = opts.middleware;
     config.lang = normalizeLanguage(opts.lang);
 
