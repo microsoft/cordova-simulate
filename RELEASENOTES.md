@@ -1,5 +1,9 @@
 # cordova-simulate Release Notes
 
+## 1.1.1 (December 16, 2021)
+* Added the `--spaurlrewrites` launch argument to improve page refreshing in case the default application URL in the browser was changed by the router in single page applications [#347](https://github.com/microsoft/cordova-simulate/pull/347)
+* Fixed security vulnerabilities [#348](https://github.com/microsoft/cordova-simulate/pull/348)
+
 ## 1.1.0 (August 18, 2021)
 * Added simulation of iPhone 12 devices [#345](https://github.com/microsoft/cordova-simulate/pull/345)
 * Fixed security vulnerabilities [#337](https://github.com/microsoft/cordova-simulate/pull/337), [#338](https://github.com/microsoft/cordova-simulate/pull/338), [#340](https://github.com/microsoft/cordova-simulate/pull/340), [#342](https://github.com/microsoft/cordova-simulate/pull/342)
