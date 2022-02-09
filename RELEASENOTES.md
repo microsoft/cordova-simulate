@@ -1,5 +1,9 @@
 # cordova-simulate Release Notes
 
+## 1.1.2 (February 9, 2022)
+* Updated cordova-serve dependency [#352](https://github.com/microsoft/cordova-simulate/pull/352)
+* Fixed security vulnerabilities [#350](https://github.com/microsoft/cordova-simulate/pull/350), [#351](https://github.com/microsoft/cordova-simulate/pull/351)
+
 ## 1.1.1 (December 16, 2021)
 * Added the `--spaurlrewrites` launch argument to improve page refreshing in case the default application URL in the browser was changed by the router in single page applications [#347](https://github.com/microsoft/cordova-simulate/pull/347)
 * Fixed security vulnerabilities [#348](https://github.com/microsoft/cordova-simulate/pull/348)
