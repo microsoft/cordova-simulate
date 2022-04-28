@@ -1,7 +1,7 @@
 # cordova-simulate Release Notes
 
 ## 1.1.3 (April 28, 2022)
-* Fixed security vulnerabilities [#354](https://github.com/microsoft/cordova-simulate/pull/354), [#356](https://github.com/microsoft/cordova-simulate/pull/356), [#357](https://github.com/microsoft/cordova-simulate/pull/357)
+* Fixed security vulnerabilities [#354](https://github.com/microsoft/cordova-simulate/pull/354), [#356](https://github.com/microsoft/cordova-simulate/pull/356), [#358](https://github.com/microsoft/cordova-simulate/pull/358)
 
 ## 1.1.2 (February 9, 2022)
 * Updated cordova-serve dependency [#352](https://github.com/microsoft/cordova-simulate/pull/352)
