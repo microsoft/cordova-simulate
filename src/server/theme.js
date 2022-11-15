@@ -271,5 +271,5 @@ function appendState(selector, state) {
 
 function createThemeHash(themeObject) {
     var str = typeof themeObject === 'string' ? themeObject : JSON.stringify(themeObject); 
-    return crypto.createHash('md5').update(str).digest('hex').substring(0, 8);
+    return crypto.createHash('sha256').update(str).digest('hex').substring(0, 8);
 }
