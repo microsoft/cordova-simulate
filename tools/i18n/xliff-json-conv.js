@@ -81,11 +81,12 @@ function parseJson(xlfJsons) {
         var ids = Object.getOwnPropertyNames(items);
 
         // Create an array of strings to be translated, for machine translation
+        // eslint-disable-next-line no-unused-vars
         var fromStrings = ids.map(function (id) {
             return items[id].text;
         });
 
-        ids.forEach(function (id, index) {
+        ids.forEach(function (id) {
             var item = items[id];
 
             var transUnitNode = xliffDoc.createElement('trans-unit');
