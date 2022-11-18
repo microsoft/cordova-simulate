@@ -1,0 +1,2 @@
+queries:
+- exclude: js/incomplete-sanitization # Ignore warning: This replaces only the first occurrence of ''.
