@@ -1,2 +1,7 @@
+#########################################################################################
+# Use the `queries` block to change the default display of query results.               #
+#########################################################################################
+
 queries:
-- exclude: js/incomplete-sanitization # Ignore warning: This replaces only the first occurrence of ''.
+  # Ignore warning: This replaces only the first occurrence of ''
+  - exclude: js/incomplete-sanitization
