@@ -1,0 +1,6 @@
+path_classifiers:
+  library:
+    - exclude: src/plugins/cordova-plugin-globalization/moment.js
+queries:
+  # Ignore warning: This replaces only the first occurrence of ''
+  - exclude: js/incomplete-sanitization
