@@ -1156,7 +1156,7 @@
         case 'Do':
             return strict ? config._locale._ordinalParse : config._locale._ordinalParseLenient;
         default :
-            a = new RegExp(regexpEscape(unescapeFormat(token.replace('\\', '')), 'i'));
+            a = new RegExp(regexpEscape(unescapeFormat(token.replace('\\', '')), 'i')); // CodeQL [js/incomplete-sanitization] This is from Cordova Plugin official code. The logic is right.
             return a;
         }
     }
