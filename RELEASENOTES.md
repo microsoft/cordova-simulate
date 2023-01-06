@@ -1,5 +1,11 @@
 # cordova-simulate Release Notes
 
+## 1.1.4 (January 6, 2023)
+* Fixed security vulnerabilities [#357](https://github.com/microsoft/cordova-simulate/pull/357)
+* Enable CodeQL for ADO pipeline [#367](https://github.com/microsoft/cordova-simulate/pull/367)
+* Replace lgtm.yml with CodeQL.yml [#381](https://github.com/microsoft/cordova-simulate/pull/381)
+* Added husky pre-commit hook [#378](https://github.com/microsoft/cordova-simulate/pull/378)
+
 ## 1.1.3 (April 28, 2022)
 * Fixed security vulnerabilities [#354](https://github.com/microsoft/cordova-simulate/pull/354), [#356](https://github.com/microsoft/cordova-simulate/pull/356), [#358](https://github.com/microsoft/cordova-simulate/pull/358)
 
