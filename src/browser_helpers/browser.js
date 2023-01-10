@@ -52,34 +52,34 @@ module.exports = function (opts) {
             let urlAdded = false;
 
             switch (process.platform) {
-            case 'darwin':
-                args = ['open'];
-                if (target === 'chrome') {
-                    // Chrome needs to be launched in a new window. Other browsers, particularly, opera does not work with this.
-                    args.push('-n');
-                }
-                args.push('-a', browser);
-                break;
-            case 'win32':
-                // On Windows, we really want to use the "start" command. But, the rules regarding arguments with spaces, and
-                // escaping them with quotes, can get really arcane. So the easiest way to deal with this is to pass off the
-                // responsibility to "cmd /c", which has that logic built in.
-                //
-                // Furthermore, if "cmd /c" double-quoted the first parameter, then "start" will interpret it as a window title,
-                // so we need to add a dummy empty-string window title: http://stackoverflow.com/a/154090/3191
+                case 'darwin':
+                    args = ['open'];
+                    if (target === 'chrome') {
+                        // Chrome needs to be launched in a new window. Other browsers, particularly, opera does not work with this.
+                        args.push('-n');
+                    }
+                    args.push('-a', browser);
+                    break;
+                case 'win32':
+                    // On Windows, we really want to use the "start" command. But, the rules regarding arguments with spaces, and
+                    // escaping them with quotes, can get really arcane. So the easiest way to deal with this is to pass off the
+                    // responsibility to "cmd /c", which has that logic built in.
+                    //
+                    // Furthermore, if "cmd /c" double-quoted the first parameter, then "start" will interpret it as a window title,
+                    // so we need to add a dummy empty-string window title: http://stackoverflow.com/a/154090/3191
 
-                if (target === 'edge') {
-                    browser += `:${url}`;
-                    urlAdded = true;
-                }
+                    if (target === 'edge') {
+                        browser += `:${url}`;
+                        urlAdded = true;
+                    }
 
-                args = ['cmd /c start ""', browser];
-                break;
-            case 'linux':
-                // if a browser is specified, launch it with the url as argument
-                // otherwise, use xdg-open.
-                args = [browser];
-                break;
+                    args = ['cmd /c start ""', browser];
+                    break;
+                case 'linux':
+                    // if a browser is specified, launch it with the url as argument
+                    // otherwise, use xdg-open.
+                    args = [browser];
+                    break;
             }
 
             if (!urlAdded) {
@@ -209,7 +209,8 @@ function browserInstalled (browser) {
             const regQPost = '.EXE" /v ""';
             const regQuery = regQPre + browser.split(' ')[0] + regQPost;
 
-            child_process.exec(regQuery, (err, stdout, stderr) => {
+            // child_process.exec(regQuery, (err, stdout, _) => {
+            child_process.exec(regQuery, (err, stdout) => {
                 if (err) {
                     // The registry key does not exist, which just means the app is not installed.
                     reject(err);
