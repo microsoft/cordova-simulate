@@ -5,7 +5,8 @@
 var Simulator = require('./server/simulator');
 
 var launchBrowser = function (target, url) {
-    return require('cordova-serve').launchBrowser({ target: target, url: url });
+    // return require('cordova-serve').launchBrowser({ target: target, url: url });
+    return require('./browser_helpers/main').launchBrowser({ target: target, url: url });
 };
 
 var simulate = function (opts) {
