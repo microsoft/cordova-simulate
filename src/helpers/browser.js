@@ -92,11 +92,6 @@ module.exports = function (opts) {
                 throw new Error(NOT_INSTALLED.replace('%target%', target));
             });
             return result;
-
-            // return exec(command).catch(function (error) {
-            //     // Assume any error means that the browser is not installed and display that as a more friendly error.
-            //     throw new Error(NOT_INSTALLED.replace('%target%', target));
-            // });
         });
     }
 };
