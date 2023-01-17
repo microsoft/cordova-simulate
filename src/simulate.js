@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 
-/*eslint-env node */
+/*eslint-env node*/
 
 var Simulator = require('./server/simulator');
+var Browser = require('./browser/main');
 
 var launchBrowser = function (target, url) {
-    // return require('cordova-serve').launchBrowser({ target: target, url: url });
-    return require('./helpers/main').launchBrowser({ target: target, url: url });
+    return Browser.launchBrowser({ target: target, url: url });
 };
 
 var simulate = function (opts) {

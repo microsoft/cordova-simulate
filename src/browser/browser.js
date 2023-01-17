@@ -11,12 +11,7 @@ const NOT_SUPPORTED = 'The browser target is not supported: %target%';
 
 /**
  * Launches the specified browser with the given URL.
- * Based on https://github.com/domenic/opener
- * @param {{target: ?string, url: ?string, dataDir: ?string}} opts - parameters:
- *   target - the target browser - chrome, safari, firefox or chromium
- *   url - the url to open in the browser
- *   dataDir - a data dir to provide to Chrome (can be used to force it to open in a new window)
- * @return {Promise} Promise to launch the specified browser
+ * Based on https://github.com/apache/cordova-serve and https://github.com/domenic/opener
  */
 module.exports = function (opts) {
     opts = opts || {};
@@ -36,19 +31,11 @@ module.exports = function (opts) {
                 case 'darwin':
                     args = ['open'];
                     if (target === 'chrome') {
-                        // Chrome needs to be launched in a new window. Other browsers, particularly, opera does not work with this.
                         args.push('-n');
                     }
                     args.push('-a', browser);
                     break;
                 case 'win32':
-                    // On Windows, we really want to use the "start" command. But, the rules regarding arguments with spaces, and
-                    // escaping them with quotes, can get really arcane. So the easiest way to deal with this is to pass off the
-                    // responsibility to "cmd /c", which has that logic built in.
-                    //
-                    // Furthermore, if "cmd /c" double-quoted the first parameter, then "start" will interpret it as a window title,
-                    // so we need to add a dummy empty-string window title: http://stackoverflow.com/a/154090/3191
-
                     if (target === 'edge') {
                         browser += `:${url}`;
                         urlAdded = true;
@@ -57,8 +44,6 @@ module.exports = function (opts) {
                     args = ['cmd /c start ""', browser];
                     break;
                 case 'linux':
-                    // if a browser is specified, launch it with the url as argument
-                    // otherwise, use xdg-open.
                     args = [browser];
                     break;
             }
@@ -69,7 +54,6 @@ module.exports = function (opts) {
             const command = args.join(' ');
             const result = exec(command);
             result.catch(() => {
-                // Assume any error means that the browser is not installed and display that as a more friendly error.
                 throw new Error(NOT_INSTALLED.replace('%target%', target));
             });
             return result;
@@ -84,17 +68,18 @@ function getBrowser (target, dataDir) {
     const browsers = {
         win32: {
             chrome: `chrome --user-data-dir=%TEMP%\\${dataDir}`,
-            firefox: 'firefox',
-            edge: 'microsoft-edge'
+            edge: 'microsoft-edge',
+            firefox: 'firefox'
         },
         darwin: {
             chrome: `"Google Chrome" --args${chromeArgs}`,
+            edge: 'microsoft-edge',
             safari: 'safari',
             firefox: 'firefox'
         },
         linux: {
             chrome: `google-chrome${chromeArgs}`,
-            chromium: `chromium-browser${chromeArgs}`,
+            edge: 'microsoft-edge',
             firefox: 'firefox'
         }
     };
@@ -107,8 +92,6 @@ function getBrowser (target, dataDir) {
     }
 }
 
-// err might be null, in which case defaultMsg is used.
-// target MUST be defined or an error is thrown.
 function getErrorMessage (err, target, defaultMsg) {
     let errMessage;
     if (err) {
@@ -121,7 +104,6 @@ function getErrorMessage (err, target, defaultMsg) {
 
 function checkBrowserExistsWindows (browser, target) {
     const promise = new Promise((resolve, reject) => {
-        // Windows displays a dialog if the browser is not installed. We'd prefer to avoid that.
         if (process.platform === 'win32') {
             if (target === 'edge') {
                 edgeSupported().then(() => {
@@ -167,11 +149,6 @@ function edgeSupported () {
 
 const regItemPattern = /\s*\([^)]+\)\s+(REG_SZ)\s+([^\s].*)\s*/;
 function browserInstalled (browser) {
-    // On Windows, the 'start' command searches the path then 'App Paths' in the registry.
-    // We do the same here. Note that the start command uses the PATHEXT environment variable
-    // for the list of extensions to use if no extension is provided. We simplify that to just '.EXE'
-    // since that is what all the supported browsers use. Check path (simple but usually won't get a hit)
-
     const promise = new Promise((resolve, reject) => {
         if (which.sync(browser, { nothrow: true })) {
             return resolve();
@@ -180,17 +157,14 @@ function browserInstalled (browser) {
             const regQPost = '.EXE" /v ""';
             const regQuery = regQPre + browser.split(' ')[0] + regQPost;
 
-            // child_process.exec(regQuery, (err, stdout, _) => {
             child_process.exec(regQuery, (err, stdout) => {
                 if (err) {
-                    // The registry key does not exist, which just means the app is not installed.
                     reject(err);
                 } else {
                     const result = regItemPattern.exec(stdout);
                     if (fs.existsSync(trimRegPath(result[2]))) {
                         resolve();
                     } else {
-                        // The default value is not a file that exists, which means the app is not installed.
                         reject(new Error(NOT_INSTALLED));
                     }
                 }
@@ -201,6 +175,5 @@ function browserInstalled (browser) {
 }
 
 function trimRegPath (path) {
-    // Trim quotes and whitespace
     return path.replace(/^[\s"]+|[\s"]+$/g, '');
 }
