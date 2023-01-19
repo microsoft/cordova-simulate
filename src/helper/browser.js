@@ -4,14 +4,13 @@ const child_process = require('child_process');
 const fs = require('fs');
 const open = require('open');
 const which = require('which');
-const exec = require('./exec');
 
 const NOT_INSTALLED = 'The browser target is not installed: %target%';
 const NOT_SUPPORTED = 'The browser target is not supported: %target%';
 
 /**
  * Launches the specified browser with the given URL.
- * Based on https://github.com/apache/cordova-serve and https://github.com/domenic/opener
+ * Based on https://github.com/apache/cordova-serve
  */
 module.exports = function (opts) {
     opts = opts || {};
@@ -60,6 +59,37 @@ module.exports = function (opts) {
         });
     }
 };
+
+/**
+ * Executes the command specified.
+ * @param  {string} cmd Command to execute
+ * @param  {[string]}  opt_cwd Current working directory
+ * @return {Promise} a promise that either resolves with the stdout, or rejects with an error message and the stderr.
+ */
+function exec (cmd, opt_cwd) {
+    return new Promise((resolve, reject) => {
+        try {
+            const opt = { cwd: opt_cwd, maxBuffer: 1024000 };
+            let timerID = 0;
+            if (process.platform === 'linux') {
+                timerID = setTimeout(() => {
+                    resolve('linux-timeout');
+                }, 5000);
+            }
+            child_process.exec(cmd, opt, (err, stdout, stderr) => {
+                clearTimeout(timerID);
+                if (err) {
+                    reject(new Error(`Error executing "${cmd}": ${stderr}`));
+                } else {
+                    resolve(stdout);
+                }
+            });
+        } catch (e) {
+            console.error(`error caught: ${e}`);
+            reject(e);
+        }
+    });
+}
 
 function getBrowser (target, dataDir) {
     dataDir = dataDir || 'temp_chrome_user_data_dir_for_cordova';
@@ -177,3 +207,5 @@ function browserInstalled (browser) {
 function trimRegPath (path) {
     return path.replace(/^[\s"]+|[\s"]+$/g, '');
 }
+
+module.exports.launchBrowser = require('./browser');

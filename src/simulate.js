@@ -3,7 +3,7 @@
 /*eslint-env node*/
 
 var Simulator = require('./server/simulator');
-var Browser = require('./browser/main');
+var Browser = require('./helper/browser');
 
 var launchBrowser = function (target, url) {
     return Browser.launchBrowser({ target: target, url: url });
