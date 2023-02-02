@@ -1,0 +1,17 @@
+{
+    "corsproxy": true,
+    "device": null,
+    "dir": null,
+    "forceprepare": false,
+    "generateids": false,
+    "lang": null,
+    "livereload": true,
+    "middeware": null,
+    "platform": null,
+    "port": null,
+    "simhostui": null,
+    "simulationpath": null,
+    "spaurlrewrites": false,
+    "target": null,
+    "theme": null
+} 
