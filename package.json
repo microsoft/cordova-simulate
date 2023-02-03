@@ -60,7 +60,6 @@
     "update-loc": "node ./tools/i18n/update",
     "eslint": "npx eslint .",
     "prepare": "husky install",
-    "test": "mocha --ui tdd ./test/*.js --timeout 100000",
-    "debug": "cd ../helloCordova && simulate"
+    "test": "mocha --ui tdd ./test/*.js --timeout 100000"
   }
 }
