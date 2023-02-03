@@ -13,7 +13,7 @@ steps:
   - bash: gulp
     displayName: "gulp default"
 
-  - bash: "npm test --verbose"
-    displayName: "Run host tests"
+  - bash: "npm run test --verbose"
+    displayName: "Run unit tests"
     env:
       DISPLAY: ":99.0"
