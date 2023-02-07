@@ -16,6 +16,7 @@
         "comma-spacing": ["error", { "before": false, "after": true }],
         "key-spacing": ["error", { "beforeColon": false }],
         "no-prototype-builtins": "off",
-        "no-redeclare": ["error", { "builtinGlobals": false }]
+        "no-redeclare": ["error", { "builtinGlobals": false }],
+        "no-undef": "warn"
     }
 }

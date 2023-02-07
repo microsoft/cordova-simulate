@@ -1,8 +1,8 @@
 steps:
   - task: NodeTool@0
-    displayName: "Use Node 10.x"
+    displayName: "Use Node 16.x"
     inputs:
-      versionSpec: 10.x
+      versionSpec: 16.x
 
   - bash: npm install gulp -g --force
     displayName: "npm install gulp -g"
@@ -12,3 +12,8 @@ steps:
 
   - bash: gulp
     displayName: "gulp default"
+
+  - bash: "npm run test --verbose"
+    displayName: "Run unit tests"
+    env:
+      DISPLAY: ":99.0"
