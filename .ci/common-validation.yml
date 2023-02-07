@@ -17,3 +17,11 @@ steps:
     displayName: "Run unit tests"
     env:
       DISPLAY: ":99.0"
+
+  - task: PublishTestResults@2
+    displayName: "Publish Test Results"
+    inputs:
+      testResultsFiles: test/simulateTestReport.xml
+      failTaskOnFailedTests: true
+      testRunTitle: "$(Agent.OS) Cordova simulate unit tests - Attempt №$(System.JobAttempt)"
+    condition: always()

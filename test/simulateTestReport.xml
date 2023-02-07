@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.010" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2023-02-07T04:57:43" tests="0" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="simulatorProcess" timestamp="2023-02-07T04:57:43" tests="1" file="D:\cordova-simulate\test\simulator.test.js" time="0.007" failures="0">
+    <testcase name="simulatorProcess After simulator init, simulator.state should be IDLE" time="0.005" classname="After simulator init, simulator.state should be IDLE">
+    </testcase>
+  </testsuite>
+</testsuites>
