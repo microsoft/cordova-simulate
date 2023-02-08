@@ -1,0 +1,14 @@
+{
+    "configurations": [
+    {
+        "name": "Launch Test",
+        "request": "launch",
+        "runtimeArgs": [
+            "run-script",
+            "test"
+        ],
+        "runtimeExecutable": "npm",
+        "type": "node"
+    }
+    ]
+}
