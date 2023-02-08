@@ -1,5 +1,5 @@
 node_modules
 /.idea/
 .DS_Store
-.vscode
 test/resources/testSampleProject/simulation
+test/simulateTestReport.xml

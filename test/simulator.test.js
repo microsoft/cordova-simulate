@@ -13,5 +13,17 @@ suite('simulatorProcess', function () {
         assert.equal(simulator._state, Simulator.State.IDLE);
         done();
     });
+
+    test('If simulator.state is not RUNNING, it should got related notification message when stop simulator', async () => {
+        const options = require('./resources/options.json');
+        options.dir = path.join(__dirname, './resources/testSampleProject');
+        var simulator = new Simulator(options);
+        assert.equal(simulator._state, Simulator.State.IDLE);
+        try {
+            await simulator.stopSimulation();
+        } catch (error) {
+            assert.strictEqual(error, 'Simulation is not running');
+        }
+    });
 });
 
