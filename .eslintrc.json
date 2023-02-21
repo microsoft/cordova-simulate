@@ -1,5 +1,9 @@
 {
     "extends": "eslint:recommended",
+    "parser":"@babel/eslint-parser",
+    "parserOptions": {
+        "requireConfigFile": false
+    },
     "env": {
         "browser": true,
         "commonjs": true,
@@ -16,6 +20,7 @@
         "comma-spacing": ["error", { "before": false, "after": true }],
         "key-spacing": ["error", { "beforeColon": false }],
         "no-prototype-builtins": "off",
-        "no-redeclare": ["error", { "builtinGlobals": false }]
+        "no-redeclare": ["error", { "builtinGlobals": false }],
+        "no-undef": "warn"
     }
 }
