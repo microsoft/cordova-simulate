@@ -6,7 +6,7 @@ const path = require('path');
 var plugins = require('../src/server/utils/plugins');
 
 suite('untilVerification', function () {
-    test.only('findPluginPath will get built in plugin target if no plugin in project path', (done) => {
+    test('findPluginPath will get built in plugin target if no plugin in project path', (done) => {
         var pluginPath = plugins.findPluginPath(path.resolve('./resources/testSampleProject'), 'cordova-plugin-camera', false);
         var builtInPath = path.resolve('src/plugins/cordova-plugin-camera');
         assert.strictEqual(pluginPath, builtInPath);
