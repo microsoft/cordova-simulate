@@ -166,10 +166,7 @@ function setCordovaAndInitialize(originalCordova) {
             // these platform fire onNativeReady in their bootstrap
             case 'ios':
             case 'browser':
-            case 'blackberry10':
-            case 'firefoxos':
             case 'ubuntu':
-            case 'webos':
                 break;
             // windows has an overridden bootstrap which does not fire
             // onNativeReady
