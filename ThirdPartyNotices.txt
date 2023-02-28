@@ -861,7 +861,7 @@ the licensed code:
 
 ---------------------------------------------------------
 
-glob 7.1.2 - ISC
+glob 8.1.0 - ISC
 https://github.com/isaacs/node-glob#readme
 
 Copyright (c) Isaac Z. Schlueter and Contributors
@@ -1876,7 +1876,7 @@ SOFTWARE.
 
 ---------------------------------------------------------
 
-body-parser 1.19.0 - MIT
+body-parser 1.20.2 - MIT
 https://github.com/expressjs/body-parser#readme
 
 Copyright (c) 2014 Jonathan Ong
@@ -1913,7 +1913,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ---------------------------------------------------------
 
-body-parser 1.19.1 - MIT
+body-parser 1.20.2 - MIT
 https://github.com/expressjs/body-parser#readme
 
 Copyright (c) 2014 Jonathan Ong
@@ -2191,7 +2191,7 @@ THE SOFTWARE.
 
 ---------------------------------------------------------
 
-chalk 1.1.3 - MIT
+chalk 4.1.2 - MIT
 https://github.com/chalk/chalk#readme
 
 (c) Sindre Sorhus (http://sindresorhus.com)
@@ -2224,7 +2224,7 @@ THE SOFTWARE.
 
 ---------------------------------------------------------
 
-chalk 3.0.0 - MIT
+chalk 4.1.2 - MIT
 https://github.com/chalk/chalk#readme
 
 Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
@@ -5639,7 +5639,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ---------------------------------------------------------
 
-minimist 1.2.6 - MIT
+minimist 1.2.8 - MIT
 https://github.com/substack/minimist
 
 
@@ -7068,7 +7068,7 @@ THE SOFTWARE.
 safer-buffer 2.1.2 - MIT
 https://github.com/ChALkeR/safer-buffer#readme
 
-Copyright (c) 2018 Nikita Skovoroda <chalkerx@gmail.com>
+Copyright (c) 2018 Nikita Skovoroda <erx@gmail.com>
 
 MIT License
 
@@ -7937,7 +7937,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ---------------------------------------------------------
 
-through2 2.0.3 - MIT
+through2 4.0.2 - MIT
 https://github.com/rvagg/through2#readme
 
 Copyright (c) 2016 Rod Vagg
@@ -8794,7 +8794,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ---------------------------------------------------------
 
-uuid 3.3.2 - MIT
+uuid 9.0.0 - MIT
 https://github.com/kelektiv/node-uuid#readme
 
 Copyright 2011, Sebastian Tschan https://blueimp.net
