@@ -74,7 +74,7 @@ Changes to files such as images, stylesheets and other resources are propagated 
 
 ## Supported plugins
 
-This preview version currently includes built-in support for the following Cordova plugins, some of them are deprecated that   not being maintained and updated by official:
+This preview version currently includes built-in support for the following Cordova plugins, some of them are deprecated that not being maintained and updated by official:
 
 * [cordova-plugin-battery-status](https://github.com/apache/cordova-plugin-battery-status)
 * [cordova-plugin-camera](https://github.com/apache/cordova-plugin-camera)
