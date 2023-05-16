@@ -74,22 +74,23 @@ Changes to files such as images, stylesheets and other resources are propagated 
 
 ## Supported plugins
 
-This preview version currently includes built-in support for the following Cordova plugins:
+This preview version currently includes built-in support for the following Cordova plugins, some of them are deprecated that   not being maintained and updated by official:
 
 * [cordova-plugin-battery-status](https://github.com/apache/cordova-plugin-battery-status)
 * [cordova-plugin-camera](https://github.com/apache/cordova-plugin-camera)
-* [cordova-plugin-console](https://github.com/apache/cordova-plugin-console)
-* [cordova-plugin-contacts](https://github.com/apache/cordova-plugin-contacts)
+* [cordova-plugin-console](https://github.com/apache/cordova-plugin-console)(deprecated)
+* [cordova-plugin-contacts](https://github.com/apache/cordova-plugin-contacts)(deprecated)
 * [cordova-plugin-device](https://github.com/apache/cordova-plugin-device)
 * [cordova-plugin-device-motion](https://github.com/apache/cordova-plugin-device-motion)
 * [cordova-plugin-device-orientation](https://github.com/apache/cordova-plugin-device-orientation)
 * [cordova-plugin-dialogs](https://github.com/apache/cordova-plugin-dialogs)
 * [cordova-plugin-file](https://github.com/apache/cordova-plugin-file)
 * [cordova-plugin-geolocation](https://github.com/apache/cordova-plugin-geolocation)
-* [cordova-plugin-globalization](https://github.com/apache/cordova-plugin-globalization)
+* [cordova-plugin-globalization](https://github.com/apache/cordova-plugin-globalization)(deprecated)
 * [cordova-plugin-inappbrowser](https://github.com/apache/cordova-plugin-inappbrowser)
 * [cordova-plugin-media](https://github.com/apache/cordova-plugin-media)
 * [cordova-plugin-network-information](https://github.com/apache/cordova-plugin-network-information)
+* [cordova-plugin-statusbar](https://github.com/apache/cordova-plugin-statusbar)
 * [cordova-plugin-vibration](https://github.com/apache/cordova-plugin-vibration)
 
 ## Adding simulation support to plugins
