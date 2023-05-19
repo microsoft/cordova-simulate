@@ -1,5 +1,16 @@
 # cordova-simulate Release Notes
 
+## 1.1.5 (May 19, 2023)
+* Update documentation for cordova official plugin [#409](https://github.com/microsoft/cordova-simulate/pull/409)
+* Check updates for all package modules [#404](https://github.com/microsoft/cordova-simulate/pull/404)
+* Remove deprecated cordova platform from project [#403](https://github.com/microsoft/cordova-simulate/pull/403)
+* Internal Changes:
+  * Cleanup and update 3rd party notices file [#406](https://github.com/microsoft/cordova-simulate/pull/406)
+  * Add new test for simulator stop process [#397](https://github.com/microsoft/cordova-simulate/pull/397)
+  * Add utils test to verify simulate util functions [#402](https://github.com/microsoft/cordova-simulate/pull/402)
+  * Setup test report and publish unit test result [#396](https://github.com/microsoft/cordova-simulate/pull/396)
+  * Setup project test framework and add the first unit test [#393](https://github.com/microsoft/cordova-simulate/pull/393)
+
 ## 1.1.4 (January 6, 2023)
 * Fixed security vulnerabilities [#357](https://github.com/microsoft/cordova-simulate/pull/357)
 * Added husky pre-commit hook [#378](https://github.com/microsoft/cordova-simulate/pull/378)
