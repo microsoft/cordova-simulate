@@ -1,5 +1,11 @@
 # cordova-simulate Release Notes
 
+## 1.1.6 (July 12, 2023)
+* Update device support to latest and remove some obsolete [#417](https://github.com/microsoft/cordova-simulate/pull/417)
+* Update operation system version and user agent [#418](https://github.com/microsoft/cordova-simulate/pull/418)
+* Internal Changes:
+  * Fix security vulnerabilities [#416](https://github.com/microsoft/cordova-simulate/pull/416)
+
 ## 1.1.5 (May 19, 2023)
 * Update documentation for cordova official plugin [#409](https://github.com/microsoft/cordova-simulate/pull/409)
 * Check updates for all package modules [#404](https://github.com/microsoft/cordova-simulate/pull/404)
