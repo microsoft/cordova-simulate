@@ -67,6 +67,11 @@ function getUserAgent(device) {
     }
 
     var userAgent = platformUserAgents[device['os-version']];
+
+    if (!userAgent) {
+        throw new Error(`Cannot find user agent for device: ${device.name}, os-version: ${device['os-version']}.`);
+    }
+    
     if (typeof userAgent === 'object') {
         userAgent = userAgent[device['desktop-user-agent'] ? 'desktop' : 'phone'];
     }
