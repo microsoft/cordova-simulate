@@ -91,7 +91,7 @@ function getBrowser(target, dataDir, url) {
     };
 
     if (target in browsers[process.platform]) {
-        return browsers[process.platform][target];
+        return Promise.resolve(browsers[process.platform][target]);
     } else {
         return Promise.reject(NOT_SUPPORTED.replace('%target%', target));
     }
