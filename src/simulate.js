@@ -3,9 +3,10 @@
 /*eslint-env node */
 
 var Simulator = require('./server/simulator');
+var BrowserHelper = require('./browsers/browser');
 
 var launchBrowser = function (target, url) {
-    return require('cordova-serve').launchBrowser({ target: target, url: url });
+    return BrowserHelper.launchBrowser({ target: target, url: url });
 };
 
 var simulate = function (opts) {
