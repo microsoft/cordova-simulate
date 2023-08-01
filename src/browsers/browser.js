@@ -86,7 +86,7 @@ function getBrowser(target, dataDir, url) {
             chromium: `chromium-browser${chromeArgs}`,
             firefox: 'firefox',
             opera: 'opera',
-            edge: `"Microsoft Edge" ${url} --args${chromeArgs}`
+            edge: `microsoft-edge ${url} --args${chromeArgs}`
         }
     };
 
