@@ -67,9 +67,7 @@ function getBrowser(target, dataDir, url) {
     const chromeArgs = ` --user-data-dir=/tmp/${dataDir}`;
     const browsers = {
         win32: {
-            ie: 'iexplore',
             chrome: `chrome --user-data-dir=%TEMP%\\${dataDir}`,
-            safari: 'safari',
             opera: 'opera',
             firefox: 'firefox',
             edge: `msedge ${url} --user-data-dir=%TEMP%\\${dataDir}`
@@ -83,7 +81,6 @@ function getBrowser(target, dataDir, url) {
         },
         linux: {
             chrome: `google-chrome${chromeArgs}`,
-            chromium: `chromium-browser${chromeArgs}`,
             firefox: 'firefox',
             opera: 'opera',
             edge: `microsoft-edge ${url} --args${chromeArgs}`
