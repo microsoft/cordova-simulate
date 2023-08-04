@@ -3,9 +3,7 @@
 /* globals Promise: true */
 
 const child_process = require('child_process');
-const fs = require('fs');
 const open = require('open');
-const which = require('which');
 
 const NOT_INSTALLED = 'The browser target is not installed: %target%';
 const NOT_SUPPORTED = 'The browser target is not supported: %target%';
@@ -43,7 +41,7 @@ function launchBrowser(opts) {
                     break;
             }
 
-            if (target != "edge") {
+            if (target != 'edge') {
                 args.push(url);
             }
 
@@ -55,12 +53,12 @@ function launchBrowser(opts) {
             return result;
         });
     }
-};
+}
 
 function getBrowser(target, dataDir, url) {
-    if (target == "chrome") {
+    if (target == 'chrome') {
         dataDir = dataDir || 'cordova_simulate_temp_chrome_user_data_dir';
-    } else if (target == "edge") {
+    } else if (target == 'edge') {
         dataDir = dataDir || 'cordova_simulate_temp_edge_user_data_dir';
     }
 
@@ -117,6 +115,6 @@ function exec(cmd, opt_cwd) {
             reject(e);
         }
     });
-};
+}
 
 module.exports.launchBrowser = launchBrowser;
