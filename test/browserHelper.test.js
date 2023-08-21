@@ -14,16 +14,19 @@ suite('browserHelper', function () {
         browser.getBrowser(chrome, undefined, url).then(browsers => {
             switch (currentSystem) {
                 case 'win32':
+                    console.log(browsers);
                     assert.strictEqual(browsers.include('chrome'), true);
                     assert.strictEqual(browsers.include(url), false);
                     assert.strictEqual(browsers.include('--user-data-dir=/tmp/cordova_simulate_temp_chrome_user_data_dir'), true);
                     break;
                 case 'darwin':
+                    console.log(browsers);
                     assert.strictEqual(browsers.include('Google Chrome'), true);
                     assert.strictEqual(browsers.include(url), false);
                     assert.strictEqual(browsers.include('--user-data-dir=/tmp/cordova_simulate_temp_chrome_user_data_dir'), true);
                     break;
                 case 'linux':
+                    console.log(browsers);
                     assert.strictEqual(browsers.include('google-chrome'), true);
                     assert.strictEqual(browsers.include(url), false);
                     assert.strictEqual(browsers.include('--user-data-dir=/tmp/cordova_simulate_temp_chrome_user_data_dir'), true);
@@ -37,16 +40,19 @@ suite('browserHelper', function () {
         browser.getBrowser(edge, undefined, url).then(browsers => {
             switch (currentSystem) {
                 case 'win32':
+                    console.log(browsers);
                     assert.strictEqual(browsers.include('msedge'), true);
                     assert.strictEqual(browsers.include(url), true);
                     assert.strictEqual(browsers.include('--user-data-dir=/tmp/cordova_simulate_temp_chrome_user_data_dir'), true);
                     break;
                 case 'darwin':
+                    console.log(browsers);
                     assert.strictEqual(browsers.include('Microsoft Edge'), true);
                     assert.strictEqual(browsers.include(url), true);
                     assert.strictEqual(browsers.include('--user-data-dir=/tmp/cordova_simulate_temp_chrome_user_data_dir'), true);
                     break;
                 case 'linux':
+                    console.log(browsers);
                     assert.strictEqual(browsers.include('microsoft-edge'), true);
                     assert.strictEqual(browsers.include(url), true);
                     assert.strictEqual(browsers.include('--user-data-dir=/tmp/cordova_simulate_temp_chrome_user_data_dir'), true);
