@@ -46,13 +46,13 @@ suite('browserHelper', function () {
             case 'darwin':
                 assert.strictEqual(browserInfo.includes('Microsoft Edge'), true);
                 assert.strictEqual(browserInfo.includes(url), true);
-                assert.strictEqual(browserInfo.includes('--user-data-dir=/tmp/cordova_simulate_temp_chrome_user_data_dir'), true);
+                assert.strictEqual(browserInfo.includes('--user-data-dir=/tmp/cordova_simulate_temp_edge_user_data_dir'), true);
                 break;
             case 'linux':
                 console.log(browserInfo);
                 assert.strictEqual(browserInfo.includes('microsoft-edge'), true);
                 assert.strictEqual(browserInfo.includes(url), true);
-                assert.strictEqual(browserInfo.includes('--user-data-dir=/tmp/cordova_simulate_temp_chrome_user_data_dir'), true);
+                assert.strictEqual(browserInfo.includes('--user-data-dir=/tmp/cordova_simulate_temp_edge_user_data_dir'), true);
                 break;
         }
     });
