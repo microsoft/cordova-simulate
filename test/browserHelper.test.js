@@ -2,7 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for details.
 
 const assert = require('assert');
-var browser = require('../src//browsers/browser');
+var browser = require('../src/browsers/browser');
 
 suite('browserHelper', function () {
     const currentSystem =  process.platform;
