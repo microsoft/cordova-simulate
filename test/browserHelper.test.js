@@ -5,61 +5,56 @@ const assert = require('assert');
 var browser = require('../src/browsers/browser');
 
 suite('browserHelper', function () {
-    const currentSystem =  process.platform;
+    const currentSystem = process.platform;
     const chrome = 'chrome';
     const edge = 'edge';
     const url = 'http://localhost:8000/index.html';
 
-    test('Will get Chrome browser target with argument correctly for each system', (done) => {
-        browser.getBrowser(chrome, undefined, url).then(browsers => {
-            switch (currentSystem) {
-                case 'win32':
-                    console.log(browsers);
-                    assert.strictEqual(browsers.include('chrome'), true);
-                    assert.strictEqual(browsers.include(url), false);
-                    assert.strictEqual(browsers.include('--user-data-dir=/tmp/cordova_simulate_temp_chrome_user_data_dir'), true);
-                    break;
-                case 'darwin':
-                    console.log(browsers);
-                    assert.strictEqual(browsers.include('Google Chrome'), true);
-                    assert.strictEqual(browsers.include(url), false);
-                    assert.strictEqual(browsers.include('--user-data-dir=/tmp/cordova_simulate_temp_chrome_user_data_dir'), true);
-                    break;
-                case 'linux':
-                    console.log(browsers);
-                    assert.strictEqual(browsers.include('google-chrome'), true);
-                    assert.strictEqual(browsers.include(url), false);
-                    assert.strictEqual(browsers.include('--user-data-dir=/tmp/cordova_simulate_temp_chrome_user_data_dir'), true);
-                    break;
-            }
-        });
-        done();
+    test('Will get Chrome browser target with argument correctly for each system', async () => {
+        const browserInfo = await browser.getBrowser(chrome, undefined, url);
+        switch (currentSystem) {
+            case 'win32':
+                console.log(browserInfo);
+                assert.strictEqual(browserInfo.includes('chrome'), true);
+                assert.strictEqual(browserInfo.includes(url), false);
+                assert.strictEqual(browserInfo.includes('--user-data-dir=%TEMP%\cordova_simulate_temp_chrome_user_data_dir'), true);
+                break;
+            case 'darwin':
+                console.log(browserInfo);
+                assert.strictEqual(browserInfo.includes('Google Chrome'), true);
+                assert.strictEqual(browserInfo.includes(url), false);
+                assert.strictEqual(browserInfo.includes('--user-data-dir=/tmp/cordova_simulate_temp_chrome_user_data_dir'), true);
+                break;
+            case 'linux':
+                console.log(browserInfo);
+                assert.strictEqual(browserInfo.includes('google-chrome'), true);
+                assert.strictEqual(browserInfo.includes(url), false);
+                assert.strictEqual(browserInfo.includes('--user-data-dir=/tmp/cordova_simulate_temp_chrome_user_data_dir'), true);
+                break;
+        }
     });
 
-    test('Will get Edge browser target with argument correctly for each system', (done) => {
-        browser.getBrowser(edge, undefined, url).then(browsers => {
-            switch (currentSystem) {
-                case 'win32':
-                    console.log(browsers);
-                    assert.strictEqual(browsers.include('msedge'), true);
-                    assert.strictEqual(browsers.include(url), true);
-                    assert.strictEqual(browsers.include('--user-data-dir=/tmp/cordova_simulate_temp_chrome_user_data_dir'), true);
-                    break;
-                case 'darwin':
-                    console.log(browsers);
-                    assert.strictEqual(browsers.include('Microsoft Edge'), true);
-                    assert.strictEqual(browsers.include(url), true);
-                    assert.strictEqual(browsers.include('--user-data-dir=/tmp/cordova_simulate_temp_chrome_user_data_dir'), true);
-                    break;
-                case 'linux':
-                    console.log(browsers);
-                    assert.strictEqual(browsers.include('microsoft-edge'), true);
-                    assert.strictEqual(browsers.include(url), true);
-                    assert.strictEqual(browsers.include('--user-data-dir=/tmp/cordova_simulate_temp_chrome_user_data_dir'), true);
-                    break;
-            }
-        });
-        done();
+    test('Will get Edge browser target with argument correctly for each system', async () => {
+        const browserInfo = await browser.getBrowser(edge, undefined, url);
+        switch (currentSystem) {
+            case 'win32':
+                console.log(browserInfo);
+                assert.equal(browserInfo.includes('msedge'), true);
+                assert.strictEqual(browserInfo.includes(url), true);
+                assert.strictEqual(browserInfo.includes('--user-data-dir=%TEMP%\cordova_simulate_temp_edge_user_data_dir'), true);
+                break;
+            case 'darwin':
+                assert.strictEqual(browserInfo.includes('Microsoft Edge'), true);
+                assert.strictEqual(browserInfo.includes(url), true);
+                assert.strictEqual(browserInfo.includes('--user-data-dir=/tmp/cordova_simulate_temp_chrome_user_data_dir'), true);
+                break;
+            case 'linux':
+                console.log(browserInfo);
+                assert.strictEqual(browserInfo.includes('microsoft-edge'), true);
+                assert.strictEqual(browserInfo.includes(url), true);
+                assert.strictEqual(browserInfo.includes('--user-data-dir=/tmp/cordova_simulate_temp_chrome_user_data_dir'), true);
+                break;
+        }
     });
 });
 
