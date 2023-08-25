@@ -118,3 +118,4 @@ function exec(cmd, opt_cwd) {
 }
 
 module.exports.launchBrowser = launchBrowser;
+module.exports.getBrowser = getBrowser;
