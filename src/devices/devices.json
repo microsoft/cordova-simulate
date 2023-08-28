@@ -5,7 +5,7 @@
       "name": "Nexus 4",
       "model": "Mako",
       "device-version-template": "<os-version>",
-      "default-os-version": "4.2.2",
+      "default-os-version": "4.4.2",
       "uuid": "6b356755575fce31",
       "manufacturer": "LG",
       "resolution": {
@@ -42,7 +42,7 @@
       "name": "Nexus 7",
       "model": "Grouper",
       "device-version-template": "<os-version>",
-      "default-os-version": "4.2.2",
+      "default-os-version": "4.4.2",
       "uuid": "6b356755575fce31",
       "manufacturer": "Asus",
       "resolution": {
@@ -60,7 +60,7 @@
       "name": "Nexus 10",
       "model": "Manta",
       "device-version-template": "<os-version>",
-      "default-os-version": "4.2.2",
+      "default-os-version": "4.4.2",
       "uuid": "6b356755575fce31",
       "manufacturer": "Samsung",
       "resolution": {
