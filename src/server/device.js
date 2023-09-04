@@ -191,5 +191,8 @@ function saveDefaultDeviceIdForPlatform(platform, deviceId) {
 
 module.exports = {
     getDeviceInfo: getDeviceInfo,
-    updateDeviceInfo: updateDeviceInfo
+    updateDeviceInfo: updateDeviceInfo,
+    getDefaultDevice: getDefaultDevice,
+    getDevice: getDevice,
+    getUserAgent: getUserAgent
 };
