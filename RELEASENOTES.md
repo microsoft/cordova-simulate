@@ -1,5 +1,13 @@
 # cordova-simulate Release Notes
 
+## 1.2.0 (August 31, 2023)
+* Update device default os version [#430](https://github.com/microsoft/cordova-simulate/pull/430)
+* Add MSEdge support for each OS [#425](https://github.com/microsoft/cordova-simulate/pull/425)
+* Improve user experience: Add error message for getUserAgent() [#424](https://github.com/microsoft/cordova-simulate/pull/424)
+* Internal Changes:
+  * Add unit test for browser helper [#428](https://github.com/microsoft/cordova-simulate/pull/428)
+  * Bump word-wrap from 1.2.3 to 1.2.4 [#421](https://github.com/microsoft/cordova-simulate/pull/421)
+
 ## 1.1.6 (July 12, 2023)
 * Update device support to latest and remove some obsolete [#417](https://github.com/microsoft/cordova-simulate/pull/417)
 * Update operation system version and user agent [#418](https://github.com/microsoft/cordova-simulate/pull/418)
