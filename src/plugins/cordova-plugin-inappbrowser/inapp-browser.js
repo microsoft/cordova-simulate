@@ -298,6 +298,7 @@ IframeBrowser.prototype.injectStyleFile = function (callback, args) {
 IframeBrowser.prototype._createFrame = function () {
     this._container = document.createElement('div');
     this._iframe = document.createElement('iframe');
+    this._iframe.sandbox = 'allow-modals allow-popups';
 
     // container style
     var style = this._container.style;
