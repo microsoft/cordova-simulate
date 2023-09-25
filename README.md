@@ -2,6 +2,22 @@
 
 Simulates your Apache Cordova application in the browser.
 
+# Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+  - [CLI](#cli)
+  - [API](#api)
+- [What it does](#what-it-does)
+  - [Features](#features)
+  - [Supported plugins](#supported-plugins)
+  - [Simulate in Docker container](#simulate-in-docker-container)
+- [Adding simulation support to plugins](#adding-simulation-support-to-plugins)
+  - [Detailed steps](#detailed-steps)
+    - [Simulation Host Files](#simulation-host-files)
+    - [App Host Files](#app-host-files)
+    - [The "messages" Object](#the-messages-object)
+
 # Installation
 
 ```
@@ -101,14 +117,51 @@ This preview version currently includes built-in support for the following Cordo
 * [cordova-plugin-statusbar](https://github.com/apache/cordova-plugin-statusbar)
 * [cordova-plugin-vibration](https://github.com/apache/cordova-plugin-vibration)
 
-## Adding simulation support to plugins
+## Simulate in Docker container
+
+Cordova-simulate support cordova application simulation in Docker container, here is the example as below:
+
+1. Follow the [VS Code official documentation](https://code.visualstudio.com/docs/devcontainers/containers) to setup your environment and install related extensions([Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) is recommended) to use a remote development approach.
+
+2. In the local react-native project, add `Dev Container` configure folder and files:
+   ```
+   .devcontainer
+     -devcontainer.json
+     -Dockerfile
+   ```
+3. Сreate Dockerfile extending your image. For example you can use the following Dockerfile:
+
+   ```
+   FROM mcr.microsoft.com/devcontainers/base:jammy
+
+   RUN npm install -g cordova cordova-simulate
+   ```
+
+4. Configure your `devcontainer.json` file as needed. Below is a sample configuration:
+
+   ```json
+   {
+     "name": "Cordova Container",
+
+     // Sets the run context to one level up instead of the .devcontainer folder.
+     "context": "..",
+
+     // Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
+     "dockerFile": "Dockerfile",
+   }
+   ```
+
+5. Open Command Palette and run the following command `Dev Containers: Open Folder in Container` to reopen your project in a container
+6. Install supported browser in container and execute `simulate`.
+
+# Adding simulation support to plugins
 
 It also allows for plugins to define their own UI. To add simulation support to a plugin, follow these steps:
 
 1. Clone this repository (`git clone https://github.com/microsoft/cordova-simulate.git`), as it contains useful example code (see `src/plugins`).
 2. Add your plugin UI code to your plugin in `src/simulation`. Follow the file naming conventions seen in the built-in plugins.
 
-### Detailed steps
+## Detailed steps
 
 In your plugin project, add a `simulation` folder under `src`, then add any of the following files:
 
@@ -122,7 +175,7 @@ app-host-handlers.js
 app-host-clobbers.js
 ```
 
-#### Simulation Host Files
+### Simulation Host Files
 
 *sim-host-panels.html*
 
@@ -213,7 +266,7 @@ either by;
 1. Setting module.exports to this object.
 2. Setting module.exports to a function that returns this object (in which case the messages parameter will be passed to that function).
 
-#### App Host Files
+### App Host Files
 
 *app-host.js*
 
@@ -249,7 +302,7 @@ does), by returning the following:
 }
 ```
 
-#### The "messages" Object
+### The "messages" Object
 
 A `messages` object is provided to all standard JavaScript files on both the `app-host` and `sim-host` side of things.
 It provides the following methods:
