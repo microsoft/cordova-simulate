@@ -36,7 +36,7 @@ function processArgs() {
     try {
         var parserOptions = {
             string: ['dir', 'simhostui', 'target', 'simulationpath', 'device', 'lang', 'theme', 'middleware'],
-            boolean: ['livereload', 'forceprepare', 'corsproxy', 'generateids', 'spaurlrewrites'],
+            boolean: ['livereload', 'forceprepare', 'corsproxy', 'generateids', 'spaurlrewrites', 'showbrowser'],
             default: {
                 dir: null,
                 livereload: true,
@@ -50,7 +50,8 @@ function processArgs() {
                 theme: null,
                 middeware: null,
                 generateids: false,
-                spaurlrewrites: false
+                spaurlrewrites: false,
+                showbrowser: true
             },
             unknown: unknownOptHandler
         };
@@ -75,7 +76,8 @@ function processArgs() {
             theme: parsed.theme,
             middleware: parsed.middleware,
             generateids: parsed.generateids,
-            spaurlrewrites: parsed.spaurlrewrites
+            spaurlrewrites: parsed.spaurlrewrites,
+            showbrowser: parsed.showbrowser
         };
     } catch (err) {
         throw new Error('Error parsing arguments: ' + (err.message || err) + os.EOL + os.EOL + getUsageString());
@@ -99,7 +101,8 @@ function getUsageString() {
         '[--theme THEME]',
         '[--middleware MIDDLEWARE_PATH]',
         '[--generateids (GENERATEIDS)]',
-        '[--spaurlrewrites (SPA_URL_REWRITES)]'
+        '[--spaurlrewrites (SPA_URL_REWRITES)]',
+        '[--showbrowser (SHOWBROWSER)]'
     ];
 
     return message + options.join(' ') + os.EOL;

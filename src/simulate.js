@@ -5,8 +5,8 @@
 var Simulator = require('./server/simulator');
 var BrowserHelper = require('./browsers/browser');
 
-var launchBrowser = function (target, url) {
-    return BrowserHelper.launchBrowser({ target: target, url: url });
+var launchBrowser = function (target, url, showBrowser) {
+    return BrowserHelper.launchBrowser({ target: target, url: url, showBrowser: showBrowser });
 };
 
 var simulate = function (opts) {
@@ -15,13 +15,14 @@ var simulate = function (opts) {
     }
     var target = opts.target || 'default';
     var simulator = new Simulator(opts);
+    var showBrowser = opts.showbrowser;
 
     return simulator.startSimulation()
         .then(function () {
-            return launchBrowser(target, simulator.appUrl());
+            return launchBrowser(target, simulator.appUrl(), showBrowser);
         })
         .then(function () {
-            return launchBrowser(target, simulator.simHostUrl());
+            return launchBrowser(target, simulator.simHostUrl(), showBrowser);
         })
         .then(function () {
             return simulator;
