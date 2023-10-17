@@ -18,8 +18,10 @@ var simulate = function (opts) {
     var simulator = new Simulator(opts);
     var showBrowser = opts.showbrowser;
 
-    var message = 'The argument `showbrowser` is set to false. Please load simulated application in browser manually if needed.';
-    log.warning(message);
+    if (!showBrowser) {
+        var noBrowserMessage = 'The argument `showbrowser` is set to false. Please load simulated application in browser manually if needed.';
+        log.warning(noBrowserMessage);
+    }
 
     return simulator.startSimulation()
         .then(function () {
