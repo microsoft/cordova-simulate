@@ -19,8 +19,6 @@ function launchBrowser(opts) {
     let showBrowser = opts.showBrowser;
 
     if (!showBrowser) {
-        var message = 'Showbrowser is set to false. Please load simulated application in browser manually if needed.';
-        console.info(message);
         return;
     }
 

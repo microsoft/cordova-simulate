@@ -4,6 +4,7 @@
 
 var Simulator = require('./server/simulator');
 var BrowserHelper = require('./browsers/browser');
+const log = require('./server/utils/log');
 
 var launchBrowser = function (target, url, showBrowser) {
     return BrowserHelper.launchBrowser({ target: target, url: url, showBrowser: showBrowser });
@@ -16,6 +17,9 @@ var simulate = function (opts) {
     var target = opts.target || 'default';
     var simulator = new Simulator(opts);
     var showBrowser = opts.showbrowser;
+
+    var message = 'The argument `showbrowser` is set to false. Please load simulated application in browser manually if needed.';
+    log.warning(message);
 
     return simulator.startSimulation()
         .then(function () {
