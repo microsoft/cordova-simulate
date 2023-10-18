@@ -4,9 +4,10 @@
 
 var Simulator = require('./server/simulator');
 var BrowserHelper = require('./browsers/browser');
+const log = require('./server/utils/log');
 
-var launchBrowser = function (target, url) {
-    return BrowserHelper.launchBrowser({ target: target, url: url });
+var launchBrowser = function (target, url, showBrowser) {
+    return BrowserHelper.launchBrowser({ target: target, url: url, showBrowser: showBrowser });
 };
 
 var simulate = function (opts) {
@@ -15,13 +16,19 @@ var simulate = function (opts) {
     }
     var target = opts.target || 'default';
     var simulator = new Simulator(opts);
+    var showBrowser = opts.showbrowser;
+
+    if (!showBrowser) {
+        var noBrowserMessage = 'The argument `showbrowser` is set to false. Please load simulated application in browser manually if needed.';
+        log.warning(noBrowserMessage);
+    }
 
     return simulator.startSimulation()
         .then(function () {
-            return launchBrowser(target, simulator.appUrl());
+            return launchBrowser(target, simulator.appUrl(), showBrowser);
         })
         .then(function () {
-            return launchBrowser(target, simulator.simHostUrl());
+            return launchBrowser(target, simulator.simHostUrl(), showBrowser);
         })
         .then(function () {
             return simulator;

@@ -16,6 +16,11 @@ function launchBrowser(opts) {
     opts = opts || {};
     let target = opts.target || 'default';
     const url = opts.url || '';
+    let showBrowser = opts.showBrowser;
+
+    if (!showBrowser) {
+        return;
+    }
 
     target = target.toLowerCase();
     if (target === 'default') {
