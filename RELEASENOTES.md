@@ -9,7 +9,6 @@
   * Removing unused constants [#443](https://github.com/microsoft/cordova-simulate/pull/443)
   * Fixed security vulnerabilities [#445](https://github.com/microsoft/cordova-simulate/pull/445), [#446](https://github.com/microsoft/cordova-simulate/pull/446)
 
-
 ## 1.2.0 (August 31, 2023)
 * Update device default os version [#430](https://github.com/microsoft/cordova-simulate/pull/430)
 * Add MSEdge support for each OS [#425](https://github.com/microsoft/cordova-simulate/pull/425)
