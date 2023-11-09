@@ -20,8 +20,7 @@ function launchBrowser(opts) {
 
     // Handle showbrowser argument sent from cordova-tools and other unknown scenarios
     // Only showbrowser = false will return method
-    showBrowser = showBrowser != false ? true : false;
-    if (!showBrowser) {
+    if (showBrowser == false) {
         return;
     }
 
