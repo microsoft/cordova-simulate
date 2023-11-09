@@ -18,7 +18,9 @@ function launchBrowser(opts) {
     const url = opts.url || '';
     let showBrowser = opts.showBrowser;
 
-    if (!showBrowser) {
+    // Handle showbrowser argument sent from cordova-tools and other unknown scenarios
+    // Only showbrowser = false will return method
+    if (showBrowser == false) {
         return;
     }
 
