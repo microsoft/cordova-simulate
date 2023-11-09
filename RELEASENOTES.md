@@ -1,4 +1,6 @@
 # cordova-simulate Release Notes
+## 1.2.2 (Nov 9, 2023)
+* Handle showbrowser argument for cordova-tools [#450](https://github.com/microsoft/cordova-simulate/pull/450)
 
 ## 1.2.1 (Nov 1, 2023)
 * Update documentation: browser, device and API [#436](https://github.com/microsoft/cordova-simulate/pull/436)
