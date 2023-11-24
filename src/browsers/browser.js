@@ -79,6 +79,7 @@ function getBrowser(target, dataDir, url) {
         },
         darwin: {
             chrome: `"Google Chrome" --args${chromeArgs}`,
+            chromium: `chromium${chromeArgs}`,
             safari: 'safari',
             firefox: 'firefox',
             opera: 'opera',
@@ -86,6 +87,7 @@ function getBrowser(target, dataDir, url) {
         },
         linux: {
             chrome: `google-chrome${chromeArgs}`,
+            chromium: `chromium-browser${chromeArgs}`,
             firefox: 'firefox',
             opera: 'opera',
             edge: `microsoft-edge ${url} --args${chromeArgs}`
