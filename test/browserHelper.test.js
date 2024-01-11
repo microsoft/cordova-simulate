@@ -51,5 +51,14 @@ suite('browserHelper', function () {
                 break;
         }
     });
+
+    test('Should return without browser info if Showbrowser argument is set to false', async () => {
+        var opts = {};
+        opts.target = chrome;
+        opts.url = url;
+        opts.showBrowser = false;
+        const browserInfo = await browser.launchBrowser(opts);
+        assert.strictEqual(browserInfo, undefined);
+    });
 });
 
