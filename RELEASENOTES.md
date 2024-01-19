@@ -1,4 +1,10 @@
 # cordova-simulate Release Notes
+
+## 1.3.0 (Jan 19, 2024)
+* Add Chromium as target for the simulate in browser options [#453](https://github.com/microsoft/cordova-simulate/issues/453)
+* Internal Changes:
+  * Add unit test for showbrowser argument [#457](https://github.com/microsoft/cordova-simulate/issues/457)
+
 ## 1.2.2 (Nov 9, 2023)
 * Handle showbrowser argument for cordova-tools [#450](https://github.com/microsoft/cordova-simulate/pull/450)
 
