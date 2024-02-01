@@ -42,5 +42,23 @@ suite('deviceUtils', function () {
         assert.strictEqual(deviceInfo.userAgent.includes('Mozilla') && deviceInfo.userAgent.includes('AppleWebKit'), true);
         done();
     });
-});
 
+    test('Verify device and os versions', done => {
+        const userAgents = require('../src/devices/user-agents.json');
+        const osVersions = require('../src/devices/os-versions');
+        const devices = require('../src/devices/devices.json');
+
+        Object.keys(osVersions).map(platform => {
+            const userAgentVersion = Object.keys(userAgents[platform]);
+            const osVersion = osVersions[platform];
+            assert.strictEqual(userAgentVersion.length, osVersion.length);
+            const device = devices[platform];
+            Object.values(device).map(item=>{
+                if(item['default-os-version']){
+                    assert.strictEqual(osVersion.includes(item['default-os-version']), true);
+                }
+            });
+        });
+        done();
+    });
+});
