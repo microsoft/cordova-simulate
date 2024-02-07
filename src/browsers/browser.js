@@ -62,7 +62,7 @@ function launchBrowser(opts) {
     }
 }
 
-function getBrowser(target, dataDir, url) {
+function getBrowser(target, dataDir, chromiumPath, url) {
     if (target == 'chrome') {
         dataDir = dataDir || 'cordova_simulate_temp_chrome_user_data_dir';
     } else if (target == 'edge') {
@@ -73,6 +73,7 @@ function getBrowser(target, dataDir, url) {
     const browsers = {
         win32: {
             chrome: `chrome --user-data-dir=%TEMP%\\${dataDir}`,
+            chromium: chromiumPath || 'chromium',
             opera: 'opera',
             firefox: 'firefox',
             edge: `msedge ${url} --user-data-dir=%TEMP%\\${dataDir}`
