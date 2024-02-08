@@ -6,8 +6,8 @@ var Simulator = require('./server/simulator');
 var BrowserHelper = require('./browsers/browser');
 const log = require('./server/utils/log');
 
-var launchBrowser = function (target, url, showBrowser) {
-    return BrowserHelper.launchBrowser({ target: target, url: url, showBrowser: showBrowser });
+var launchBrowser = function (target, url, showBrowser, chromiumPath) {
+    return BrowserHelper.launchBrowser({ target: target, url: url, showBrowser: showBrowser, chromiumPath: chromiumPath });
 };
 
 var simulate = function (opts) {
@@ -17,6 +17,7 @@ var simulate = function (opts) {
     var target = opts.target || 'default';
     var simulator = new Simulator(opts);
     var showBrowser = opts.showbrowser;
+    var chromiumPath = opts.chromiumPath;
 
     if (!showBrowser) {
         var noBrowserMessage = 'The argument `showbrowser` is set to false. Please load simulated application in browser manually if needed.';
@@ -25,10 +26,10 @@ var simulate = function (opts) {
 
     return simulator.startSimulation()
         .then(function () {
-            return launchBrowser(target, simulator.appUrl(), showBrowser);
+            return launchBrowser(target, simulator.appUrl(), showBrowser, chromiumPath);
         })
         .then(function () {
-            return launchBrowser(target, simulator.simHostUrl(), showBrowser);
+            return launchBrowser(target, simulator.simHostUrl(), showBrowser, chromiumPath);
         })
         .then(function () {
             return simulator;

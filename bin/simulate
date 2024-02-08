@@ -35,7 +35,7 @@ function unknownOptHandler(optName) {
 function processArgs() {
     try {
         var parserOptions = {
-            string: ['dir', 'simhostui', 'target', 'simulationpath', 'device', 'lang', 'theme', 'middleware'],
+            string: ['dir', 'simhostui', 'target', 'simulationpath', 'device', 'lang', 'theme', 'middleware', 'chromiumPath'],
             boolean: ['livereload', 'forceprepare', 'corsproxy', 'generateids', 'spaurlrewrites', 'showbrowser'],
             default: {
                 dir: null,
@@ -77,7 +77,8 @@ function processArgs() {
             middleware: parsed.middleware,
             generateids: parsed.generateids,
             spaurlrewrites: parsed.spaurlrewrites,
-            showbrowser: parsed.showbrowser
+            showbrowser: parsed.showbrowser,
+            chromiumPath: parsed.chromiumPath
         };
     } catch (err) {
         throw new Error('Error parsing arguments: ' + (err.message || err) + os.EOL + os.EOL + getUsageString());
@@ -102,7 +103,8 @@ function getUsageString() {
         '[--middleware MIDDLEWARE_PATH]',
         '[--generateids (GENERATEIDS)]',
         '[--spaurlrewrites (SPA_URL_REWRITES)]',
-        '[--showbrowser (SHOWBROWSER)]'
+        '[--showbrowser (SHOWBROWSER)]',
+        '[--chromiumPath CHROMIUM_PATH]'
     ];
 
     return message + options.join(' ') + os.EOL;

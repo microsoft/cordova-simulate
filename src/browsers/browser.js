@@ -17,6 +17,7 @@ function launchBrowser(opts) {
     let target = opts.target || 'default';
     const url = opts.url || '';
     let showBrowser = opts.showBrowser;
+    const chromiumPath = opts.chromiumPath;
 
     // Handle showbrowser argument sent from cordova-tools and other unknown scenarios
     // Only showbrowser = false will return method
@@ -29,7 +30,7 @@ function launchBrowser(opts) {
         open(url);
         return Promise.resolve();
     } else {
-        return getBrowser(target, opts.dataDir, url).then(browser => {
+        return getBrowser(target, opts.dataDir, chromiumPath, url).then(browser => {
             let args;
 
             switch (process.platform) {
