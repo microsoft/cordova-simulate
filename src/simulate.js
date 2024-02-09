@@ -24,6 +24,14 @@ var simulate = function (opts) {
         log.warning(noBrowserMessage);
     }
 
+    if(process.platform === 'win32' && !chromiumPath){
+        var win32NoPathMessage = 'Chromium path is required on Windows (win32).';
+        throw new Error(win32NoPathMessage);
+    }else if(process.platform !== 'win32' && chromiumPath){
+        var nonWin32PathMessage = 'Chromium path is not supported on this platform.';
+        log.warning(nonWin32PathMessage);
+    }
+
     return simulator.startSimulation()
         .then(function () {
             return launchBrowser(target, simulator.appUrl(), showBrowser, chromiumPath);

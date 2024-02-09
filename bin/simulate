@@ -35,7 +35,7 @@ function unknownOptHandler(optName) {
 function processArgs() {
     try {
         var parserOptions = {
-            string: ['dir', 'simhostui', 'target', 'simulationpath', 'device', 'lang', 'theme', 'middleware', 'chromiumPath'],
+            string: ['dir', 'simhostui', 'target', 'simulationpath', 'device', 'lang', 'theme', 'middleware', 'chromiumpath'],
             boolean: ['livereload', 'forceprepare', 'corsproxy', 'generateids', 'spaurlrewrites', 'showbrowser'],
             default: {
                 dir: null,

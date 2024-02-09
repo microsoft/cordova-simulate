@@ -74,7 +74,7 @@ function getBrowser(target, dataDir, chromiumPath, url) {
     const browsers = {
         win32: {
             chrome: `chrome --user-data-dir=%TEMP%\\${dataDir}`,
-            chromium: chromiumPath || 'chromium',
+            chromium: chromiumPath,
             opera: 'opera',
             firefox: 'firefox',
             edge: `msedge ${url} --user-data-dir=%TEMP%\\${dataDir}`
