@@ -17,7 +17,7 @@ var simulate = function (opts) {
     var target = opts.target || 'default';
     var simulator = new Simulator(opts);
     var showBrowser = opts.showbrowser;
-    var chromiumPath = opts.chromiumPath;
+    var chromiumPath = opts.chromiumpath;
 
     if (!showBrowser) {
         var noBrowserMessage = 'The argument `showbrowser` is set to false. Please load simulated application in browser manually if needed.';
