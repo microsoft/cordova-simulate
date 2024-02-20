@@ -78,7 +78,7 @@ function processArgs() {
             generateids: parsed.generateids,
             spaurlrewrites: parsed.spaurlrewrites,
             showbrowser: parsed.showbrowser,
-            chromiumpath: parsed.chromiumPath
+            chromiumpath: parsed.chromiumpath
         };
     } catch (err) {
         throw new Error('Error parsing arguments: ' + (err.message || err) + os.EOL + os.EOL + getUsageString());
