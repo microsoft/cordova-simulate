@@ -24,7 +24,7 @@ var simulate = function (opts) {
         log.warning(noBrowserMessage);
     }
 
-    if(process.platform === 'win32' && !chromiumPath){
+    if(process.platform === 'win32' && target === 'Chromium' && !chromiumPath){
         var win32NoPathMessage = 'Chromium path is required on Windows (win32).';
         throw new Error(win32NoPathMessage);
     }else if(process.platform !== 'win32' && chromiumPath){
