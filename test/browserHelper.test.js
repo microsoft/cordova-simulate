@@ -8,10 +8,15 @@ suite('browserHelper', function () {
     const currentSystem = process.platform;
     const chrome = 'chrome';
     const edge = 'edge';
+    const chromium = 'chromium';
     const url = 'http://localhost:8000/index.html';
+    
+    const chromiumPathArg = process.argv.find(arg => arg.startsWith('--chromiumpath='));
+    const chromiumPath = chromiumPathArg ? chromiumPathArg.split('=')[1] : undefined;
+
 
     test('Will get Chrome browser target with argument correctly for each system', async () => {
-        const browserInfo = await browser.getBrowser(chrome, undefined, url);
+        const browserInfo = await browser.getBrowser(chrome, undefined, undefined, url);
         switch (currentSystem) {
             case 'win32':
                 assert.strictEqual(browserInfo.includes('chrome'), true);
@@ -32,7 +37,7 @@ suite('browserHelper', function () {
     });
 
     test('Will get Edge browser target with argument correctly for each system', async () => {
-        const browserInfo = await browser.getBrowser(edge, undefined, url);
+        const browserInfo = await browser.getBrowser(edge, undefined, undefined, url);
         switch (currentSystem) {
             case 'win32':
                 assert.equal(browserInfo.includes('msedge'), true);
@@ -48,6 +53,23 @@ suite('browserHelper', function () {
                 assert.strictEqual(browserInfo.includes('microsoft-edge'), true);
                 assert.strictEqual(browserInfo.includes(url), true);
                 assert.strictEqual(browserInfo.includes('--user-data-dir=/tmp/cordova_simulate_temp_edge_user_data_dir'), true);
+                break;
+        }
+    });
+
+    test('Will get Chromium browser target with argument correctly for each system', async () => {
+        const browserInfo = await browser.getBrowser(chromium, undefined, chromiumPath, url);
+        switch (currentSystem) {
+            case 'win32':
+                assert.strictEqual(browserInfo.includes(chromiumPath), true);
+                break;
+            case 'darwin':
+                assert.strictEqual(browserInfo.includes('chromium'), true);
+                assert.strictEqual(browserInfo.includes(url), true);
+                break;
+            case 'linux':
+                assert.strictEqual(browserInfo.includes('chromium-browser'), true);
+                assert.strictEqual(browserInfo.includes(url), true);
                 break;
         }
     });
