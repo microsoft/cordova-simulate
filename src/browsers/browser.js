@@ -30,7 +30,7 @@ function launchBrowser(opts) {
         open(url);
         return Promise.resolve();
     } else {
-        return getBrowser(target, opts.dataDir, chromiumPath, url).then(browser => {
+        return getBrowser(target, opts.dataDir, url, chromiumPath).then(browser => {
             let args;
 
             switch (process.platform) {
@@ -63,7 +63,7 @@ function launchBrowser(opts) {
     }
 }
 
-function getBrowser(target, dataDir, chromiumPath, url) {
+function getBrowser(target, dataDir, url, chromiumPath) {
     if (target == 'chrome') {
         dataDir = dataDir || 'cordova_simulate_temp_chrome_user_data_dir';
     } else if (target == 'edge') {
