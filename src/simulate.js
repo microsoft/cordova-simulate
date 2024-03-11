@@ -6,8 +6,8 @@ var Simulator = require('./server/simulator');
 var BrowserHelper = require('./browsers/browser');
 const log = require('./server/utils/log');
 
-var launchBrowser = function (target, url, showBrowser) {
-    return BrowserHelper.launchBrowser({ target: target, url: url, showBrowser: showBrowser });
+var launchBrowser = function (target, url, showBrowser, chromiumPath) {
+    return BrowserHelper.launchBrowser({ target: target, url: url, showBrowser: showBrowser, chromiumPath: chromiumPath });
 };
 
 var simulate = function (opts) {
@@ -17,18 +17,27 @@ var simulate = function (opts) {
     var target = opts.target || 'default';
     var simulator = new Simulator(opts);
     var showBrowser = opts.showbrowser;
+    var chromiumPath = opts.chromiumpath;
 
     if (!showBrowser) {
         var noBrowserMessage = 'The argument `showbrowser` is set to false. Please load simulated application in browser manually if needed.';
         log.warning(noBrowserMessage);
     }
 
+    if(process.platform === 'win32' && target.toLowerCase() === 'chromium' && !chromiumPath){
+        var win32NoPathMessage = 'Chromium path is required on Windows (win32).';
+        throw new Error(win32NoPathMessage);
+    }else if(process.platform !== 'win32' && chromiumPath){
+        var nonWin32PathMessage = 'Chromium path is not supported on this platform.';
+        log.warning(nonWin32PathMessage);
+    }
+
     return simulator.startSimulation()
         .then(function () {
-            return launchBrowser(target, simulator.appUrl(), showBrowser);
+            return launchBrowser(target, simulator.appUrl(), showBrowser, chromiumPath);
         })
         .then(function () {
-            return launchBrowser(target, simulator.simHostUrl(), showBrowser);
+            return launchBrowser(target, simulator.simHostUrl(), showBrowser, chromiumPath);
         })
         .then(function () {
             return simulator;

@@ -17,6 +17,7 @@ function launchBrowser(opts) {
     let target = opts.target || 'default';
     const url = opts.url || '';
     let showBrowser = opts.showBrowser;
+    const chromiumPath = opts.chromiumPath;
 
     // Handle showbrowser argument sent from cordova-tools and other unknown scenarios
     // Only showbrowser = false will return method
@@ -29,7 +30,7 @@ function launchBrowser(opts) {
         open(url);
         return Promise.resolve();
     } else {
-        return getBrowser(target, opts.dataDir, url).then(browser => {
+        return getBrowser(target, opts.dataDir, url, chromiumPath).then(browser => {
             let args;
 
             switch (process.platform) {
@@ -62,7 +63,7 @@ function launchBrowser(opts) {
     }
 }
 
-function getBrowser(target, dataDir, url) {
+function getBrowser(target, dataDir, url, chromiumPath) {
     if (target == 'chrome') {
         dataDir = dataDir || 'cordova_simulate_temp_chrome_user_data_dir';
     } else if (target == 'edge') {
@@ -73,6 +74,7 @@ function getBrowser(target, dataDir, url) {
     const browsers = {
         win32: {
             chrome: `chrome --user-data-dir=%TEMP%\\${dataDir}`,
+            chromium: chromiumPath,
             opera: 'opera',
             firefox: 'firefox',
             edge: `msedge ${url} --user-data-dir=%TEMP%\\${dataDir}`
