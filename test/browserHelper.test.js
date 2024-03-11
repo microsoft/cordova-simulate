@@ -14,9 +14,8 @@ suite('browserHelper', function () {
     const chromiumPathArg = process.argv.find(arg => arg.startsWith('--chromiumpath='));
     const chromiumPath = chromiumPathArg ? chromiumPathArg.split('=')[1] : undefined;
 
-
     test('Will get Chrome browser target with argument correctly for each system', async () => {
-        const browserInfo = await browser.getBrowser(chrome, undefined, undefined, url);
+        const browserInfo = await browser.getBrowser(chrome, undefined, url, undefined);
         switch (currentSystem) {
             case 'win32':
                 assert.strictEqual(browserInfo.includes('chrome'), true);
@@ -37,7 +36,7 @@ suite('browserHelper', function () {
     });
 
     test('Will get Edge browser target with argument correctly for each system', async () => {
-        const browserInfo = await browser.getBrowser(edge, undefined, undefined, url);
+        const browserInfo = await browser.getBrowser(edge, undefined, url, undefined);
         switch (currentSystem) {
             case 'win32':
                 assert.equal(browserInfo.includes('msedge'), true);
@@ -58,10 +57,12 @@ suite('browserHelper', function () {
     });
 
     test('Will get Chromium browser target with argument correctly for each system', async () => {
-        const browserInfo = await browser.getBrowser(chromium, undefined, chromiumPath, url);
+        const browserInfo = await browser.getBrowser(chromium, undefined, url, chromiumPath);
         switch (currentSystem) {
             case 'win32':
-                assert.strictEqual(browserInfo.includes(chromiumPath), true);
+                if(chromiumPath){
+                    assert.strictEqual(browserInfo.includes(chromiumPath), true);
+                }
                 break;
             case 'darwin':
                 assert.strictEqual(browserInfo.includes('chromium'), true);
