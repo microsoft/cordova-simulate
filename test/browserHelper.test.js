@@ -10,9 +10,7 @@ suite('browserHelper', function () {
     const edge = 'edge';
     const chromium = 'chromium';
     const url = 'http://localhost:8000/index.html';
-    
-    const chromiumPathArg = process.argv.find(arg => arg.startsWith('--chromiumpath='));
-    const chromiumPath = chromiumPathArg ? chromiumPathArg.split('=')[1] : undefined;
+    const chromiumPath = 'chromium';
 
     test('Will get Chrome browser target with argument correctly for each system', async () => {
         const browserInfo = await browser.getBrowser(chrome, undefined, url, undefined);
@@ -60,15 +58,15 @@ suite('browserHelper', function () {
         const browserInfo = await browser.getBrowser(chromium, undefined, url, chromiumPath);
         switch (currentSystem) {
             case 'win32':
-                if(chromiumPath){
-                    assert.strictEqual(browserInfo.includes(chromiumPath), true);
-                }
+                assert.strictEqual(browserInfo.includes(chromiumPath), true);
                 break;
             case 'darwin':
+                assert.strictEqual(browserInfo.includes(chromiumPath), true);
                 assert.strictEqual(browserInfo.includes('chromium'), true);
                 assert.strictEqual(browserInfo.includes(url), true);
                 break;
             case 'linux':
+                assert.strictEqual(browserInfo.includes(chromiumPath), true);
                 assert.strictEqual(browserInfo.includes('chromium-browser'), true);
                 assert.strictEqual(browserInfo.includes(url), true);
                 break;
