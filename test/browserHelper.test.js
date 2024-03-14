@@ -59,16 +59,17 @@ suite('browserHelper', function () {
         switch (currentSystem) {
             case 'win32':
                 assert.strictEqual(browserInfo.includes(chromiumPath), true);
+                assert.strictEqual(browserInfo.includes(url), false);
                 break;
             case 'darwin':
                 assert.strictEqual(browserInfo.includes(chromiumPath), true);
                 assert.strictEqual(browserInfo.includes('chromium'), true);
-                assert.strictEqual(browserInfo.includes(url), true);
+                assert.strictEqual(browserInfo.includes(url), false);
                 break;
             case 'linux':
                 assert.strictEqual(browserInfo.includes(chromiumPath), true);
                 assert.strictEqual(browserInfo.includes('chromium-browser'), true);
-                assert.strictEqual(browserInfo.includes(url), true);
+                assert.strictEqual(browserInfo.includes(url), false);
                 break;
         }
     });
