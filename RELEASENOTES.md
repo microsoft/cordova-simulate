@@ -1,4 +1,12 @@
 # cordova-simulate Release Notes
+## 1.3.1 (Mar 25, 2024)
+* Add chromium path arguments [#465] (https://github.com/microsoft/cordova-simulate/pull/465)
+
+* Internal Changes:
+  * Add unit test for getting chromium browser [#467](https://github.com/microsoft/cordova-simulate/pull/467)
+  * Bump debug from 4.1.1 to 4.3.1 [#464](https://github.com/microsoft/cordova-simulate/pull/464)
+  * Verify device and os version [#463](https://github.com/microsoft/cordova-simulate/pull/463)
+  * Bump debug from 2.6.9 to 3.1.0 [#461](https://github.com/microsoft/cordova-simulate/pull/461)
 
 ## 1.3.0 (Jan 19, 2024)
 * Add Chromium as target for the simulate in browser options [#453](https://github.com/microsoft/cordova-simulate/issues/453)
