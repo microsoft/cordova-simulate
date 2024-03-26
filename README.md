@@ -31,7 +31,7 @@ npm install -g cordova-simulate
 From the command line anywhere within a Cordova project, enter the following:
 
 ```
-simulate [<platform>] [--device=<DEVICE_ID>] [--corsproxy=<true|false>] [--dir=<DIR>] [--livereload=<true|false>] [--port=<PORT>] [--forceprepare=<true|false>] [--simhostui=<SIM_HOST_UI_MODULE_PATH>] [--simulationpath=<SIMULATION_PATH>] [--target=<BROWSER>] [--lang=<LANG>] [--theme=<THEME>] [--middleware=<MIDDLEWARE_PATH>] [--generateids=<true|false>] [--spaurlrewrites=<true|false>] [--showbrowser=<true|false>]
+simulate [<platform>] [--device=<DEVICE_ID>] [--corsproxy=<true|false>] [--dir=<DIR>] [--livereload=<true|false>] [--port=<PORT>] [--forceprepare=<true|false>] [--simhostui=<SIM_HOST_UI_MODULE_PATH>] [--simulationpath=<SIMULATION_PATH>] [--target=<BROWSER>] [--lang=<LANG>] [--theme=<THEME>] [--middleware=<MIDDLEWARE_PATH>] [--generateids=<true|false>] [--spaurlrewrites=<true|false>] [--showbrowser=<true|false>] [--chromiumpath=<CHROMIUM_PATH>]
 ```
 
 See parameters description in the [API](#api) section.
@@ -54,7 +54,7 @@ Where `opts` is an object with the following properties (all optional):
   Supported `windows` devices are `Lumia930`, `Lumia950` and `SurfacePro`. Supported generic devices (which will use the
   `browser` platform) are `Generic320x480`, `Generic320x568`, `Generic360x640`, `Generic384x640`, `Generic412x732`,
   `Generic768x1024`, `Generic800x1280` and `Generic1920x1080`.
-* **target** - the name of the browser to launch your app in. Can be any of the following: `default`, `chrome`, `edge`, `firefox`, `opera`, `safari`.
+* **target** - the name of the browser to launch your app in. Can be any of the following: `default`, `chrome`, `edge`, `firefox`, `opera`, `safari`, `chromium`.
 * **port** - the desired port for the server to use. Defaults to `8000`.
 * **lang** - the language to display in the interface (does not impact console output). Supported values (case-insensitive)
   are `cs` (Czech), `de` (German), `es` (Spanish), `fr` (French), `it` (Italian), `ja` (Japanese), `ko` (Korean), `pl` (Polish),
@@ -73,13 +73,14 @@ Where `opts` is an object with the following properties (all optional):
 * **livereloaddelay** - the delay in milliseconds between saving of a modified file and the application page reloading. You can try to increase the delay in case the simulator server crashes while frequent page reloading. Defaults to `200ms`.
 * **spaurlrewrites** - a boolean. Set to `true` to fix page refreshing in case the default application URL (`/index.html`) in the browser was changed by the router in single page applications. Defaults to `false`.
 * **showbrowser** - a boolean. Set to `true` to launch browsers when simulation starts. Defaults to `true`.
+* **chromiumpath** - a path that points to Chromium executable file. Required when using Chromium as `target` on `win32`. 
 
 Use `launchBrowser` to open target browser with specific url:
 
 ```JavaScript
 require('cordova-simulate').launchBrowser(target, url);
 ```
-* **target** - which browser you want to open, like `Chrome`, `Edge`, `Firefox`, `Opera`, `Safari`.
+* **target** - which browser you want to open, like `Chrome`, `Edge`, `Firefox`, `Opera`, `Safari`, `Chromium`.
 * **url** - specific website url you want to load.
 
 # What it does
