@@ -1,64 +1,65 @@
 trigger:
-  - master
-
+- master
 variables:
   Codeql.Enabled: true
-
 pr:
-  - none
-
-jobs:
-  - job: Linux
+- none
+resources:
+  repositories:
+  - repository: 1ESPipelineTemplates
+    type: git
+    name: 1ESPipelineTemplates/1ESPipelineTemplates
+    ref: refs/tags/release
+extends:
+  template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
+  parameters:
     pool:
-      vmImage: ubuntu-latest
-    timeoutInMinutes: 20
-    steps:
-      - checkout: self
-        clean: true
-      - template: common-validation.yml
-
-  - job: Windows
-    pool:
-      vmImage: windows-latest
-    timeoutInMinutes: 20
-    steps:
-      - checkout: self
-        clean: true
-      - template: common-validation.yml
-
-      - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
-        displayName: "Component Detection"
-
-      - task: Npm@1
-        displayName: "npm pack"
-        inputs:
-          command: custom
-          verbose: false
-          customCommand: pack
-
-      - task: msospo.ospo-extension.8d7f9abb-6896-461d-9e25-4f74ed65ddb2.notice@0
-        displayName: "NOTICE File Generator"
-        inputs:
-          outputfile: "ThirdPartyNotices_Generated.txt"
-          additionaldata: release/AdditionalAttributions.txt
-
-      - task: CopyFiles@2
-        displayName: "Copy Files to: $(Build.ArtifactStagingDirectory)"
-        inputs:
-          Contents: |
-            cordova-simulate-*.tgz
-          TargetFolder: "$(Build.ArtifactStagingDirectory)"
-
-      - task: PublishBuildArtifacts@1
-        displayName: "Publish artifacts: drop"
-        inputs:
-          ArtifactName: "drop"
-
-  - job: macOS
-    pool:
-      vmImage: macOS-latest
-    timeoutInMinutes: 20
-    steps:
-      - checkout: self
-        clean: true
-      - template: common-validation.yml
+      name: Azure-Pipelines-1ESPT-ExDShared
+      image: windows-2022
+      os: windows
+    customBuildTags:
+    - ES365AIMigrationTooling
+    stages:
+    - stage: stage
+      jobs:
+      - job: Linux
+        timeoutInMinutes: 20
+        steps:
+        - checkout: self
+          clean: true
+        - template: /.ci/common-validation.yml@self
+      - job: Windows
+        timeoutInMinutes: 20
+        templateContext:
+          outputs:
+          - output: pipelineArtifact
+            displayName: 'Publish artifacts: drop'
+            targetPath: '$(Build.ArtifactStagingDirectory)'
+            artifactName: "drop"
+        steps:
+        - checkout: self
+          clean: true
+        - template: /.ci/common-validation.yml@self
+        - task: Npm@1
+          displayName: "npm pack"
+          inputs:
+            command: custom
+            verbose: false
+            customCommand: pack
+        - task: msospo.ospo-extension.8d7f9abb-6896-461d-9e25-4f74ed65ddb2.notice@0
+          displayName: "NOTICE File Generator"
+          inputs:
+            outputfile: "ThirdPartyNotices_Generated.txt"
+            additionaldata: release/AdditionalAttributions.txt
+        - task: CopyFiles@2
+          displayName: "Copy Files to: $(Build.ArtifactStagingDirectory)"
+          inputs:
+            Contents: |
+              cordova-simulate-*.tgz
+            TargetFolder: "$(Build.ArtifactStagingDirectory)"
+      - job: macOS
+        timeoutInMinutes: 20
+        steps:
+        - checkout: self
+          clean: true
+        - template: /.ci/common-validation.yml@self
