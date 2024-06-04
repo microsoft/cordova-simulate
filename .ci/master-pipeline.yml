@@ -23,12 +23,20 @@ extends:
     - stage: stage
       jobs:
       - job: Linux
+        pool:
+          name: Azure-Pipelines-1ESPT-ExDShared
+          image: ubuntu-latest
+          os: linux
         timeoutInMinutes: 20
         steps:
         - checkout: self
           clean: true
         - template: /.ci/common-validation.yml@self
       - job: Windows
+        pool:
+          name: Azure-Pipelines-1ESPT-ExDShared
+          image: windows-latest
+          os: windows
         timeoutInMinutes: 20
         templateContext:
           outputs:
@@ -58,6 +66,10 @@ extends:
               cordova-simulate-*.tgz
             TargetFolder: "$(Build.ArtifactStagingDirectory)"
       - job: macOS
+        pool:
+          name: Azure Pipelines
+          image: macos-latest
+          os: macOS
         timeoutInMinutes: 20
         steps:
         - checkout: self
