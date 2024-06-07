@@ -14,7 +14,7 @@ extends:
   template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
   parameters:
     pool:
-      name: Azure-Pipelines-1ESPT-ExDShared
+      name: VSWebDiag1ESPipelinePool
       image: windows-2022
       os: windows
     customBuildTags:
@@ -24,8 +24,8 @@ extends:
       jobs:
       - job: Linux
         pool:
-          name: Azure-Pipelines-1ESPT-ExDShared
-          image: ubuntu-latest
+          name: VSWebDiag1ESPipelinePool
+          image: ubuntu-2204
           os: linux
         timeoutInMinutes: 20
         steps:
@@ -34,8 +34,8 @@ extends:
         - template: /.ci/common-validation.yml@self
       - job: Windows
         pool:
-          name: Azure-Pipelines-1ESPT-ExDShared
-          image: windows-latest
+          name: VSWebDiag1ESPipelinePool
+          image: windows-2022
           os: windows
         timeoutInMinutes: 20
         templateContext:
