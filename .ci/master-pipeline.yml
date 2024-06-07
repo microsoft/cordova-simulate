@@ -15,7 +15,7 @@ extends:
   parameters:
     pool:
       name: VSWebDiag1ESPipelinePool
-      image: windows-2022
+      image: VSWebDiag_1ESImage_Windows
       os: windows
     customBuildTags:
     - ES365AIMigrationTooling
@@ -25,7 +25,7 @@ extends:
       - job: Linux
         pool:
           name: VSWebDiag1ESPipelinePool
-          image: ubuntu-2204
+          image: VSWebDiag_1ESImage_Ubuntu
           os: linux
         timeoutInMinutes: 20
         steps:
@@ -35,7 +35,7 @@ extends:
       - job: Windows
         pool:
           name: VSWebDiag1ESPipelinePool
-          image: windows-2022
+          image: VSWebDiag_1ESImage_Windows
           os: windows
         timeoutInMinutes: 20
         templateContext:
