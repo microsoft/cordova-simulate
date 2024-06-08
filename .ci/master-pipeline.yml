@@ -54,6 +54,8 @@ extends:
             command: custom
             verbose: false
             customCommand: pack
+        - task: ComponentGovernanceComponentDetection@0
+          displayName: "Component Detection"
         - task: notice@0
           displayName: "NOTICE File Generator"
           inputs:
