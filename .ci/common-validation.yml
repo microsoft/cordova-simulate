@@ -1,22 +1,22 @@
 steps:
-- task: NodeTool@0
-  displayName: "Use Node 16.x"
-  inputs:
-    versionSpec: 16.x
-- bash: npm install gulp -g --force
-  displayName: "npm install gulp -g"
-- bash: npm ci
-  displayName: "npm ci"
-- bash: gulp
-  displayName: "gulp default"
-- bash: "npm run test --verbose"
-  displayName: "Run unit tests"
-  env:
-    DISPLAY: ":99.0"
-- task: PublishTestResults@2
-  displayName: "Publish Test Results"
-  inputs:
-    testResultsFiles: test/simulateTestReport.xml
-    failTaskOnFailedTests: true
-    testRunTitle: "$(Agent.OS) Cordova simulate unit tests - Attempt №$(System.JobAttempt)"
-  condition: always()
+  - task: NodeTool@0
+    displayName: "Use Node 16.x"
+    inputs:
+      versionSpec: 16.x
+  - bash: npm install gulp -g --force
+    displayName: "npm install gulp -g"
+  - bash: npm ci
+    displayName: "npm ci"
+  - bash: gulp
+    displayName: "gulp default"
+  - bash: "npm run test --verbose"
+    displayName: "Run unit tests"
+    env:
+      DISPLAY: ":99.0"
+  - task: PublishTestResults@2
+    displayName: "Publish Test Results"
+    inputs:
+      testResultsFiles: test/simulateTestReport.xml
+      failTaskOnFailedTests: true
+      testRunTitle: "$(Agent.OS) Cordova simulate unit tests - Attempt №$(System.JobAttempt)"
+    condition: always()
