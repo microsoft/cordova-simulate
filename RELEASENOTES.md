@@ -1,4 +1,15 @@
 # cordova-simulate Release Notes
+## 1.3.2 (June 26, 2024)
+* Internal Changes:
+  * Bump express from 4.18.2 to 4.19.2 [#473](https://github.com/microsoft/cordova-simulate/pull/473)
+  * Mirgrate pipeline to 1ES Pipeline Template [#474](https://github.com/microsoft/cordova-simulate/pull/474)
+  * Setup 1ES agent pool [#475](https://github.com/microsoft/cordova-simulate/pull/475)
+  * Update image names in master-pipeline.yml [#477](https://github.com/microsoft/cordova-simulate/pull/477)
+  * Update NOTICE File in Generator task [#478](https://github.com/microsoft/cordova-simulate/pull/478)
+  * Add missing task: Component Detection [#479](https://github.com/microsoft/cordova-simulate/pull/479)
+  * Update 1ESPT yaml format [#480](https://github.com/microsoft/cordova-simulate/pull/480)
+  * Bump braces and gulp [#481](https://github.com/microsoft/cordova-simulate/pull/481)
+
 ## 1.3.1 (Mar 25, 2024)
 * Add chromium path arguments [#465] (https://github.com/microsoft/cordova-simulate/pull/465)
 * Internal Changes:
