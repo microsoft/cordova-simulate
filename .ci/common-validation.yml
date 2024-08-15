@@ -1,8 +1,8 @@
 steps:
   - task: NodeTool@0
-    displayName: "Use Node 16.x"
+    displayName: "Use Node 18.x"
     inputs:
-      versionSpec: 16.x
+      versionSpec: 18.x
   - bash: npm install gulp -g --force
     displayName: "npm install gulp -g"
   - bash: npm ci
