@@ -55,7 +55,7 @@
     "in-publish": "^2.0.1",
     "mocha": "^10.2.0",
     "mocha-junit-reporter": "^2.2.0",
-    "mocha-multi-reporters": "^1.5.1",
+    "mocha-multi-reporters": "1.1.7",
     "mstranslator": "^3.0.0",
     "parse5": "^7.1.2",
     "pretty-data": "^0.40.0"
