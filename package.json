@@ -41,6 +41,7 @@
     "minimist": "^1.2.8",
     "replacestream": "^4.0.0",
     "send-transform": "^0.15.1",
+    "shell-quote": "^1.8.2",
     "socket.io": "^2.4.1",
     "through2": "^4.0.2",
     "uuid": "^9.0.0"
