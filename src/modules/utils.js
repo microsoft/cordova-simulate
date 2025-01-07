@@ -39,7 +39,7 @@ self = module.exports = {
 
         if (invalidArg) {
             msg = customExceptionMessage + ('\n\nInvalid Argument type. argument: ' + arg + ' ==> was expected to be of type: ' + argType);
-            exception.raise((customExceptionType || exception.types.ArgumentType), msg, customExceptionObject);
+            exception.raise((validateArgumentType, customExceptionType || exception.types.ArgumentType), msg, customExceptionObject);
         }
     },
 
