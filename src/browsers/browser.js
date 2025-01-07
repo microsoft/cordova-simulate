@@ -4,7 +4,6 @@
 
 const child_process = require('child_process');
 const open = require('open');
-const quote = require('shell-quote/quote');
 
 const NOT_INSTALLED = 'The browser target is not installed: %target%';
 const NOT_SUPPORTED = 'The browser target is not supported: %target%';
@@ -50,11 +49,12 @@ function launchBrowser(opts) {
                     break;
             }
 
+            let command = args.join(' ');
+
             if (target != 'edge') {
-                args.push(url);
+                command = `${command} ${url}`;
             }
             
-            const command = quote(args);
             const result = exec(command);
             result.catch(() => {
                 throw new Error(NOT_INSTALLED.replace('%target%', target));
