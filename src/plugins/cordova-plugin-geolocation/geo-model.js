@@ -56,7 +56,7 @@ var self = {
 
     updatePositionInfo: function (newPositionInfo, delay, timeout) {
         if (!_validatePositionInfo(newPositionInfo)) {
-            exception.raise(exception.types.Geo, 'invalid positionInfo object');
+            exception.raise(updatePositionInfo, exception.types.Geo, 'invalid positionInfo object');
         }
 
         _positionInfo = utils.copy(newPositionInfo);

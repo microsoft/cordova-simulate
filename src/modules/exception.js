@@ -1,14 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Based in part on code from Apache Ripple, https://github.com/apache/incubator-ripple
 
-function _getStack(depth) {
-    var caller,
-        stack = '',
+function _getStack(caller, depth) {
+    var stack = '',
         count = 0;
 
     try {
         /*jshint noarg:false*/ // THIS SHOULD NOT be a common occurrence..
-        caller = arguments.callee.caller.arguments.callee.caller;
 
         while (count <= depth && caller) {
             stack += 'function: ' + caller.toString().match(/function\s?(.*)\{/)[1] + '\n';
@@ -55,7 +53,7 @@ module.exports = {
         }
     },
 
-    raise: function raise(exceptionType, message, customExceptionObject) {
+    raise: function raise(caller, exceptionType, message, customExceptionObject) {
         var obj = customExceptionObject || {
             type: '',
             message: '',
@@ -76,7 +74,7 @@ module.exports = {
         obj.type = exceptionType;
         // TODO: include the exception objects original message if exists
         obj.message = message;
-        obj.stack = _getStack(5);
+        obj.stack = _getStack(caller, 5);
 
         throw obj;
     }
