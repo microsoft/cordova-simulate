@@ -1,4 +1,7 @@
 # cordova-simulate Release Notes
+## 1.3.3 (January 2026)
+* Security fix: Disabled crypto polyfill in browserify to remove transitive dependency on vulnerable 'elliptic' package (CVE-2025-14505) [#xxx](https://github.com/microsoft/cordova-simulate/pull/xxx
+
 ## 1.3.2 (June 26, 2024)
 * Internal Changes:
   * Bump express from 4.18.2 to 4.19.2 [#473](https://github.com/microsoft/cordova-simulate/pull/473)
