@@ -66,6 +66,17 @@
     "update-loc": "node ./tools/i18n/update",
     "eslint": "npx eslint .",
     "prepare": "husky install",
+    "postinstall": "node scripts/clean-crypto-deps.js",
     "test": "mocha ./test/*.js --ui tdd --timeout 100000 --reporter mocha-multi-reporters --reporter-options configFile=./test/mochaReporterConfig.json"
+  },
+  "overrides": {
+    "crypto-browserify": {
+      "browserify-sign": {
+        "elliptic": "6.5.7"
+      },
+      "create-ecdh": {
+        "elliptic": "6.5.7"
+      }
+    }
   }
 }
