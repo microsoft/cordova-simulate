@@ -5,34 +5,14 @@ var browserify = require('browserify'),
     path = require('path'),
     through = require('through2'),
     dirs = require('./dirs'),
-    builtins = require('browserify/lib/builtins'),
     jsUtils = require('./utils/jsUtils'),
     log = require('./utils/log'),
     pluginSimulationFiles = require('./plugin-files');
 
 var _browserifySearchPaths = null,
     _commonModules = null,
-    _safeBuiltins = null,
     simHost = 'sim-host',
     appHost = 'app-host';
-
-/**
- * Get browserify builtins with crypto-related modules disabled.
- * This removes the transitive dependency on 'elliptic' package which has
- * unpatched security vulnerabilities (CVE-2025-14505).
- * cordova-simulate does not use crypto functionality in browser bundles.
- * @return {object}
- */
-function getSafeBuiltins() {
-    if (!_safeBuiltins) {
-        _safeBuiltins = Object.assign({}, builtins);
-        // Disable crypto-related polyfills to avoid elliptic dependency
-        // These modules pull in crypto-browserify -> browserify-sign -> elliptic
-        delete _safeBuiltins.crypto;
-        delete _safeBuiltins._crypto;
-    }
-    return _safeBuiltins;
-}
 
 /**
  * SimulationFiles handle the creation of sim-host and app-host files required
@@ -162,8 +142,7 @@ SimulationFiles.prototype._createHostJsFile = function (simulationFilePath, host
         paths: getBrowserifySearchPaths(hostType),
         debug: true,
         exports: false, // needed to prevent browserify to override hasExports option by set it to true
-        hasExports: false,
-        builtins: getSafeBuiltins()
+        hasExports: false
     });
 
     b.transform(function (file) {
@@ -301,8 +280,5 @@ function getCommonModules(hostType) {
     }
     return hostType ? _commonModules[hostType] : _commonModules;
 }
-
-// Export internal function for testing
-SimulationFiles._getSafeBuiltins = getSafeBuiltins;
 
 module.exports = SimulationFiles;
