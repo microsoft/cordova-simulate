@@ -1,22 +1,93 @@
+# =============================================================================
+# common-validation.yml (CI validation steps)
+#
+# What this file does:
+# - Defines the shared CI steps for install, lint, build tasks, and tests.
+#
+# Purpose / effect:
+# - Node runtime is set explicitly.
+# - Dependencies are installed via npm ci.
+# - JavaScript linting runs once via "npm run lint".
+# - Gulp runs the default task (now JSON validation only, per gulpfile.js).
+# - Unit tests run and results are published.
+# =============================================================================
+
 steps:
+  # ===========================================================================
+  # Step 0: Set Node.js runtime
+  #
+  # Purpose / effect:
+  # - Ensures CI uses Node 20.x for all subsequent npm/gulp steps.
+  # ===========================================================================
   - task: NodeTool@0
-    displayName: "Use Node 18.x"
+    displayName: "Use Node 20.x"
     inputs:
-      versionSpec: 18.x
-  - bash: npm install gulp -g --force
-    displayName: "npm install gulp -g"
-  - bash: npm ci
-    displayName: "npm ci"
-  - bash: gulp
-    displayName: "gulp default"
-  - bash: "npm run test --verbose"
+      versionSpec: "20.x"
+
+  # ===========================================================================
+  # Step 1: Install gulp (only needed if CI calls "gulp" directly)
+  #
+  # Purpose / effect:
+  # - Makes the "gulp" command available on PATH for the next steps.
+  # ===========================================================================
+  - script: |
+      npm install -g gulp --force
+    displayName: "Install gulp globally (npm install)"
+
+  # ===========================================================================
+  # Step 2: Install dependencies deterministically
+  #
+  # Purpose / effect:
+  # - Installs exactly what is defined in package-lock.json.
+  # ===========================================================================
+  - script: |
+      npm ci
+    displayName: "Install dependencies (npm ci)"
+
+  # ===========================================================================
+  # Step 3: Run ESLint (single entry point)
+  #
+  # Purpose / effect:
+  # - Runs JavaScript linting once via npm scripts.
+  # - This step is the only place ESLint executes in CI.
+  # ===========================================================================
+  - script: |
+      npm run lint
+    displayName: "Run ESLint (npm run lint)"
+
+  # ===========================================================================
+  # Step 4: Run gulp default
+  #
+  # Purpose / effect:
+  # - Executes the default Gulp task (per gulpfile.js).
+  # - In the finalized gulpfile.js, this performs JSON validation only.
+  # ===========================================================================
+  - script: |
+      gulp
+    displayName: "Run gulp default"
+
+  # ===========================================================================
+  # Step 5: Run unit tests
+  #
+  # Purpose / effect:
+  # - Executes repository unit tests with verbose output.
+  # ===========================================================================
+  - script: |
+      npm run test --verbose
     displayName: "Run unit tests"
-    env:
-      DISPLAY: ":99.0"
+
+  # ===========================================================================
+  # Step 6: Publish test results
+  #
+  # Purpose / effect:
+  # - Publishes test results to the pipeline.
+  # - Fails the task if tests failed.
+  # - Always runs to publish results even when earlier steps fail.
+  # ===========================================================================
   - task: PublishTestResults@2
     displayName: "Publish Test Results"
     inputs:
       testResultsFiles: test/simulateTestReport.xml
       failTaskOnFailedTests: true
-      testRunTitle: "$(Agent.OS) Cordova simulate unit tests - Attempt №$(System.JobAttempt)"
+      testRunTitle: "$(Agent.OS) Cordova simulate unit tests - Attempt #$(System.JobAttempt)"
     condition: always()
