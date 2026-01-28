@@ -37,7 +37,7 @@ module.exports = {
                     document.getElementById('exec-action').textContent = action;
                     document.getElementById('exec-args').textContent = (args || []).map(JSON.stringify).join(', ');
 
-                    /*eslint-disable no-inner-declarations */
+                     
                     function handleSuccess() {
                         exec(success, true);
                     }
@@ -67,7 +67,7 @@ module.exports = {
                         sendExecUnhandledTelemetry(service, action, false, isSuccess, resultHasValue(result), shouldPersist);
                         func.apply(null, result ? [result] : []);
                     }
-                    /*eslint-enable no-inner-declarations */
+                     
 
                     // Do this each time to capture the values from the current closure. Also, use this approach rather than
                     // addEventListener(), as it can prove difficult to remove the event listener.
