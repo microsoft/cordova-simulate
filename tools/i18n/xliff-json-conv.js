@@ -81,7 +81,7 @@ function parseJson(xlfJsons) {
         var ids = Object.getOwnPropertyNames(items);
 
         // Create an array of strings to be translated, for machine translation
-         
+        // eslint-disable-next-line no-unused-vars
         var fromStrings = ids.map(function (id) {
             return items[id].text;
         });

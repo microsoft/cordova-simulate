@@ -59,7 +59,7 @@ self = module.exports = {
         //MozHack for NamedNodeMap
         /* jshint ignore:start */
         if (window.MozNamedAttrMap) {
-            NamedNodeMap = window.MozNamedAttrMap;  
+            NamedNodeMap = window.MozNamedAttrMap; // eslint-disable-line no-global-assign
         }
         /* jshint ignore:end */
 

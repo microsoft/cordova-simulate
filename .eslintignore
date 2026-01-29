@@ -1,0 +1,7 @@
+src/plugins/cordova-plugin-geolocation/OpenLayers.js
+src/plugins/cordova-plugin-device-motion/3d.js
+src/plugins/cordova-plugin-device-motion/draw.js
+src/plugins/cordova-plugin-globalization/accounting.js
+src/plugins/cordova-plugin-globalization/moment.js
+src/third-party/**/*.js
+test/resources
