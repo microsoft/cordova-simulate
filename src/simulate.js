@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
+
+/*eslint-env node */
 
 var Simulator = require('./server/simulator');
 var BrowserHelper = require('./browsers/browser');

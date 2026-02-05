@@ -365,7 +365,7 @@ function findLowestNode(nodes) {
     return lowestNode;
 }
 
- 
+/*eslint-disable no-unused-vars*/
 function getNodeDepth(node) {
     var depth = 0;
     var parentNode = node.parent;

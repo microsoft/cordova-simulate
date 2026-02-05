@@ -185,7 +185,7 @@ function requestFileSystem(successCallback, errorCallback, args) {
     var type = args[0];
     // Size is ignored since IDB filesystem size depends
     // on browser implementation and can't be set up by user
-    var size = args[1];  
+    var size = args[1]; // eslint-disable-line no-unused-vars
 
     if (type !== window.LocalFileSystem.TEMPORARY && type !== window.LocalFileSystem.PERSISTENT) {
         errorCallback && errorCallback(window.FileError.INVALID_MODIFICATION_ERR);
@@ -330,7 +330,7 @@ function write(successCallback, errorCallback, args) {
     var fileName = args[0],
         data = args[1],
         position = args[2],
-        isBinary = args[3];  
+        isBinary = args[3]; // eslint-disable-line no-unused-vars
 
     if (!data) {
         errorCallback && errorCallback(window.FileError.INVALID_MODIFICATION_ERR);
@@ -607,8 +607,8 @@ function moveToHandler(successCallback, errorCallback, module, event, args) {
     var srcPath = args[0];
     // parentFullPath and name parameters is ignored because
     // args is being passed downstream to exports.copyTo method
-    var parentFullPath = args[1];  
-    var name = args[2];  
+    var parentFullPath = args[1]; // eslint-disable-line no-unused-vars
+    var name = args[2]; // eslint-disable-line no-unused-vars
 
     copyTo(function (fileEntry) {
         remove(function () {
