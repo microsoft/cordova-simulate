@@ -1,6 +1,6 @@
 var fs = require('fs');
 var path = require('path');
-var uuidv4 = require('uuid/v4');
+var uuidv4 = require('uuid').v4;
 
 var deviceList = require('./devices.json');
 var UUIDPlatformBlacklist = ['android'];

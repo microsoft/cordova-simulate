@@ -44,7 +44,7 @@
     "shell-quote": "^1.8.2",
     "socket.io": "^4.8.1",
     "through2": "^4.0.2",
-    "uuid": "^9.0.0"
+    "uuid": "^14.0.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",
@@ -74,7 +74,8 @@
     "sha.js": "^2.4.12",
     "cipher-base": "^1.0.5",
     "js-yaml": "^4.1.1",
-    "path-to-regexp": "^0.1.13"
+    "path-to-regexp": "^0.1.13",
+    "underscore": "^1.13.8"
   },
   "scripts": {
     "update-loc": "node ./tools/i18n/update",
