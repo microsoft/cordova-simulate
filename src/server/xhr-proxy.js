@@ -6,6 +6,9 @@ var http = require('http'),
 
 module.exports.attach = function (app) {
     app.all('/xhr_proxy', function proxyXHR(request, response) {
+        // set upstream proxy based on environment if required
+        http.setGlobalProxyFromEnv()
+        
         var requestURL = url.parse(unescape(request.query.rurl));
 
         request.headers.host = requestURL.host;
