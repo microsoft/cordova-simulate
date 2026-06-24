@@ -74,9 +74,11 @@
     "sha.js": "^2.4.12",
     "cipher-base": "^1.0.5",
     "js-yaml": "^4.2.0",
-    "@babel/core": "^7.29.6",
+    "@babel/core": "^7.29.7",
     "path-to-regexp": "^0.1.13",
-    "underscore": "^1.13.8"
+    "underscore": "^1.13.8",
+    "serialize-javascript": "^7.0.5",
+    "tmp": "^0.2.6"
   },
   "scripts": {
     "update-loc": "node ./tools/i18n/update",
