@@ -2,6 +2,7 @@ trigger:
   - master
 variables:
   Codeql.Enabled: true
+  NpmRegistry: $(NPM_REGISTRY_URL)
 pr:
   - none
 resources:
@@ -32,6 +33,9 @@ extends:
               - checkout: self
                 clean: true
               - template: /.ci/common-validation.yml@self
+                parameters:
+                  npmRegistry: $(NpmRegistry)
+                  enforceNetworkIsolation: true
           - job: Windows
             pool:
               name: VSWebDiag1ESPipelinePool
@@ -48,6 +52,9 @@ extends:
               - checkout: self
                 clean: true
               - template: /.ci/common-validation.yml@self
+                parameters:
+                  npmRegistry: $(NpmRegistry)
+                  enforceNetworkIsolation: true
               - task: Npm@1
                 displayName: "npm pack"
                 inputs:
@@ -77,3 +84,6 @@ extends:
               - checkout: self
                 clean: true
               - template: /.ci/common-validation.yml@self
+                parameters:
+                  npmRegistry: $(NpmRegistry)
+                  enforceNetworkIsolation: true

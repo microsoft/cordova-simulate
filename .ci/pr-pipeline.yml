@@ -5,6 +5,9 @@ pr:
 trigger:
   - none
 
+variables:
+  NpmRegistry: $(NPM_REGISTRY_URL)
+
 jobs:
   - job: Linux
     pool:
@@ -14,6 +17,9 @@ jobs:
       - checkout: self
         clean: true
       - template: common-validation.yml
+        parameters:
+          npmRegistry: $(NpmRegistry)
+          enforceNetworkIsolation: true
 
   - job: Windows
     pool:
@@ -23,6 +29,9 @@ jobs:
       - checkout: self
         clean: true
       - template: common-validation.yml
+        parameters:
+          npmRegistry: $(NpmRegistry)
+          enforceNetworkIsolation: true
 
   - job: macOS
     pool:
@@ -32,3 +41,6 @@ jobs:
       - checkout: self
         clean: true
       - template: common-validation.yml
+        parameters:
+          npmRegistry: $(NpmRegistry)
+          enforceNetworkIsolation: true
