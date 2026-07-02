@@ -1,13 +1,62 @@
+parameters:
+  - name: npmRegistry
+    type: string
+    default: ""
+  - name: enforceNetworkIsolation
+    type: boolean
+    default: true
+
 steps:
   - task: NodeTool@0
     displayName: "Use Node 18.x"
     inputs:
       versionSpec: 18.x
-  - bash: npm install gulp -g --force
-    displayName: "npm install gulp -g"
-  - bash: npm ci
+  - bash: |
+      set -euo pipefail
+      if [ "${{ parameters.enforceNetworkIsolation }}" = "true" ]; then
+        if [ -z "${{ parameters.npmRegistry }}" ]; then
+          echo "NPM registry is required for network isolation. Set pipeline variable NPM_REGISTRY_URL."
+          exit 1
+        fi
+
+        case "${{ parameters.npmRegistry }}" in
+          *registry.npmjs.org*|*npmjs.org*)
+            echo "Public npm registry is not allowed for network-isolated builds: ${{ parameters.npmRegistry }}"
+            exit 1
+            ;;
+        esac
+
+        npm config set registry "${{ parameters.npmRegistry }}"
+        npm config set always-auth true
+        npm config set replace-registry-host always
+        echo "Using npm registry: $(npm config get registry)"
+
+        # Fail fast with a clearer error when the isolated registry is unreachable.
+        npm ping --registry "${{ parameters.npmRegistry }}"
+      fi
+    displayName: "Configure isolated npm registry"
+  - bash: |
+      set -euo pipefail
+      if [ "${{ parameters.enforceNetworkIsolation }}" = "true" ] && [ -f package-lock.json ]; then
+        if grep -E -n "https?://(registry\.npmjs\.org|api\.nuget\.org|pypi\.org|files\.pythonhosted\.org)" package-lock.json; then
+          echo "Public package sources found in package-lock.json. Replace them with an internal mirror/feed."
+          exit 1
+        fi
+      fi
+    displayName: "Block public package sources"
+  - bash: |
+      set -euo pipefail
+      if [ "${{ parameters.enforceNetworkIsolation }}" = "true" ]; then
+        npm ci \
+          --registry "${{ parameters.npmRegistry }}" \
+          --fetch-retries 5 \
+          --fetch-retry-mintimeout 20000 \
+          --fetch-retry-maxtimeout 120000
+      else
+        npm ci
+      fi
     displayName: "npm ci"
-  - bash: gulp
+  - bash: npx gulp
     displayName: "gulp default"
   - bash: "npm run test --verbose"
     displayName: "Run unit tests"

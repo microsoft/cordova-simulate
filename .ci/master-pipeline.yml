@@ -2,6 +2,7 @@ trigger:
   - master
 variables:
   Codeql.Enabled: true
+  NpmRegistry: $(NPM_REGISTRY_URL)
 pr:
   - none
 resources:
@@ -17,6 +18,8 @@ extends:
       name: VSWebDiag1ESPipelinePool
       image: VSWebDiag_1ESImage_Windows
       os: windows
+    settings:
+      networkIsolationPolicy: Permissive,CFSClean
     customBuildTags:
       - ES365AIMigrationTooling
     stages:
@@ -32,6 +35,9 @@ extends:
               - checkout: self
                 clean: true
               - template: /.ci/common-validation.yml@self
+                parameters:
+                  npmRegistry: $(NpmRegistry)
+                  enforceNetworkIsolation: true
           - job: Windows
             pool:
               name: VSWebDiag1ESPipelinePool
@@ -48,6 +54,9 @@ extends:
               - checkout: self
                 clean: true
               - template: /.ci/common-validation.yml@self
+                parameters:
+                  npmRegistry: $(NpmRegistry)
+                  enforceNetworkIsolation: true
               - task: Npm@1
                 displayName: "npm pack"
                 inputs:
@@ -77,3 +86,6 @@ extends:
               - checkout: self
                 clean: true
               - template: /.ci/common-validation.yml@self
+                parameters:
+                  npmRegistry: $(NpmRegistry)
+                  enforceNetworkIsolation: true
