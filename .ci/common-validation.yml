@@ -28,7 +28,11 @@ steps:
 
         npm config set registry "${{ parameters.npmRegistry }}"
         npm config set always-auth true
+        npm config set replace-registry-host always
         echo "Using npm registry: $(npm config get registry)"
+
+        # Fail fast with a clearer error when the isolated registry is unreachable.
+        npm ping --registry "${{ parameters.npmRegistry }}"
       fi
     displayName: "Configure isolated npm registry"
   - bash: |
@@ -40,7 +44,17 @@ steps:
         fi
       fi
     displayName: "Block public package sources"
-  - bash: npm ci
+  - bash: |
+      set -euo pipefail
+      if [ "${{ parameters.enforceNetworkIsolation }}" = "true" ]; then
+        npm ci \
+          --registry "${{ parameters.npmRegistry }}" \
+          --fetch-retries 5 \
+          --fetch-retry-mintimeout 20000 \
+          --fetch-retry-maxtimeout 120000
+      else
+        npm ci
+      fi
     displayName: "npm ci"
   - bash: npx gulp
     displayName: "gulp default"
