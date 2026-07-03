@@ -65,6 +65,7 @@
   "overrides": {
     "@babel/core": "^7.28.6",
     "flatted": "^3.4.2",
+    "js-yaml": ">=4.2.0",
     "serialize-javascript": "^7.0.5",
     "tmp": "^0.2.6"
   },
