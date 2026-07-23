@@ -81,6 +81,7 @@
       "js-yaml": "^5.2.1"
     },
     "serialize-javascript": "^7.0.5",
+    "underscore": "^1.13.8",
     "tmp": "^0.2.6"
   },
   "scripts": {
