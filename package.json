@@ -64,12 +64,21 @@
   },
   "overrides": {
     "@babel/core": "^7.28.6",
+    "@eslint/eslintrc": {
+      "js-yaml": "^5.2.1"
+    },
+    "eslint": {
+      "js-yaml": "^5.2.1"
+    },
     "flatted": "^3.4.2",
-    "js-yaml": "^4.2.0",
+    "js-yaml": "^5.2.1",
     "gulp-eslint": {
       "eslint": {
-        "js-yaml": "^3.15.0"
+        "js-yaml": "^5.2.1"
       }
+    },
+    "mocha": {
+      "js-yaml": "^5.2.1"
     },
     "serialize-javascript": "^7.0.5",
     "tmp": "^0.2.6"
