@@ -67,6 +67,7 @@
     "@eslint/eslintrc": {
       "js-yaml": "^5.2.1"
     },
+    "brace-expansion": "^2.1.2",
     "eslint": {
       "js-yaml": "^5.2.1"
     },
