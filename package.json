@@ -65,21 +65,21 @@
   "overrides": {
     "@babel/core": "^7.28.6",
     "@eslint/eslintrc": {
-      "js-yaml": "^5.2.1"
+      "js-yaml": "git+https://github.com/nodeca/js-yaml.git#5.2.2"
     },
     "brace-expansion": "^2.1.2",
     "eslint": {
-      "js-yaml": "^5.2.1"
+      "js-yaml": "git+https://github.com/nodeca/js-yaml.git#5.2.2"
     },
     "flatted": "^3.4.2",
-    "js-yaml": "^5.2.1",
+    "js-yaml": "git+https://github.com/nodeca/js-yaml.git#5.2.2",
     "gulp-eslint": {
       "eslint": {
-        "js-yaml": "^5.2.1"
+        "js-yaml": "git+https://github.com/nodeca/js-yaml.git#5.2.2"
       }
     },
     "mocha": {
-      "js-yaml": "^5.2.1"
+      "js-yaml": "git+https://github.com/nodeca/js-yaml.git#5.2.2"
     },
     "serialize-javascript": "^7.0.5",
     "underscore": "^1.13.8",
