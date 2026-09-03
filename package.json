@@ -81,6 +81,7 @@
     "mocha": {
       "js-yaml": "git+https://github.com/nodeca/js-yaml.git#5.2.2"
     },
+    "qs": "git+https://github.com/ljharb/qs.git#bb9379e01fad04c601478acd6152143cb20c984b",
     "serialize-javascript": "^7.0.5",
     "underscore": "^1.13.8",
     "tmp": "^0.2.6"
