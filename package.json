@@ -67,7 +67,7 @@
     "@eslint/eslintrc": {
       "js-yaml": "^5.4.1"
     },
-    "brace-expansion": "git+https://github.com/juliangruber/brace-expansion.git#v5.0.9",
+    "brace-expansion": "^5.0.12",
     "eslint": {
       "js-yaml": "^5.4.1"
     },
