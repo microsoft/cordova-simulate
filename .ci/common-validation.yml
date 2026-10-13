@@ -56,8 +56,8 @@ steps:
         npm ci
       fi
     displayName: "npm ci"
-  - bash: npx gulp
-    displayName: "gulp default"
+  - bash: npm run lint
+    displayName: "Lint"
   - bash: "npm run test --verbose"
     displayName: "Run unit tests"
     env:
