@@ -8,6 +8,17 @@ We welcome any quality bugfixes or contributions!
 - `cd` to the folder you just cloned
 - Run `npm ci`
 
+### Running tests
+
+Use Node.js 18.18.0 or later for development and run `npm test`. CI uses Node.js
+18.x, so keep Mocha on the Node 18-compatible 11.x release line and its `js-yaml`
+override on the CommonJS-compatible 4.x release line.
+
+The test command enables Node 18's built-in Web Crypto API, required by the
+security-patched `serialize-javascript` dependency. That dependency declares
+Node.js 20 or later in its engine metadata, so Node 18 installations may emit
+an engine warning even with Web Crypto enabled.
+
 ## Debugging
 
 1. In `cordova-simulate` root folder, open terminal and run `npm link`.
