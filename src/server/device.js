@@ -56,7 +56,7 @@ function getPlatformDevices(platform) {
     var platformDevices = allDevices[platform];
     if (!platformDevices) {
         // If we haven't defined devices for this platform, copy our generic devices.
-        platformDevices = Object.assign({}, genericDevices);
+        platformDevices = Object.assign(Object.create(null), genericDevices);
 
         Object.getOwnPropertyNames(platformDevices).forEach(function (deviceId) {
             platformDevices[deviceId].platform = platform;
