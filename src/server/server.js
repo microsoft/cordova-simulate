@@ -467,7 +467,7 @@ function processPluginHtml(htmlFile, pluginId, lang) {
     var previousHtml;
     do {
         previousHtml = processedHtml;
-        processedHtml = processedHtml.replace(/<!\-\-(.|\s)*?\-\->(\s)*/g, function () {
+        processedHtml = processedHtml.replace(/<!--[\s\S]*?-->\s*/g, function () {
             // Remove comments
             return '';
         });
