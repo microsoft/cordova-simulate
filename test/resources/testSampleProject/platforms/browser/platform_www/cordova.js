@@ -467,7 +467,14 @@ function each (objects, func, context) {
     }
 }
 
+function isPrototypePollutionKey (key) {
+    return key === '__proto__' || key === 'constructor' || key === 'prototype';
+}
+
 function clobber (obj, key, value) {
+    if (isPrototypePollutionKey(key)) {
+        return;
+    }
     exports.replaceHookForTesting(obj, key);
     var needsProperty = false;
     try {
@@ -543,6 +550,9 @@ function include (parent, objects, clobber, merge) {
 function recursiveMerge (target, src) {
     for (var prop in src) {
         if (src.hasOwnProperty(prop)) {
+            if (isPrototypePollutionKey(prop)) {
+                continue;
+            }
             if (target.prototype && target.prototype.constructor === target) {
                 // If the target object is a constructor override off prototype.
                 clobber(target.prototype, prop, src[prop]);
