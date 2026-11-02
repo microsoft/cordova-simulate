@@ -457,15 +457,23 @@ function processPluginHtml(htmlFile, pluginId, lang) {
         /<link[^>]*href\s*=\s*"([^"]*)"[^>]*>/g
     ];
 
-    return tags.reduce(function (result, regex) {
+    var processedHtml = tags.reduce(function (result, regex) {
         // Ensures plugin path is prefixed to source of any script and link tags
         return result.replace(regex, function (match, p1) {
             return match.replace(p1, 'plugin/' + pluginId + '/' + p1.trim());
         });
-    }, html).replace(/<!\-\-(.|\s)*?\-\->(\s)*/g, function () {
-        // Remove comments
-        return '';
-    });
+    }, html);
+
+    var previousHtml;
+    do {
+        previousHtml = processedHtml;
+        processedHtml = processedHtml.replace(/<!\-\-(.|\s)*?\-\->(\s)*/g, function () {
+            // Remove comments
+            return '';
+        });
+    } while (processedHtml !== previousHtml);
+
+    return processedHtml;
 }
 
 function getLocalizedHtmlFile(htmlFile, lang) {
