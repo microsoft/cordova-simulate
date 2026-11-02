@@ -1156,7 +1156,7 @@
         case 'Do':
             return strict ? config._locale._ordinalParse : config._locale._ordinalParseLenient;
         default :
-            a = new RegExp(regexpEscape(unescapeFormat(token.replace('\\', '')), 'i')); // CodeQL [js/incomplete-sanitization] This is from Cordova Plugin official code. The logic is right.
+            a = new RegExp(regexpEscape(unescapeFormat(token.replace(/\\/g, '')), 'i')); // CodeQL [js/incomplete-sanitization] This is from Cordova Plugin official code. The logic is right.
             return a;
         }
     }
@@ -3357,7 +3357,7 @@
             'accusative': 'студзеня_лютага_сакавіка_красавіка_траўня_чэрвеня_ліпеня_жніўня_верасня_кастрычніка_лістапада_снежня'.split('_')
         },
 
-        nounCase = (/D[oD]?(\[[^\[\]]*\]|\s+)+MMMM?/).test(format) ?
+        nounCase = (/D[oD]?(\[[^\[\]]*\]|\s)+MMMM?/).test(format) ?
             'accusative' :
             'nominative';
 
@@ -5877,7 +5877,7 @@
             'accusative': 'հունվարի_փետրվարի_մարտի_ապրիլի_մայիսի_հունիսի_հուլիսի_օգոստոսի_սեպտեմբերի_հոկտեմբերի_նոյեմբերի_դեկտեմբերի'.split('_')
         },
 
-        nounCase = (/D[oD]?(\[[^\[\]]*\]|\s+)+MMMM?/).test(format) ?
+        nounCase = (/D[oD]?(?:\[[^\[\]]*\]|\s)+MMMM?/).test(format) ?
             'accusative' :
             'nominative';
 
