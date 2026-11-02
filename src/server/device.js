@@ -11,6 +11,12 @@ var allUserAgents;
 var defaultPlatform = 'browser';
 var defaultSerial = '123456789';
 
+function assertSafeObjectKey(key, keyName) {
+    if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+        throw new Error('Invalid ' + keyName + ': ' + key);
+    }
+}
+
 function getDeviceInfo(platform, deviceId) {
     var device = findDevice(platform, deviceId);
     return {
@@ -24,6 +30,8 @@ function getDeviceInfo(platform, deviceId) {
 function updateDeviceInfo(device) {
     var deviceId = device.id;
     var platform = device.platform;
+    assertSafeObjectKey(deviceId, 'device id');
+    assertSafeObjectKey(platform, 'platform');
     var platformDevices = getPlatformDevices(platform);
     platformDevices[deviceId] = device;
 
@@ -43,6 +51,7 @@ function findDevice(platform, deviceId) {
 
 function getPlatformDevices(platform) {
     initializeDevices();
+    assertSafeObjectKey(platform, 'platform');
 
     var platformDevices = allDevices[platform];
     if (!platformDevices) {
