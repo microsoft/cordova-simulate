@@ -543,6 +543,9 @@ function include (parent, objects, clobber, merge) {
 function recursiveMerge (target, src) {
     for (var prop in src) {
         if (src.hasOwnProperty(prop)) {
+            if (prop === '__proto__' || prop === 'constructor' || prop === 'prototype') {
+                continue;
+            }
             if (target.prototype && target.prototype.constructor === target) {
                 // If the target object is a constructor override off prototype.
                 clobber(target.prototype, prop, src[prop]);
