@@ -462,7 +462,7 @@ function processPluginHtml(htmlFile, pluginId, lang) {
         return result.replace(regex, function (match, p1) {
             return match.replace(p1, 'plugin/' + pluginId + '/' + p1.trim());
         });
-    }, html).replace(/<!\-\-(.|\s)*?\-\->(\s)*/g, function () {
+    }, html).replace(/<!--[\s\S]*?-->\s*/g, function () {
         // Remove comments
         return '';
     });
