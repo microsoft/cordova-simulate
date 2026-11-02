@@ -55,7 +55,7 @@
     "gulp-jsonlint": "^1.3.2",
     "husky": "^8.0.2",
     "in-publish": "^2.0.1",
-    "mocha": "^10.2.0",
+    "mocha": "^11.8.0",
     "mocha-junit-reporter": "^2.2.0",
     "mocha-multi-reporters": "^1.5.1",
     "mstranslator": "^3.0.0",
@@ -65,23 +65,24 @@
   "overrides": {
     "@babel/core": "^7.28.6",
     "@eslint/eslintrc": {
-      "js-yaml": "git+https://github.com/nodeca/js-yaml.git#5.2.2"
+      "js-yaml": "^5.4.1"
     },
-    "brace-expansion": "git+https://github.com/juliangruber/brace-expansion.git#v5.0.9",
+    "brace-expansion": "^5.0.12",
     "eslint": {
-      "js-yaml": "git+https://github.com/nodeca/js-yaml.git#5.2.2"
+      "js-yaml": "^5.4.1"
     },
     "flatted": "^3.4.2",
-    "js-yaml": "git+https://github.com/nodeca/js-yaml.git#5.2.2",
+    "js-yaml": "^5.4.1",
     "gulp-eslint": {
       "eslint": {
-        "js-yaml": "git+https://github.com/nodeca/js-yaml.git#5.2.2"
+        "js-yaml": "^5.4.1"
       }
     },
     "mocha": {
-      "js-yaml": "git+https://github.com/nodeca/js-yaml.git#5.2.2"
+      "js-yaml": "^4.3.2"
     },
-    "serialize-javascript": "^7.0.5",
+    "qs": "git+https://github.com/ljharb/qs.git#bb9379e01fad04c601478acd6152143cb20c984b",
+    "serialize-javascript": "^7.1.4",
     "underscore": "^1.13.8",
     "tmp": "^0.2.6"
   },
@@ -89,6 +90,6 @@
     "update-loc": "node ./tools/i18n/update",
     "eslint": "npx eslint .",
     "prepare": "husky install",
-    "test": "mocha ./test/*.js --ui tdd --timeout 100000 --reporter mocha-multi-reporters --reporter-options configFile=./test/mochaReporterConfig.json"
+    "test": "node --experimental-global-webcrypto ./node_modules/mocha/bin/mocha.js ./test/*.js --ui tdd --timeout 100000 --reporter mocha-multi-reporters --reporter-options configFile=./test/mochaReporterConfig.json"
   }
 }
